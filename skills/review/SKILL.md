@@ -15,7 +15,7 @@ Everything in this plugin is AI-generated and labeled so. Say so plainly when yo
 
 From the user's message, find:
 
-- **The paper.** A PDF path, a LaTeX source folder (or a `.zip` of one), or an arXiv id. A source folder with no compiled PDF: ask the user for the PDF, or compile it if `latexmk` is available (`latexmk -pdf -interaction=nonstopmode main.tex`). An arXiv id: download `https://arxiv.org/pdf/<id>` with `curl -L`. Word (`.docx`) is not supported yet: say so, and offer to work from a PDF export.
+- **The paper.** A PDF path, a LaTeX source folder (or a `.zip` of one), or an arXiv id. If the user gives a PDF or source of a paper that is on arXiv, find its arXiv id (from the PDF's first page or the user) and pass it to `assemble.py` with `--arxiv`: the dashboard then loads the paper from arXiv and works when sent to someone as a single file. A source folder with no compiled PDF: ask the user for the PDF, or compile it if `latexmk` is available (`latexmk -pdf -interaction=nonstopmode main.tex`). An arXiv id: download `https://arxiv.org/pdf/<id>` with `curl -L`. Word (`.docx`) is not supported yet: say so, and offer to work from a PDF export.
 - **Supplementary information**, if there is a separate file. Ask once if the paper refers to a supplement you were not given; go on without it if the user has none.
 - **Target journal**, if named. Optional.
 - **Mode.** Exhaustive (three independent science reviews, merged) is the default. Standard (one review) when the user asks for quick, standard or one run.

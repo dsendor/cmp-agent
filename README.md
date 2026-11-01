@@ -64,6 +64,10 @@ Then click **Send to Claude** and paste the command it copies into Claude Code
 source, recompiles, commits so one `git revert` undoes it, writes `revision-plan.md`, and then
 works through each item you marked *Will fix*, using your note on it as the instruction.
 
+**Sending a dashboard to someone.** `dashboard.html` is one self-contained file. For a paper on
+arXiv it loads the paper from arXiv, so the file alone is enough; for a draft that is not on
+arXiv, send `paper.pdf` with it, in the same folder.
+
 ## Your data
 
 - Your paper is read by Claude Code on your machine and sent only to the model, as in any
