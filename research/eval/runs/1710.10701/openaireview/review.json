@@ -1,0 +1,157 @@
+{
+  "overall_feedback": "The paper reports a zero-bias conductance plateau near 2e^2/h in InSb-Al nanowires and presents it as strong evidence for Majorana zero modes. The experimental program is ambitious and well motivated: the authors vary magnetic field, tunnel-gate and super-gate voltages and temperature, compare with simulations, and include a useful counterexample (device C) showing that trivial Andreev bound states can mimic many Majorana signatures. The central claim, however, rests on an absolute conductance value and on the flatness of a plateau, and the manuscript gives no description of how series and contact resistances were subtracted, what tolerance defines 'quantized', or how the plateau windows were chosen. The distinguishing criteria between Majorana and ABS are applied asymmetrically (back-gate robustness is tested for device C but not device A), only 2 of 11 extensively measured devices show the plateau, and several quantitative statements are in tension with the paper's own numbers: a Lorentzian with the quoted Gamma = 13.7 ueV at 20 mK cannot reach 2e^2/h, the FWHM > 3.5kBT criterion for saturation is not sufficient, the g = 20 to 1.2 meV/T Zeeman conversion is off by a factor of two under the usual convention, and the stated simulation parameters for Fig. 2f do not obviously satisfy the topological condition. Simulation parameters are also scattered and incomplete across figures. The data are interesting and the plateau is suggestive, but the conclusion that it 'strongly supports' non-Abelian Majoranas overstates what has been shown without the calibration, selection and robustness information listed below.",
+  "comments": [
+    {
+      "title": "No description of series-resistance subtraction or conductance calibration",
+      "quote": "conductance plateau at 2e2/h in the zero-bias conductance measured in InSb",
+      "explanation": "The paper's headline result is an absolute conductance value, so I looked for how the measured two-terminal conductance was converted into the device conductance. In a dilution-refrigerator transport setup, the raw dI/dV includes the resistance of the fridge lines, filters, the measurement electronics and the ohmic contacts, typically several kilo-ohms, which is comparable to h/2e^2 = 12.9 kOhm. Subtracting even a modest error in this series resistance shifts a 2e^2/h peak by tens of percent and can also flatten or tilt a plateau, because the correction is nonlinear in G. Neither the main text, the figure captions nor the Methods state the series resistance value, whether it was measured or fitted, whether it was the same for all devices and cooldowns, or whether it depends on gate voltage or field (contact resistance in nanowires often does). Without this, the reader cannot judge whether the quantized value or the plateau flatness is a property of the device or of the calibration. Because the entire claim rests on this number, I consider this a major omission.",
+      "type": "technical",
+      "severity": "major",
+      "suggested_fix": "Add a Methods paragraph giving, for devices A and B, the series resistance subtracted (in kOhm), how it was determined (e.g. from the fridge line resistance plus a measured contact resistance, not from requiring a plateau at 2e^2/h), and show Fig. 2b and Fig. 4b both raw and corrected, plus the corrected curves for a range of plausible series resistances (e.g. +/- 0.5 kOhm)."
+    },
+    {
+      "title": "Plateau window and quantization tolerance are not defined",
+      "quote": "indicated by the region between the two green dashed lines in Fig. 4b (red curve)",
+      "explanation": "The text repeatedly says the ZBP-height 'remains close to' 2e^2/h (Figs. 1b, 2b, 4b) and Fig. 3a is called 'nearly-quantized', but no quantitative criterion is given for what counts as quantized or for where the plateau starts and ends. I checked whether the dashed lines in Fig. 4b or the B range 0.75 to 0.92 T in Fig. 1b come with a stated rule (e.g. within X% of 2e^2/h), and they do not. In addition, the main text only shows selected gate ranges; it is not stated whether the tunnel-gate sweeps in Fig. 2a and 4b are the full measured ranges or windows chosen to display the flat part. For a claim of quantization, the size of the deviation from 2e^2/h (mean and spread over the plateau) is the key number, and a plateau defined visually by the authors invites selection bias. This undermines the comparison with device C, where heights are said to vary 'without any particular feature at 2e2/h'.",
+      "type": "logical",
+      "severity": "major",
+      "suggested_fix": "State a numerical plateau criterion (e.g. |G(0) - 2e^2/h| < 0.05 x 2e^2/h), report the mean and standard deviation of G(0) over each plateau, and show the full measured tunnel-gate and field ranges for devices A and B rather than windows, marking where the criterion is met."
+    },
+    {
+      "title": "Majorana vs ABS criteria applied asymmetrically between devices",
+      "quote": "against variations in all gate voltages and magnetic field strength, can uniquely identify a",
+      "explanation": "The concluding criterion is robustness against all gate voltages and field. Device C is classified as trivial partly because its ZBP is stable versus back-gate but not versus tunnel-gate. For device A, however, the back-gate is held at ground throughout (Fig. 1b and 2a captions), so its back-gate robustness is never shown. The super-gate sweep in Fig. 3a requires simultaneous compensation of the tunnel-gate, and the ZBP splits for super-gate > -5 V and oscillates in Fig. 3b. Device B is shown only versus field, tunnel-gate and temperature. So neither 'quantized' device is shown to satisfy the criterion the paper itself proposes as unique, and the ABS model of Ref. 28 shows that a barrier-localized ABS can be stable versus a global gate; a partially separated ('quasi-Majorana') ABS could similarly be stable versus the tunnel-gate over a finite range. The final sentence therefore claims more than the data establish.",
+      "type": "logical",
+      "severity": "major",
+      "suggested_fix": "Either add back-gate (and uncompensated super-gate) sweeps of the plateau for devices A and B, or weaken the conclusion to state that the plateau is robust against tunnel-gate and field over the stated ranges, and that robustness to other gates was not tested in the quantized devices."
+    },
+    {
+      "title": "Device selection: 2 of 11 measured devices show a plateau",
+      "quote": "only 2 devices (presented in the",
+      "explanation": "I appreciate that Extended Data Fig. 7 discloses the device statistics, which many papers omit. But the main text presents device B as demonstrating 'reproducibility', while Extended Data Fig. 7 says 9 of 11 extensively studied devices show only trivial ZBPs similar to device C. Given that trivial ABS are the dominant outcome in this platform, and that devices A and B were also tuned by hand, the prior that A and B are a fine-tuned trivial case is not negligible. The paper does not say what fraction of the gate-field parameter space explored in A and B produced plateaus, nor whether the same criteria (Fig. 5 style tests) were run on the other 9 devices and failed. 'Reproducibility' across 2 selected devices out of 11, in different geometries, is weaker than the main text suggests.",
+      "type": "logical",
+      "severity": "moderate",
+      "suggested_fix": "In the main text, replace 'To demonstrate the reproducibility' with a statement that 2 of 11 extensively measured devices showed a plateau, and add to Extended Data Fig. 7 a table of, for each device, the gate and field ranges searched and the maximum ZBP height found."
+    },
+    {
+      "title": "FWHM > 3.5kBT is not a sufficient condition for height saturation",
+      "quote": "when the FWHM exceeds 3.5kBT. For higher temperatures, thermal averaging starts",
+      "explanation": "The text says the ZBP-height 'reaches and saturates at 2e2/h when the FWHM exceeds 3.5kBT'. I checked this against the thermal convolution of a Lorentzian of the form given in the Methods. The exact zero-bias result is G(0)/(2e^2/h) = x psi'(1/2 + x) with x = Gamma/(2 pi kB T), and for Gamma >> kBT it is 1 - (pi^2/3)(kBT/Gamma)^2. If the intrinsic FWHM 2 Gamma equals 3.5 kBT, then x = 0.28 and the peak height is only about 0.66 x 2e^2/h. Even with Gamma = 13.7 ueV (Fig. 4c), the height should be about 0.83 x 2e^2/h at 50 mK and about 0.66 at 90 mK, where 3.5kBT equals the 20 mK FWHM. So FWHM > 3.5kBT is a necessary, not sufficient, condition, and an observed saturation at 2e^2/h up to the crossing point would actually be inconsistent with a single Lorentzian resonance. It is possible the measured FWHM in Fig. 4f includes thermal broadening, which would shift the crossing, but the stated criterion still overstates what theory (Ref. 30) gives.",
+      "type": "technical",
+      "severity": "moderate",
+      "suggested_fix": "Replace the criterion with the quantitative one, e.g. 'the height is within 5% of 2e^2/h when Gamma > 4.5 kBT (from G(0) = x psi'(1/2+x), x = Gamma/2 pi kBT)', and overlay this curve with the measured Gamma on the height-vs-T panel of Fig. 4f."
+    },
+    {
+      "title": "Quoted Gamma at 20 mK implies a peak below 2e^2/h",
+      "quote": "G = 13.7 μeV and temperature of 20 mK",
+      "explanation": "The Fig. 4c fit uses Gamma = 13.7 ueV and 20 mK thermal broadening, with the Methods prefactor fixed at 2e^2/h. Convolving that Lorentzian with the 20 mK Fermi derivative (kBT = 1.72 ueV, x = Gamma/2 pi kBT = 1.27) gives a zero-bias value of 0.956 x 2e^2/h, before adding the lock-in excitation broadening. If the measured base-temperature peak sits at 2e^2/h, as the figure and text state, then either the fit does not actually describe the peak top, or the intrinsic zero-temperature height exceeds 2e^2/h by about 5%, which contradicts the Majorana prediction. Either reading is in tension with calling the fit 'good' and the peak 'quantized'. The Methods also says Gamma was 'taken to be roughly equal to half of the FWHM' rather than fitted, which may explain the mismatch.",
+      "type": "technical",
+      "severity": "moderate",
+      "suggested_fix": "Report the fitted peak height of the convolved Lorentzian alongside the measured height for Fig. 4c, and either fit Gamma (and the amplitude) by least squares or state explicitly the deduced zero-temperature height (measured height divided by 0.956) and discuss whether it is consistent with 2e^2/h within the calibration error."
+    },
+    {
+      "title": "Lorentzian fit prefactor is fixed at 2e^2/h, yet used for ABS peaks below 2e^2/h",
+      "quote": "Both fit a Lorentzian line-shape as shown explicitly for the non-",
+      "explanation": "The Methods formula fixes the Lorentzian amplitude at 2e^2/h and sets Gamma to half the FWHM rather than fitting it. With these constraints, the 'fit' in Fig. 4c is not an independent test of quantization, since the amplitude is assumed. For Fig. 5f, the ABS peaks in Fig. 5e have heights 'generally below 2e2/h', which cannot be described by a fixed 2e^2/h prefactor convolved with 20 mK broadening when Gamma is large; the amplitude must have been freed, or a different formula used. The Methods text claims the same procedure was used 'for all the fittings in Fig. 4c and Fig. 5f'. The reader cannot tell which parameters were free, so the statement that both cases 'fit a Lorentzian' carries little information.",
+      "type": "technical",
+      "severity": "moderate",
+      "suggested_fix": "Write the fit function as G(V) = A Gamma^2/(Gamma^2 + (eV)^2) convolved with -df/dE at T, state that A and Gamma were free least-squares parameters for both Fig. 4c and Fig. 5f, and tabulate the fitted A, Gamma and residuals for each curve."
+    },
+    {
+      "title": "Extended Data Fig. 2 width budget contradicts 'thermal dominates'",
+      "quote": "This shows that the thermal broadening indeed dominates over",
+      "explanation": "Extended Data Fig. 2 argues that in the low-transmission device D the ZBP-width is 'negligible compared to the thermal width', and that the measured FWHM of ~14 ueV is consistent with thermal (6 ueV), lock-in (5 ueV) and tunnelling broadening, so thermal broadening dominates. But 6 and 5 ueV add to 11 ueV linearly and about 7.8 ueV in quadrature, leaving a substantial remaining width that is larger than the thermal part. Either the tunnel broadening is not negligible, or the electron temperature or excitation broadening is larger than stated. Both alternatives matter for the main argument: a higher effective electron temperature would change the Fig. 4c and Fig. 4f analysis, which assumes 20 mK.",
+      "type": "technical",
+      "severity": "moderate",
+      "suggested_fix": "Fit the device D ZBP with the same convolved Lorentzian (thermal plus lock-in kernel) and report the extracted Gamma and effective temperature; if Gamma is comparable to 3.5 kBT, revise the sentence to say that thermal and tunnel broadening are comparable."
+    },
+    {
+      "title": "Electron temperature and lock-in broadening omitted from the width comparison",
+      "quote": "which is significantly wider than the thermal width ~6 eV at 20 mK",
+      "explanation": "The width comparison uses the fridge base temperature of 20 mK as the electron temperature. In practice the electron temperature in such setups is often higher than the mixing-chamber temperature, and the paper gives no independent measurement. The Fig. 1 caption also states an 8 uV lock-in excitation, which by itself broadens features by an amount comparable to or larger than 3.5 kBT at 20 mK. For device A, where widths are 50 to 100 ueV, the conclusion that the peak is tunnel-broadened survives, so this is minor here, but the same 20 mK assumption enters the temperature analysis of device B, where widths are much smaller.",
+      "type": "technical",
+      "severity": "minor",
+      "suggested_fix": "State how the electron temperature was determined (e.g. from a fit to a thermally limited feature) and compare the ZBP width with the combined thermal plus excitation width, e.g. sqrt((3.5 kBT)^2 + (2.4 x V_ac,rms)^2), rather than with 3.5 kBT alone."
+    },
+    {
+      "title": "Zeeman energy conversion inconsistent with g = 20",
+      "quote": "the Landé g-factor g = 20 such that the Zeeman energy VZ [meV] = 1.2 B [T], and the",
+      "explanation": "In the Lutchyn and Oreg models used here (topological condition VZ > sqrt(mu^2 + Delta^2), Extended Data Fig. 5), VZ is the half-splitting g muB B / 2. With g = 20 and muB = 0.0579 meV/T, this gives VZ = 0.58 meV per tesla, not 1.2. The value 1.2 meV/T corresponds to the full splitting g muB B, or to g of about 41 under the half convention. The two conventions differ by a factor of two in the field at which the simulated transition occurs. Separately, Fig. 1c uses 0.88 T to 1.07 meV (consistent with 1.2 meV/T), while Fig. 2f uses VZ = 0.8 meV to model data at B = 0.8 T, which corresponds to 1.0 meV/T. So the conversion is applied inconsistently even within the paper.",
+      "type": "technical",
+      "severity": "moderate",
+      "suggested_fix": "State the convention explicitly (e.g. 'VZ = g muB B/2 with g of about 41, giving VZ [meV] = 1.2 B [T]') and use the same conversion in Fig. 2f (VZ = 0.96 meV at 0.8 T) or explain why a different value was chosen."
+    },
+    {
+      "title": "Fig. 2f simulation parameters do not clearly satisfy the topological condition",
+      "quote": "the nanowire is in the topological regime",
+      "explanation": "Fig. 2f states VZ = 0.8 meV and mu = 0.6 meV and calls this topological. In the self-energy model of Ref. 28 used for Fig. 1d, the relevant low-energy gap is the superconductor-semiconductor coupling gamma, and the condition is VZ > sqrt(mu^2 + gamma^2). If the Fig. 1d value gamma = 0.6 meV is kept, sqrt(0.36 + 0.36) = 0.85 meV > 0.8 meV and the wire would be trivial. If instead an induced gap of about 0.2 meV is used, as in Extended Data Fig. 5, the condition holds. The coupling, induced gap, wire length and temperature or dissipation for Figs. 2f and 3c are not given, and the Methods sets L = 1.0 um while devices A and B have proximitized lengths of about 1.2 and 0.9 um. The reader cannot check the 'topological' label or reproduce the simulations.",
+      "type": "technical",
+      "severity": "moderate",
+      "suggested_fix": "Add a table in the Methods listing, for each simulation panel (Figs. 1d, 2f, 3c, 4e, ED 3, ED 5), the values of gamma or Delta, mu, VZ, L, barrier height and width, temperature and dissipation term, and give the value of VZ - sqrt(mu^2 + gamma^2) for Fig. 2f."
+    },
+    {
+      "title": "Phenomenological dissipation term in simulations",
+      "quote": "small dissipation broadening term (~30 mK) is introduced for all simulations to account for the",
+      "explanation": "The simulations add a dissipation broadening of about 30 mK (presumably about 2.6 ueV) to mimic finite temperature and lock-in excitation. But Ref. 19 by the same theory authors shows that dissipation, unlike thermal averaging, itself reduces the Majorana peak height below 2e^2/h, and it is not equivalent to a convolution with a Fermi derivative. So the simulated plateau height and its robustness in Figs. 2f and 3c depend on a term whose physical justification is that it imitates temperature, while it acts differently. The size of the resulting height reduction in the simulations is not reported.",
+      "type": "technical",
+      "severity": "minor",
+      "suggested_fix": "Give the dissipation term in energy units, and either replace it by an explicit thermal convolution at 20 mK plus lock-in averaging, or report how much it lowers the simulated plateau height below 2e^2/h."
+    },
+    {
+      "title": "Multichannel background subtraction for device B is unspecified",
+      "quote": "from a rough estimate of this background contribution that the net ZBP-height (above",
+      "explanation": "For device B the zero-bias conductance rises above 2e^2/h when the above-gap conductance exceeds e^2/h, which the authors attribute to a second channel. The claim that the net ZBP height above background never exceeds 2e^2/h is then central to consistency with Ref. 9, but the 'rough estimate' of the background is not described. Natural choices (sub-gap conductance at bias just outside the peak, the BTK expression for the second channel from GN - e^2/h, or a fitted Lorentzian amplitude) could give different answers, and with a background in place, the shape of the plateau between the green dashed lines depends on this choice.",
+      "type": "technical",
+      "severity": "moderate",
+      "suggested_fix": "Specify the background estimate (for example, subtract the Andreev conductance of the second spin-resolved channel computed from T2 = GN/(e^2/h) - 1 using the BTK formula), and plot the background-subtracted ZBP height versus tunnel-gate voltage in Fig. 4b."
+    },
+    {
+      "title": "Soft-gap argument for device A is not tested quantitatively in device A",
+      "quote": "Since this softness does not result from dissipation, the",
+      "explanation": "The paper argues that the finite sub-gap conductance of device A at B = 0 comes from Andreev reflection, not from sub-gap states, so it does not threaten quantization. The quantitative test of this, GS = 2 GN^2/(2 - GN)^2 in units of 2e^2/h, is shown in Extended Data Fig. 4 for device C, not for device A. Extended Data Fig. 1 shows only a qualitative hard gap at low transmission for device A. Also, the gap hardness is checked at B = 0 for device A, whereas dissipation relevant for the plateau would be at 0.75 to 0.92 T, near where the bulk Al gap starts to close. The argument is plausible but rests on a different device and field.",
+      "type": "technical",
+      "severity": "moderate",
+      "suggested_fix": "Add to Extended Data Fig. 1 a plot of GS versus GN for device A at B = 0 with the curve GS = 2 GN^2/(2 - GN)^2, and a low-transmission hard-gap check at B of about 0.8 T for device A."
+    },
+    {
+      "title": "Absence of gap reopening and of a nonlocal check weakens the topological claim",
+      "quote": "The gap re-opening is not visible in a measurement of the local density-of-",
+      "explanation": "The authors acknowledge that the bulk gap closing and reopening, the hallmark of the topological transition, is not observed and attribute this to weak coupling of the probe to bulk states (Ref. 25). That explanation is reasonable, but it means the paper has no direct evidence of a bulk transition, and only one end of the wire is probed (the right contact is a drain). Combined with the existence of trivial ZBPs in most devices, the abstract's conclusion that the plateau 'strongly supports the existence of non-Abelian Majorana zero-modes' goes beyond what local tunnelling at one end can establish. The final paragraph also qualifies identification 'as far as tunnelling spectroscopy is concerned', which is more appropriate.",
+      "type": "logical",
+      "severity": "moderate",
+      "suggested_fix": "Revise the abstract's last sentence to 'is consistent with Majorana zero-modes, although the absence of an observed gap reopening and of measurements at the second wire end leaves non-topological explanations not fully excluded'."
+    },
+    {
+      "title": "Super-gate compensation procedure not specified",
+      "quote": "The tunnel-gate voltage is adjusted simultaneously when sweeping",
+      "explanation": "In Fig. 3a the tunnel-gate is changed together with the super-gate to keep transmission roughly constant. The compensation ratio, how it was calibrated, and how well GN stayed constant are not given. This matters because the plateau's robustness versus chemical potential is one of the paper's tests, and the robustness may partly reflect the compensation. It also means the super-gate test is not an independent single-gate variation of the kind used to classify device C.",
+      "type": "technical",
+      "severity": "minor",
+      "suggested_fix": "State the compensation as a linear relation (e.g. delta V_TG = -alpha delta V_SG with the numerical alpha) and show the above-gap conductance versus super-gate voltage along the compensated sweep."
+    },
+    {
+      "title": "ZBP width definition in Fig. 2e is ambiguous and inconsistent with Fig. 4",
+      "quote": "The width is defined by the bias voltage at which dI/dV = e2/h.",
+      "explanation": "In Fig. 2e the width is the bias at which dI/dV = e^2/h, which is a half-width at half-maximum only if the background is zero and the peak is exactly 2e^2/h; with the sizable Andreev background of device A, it is neither half-maximum above background nor obviously a full width. Fig. 4f instead uses FWHM. The text compares the 50 to 100 ueV Fig. 2e widths directly with the 6 ueV thermal FWHM, which mixes definitions. The conclusion for device A probably survives, but it is not clear whether 50 to 100 ueV is a full or half width.",
+      "type": "technical",
+      "severity": "minor",
+      "suggested_fix": "Define the Fig. 2e width as the full width between the two bias values where dI/dV crosses half the peak height above the local background, matching the FWHM used in Fig. 4f, and state which one is plotted."
+    },
+    {
+      "title": "Thermal convolution agreement is not evidence for Majoranas",
+      "quote": "excellent agreement between experiment and simulation for T > 50 mK",
+      "explanation": "The 'simulation' in Fig. 4e and 4f and Extended Data Fig. 3 is a convolution of the measured 20 mK trace with a Fermi derivative, presented as 'no fitting parameters' and 'perfect agreement'. This shows that the temperature evolution is consistent with thermal smearing of a fixed spectral feature, which, as the authors later note, would hold equally for an ABS. In addition, treating the 20 mK trace as zero temperature means the effective temperature is about sqrt(T^2 + (20 mK)^2) in the variance sense, roughly 8% high at 50 mK, so close agreement at 50 to 60 mK is partly by construction. The result is a useful consistency check but should not be framed as support for the Majorana interpretation.",
+      "type": "logical",
+      "severity": "minor",
+      "suggested_fix": "State in the main text that the convolution only tests that the high-temperature suppression is thermal and is equally expected for non-topological resonances, and change 'perfect agreement' in Extended Data Fig. 3 to a quantitative residual (e.g. RMS deviation in units of 2e^2/h)."
+    },
+    {
+      "title": "Overstated claim that all dissipation and disorder issues are solved",
+      "quote": "solved all these dissipation and disorder issues21, and here we report the resulting",
+      "explanation": "The introduction says the authors 'have recently solved all these dissipation and disorder issues'. The paper's own data contradict a blanket statement: 9 of 11 devices show only trivial ZBPs, the authors invoke 'non-homogeneity, possibly somewhere in the middle of the wire' for Fig. 3b, and Extended Data Fig. 7 calls for Schrodinger-Poisson calculations to understand local potential dips. Improved materials (Ref. 21) are a real advance, but 'solved all' is an overclaim.",
+      "type": "logical",
+      "severity": "minor",
+      "suggested_fix": "Replace with 'We have recently substantially reduced dissipation and disorder in these hybrid wires (Ref. 21)'."
+    }
+  ]
+}

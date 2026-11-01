@@ -1,0 +1,125 @@
+# Review of "Jamming-controlled stochasticity in metal-insulator switching"
+
+## Summary of claims
+
+The authors use operando Bragg XPCS on 5×5 µm² VO₂ two-terminal devices (one Ga⁺-irradiated, one pristine) to track how the nanoscale M1/R domain configuration evolves under temperature and current. Their main claims are:
+
+1. Domain dynamics are thermally activated, with E_a ≈ 230 meV.
+2. A sub-threshold current (0.26 mA) slowly erases the initial domain configuration after a ~1000 s delay. An above-threshold current (4 mA) erases it in under 1 s, after which the new configuration is very stable.
+3. Under constant current, the stretching exponent β rises from ~1 to ~1.5, which they interpret as a liquid-to-jammed/glassy transition with t_jam ~ 10³ s.
+4. Under repeated 4 mA cycling, the correlation between successive On-state speckle patterns grows after ~200 cycles and saturates by ~1000 cycles. They interpret this as a "learned," deterministic filament configuration, and propose sub-threshold erasure plus jamming-based training as a neuromorphic protocol.
+
+The experimental idea is attractive and timely. Stroboscopic, cycle-synchronized XPCS on a working device is a nice approach. The question of whether stochasticity in filament formation is encoded in slow nanoscale domain configurations is important. However, the central interpretive claims (jamming, deterministic switching, train/erase capability) are not yet supported at the level stated in the title and abstract. Several key controls and analyses are missing, and there are internal inconsistencies.
+
+## Major concerns
+
+### 1. Reliability of τ and β from very weak, incomplete decays
+
+- **Most fitted τ values far exceed the observation window.** Examples: τ = 81,000 s and 160,000 s, from measurements of ~10⁴ s. The g₂ curves (Figs. 2c, 3g, 3h) decay by only a small fraction of an already small contrast (~2%). Extracting τ and especially β from the onset of a decay is poorly conditioned, and the two parameters are strongly correlated.
+- **Fixing a single τ for all t_age biases β.** Any t_age-dependent change in the decay rate is then absorbed into β. This undermines Fig. 4: the β(t_age) trend that defines the "jamming transition" may be an artifact of this constraint.
+- **Requested additions:**
+  - fits with τ free for each t_age;
+  - the τ–β covariance;
+  - an analysis of whether β is distinguishable from 1 given the decay depth;
+  - the baseline/contrast treatment, since g₂ never approaches 1 and A must be fixed or extrapolated.
+- **The 4 mA sigmoid is essentially unconstrained** (t_jam = 4000 ± 3000 s). The 0.26 and 1.7 mA values are indistinguishable within error. The claimed current dependence and the "shear-thickening" analogy are therefore not supported.
+
+### 2. β ≈ 1.5 alone does not establish jamming
+
+Compressed exponentials are seen in many jammed and glassy soft-matter systems and are usually linked to ballistic, stress-relaxation-driven motion. But they are not diagnostic by themselves. Supporting a jamming or glass interpretation would require at least:
+
+- **q-dependence of τ**, e.g. τ ∝ q⁻¹ (ballistic) versus q⁻² (diffusive). The 2D detector should allow this across the Bragg peak.
+- **Indicators of dynamic heterogeneity**, such as fluctuations of the two-time correlation or χ₄-type analysis.
+- **A physical control parameter** (packing fraction, metallic fraction) that can be tied to the transition.
+
+The paper also offers two mutually exclusive mechanisms (metallic fraction increase versus directed motion toward the filament) without discriminating between them. "Jamming in hard matter" also needs to be placed against existing literature on glassy and avalanche dynamics in VO₂ and martensitic/strain-glass systems.
+
+### 3. Fig. 4 is in tension with the main narrative
+
+The abstract says above-threshold currents drive jamming while sub-threshold currents erase memory and restore stochasticity. Yet Fig. 4 shows the sub-threshold 0.26 mA current producing the same jamming transition, with the shortest t_jam.
+
+Additional points need clarification:
+
+- The text lists the currents as 0.27 mA and 0.26 mA in different places.
+- 1.7 mA appears to lie below I₁ in Fig. 5b. Was it above or below threshold?
+- The temperature at which Fig. 5b was measured is not stated.
+
+### 4. The claim of "deterministic switching" lacks electrical evidence
+
+The stochastic-to-deterministic claim rests entirely on ΔG(n, n+1), a normalized speckle correlation.
+
+- **The normalization is not defined.** If it is min–max scaling, then ΔG → 1 says nothing about determinism in absolute terms.
+- **No electrical statistics are shown.** Cycle-to-cycle threshold voltage/current, On-state resistance, or switching delay as a function of cycle number would provide direct evidence.
+- **Filament location is not shown to stabilize.** Fig. 1e presents a conceptual curve as if it were a result.
+
+### 5. Simpler explanations for increasing cycle-to-cycle correlation are not excluded
+
+- **Incomplete relaxation between pulses.** With ~3 s Off periods, the device may never return to the insulating state. The authors themselves note relaxation can take hours after large currents. Successive On states would then be correlated simply because the Off state retains the previous configuration. That is persistent metallic domains or cumulative heating, not "learning." Off-state diffraction and Off-state resistance per cycle are needed.
+- **Thermal transients from the ~50% duty cycle.** These cause lattice expansion, Bragg-angle and peak shifts, and sample/stage drift relative to a beam that is larger than the device. All of these decorrelate speckle early and stabilize once thermal steady state is reached, roughly on the observed 10²–10³ s scale. Peak position, integrated intensity, rocking-curve checks, and sample temperature versus time should be reported.
+- **Irreversible changes.** Electromigration, oxygen-vacancy redistribution, and electrode or film degradation would also yield a "new equilibrium." Do pre- and post-cycling R(T) and I–V curves match?
+- **X-ray beam effects.** At 2×10¹⁰ ph/s over hours, a beam-dose control (e.g., attenuated or intermittent exposure) is needed.
+
+### 6. The train/erase capability is asserted but not demonstrated
+
+The abstract and conclusion claim that sub-threshold currents "erase the short-term memory... recovering stochastic switching." The experiment only shows that 0.26 mA decorrelates the *as-prepared* configuration. The key experiment would be:
+
+1. train by cycling;
+2. apply a sub-threshold current;
+3. resume cycling;
+4. show that ΔG returns to low values, with the cycle repeatable.
+
+Without this, the neuromorphic "train and reset" proposal is speculative.
+
+### 7. Thermal-activation analysis and its physical interpretation
+
+- **Inconsistent room-temperature value.** The text gives the 298 K stability limit as "8000 ± 3000 s," but Fig. 2c reports τ = 81,000 ± 3000 s. If 298 K represents the instrumental stability limit, it should not be used as a data point in the Arrhenius fit.
+- **Too few points, and one is non-stationary.** The number of temperatures in the inset is unclear; it appears to be very few. The 340 K point lies within the transition, where the two-time map shows non-stationary behaviour. A single Arrhenius law across the MIT mixes different physics.
+- **Unphysical prefactor.** The implied attempt time τ₀ = τ·exp(−E_a/k_BT) ≈ 10 s, whereas typical attempt times are ~ps. This indicates either a collective/effective barrier or that the Arrhenius description is not appropriate. The authors should discuss this.
+- **The melting-point comparison is not meaningful.** Comparing E_a/k_B ≈ 2700 K with the VO₂ melting point (2240 K) has no physical basis; activation barriers routinely exceed k_BT_m. Structural M1/R domain rearrangement is not melting. This argument should be removed.
+- **Inconsistency with the Joule-heating explanation.** Under 4 mA, τ ≈ 160,000 s, slower than at 298 K with no current, even though the device is at 313 K plus Joule heating. Thermally activated dynamics driven by Joule heating would predict faster dynamics. This needs to be addressed.
+
+### 8. What volume does the signal come from?
+
+- **The beam is larger than the device, and coherence is limited.** The beam is 7.4×14.8 µm², with a larger footprint at ~25° incidence, versus a 5×5 µm device. The coherence length (1.7 µm) is much smaller than the device. The speckle therefore includes film outside the gap and under or near the electrodes, and is only partially coherent. What fraction of scattering comes from the active channel and the filament?
+- **Which phase is probed is unclear.** 200_M1 and 011_R are close in 2θ. Are both within the detector? Is the peak position tracked when the phase fraction or lattice changes? Changes in integrated intensity and peak position on switching should be shown; they would also provide a direct phase-fraction measure.
+- **The "domain size" may not be a domain size.** R_d = 2π/Q_FWHM ≈ 20 nm is more likely a structural coherence length (finite thickness of 45 nm, strain broadening, resolution) than an M1/R domain size.
+
+### 9. Statistics and reproducibility
+
+- Each protocol appears to have been run once on one device.
+- The pristine-device results are deferred to an SI that is not included.
+- Repeat measurements, or at least repeated cycling runs on the same device after a reset, are needed for claims about stochasticity.
+- Error bars are fit uncertainties only.
+
+## Minor issues
+
+- **Equations:**
+  - Eq. 1 as written lacks the pixel (ensemble) averaging and per-frame normalization standard in two-time correlation functions.
+  - Eq. 2 uses τ both as a dummy time variable and as the relaxation time.
+  - The geometry is misstated: lines perpendicular to the diagonal through (t_age, t_age) satisfy t₁ + t₂ = 2t_age, not t_age.
+  - Eq. 3 is called a "single exponential decay function"; it is a stretched/compressed exponential.
+  - G(t₁, t₂) maps are described as "three-dimensional plots."
+- **Cycle timing:** "turned on and off for 3 s" is ambiguous. The top axis of Fig. 3c (~1800 cycles in ~5000 s) implies a ~2.8 s period, not 6 s.
+- **Phantom inset:** The text refers to "the inset (orange data)" in Fig. 3i; no inset exists.
+- **Cycle-number inconsistencies:** "After ≈ 200 cycles... stabilizes for ≈ 1000 cycles" conflicts with Fig. 3i (rise starts ~300, plateau by ~1000). The Discussion uses "t < 1000 s and cycle number < 200," which are not equivalent.
+- **Irradiation description:** The main text says a central 5×5 µm region was irradiated; the Methods say devices were "globally irradiated."
+- **Fig. 5:** Show I–V at 313 K (the XPCS temperature) and include the 0.26 mA operating point. Confirm with in-situ resistance that no switching occurred during the sub-threshold run.
+- **Device relevance:** Training over ~1000 cycles and ~1 h, with 3 s pulses, is far from neuromorphic operating timescales. The practical implications should be stated more cautiously.
+- **Undefined comparisons:** The "stability for tens of thousands of seconds" (Fig. 3b) sits uneasily with the abstract's "slow reconfiguration on timescales of thousands of seconds." Clarify which timescale refers to what.
+- **Shear-thickening analogy:** This analogy (slower jamming at larger current) is loose and, given the error bars, unwarranted.
+
+## Assessment
+
+The experiment is novel and potentially valuable. The qualitative observations are interesting and worth reporting:
+
+- slow, current-dependent domain reconfiguration;
+- delayed decorrelation under sub-threshold bias;
+- increasing On-state reproducibility under cycling.
+
+However, the paper currently over-interprets weak correlation decays. "Jamming," "deterministic switching," and "train/erase" are all inferred without the necessary controls: thermal/drift artifacts, incomplete Off-state relaxation, beam effects, and electrical statistics. The jamming analysis rests on β values from fits that are not robust. I would recommend **major revision**. The core requirements are:
+
+1. robust free-parameter fits with q-dependence;
+2. Off-state and electrical cycle-to-cycle statistics;
+3. drift and thermal controls;
+4. an explicit train → erase → re-train experiment;
+5. correction of the internal inconsistencies noted above.

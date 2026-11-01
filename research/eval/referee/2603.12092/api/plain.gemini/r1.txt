@@ -1,0 +1,65 @@
+Here is a comprehensive peer review of the manuscript **"Quantum interference in a twisted high-Tc SQUID senses emergent interfacial order"** by Amit Basu *et al.* (arXiv:2603.12092v1).
+
+---
+
+### **1. Overview and Summary**
+In this manuscript, Basu *et al.* report the fabrication and magnetotransport characterization of $c$-axis Superconducting Quantum Interference Devices (SQUIDs) constructed from twisted van der Waals flakes of the high-$T_c$ cuprate $\text{Bi}_2\text{Sr}_2\text{CaCu}_2\text{O}_{8+\delta}$ (BSCCO). While recent landmark studies have investigated single twisted BSCCO Josephson junctions (JJs)—finding indirect evidence of time-reversal symmetry breaking (TRSB) and $d+id$ chiral superconductivity via Fraunhofer patterns, Shapiro steps, and the Josephson diode effect—a single JJ cannot directly measure the intrinsic quantum mechanical phase across the interface. 
+
+By using a tapered optical fiber scalpel to deterministically cut a hole through a cryogenically exfoliated twisted BSCCO stack, the authors create an asymmetric SQUID loop. This geometry enables them to:
+1. **Directly measure an anomalous $\pi$ phase shift ($\phi_{12} \approx \pi$)** between the two JJ arms at a $45^\circ$ twist angle, which can be toggled between $0$ and $\pi$ using a small in-plane magnetic field. This provides direct interferometric evidence that the two junctions can be prepared in opposite degenerate chiral states ($\alpha = +\pi/2$ and $-\pi/2$).
+2. **Observe a prominent second harmonic ($\sin 2\phi$)** in the current-phase relationship (CPR), indicative of Cooper pair co-tunneling ($4e$ charge transport) when single pair tunneling is suppressed near $45^\circ$.
+3. **Demonstrate zero-field TRSB** via non-reciprocal switching currents ($I_s^+(+B) \neq |I_s^-(-B)|$).
+4. **Extract the interfacial Josephson inductance ($L_J$)** and superfluid stiffness, showing a temperature dependence distinct from bulk BSCCO.
+5. **Demonstrate practical device performance**, achieving a low flux-noise sensitivity of $\sim 1.5\ \mu\Phi_0/\sqrt{\text{Hz}}$ at $60\text{ K}$.
+
+---
+
+### **2. Strengths and Significance**
+* **Methodological Breakthrough:** The fabrication of a $c$-axis twisted cuprate SQUID is a significant technical achievement. Using a tapered fiber scalpel to cut the twisted overlap region without degrading the delicate interfacial oxygen stoichiometry ($T_c \sim 75\text{ K}$) is a clever, minimally invasive lithography-free approach.
+* **Direct Phase-Sensitive Evidence:** Recent theoretical work (e.g., Yuan *et al.*, Ref. [50]) has argued that twist-angle inhomogeneity or disorder can mimic signatures of TRSB (like the diode effect and second-harmonic CPR) in single junctions without requiring true chiral $d+id$ order. By performing a Wollman–Van Harlingen-style interferometric phase measurement (Fig. 3) and observing quantized $0$ and $\pi$ phase shifts (Extended Data Fig. 2), this work provides much stronger, direct evidence of spontaneous symmetry breaking into discrete chiral minima.
+* **Dual Fundamental and Applied Appeal:** Beyond addressing a central question in unconventional superconductivity, the authors show that these twisted vdW devices operate as state-of-the-art high-$T_c$ flux sensors, outperforming traditional grain-boundary YBCO SQUIDs in flux noise while offering full control over the twist angle.
+
+---
+
+### **3. Major Technical Comments and Questions**
+
+1. **Inconsistency in Operating Temperature for Noise Measurements (60 K vs. 77 K):**
+   * On Page 5 (and Fig. 1d), the critical temperature ($T_c$) of the $45^\circ$ twisted SQUID is stated to be $\sim 75\text{ K}$.
+   * On Page 4, Page 12, and Fig. 5, the flux noise measurement of $\sim 1.5\ \mu\Phi_0/\sqrt{\text{Hz}}$ is explicitly stated to be performed at **$60\text{ K}$**.
+   * However, in **Extended Data Fig. 1 (Table)**, the operating temperature for "Our work" ($45^\circ$ twisted BSCCO with area $81\ \mu\text{m}^2$) is listed as **$77\text{ K}$**. Since $T_c \approx 75\text{ K}$, the junction would be in the normal state at $77\text{ K}$. This table entry should be corrected to $60\text{ K}$, and phrasing in the abstract ("close to 77 K") should be tempered or clarified to "at 60 K" to avoid misleading readers regarding liquid-nitrogen operation.
+
+2. **Calibration of $B_\perp = 0$ and Coil Cross-Talk in the $\pi$-Shift Measurement (Fig. 3 & Ext. Data Fig. 2):**
+   * The extraction of the anomalous phase $\phi_{12}$ relies on extrapolating the $dV/dI$ minima vs. $I_{\text{bias}}$ to $I = 0$ and reading the intercept along the $\Phi_{\text{ext}}/\Phi_{\text{period}}$ axis. 
+   * Because the magnetic field period is extremely small ($B_{\text{period}} \approx 3.3\ \mu\text{T}$ due to flux focusing), a half-period shift ($\phi_{12} = \pi$) corresponds to a perpendicular field change of only $\Delta B_\perp \approx 1.65\ \mu\text{T}$.
+   * When applying an in-plane field $B_{\text{in-plane}}$ of $\pm 10$ to $\pm 20\ \mu\text{T}$, even a $5^\circ\text{--}8^\circ$ misalignment between the sample plane and the in-plane magnet axis would introduce a parasitic out-of-plane field of $1.5\text{--}2.5\ \mu\text{T}$, shifting the apparent origin of $B_\perp$.
+   * While the hysteretic, quantized jumps between $0$ and $\pi$ in Extended Data Fig. 2 strongly suggest this is an intrinsic switching effect rather than a simple linear misalignment artifact, the main text should explicitly explain how the parasitic out-of-plane component of $B_{\text{in-plane}}$ is compensated or calibrated out when defining $\Phi_{\text{ext}} = 0$.
+
+3. **Validity of the Asymmetric SQUID Approximation for $3:1$ Area Ratio (Pages 7–8):**
+   * To extract the Josephson inductance $L_{J,1}$ analytically from the slope $\delta I_{s,1}/\delta \Phi_{\text{ext}} = 1/(L_{J,1} + L_{\text{geo},1})$, the authors assume that the switching current of the larger junction is much greater than the smaller one ($I_{s2} \gg I_{s1}$) and that $\phi_2$ is constant.
+   * However, the areal asymmetry of the $45^\circ$ SQUID is only **$3:1$** (Page 7). In standard asymmetric SQUID CPR measurements (e.g., Ref. [31]), an asymmetry of $10:1$ or higher is typically required to treat the reference junction phase $\phi_2$ as rigid. At $3:1$, $\phi_2$ will experience non-negligible phase winding, and $L_{J,2}$ will contribute to the effective inductance. The authors note that numerical simulations are performed in SI 11; it would strengthen the main text to briefly state the percentage error introduced by the $I_{s2} \gg I_{s1}$ analytical formula at a $3:1$ ratio compared to the full numerical simulation.
+
+4. **Interpretation of $\eta'(B)$ at Finite Magnetic Fields (Fig. 4a, b):**
+   * The authors define $\eta' = \frac{I_s^+(+B) - |I_s^-(-B)|}{I_s^+(+B) + |I_s^-(-B)|} \times 100\%$ to test time-reversal symmetry at $B=0$. 
+   * Technically, by Onsager reciprocity / time-reversal symmetry of the full system+field Hamiltonian, flipping *both* current ($I \to -I$) and external magnetic field ($B \to -B$) should yield identical switching currents ($I_s^+(+B) = |I_s^-(-B)|$, i.e., $\eta'(B) = 0$) at **all** magnetic fields $B$, *unless* there is an internal TRSB order parameter (such as chiral $d\pm id$ order or pinned vortices) that **does not flip** when $B$ is reversed between $+75\ \mu\text{T}$ and $-75\ \mu\text{T}$.
+   * In Fig. 4a and 4b, $\eta'$ is non-zero across the entire field range and even changes sign. The authors should clarify that $\eta'(B) \neq 0$ at finite $B$ implies that the spontaneous TRSB state (or its chiral domain configuration) remains pinned and does not invert during the perpendicular field sweep.
+
+5. **Mechanism of Chirality Switching by Ultra-Low In-Plane Fields:**
+   * It is quite remarkable that an in-plane field of just $10\ \mu\text{T}$ (smaller than the Earth's magnetic field) is sufficient to toggle the relative chirality of the two arms (Fig. 3 and Ext. Data Fig. 2). The authors briefly mention "coupling of Josephson and Abrikosov vortices" on Page 10. Given that $10\ \mu\text{T}$ corresponds to a flux of less than $10^{-3}\ \Phi_0$ through the cross-sectional thickness of the junction, how does such a weak in-plane field overcome the free-energy barrier between the $\pm \pi/2$ minima? A slightly expanded physical discussion on whether this is driven by Meissner screening currents at the flake edges or vortex depinning would be very helpful.
+
+---
+
+### **4. Minor Comments and Corrections**
+
+* **Notation Consistency:** In Equation (2) and throughout the text (Pages 8–10), subscripts are used for the phases ($\phi_1, \phi_2, \phi_{12}$). However, in the schematic in **Fig. 3c and 3d**, superscripts are used ($\phi^1, \phi^2, \phi^{12}$). These should be unified to subscripts to avoid confusion with exponents (especially since $T^2$ and $A^{(2)}$ appear elsewhere).
+* **Typo (Page 6):** Line 17, *"2.2 $\mu$T for 40° twsited device"* $\rightarrow$ *"twisted"*.
+* **Typo (Page 8):** Line 2, *"as $I_{s2}$»$I_{s1}$"* $\rightarrow$ use proper LaTeX `\gg` ($\gg$) instead of the guillemet character `»`.
+* **Typo (Page 20):** In the last paragraph of Methods, the numerator of the expression $2\pi(\frac{L_{\text{geo},1}I_{s1}(\phi_1) - L_{\text{geo},2}I_{s2}(\phi_2)}{\Phi_0})$ is set equal to $\frac{L_{\text{geo}}I}{2}(\nu+\gamma)$. A factor of $\frac{2\pi}{\Phi_0}$ was dropped in the intermediate expression (though it is correctly restored in the next sentence for $\mathcal{A}$).
+* **Bibliography Formatting:**
+  * Ref. [22] (Page 24) and Ref. [40] (Page 26): Chemical formulas in titles have lost their capitalization and subscripting (`bi2sr2cacu2o8+x` and `bi2.1sr1.9cacu2.0o8+δ`).
+  * Ref. [54] (Page 27): Uncompiled LaTeX math mode in the title (`Sr$_2$RuO$_4$`).
+* **Fig. 2(f) Error Bars:** It would be useful to state in the caption of Fig. 2(f) how the error bars on $L_J$ are defined (e.g., standard error from linear fits of multiple oscillation slopes, or uncertainty in $L_{\text{geo}}$ from EM simulations).
+
+---
+
+### **5. Overall Conclusion**
+This is an outstanding and timely experimental paper. By moving from single twisted junctions to a phase-sensitive SQUID interferometer, the authors provide the most direct experimental evidence to date for emergent chiral $d\pm id$ superconductivity at twisted cuprate interfaces, while simultaneously demonstrating a high-performance quantum sensor. Once the temperature discrepancy in Extended Data Fig. 1 and the clarifications regarding field calibration and SQUID asymmetry are addressed, this manuscript will be a strong candidate for publication in a high-impact journal (such as *Nature*, *Nature Physics*, or *Nature Materials*).

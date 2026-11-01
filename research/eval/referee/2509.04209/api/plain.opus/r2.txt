@@ -1,0 +1,182 @@
+# Referee Report
+
+**Manuscript:** "Quantum Hall Antidot as a Fractional Coulombmeter" (Di Luca et al., arXiv:2509.04209)
+
+## Summary
+
+The authors build a fully gate-defined antidot (AD) in hBN-encapsulated bilayer graphene. The AD is defined by an etched hole in a graphite top gate, combined with a graphite bottom gate and two side gates that tune the coupling between the extended edges and the AD-bound states.
+
+- **Integer regime:** Gate- and field-swept conductance oscillations in the diagonal conductance G_d are seen at ν = 1–4 (and ν = −2). Their periods are consistent with tunneling of charge ≈ e and an effective AD diameter of ≈ 300 nm. Coulomb diamonds are observed.
+- **Fractional regime:** A second device shows oscillations at ν = 3/5, 2/3, 4/3, 5/3, 7/3 and 8/3. The quasiparticle charge is extracted from Eq. 1, q = Cφ₀ΔV/(NΔB). Here N is inferred from the ratio of field periods to the ν = 2 reference, assuming the AD area is constant.
+- **Main results:** The authors report q ≈ e/3 at ν = 4/3, 5/3, 7/3 and for a weaker "small" oscillation at 8/3. They report q ≈ 2e/3 at ν = 2/3 and for the dominant 8/3 oscillation, and q ≈ 3e/5 at ν = 3/5. They claim the first measurement of e/3 charge in a graphene-based device.
+
+The device platform is a real technical advance. A fully electrostatically defined, tunable AD in a van der Waals heterostructure is valuable, and the integer-regime characterization is careful and convincing. My concerns are with the fractional-charge claims. In my view these are not yet established at the level the title and abstract suggest.
+
+---
+
+## Major Comments
+
+### 1. The two "independent" charge determinations are not independent
+
+The paper presents Fig. 4d (gate-period ratio ΔV/ΔV_e) and Fig. 4e (Eq. 1 with N from Fig. 4b) as a cross-check. Fig. 5 is shown separately as a consistency observation. However, these three figures are algebraically linked:
+
+- Fig. 5 shows that the slope satisfies CΔV/ΔB ≈ νe/φ₀ for every state.
+- Given this, ΔV_ν/ΔV_2 = (ν ΔB_ν)/(2ΔB_2) = ν/N, where N ≡ 2ΔB_2/ΔB_ν.
+- This is exactly Eq. 2, i.e. the quantity in Fig. 4e.
+
+So once the slope equals ν, Fig. 4d and Fig. 4e contain the same information, and their agreement is guaranteed rather than confirmatory. The authors partly acknowledge this around Eq. 2 but still call Fig. 4d a cross-check. The paper should state plainly that:
+
+- there is effectively one measured quantity per state (the flux period relative to the integer reference, or equivalently the gate period);
+- the fractional charge rests entirely on the constant-area assumption.
+
+### 2. The constant-area assumption is the crux, and the paper's own data partly contradict it
+
+Every fractional charge assignment depends on the AD area being the same at ν = 2 (or ν = 1) and at the fractional state of interest. Several observations cast doubt on this:
+
+- **ν = 4 gives N ≈ 5, not 4.** The authors attribute this to an area change, i.e. a ~25% deviation in exactly the quantity used to assign N.
+- **ν = 5/3 gives N ≈ 5.4**, which is closer to 5.5 than 5, with the error bar shown.
+- **The integer gate periods vary by ~30%** (AD #1: ΔV ≈ 5.6, 4.9, 5.4, 4.0 mV for ν = 1–4). The authors attribute this to "the increasing number of edge states encircling it." That is itself an area or lever-arm effect.
+- **Systematic offsets of ~5% from the gate used** (TG gives +5%, BG gives −5%, Supp. F/G) show that gate-dependent AD potentials matter at the level of the claimed precision.
+- **The ν = 1 reference at 13.5 T is poorly determined.** Fig. S7 gives ΔB = 62 ± 27 mT (≈ 45% error), and the authors state that ν = 1 and 4 at this field may be in a multilevel-hopping regime with "quasiperiodic" oscillations.
+
+The authors should:
+
+- (a) propagate the reference-state uncertainty explicitly into N;
+- (b) show how robust the integer assignments of N are, e.g. by explicitly testing N = 3 vs 4 vs 5 at ν = 4/3 against the data;
+- (c) ideally, provide an electrostatic simulation of the AD potential and effective area versus filling factor and gate configuration.
+
+### 3. ν = 7/3: N is assumed, not measured
+
+Fig. 4b omits AD #2 at 8 T because no ν = 2 reference was measured. Yet ν = 7/3 (measured at 8 T) appears in Figs. 4c and 4e, which require N.
+
+- It appears N = 7 was assumed, which makes the 7/3 entries in Figs. 4c and 4e circular.
+- The only non-circular datum for 7/3 is the gate-period ratio to ν = 1 (Fig. 4d), which has a large error bar. The FFT peak in Fig. S17b is also not clearly distinguishable.
+
+This should be stated explicitly, and 7/3 should not be counted as independent support for e/3.
+
+### 4. The "small" 8/3 oscillation may be a higher harmonic
+
+The small 8/3 oscillation is the only case where e/3 is inferred in a state that otherwise shows 2e/3, so it carries much of the paper's interpretive weight. In Fig. S18c the two FFT peaks are:
+
+| Peak | ΔV | ΔB |
+|---|---|---|
+| Main | 2.3 ± 0.5 mV | 14 ± 3 mT |
+| Secondary | 1.3 ± 0.2 mV | 7 ± 2 mT |
+
+The secondary peak sits at ≈ 2× the main frequency along the same slope. This is exactly where the second harmonic of a non-sinusoidal periodic signal would appear, and Coulomb-blockade line shapes are generically non-sinusoidal. In addition:
+
+- ΔB ≈ 7 mT is sampled with 1 mT steps, i.e. ~7 points per period. The authors note this is at the limit of their magnet supply.
+- The feature appears "only in certain regions."
+
+To support the interpretation, the authors should:
+
+- show that the secondary peak cannot be reproduced by the harmonic content of the main oscillation (e.g. fit the line shape and compare the expected harmonic amplitude);
+- show real-space line cuts where the half-period features are clearly resolved and alternate in amplitude, as the even/odd picture would predict;
+- acquire finer-B data, e.g. by sweeping the gate at fixed B and stepping B more finely, or by using a superconducting-magnet persistent-mode approach.
+
+### 5. Pattern for ν < 1 states and the limits of the "Coulombmeter" concept
+
+For every state with N = 1 (ν = 3/5, 2/3), the extracted "charge" is simply q = νe. This follows from Eq. 2 whenever the flux period equals φ₀. Consequences:
+
+- The method returns 3e/5 at ν = 3/5, not the expected e/5.
+- It returns 2e/3 at ν = 2/3, not e/3.
+- In 3 of the ~6 fractional cases (2/3, dominant 8/3, 3/5), the measured "charge" is not the fundamental quasiparticle charge.
+
+This substantially weakens the framing of the AD as a "Coulombmeter" that "directly reveal[s] the charge of tunneling quasiparticles." The proposed explanations do not yet resolve this:
+
+- **Bunching** is acknowledged as disfavored, with the counter-argument resting on a PhD thesis [49].
+- **Even/odd amplitude asymmetry** is offered without a model, without a prediction for which states should show it, and without a prediction for how it should evolve with temperature, coupling or bias.
+
+I recommend:
+
+- (a) temperature dependence of the 2/3 and 8/3 oscillations. Shot-noise analogues show 2e/3 → e/3 with increasing T, so a crossover in period would be very compelling;
+- (b) dependence on side-gate coupling;
+- (c) toning down the abstract and title claims accordingly.
+
+### 6. Theoretical framework for N in higher Landau levels
+
+The statement that N "should be understood as the number of quasiparticles transferred per quantum flux" is a relabeling rather than a derivation.
+
+- In a Coulomb-dominated (CD) picture à la Halperin–Stern–Rosenow, the expected flux period is ΔΦ = (e*/νe)φ₀, with ν the bulk filling. This immediately gives N = νe/e* and the observed slope = ν.
+- Writing the model down explicitly would clarify which quantities are measured and which are inferred.
+- It would also clarify why the total ν, rather than the fractional part of the interacting edge (e.g. 1/3 for 4/3, 2/3 for 5/3), sets N.
+- The paper's terminology is inconsistent: "N = ν_int, the filling factor of the interacting edge" is used for the inner ν = 2 edge (ν_int = 2), while ν_int = ν_b − 1 is used for the outer edge in Supp. H.
+
+**Alternative mechanisms for a reduced flux period.** Kataoka et al. [47] showed that h/2e periodicity at ν = 2 arises from Coulomb blockade of two compressible rings. At ν = 4/3, 5/3, 8/3 several spin/valley-split rings (integer plus fractional) surround the AD. The authors should argue why period subdivision from multiple coupled rings cannot produce φ₀/4 or φ₀/5 independently of e*.
+
+**Regime identification.** Supp. I reports a peak-to-dip transition at zero bias for ν = 4/3, described as "consistent with an Aharonov–Bohm–like mechanism." This directly undercuts the CD assumption on which N is based for the state that is the strongest e/3 evidence. This tension should be discussed in the main text, not only in the SI.
+
+### 7. Novelty claim: "first measurement of e/3 in a graphene-based device"
+
+This claim needs careful qualification:
+
+- Mills, Averin & Du (PRL 125, 227701, 2020; ref. [37] here) studied fractional quasiparticles localized on graphene ADs.
+- Several graphene Fabry–Pérot interferometer works [11–13] infer e/3 from gate/field period ratios or phase-jump analysis.
+- Shot-noise-based fractional charge measurements in graphene may also exist.
+
+The authors should state precisely what is new. For example, it may be the first AD-based e/3 determination in bilayer graphene, or the first in higher-LL fractional states. They should also discuss how their result differs from these prior works.
+
+### 8. Ruling out spurious resonances
+
+Device AD #2 shows strongly asymmetric side-gate behavior at ν = 5/3, which the authors attribute to localized impurities near one gate. Impurity-bound states in the constriction would also produce Coulomb resonances. The consistent ~300 nm diameter is partial evidence for AD origin, but further checks would help:
+
+- show the dependence of the fractional oscillations on independent tuning of each side gate (an AD resonance should be insensitive to which gate pinches, an impurity resonance should not);
+- if available, include a control constriction without an AD hole.
+
+---
+
+## Minor Comments
+
+**Text and figure inconsistencies**
+
+1. Page 4: "Figure 2g shows the diagonal conductance oscillations as a function of the TG voltage and the dc bias" should refer to Fig. 2f.
+2. Page 4 says "gate periods (red) and field periods (blue)," while the Fig. 4 caption says ΔV blue and ΔB red. Please make these consistent.
+3. Supp. F text says fractional BG oscillations were measured on AD #1, but the Fig. S9 caption says AD #2. The S9 caption also reuses "d-f" for panels m–p.
+4. Fig. S7 caption says "as a function of the BG voltage," but the axes show V_tg.
+5. Supp. C has panel references that do not match the figure: the fit is in S1d,i, not S1b, and the TG capacitance slope panel for AD #2 is S1h. Mobility units should be cm² V⁻¹ s⁻¹, not cm⁻² V/s.
+6. Supp. H: "Since the oscillations are gate-induced, we cannot directly extract the interfering charge" is unclear, since these are area-type (TG+BG) sweeps. Please clarify. The caption also labels two panels "b."
+
+**Parameters and expressions**
+
+7. The main text uses "top hBN ≈ 50 nm," while the Methods give 56 nm (AD #1) and 45 nm (AD #2). Use the device-specific values.
+8. l_B ≈ 25.7 nm/√B[T], not 24 nm.
+9. Supp. I: δε ∼ −1/(e*B) has an unexplained sign. The accompanying argument, that reduced e* "increases the spacing," is not obviously consistent with δε ∼ ħv/D_AD. Please clarify.
+
+**References**
+
+10. Ref. [17] (Banerjee et al., thermal Hall at 5/2) is cited for the claim that shot noise at ν = 3/5 gives Fano factor 3/5 at low T and e/5 at higher T. This appears to be the wrong reference (cf. Chung, Heiblum et al., PRL 91, 216804, 2003). Also check whether ref. [13] is the intended source for the R_xx fitting procedure.
+
+**Experimental details and data**
+
+11. Please report the electron temperature. With charging energies of ~50 µeV (~0.6 K) in the FQH regime, and the 3 µV excitation, T_e is directly relevant to the single- vs multilevel regime discussion.
+12. The absolute capacitance in Eq. 1 is taken from Hall measurements far from the AD. Fringing near the etched hole may change the local lever arm, which is relevant to the 5% offset. Ratio-based estimates avoid this, but Eq. 1 does not.
+13. The FFT error analysis (Supp. E) should be summarized in the main text. The main limitation, ≲10 oscillations per plateau, directly bounds how well integer values of N can be distinguished.
+14. "Pijama plot" should be "pajama plot"; "consistent with the correctly estimation of N" is ungrammatical; "in function of" should be "as a function of" (several places).
+15. Please consider depositing the data and analysis code in a public repository rather than "upon reasonable request."
+
+---
+
+## Assessment
+
+**Strengths**
+
+- A novel, highly tunable, fully gate-defined BLG antidot with clear integer-regime Coulomb oscillations and diamonds.
+- Systematic measurements across many integer and fractional states, two devices and several fields, with both TG and BG sweeps.
+- A useful, honest observation (Eq. 2 and Fig. 5) that the oscillation slope is fixed by ν, which warns against naive charge extraction.
+
+**Weaknesses**
+
+- The fractional-charge determination reduces to a single flux-period ratio that depends critically on a constant-area assumption the data only partly support.
+- The headline e/3 evidence rests on:
+  - 4/3 and 5/3, where the CD regime is not firmly established;
+  - 7/3, where N appears to be assumed;
+  - a possible second harmonic at 8/3.
+- In half the fractional states the method does not return the fundamental charge, and the proposed explanation is speculative.
+- The novelty claim needs qualification relative to prior graphene AD and interferometer work.
+
+**Recommendation: Major revision.**
+
+The device and dataset merit publication. The conclusions should be either:
+
+- (i) supported by additional measurements: temperature dependence, finer-B data at 8/3, harmonic analysis, a ring-subdivision control, and an explicit CD model; or
+- (ii) reframed more cautiously, presenting the AD as a platform that measures flux and gate periodicities consistent with e/3 in some higher-LL states, while openly discussing the cases where it does not yield the fundamental charge.

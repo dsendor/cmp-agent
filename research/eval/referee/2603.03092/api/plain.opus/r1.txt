@@ -1,0 +1,184 @@
+# Referee Report
+
+**Manuscript:** "Suppression of Spectral Gap and Flat Bands on a Cuprate Superconductor Side-Surface" (Domaine et al., arXiv:2603.03092)
+
+---
+
+## 1. Summary of the submission
+
+The authors use FIB-milled micro-notches to force cleavage of overdoped La₂₋ₓSrₓCuO₄ (x = 0.22) along the (110) plane. This exposes a cuprate side surface for ARPES, which the authors report as the first such measurement in the superconducting state. The surface has an AFM rms roughness of about 1.8 Å. Photon-energy and deflector maps recover the known LSCO Fermi surface, and the surface doping is estimated at p ≈ 0.22.
+
+The central experimental result is negative. At 6 K, within 3–4 meV resolution, the authors observe:
+- no superconducting gap at the antinodal k_z, and
+- no zero-energy peak from the expected topological flat band.
+
+Self-consistent BdG slab calculations support two claims:
+1. Geometric edge roughness built from the AFM profile does not destroy the flat-band peak.
+2. Gaussian on-site disorder of σ = 100 meV broadens it beyond detectability.
+
+The authors conclude that bulk disorder is the key factor preventing observation of the flat bands.
+
+## 2. Overall assessment
+
+**Strengths**
+- Applying FIB-controlled cleaving to a cuprate is a significant technical advance. It plausibly opens a new class of experiments.
+- The demonstration that a (110) LSCO surface can yield a recognizable, k_z-resolvable Fermi surface is valuable in its own right.
+- The theoretical framing (chiral winding, k_z character of weakly confined Andreev states, inter-chirality scattering) is sound and pedagogically useful.
+
+**Main weakness**
+The central physical conclusion, "disorder as the key factor," is not established by the evidence presented. The non-observation of both a gap and a zero-energy peak admits several alternative explanations that are not excluded. Some are simpler than bulk Anderson disorder, and some are internally suggested by the paper's own data.
+
+**Key controls missing**
+- A same-crystal (001) reference.
+- Quantitative upper bounds on any spectral weight at E_F.
+- Realistic gap magnitude in the simulations.
+- A disorder-strength scan validated against measured linewidths.
+
+There are also several numerical inconsistencies and errors in the formalism.
+
+**Recommendation:** I regard the work as publishable after major revision. The authors could either (a) substantially strengthen the case for the disorder interpretation, or (b) reframe the paper around the technique and the negative result, presenting disorder as one candidate explanation among several.
+
+---
+
+## 3. Major issues
+
+### 3.1 A non-superconducting or over-doped surface layer is not excluded
+
+The simplest explanation for seeing *neither* a gap *nor* a flat band is that the probed surface layer (a few Å) is not superconducting. Possible causes include:
+- oxygen loss or apical-oxygen disorder at the fractured side surface,
+- cleave-induced damage,
+- surface over-doping.
+
+The paper's evidence against this is weak:
+- **Surface doping.** The estimate ranges over 0.2–0.25, "occasionally reaching up to about x = 0.3" (Supp. F). Superconductivity in LSCO vanishes at p ≈ 0.27. The authors acknowledge the fit is unreliable (distorted Fermi surface, extra symmetry-breaking parameter). This estimate cannot exclude a non-superconducting surface layer. Quoting p = 0.2271 to four digits is also unwarranted given this uncertainty.
+- **SQUID data.** The measurements probe the bulk of a slab, not the topmost nanometre.
+- **Temperature dependence.** The 6/21/35 K data show no change at all, which is equally consistent with a normal-state surface.
+
+I would ask the authors to address this explicitly. Useful steps include:
+- Detailed analysis of the nodal and antinodal quasiparticle linewidths and of any kink or coherence changes across T_c.
+- Core-level spectra (O 1s, La 4d, Sr 3d, Cu 2p) to assess surface chemistry and stoichiometry relative to a (001) cleave.
+- A statement of the cleave temperature and the time-dependence of the spectra (surface ageing).
+
+### 3.2 Missing same-crystal (001) control, and an internal inconsistency in the gap magnitude
+
+**The control.** The only reference gap measurement (Supp. E) is on a *different* sample (x = 0.19). It is not clear whether that sample was prepared by the same FIB route or cleaved conventionally. A (001) measurement on the x = 0.22 crystal, under the same beamline conditions and analysis, is the essential control showing that gap suppression is specific to the (110) surface.
+
+**The inconsistency.** The main text and the supplement give conflicting gap values:
+
+| Location | Stated gap |
+|---|---|
+| Main text, p. 9 | 10–20 meV, "consistent with our (001)-surface reference measurement" |
+| Main text, p. 9 | ~20 meV "expected" at x = 0.22 |
+| Supplement E (x = 0.19, (001)) | ~7 meV |
+| BdG simulations | ~24 meV |
+
+The 7 meV value is at *lower* doping than the studied sample. At x = 0.22 one would expect it to be smaller still. These statements must be reconciled.
+
+If the true antinodal gap at x = 0.22 is ≲ 7 meV, the conclusions change materially:
+- With 3–4 meV resolution and the presence of k_z-broadened bulk weight at E_F, the absence of a resolved gap at the (110) surface is much less informative.
+- The simulations are performed with a gap 3–4× too large.
+
+### 3.3 Simulations use an unrealistically large gap, which biases the visibility of the surface state
+
+The paper's own analysis (Sec. II D, Supp. B) shows that the k_z confinement of the surface state is governed by Δ/t. As Δ → 0, the surface-state weight merges continuously into the normal-state Fermi surface, and the coherence length grows.
+
+With Δ ≈ 24 meV the simulated surface state is more strongly confined and better separated from bulk weight than it would be at a realistic 5–10 meV. The latter regime also implies a coherence length much larger than the ~5 Å escape depth.
+
+The authors should repeat the clean and AFM-roughness simulations with a gap matched to the measured value. It is plausible that a weak "dip-and-peak" feature, already subtle in Fig. 4e, becomes unresolvable *without any Anderson disorder*. That would undercut the paper's main conclusion.
+
+### 3.4 The disorder model is a single, unvalidated parameter choice
+
+Several problems arise with the σ = 100 meV Gaussian on-site disorder:
+
+- **Inconsistency with the stated framing.** The abstract and introduction describe "moderate Anderson disorder with a magnitude comparable to the superconducting gap." But 100 meV is ~4× the simulated gap and ~14× the measured (001) gap.
+- **No dose–response.** Only one disorder strength (and apparently one realization) is shown. A scan in σ (e.g. 10, 25, 50, 100 meV), with configuration averaging, is needed to identify the threshold at which the flat-band peak becomes undetectable. That threshold should then be compared with independent estimates.
+- **No experimental validation.** Strong potential disorder in a d-wave superconductor is pair-breaking and sets a normal-state scattering rate. The authors compensate by raising V, from 0.153 to 0.2156 (see 3.7 on units). They should:
+  - compute the nodal MDC/EDC linewidths and the residual scattering rate implied by σ = 100 meV, and compare them with the measured nodal dispersion (Fig. 3d);
+  - compare with literature transport and ARPES scattering rates for overdoped LSCO (e.g. refs. [73,74]);
+  - report the T_c (or gap) suppression the disorder would cause at fixed V.
+- **Insufficient bulk-gap check.** The claim that this disorder is "not inconsistent" with a gap on (001) surfaces rests on Fig. 12. There the disordered bulk DOS is visibly strongly smeared. A simulated (001) antinodal ARPES EDC at this disorder strength, compared with real (001) data, would be far more convincing.
+- **Missing literature.** Prior quasiclassical and lattice work on bulk-impurity and diffuse-surface broadening of (110) Andreev bound states should be discussed and compared quantitatively. Examples include Poenicke/Barash/Golubov, Tanaka/Kashiwaya/Asano, and Kalenkov et al. [52]. The qualitative result, that bound-state broadening scales with the scattering rate, is not new.
+
+### 3.5 Alternative explanations relevant to the paper's own motivation
+
+The introduction motivates the work by predicted symmetry-broken surface phases [20–32]: TRSB d+is, edge ferromagnetism, phase crystals, and others. Several of these *split or shift* the zero-energy peak by a few meV. Such splitting would remove the zero-energy feature and, given broadening and Fermi cutoff, could make it unobservable at E_F. This scenario is neither discussed nor excluded.
+
+The authors should also discuss:
+- **Facet admixture.** (100)-type facets carry no flat band, and facets of mixed orientation are common on fractured surfaces.
+- **Misorientation.** Any miscut produces step arrays. The need for an extra four-fold-symmetry-breaking parameter in the Fermi-surface fit may hint at misalignment. Can the misorientation angle be quantified from Fig. 3b?
+- **Matrix elements.** ARPES couples only to the electron component of the Bogoliubov state. Is this included in the simulated intensity?
+
+### 3.6 The ARPES analysis needs quantitative upper bounds
+
+The experimental claim is currently qualitative ("no clear dip and peak"). I recommend the following:
+
+- **Gap analysis.** Apply the same pipeline used in Supp. E (gold-referenced leading-edge midpoint, flux extrapolation, symmetrization, Fermi-function division) to the (110) data. Report an upper bound on the gap and on any LEM shift relative to gold.
+- **Temperature differences.** Form difference spectra (6 K − 35 K, and 6 K − 55 K from Fig. 11) in each sector to search for any weight redistribution near E_F.
+- **Upper bound on flat-band weight.** Convert the noise level into a bound on the fraction of the flat-band spectral weight (relative to the clean simulation) that could be present. Equivalently, bound the fraction of the beam-spot area that could host intact surface states. This would turn the "dilution over the beam spot" argument in Sec. II E into a testable statement.
+- **Raw versus processed data.** The introduction says the peak is absent "in the raw spectra," but Fig. 4g uses a background subtraction (Ref. [77]) and normalization by total intensity. Show raw EDCs alongside the processed ones, and demonstrate that the subtraction would not remove a peak of the simulated magnitude. For example, apply the identical procedure to the simulated spectra with an added realistic background.
+- **k_z assignment.** State the inner potential and final-state model used to assign hν = 95 eV to the antinodal k_z. Also justify the sector integration windows in Fig. 10 given the momentum resolution and k_z broadening.
+
+### 3.7 Surface characterization does not match the ARPES probing area
+
+- **Coverage.** The AFM map covers ~1–2 µm, while the beam spot is 40–50 µm and the cleaved area ~150 µm. Please provide AFM over larger areas and several locations, and specify whether AFM was done on the same cleaved surface after ARPES (and in air). A spatially resolved ARPES intensity map of the cleave would help establish homogeneity.
+- **Mapping AFM data onto the lattice.** It is unclear how the AFM height profile, with nm-scale pixels and tip-limited lateral resolution, was transferred onto lattice sites with a 2.67 Å resolution along [11]. The lateral correlation length imported into the simulation is the decisive parameter, and the procedure (interpolation, resampling, thresholding) must be described.
+- **Logical framing.** The authors correctly note that AFM cannot resolve atomic-scale roughness. It follows that the data cannot distinguish sub-resolution *geometric* roughness from bulk Anderson disorder as the cause. The abstract's conclusion should be tempered accordingly.
+- **"Edge 0.5."** The "probabilistic roughness (GE0.5)" model is not defined anywhere in the Methods.
+
+---
+
+## 4. Technical and formal errors
+
+1. **Pairing interaction units.** V = 0.153 meV (and 0.21555 meV) cannot produce a 24 meV gap. Presumably this is eV or units of t. Please correct, and also give t, t′, t″ and μ for the slab model explicitly.
+2. **k_z broadening values conflict.** Methods III D gives Δk_z ≈ 0.4 Å⁻¹ (FWHM = 2/λ with λ = 4.74 Å). The Fig. 3 caption says "Δk₍₁₁₀₎ = 0.2 Å⁻¹," also based on λ ≈ 5 Å. Clarify FWHM versus HWHM and which value was used.
+3. **TPP-2M input.** The "band gap" parameter in TPP-2M is the electronic band gap entering the plasmon/valence term. It is not the superconducting gap; for a metal it should be zero. The numerical effect is negligible, but the justification is incorrect. Please also state the number of valence electrons used.
+4. **Topology statements.**
+   - Supp. A writes d_k: S¹ → ℝ∖{0} ≃ S¹ and π₁(ℝ∖{0}) = ℤ. This should be ℝ²∖{0}; ℝ∖{0} is not homotopic to S¹ and has trivial π₁.
+   - Fig. 1 caption calls ℝ²∖{0} a "group"; it is a space, and the target of the map.
+5. **"Mass" disorder terminology.** V_i = v_i σ_z in the Nambu (particle-hole) basis is ordinary on-site potential, i.e. chemical-potential disorder. It maps to σ_x in the chiral basis, as Supp. C correctly shows. Yet Sec. II E lists "chemical potential disorder or mass disorder (used in our calculations)" as distinct options. Please make the terminology consistent.
+6. **Chirality and index argument.** Disorder preserving chiral symmetry cannot remove zero modes with net chirality on an edge. The flat band can be gapped here because the +/− sectors on the [11] edge carry equal numbers of states, so the net index is zero. Stating this explicitly would strengthen Sec. II D and Supp. C.
+7. **Supplement A derivation.**
+   - Eq. 17 mixes indices (n, m) with (γ, η).
+   - ξ = 1/Re(κ) together with e^{+κr⊥} requires a sign convention for decay.
+   - Eq. 18 uses a, while k*∥ and k_F use δ.
+   - α in "I(κ₁⁺) = (−1)^{α+1}…" is undefined.
+   - The normalization integral for C should be checked for convergence conditions on Re(κ).
+8. **BdG equations.** Please check the sign of the |Δ_ij|² term in Eqs. 1/4 and the singlet symmetrization (i ↔ j, factor ½) in Eq. 6. The sign conventions in Eqs. 2 and 5 also differ.
+9. **Fig. 4b.** The x-axis "r₍₁₁₎ (Å⁻¹)" should be in Å. The order parameter at the edge is only partially suppressed (~2–4 meV out of ~6 meV). Quasiclassical theory predicts complete suppression at an ideal (110) surface; a brief comment on this lattice-scale difference would help.
+10. **Fig. 2b.** Susceptibility is given in raw emu at different fields (5 Oe and 2 Oe). Please give volume-normalized shielding fractions and state T_c explicitly. T_c is also needed to interpret the 21 K and 35 K data.
+
+---
+
+## 5. Minor issues and presentation
+
+- **Claims of novelty.** "Never been investigated with momentum-resolved, surface-sensitive probes" should be checked carefully against the literature, or softened.
+- **Abstract wording.** "Reveal disorder as the key factor currently preventing appearance of flat bands" overstates the conclusion (see 3.1–3.5). Suggested alternative: "…indicate that disorder, rather than the resolvable surface topography, is a likely cause…"
+- **Notation.** x and p are used interchangeably; please define each and use them consistently.
+- **Fig. 4 labels.** The caption uses C/GEAFM/GE0.5/BA, while the legends use Clean/Edge AFM/Edge 0.5/Mixed. Please unify.
+- **Undefined arrow.** The "orange arrow… coherence peak" in Fig. 4e refers to the GE0.5 curve, but GE0.5 is undefined.
+- **Supp. H.** It is noted that the small temperature dependence is not reproduced in a second sample. Please state the x value, preparation, and number of cleaves measured in total, and how many showed comparable Fermi-surface quality.
+- **Typos.**
+  - "2 amt" → atm (Methods A)
+  - "40˘200 eV" → 40–200 eV (Methods B)
+  - "δ = a√(2)" formatting (Fig. 1)
+  - "an Scanning Electron Microscope" → "a Scanning…"
+  - "does not perfectly matches" → "match"
+  - "fordxa2-xb2" in Ref. [17]
+  - "Topological sector Energy Distribution Curves" capitalization
+- **Data availability.** The section is empty and should be completed.
+- **Methods: preparation details.** Please state the FIB type (the acknowledgments suggest a Xe plasma FIB, PFIB). Discuss possible ion implantation or redeposition and heating near the notch, and state the distance of the notch from the analysed region.
+
+---
+
+## 6. Suggested path forward
+
+The following additions would most strengthen the paper, in rough order of priority:
+
+1. A (001) cleave of the same x = 0.22 crystal, measured and analysed identically, together with a consistent value for the expected gap.
+2. Clean and AFM-roughness simulations repeated with the measured gap magnitude.
+3. A disorder-strength scan with configuration averaging, cross-checked against measured nodal linewidths and the implied scattering rate and T_c suppression.
+4. Quantitative upper bounds on the gap and on zero-energy weight from the (110) data, including raw spectra and temperature-difference spectra.
+5. Core-level and surface-chemistry characterization, plus larger-area topography, to address the dead-layer and facet scenarios.
+6. Explicit discussion of split or shifted surface states from symmetry breaking as an alternative explanation.
+
+Even if these additions do not single out disorder, the paper would still make a valuable contribution. It would present a new technique, a carefully bounded negative result, and a clear map of which mechanisms remain viable, which is a useful guide for follow-up work on cleaner cuprates (e.g. stoichiometric YBa₂Cu₄O₈).

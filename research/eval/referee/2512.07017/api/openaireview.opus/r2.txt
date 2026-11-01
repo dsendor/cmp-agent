@@ -1,0 +1,109 @@
+{
+  "overall_feedback": "This is an interesting combined experimental and theoretical study. The authors report large second-harmonic longitudinal and Hall voltages in MBE-grown V-TI/TI/Cr-TI sandwiches. They make a clever observation: once the electrode geometry is included, a C2z symmetry of the six-terminal Hall bar forces V_{xx,L}^{2ω} = −V_{xx,R}^{2ω} = −V_{yx}^{2ω}. The data are of high quality, reproduced across samples, and the qualitative agreement with the nonlinear Landauer–Büttiker simulation is appealing. My main concerns are interpretive.\n\n(i) The C2z argument is mechanism-agnostic. Any C2z-symmetric source of 2ω voltage satisfies the same relation, so the antisymmetric L/R pattern does not by itself identify boundary modes. One example is Joule heating at the diagonally opposite current-injection hot spots of a QAH/axion device combined with Seebeck/Nernst responses, whose sign naturally follows carrier type and magnetization. This alternative is not ruled out.\n\n(ii) C2z is not a crystal symmetry of the D3d (Bi,Sb)2Te3 lattice, only an approximate low-energy quasi-symmetry. Yet the nonzero V_{xx,S} is attributed to quantum-metric bulk transport. That attribution is in tension with the statement that bulk nonlinear conductivity vanishes by C2z.\n\nThere are also technical problems:\n- The γ formula is dimensionally inconsistent with the quoted units.\n- M_− in the model Hamiltonian is mis-defined.\n- The self-consistent potential needed for ∂_{eV_k}T_{ij} is unspecified.\n- The simulated in-gap axion voltages are plotted where the linear resistance is said to diverge.\n- Several gate ranges that define the exchange gap are mutually inconsistent.\n\nWith a thermal-control experiment (or argument), a clearer statement of the symmetry status, and these fixes, the paper's conclusions would be much better supported.",
+  "comments": [
+    {
+      "title": "C2z electrode-symmetry relation does not discriminate boundary from other C2z-symmetric mechanisms (e.g., thermoelectric hot spots)",
+      "quote": "We note that our symmetry analysis is general for boundary-dominant nonlinear transport with bulk suppressed by \n𝐶\n2𝑧\nsymmetry and does not rely on the microscopic model or whether the transport is diffusive or ballistic.",
+      "explanation": "I agree with the derivation. Given C2z I^ω = −I^ω, the quadratic source term is C2z-even, so V^{2ω} must be C2z-invariant. Because this derivation is model-independent, however, it applies equally to any C2z-symmetric mechanism, not only to boundary modes.\n\nA prominent candidate is thermoelectric. In QAH and axion devices, dissipation concentrates at two diagonally opposite contact corners, which is a C2z-symmetric pattern. The resulting I² heating, combined with Seebeck or (anomalous) Nernst voltages, produces 2ω signals with exactly the antisymmetric L/R pattern. Such a signal would also:\n- flip sign with carrier type (Seebeck),\n- flip with magnetization (Nernst),\n- scale as I²,\n- be frequency-independent over 6–107 Hz,\n- vanish above T_C.\n\nThis matches every control shown (Extended Data Figs. 4–6). The only statement on heating is that 2 μA is used to 'minimize heating effects', and the 25 mK data are where self-heating is most severe. The electrode-dependence argument therefore establishes C2z-symmetric nonlinearity, not specifically boundary-mode transport.",
+      "type": "logical",
+      "severity": "major",
+      "suggested_fix": "State explicitly that the L/R antisymmetry follows from C2z for any mechanism. Then exclude a thermoelectric origin, for example by:\n- measuring V^{2ω} versus bath temperature at fixed I to compare with the expected thermopower scaling, or\n- using a DC-plus-AC or 3ω heating calibration, or\n- estimating the Seebeck/Nernst voltage from the measured Joule power and known thermopower of (Bi,Sb)2Te3 films and showing it is far below ~100 μV."
+    },
+    {
+      "title": "C2z is presented as a crystal symmetry but is only an emergent quasi-symmetry of the D3d lattice; tension with attributing V_{xx,S} to bulk quantum metric",
+      "quote": "in which both the crystal symmetry and geometry symmetry involve a two-fold rotation 𝐶\n2𝑧\n.",
+      "explanation": "(Bi,Sb)2Te3 has D3d point symmetry, which contains C3z, in-plane C2′ axes, mirrors and inversion, but not C2z. The Methods acknowledge that C2z is a 'quasi-symmetry' of the low-energy Dirac model, broken by trigonal warping. The main text, however, presents it as a crystal symmetry.\n\nThis matters for two reasons. First, under C3z the in-plane bulk σ^{(2)} (e.g., σ_xxx = −σ_xyy) is allowed, and its contribution depends on the unspecified angle between current and crystal axes. Second, the authors themselves observe a sizable electrode-independent V_{xx,S}, up to a third of V_{xx,A} in Fig. 2b. In an exactly C2z-symmetric device this must vanish identically, as the Methods show. They attribute it to quantum-metric bulk transport, which contradicts the Discussion statement that 'nonlinear bulk conductivity vanishes due to the C2z symmetry.'\n\nEither C2z is broken strongly enough to permit bulk σ^{(2)} (and then the bulk-suppression argument weakens), or V_{xx,S} arises from geometric imperfection rather than quantum metric.",
+      "type": "logical",
+      "severity": "major",
+      "suggested_fix": "Revise the main text to state that C2z is an approximate low-energy symmetry broken by trigonal warping (D3d has no C2z). Report the crystal orientation of the Hall bar relative to the current. Separately estimate the C3z-allowed bulk σ^{(2)}_{xxx} contribution before assigning V_{xx,S} to the quantum metric."
+    },
+    {
+      "title": "Nonreciprocal coefficient formula is dimensionally inconsistent with quoted units; R0 undefined",
+      "quote": "𝛾 = √2𝑉𝑥𝑥,𝐴\n2𝜔 /(𝑅0 ⋅ 𝑖\n2\n), where i is the root-mean-square \nof the applied current density28,42. The maximum value of γ reaches ~1.22 × 10−9 m2 A\n−1",
+      "explanation": "The units do not close:\n- With a 3D current density i (A m⁻²), V/(Ω·A² m⁻⁴) has units m⁴ A⁻¹, not m² A⁻¹.\n- With a 2D sheet density i = I/W, the units are m² A⁻¹. However, numerically I = 2 μA, W = 0.5 mm, V ≈ 100 μV and R0 ~ 10⁵ Ω give γ ~ 10⁻⁵ m² A⁻¹, four orders larger than quoted.\n- The quoted ~10⁻⁹ m² A⁻¹ is instead reproduced by γ ≈ √2V/(R0·I·j), with j the 3D current density for a ~10 nm film.\n\nThe formula as written therefore does not correspond to the number reported. R0 is also not defined: whether it is the four-terminal longitudinal resistance, a sheet value, or which branch/field is used. Since the headline 'order of magnitude larger' comparison to MnBi2Te4, WTe2 and metallic bilayers rests on this number, the definition must match the references' conventions.",
+      "type": "technical",
+      "severity": "moderate",
+      "suggested_fix": "Write the formula actually used, e.g. γ = √2 V^{2ω}_{xx,A}/(R0 I j), with j = I/(W t) and t = 10 QL. Define R0 as the first-harmonic four-terminal R_xx at the same Vg and μ0H. Confirm that Refs. 28, 48–50 use the same normalization before comparing."
+    },
+    {
+      "title": "Sign error in definition of M_−",
+      "quote": "𝑀± = (𝑀𝑡 + 𝑀𝑏\n)/2 with 𝑀𝑡/𝑏 representing the top/bottom surface \nmagnetization",
+      "explanation": "In Eq. (5), the top (τz = +1) and bottom (τz = −1) surfaces must see exchange fields M+ + M− = Mt and M+ − M− = Mb. This requires M− = (Mt − Mb)/2. As written, both M+ and M− equal (Mt + Mb)/2. The antiparallel configuration would then give M± = 0 for |Mt| = |Mb|, which is clearly not intended. With the stated Mt = ±1.2 and Mb = ±0.6, the sign matters for which states are simulated.",
+      "type": "technical",
+      "severity": "moderate",
+      "suggested_fix": "Replace with M± = (Mt ± Mb)/2."
+    },
+    {
+      "title": "Self-consistent potential and simulation details underspecified",
+      "quote": "the second term is proportional to 𝜕𝑒𝑉𝑘𝑇𝑖𝑗 and stems from the selfconsistent electrostatic potential e𝑈(𝑟) due to the redistribution of charges inside the system.",
+      "explanation": "In the Christen–Büttiker formalism, ∂T_ij/∂V_k requires the characteristic potentials u_k(r) = ∂U(r)/∂V_k. Obtaining these requires a screening model, such as Thomas–Fermi, Poisson with a gate capacitance, or a simple uniform u_k. The Methods do not state which model is used, yet this term is described as crucial for gauge invariance, and the claimed axion-vs-QAH enhancement (attributed to ∂_{V_k}T_ij) depends on it.\n\nOther settings that control the result are also not given:\n- disorder (if any),\n- temperature/energy window,\n- lead widths and positions (only 'Fig. S5' is cited),\n- how n_e is mapped to E_F.\n\nThe 100×20 lattice with n_e spanning ±0.5 e/a² is also far from the experimental regime. Reproduction is not possible from the description.",
+      "type": "technical",
+      "severity": "moderate",
+      "suggested_fix": "Specify the model for u_k(r) (e.g., Thomas–Fermi screening with stated screening length, or u_k ≡ uniform injectivity-weighted). Also state the disorder strength, temperature, lead geometry (widths/positions in lattice units), and the energy-to-n_e conversion used in Fig. 4."
+    },
+    {
+      "title": "Simulated in-gap axion voltages plotted where linear response is undefined",
+      "quote": "but for the axion insulator state, the resistance will diverge in our calculations due \nto the vanishing of transmission coefficients.",
+      "explanation": "Extended Data Fig. 8b states that in the exchange gap the axion-state transmissions vanish and the resistance diverges. R̃^{(1)} = [G̃^{(1)}]⁻¹ then does not exist, so V^{2ω} from Eq. (10) is ill-defined there. Figs. 4f,g nevertheless show V^{2ω} varying linearly through the shaded gap and crossing zero at n_e = 0. This looks like an interpolation between the gap edges rather than a computed result.\n\nThis is important because the paper uses the predicted sign reversal through the gap to explain the 'rapid sign reversal' of the Axion-II data in Fig. 3c,d.",
+      "type": "technical",
+      "severity": "moderate",
+      "suggested_fix": "Either omit the in-gap axion points in Figs. 4f,g, marking them as undefined, or regularize the gap (e.g., with finite temperature or a small dephasing/Büttiker probe) and state the regularization used to obtain finite in-gap values."
+    },
+    {
+      "title": "Inconsistent gate ranges for the exchange gap / quantized regime",
+      "quote": "For -5 V ≤ (Vg-Vg\n0\n)  ≤ 10 V, where EF is tuned within the \nmagnetic exchange gap, both signals exhibit a near-zero plateau in the C = 1 QAH regime",
+      "explanation": "Earlier the text says σxx(0) vanishes and σxy is quantized for −15 V ≤ (Vg−Vg0) ≤ 30 V, which is the usual operational definition of E_F in the exchange gap. Yet at (Vg−Vg0) = −15 V, a value inside that quantized window, V^{2ω}_{xx,A}(0) = −11.8 μV and V^{2ω}_{yx}(0) = −11.2 μV are reported as sizable. Here only −5 to 10 V is called 'within the gap'.\n\nA reader cannot tell which criterion defines the gap. It is also unclear whether the main claim, that nonlinearity is maximized 'slightly away from well-quantized states', means outside the linear-quantized window or inside it.",
+      "type": "logical",
+      "severity": "minor",
+      "suggested_fix": "Use a single operational definition of the gap window and apply it consistently in Figs. 1c, 3 and the text. If linear quantization persists to −15 V while the nonlinear plateau is narrower (−5 to 10 V), state this explicitly and discuss what it implies."
+    },
+    {
+      "title": "Vanishing at Vg0 does not demonstrate 'need for bulk carriers'",
+      "quote": "This observation \nindicates that the nonlinear boundary transport is a property associated with chemical potential EF\nand requires assistance from bulk carriers",
+      "explanation": "In the axion state (Fig. 3c,d), V^{2ω} changes sign rapidly across Vg0. A signal that is odd in (E_F − E_CNP) vanishes at the crossing point regardless of whether bulk carriers are needed. Moreover, Vg0 is defined as the ρxx maximum in the axion state, so the zero is partly built into the choice of reference.\n\nThe statement would be better supported by showing that the in-gap QAH plateau stays near zero over a finite range while ρxx ≈ 0 (Fig. 3a,b). That is evidence the chiral edge alone gives no rectification.",
+      "type": "logical",
+      "severity": "minor",
+      "suggested_fix": "Base the 'bulk-assisted' claim on the finite-width near-zero QAH plateau (Fig. 3a,b) rather than on the single zero crossing at Vg0. Note explicitly that the axion-state zero is a sign-change point."
+    },
+    {
+      "title": "Contradictory roles assigned to random magnetic domains",
+      "quote": "This \neffect cannot be attributed to scattering, as the presence of random magnetic domains near the \ncoercive field16,44,45 would induce a zero net nonreciprocal transport.",
+      "explanation": "Here random domains are argued to average to zero nonreciprocity. Later, the sharp spikes in |V^{2ω}_{xx,A}| and |V^{2ω}_{yx}| near the coercive field are attributed to 'the presence of random magnetic domains and associated scattering'. Both cannot hold without further qualification.\n\nThe follow-on sentence, 'Therefore, V_{xx,A} and V_{yx} retain their signs until the sample fully transitions', does not follow from the domain argument. The first argument is also weak on its own: a single domain-wall network configuration need not be symmetric, so zero net nonreciprocity is not guaranteed.",
+      "type": "logical",
+      "severity": "minor",
+      "suggested_fix": "Replace the 'zero net nonreciprocal transport' argument with the observation that the large signals persist in fully saturated single-domain axion/QAH states far from the coercive field. Treat the spikes separately as a domain-related contribution."
+    },
+    {
+      "title": "Gate-oscillation exclusion argument insufficiently explained",
+      "quote": "Moreover, we exclude the \npossibility that the second-harmonic voltages observed in our samples arise from gate \noscillations\n46,47 (Extended Data Fig. 3).",
+      "explanation": "Extended Data Fig. 3 compares grounding electrode 1 versus 4 at 1.7 K. The logic presumably is that swapping ground changes the AC channel potential relative to the back gate, so a gate-oscillation signal should change. This reasoning is never stated.\n\nThe comparison is also made at 1.7 K and 5 μA rather than at 25 mK and 2 μA, where the main data and the steepest gate dependence occur. Panel f (V_yx) shows visible differences between the two groundings that are not discussed. In an axion state with R ~ 10⁵ Ω, the AC channel potential is ~0.2–0.5 V, and dV/dVg is very steep near Vg0. A quantitative estimate would make the exclusion credible.",
+      "type": "logical",
+      "severity": "minor",
+      "suggested_fix": "Add a sentence explaining why swapping the ground electrode would change a gate-oscillation signal. Add an estimate V^{2ω}_gate ≈ ½(∂R/∂Vg)·I·δV_ch, using the measured gate slope from Fig. 1d and the channel AC potential, showing it is ≪ the observed ~100 μV."
+    },
+    {
+      "title": "Missing step: G^{(1)} is singular, so (1−C2z)V^{2ω}=0 needs justification",
+      "quote": "which implies that ∑ 𝒞𝑖𝑗\n2𝑧𝑉𝑗\n2𝜔\n𝑗 = 𝑉𝑖\n2𝜔 .",
+      "explanation": "Eq. (4) gives G^{(1)}(1−C2z)V^{2ω} = 0. The Methods later note that G^{(1)} is not invertible: its null space contains the uniform vector (1,…,1). So one can only conclude (1−C2z)V^{2ω} ∝ (1,…,1).\n\nThe conclusion still holds. Any vector of the form (1−C2z)V has components that are antisymmetric under the permutation, whereas the uniform vector is symmetric, so the proportionality constant must be zero. This step is non-trivial, should be stated, and is necessary for the key result V1 = V4, etc.\n\nAs a related point, Eq. (1) omits the factor ½ that arises from cos²ωt = (1 + cos2ωt)/2 when V^ω and V^{2ω} are amplitudes. This affects the absolute (a.u.) magnitudes in Fig. 4.",
+      "type": "technical",
+      "severity": "minor",
+      "suggested_fix": "Add: 'Since ker G^{(1)} is spanned by (1,…,1), which is C2z-even, while (1−C2z)V is C2z-odd, it follows that (1−C2z)V^{2ω} = 0.' Also include or explicitly define away the ½ factor in Eq. (1)."
+    },
+    {
+      "title": "Fig. 4 caption color assignment contradicts figure labels and Fig. 1a",
+      "quote": "Colored arrows denote the spin polarization at the two surfaces, with red (blue) \nrepresenting the top (bottom) surface.",
+      "explanation": "In Fig. 4a, the bands are labeled 'Top' in blue and 'Bottom' in red. Fig. 1a also colors the top V-doped layer blue and the bottom Cr-doped layer red. The caption reverses this.\n\nSince the Axion-I/II distinction (outward/inward magnetization) and the sign of the simulated responses depend on which surface is which, this could mislead a reader trying to match Fig. 4b,c to the experimental Axion-I/II assignments.",
+      "type": "technical",
+      "severity": "minor",
+      "suggested_fix": "Change caption to 'with blue (red) representing the top (bottom) surface'."
+    },
+    {
+      "title": "Index error in Eq. (10)",
+      "quote": "𝑉̃\n𝑖\n2𝜔 = −𝑅̃\n𝑖𝑖\n′\n(1)\n𝐺̃\n𝑖\n′\n𝑗\n′𝑘′\n(2)\n𝑅̃\n𝑗\n(1)\n𝐼\ñ\n𝑗𝑗\n′\n𝜔 𝑅̃\n𝑘\n(1)\n𝐼\ñ\n𝑘𝑘\n′\n𝜔",
+      "explanation": "Substituting Ṽ^ω_{j′} = R̃_{j′j} Ĩ_j into G̃^{(2)}_{i′j′k′} Ṽ_{j′} Ṽ_{k′} requires R̃_{j′j} Ĩ_j and R̃_{k′k} Ĩ_k. As printed, the two indices are attached to the current (Ĩ_{jj′}) instead of to R̃, and R̃ carries a single index. This makes the expression ill-formed.",
+      "type": "technical",
+      "severity": "minor",
+      "suggested_fix": "Write Ṽ^{2ω}_i = −R̃^{(1)}_{ii′} G̃^{(2)}_{i′j′k′} (R̃^{(1)}_{j′j} Ĩ^ω_j)(R̃^{(1)}_{k′k} Ĩ^ω_k), with the ½ factor if amplitudes are used."
+    }
+  ]
+}

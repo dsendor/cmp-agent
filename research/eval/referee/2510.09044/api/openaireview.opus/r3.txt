@@ -1,0 +1,93 @@
+{
+  "overall_feedback": "The paper images gate-controlled suppression of Meissner screening in Nb microstructures with a cryogenic scanning NV magnetometer. This is a valuable new probe of the GCS effect beyond transport. The data are visually convincing. The power-scaling collapse in Fig. 3a across polarity and temperature is striking, and the hot-spot formula r0 = rd W0(eP/Pd) is derived correctly from the 3D Green's function. I checked it against the quoted fit values: it reproduces r0 ≈ 0.3, 0.6 and 1.1 µm at P ≈ 0.3, 1 and 5 µW. The main weaknesses are in the inferential steps that turn these observations into mechanistic conclusions.\n\n- **Temperature independence.** The argument that this excludes Joule heating is not cleanly separated from the proposed model. Eq. (1) is itself a diffusion-with-loss equation. A temperature-independent ρc, which the model needs to reproduce the 0.4 K / 5.6 K collapse, is physically unexpected near Tc.\n- **Electric-field exclusion.** Fig. 3b shows r0 clearly correlates with VG within each dataset. The real argument (non-universality across datasets) is not stated carefully.\n- **Reproducibility across devices.** The claim that suppression is reproducible at equal P across devices conflicts with fitted Pd values that differ by ~2.6×.\n- **Model and screening length.** The 3D isotropic diffusion model is applied while also invoking 2D quasiparticle diffusion in a 20 nm film. Discussions of resolution and edge effects use λ rather than the effective thin-film screening length λ²/d (~3 µm), which also limits how sharply 'complete' suppression can be distinguished from partial suppression.\n\nSmaller issues include parameter choices for the substrate-diffusion estimate, missing fit uncertainties, and some loose comparisons and phrasing. None of these invalidate the imaging result. Several conclusions should, however, be stated more cautiously or supported with additional analysis.",
+  "comments": [
+    {
+      "title": "Temperature independence does not cleanly exclude heating and is itself puzzling for the hot-spot model",
+      "quote": "First, Joule heating caused by the leakage current can be excluded because the quenching does not depend on temperature.",
+      "explanation": "I agree that a bath-temperature-independent r0 between 0.4 K and 5.6 K is hard to reconcile with simple equilibrium heating. That is a fair observation. But the same logic constrains the proposed model.\n\n- **ρc must depend on temperature.** In Eq. (3), r0 depends on Pd ∝ ρc. The critical non-equilibrium quasiparticle density needed to destroy superconductivity should fall substantially at 5.6 K. The gap is reduced and the thermal quasiparticle background is large. The measurements extend to 5.8 K with Meissner screening still present, so Tc is presumably only somewhat above this.\n- **Size of the expected effect.** At large P, r0 ≈ rd ln(eP/Pd). Halving ρc would therefore shift r0 by ~rd ln2 ≈ 0.4 µm, which should be clearly visible in Fig. 3a. The collapse thus requires an unexplained temperature-independent ρc (or compensating changes in α, τ).\n- **Overlap with 'heating'.** Eq. (1) is formally a heat-diffusion equation with a loss term. The power that creates the NEPs is the dissipated leakage power. The distinction from 'Joule heating' therefore rests on whether the excitations are thermalized, which the data do not directly test.\n- **Nonlinear thermal conduction.** With strongly T-dependent thermal conductivity (κ ∝ T³ in amorphous SiO2 at low T), a hot spot much hotter than the bath can also yield weak bath-temperature dependence.\n\nThe exclusion is thus less decisive than stated.",
+      "type": "logical",
+      "severity": "major",
+      "suggested_fix": "State Tc of the film in the main text. Show quantitatively, using a heat-diffusion model with T-dependent κ and the measured Tc, what r0(P) difference equilibrium heating would predict between 0.4 K and 5.6 K. Discuss explicitly why ρc in Eq. (3) can be temperature independent, or state that the collapse is a constraint the model must satisfy rather than evidence for it."
+    },
+    {
+      "title": "Fig. 3b shows strong correlation with VG within each dataset",
+      "quote": "Finally, a direct electric field effect is also excluded because the quenching is not correlated with the gate voltage (Fig. 3b).",
+      "explanation": "The inset of Fig. 3 shows two branches (0.4 K and 5.6 K). Each is strongly and monotonically correlated with |VG|, so saying the quenching 'is not correlated' with VG, or that there is 'only weak correlation', is inaccurate.\n\nThe actual argument is that the two branches do not collapse onto a single curve vs VG, whereas they do vs P. That is a reasonable argument, but it has caveats.\n\n- **The branches separate by temperature.** The 5.6 K branch quenches at lower VG. An E-field effect whose efficacy depends on temperature (weaker superconductivity near Tc) could produce exactly this, while the collapse vs P could be coincidental to the I–V characteristics at each temperature.\n- **VG and P are not independent.** Given the exponential I–V, VG varies little while P varies a lot. Non-collapse vs VG therefore partly reflects the different (and drifting) I–V curves rather than an independent test.",
+      "type": "logical",
+      "severity": "moderate",
+      "suggested_fix": "Replace 'not correlated with the gate voltage' with a statement that data at different temperatures/cool-downs collapse vs P but not vs VG. Strengthen the test by showing, within a single temperature, that the same VG with different P (exploiting the reported VG drift) yields different r0."
+    },
+    {
+      "title": "Claimed reproducibility at equal power conflicts with device-dependent Pd",
+      "quote": "We find below that the experimental hallmark of the GCS – the suppression of superconductivity – is reproducible given the same applied power P for all our devices.",
+      "explanation": "The fits give Pd = 0.95 µW (D3) vs 0.36 µW (D2b), a factor of ~2.6. The same P therefore yields noticeably different r0 on different devices. For example, at P = 1 µW Eq. (3) gives r0 ≈ 0.59 µm for D3 but ≈ 0.94 µm for D2b.\n\nPd ∝ rd³ρc/(ατ). D2b has the larger rd yet the smaller Pd, which implies ρc/(ατ) differs by roughly a factor of 4 between nominally similar Nb films. What is reproducible is the power scaling within each device, not the absolute r0(P) across devices.\n\nNo uncertainties are given for rd and Pd, so the reader cannot judge whether these differences are significant.",
+      "type": "logical",
+      "severity": "moderate",
+      "suggested_fix": "Rephrase to 'within each device, r0 is a single-valued function of P independent of polarity, temperature and cool-down'. Report fit uncertainties for rd and Pd. Comment on the device-to-device difference in Pd, e.g. gap geometry, current-density distribution or α."
+    },
+    {
+      "title": "3D isotropic diffusion model vs 2D film diffusion; half-space boundary ignored",
+      "quote": "From our experiment, it is not possible to determine whether rd is dominated by diffusion of NEPs in the substrate or of quasiparticles in the superconductor.",
+      "explanation": "Eq. (2) is the correct full-space 3D Green's function of Eq. (1): ρ = Q/(4πDr) e^{−r/rd} with D = rd²/τ. The Lambert-W inversion in Eq. (3) is also correct.\n\nHowever, the authors then interpret rd alternatively as quasiparticle diffusion in the 20 nm Nb film. That process is effectively two-dimensional, with Green's function ∝ K0(r/rd), not e^{−r/rd}/r. The functional form of r0(P) therefore differs, and the fitted rd (and the inferred τ ≈ 0.7 ns) is model dependent.\n\nFor substrate diffusion, the source sits at the SiO2 surface, so a half-space geometry applies. With a reflecting top surface this doubles the density (4π → 2π). That only rescales Pd, but it shows the model is not tied to the actual geometry.\n\nThe agreement of Eq. (3) with the data thus does not discriminate between the two scenarios the text entertains.",
+      "type": "technical",
+      "severity": "moderate",
+      "suggested_fix": "Fit the data also with the 2D solution ρ(r) = (αPτ/(2π rd² d)) K0(r/rd), giving r0 from K0(r0/rd) = const/P. Report the resulting rd and τ alongside the 3D values, and use rd from the 2D fit when estimating the quasiparticle lifetime."
+    },
+    {
+      "title": "Relevant thin-film screening length is λ²/d, not λ",
+      "quote": "The gate and ohmic leads are barely resolved because their width is of order of the penetration depth (λ ∼ 240 nm, Table S2).",
+      "explanation": "The Methods correctly model the 20 nm film with an effective penetration depth λeff = λ²/d. With λ ≈ 240 nm and d ≈ 20 nm this gives λeff ≈ 2.9 µm (Pearl length 2λ²/d ≈ 5.8 µm). That is comparable to or larger than the 3 µm island and much larger than the lead widths.\n\nThis, not λ itself, governs how weakly narrow leads screen and how strongly edges and corners are smoothed. It is consistent with the small (~5–10%) field reduction observed in a 1 mT bias.\n\nInvoking λ in the main text (here and in the 'corner effect' explanation) is inconsistent with the Methods. It also understates how much the stray-field profile is broadened, which matters for extracting r0.",
+      "type": "technical",
+      "severity": "moderate",
+      "suggested_fix": "Replace λ with λeff = λ²/d ≈ 2.9 µm (or the Pearl length) in the discussion of lead visibility and the corner effect. State this value in the main text when discussing the spatial resolution of the r0 extraction."
+    },
+    {
+      "title": "'Complete' suppression is not distinguished from partial reduction of superfluid density",
+      "quote": "complete suppression of superconductivity exceeding distances of 1 µm from the gate electrode",
+      "explanation": "The r0 extraction assumes a sharp circular cut-out (fully normal inside r0, unperturbed outside). Meissner stray fields measure only the local superfluid response. With λeff of several µm, a smoothly graded reduction of superfluid density near the gate would produce stray-field maps similar to a sharp cutout at a somewhat different radius.\n\nThe diffusion model itself predicts a continuous ρ(r) profile. A 'critical density' threshold is an idealization.\n\nThe statement that superconductivity is completely suppressed over >1 µm, and the comparison 'exceeds previous studies of nanowires by at least a factor of two', therefore depend on this modeling assumption. They are not a direct observation.\n\nAlso, r0 is measured from the gate apex, which is ~80 nm from the island edge. The suppressed depth inside the island is correspondingly smaller.",
+      "type": "logical",
+      "severity": "moderate",
+      "suggested_fix": "Test the sharp-cutout assumption by also fitting the maps with a model in which λeff(r) increases continuously toward the gate (e.g. superfluid density reduced according to ρ(r) from Eq. (2)). Report whether the data distinguish the two. Otherwise describe r0 as an effective suppression radius, and quote the depth inside the island (r0 minus the ~80 nm gap)."
+    },
+    {
+      "title": "Room-temperature thermal diffusivity of glass used for sub-Kelvin NEP diffusion",
+      "quote": "For substrate diffusion, D ∼ 1 · 10−6 m2/s (for glass [29]) implying τ ∼ 350 ns, which appears unreasonably long [30].",
+      "explanation": "The arithmetic is right: rd²/D ≈ (0.6 µm)²/10⁻⁶ m²/s ≈ 360 ns.\n\nHowever, 10⁻⁶ m²/s is a room-temperature macroscopic thermal diffusivity. At 0.4–5.6 K, and especially for high-energy non-equilibrium phonons, transport in amorphous SiO2 and in the underlying crystalline Si is very different. It can be quasi-ballistic, and the heat capacity and conductivity scale steeply with T. The 300 nm oxide sits on 350 µm Si, which has orders-of-magnitude higher low-T diffusivity.\n\nRuling out substrate diffusion on the basis of this τ is therefore not well founded. That matters because the paper's mechanistic picture explicitly involves NEPs diffusing through the substrate (Fig. 3c).",
+      "type": "technical",
+      "severity": "minor",
+      "suggested_fix": "Use a low-temperature (or phonon-energy-appropriate) estimate of D for a-SiO2 and Si, citing low-T thermal-conductivity/heat-capacity data. Alternatively, state that the room-temperature value is only an order-of-magnitude placeholder and that no conclusion on the substrate channel is drawn from it."
+    },
+    {
+      "title": "Vortex-escape threshold framed in gate voltage despite power being the controlling variable",
+      "quote": "already at low gate voltages that are more",
+      "explanation": "The paper's central quantitative message is that r0 is set by dissipated power P, not by VG. VG^ON also drifts between 7 and 16 V across sweeps.\n\nDescribing vortex escape as occurring 'at low gate voltages' is therefore inconsistent with the paper's own framing. In Fig. 2c the relevant quantity is P (escape between 0.08 and 0.36 µW).\n\nAlso, the observation rests on a few datasets, including the reportedly non-monotonic dependence on temperature (3.5 K vs 0.45 K and 5.8 K). It is not clear the vortex disappearance is not affected by magnetic/thermal history between scans.",
+      "type": "logical",
+      "severity": "minor",
+      "suggested_fix": "Express the vortex-escape threshold in terms of P, e.g. 'at powers ≲0.36 µW, where r0 is still small'. State the number of independent observations and the field/thermal history preceding each."
+    },
+    {
+      "title": "Comparison of relaxation lifetime with hot-spot formation time",
+      "quote": "This is roughly ten times longer than the time for hot-spot formation reported in [13]",
+      "explanation": "τ in Eq. (1) is a decay (relaxation) time of the diffusing excitations. Comparing it to a hot-spot formation time compares different physical quantities. The factor-of-ten discrepancy is therefore neither support nor contradiction. The comparison to SNSPD recovery times is more apt.",
+      "type": "logical",
+      "severity": "minor",
+      "suggested_fix": "Compare τ with quasiparticle recombination/relaxation times reported for Nb films (or the relaxation time in [13], if given) rather than the formation time. Otherwise remove the comparison."
+    },
+    {
+      "title": "Ambiguous temperature-range statement",
+      "quote": "over a temperature range from well below the superconducting gap to above the critical temperature of Nb",
+      "explanation": "Comparing a temperature with 'the superconducting gap' is loose; presumably k_BT ≪ Δ is meant. More confusingly, 'above the critical temperature of Nb' is unclear. The reported Meissner data extend to 5.8 K with screening still present, and Tc is not stated in the main text.\n\nIf measurements above Tc were taken (e.g. as references), they are not shown. If not, the statement is inaccurate. Since the temperature-independence argument relies on how close 5.6 K is to Tc, this matters.",
+      "type": "technical",
+      "severity": "minor",
+      "suggested_fix": "State the film Tc (from Table S1) in the main text. Rephrase to 'from k_BT ≪ Δ (0.4 K) up to T/Tc ≈ X (5.8 K)', removing 'above the critical temperature' unless above-Tc data are shown."
+    },
+    {
+      "title": "Power not held constant during scans on D2 devices",
+      "quote": "This software constant-power mode was used in the measurements on device D3.",
+      "explanation": "For D2a/D2b the scans used constant-current mode, while VG (and hence P) is reported to drift over hours (Fig. S2). A magnetometry map takes substantial time. P, and thus r0, may therefore change during acquisition of a single image.\n\nThe quoted uncertainties (e.g. 1.74(14) µW) suggest this was tracked. Still, it is unclear whether r0 was extracted from a region of the map acquired at a well-defined P. It is also unclear how the P error bars enter the D2b fit giving Pd = 0.36 µW.",
+      "type": "technical",
+      "severity": "minor",
+      "suggested_fix": "For the D2 datasets, report the P drift during each scan (min–max) and the time at which the line-cuts used for r0 were acquired. Include P uncertainties as horizontal error bars in Fig. S4 and in the fit."
+    }
+  ]
+}

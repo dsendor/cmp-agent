@@ -1,0 +1,163 @@
+# Review of "Discovery of an electrically-controllable superconducting memory effect" (Wu et al., arXiv:2603.02450)
+
+## Summary
+
+The authors report dc current–voltage measurements on bulk, salt-flux-grown UTe₂ crystals at dilution-refrigerator temperatures, with magnetic fields up to 30 T applied near the *b*-axis. In a field window between the SC1 and SC2 phases (labelled "SC1.5"), they observe history-dependent behaviour:
+
+- **Write:** an abrupt drop of a large current to zero produces a state with enhanced critical current (ΔJ ≈ 0.2–0.5 A cm⁻² on J_c ≈ 1–2 A cm⁻²).
+- **Erase:** a smooth current ramp restores the original J–V curve.
+- **Tuning:** the size of the effect grows with pulse amplitude, pulse duration and turn-off rate, and saturates at large values.
+- **Temperature:** the effect vanishes above about 0.6 K.
+- **Location:** it appears only for B ≳ 7 T and θ ≲ 20° from *b*, the angular range where SC2 exists. It is absent in SC2 at 29 T and in SC1 at low field.
+
+The authors attribute the effect to quenched, disordered configurations of two competing vortex species. They support this with a phenomenological RSJ-type model: a double-well potential U(φ) with a "viscous" metastable minimum at φ = π. They argue the effect is intrinsic and propose it as a basis for ultralow-power cryogenic memory.
+
+The observations are interesting, and the angular correlation with SC2 is a potentially valuable clue about vortex matter in UTe₂. However, in my view the paper does not yet establish two things:
+
+1. that the phenomenon is distinct from well-known metastable order–disorder vortex physics in conventional type-II superconductors;
+2. that it is "rooted in the superconducting order itself" rather than in the pinning landscape of the SC1.5 region.
+
+The technological framing is also substantially overstated.
+
+## Strengths
+
+- **Clear phenomenology.** The write/erase protocols are reproducible across at least two samples (S1, S2).
+- **Systematic parameter mapping.** The study covers pulse amplitude, duration, relaxation rate, temperature, field and angle. The raw data are shown in the Extended Data (Figs. 6–8, 10), which is commendable.
+- **Angular cut-off.** The memory effect disappears at θ ≈ 19–20°, coinciding with a jump in equilibrium V(θ) (Fig. 4g). This is the most compelling evidence linking the effect to the SC1/SC2 interplay.
+- **Polarity independence.** The effect appears when pump and probe have opposite polarity (ED Fig. 4). This argues against a simple self-field or Bean critical-state remanence explanation, and deserves more emphasis.
+- **Open code.** Measurement code is provided, and the model parameters are stated explicitly.
+
+## Major concerns
+
+### 1. Missing context: metastable vortex states with current-switchable J_c are well established
+
+The core phenomenology closely resembles extensive work on the peak-effect region of 2H-NbSe₂, CeRu₂ and related systems. Key examples:
+
+- Henderson, Andrei, Higgins & Bhattacharya, PRL 1996, "Metastability and glassy behavior of a driven flux-line lattice";
+- Xiao, Andrei & Higgins, PRL 1999;
+- Paltiel et al., *Nature* 2000, on dynamic instabilities and surface contamination.
+
+These systems show the same features reported here:
+
+- A disordered (e.g. field-cooled) vortex state has a higher J_c than the ordered state.
+- The disordered state is long-lived at low temperature.
+- It can be converted to the low-J_c state by driving current above J_c.
+- Current pulses of controlled amplitude and duration switch between states, with a strong dependence on drive history and ramp rate.
+
+The authors' own interpretation in the "Modelling the memory effect" section (a quenched glassy vortex state versus an annealed ordered lattice) is essentially this picture. The statements that electrically-controllable superconducting memory "has remained elusive" and is "rooted in the superconducting order itself" therefore need substantial qualification. At a minimum, the paper must:
+
+- discuss this literature;
+- identify which observations, if any, cannot be explained by a conventional order–disorder vortex transition in a region of soft vortex elasticity or anomalous pinning.
+
+This is especially relevant because the memory region coincides with the known region of anomalously low J_c (ED Fig. 9; Tokiwa et al.). That is exactly the type of regime, analogous to the peak effect, where metastable vortex phases appear generically.
+
+### 2. The heating arguments do not rule out a thermal write mechanism
+
+Two distinct questions are conflated:
+
+- (a) whether heating corrupts the measured J–V curves;
+- (b) whether transient heating during the pump is part of the *writing* mechanism.
+
+The arguments given address (a) at best.
+
+- **Turn-off rate.** The authors argue that a faster turn-off anticorrelates with deposited energy and therefore excludes heating. But a rapid current drop after flux-flow dissipation is precisely a rapid thermal quench. In conventional vortex matter, faster cooling through an order–disorder line produces a more disordered, higher-J_c state. So the α-dependence is entirely consistent with heating playing a role.
+- **Temperature dependence.** A memory effect that is strongest at low T and vanishes by 0.6 K is the generic expectation for any metastable vortex state erased by thermal creep. It is not evidence for an intrinsic low-energy scale distinct from superconductivity.
+- **Bean model statement.** The claim that Bean-model or Bean–Livingston effects "should be insensitive to how the current is turned off, depending only on the total energy imparted" is not correct. Critical-state profiles depend on current *history* (maximum current, reversals), not energy. Creep and flux jumps make them rate-dependent.
+- **Thermometry.** The thermometry is in the Supplementary Information, which was not available to me. Presumably it is mixing-chamber or stage thermometry, which cannot resolve the sample temperature on the 10 µs–20 ms timescale of the pulses. Spot-welded contacts at ~40 mA may also dissipate locally.
+
+**Requested controls:**
+
+- Replace the current pump with a heater pulse of comparable duration and temperature excursion, followed by a fast cool, with no transport current above J_c. Does this produce the high-J_c state?
+- Compare field-cooled and zero-field-cooled states, and states prepared by different field-sweep histories. If an FC state also yields the high-J_c state, the phenomenology is conventional.
+- Estimate the sample temperature rise during the pump using the measured flux-flow voltage, contact resistances and the thermal link.
+
+### 3. The field range of the memory effect does not clearly match SC1/SC2 coexistence
+
+The paper identifies the memory region with the SC1/SC2 coexistence region (SC1.5). The cited works (Sakai et al., Tokiwa et al.) place that region at roughly 15–20 T. However, for S2 the data show something different:
+
+- the effect appears at ~7 T;
+- it peaks near 10 T (Fig. 4e);
+- it has largely disappeared by 16–17 T (ED Fig. 8), i.e., *below* the SC1→SC2 boundary.
+
+Most of the memory window thus appears to lie within nominal SC1. The authors should:
+
+- reconcile this mismatch explicitly;
+- explain why "coexistence" extends down to 7 T, citing independent thermodynamic evidence if any exists;
+- show whether the memory region scales with reduced field (B relative to the SC1 upper critical field at each angle) rather than with proximity to SC2.
+
+The angular cut-off near 20° could also reflect the angular dependence of the SC1 critical field and pinning, not just the extent of SC2.
+
+### 4. Sample dependence and the "intrinsic" claim
+
+- The main dataset is from S2, which has the *lowest* RRR (44). S1 has RRR 105.
+- The cleanest sample, S3 (RRR 395), appears only in an ac ρ(B) panel (Fig. 4h) with no memory protocol.
+- The authors themselves attribute the sample-to-sample shift of the memory region to "crystalline quality (and hence vortex pinning forces)".
+
+An effect whose location depends on disorder, and which is characterized mainly in the dirtiest sample, does not support an "intrinsic" claim. Memory measurements on S3, and ideally on additional high-RRR crystals, are needed. A systematic correlation of ΔJ and the field window with RRR would be informative either way.
+
+### 5. Retention, read disturbance and protocol clarity
+
+- **Retention data are missing.** "Persists over a timescale of at least several hours" is stated but not shown. Please provide ΔJ (or probe V) versus waiting time, with field and temperature stability logged. It would also help to show whether the state survives a small temperature excursion.
+- **The read/write protocol is ambiguous.** An abrupt drop writes and a smooth ramp-down erases. Every probe sweep into flux flow must therefore end with either a write or an erase.
+  - How is the current returned to zero after each probe sweep in Fig. 1b?
+  - Is the read nondestructive, or does the reported persistence partly reflect re-writing at the end of each sweep?
+- **Endurance statistics are thin.** Fig. 1d shows about five cycles with noisy sub-µV signals. Please quantify the number of cycles tested, the switching fidelity, and the distribution of ΔJ across repeated writes.
+- **Current-distribution effects are untested.** Contacts are spot-welded on one (001) face of a mm-scale crystal, so current distribution and self-field are non-uniform. Varying the contact geometry, or using FIB-defined microbridges, would test whether the effect is a bulk property.
+
+### 6. The model is descriptive rather than explanatory
+
+The RSJ-analogue model has several hand-chosen ingredients:
+
+- the shape of U(φ), including g, the factor 0.6 and β = 40;
+- a phase-dependent damping γ(φ) sharply peaked at π (δ = 20), introduced specifically so the system "sticks" there;
+- a higher J_c at the π minimum, built in through β.
+
+Given these inputs, reproducing the observed qualitative behaviour is largely guaranteed. Specific problems:
+
+- **Physical meaning of φ.** φ is variously described as the phase "applied across the superconductor", the Cooper-pair momentum, and the winding of an inhomogeneous state with period L. These are not equivalent, and the mapping of a single macroscopic phase variable onto bulk vortex dynamics in a mm-sized crystal is not justified.
+- **Inversion-symmetry argument.** The argument that the second minimum must sit at φ = π needs elaboration. The statement that the system is consistent with a finite-momentum state (Methods) seems to sit uneasily with it.
+- **"γ as a proxy to the injected current J".** This statement in the Methods is confusing and should be clarified.
+- **Untested predictions.** The model is not confronted with the measured dependence on pulse amplitude, duration and rate (ED Fig. 1), or with the saturation behaviour.
+- **Unnecessary for the core claim.** Nothing in the model requires two superconducting order parameters. A conventional vortex-glass/lattice bistability would map onto the same effective potential.
+
+I suggest presenting the model explicitly as a phenomenological illustration. A more physically grounded approach would be a time-dependent Ginzburg–Landau or molecular-dynamics vortex simulation with two vortex species, compared against one species.
+
+### 7. The technological claims are overstated
+
+- **Operating conditions.** Operation requires T < 0.4 K and fields of 7–20 T. The energy cost of maintaining these conditions dwarfs any per-bit savings. The AI-energy framing in the introduction is therefore not well motivated by this result.
+- **Dissipation during write and read.** The claim that "both read and write operations can be performed while superconducting" is not accurate. Writing requires driving the sample into flux flow (a dissipative, resistive state), and in one of the two read states V ≠ 0 (Fig. 1d).
+- **Switching speed.** Switching times are µs to ms, far slower than single-flux-quantum logic, which operates on picosecond scales.
+- **Silicon comparison.** The comparison with "nanometre-sized silicon elements" cites a 1990 paper on intrinsic carrier concentration in silicon (ref. 59), which does not support the claim.
+- **Topological speculation.** The links to Majorana fermions and topologically protected quantum computing are speculative and should be toned down or clearly labelled as such.
+
+## Minor issues
+
+- "Higher disorder implies stronger pinning forces between vortices": pinning acts between vortices and defects. A disordered lattice pins more effectively because it adapts to the pinning landscape (Larkin–Ovchinnikov). Please rephrase.
+- "Vortices arrange … to minimise entropy and energetic costs": the equilibrium state minimizes free energy, not entropy.
+- Methods: "global minimum at π = 0" should read φ = 0.
+- Units:
+  - ED Fig. 1a x-axis is labelled "J_ex (ms)".
+  - ED Fig. 5b gives α in A cm⁻² s⁻¹, whereas elsewhere it is A cm⁻² ms⁻¹.
+  - Fig. 3b uses "J_ext" instead of J_ex.
+- The abstract describes a "metastable state", while the main text says it "does not appear to be transiently metastable". Please harmonize the terminology.
+- References 26 and 57 are duplicates (Blatter et al. 1994).
+- The comparison with intrinsic versus extrinsic diode effects (temperature dependence) is an analogy, not evidence, and should be presented as such.
+- ΔJ is computed at fixed V, including near V → 0, where noise dominates. Please give uncertainties and error bars for Fig. 4e,f and ED Fig. 1, and specify the voltage used in the heatmaps.
+- ΔJ magnitudes differ across figures (≈0.2 A cm⁻² in Fig. 4e versus ≈0.55 A cm⁻² in ED Fig. 1a). Please clarify the protocol differences.
+- State the field-sweep and cooling history before each dataset.
+- The 1.0 K curve in Fig. 3a has a "markedly different" curvature. Is this related to the closing of the memory loop, or to a change in the vortex phase?
+
+## Summary of requested additions
+
+1. Discussion of peak-effect and metastable-vortex literature, with an explicit argument for what is new.
+2. A heater-pulse control, FC/ZFC comparison, and an estimate of the transient sample temperature.
+3. Memory measurements on the highest-RRR sample (S3) and more crystals, correlated with RRR.
+4. Retention-time data, read-disturbance tests and cycle statistics.
+5. Clarification of the protocol at the end of each probe sweep.
+6. Analysis of the memory region in reduced field, and reconciliation of the 7–16 T window with the published SC1.5 boundaries.
+7. Reframing of the model as phenomenological, ideally supplemented by a two-species vortex simulation.
+8. Moderation of the technological and topological claims.
+
+## Recommendation
+
+**Major revision.** The data are interesting, and the angular coincidence with SC2 is a genuinely useful observation about vortex matter in UTe₂. In its current form, though, the paper's central claims are not supported against conventional metastable-vortex explanations: that this is a novel, intrinsic, order-parameter-driven memory effect, and a viable route to low-power computing. A more cautious framing would be more defensible: history-dependent vortex states in the SC1/SC2 crossover of UTe₂, with switching controlled by current. It would still be of clear interest to the community, provided the controls above are added.

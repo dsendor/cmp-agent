@@ -1,0 +1,181 @@
+{
+  "overall_feedback": "This is an early, ambitious experiment: an InSb/Nb proximity Josephson junction in which the first Shapiro step (hf0/2e = 6 µV at 3 GHz) disappears above about 2 T in-plane field while the 12 µV step survives. The fabrication is clever (a self-aligned etch mask), the B = 0 Shapiro data look clean, and the authors are open about several puzzles. The interpretive chain, though, is much weaker than the headline. (i) Several of the parameter estimates meant to show that the topological regime is reachable are internally inconsistent. The Zeeman energy is defined two ways that differ by a factor of 2. The ∆(B) curve uses one convention and the k estimate the other. The drive-energy threshold hωJ = 6 µeV is off by a factor of 2. The proximity gap comes from applying the BCS ratio to a noise-sensitive resistive transition. (ii) The Fermi energy is inferred by assuming the observed 2 T feature is the topological transition, and the result is then used to conclude that the device meets the requirements. That argument is circular. (iii) The junction characterization relies on an RN estimate (3 to 6 kΩ) that is ill-conditioned and contradicts the measured critical-current ratio r > 10. The resulting IcRN ≈ 1 mV exceeds even the clean-limit maximum, so it cannot be used to claim the clean regime. Elsewhere the paper uses IR RN ≈ 65 µV. (iv) The central claim that a missing n = 1 step is a 'unique signature' of Majorana modes is overstated. The 6 µV step reappears at high rf amplitude. The Bessel analysis above 2 T is admittedly poor and its argument is not adapted to charge e. The fitted coupling β changes with field. There are no field-orientation, frequency-at-high-field or multi-device controls. Alternatives such as Landau-Zener transitions, bias-dependent dynamics in an intermediate-damping junction, heating, and a field-dependent rf coupling are not excluded. The data are interesting, but the conclusions should be framed as consistent with, not proof of, a 4π Josephson component.",
+  "comments": [
+    {
+      "title": "Two incompatible definitions of the Zeeman energy",
+      "quote": "Zeeman energy EZ = g ∗ µB B, g ∗ = 50 for InSb",
+      "explanation": "The main text defines EZ = gµB B/2, and SI Section I later writes Ez = gµB B/2 again. But the opening of SI Section I defines EZ = g*µB B. I first took this for a typo. Checking the numbers shows the two conventions are actually both used. 'At B = 2 T (EZ = 2.8 meV)' follows from gµB B/2 with g = 50 (50 × 0.0579 meV/T × 2 T / 2 ≈ 2.9 meV). The quoted ∆(B) values (30 µeV at 2 T, 20 µeV at 3 T) only follow from Eq. (S1) if EZ = g µB B (5.8 meV at 2 T). Since the topological criterion EZ > sqrt(∆² + EF²) and Eq. (S1) depend directly on EZ, a factor-2 ambiguity changes the inferred EF, k, ESO and ∆(B).",
+      "type": "technical",
+      "severity": "moderate",
+      "suggested_fix": "Adopt one definition throughout (e.g. EZ = gµB B/2, the convention of Lutchyn et al. and Oreg et al.), and recompute Fig. S5 (right) and the quoted ∆(2 T) and ∆(3 T) with it."
+    },
+    {
+      "title": "Quoted ∆(B) at 2 T and 3 T inconsistent with the stated EZ = 2.8 meV",
+      "quote": "We see that at B = 2 T ∆ = 30 µeV and the condition ∆ > 2hωJ is satisfied.",
+      "explanation": "Eq. (S1) at B = 0 with ∆s = 290 µeV and λ = 470 µeV gives ∆ = 290·470/760 ≈ 179 µeV, which matches ∆(0) = 180 µeV. That part is consistent. At B = 2 T with the stated EZ = 2.8 meV and ESO = 1 meV, the spin-orbit factor is ESO/sqrt(ESO² + EZ²) = 1/sqrt(1 + 7.84) ≈ 0.34, which gives ∆ ≈ 60 µeV, not 30 µeV. The 30 µeV (and the 20 µeV at 3 T) are reproduced only with EZ = 5.8 meV and 8.7 meV, i.e. with EZ = gµB B. So the figure and the text use different Zeeman energies within the same paragraph. The quantitative statements that the gap condition is 'satisfied' at 2 T and 'consistent' at 3 T rest on whichever value is chosen.",
+      "type": "technical",
+      "severity": "moderate",
+      "suggested_fix": "With EZ = gµB B/2 = 2.8 meV at 2 T, state ∆(2 T) ≈ 60 µeV and ∆(3 T) ≈ 40 µeV from Eq. (S1), and replot Fig. S5 (right) accordingly; or, if EZ = gµB B is intended, recompute k and ESO from EF = 5.8 meV."
+    },
+    {
+      "title": "Drive-energy threshold hωJ = 6 µeV is off by a factor of 2",
+      "quote": "∆ > hωJ = 6 µeV for 3 GHz, or ∆ > 2hωJ in the topological phase",
+      "explanation": "The photon energy at f0 = 3 GHz is h f0 = 4.14 µeV/GHz × 3 GHz ≈ 12.4 µeV. 6 µV is the voltage hf0/2e of the first Shapiro step, not an energy. Writing hωJ (rather than ħωJ or hfJ) adds a further factor of 2π ambiguity. With the correct value, the stricter condition ∆ > 2hf0 ≈ 25 µeV fails at 3 T for the authors' own estimate ∆(3 T) = 20 µeV. This contradicts the statement that observing steps up to 3 T is 'consistent' with the theory. The rationale for the factor 2 'in the topological phase' is also not given: at a fixed drive f0, the photon energy does not change across the transition. In the main text, 'ΩJ = 2e/h̄V' also mixes symbols (ω vs Ω) and reads as 2e/(ħV).",
+      "type": "technical",
+      "severity": "moderate",
+      "suggested_fix": "Replace with '∆ > h f0 ≈ 12.4 µeV at 3 GHz', write ωJ = 2eV/ħ, and either justify or drop the extra factor of 2. Then revisit the claim that the 3 T data are consistent with ∆(3 T) = 20 µeV."
+    },
+    {
+      "title": "Circular argument: EF inferred from the transition it is meant to predict",
+      "quote": "cannot measure electron density independently, but we can assume that at B = 2 Tesla",
+      "explanation": "Section I is meant to show that the device parameters allow a topological phase at accessible fields. But EF is not measured. It is set by assuming that the observed disappearance of the 6 µV step at 2 T is the topological transition (EZ = EF). The derived k ≈ 3.5·10⁵ cm⁻¹, ESO ≈ 1 meV and ∆(2 T) all follow from that assumption. The section then concludes that 'experimental parameters for the JJ8 device satisfy the requirements for the observation of Majorana fermions'. This makes the interpretation self-consistent by construction and provides no independent support for it. It also ignores the ∆² term in the criterion and the fact that strong coupling to Nb (which the authors invoke for the subband count) shifts the chemical potential.",
+      "type": "logical",
+      "severity": "major",
+      "suggested_fix": "State explicitly that EF is inferred under the hypothesis that the 2 T feature is the topological transition, and remove the concluding sentence that the parameters 'satisfy the requirements', or replace it with an independent density estimate (e.g. Hall or Shubnikov-de Haas on an unpatterned piece of the same wafer)."
+    },
+    {
+      "title": "BCS gap ratio applied to the resistive transition of a proximity junction",
+      "quote": "∆ = 1.76kB T /e = 180 µeV and λ = 470 µeV, or λ ≈ 2.6∆",
+      "explanation": "The arithmetic is right (1.76 × 86.2 µeV/K × 1.17 K ≈ 178 µeV), and λ ≈ 474 µeV follows from Eq. (S1). But the zero-resistance onset of an SNS weak link does not mark where an induced gap opens with BCS ratio 1.76. It reflects where the Josephson coupling EJ = ħIc/2e exceeds thermal and electromagnetic noise. The authors themselves note that in the noisier ³He system no transition is seen for JJ8 down to 250 mK. That shows the measured 'Tc' depends on the environment, not purely on ∆. Since ∆ and λ feed every later estimate (Eq. S1, ∆(B), the Ic RN comparison), this step needs either justification or an independent gap measurement.",
+      "type": "technical",
+      "severity": "moderate",
+      "suggested_fix": "Estimate ∆ from a spectroscopic feature (e.g. the 2∆/e subharmonic or excess-current onset in the dI/dV of Fig. 2, right) rather than from the JJ resistive transition, and treat the 1.17 K value as a lower bound on the energy scale of the coupling."
+    },
+    {
+      "title": "Low-field Ic(B) formula diverges instead of decreasing",
+      "quote": "In the low field region Ic (B) ≈ Ic (0)/ 1 − (B/B1 )2",
+      "explanation": "As written (and in the Fig. S9 caption, 'Ic / sqrt(1 − (B/B1)²)'), the critical current grows with B and diverges at B1 = 2.5 T. That contradicts Fig. S9, where the superconducting region shrinks with field. The standard thin-film parallel-field form is Ic(B) = Ic(0) sqrt(1 − (B/B1)²). This looks like a transcription error, but the formula is the paper's only quantitative description of the field dependence. Section I also points to 'Section IV' for the Ic vs B comparison, whereas the Ic(B) data are in Section V.",
+      "type": "technical",
+      "severity": "moderate",
+      "suggested_fix": "Write Ic(B) ≈ Ic(0) sqrt(1 − (B/B1)²) in both the text and the Fig. S9 caption, and correct the cross-reference in Section I to Section V."
+    },
+    {
+      "title": "Disorder argument contradicts the measured narrow-wire Tc",
+      "quote": "consistent with the measured Tc ≈ 7 K compared",
+      "explanation": "The authors argue that disorder (wire resistance 2 to 3 kΩ instead of ≈1 Ω) does not substantially affect ∆ or Tc, citing Tc ≈ 7 K for wide regions. But the part of the Nb that proximitizes the junction is the 120 nm-wide wire. Its Tc3 = 1.9 K is strongly suppressed, and the paper uses its gap (∆s ≈ 290 µeV) in Eq. (S1). So the evidence that matters shows a large suppression in exactly the relevant region, and the claim of a robust Nb gap up to B2 ≈ 5 T is not demonstrated for the narrow wire. The narrow-wire dimensions are also reported inconsistently: 120 nm (main text), 80 nm (Section III), 150 nm (Section IV, Fig. S8), 190 nm (Fig. S7 label), and thickness 40 nm vs the deposited 45 nm.",
+      "type": "logical",
+      "severity": "minor",
+      "suggested_fix": "Base the disorder statement on the narrow-wire data (Tc3 = 1.9 K, and its B dependence from the line L in Fig. S9), and report one consistent width and thickness for the wire adjacent to JJ8."
+    },
+    {
+      "title": "RN estimate is ill-conditioned with respect to the assumed shunt",
+      "quote": "thus we estimate RN ≈ 3 kΩ",
+      "explanation": "The arithmetic checks out: Rsw = 1/(1/0.6 − 1/2.5) ≈ 0.79 kΩ, and then RN = 1/(1/0.65 − 1/0.79) ≈ 3.7 kΩ. But the result is a small difference of large numbers. Changing Rs by ±0.1 kΩ (0.7 to 0.9 kΩ) moves RN from about 9 kΩ down to about 2.3 kΩ. The assumption Rs ≈ Rsw rests only on similar pad layouts. No uncertainty is given, yet RN is then used for the channel count (< 5 subbands) and the Ic RN ≈ 1 mV clean-limit argument. The wire resistance on GaAs (2.5 kΩ) also differs from the 2 to 3 kΩ range quoted in Section V.",
+      "type": "technical",
+      "severity": "moderate",
+      "suggested_fix": "Propagate the uncertainty in Rs (e.g. Rs = 0.79 ± 0.1 kΩ gives RN ≈ 2.3 to 9 kΩ) and state the channel count and Ic RN with that range; alternatively extract RN from the high-bias slope of the I(V) after subtracting a separately measured shunt."
+    },
+    {
+      "title": "'RN as high as 6 kΩ' contradicts the measured r > 10",
+      "quote": "two nominally identical JJs in parallel, and the actual RN for the dominant junction can be",
+      "explanation": "Doubling RN to ≈6 kΩ assumes the two arms share the normal current equally, as two identical junctions would. But the main text reports r = Ic1/Ic2 > 10 for JJ8 and concludes that 'conduction is dominated by a single junction'. If the second arm carries little current, the dominant junction's RN is close to the parallel value (≈3 to 3.3 kΩ), not twice it. The two statements cannot both be used. The upper value feeds directly into Ic RN ≈ 1 mV.",
+      "type": "logical",
+      "severity": "moderate",
+      "suggested_fix": "Use RN(dominant) ≈ RN(1 + 1/r) ≈ 3.3 kΩ for r > 10, consistent with the single-junction treatment, and drop the 6 kΩ upper bound."
+    },
+    {
+      "title": "Ic RN ≈ 1 mV exceeds the clean-limit maximum, so it cannot establish the clean regime",
+      "quote": "The product RN Ic ≈ 1 mV> 2∆ indicates that JJ8 is in a clean limit",
+      "explanation": "The authors compare with the dirty-limit (≈320 Tc ≈ 374 µV) and clean-limit (≈480 Tc ≈ 562 µV) short-junction values, the latter close to the KO-2 result π∆/e ≈ 565 µV for ∆ = 180 µeV. A measured 1 mV is almost twice even the clean-limit maximum and about 5.6∆/e. That signals an overestimated RN (see the previous comments) or an incorrect ∆, not a cleaner junction. Exceeding the theoretical maximum is evidence of an inconsistency in the inputs, and the inequality 'IcRN > 2∆' is not by itself a clean-limit criterion, since the dirty KO-1 value is already ≈2.07∆/e. The clean-limit statement is presented as 'a proper condition for the formation of Majorana particles', so the conclusion carries weight.",
+      "type": "logical",
+      "severity": "moderate",
+      "suggested_fix": "Report Ic and RN separately with uncertainties, note that Ic RN exceeds π∆/e for the assumed ∆, and either revise ∆/RN or remove the clean-limit conclusion; an independent mean-free-path estimate from the 2D mobility of the wafer would address l > Leff directly."
+    },
+    {
+      "title": "Characteristic voltage quoted as both ≈1 mV and ≈65 µV",
+      "quote": "For the JJ8 device Vc = IR RN ≈",
+      "explanation": "SI Section VIII gives Vc = IR RN ≈ 65 µeV (a voltage written in energy units), and the main text gives VR ≈ 60 µV. Since the main text states IR ∼ Ic, this implies Ic RN ≈ 65 µV. The same paper also states Ic RN ≈ 1 mV. The difference evidently comes from using the shunted 650 Ω in one place and the deduced 3 to 6 kΩ in the other. The small- vs large-signal regime boundary (vrf ≈ VR/2√2) and the clean-limit argument use different RN values without saying so.",
+      "type": "technical",
+      "severity": "moderate",
+      "suggested_fix": "Define which resistance enters each characteristic voltage (e.g. Vc' = IR R'N with R'N = 650 Ω including the shunt for the dynamics, IcRN with the intrinsic RN for the gap comparison), and give Vc in µV."
+    },
+    {
+      "title": "'Unique signature' overstated; alternative mechanisms for a missing n = 1 step not excluded",
+      "quote": "emphasize that the doubling of the Shapiro step height is a unique signature of a topological",
+      "explanation": "A 4π-periodic current-phase relation does predict even-only steps, and the authors cite the relevant theory. But the converse does not hold: suppression of the first step is not unique to Majorana modes. In an intermediate-damping, hysteretic RSJ junction (as JJ8 is described), steps can be suppressed or reshaped by the bias-dependent dynamics. Landau-Zener transitions between Andreev levels in highly transmitting conventional channels can also produce 4π-like dynamics. Other candidates include heating, a field-dependent rf coupling (the fitted β changes with B, see Fig. 4), and suppression of the step near a Bessel zero. The authors' own data show the 6 µV step reappearing at high Vrf for B = 2.2 T, and the B > 2 T plateaus are 'poorly described by Bessel functions'. Neither is expected for a clean 4π component, and both point to more complex dynamics. The abstract and Fig. 3 caption repeat the 'unique signature' and 'hallmark' language.",
+      "type": "logical",
+      "severity": "major",
+      "suggested_fix": "Rephrase to 'consistent with a 4π-periodic Josephson component expected for Majorana modes', and add a paragraph discussing and, where possible, excluding Landau-Zener transitions, junction dynamics in the intermediate-damping regime, and field-dependent rf coupling."
+    },
+    {
+      "title": "Key controls missing: field orientation, frequency scaling above 2 T, other devices",
+      "quote": "∆V scales linearly with f0 [33].",
+      "explanation": "The frequency scaling in Fig. S10 is shown only at B = 0. The decisive check is that the surviving first step above 2 T sits at hf0/e for several f0 (8 µV at 2 GHz, 16 µV at 4 GHz), and it is not shown. Theory also predicts that the topological phase requires B ⊥ Bso. A measurement with B along Bso (in plane, perpendicular to the current), where no doubling should occur, would separate the effect from generic Zeeman or orbital effects, and it is absent. All Shapiro data are from a single device, JJ8, although JJ6 and JJ7 were fabricated and characterized. Without these, the field-induced change cannot be tied to the specific topological mechanism.",
+      "type": "logical",
+      "severity": "major",
+      "suggested_fix": "Add V(I) under rf at B > 2 T for f0 = 2 and 4 GHz showing the first step at hf0/e, the same measurement with B rotated parallel to Bso, and Shapiro data versus B for at least one other junction (JJ7)."
+    },
+    {
+      "title": "Bessel argument for charge-e steps not adapted; unit error",
+      "quote": "Moreover, a minimum of the 12 µV plateau at Vrf ≈ 7 meV coincides with the minimum of",
+      "explanation": "For a current IM sin(φ/2), the drive enters with half the phase amplitude. Steps at n·hf0/e should therefore follow |Jn(e vrf/hf0)|, i.e. with β/2, not |Jn(2e vrf/hf0)|. With β = 0.84 mV⁻¹ the first zero of J1 falls at Vrf ≈ 4.6 mV, and J2's first zero is near 6.1 mV. A J1 minimum near 7 mV is obtained only with the halved argument and β ≈ 1.04 mV⁻¹ (3.83/0.52 ≈ 7.4 mV). The text does not say which argument or which β was used for this claim, so the reader cannot check the coincidence offered as evidence that the 12 µV plateau 'became the n = 1 step'. 'meV' should be 'mV'.",
+      "type": "technical",
+      "severity": "moderate",
+      "suggested_fix": "State that for the 4π component the widths are compared with |Jn(βVrf/2)| and give the β used (apparently 1.04 mV⁻¹), so the J1 zero near 7.4 mV is reproducible; correct 'meV' to 'mV'."
+    },
+    {
+      "title": "Claim that A is unchanged across the transition is not supported by the B > 2 T fits",
+      "quote": "the coefficient A remains almost unchanged across the transition, as is observed",
+      "explanation": "The authors cite Dominguez et al. for the expectation that odd steps vanish even when Ic ≫ IM, with even-step widths set by Ic, and they say this is 'observed experimentally'. But they also state that 'evolution of plateaus at B > 2 T is poorly described by Bessel functions' and that a different β (rf coupling) is needed. No fitted A with uncertainty is reported for B > 2 T, so 'almost unchanged' is asserted, not shown. The Dominguez scenario also assumes parity is conserved over the drive period (no quasiparticle poisoning), and the paper does not discuss that.",
+      "type": "logical",
+      "severity": "moderate",
+      "suggested_fix": "Report fitted A (and β) with uncertainties for each field in Fig. 4, including B = 2.2 T for the even steps, and state the parity-lifetime assumption (poisoning time ≫ 1/f0 ≈ 0.3 ns) under which odd steps are expected to vanish."
+    },
+    {
+      "title": "Field-dependent rf coupling β and inconsistent attenuation values",
+      "quote": "β = 0.84 mV−1 (solid) and β = 1.04 mV−1 (dashed).",
+      "explanation": "β = 2e·(attenuation)/hf0 should depend only on the rf line and frequency, not on B. Checking: 5·10⁻³/6.2 µV ≈ 0.81 mV⁻¹ and 5.4·10⁻³/6.2 µV ≈ 0.87 mV⁻¹, roughly matching 0.84 (Fig. 4) and 0.89 (Fig. S11). So the attenuation itself is quoted as both 5 and 5.4·10⁻³ at 3 GHz. Fig. 4 uses two β values without saying which applies to which panel. The main text notes that 'the low field rf attenuation does not fit the evolution of the ∆I0 plateau', but a 24% change in effective coupling at finite field is exactly the kind of extrinsic change that could move Bessel zeros and suppress particular steps. It needs an explanation, not just a second fit line.",
+      "type": "technical",
+      "severity": "moderate",
+      "suggested_fix": "In the Fig. 4 caption state which β is used at each field, quote a single attenuation (with uncertainty) at 3 GHz, and discuss whether β = 1.04 mV⁻¹ at 2.2 T reflects a change in junction impedance or in rf coupling."
+    },
+    {
+      "title": "Step-width extraction from dV/dI not specified",
+      "quote": "Quantitative comparison of the width of the Shapiro steps ∆In (Vrf ) for different B",
+      "explanation": "Fig. 4 and Fig. S11 are the quantitative core of the argument, but the criterion for a 'step' in dV/dI is not given: threshold value, smoothing, treatment of the 2 nA ac excitation, or how a weak or partially formed step (e.g. 6 µV at 2 T) is counted as zero. The 2 nA modulation is not negligible compared with step widths of tens of nA near Bessel minima. Fig. S12 notes that V(I) is used to identify step height, while widths come from dV/dI. Without the criterion, the statement that the 6 µV step 'vanishes' cannot be reproduced.",
+      "type": "technical",
+      "severity": "minor",
+      "suggested_fix": "State the extraction rule, e.g. 'step width = current interval in which dV/dI < X kΩ, after correcting for the 2 nA lock-in excitation', and show error bars from the excitation amplitude in Fig. 4."
+    },
+    {
+      "title": "Steps vanish at 3 T while the excess current is said to persist to 4 T",
+      "quote": "is consistent with suppression of the excess current and Andreev reflection at high fields.",
+      "explanation": "Earlier the paper stresses that 'the excess current, and thus coherent electron transport, is observed at high in-plane magnetic fields up to 4 T'. Here, the disappearance of all Shapiro steps above 3 T is attributed to suppression of the excess current. Both cannot be the explanation unless the Fig. 2 inset shows the excess current falling sharply near 3 T, which the text does not state. Section I offers a different reason (∆ ≈ 20 µeV at 3 T).",
+      "type": "logical",
+      "severity": "minor",
+      "suggested_fix": "Quote the excess-current magnitude at 3 T from the Fig. 2 inset and attribute the loss of steps to one stated mechanism (excess-current suppression or ∆ falling below hf0)."
+    },
+    {
+      "title": "Bulk InSb g-factor and mass used for a 20 nm quantum well",
+      "quote": "effective mass m∗ = 0.015m0 , effective g-factor g = 50",
+      "explanation": "|g| ≈ 50 and m* ≈ 0.014 m0 are bulk band-edge InSb values. In a 20 nm well with In0.6Ga0.4Sb barriers, confinement and nonparabolicity reduce |g| (typically to the 30s) and increase m*. Proximity to Nb renormalizes g further. Because EZ enters the topological criterion linearly and EF ∝ 1/m*, these choices shift the inferred k, ESO and ∆(B) by tens of percent. With a smaller g, the critical field for EZ = EF moves up.",
+      "type": "technical",
+      "severity": "minor",
+      "suggested_fix": "Use or cite quantum-well values of g and m* for 20 nm InSb wells (or give a range, e.g. |g| = 30 to 50) and show how the inferred EF and ∆(2 T) change across that range."
+    },
+    {
+      "title": "Abstract misstates the physical mechanism as charge-e quasiparticles carrying supercurrent",
+      "quote": "the supercurrent is carried by charge-e quasiparticles",
+      "explanation": "In the theory cited ([1, 4, 30–32]), the 4π periodicity arises from single-electron transfer through a fermion-parity-protected Majorana bound-state pair, not from a supercurrent of charge-e quasiparticles. The body text says this correctly ('fusion of two Majorana particles across the gap, which amounts to the 1e charge transfer'). Readers who see only the abstract could take away the wrong picture.",
+      "type": "logical",
+      "severity": "minor",
+      "suggested_fix": "Replace with 'suggesting a 4π-periodic Josephson component associated with single-electron (charge e) transfer through Majorana bound states'."
+    },
+    {
+      "title": "dc SQUID 2π periodicity claim not shown and weakly constrained at r > 10",
+      "quote": "indeed, we observe only 2π periodicity in a dc SQUID configuration",
+      "explanation": "The statement is used to support the claim that dc measurements mask 4π periodicity. But no SQUID data are shown, the field at which the periodicity was checked (below or above 2 T) is not given, and with r > 10 the modulation depth is only about 2/r of Ic. The SQUID response then follows the CPR of the weaker arm, which says little about the dominant junction's periodicity.",
+      "type": "logical",
+      "severity": "minor",
+      "suggested_fix": "Show the SQUID modulation data and state the field at which it was taken; if only below 2 T, say so explicitly."
+    },
+    {
+      "title": "GaAs control may not transfer to InSb; gap-range claim conflicts with JJ6",
+      "quote": "Nb layer is not conducting and plays no role in the electrical transport",
+      "explanation": "The GaAs control devices are a good idea and do show that the thin Nb halo is not conducting on GaAs. However, the halo on InSb is etched differently and sits on a narrow-gap semiconductor with a surface accumulation layer, so its continuity and proximity coupling may differ. Point (ii) states tunneling is negligible for gaps > 20 nm, yet JJ6 has a 20 nm gap, at the boundary of that claim.",
+      "type": "logical",
+      "severity": "minor",
+      "suggested_fix": "Restrict the conclusion to 'on GaAs the thin Nb layer is non-conducting', and add a control on the InSb wafer (e.g. a junction with gap > 120 nm showing no supercurrent) to exclude halo-mediated transport there."
+    }
+  ]
+}

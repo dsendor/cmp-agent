@@ -1,0 +1,117 @@
+{
+  "overall_feedback": "This paper reports point-contact spectroscopy (PCS) on the (001) surface of UTe2 under hydrostatic pressure. It analyses the spectra with an extended spin-triplet BTK model and argues three things: B2u/B3u pairing; a pz/px(y) weight ratio that distinguishes SC1–SC3; and a possible B2u→B3u change across the SC2–SC3 boundary. The dataset is valuable, since symmetry-sensitive probes under pressure are scarce. The ZBCP with side dips that appears above ~0.3 GPa is a clear, reproducible experimental change, and the BdG/BTK formalism is laid out in reasonable detail.\n\nThe quantitative conclusions, however, depend heavily on fit parameters whose physical meaning is questionable:\n- The fitted gaps (~1–1.6 meV for Tc ≈ 2–3 K, i.e., 2Δ/kBTc ≈ 12–13) are several times larger than BCS values and than gaps reported by other probes. This suggests that bias-scale renormalization or a degenerate fit, rather than intrinsic gap values, controls the extracted Δz/Δx(y).\n- The broadening Γ drops by a factor of ~4 between ambient and elevated pressure. The authors themselves state that the side dips are sensitive to Γ, so junction evolution is a serious confound for the claimed order-parameter evolution.\n- The rejection of Au relies on simulations with much smaller Γ than is fitted to the data.\n- The proposed B2u→B3u switch at a continuous transition is thermodynamically awkward.\n- Table S1 appears to have its Δz and Δx(y) columns interchanged.\n- The multi-channel fits and the experimental PCS procedures are underspecified.\n\nThe experimental observations are interesting, but the symmetry and phase-transition conclusions should be presented more cautiously unless these issues are addressed.",
+  "comments": [
+    {
+      "title": "Table S1 columns for Δz and Δx(y) appear swapped",
+      "quote": "S1 1.18(7) 0.72(4) 1.67(9) 0.39(2)",
+      "explanation": "Table S1 puts the larger values (1.15–1.18 meV) under Δz and the smaller ones (0.60–0.72 meV) under Δx(y). Read as written, Δz/Δx(y) ≈ 1.6–1.9. That contradicts the main-text statement that all three samples give Δz/Δx(y) ≈ 0.57(5) with px(y) dominant. It also contradicts Fig. S7(a), which labels the same S1 fit as Δx(y) = 1.18(7) meV and Δz = 0.72(4) meV, and Fig. S9(a), where Δx(y) is the larger gap. Swapping the columns gives ratios of 0.61, 0.54 and 0.52, consistent with the quoted 0.57(5) within error. This looks like a labeling error, but it sits in the table that supports a central ambient-pressure claim.",
+      "type": "technical",
+      "severity": "moderate",
+      "suggested_fix": "Interchange the column headers of Table S1 so that Δx(y) = 1.18(7), 1.15(1), 1.15(1) meV and Δz = 0.72(4), 0.62(1), 0.60(1) meV. State explicitly that the per-sample ratios are 0.61, 0.54 and 0.52."
+    },
+    {
+      "title": "Fitted gap magnitudes imply 2Δ/kBTc ≈ 12–13, suggesting the fit parameters are not intrinsic gaps",
+      "quote": "they both strongly violate the BCS's prediction, which again demonstrates the unconventional nature of SC in UTe2",
+      "explanation": "Taking Δx(y) ≈ 1.18 meV at 0.3 K for Tc ≈ 2.1 K gives 2Δ/kBTc ≈ 13. At 1.2 GPa, Δz ≈ 1.6 meV with Tc ≈ 3 K gives a similar figure. These values are far above weak or moderate coupling and well above gap scales reported for UTe2 by other probes (~0.25–0.3 meV). The authors' own simulations in Fig. S6 use Δ = 0.25 meV, which suggests they regard that scale as realistic. The 'violation of BCS' in Fig. S2(c) is therefore mainly a magnitude discrepancy of ~3.5×, not evidence about the T-dependence shape.\n\nA bias scale inflated this much is a classic symptom of several effects:\n- part of the voltage dropping across a series/spreading resistance;\n- a non-ballistic (diffusive/thermal) contact;\n- degeneracy between Δ and Γ in the fit (Γ ≈ 0.39 meV here).\n\nIf the voltage axis is renormalized, the absolute gaps are meaningless. The ratio Δz/Δx(y), which drives the main conclusions, may then also be biased because it is controlled by the shape of a broadened peak.",
+      "type": "technical",
+      "severity": "major",
+      "suggested_fix": "Report 2Δ/kBTc for each pressure and the junction resistance. Estimate the contact regime (Sharvin/Wexler ratio a/ℓ). Either correct for series resistance or refit with a voltage-scaling factor fixed by a known reference. Compare normalized Δ(T)/Δ(0) curves with BCS shape rather than absolute magnitudes."
+    },
+    {
+      "title": "Pressure evolution of the ratio is confounded by large changes in junction parameters (Γ, Z)",
+      "quote": "These dips can only be reproduced by increasing the weight of pz component, as shown in Fig. 5(c).",
+      "explanation": "The claimed order-parameter evolution and the side-dip features are entangled with junction parameters:\n- The same S1 junction gives Z ≈ 1.67 and Γ ≈ 0.39 meV at ambient pressure (Fig. S7) but Z ≈ 1.2 and Γ ≈ 0.10 meV at 0.8 GPa (Fig. S8).\n- The authors note that side dips 'are not robust against pair-breaking scattering and may be smeared if the Dynes broadening Γ is large'.\n- Fig. S6(d) shows satellite structure developing as Γ decreases at fixed Δz/Δx = 0.55.\n- Sample S3 at ambient pressure (Γ = 0.16 meV) already shows side humps/shoulders (Fig. 2f).\n\nA reduction of Γ by ~4× could therefore account for much of the qualitative change across 0.3 GPa, for example from pressure-induced changes of the contact itself. The statement that dips 'can only be reproduced' by increasing the pz weight is asserted without a constrained comparison. No fit at 0.6 GPa with the ratio held at the SC1 value (~0.6) and Z and Γ free is shown, and no goodness-of-fit comparison is reported. Since the ratio is the paper's central diagnostic, this needs to be demonstrated.",
+      "type": "logical",
+      "severity": "major",
+      "suggested_fix": "For 0.6, 0.8 and 1.2 GPa, show best fits with Δz/Δx(y) fixed at the ambient value (≈0.6) and Z, Γ, Δ free. Report χ² for these alongside the free-ratio fits, and show the χ² landscape versus the ratio, so readers can judge whether the ratio change is required by the data."
+    },
+    {
+      "title": "Absolute ZBCP height used to infer component weights",
+      "quote": "This suggests that the px(y) pairing component plays a more dominant role than the pz pairing.",
+      "explanation": "The inference rests on the normalized peak heights being < 1.2. In real point contacts, the absolute amplitude of Andreev features is commonly reduced by three effects: parallel non-superconducting conduction channels (particularly relevant for soft Au-epoxy contacts made of many nanocontacts), spreading resistance, and inelastic broadening. The simulations also show that the peak height depends strongly on Z and Γ, not only on Δz/Δx(y). Peak amplitude alone therefore cannot discriminate px- from pz-dominance. The weight ratio is essentially a fit parameter that absorbs any amplitude suppression, unless a parallel-channel or background term is included and shown to be negligible.",
+      "type": "logical",
+      "severity": "moderate",
+      "suggested_fix": "Include a parallel normal-conductance (or spectral-weight) parameter in the fits. Show how strongly it correlates with Δz/Δx(y), or argue from contact characterization why it is negligible."
+    },
+    {
+      "title": "Exclusion of Au based on simulations with Γ far below fitted values",
+      "quote": "Firstly, the conductance peak of a generic Au pairing typically splits at any finite Z [Fig. S6(a)] - which is not observed in all of our samples measured [Fig. 2(d-f)].",
+      "explanation": "The Au simulation in Fig. S6(a) uses Γ = 0.01 meV with Δ = 0.25 meV. The experimental fits require Γ = 0.16–0.40 meV, comparable to or larger than the simulation gap. At such broadening the double-peak splitting of the Au spectrum would be largely washed out and could resemble a single broad ZBCP, as at ambient pressure in S1 and S2. The argument is therefore not tested in the relevant parameter regime. This also bears on the authors' later admission that Au 'cannot be entirely excluded'.",
+      "type": "logical",
+      "severity": "moderate",
+      "suggested_fix": "Fit the ambient-pressure spectra of S1–S3 directly with the Au model at the fitted Γ and Z ranges. Report the resulting χ² relative to the B2u/B3u fits."
+    },
+    {
+      "title": "Minimum of a fit-derived ratio interpreted as a phase transition; ratio behaviour near Tc is unphysical for a single IR",
+      "quote": "an underlying phase transition between the SC2 and SC3 states than a mere crossover.",
+      "explanation": "The values in Fig. S8 do support a minimum of Δz/Δx(y) near 1.5 K at 0.8 GPa: 1.26, 1.18, 1.08, 0.98, 1.03 and 1.14 from 0.5 to 2.1 K. However, the minimum arises because the fitted Δx(y) increases on warming from 0.87 meV (0.5 K) to 1.00 meV (1.1 K), while Z and Γ stay essentially fixed. A gap that grows with temperature is unusual and could be a fitting compensation.\n\nWithin the proposed SC2 = B2u phase, Δz and Δx belong to the same irreducible representation. Ginzburg–Landau theory then requires them to vanish together at Tc with a roughly constant ratio. Yet Fig. S9(e) shows the ratio climbing to ~1.9, with very large error bars, as T → Tc. This undermines the interpretation of the ratio as a thermodynamic order-parameter quantity. In addition, a minimum is not the generic signature of a second-order transition, which would typically give a kink.",
+      "type": "logical",
+      "severity": "moderate",
+      "suggested_fix": "Soften the claim to 'coincides with'. Show that the minimum survives when Z and Γ are refitted freely at each T, with error bars from the full covariance. Discuss why the ratio within a single IR deviates from a constant as T → Tc."
+    },
+    {
+      "title": "Agreement of ratio minima with the SC2–SC3 boundary is weaker at 1.2 GPa",
+      "quote": "with minima occurring at about 1.6 and 0.7 K, respectively",
+      "explanation": "The text says these minima 'match well' with the SC2–SC3 boundary from AC calorimetry/susceptibility. Reading the dashed boundary in Fig. 2(b), it runs from ~2 K at 0.3 GPa to ~1 K at 1.4 GPa, which puts it near ~1.1–1.2 K at 1.2 GPa. The 0.7 K minimum at 1.2 GPa lies noticeably below this, and the 1.2 GPa fits use a two-channel model with additional parameters. The 'match well' characterization therefore seems strongest at 0.6–0.8 GPa only.",
+      "type": "technical",
+      "severity": "minor",
+      "suggested_fix": "Quote the literature SC2–SC3 transition temperatures at 0.6, 0.8 and 1.2 GPa next to the PCS minima, with uncertainties, and note the discrepancy at 1.2 GPa."
+    },
+    {
+      "title": "Proposed B2u→B3u switch is hard to reconcile with a continuous SC2–SC3 transition",
+      "quote": "appears the most promising for SC2, while SC3 is probably of B3u representation",
+      "explanation": "SC3 is entered on cooling from SC2 via what bulk calorimetry identifies as a second transition. If SC2 is a pure B2u state, a continuous transition to SC3 would add a second component, e.g. B2u + B3u or B2u + iB3u, which is the multicomponent picture of ref. [30]. It would not replace B2u with pure B3u, which would require a first-order transition and the vanishing of the B2u order parameter. The NMR result cited (Knight shift drop along b in SC3) is equally consistent with an admixed B3u component. Moreover, the (001) PCS used here cannot distinguish B2u from B3u at all, so PCS adds no discriminating evidence for the switch.",
+      "type": "logical",
+      "severity": "moderate",
+      "suggested_fix": "Rephrase SC3 as most likely a two-component state (e.g., B2u + B3u or B2u + iB3u) emerging from B2u SC2. State explicitly that the (001) PCS data are insensitive to the B2u/B3u distinction."
+    },
+    {
+      "title": "Multi-channel superposition fits are underspecified and highly parameterized",
+      "quote": "This model can fit the multi-dip behavior rather well as shown in Fig. 5(e).",
+      "explanation": "Eq. (2) introduces an arbitrary number of channels, each with its own Δz, Δx(y), presumably Z and Γ, plus weights w_i. Key choices are not reported:\n- the number of channels used at each pressure;\n- whether Z and Γ are shared across channels;\n- whether Σw_i = 1;\n- the fitted w_i values.\n\nFig. S9(c) shows two sets of gaps at 1.2 GPa but no weights. With roughly 8–10 free parameters, a good fit to a double-dip spectrum is not strong evidence. The derived ⟨Δz⟩/⟨Δx(y)⟩ (e.g., ~1.30 at 1.2 GPa) cannot be reproduced or assessed for uniqueness.",
+      "type": "technical",
+      "severity": "moderate",
+      "suggested_fix": "Add a table listing, for each pressure and temperature, the number of channels, w_i, Δz^i, Δx(y)^i, Z_i and Γ_i, and the constraints imposed (e.g., shared Z and Γ, Σw_i = 1). Include parameter correlation and uncertainty estimates."
+    },
+    {
+      "title": "Normalization of the conductance formula",
+      "quote": "where G0 represents the conductance of the junction in the normal state",
+      "explanation": "In the normal state, b_{αβ} = r_n δ_{αβ} and a = 0. The brace in Eq. (1)/(S12) then reduces to 1 − |r_n|² = |t_n(k∥)|². The formula therefore gives G_NN = G0 Σ_{k∥}|t_n|², not G0, so G0 is not the normal-state conductance as stated. The plotted spectra tend to 1 at high bias, so the authors presumably divide by Σ_{k∥}|t_n|². This normalization is not written and depends on Z, which matters when Z is a fit parameter.",
+      "type": "technical",
+      "severity": "minor",
+      "suggested_fix": "Write the normalized form G_NS/G_NN = Σ_{k∥}{1 + ½Σ_{αβ}(|a_{αβ}|² − |b_{αβ}|²)} / Σ_{k∥}k̃²/(k̃² + Z²), and state the k∥ grid or angular weighting used."
+    },
+    {
+      "title": "Incorrect expression for k_F",
+      "quote": "For those particles with energy E ≪ εF , the wave",
+      "explanation": "The sentence ends with k_z² + |k∥|² ≈ k_F² = √(2mε_F/ħ²). Dimensionally and by definition, k_F = √(2mε_F)/ħ, so k_F² = 2mε_F/ħ². The square root is misplaced. This does not affect the numerics, since only k̃ = k_z/k_F enters.",
+      "type": "technical",
+      "severity": "minor",
+      "suggested_fix": "Replace with k_z² + |k∥|² ≈ k_F² = 2mε_F/ħ²."
+    },
+    {
+      "title": "Experimental PCS procedure and contact regime not specified",
+      "quote": "A hybrid piston-clamp type cell was used to achieve quasi-hydrostatic pressures up to ∼ 1.8 GPa with Daphne 7373 oil serving as the pressure-transmitting medium.",
+      "explanation": "The Methods describe crystal growth and junction fabrication but omit information essential for interpreting BTK fits:\n- how dI/dV was measured (lock-in frequency and excitation amplitude, or numerical differentiation);\n- the normal-state junction resistance at each pressure;\n- how the spectra were normalized;\n- how pressure was calibrated (e.g., Pb or Sn manometer, low-T versus room-T pressure).\n\nThe heating argument against an extrinsic ZBCP is qualitative, and no estimate of contact size relative to the mean free path is given. With RRR ≈ 410 the mean free path is long, but the effective contact size of a soft Au-epoxy contact is unknown. Without these details, the ballistic-regime assumption underlying the BTK analysis cannot be assessed, and the work cannot be reproduced.",
+      "type": "technical",
+      "severity": "moderate",
+      "suggested_fix": "Add the lock-in parameters, the junction resistance R_N at each pressure, the normalization procedure and the pressure-calibration method. Include a Wexler/Sharvin estimate of the contact diameter relative to the mean free path to justify the ballistic regime."
+    },
+    {
+      "title": "'Unambiguously' overstates the evidence for a pz component",
+      "quote": "unambiguously suggesting the presence of",
+      "explanation": "The authors rule out heating and magnetic scattering only qualitatively. They later concede that Au (which also contains a k_z component) cannot be excluded. ZBCPs in point contacts can also arise from other extrinsic mechanisms, such as critical-current effects in non-ballistic contacts or proximity effects. 'Unambiguously' is inconsistent with the paper's own hedging in the Discussion.",
+      "type": "logical",
+      "severity": "minor",
+      "suggested_fix": "Replace 'unambiguously suggesting' with 'strongly suggesting', consistent with the abstract's wording."
+    },
+    {
+      "title": "Characterization of Au surface states as 'off-center' is imprecise",
+      "quote": "these ABSs are off-center",
+      "explanation": "For a fully gapped, 3He-B-like Au state on a surface normal to a direction with a sign-changing component, the surface Andreev states form a Majorana cone that disperses through zero energy at k∥ = 0. They are not off-center; their density of states vanishes linearly at E = 0. This gives a conductance minimum, or split peaks, rather than a ZBCP. The physical conclusion (no sharp ZBCP for Au) is right, but the stated reason could mislead readers.",
+      "type": "technical",
+      "severity": "minor",
+      "suggested_fix": "Rephrase to: 'Au may host dispersive (Majorana-cone-like) surface states whose density of states vanishes at zero energy, so no sharp ZBCP is expected.'"
+    }
+  ]
+}

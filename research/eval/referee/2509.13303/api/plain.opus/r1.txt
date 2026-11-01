@@ -1,0 +1,149 @@
+# Review of "Mixed Triplet-Singlet Order Parameter in Decoupled Superconducting 1H Monolayers of Transition-Metal Dichalcogenides"
+
+## Summary
+
+The authors study the misfit compound (SnS)₁.₁₅(TaS₂) using transport, (spin-)ARPES, and STM/STS. They make four main claims:
+
+1. The SnS layers electronically decouple the 1H-TaS₂ sheets. Evidence offered: no k_z dispersion, spin-valley locking, transport anisotropy of about 19, and T_c ≈ 3.05 K, close to monolayer TaS₂.
+2. Tunneling on 1H terminations shows a two-gap spectrum, Δ₁ ≈ 490 µeV and Δ₂ ≈ 300 µeV, supported by an upward-curved H_c2(T) fitted with a two-band dirty-limit model.
+3. A tight-binding model of a 2H bilayer with Ising SOC, finite-range attraction, and tunable t⊥ produces a two-gap DOS at t⊥ = 0. The authors attribute this to singlet–triplet (s/f) mixing, which interlayer coupling suppresses.
+4. The SnS layer hosts an intrinsic, non-proximity superconducting gap (Δ ≈ 440 µeV), with vortices imaged on it.
+
+The platform is attractive, and the STM data appear clean and spatially uniform. Placing the result in the context of 2H, monolayer, and 4Hb-TaS₂ is useful. However, I do not think the data establish the two headline claims: a *mixed singlet–triplet* order parameter, and *intrinsic* superconductivity of SnS. The theory–experiment connection is qualitative and in places internally inconsistent. I would recommend major revision.
+
+---
+
+## Major concerns
+
+### 1. The experiment cannot discriminate singlet–triplet mixing from conventional multiband/anisotropic s-wave pairing
+
+- The only discriminating feature the authors identify is the *dependence on t⊥*. The supplement concedes that mixing of 1 and e(k) (Γ vs. K/K′ pockets) also gives gap variation but "is not expected to depend strongly on interlayer coupling."
+- In this sample, t⊥ is not varied. The t⊥-dependence argument rests entirely on comparisons across different materials: bulk 2H, MBE and exfoliated monolayers, and 4Hb. These differ in disorder, CDW state, substrate, and doping. Within this work, a two-band s-wave state (Γ-pocket vs. K-pocket gaps, as in 2H-NbSe₂) explains the data equally well.
+- The title and abstract should therefore be softened. Alternatively, the authors should add measurements that actually distinguish the scenarios. Possibilities include:
+  - temperature dependence of both gaps;
+  - field dependence of the small gap at low fields, since in two-band s-wave the small gap fills rapidly, as in MgB₂;
+  - quasiparticle interference to assign gaps to specific pockets;
+  - sensitivity to controlled non-magnetic disorder, to which the triplet component is fragile.
+
+### 2. The theoretical model does not describe the stacking of this material
+
+- The model Hamiltonian, −λ o_k σᶻτᶻ − t⊥τˣ, describes a 2H bilayer with *opposite* SOC on the two layers (180° rotated). In that geometry, coupling restores global inversion and suppresses the mixing.
+- The paper itself states (p. 2) that in the misfit compound the 1H layers "maintain the same orientation, making the crystal lattice lack overall inversion symmetry." For co-oriented layers the SOC term is λ o_k σᶻ with no τᶻ. Interlayer hopping then does *not* restore inversion and should not suppress s/f mixing by symmetry.
+- So, by the authors' own logic, the misfit compound would show mixing regardless of t⊥. The decoupling evidence would then be beside the point for the theory. The authors should either model the actual stacking or explain why the 2H bilayer model is relevant.
+
+### 3. The interlayer coupling is treated as momentum-independent
+
+- In 2H TMDs, interlayer hopping of the d_{z²}/d_{x²−y²}/d_{xy} states is strongly k-dependent. It is symmetry-suppressed at K/K′, which is why spin-valley locking survives even in bulk 2H.
+- The gap imbalance that produces the two-gap feature is said to live on the K/K′ pockets. A constant t⊥ therefore greatly overstates how strongly bulk coupling would suppress the effect there.
+- The values used (t⊥/λ = 2 in Fig. 5c, i.e. t⊥ = 0.6 eV > t = 0.25 eV) also appear unphysical for 2H-TaS₂.
+
+### 4. The theory–experiment agreement is not quantitative
+
+- **Gap ratio.** The model's small/large gap ratio on the K pockets is about 0.1 (Supp. text), versus about 0.6 in the experiment.
+- **Gap magnitude.** The model gap scale is roughly 0.017 t ≈ 4 meV, about an order of magnitude larger than measured. It is computed with Γ = 1 meV broadening, which exceeds the experimental Δ₂.
+- **Mixing amplitude.** The text says multi-gap features need ε_{A2u} and ε_{A1g} to be "comparable." Yet the inset of Fig. 5e shows ratios of about 0.3 (band 2) and about 0.05 (band 1).
+- **Merging threshold.** The main text says the small gap merges at t⊥ ≈ 0.8λ. The supplement says it has disappeared by t⊥ = 0.2 eV ≈ 0.67λ.
+- **Missing parameter scan.** The claim that "on-site Coulomb repulsion can significantly enhance the triplet component" is not backed by any calculation in the paper. Only one interaction set (V₀ = 0.25t, V₁ = V₂ = 0.3t) is shown. A phase diagram in (V₀, V₁, V₂, λ) is needed to show the effect is not fine-tuned.
+- **Inconsistent description of the on-site term.** The discussion calls it "weak on-site repulsion" in one place and "substantial Coulomb repulsion" in another, while the model actually uses a reduced on-site *attraction*.
+
+### 5. Symmetry labelling
+
+- The 1H monolayer point group is D₃h (or C₃v if only in-plane operations are considered), not D₃.
+- The g/u labels belong to centrosymmetric groups such as D₃d. Using A₁g/A₂u for a non-centrosymmetric layer is confusing.
+- Please state the correct group and the irrep in which s and f components mix (e.g., A₁′ of D₃h). Please also clarify the spin structure, since footnote 70 excludes S_z ≠ 0 triplets.
+
+### 6. Analysis of the tunneling spectra
+
+- The two-gap fit (Eq. 5) has more free parameters than the single-gap fit (N₁, N₂, Δ₁, Δ₂, T_eff), so a better fit is expected. Please report:
+  - all fit parameters and their uncertainties, including T_eff for the two-gap fit (the single-gap fit gives T_eff = 900 mK at T = 0.3 K, which signals an instrumental-resolution issue);
+  - the lock-in modulation amplitude used for the superconducting spectra, which is absent from the Fig. 4 caption;
+  - a comparison with an anisotropic single-gap model, e.g. Δ(φ) = Δ₀(1 + a cos 6φ), or a continuous gap distribution. The model DOS in Fig. 5c resembles the latter more than two discrete gaps.
+- Peaks in d²I/dV² mark inflection points of dI/dV. For a broadened BCS spectrum these lie *below* Δ, so equating them with Δ₁ and Δ₂ (Fig. 4c) is not correct without deconvolution. A superconducting tip, or deconvolution with the measured T_eff, would make the two-gap claim far more robust.
+
+### 7. Evidence for "intrinsic" superconductivity in SnS is weak
+
+The authors argue against proximity, but the evidence presented is actually what one expects from proximity:
+
+- The SnS termination is a single SnS double layer (~0.6 nm) directly on a superconducting 1H sheet. Strong proximity coupling naturally gives an induced gap close to the parent gap (440 vs. 490 µeV).
+- Under proximity, the same H_c2 in both layers (Supp. Fig. 4) and vortices threading the SnS surface are expected. Vortices penetrate the whole crystal.
+- The SnS spectrum has finite residual zero-bias DOS (about 0.08 at zero field), typical of an induced gap.
+- The comparison with 1T-TaS₂ in 4Hb is not apt. That layer is a Mott insulator, not a semiconductor with finite DOS at E_F.
+- Ref. 78 (gap reduction due to Fermi-surface mismatch) concerns thick, weakly coupled semiconductors, not an atomically thin, possibly charge-doped layer.
+- The "internal pressure" explanation is speculative. Misfit strain of a few percent is not equivalent to the >40 GPa needed in bulk SnS.
+- Intrinsic SnS superconductivity is also hard to reconcile with a single bulk transition at T_c. It would contradict the "uncoupled superconductors" framing as well, since Josephson coupling through SnS would exist anyway.
+
+Termination identification also needs firmer support. Fig. 1f shows no clear square lattice, which the authors attribute to cleaving damage. Step heights between terminations would help confirm what layer is being probed.
+
+### 8. Charge transfer from SnS is not discussed
+
+- In (MX)₁₊ₓTX₂ misfits, electron donation from the MX layer to the TX₂ layer is well documented. It shifts the Fermi level, alters the K/Γ pocket balance, and can change the CDW.
+- The incommensurate Q_CDW = 0.3543 Q_Bragg, rather than ≈1/3 as in 2H-TaS₂, may be a signature of this.
+- Doping alone could explain the T_c enhancement and alter multiband gap structure. It should be considered as an alternative to "monolayer-ness."
+- The CDW-reconstructed Fermi surface is another possible source of gap anisotropy and should be addressed.
+
+### 9. The decoupling evidence needs strengthening
+
+- **Spin polarization.** Spin-polarized bands near K–M–K′ do not by themselves demonstrate decoupled layers. Hidden spin polarization is seen in bulk centrosymmetric 2H compounds (Riley et al., Ref. 39).
+- **Polarization units.** The polarization axis in Fig. 3 is labelled "P [%]" with range ±0.5. If these are percent, the polarization is negligible; if fractions, the label is wrong.
+- **k_z dispersion.** The EDCs in Supp. Fig. 6 have widths of about 200 meV, which cannot resolve the tens-of-meV interlayer splittings expected (per Ref. 41). Please quantify the upper bound on t⊥ that these data allow.
+- **k_z range.** The k_z range for hν = 49–59 eV with V₀ = 9 eV is only about 0.32 Å⁻¹. Please state the c-axis period used to claim "one and a half BZ."
+
+### 10. Transport analysis
+
+- **Pauli-limit ratio.** H_c2∥ab exceeds the Pauli limit by only about 1.9×. This is modest compared with monolayer Ising superconductors (typically ≥5×), which sits uneasily with "electronically isolated 1H sheets."
+- **Two-band fit model.** The fit (Eq. 3) is an orbital dirty-limit model. Applying it to the in-plane field of a claimed 2D system, where orbital depairing should be negligible and Ising/paramagnetic limiting dominates, is not justified.
+- **Fit parameters.** The fitted coupling constants differ between field orientations (λ₁₁ = 0.88 vs. 1.37; λ₁₂ = 0.35 vs. 0.49). BCS coupling constants are intrinsic and should not depend on field direction, so these fits are not physically constrained. Diffusivity units are missing. "Electron and hole diffusivity" should be "band 1/band 2." λ₀ is missing its square root.
+- **H_c2 near T_c.** "Increasing concave temperature dependence" is ambiguous; positive (upward) curvature is presumably meant.
+- **Resistivity fit inconsistent with the figure.** The fit gives ρ₀ = 145 µΩcm, whereas Fig. 2a shows a residual resistivity of about 30 µΩcm (consistent with RRR = 12). The fitted ρ_s ≈ 23 mΩcm lies far outside the data range and is unconstrained. C = 3.7 ± 5 mΩcm has an error larger than the value. The Bloch–Grüneisen integrand should contain (1 − e^{−x}), not (1 − e^{−1}).
+- **H_c2∥c at low temperature.** STM gives about 0.3 T at ≈0.5 K, whereas Fig. 2b suggests about 0.5 T at T/T_c ≈ 0.15. The authors claim "excellent agreement"; please reconcile, noting the 50%-resistance criterion.
+
+---
+
+## Minor issues and inconsistencies
+
+**Numerical inconsistencies**
+- T_c is quoted as 3.05, 3.1, and 3.14 K in different places.
+- The vortex coherence length is 35 ± 5 nm in the main text but 45 ± 10 nm in Supp. Sec. V.
+- The lock-in frequency is 907 Hz in Methods but 870 Hz in the Fig. 1 captions.
+
+**Figure and caption references**
+- Fig. 1e caption: "same location as (c)" should be (d).
+- Fig. 4 caption: references to "Fig. 1c" and "Fig. 1e" should be 1d and 1g.
+- The text refers to Fig. 2c, which does not exist.
+- Fig. 2 caption contains a stray sentence about field-dependent resistivity.
+- Fig. 5 caption: "(d) derivative of the DOS shown in panel (b)" should be (c).
+
+**Discussion text**
+- "In contrast, in the strongly coupled case, the f-wave component becomes comparable…" should read *weakly* coupled.
+- Fig. 5 inset description: at t⊥ = 0 the two bands are spin-split and layer-degenerate, not "spin-degenerate bands of a single 1H layer."
+
+**Supplement**
+- Eq. 9: Δ^(a) should use V^(a), not V^(s).
+- Eq. 8: summation indices "j₁j₂j₃j₃" should be j₁j₂j₃j₄.
+- Eq. 3 text: "λ₂₁, λ₂₁" should be "λ₁₂, λ₂₁."
+- Figs. 11 and 12 are both described as "two isolated H layers" at finite t⊥.
+- Broken cross-reference: "Figs. VII C 1, 8, 9."
+- The full reference list is duplicated.
+- Fig. 10 is labelled "t=0" rather than t⊥ = 0.
+
+**References**
+- Garbled author names: Ref. 34 (de la Barrera et al.) and Ref. 38 (Zhang, Liu, Luo, Freeman, Zunger).
+- Encoding errors: "GranerÃžd," "SÃ¡nchez."
+- Ref. 68 lacks an arXiv identifier.
+- Prior work on hidden or local inversion breaking in locally non-centrosymmetric layered superconductors (e.g., Fischer, Sigrist and coworkers; Youn et al.) should be cited, since the t⊥/λ crossover is established there.
+
+**Typos**
+- Fig. 5a: "signlet."
+- Main text: "bellow," "not suppose to," "miss-match."
+- Supplement: "mutli-gap," "signiture," "constituate," "highe," "mimcs," "the by the."
+
+---
+
+## Recommendation
+
+**Major revision.** The material and the STM data are of genuine interest. As written, however, the paper overstates what the experiments establish. Two changes would make it publishable:
+
+1. Reframe the work as "two-gap superconductivity in decoupled 1H-TaS₂ sheets, with singlet–triplet mixing as a candidate explanation."
+2. Either add measurements that discriminate the scenarios (Δ(T), low-field evolution of Δ₂, QPI, deconvolved or SC-tip spectra), or substantially strengthen and correct the theoretical modelling. That means the correct stacking, k-dependent t⊥, quantitative gap scales, and a parameter scan.
+
+The claim of intrinsic SnS superconductivity should be either backed by much stronger evidence or presented as tentative, with proximity treated as a viable alternative.

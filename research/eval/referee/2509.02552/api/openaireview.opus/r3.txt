@@ -1,0 +1,85 @@
+{
+  "overall_feedback": "The paper uses CW sub-THz heating to raise the electron temperature T_e while holding the lattice near 2 K, in order to separate electron–electron from electron–phonon contributions to the resistivity of twisted bilayer graphene. The hot-electron approach is creative and well suited to graphene systems. The data are striking: large positive photoresistance in metallic regimes, negative photoresistance at insulating fillings, and T² resistivity at very low densities in a 1.58° device. Several issues weaken the main inferences.\n\n- **Central logical step.** \"Positive Δρ_THz ⇒ electron interactions dominate\" is not established. A positive photoresistance shows only that ρ depends on T_e. Single-particle T_e effects (temperature-dependent screening of impurities, thermal smearing near van Hove features) and phonon or lattice heating under CW excitation are not excluded. The monolayer-graphene control does not test TBG, where e-ph coupling is known to be enhanced.\n- **No quantitative separation.** The paper never compares Δρ_THz with ρ(T_e) − ρ(T_L) using an independent T_e calibration. Without this, the e-e and e-ph contributions are not actually separated, and the abstract's claim of \"dominance\" overstates what is shown.\n- **Umklapp-free argument.** This argument for the 1.58° device contains an apparent sign error in the quoted hole-side umklapp window.\n- **Theory comparison.** The strong-coupling regime (α_e ≫ 1), an unstated v_F and inconsistent dielectric screening make the order-of-magnitude agreement with Eq. (1) only weakly diagnostic.\n- **Smaller issues.** Several figure-panel references in the text are wrong, and ρ₀ in the T² analysis is undefined.",
+  "comments": [
+    {
+      "title": "Positive photoresistance shows T_e-dependence, not specifically e-e current relaxation",
+      "quote": "The observed positive ∆ρTHz in doped TBG away from ν = 0, 2, ±4 indicates a strong contribution of electron interactions to its resistivity.",
+      "explanation": "I understand the logic: if ρ = ρ_e(T_e) + ρ_ph(T_L), then a rise of ρ at fixed T_L must come from the T_e-dependent part. That part is not synonymous with e-e scattering, however.\n\nIn 2D metals, impurity-limited resistivity acquires a T_e dependence through several single-particle routes:\n- temperature-dependent screening of charged impurities, which is a well-known source of linear-in-T resistivity in low-density 2D systems;\n- thermal smearing of the Fermi function over an energy-dependent impurity scattering time;\n- smearing near van Hove singularities, which in TBG lie within a few meV.\n\nNone of these involve e-e collisions, yet all give Δρ_THz > 0 at fixed T_L. The paper does not estimate or exclude them. This is the crux of the claimed separation.",
+      "type": "logical",
+      "severity": "major",
+      "suggested_fix": "Estimate the T_e dependence expected from screened impurity scattering, using Fermi smearing plus temperature-dependent screening with the measured ρ₀, at the relevant densities. Show that it is much smaller than the measured Δρ_THz, or restate the conclusion as 'T_e-controlled' rather than 'interaction-limited'."
+    },
+    {
+      "title": "Claim of e-e 'dominance' lacks a quantitative comparison with ρ(T_e)",
+      "quote": "demonstrating that electronic interactions dominate transport even in regimes previously attributed to phonons",
+      "explanation": "To show that e-e scattering dominates the T-dependent resistivity, one must compare Δρ_THz with what equilibrium ρ(T) predicts for the same T_e. If all of the T dependence were T_e-controlled, Δρ_THz = ρ(T = T_e) − ρ(T_L); a smaller Δρ_THz would indicate a phonon share.\n\nThe paper notes that T_e is estimated partly by comparing Δρ_THz with ρ(T). That calibration is circular for this purpose, since it presupposes that ρ depends on T_e only.\n\nThe main text never reports the fraction of the equilibrium ρ(T) rise that is recovered by heating electrons alone. A rough check on MATBG suggests the numbers need care: dρ/dT = 92 Ω/K and ΔT_e ≤ 15 K give about 1.4 kΩ, while Fig. 2b shows Δρ_THz up to about 2–3 kΩ in a different device and filling range. As stated, the data support 'a sizeable T_e-dependent contribution', not 'dominance'.",
+      "type": "logical",
+      "severity": "major",
+      "suggested_fix": "Obtain T_e independently, for example from SdH amplitude damping or Johnson-noise thermometry in the same TBG device and filling. Then plot Δρ_THz against ρ(T_e) − ρ(2 K) to give the e-e fraction of dρ/dT explicitly, particularly at ν = 1.7 in MATBG."
+    },
+    {
+      "title": "MLG control does not rule out hot-electron/phonon contributions in TBG",
+      "quote": "This is evident from the data obtained on a sample made of monolayer graphene (MLG) featuring phonon-limited conductivity.",
+      "explanation": "The MLG control shows that in MLG at 2 K hot electrons barely change ρ. Two problems remain.\n\nFirst, at T_L = 2 K, MLG conductivity is disorder-limited rather than phonon-limited, so the description is itself questionable.\n\nSecond, the paper notes that e-ph coupling in small-angle TBG is enhanced (ref. 34, umklapp-assisted cooling). The phonon-based theories of linear-T resistivity rely precisely on flat-band enhancement absent in MLG. The negligibility of hot-electron phonon emission in MLG therefore does not carry over to TBG.\n\nThere is also a lattice-temperature concern. Under CW excitation the absorbed power must flow through the lattice. With enhanced e-ph coupling, the local phonon temperature in the channel may rise above 2 K; this is not measured. The statement that the observed enhancement 'originates solely from elevated T_e' is thus an assumption.",
+      "type": "logical",
+      "severity": "moderate",
+      "suggested_fix": "Estimate the lattice temperature rise in the TBG channel from the absorbed power and the hBN/substrate thermal conductance. Also estimate the hot-electron phonon-emission contribution to Δρ_THz using the enhanced TBG e-ph coupling of ref. 34, rather than relying on the MLG control."
+    },
+    {
+      "title": "Apparent sign error in the hole-side umklapp window",
+      "quote": "−3.5 < ν < 0.5 in a hole-side band and 0.45 < ν < 3.45 in an electron-side band",
+      "explanation": "The hole-side band corresponds to negative filling. The quoted interval −3.5 < ν < 0.5 includes the charge-neutrality point and ν = −0.1.\n\nTaken literally, this would put ν = −0.1 inside the umklapp-allowed range. That directly contradicts the central argument that T² resistivity at |ν| = 0.1 occurs where umklapp is forbidden. It also breaks the near-symmetry with the electron-side window, which starts at 0.45. Presumably −3.5 < ν < −0.5 is meant; Fig. 3d arrows point the same way.",
+      "type": "technical",
+      "severity": "moderate",
+      "suggested_fix": "Replace '−3.5 < ν < 0.5' with '−3.5 < ν < −0.5'. Also state the degeneracy (eightfold near κ/κ′, fourfold near γ) and v_F assumed when converting the k_F thresholds into ν."
+    },
+    {
+      "title": "Unipolarity and low-T limit questionable at the highest measured temperatures",
+      "quote": "the Fermi energy is ∼ 20 meV, ensuring that the electron system remains unipolar at all measured T",
+      "explanation": "Fig. 3b shows data at ν = ±0.1 up to about 100 K and marks T_F/2 within the plotted range. So k_BT ≈ 8.6 meV is comparable to E_F.\n\nThe value E_F ≈ 20 meV is quoted without the v_F and degeneracy used. With n = 0.1/A_moiré ≈ 1.5×10¹¹ cm⁻², eightfold degeneracy and v_F ~ 0.3×10⁶ m/s, I obtain E_F ≈ 10 meV. At that value, thermally excited minority carriers at 100 K are not negligible, and electron–hole friction or drag could contribute.\n\nIndependently, Eq. (1) is a low-temperature (T ≪ T_F) result. Its use to interpret T² behaviour extending to about T_F/2 needs justification.",
+      "type": "technical",
+      "severity": "moderate",
+      "suggested_fix": "State the v_F and degeneracy used to obtain E_F ≈ 20 meV. Restrict the T² fits and the comparison with Eq. (1) to T ≲ T_F/3, or estimate the thermally activated minority-carrier density and the resulting e-h friction contribution at the highest T."
+    },
+    {
+      "title": "Weak-coupling formula applied at α_e ≫ 1; agreement spans two orders of magnitude",
+      "quote": "Depending on the assumed screening model, Λ ranges between 0.01 and 1",
+      "explanation": "Eq. (1) carries an explicit α_e² factor from a perturbative (Born-level) treatment. With α_e defined using the vacuum permittivity and the reduced v_F of 1.58° TBG, α_e is of order 5–10. The expansion parameter is therefore far from small.\n\nThe prediction also scales as α_e²/v_F² ∝ v_F⁻⁴. My rough estimate with v_F ≈ 0.28×10⁶ m/s gives roughly 7Λ Ω/K², an order of magnitude above the quoted 0.5 Ω/K² at Λ = 1, so the unstated v_F matters a great deal.\n\nThe theoretical window (0.005–0.5 Ω/K²) spans a factor of 100. Λ ≃ 0.2–0.3 is effectively chosen to match experiment. That 0.1 Ω/K² 'falls within the expected range' is thus weak evidence for the interpocket mechanism over alternatives.",
+      "type": "technical",
+      "severity": "moderate",
+      "suggested_fix": "State the v_F (and its source) used to compute A. Also state the expected density dependence of the T² prefactor A(n) from Eq. (1) via Λ(k_F), and compare it with the measured A(ν) across the umklapp-free range as a more discriminating test than a single magnitude."
+    },
+    {
+      "title": "Inconsistent dielectric environment between the two screening models",
+      "quote": "In the first case, Coulomb interactions are screened intrinsically, described within the Thomas–Fermi approximation",
+      "explanation": "The Thomas–Fermi model uses k_TF = 8α_e k_F, with α_e defined via the vacuum permittivity ε₀ and no hBN dielectric constant. The gate-screened model in Eq. (6) explicitly includes 1/√(ε⊥ε∥).\n\nFor hBN-encapsulated devices the background dielectric screening should appear in both models. Its omission in the TF case changes k_TF/k_F, and hence Λ, by a factor of order ε. Part of the quoted 0.01–1 spread therefore reflects this inconsistency rather than genuine physical uncertainty.",
+      "type": "technical",
+      "severity": "minor",
+      "suggested_fix": "Use α_e = e²/(4πε₀ε̄ħv_F) with ε̄ = √(ε⊥ε∥) ≈ 5 consistently in Eq. (1), k_TF and Eq. (5), and recompute the TF value of Λ."
+    },
+    {
+      "title": "ρ₀ in the T² analysis undefined",
+      "quote": "Temperature-dependent change in resistivity, ∆ρ = ρ − ρ0, shown for representative ν values near the CNP (b) and superlattice gaps (c).",
+      "explanation": "On log-log axes the apparent exponent of ρ − ρ₀ depends sensitively on ρ₀. If ρ₀ is a free fit parameter rather than a measured residual resistivity, the T² appearance in Fig. 3b,c is partly imposed by the fit. The paper does not say how ρ₀ was obtained.",
+      "type": "technical",
+      "severity": "minor",
+      "suggested_fix": "State whether ρ₀ is the measured ρ at the base temperature or a fit parameter. Show the logarithmic derivative d ln(ρ − ρ₀)/d ln T, or a fit of ρ = ρ₀ + AT^α with α free, including its uncertainty."
+    },
+    {
+      "title": "Figure panel references do not match figure content",
+      "quote": "Figure 1a shows exemplary transport data that we measured in a typical TBG device (see Methods).",
+      "explanation": "Fig. 1a is a device cartoon and Fig. 1b is an optical image. The ρ(T, n) data are in Fig. 1c and the dark versus THz comparison is in Fig. 1d. The text, however, cites Fig. 1a for the transport data and Fig. 1b for the THz-induced resistance change. This could send readers to the wrong panels when checking the key observation.",
+      "type": "technical",
+      "severity": "minor",
+      "suggested_fix": "Change 'Figure 1a' to 'Figure 1c'. Change the two subsequent '(Fig. 1b)' citations for the THz-induced resistance increase to '(Fig. 1d)'."
+    },
+    {
+      "title": "Exclusion of non-thermal photoresponse in flat bands is asserted rather than shown",
+      "quote": "cannot induce interband transitions in doped TBG even at the magic angle",
+      "explanation": "For dispersive bands at θ ≈ 2° this is convincing. In MATBG, however, the flat-band bandwidth and the correlated or symmetry-broken gaps are of order a few meV or less. Transitions between spin- or valley-split flat subbands near 0.6 meV cannot be excluded a priori.\n\nOther non-bolometric mechanisms, such as photogalvanic or ponderomotive effects and non-thermalized distributions, also contribute to THz photoresponse in TBG (ref. 37). The statement that the response is 'solely' from elevated T_e therefore needs support in the magic-angle case specifically.",
+      "type": "logical",
+      "severity": "minor",
+      "suggested_fix": "Add a frequency or polarization check (e.g., Δρ_THz at a second THz frequency) or a linear-in-power test in MATBG showing the response is bolometric. Otherwise, restrict the 'solely T_e' statement to the larger-angle devices."
+    }
+  ]
+}

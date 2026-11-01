@@ -1,0 +1,149 @@
+{
+  "overall_feedback": "This is an impressive experimental paper. A gate-defined 90 nm dot embedded in a graphite-gated graphene QPC is tuned from the integer regime (where spin blockade gives a sharp absolute charge reference) into the fractional regime, down to the last e/3 quasiparticle. The integer benchmarking (Coulomb diamonds, magnon-assisted lifting of spin blockade, excited states, very low charge noise) is convincing, and the DMRG modelling of the few-quasiparticle addition spectrum is a real strength. My main concerns are about the most striking claim, anyon binding at |Nqp| of about 10 to 20. (i) The 'regular vs irregular' quasihole/quasiparticle asymmetry compares datasets taken at systematically different bulk fillings and gate configurations; Table I even labels the 1/3 quasihole configuration as nu_bulk = 2/5, which contradicts the main text. (ii) A missing charge sector is inferred from a missing resonance, without ruling out suppressed tunnelling into the odd state. The paper itself demonstrates such a blockade mechanism at nu = 1. (iii) The criterion EB > EC depends on which charging-energy convention is meant, and the convention used for EC in Fig. 1 differs by a factor of two from the free-energy-parabola convention. No numerical value of EB or EC in the binding regime is given. (iv) The binding is not reproduced by any of the paper's own calculations, yet the abstract states that the origin has been traced. On the theory side, the sphere sizes used (Ne = 8 to 18) give total areas comparable to the dot itself, which bears on the orbital explanation of the few-quasiparticle even-odd effect. There are also several smaller numerical and labelling inconsistencies: the fractional charging-energy formula, units of delta, layer thicknesses, and lock-in frequencies. None of these undermines the single-anyon result, but the binding claims should be softened or more tightly supported.",
+  "comments": [
+    {
+      "title": "Fractional charging energy formula has the wrong factor (3e instead of e/3)",
+      "quote": "charging energy for fractionally charged quasiparticle backscattering of EC = 3e ∆VDC ≈ 300 µeV",
+      "explanation": "For nu = 1 the caption uses EC ≈ e x ∆VDC ≈ 2 meV, which is the standard reading: the bias energy delivered to a tunnelling charge e* is e* V, so the diamond height gives EC = e* ∆VDC. With e* = e/3, the analogue is EC = (e/3) ∆VDC, not 3e ∆VDC. I checked whether 3e could be intentional. With 3e, a 300 µeV charging energy would correspond to diamonds only about 100 µV tall. But Fig. 1i is plotted over ±1 mV, and the expected scaling EC proportional to e*^2 (2 meV / 9 ≈ 220 µeV) is consistent with diamonds about 1 mV tall and EC = (e/3)(about 0.9 mV). So the quoted number seems right but the formula is off by a factor of 9. Because the binding argument later compares EB to EC, the formula used to convert diamond heights into energies should be stated correctly.",
+      "type": "technical",
+      "severity": "moderate",
+      "suggested_fix": "Replace 'EC = 3e ∆VDC ≈ 300 µeV' with 'EC = (e/3) ∆VDC ≈ 300 µeV' (with ∆VDC ≈ 0.9 mV), matching the e* ∆VDC convention used for nu = 1."
+    },
+    {
+      "title": "Table I labels the nominal nu = 1/3 data as nu_bulk = 2/5, contradicting the main text",
+      "quote": "νbulk = 2/5, νdot = 1/3",
+      "explanation": "The main text describes Fig. 1h as 'νedge ≈ νbulk = ν = 1/3' with conductance quantized to e^2/3h, and the Fig. 1d caption states that e* is 'the minimal charge supported by the bulk phase'. Table I instead lists Fig. 1h (both decoupled and coupled) as nu_bulk = 2/5, nu_dot = 1/3. Extended Data Fig. 7f, at the identical gate set (VT = 0.08 V, VB = 0.3 V, Vqpc = -0.4 V, Vedge = -1.25 V), explicitly says the bulk is tuned to 2/5. The same gate set is used for Fig. 1j (nu = 1/3, QH), Fig. 4a and Extended Data Fig. 3. This is also consistent with Extended Data Fig. 6d, which places the 1/3 plateau centre at VT = 49 mV, well below 80 mV. So it seems the 'nu = 1/3 quasihole' data were taken with a 2/5 bulk and a 1/3 region in the QPC. In that case the main-text statement and the Fig. 1d rule (e* = minimal bulk charge, which would be e/5 at 2/5) are both misleading for these panels.",
+      "type": "logical",
+      "severity": "moderate",
+      "suggested_fix": "State in the main text and in the Fig. 1h, 1j and 4a captions that these data were taken with nu_bulk ≈ 2/5 and a nu = 1/3 region in the QPC/dot. Rephrase the Fig. 1d caption so that e* is set by the filling of the region surrounding the dot, not of the global bulk."
+    },
+    {
+      "title": "Regular-vs-irregular particle-hole asymmetry is confounded with bulk filling and gate configuration",
+      "quote": "maps quasiholes at ν = 1/3 to quasiparticles at ν = 2/3.",
+      "explanation": "The striking symmetry (1/3 QH and 2/3 QP regular; 1/3 QP and 2/3 QH irregular) is an attractive result, and the particle-hole mapping argument (V -> -V maps a 1/3 quasihole dot onto a 2/3 quasiparticle dot) is sound. However, the datasets being compared differ systematically in more than the sign of the dot charge. Per Table I, the 1/3 QH data (Fig. 4a) are at VT = 0.080 V and Vedge = -1.25 V, which is labelled nu_bulk = 2/5 elsewhere. The 1/3 QP data (Fig. 4c, e-g) are at VT = 0.040 to 0.050 V and Vedge = -4.0 V, near or below the 1/3 plateau centre at 49 mV. Extended Data Figs. 9 and 10, cited as showing robustness 'over a wide range of gate configurations', sweep VT only over 0.075 to 0.085 V for 1/3 QH and 0.045 to 0.055 V for 1/3 QP, so the two never share a bulk filling. A difference in the surrounding filling (2/5 vs 1/3), and hence in the reservoir and screening environment, could produce regular vs irregular spectra independently of the Λ-level structure. The attribution to 'the difference in occupied orbitals' is therefore not isolated experimentally.",
+      "type": "logical",
+      "severity": "major",
+      "suggested_fix": "Show 1/3 quasihole and 1/3 quasiparticle spectra measured at the same VT and VBG (same bulk filling), using Vdot alone to cross Nqp = 0, or state explicitly that the comparison is between different bulk fillings and weaken the orbital attribution accordingly."
+    },
+    {
+      "title": "Missing charge sector inferred from a missing resonance; suppressed tunnelling not excluded",
+      "quote": "same as left panel of e, but at VT = 0.04V, where the intervening charge sector is absent, consistent with the addition of 2e/3 quasiparticle",
+      "explanation": "A true missing sector (Eadd < 0) requires that the odd-charge state never becomes the ground state. Experimentally, what is observed is that a backscattering resonance disappears and its neighbours merge. The paper itself shows (the nu = 1 spin blockade) that a dot transition can be present thermodynamically yet invisible at low bias because the edge-dot matrix element vanishes. Extended Data Fig. 10 also notes that irregular dips can be missed by the dip-finding algorithm. An odd state with a different orbital or Λ-level character that couples weakly to the CLL leads would mimic a missing sector at VDC = 55 µV (Fig. 4f). Several checks would distinguish the two. Is the merged spacing exactly the sum of the two alternating spacings? Does the diamond height in Fig. 4g double in the appropriate way? Does a finite-bias feature appear at the odd-state energy? A resonance mediated by 2e/3 tunnelling between nu = 1/3 CLLs should also have a much larger scaling exponent (scaling dimension proportional to (q/e)^2/nu, four times that of e/3), so its temperature and bias dependence should differ markedly from the e/3 resonances.",
+      "type": "logical",
+      "severity": "major",
+      "suggested_fix": "Add the spacing-sum check across the merger in Fig. 4f, the finite-bias diamond analysis of Fig. 4g, and a temperature/bias power-law comparison of the merged (2e/3) resonance against neighbouring e/3 resonances, to show that the odd sector is absent rather than blockaded."
+    },
+    {
+      "title": "Convention for EC (and EB) in the binding criterion is ambiguous by a factor of two",
+      "quote": "EB > EC , while intrinsic pairing in a uniform state arises",
+      "explanation": "In Fig. 1, EC is extracted as e* times the diamond height, i.e. the addition energy e*^2/C. In the Fig. 4e,g free-energy picture, the odd parabolas are shifted up by EB. The odd sector disappears when EB exceeds the height at which neighbouring even parabolas cross, which is e*^2/(2C) for F = (e*^2/2C)(N - Ng)^2. This is the standard superconducting-SET condition Δ > e^2/2C. So with the Fig. 1 convention, the criterion is EB > EC/2, not EB > EC. In addition, EB here is an odd-state offset, whereas the Methods define the pair binding energy E_bind^(2) = 2E1 - E2. In the parity picture these differ by a factor of two (E_bind^(2) = 2EB). Since the abstract's headline is a binding energy 'at least as large as the charging energy', the factors matter.",
+      "type": "technical",
+      "severity": "moderate",
+      "suggested_fix": "Define EC explicitly in the Fig. 4 discussion (e.g. EC ≡ e*^2/2C_d) and state that the missing-sector condition is EB > e*^2/2C_d = half the diamond-height addition energy, and give the relation E_bind^(2) = 2EB between the Fig. 4 offset and the Methods pair binding energy."
+    },
+    {
+      "title": "Abstract overstates the mechanistic attribution; no numerical bound on EB is given",
+      "quote": "to an attractive component of the inter-anyon interaction:",
+      "explanation": "The Results and Methods are careful: DMRG finds no binding at 1/3 in the bulk, finds convex Eadd in the dot at low Nqp, and the authors propose two alternative scenarios (a 2/5 puddle or a 2/3 droplet with an edge-mediated mechanism). The only computed bulk binding, 88 ± 5 µeV for 2/5 quasiparticle pairs, is well below the few-hundred-µeV charging scale, and it concerns e/5 rather than e/3 objects. The abstract nevertheless says the irregularity has been traced to an attractive inter-anyon interaction, and that the binding energy is at least the charging energy. Yet no value of EC in the Fig. 4e to g regime (or of the implied lower bound on EB, in µeV) is reported. As it stands, the experiment shows non-convex dot energetics (subject to the comment above), not the microscopic origin.",
+      "type": "logical",
+      "severity": "moderate",
+      "suggested_fix": "Quote the measured EC (from the diamond heights in Fig. 4e,g) and the resulting numerical lower bound on EB in µeV. Reword the abstract to 'consistent with an effective attraction (non-convex addition energy) whose microscopic origin remains open', referencing the 2/5 and 2/3 scenarios."
+    },
+    {
+      "title": "Convexity criterion: notation error and overstatement for a confined dot",
+      "quote": "N (Nqp ) = argminNqp (Eint (Nqp ) − αN e∗ V )",
+      "explanation": "The minimisation is written as argmin over Nqp of an expression in which the free variable is N, and its result is labelled N(Nqp). Presumably the intended expression is N(V) = argmin_N [E(N) - α N e* V]. More substantively, the sentence states that a non-convex interaction energy leads to complete suppression of some charge sectors. This holds only if the applied potential enters linearly in N, i.e. for a uniform potential. In a dot, the confinement energy is itself convex in N and can restore convexity of the total energy, so non-convex Eint is necessary but not sufficient. The Methods say this correctly ('Pairing requires the inter-anyon attraction to overcome the confinement and charging cost'), so the main text should be made consistent with them.",
+      "type": "technical",
+      "severity": "minor",
+      "suggested_fix": "Write N(V) = argmin_N [E_tot(N) - α N e* V], with E_tot including confinement, and state that a missing sector requires non-convex E_tot (implying non-convex Eint strong enough to overcome the convex confinement and charging terms)."
+    },
+    {
+      "title": "Tuning 'the confining energy' via VT is not quantified and also moves the bulk filling",
+      "quote": "by experimentally tuning the confining energy, we observe",
+      "explanation": "The transition from the even-odd regime to 2e/3 periodicity (Fig. 4f) is driven by lowering VT from 0.050 to 0.040 V. Extended Data Fig. 6d places the nu = 1/3 plateau centre at VT = 49 ± 1 mV in the same configuration. So this sweep moves the surrounding bulk from the plateau centre to roughly 9 mV below it. With CT/Cdot = 32, that is equivalent to about 300 mV of Vdot, several charge periods. The confining potential presumably steepens, but the bulk also approaches the low-density edge of the 1/3 plateau, where localized quasiholes in the surroundings, changed screening, or a changed edge-dot coupling could alter the spectrum. The paper does not quantify how the confinement (e.g. the potential curvature from the Poisson solver) changes between the two VT values, so 'confining energy' is a plausible label rather than a demonstrated control parameter.",
+      "type": "logical",
+      "severity": "moderate",
+      "suggested_fix": "Report the simulated change in dot-potential curvature (or effective dot radius) between VT = 0.050 and 0.040 V at the relevant Vdot. Also state the bulk filling at VT = 0.040 V relative to the 1/3 plateau from the penetration-field data in Extended Data Fig. 6c,d."
+    },
+    {
+      "title": "Sphere sizes used for the dot DMRG are comparable to or smaller than the dot itself",
+      "quote": "the DMRG, we use Ne = 8–18 electrons and up to q = 6",
+      "explanation": "On the Haldane sphere the total area is 2π Nϕ ℓB^2, equivalent to a disk of radius sqrt(2Nϕ) ℓB. For Ne = 8 at 1/3 (Nϕ ≈ 21), this is about 6.5 ℓB ≈ 45 nm at 13.5 T, the same as the hole radius. For Ne = 18 (Nϕ ≈ 51), it is about 10 ℓB ≈ 70 nm. The dot potential in Extended Data Fig. 4a and the rim barrier from the work-function step extend to roughly 100 to 150 nm. So at the smallest sizes the 'surrounding' incompressible liquid barely exists, and the planar potential must be strongly distorted when mapped onto the sphere. How that mapping is done (by arc length, chord or projected radius) is not stated. The 1/Ne extrapolation (Eq. S7) therefore spans geometries in which the fraction of the dot potential contained in the system changes substantially. The CF-orbital assignments in Extended Data Fig. 8a, which underlie the claim that the few-quasiparticle even-odd effect is 'accidental', come from Ne = 8 and 10. The statement that plateau widths 'converge well' needs to be shown.",
+      "type": "technical",
+      "severity": "major",
+      "suggested_fix": "State how the planar dot potential is mapped onto the sphere. Show the plateau widths Wq versus 1/Ne before extrapolation for each q, with the fit residuals. Confirm that the Λ-level ordering in Extended Data Fig. 8a is unchanged at the largest Ne used (e.g. via orbital occupations at Ne = 16 to 18)."
+    },
+    {
+      "title": "Nqp = 0 calibration uncertainty is roughly one charge period and partly ad hoc",
+      "quote": "Their agreement constrains the uncertainty in the charge-neutrality reference to be smaller than one fractional period in",
+      "explanation": "The absolute assignment of Nqp in the fractional regime rests on tripling the field from the nu = 1, 4.5 T reference. The quoted agreement is ν = 1/3 at VT = 49 ± 1 mV vs ν = 1 at 50 ± 2.5 mV, a difference of 1 ± 2.7 mV in VT. With CT/Cdot = 32 (Extended Data Fig. 2c), this is 32 ± 86 mV in Vdot, comparable to the 80 to 100 mV period at large |Nqp| and a sizable fraction of the 100 to 300 mV spacings near Nqp = 0. The error bars are set as '10% of the corresponding full width at half maximum', which is a convention rather than a fit uncertainty. In practice, the identification of Nqp = 0 appears to rest at least as much on the large diamond at 1.44 V, which in turn is used to fix ∆V in the model. The claim of depletion 'to the last quasiparticle' would be stronger if the error propagation were made explicit.",
+      "type": "technical",
+      "severity": "moderate",
+      "suggested_fix": "Propagate the VT uncertainty to Vdot explicitly (σ ≈ 86 mV using CT/Cdot = 32), replace the 10%-of-FWHM rule with fit-derived uncertainties, and state the probability that the assigned Nqp = 0 sector is offset by one quasiparticle."
+    },
+    {
+      "title": "e* inference assumes nu-independent α and Cd, but charging energies do not scale as e*^2",
+      "quote": "these assumptions, our results are consistent with addition of",
+      "explanation": "The model gives δ = e*/(α Cd), and the ratio of about 3 between δ at nu = 1 (250 to 300 mV) and at 1/3 or 2/3 (80 to 100 mV) is taken as evidence for e/3. The authors rightly flag that the model ignores interactions and orbital structure. However, the same assumptions also predict EC ∝ e*^2, i.e. a ratio of 9, whereas the quoted values give 2 meV / 300 µeV ≈ 6.7. Equivalently, the ratio of diamond height to δ (which equals α) differs by about 35% between the two fillings, which is moderate evidence that α or Cd is not filling-independent at the level needed. The factor of 3 in δ is therefore suggestive rather than decisive. The CLL fits in Extended Data Fig. 3 fix e* = e/3 rather than extracting it.",
+      "type": "logical",
+      "severity": "minor",
+      "suggested_fix": "Report α extracted from the diamond slopes separately at nu = 1 and nu = 1/3, and compute e* = α Cd δ (or the ratio e*_{1/3}/e*_1 = (α_{1/3} δ_{1/3})/(α_1 δ_1) × (Cd ratio from EC)) rather than assuming equal lever arms."
+    },
+    {
+      "title": "Units of the charge-stability scale do not match Fig. 3f",
+      "quote": "the 100–200 µV scale of the charge stability",
+      "explanation": "Fig. 3f plots δ, the Vdot spacing, in mV, with values of roughly 100 to 300 mV. The text describes the calculation as reproducing 'the 100–200 µV scale of the charge stability sectors'. If the intent is the Vdot spacing, the unit should be mV. If an energy scale is meant, it should be µeV and the conversion (lever arm) stated. As written, a reader cannot tell which quantity the DMRG agreement refers to.",
+      "type": "technical",
+      "severity": "minor",
+      "suggested_fix": "Change to 'the 100–200 mV scale of the charge stability sectors (Vdot spacing δ)', or, if an energy is meant, give it in µeV with the lever arm used."
+    },
+    {
+      "title": "Inconsistent layer thicknesses between stack description and electrostatic model",
+      "quote": "The metallic gates were positioned 32 nm above",
+      "explanation": "The stack section and Extended Data Fig. 1c give 32 nm hBN between graphene and the graphite top gate, and 35 nm between the graphite top gate and the aluminium finger gates (Extended Data Fig. 1i also refers to the '35-nm-thick hBN layer'). The device-model section places the metallic gates 32 nm above the top graphite layer. Since the Vdot potential, and hence the lever arm and the fitted ∆V, depend on this distance, the discrepancy matters for reproducibility. Relatedly, the stack-preparation text reverses the naming ('32 nm between the monolayer graphene and the aligned top gates, and 35 nm between the aligned top gates and the top graphite gate'). The alignment-marker etch depth is also given as about 5 nm in the fabrication text and about 10 nm in Extended Data Fig. 1i.",
+      "type": "technical",
+      "severity": "minor",
+      "suggested_fix": "Use 35 nm for the graphite-to-aluminium spacing in the Poisson model (or state that 32 nm was used and why), correct the stack-preparation sentence to '32 nm between the graphene and the graphite top gate and 35 nm between the graphite top gate and the aluminium finger gates', and reconcile the 5 nm vs 10 nm etch depth."
+    },
+    {
+      "title": "Lock-in frequencies in Methods disagree with Table I",
+      "quote": "voltage excitation at 13.333 or 17.777 Hz was applied through",
+      "explanation": "Table I lists 13.77 Hz and 17.77 Hz for the lock-in datasets in Fig. 1j, while the Methods give 13.333 or 17.777 Hz. The 17.77 vs 17.777 difference is rounding, but 13.77 vs 13.333 Hz is a genuine discrepancy.",
+      "type": "technical",
+      "severity": "minor",
+      "suggested_fix": "Make the Methods and Table I agree on the actual excitation frequency (13.333 Hz or 13.77 Hz)."
+    },
+    {
+      "title": "Onset of magnon-assisted features (about 1 mV) vs EZ = 0.58 meV is not reconciled",
+      "quote": "EZ ≈ 0.58 meV at B = 5 T",
+      "explanation": "The value EZ = gμB B = 0.58 meV for g = 2 at 5 T is correct, and by Larmor's theorem it is also the k = 0 magnon gap. The proposed mechanism requires magnons to be generated where the bias drop exceeds EZ, so one would expect features to appear for e|VDC| ≳ EZ ≈ 0.58 meV. The observed onset is quoted as |VDC| ≳ 1 mV, nearly twice as large. This could reflect how VDC divides between the hot spots and the dot, the need to also overcome the Coulomb-blockade threshold, or a different mechanism. It is not discussed, but the size of the discrepancy is relevant to how firmly the quasielectron occupations (Fig. 2a labels) can be assigned using this mechanism.",
+      "type": "logical",
+      "severity": "minor",
+      "suggested_fix": "State the expected threshold condition (e.g. e|VDC| > EZ + the blockade offset of the relevant diamond) and show that it reproduces the observed ≈1 mV onset in Fig. 2e."
+    },
+    {
+      "title": "Extended Data Fig. 7 caption equates even-odd effect with molecule formation, contradicting the Methods",
+      "quote": "even-odd effect at more positive Vdot values, which indicates the formation of molecules from the quasiparticles.",
+      "explanation": "The Methods state that 'Short plateaus or an even/odd pattern in the widths do not imply binding'. The main text attributes the few-quasiparticle even-odd effect to accidental orbital structure and reserves binding for the complete disappearance of a sector (EB > EC). The Extended Data Fig. 7 caption instead says the even-odd effect 'indicates the formation of molecules'. This is the overstatement the authors themselves warn against.",
+      "type": "logical",
+      "severity": "minor",
+      "suggested_fix": "Change the caption to 'we also observe an even-odd effect at more positive Vdot values; see main text for its relation to anyon binding (Fig. 4e–g).'"
+    },
+    {
+      "title": "Model fit parameters (∆V, δµ) are underspecified and their role in the 'reproduced' observables is unclear",
+      "quote": "µ∗ +δµ with δµ motivated from the top gate voltage relative to",
+      "explanation": "The model has at least three tuned inputs: the work-function step ∆V = -2.02 V (on a face of assumed thickness 0.5 nm, so ∆V is phenomenological and scales with that choice), δµ = 5.15 meV per electron at 1/3, and δµ = 6 meV at nu = 1. δµ is said to be 'motivated from the top gate voltage relative to the center of the plateau' without the conversion being given. At 1.72 meV per e/3 it is a large fraction of the expected half-gap. There is also some circularity and inconsistency. The main text says ∆V is fixed from the observed Nqp = 0 position in the nu = 1 discussion, but the Methods say it is fixed once at nu = 1/3, where the Nqp = 0 position was itself inferred from the nu = 1 calibration, and is then transferred to nu = 1. It is therefore hard to tell which agreements in Figs. 2g-h and 3f are predictions and which are fits.",
+      "type": "technical",
+      "severity": "moderate",
+      "suggested_fix": "List all fitted parameters with the observable each is fixed to, give the explicit VT-to-δµ conversion, and state which features (e.g. Nqp = 0 width at 1/3, δ trend at large |Nqp|, particle-hole asymmetry at nu = 1) are parameter-free predictions."
+    },
+    {
+      "title": "'Among the best' charge-noise claim compares at mismatched frequencies",
+      "quote": "dot is among the best reported in a solid state system[43–49].",
+      "explanation": "The measured noise (√Sq ≈ 1e-3 e/√Hz at 10 mHz, and √SE ≈ 2 to 4 µeV/√Hz at 10 mHz from Table III) is impressive, and the Table III values are internally consistent: SE/Sq ≈ 1.8 to 2.5 meV/e, roughly the addition energy. But semiconductor-dot benchmarks are conventionally quoted at 1 Hz. The text makes the comparison only qualitatively, noting that aluminium SETs show similar noise 'at frequencies two orders of magnitude higher'. From Table III the amplitude falls by roughly 2 to 5 per decade, so the exponent α varies between transitions (about 0.8 to 1.4). Extrapolating to 1 Hz is therefore uncertain by an order of magnitude, and the ranking claim cannot be checked as stated.",
+      "type": "logical",
+      "severity": "minor",
+      "suggested_fix": "Report the fitted α for each transition and the extrapolated √SE at 1 Hz (with its uncertainty) alongside the 1 Hz values from refs. 43 to 49, or restrict the claim to the measured 1e-4 to 1e-2 Hz band."
+    }
+  ]
+}

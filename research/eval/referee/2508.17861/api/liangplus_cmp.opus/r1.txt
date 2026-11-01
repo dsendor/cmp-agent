@@ -1,0 +1,164 @@
+**Review outline:**
+
+## 1. Significance and novelty
+
+The manuscript uses STM/STS on lightly Se-substituted 4Hb-TaS₂ and finds that Star-of-David (SoD) clusters in the 1T termination show a range of local electron fillings. The authors read this ensemble as a filling-controlled doping series running from a depleted narrow band (~0.2 e/SoD) toward half filling. Along the series they see emerging Hubbard bands with a nearly constant U ≈ 190 meV and a narrowing, vanishing central peak, which they attribute to Brinkman–Rice (BR) physics rather than Kondo screening. They also report a proximity-type superconducting gap in the 1T layer that is suppressed on the more correlated clusters, leaving paramagnetic puddles.
+
+If substantiated, this would be a valuable experimental view of the doped-Mott spectral function in a vdW heterostructure. It would also bear directly on the Kondo-lattice versus doped-Mott debate (Refs. 16, 34–37) and on the unconventional superconductivity of 4Hb-TaS₂. The central "Mott, not Kondo" conclusion, however, currently rests on an argument with a substantive weakness, discussed below.
+
+## 2. Potential reasons for acceptance
+
+- **Large cluster-resolved dataset.** Many SoD clusters were measured over a wide energy window (±1 eV) and at low energy (sub-meV). The high-energy hump near −0.5 eV is used as an internal doping marker (Fig. 2c,d), which is a sensible strategy.
+- **Systematic spectral trends.** The spectral-weight transfer to two Hubbard features is extracted systematically, with an approximately filling-independent LHB–UHB separation (Fig. 3c,d). The asymmetric LHB/UHB weights converge toward half filling (Fig. 3d), qualitatively as expected for a Hubbard system.
+- **New observation in the 1T layer.** The report of a superconducting gap in the 1T termination is new. Its cluster-by-cluster variation (Fig. 4d,e) is potentially important for interpreting bulk experiments.
+- **Supporting controls.** Two controls (higher Se content; strain) relate the fraction of zero-bias-peak (ZBP) clusters to charge transfer (Supplementary Note 4).
+
+## 3. Concerns
+
+### A. Must address
+
+**1. The Kondo scenario is dismissed using an inappropriate T_K estimate and a T-dependence analysis that omits instrumental broadening.**
+
+*The T_K estimate (p. 5) uses the wrong energy scale.*
+- It uses the Haldane-type formula with W₀, the 80 meV width of the 1T narrow band, in place of the hybridization width Γ.
+- In the Kondo scenario of Refs. 16, 34–36, the relevant Γ is the coupling of the SoD orbital to the 1H conduction electrons. This is a different quantity, and the paper does not measure it.
+- The exponent is very sensitive to Γ. With the quoted ε ≈ −76 meV and U ≈ 190 meV, Γ = 80 meV gives T_K ≈ 40–50 K, but Γ ≈ 20 meV gives T_K well below 1 K.
+- The statement that the observed width is "an order of magnitude smaller" than the Kondo expectation therefore does not exclude Kondo physics; it only excludes Γ ≈ W₀.
+
+*The temperature dependence in Fig. 3h is not analysed carefully enough.*
+- Tip thermal broadening is ~3.5 k_BT FWHM, i.e. ~0.63 meV HWHM at 4.2 K. This is a large fraction of the measured 1.7 meV, and the figure does not state whether the data were deconvolved.
+- The Kondo curve shown is fixed at T_K = 40 K. With T_K free, Γ(0.3 K) ≈ 0.65 meV implies T_K ≈ 7 K. With α ~ 2π plus thermal broadening, this may well reproduce the measured rise to ~1.7 meV at 4.2 K.
+- A linear-in-T width over 0.3–4.2 K does not by itself discriminate the two pictures.
+- The linear trend extrapolates to a finite intercept (~0.5 meV), so it does not obviously indicate a "zero-temperature mechanism".
+- The 0.3–4.2 K window straddles T_c = 3 K. Below T_c the 1H bath is gapped (Δ ≈ 0.5 meV, comparable to the peak width), which modifies any Kondo resonance. This must be separated out, e.g. by repeating the T-series at B > H_c2.
+
+*The supporting evidence is equally compatible with Kondo physics.*
+- The FWHM in Fig. 3f comes from Fano fits, a line shape characteristic of a Kondo resonance seen by interference with a conduction channel.
+- Zeeman splitting with g ≈ 2 (Supplementary Fig. 10) is the textbook field response of a Kondo resonance.
+
+*Requested additions.*
+- Free-T_K fits of the deconvolved width versus T, at zero field and at B > H_c2.
+- The onset field of the splitting relative to the zero-field width. Kondo predicts splitting only for gμ_B B ≳ 0.5 k_B T_K.
+- The filling dependence of the width. BR predicts Z ∝ doping (δ = 1 − n), i.e. width → 0 linearly as n → 1, whereas the Haldane formula has a specific exponential ε-dependence. Fig. 3f with ε on the axis could test this directly, if extended to the clusters in Fig. 3e that approach zero weight.
+- An independent estimate of the 1T–1H hybridization, from DFT of the actual 4Hb bilayer or from the experimental tunnelling-asymmetry/Fano parameters.
+
+**2. The ensemble of isolated doped clusters is not equivalent to a homogeneously doped Hubbard lattice.**
+
+The BR and DMFT descriptions (Fig. 3g; Refs. 43–46) concern a translationally invariant lattice at uniform filling n. Here, each high-filling cluster is typically surrounded by clusters at ~0.2 filling (≈12% density; Fig. 4d shows the gap changing from cluster to cluster).
+- The "central peak" of such a cluster is therefore the local spectral function of one correlated site embedded in a weakly correlated host. That is an Anderson-impurity problem, so the paper's own framing of "Kondo versus coherent band" is partly ill-posed.
+- The DMFT comparison at uniform n = 0.1–1.0 does not model this situation.
+
+The authors should:
+- Show how a cluster's spectrum depends on the fillings of its neighbours. Supplementary Fig. 11 suggests some clustering, so compare isolated versus paired or tripled high-filling clusters.
+- State over what length scale each filling is defined.
+- Either justify why the local spectrum should mimic the lattice DMFT one, or perform an inhomogeneous calculation (one site of filling n in a 0.2-filled host plus a 1H bath, with the same U and W). Such a calculation would show which features (Hubbard bands, central peak width) are robustly "Mott" and which are "impurity".
+
+**3. The electron-filling calibration underpinning "0.2 e" and "toward half filling" is not established.**
+
+*The 0.2 e starting point is uncertain.*
+- It comes from integrating dI/dV below E_F relative to the whole narrow-band peak (p. 3). This is sensitive to background subtraction, matrix-element energy dependence, and the setpoint condition (V_s = −800 mV or −1000 mV).
+- It is also ambiguous whether 0.2 e means 0.1 of the band capacity times 2 spins.
+
+*The mapping from hump shift to filling is never given.*
+- The colour bar in Fig. 2d is labelled 0.2 e → 1.0 e, but the paper never presents the mapping from the −0.5 eV hump shift (only ~80 meV in total, Fig. 2e x-axis) or from ε to n.
+- Fig. 3c–f use ε as an "electron filling" axis, while the text speaks of approaching half filling.
+
+*Normalization affects the extracted weights.*
+- The normalization by high-energy weight directly determines the extracted spectral weights in Fig. 3d,e.
+- Fig. 2e shows a ~30% spread (≈200–280 a.u.), which matters at the 1–15% level of the central-peak weight in Fig. 3e.
+
+The authors should:
+- Give an explicit, error-barred conversion ε → n, for instance via a rigid-band or DMFT n(μ) relation, or a sum rule over the ±250 meV window.
+- Show robustness of Fig. 3d,e to the setpoint, e.g. by repeating a subset of spectra at two or three setpoint biases.
+- State whether any cluster actually reaches n = 1, which would appear as a gapped spectrum without a central peak.
+
+**4. The Se origin of the doping is inferred statistically, not demonstrated directly.**
+
+*The statistical argument is incomplete.*
+- The argument (p. 4) is that P(≥1 Se in 26 S) ≈ 12–13% matches the ~12% of ZBP clusters.
+- But the paper also reports "a series of intermediate states". If one Se per cluster produces doping, the full distribution, not only the ZBP fraction, must be accounted for.
+- Half of the S sites belong to 1H layers, and the bottom S plane of the surface 1T layer is invisible to STM. Both points complicate the counting.
+
+*Missing tests and quantification.*
+- No mechanism is given for why isovalent Se suppresses charge transfer locally, beyond citing Ref. 38.
+- The most direct test is missing: correlating top-layer Se sites (identifiable in bias-dependent topography) with cluster spectra in the same FOV.
+- Supplementary Note 4 should quantify the higher-Se sample (Se content measured by EDX, ZBP fraction, full histogram of hump energy) and the applied strain (magnitude, and evidence for a reduced c-axis spacing).
+- Alternatives should be addressed, e.g. local CDW phase slips or domain boundaries, or the intrinsic first-order transition of Ref. 28.
+
+### B. Should address
+
+**5. The U, W and U/W values are not mutually consistent, and the "border of the Mott criterion" claim is not quantified.**
+- U ≈ 190 meV and W₀ ≈ 80 meV give U/W₀ ≈ 2.4, yet the text states ~2 and the DMFT uses U/W = 1.67 with W taken from DFT.
+- W₀ is defined as the FWHM of the dI/dV peak at 0.2 filling. That is neither the full bandwidth nor obviously unrenormalized.
+- Single-site DMFT gives U_c2 ≈ 1.5 W for a semicircular DOS, and estimates for the triangular lattice differ. The authors should state which W enters which criterion, and where the system sits relative to U_c1/U_c2 for the actual 4Hb narrow-band DOS.
+
+**6. The DFT/DMFT input and the comparison with data are only qualitative.**
+- The DFT is for a monolayer 1T-TaS₂. The paper does not state spin–orbit coupling, structural relaxation, or how the narrow band was isolated; the 4Hb heterostructure and the 1T–1H hybridization are absent.
+- The DMFT spectra (Fig. 3g, plotted versus E/U) are not compared quantitatively with experiment.
+- Requested: quasiparticle weight Z(n) and width versus n against Fig. 3e,f; LHB/UHB weight ratio versus n against Fig. 3d; and Hubbard-band positions in meV.
+- A DFT calculation of the 4Hb stack giving the narrow-band filling would cross-check the 0.2 e value.
+
+**7. The fitting procedure needs to be specified and justified.**
+- Three Lorentzians are used in Fig. 3b, but Fano fits in Fig. 3f; the reason for the switch, and the q values, should be given.
+- The fit in Fig. 3b visibly misses structure near −250 meV and above +200 meV.
+- Please list the free parameters, the background model, how error bars were obtained, and whether peak overlap at low filling makes the LHB/central-peak decomposition unique.
+- U and ε are computed from the same fitted LHB position, so their covariance should be considered in Fig. 3c.
+- The central-peak widths (1–3.5 meV) should be compared with the lock-in modulation actually used for each dataset. For example, V_mod = 2 meV for Fig. 2 makes "unsurpassed energy resolution" inappropriate for those data.
+
+**8. The superconductivity in the 1T layer needs quantitative characterization, and alternative explanations need to be excluded.**
+
+*Quantification.*
+- Requested: Δ_1T versus ε (or n) with error bars from Dynes/BCS fits, rather than only the sorted colour map in Fig. 4e.
+- The full temperature dependence of Δ_1T versus Δ_1H, to show that both close at the same T_c as expected for proximity. Fig. 4b shows only 0.3 K and 3.0 K; 3.0 K equals T_c, so it does not demonstrate closure "above T_c".
+
+*Masking by the zero-bias peak.*
+- On ZBP clusters, a sharp zero-bias peak can mask a small gap. Show field- and temperature-dependent spectra there to establish Δ = 0.
+
+*Alternative suppression mechanisms.*
+- The suppression could arise from pair breaking by the local moment, or from the different DOS at E_F, rather than from BR renormalization of the 1T–1H coupling. The authors should discuss how to distinguish these.
+
+*Missing Yu-Shiba-Rusinov (YSR) states.*
+- If 12% of clusters carry local moments, YSR states would be expected in the adjacent 1H layer, yet none are seen on the 1H termination.
+- This constrains the exchange coupling and should be discussed together with the Kondo/Mott question.
+
+**9. The "paramagnetic puddle" interpretation conflicts with the "coherent quasiparticle band" interpretation.**
+- The same central peak is described as a BR coherent band with vanishing width and also as localized moments with g ≈ 2 Zeeman splitting.
+- A heavy Fermi liquid should show a Wilson-ratio-enhanced response, not necessarily a rigid g = 2 splitting.
+- The splitting data are central to the superconductivity discussion (π-shift, magnetic memory) and should appear in the main text, with:
+  - the field range and onset;
+  - the dependence on filling;
+  - spectra above and below H_c2.
+
+**10. Surface versus bulk.**
+- The surface 1T layer has a 1H neighbour on only one side, so its charge transfer and filling distribution may differ from bulk 1T layers.
+- Bulk-level conclusions (π-shifts in Little–Parks [30], magnetic memory [33]) are drawn from surface data. Please discuss this, and tone down the bulk implications accordingly.
+
+**11. Statistics, selection and reproducibility.**
+- Fig. 2a contains ~4000 clusters, but Fig. 2d uses ~100 "typical" spectra, and Fig. 4e ~30.
+- Please describe:
+  - the selection criteria;
+  - the full histogram of hump energies or ε over the FOV;
+  - the number of samples, cleaves and tips;
+  - whether the same tip was used within each sorted dataset, to exclude tip-change artefacts in cross-cluster comparisons.
+- State the measurement temperature for each figure (e.g. the CreaTec data in Fig. 2).
+
+### C. Minor
+
+12. Figure-reference and caption errors:
+    - p. 5: "vanishes (its spectral weight, Fig. 3g)" should be Fig. 3e.
+    - Supplementary Fig. 9 is cited both for the HWHM temperature dependence and for the wide-energy spectra of Fig. 4e.
+    - Fig. 3h is at ε = −76 meV, whereas the text quotes T_K ≈ 40 K "near half filling".
+13. Units and parameter typos:
+    - "V_s = −10 meV" etc. should be mV.
+    - "V_mod = 2" lacks units (Fig. 2 caption).
+    - Fig. 2 caption says "one hundred" clusters, the text "more than one hundred".
+    - The Methods give a nominal Se of 1% of S, while the text quotes 0.5% substitution; reconcile these with the EDX result.
+14. Wording and typos: "first principal", "exhibit large a Mott gap", "This saturation is unique" (situation?), "shifts to negative binding energies" (ambiguous), and "unprecedented/unsurpassed" (overstated).
+15. Reference details: Ref. 44 should read Rev. Mod. Phys. 68, 13 (1996). Please check Ref. 38's article number.
+
+## 4. Suggestions for improvement
+
+1. **Spatial correlation with Se sites.** Correlate identified Se sites with cluster spectra in the same FOV, and present full-FOV statistics of filling. This would turn the doping origin from an inference into a measurement.
+2. **Kondo/BR discriminating dataset.** Measure width versus T with the bath kept normal (B > H_c2) and with thermal deconvolution, plus splitting versus B with its onset field and width versus filling. Fit both the BR scaling (Z ∝ δ) and Kondo (free T_K, free Γ).
+3. **Inhomogeneous calculation.** Model a single correlated SoD of variable filling embedded in a 0.2-filled 1T host coupled to 1H, e.g. real-space DMFT or NRG, using the measured U and W. Compare Z, widths and Hubbard weights quantitatively with Fig. 3d–f.
+4. **Homogeneous filling control.** If feasible, a complementary uniformly tuned filling series would directly test whether the lattice BR picture holds. Options include alkali deposition or gating of exfoliated 4Hb flakes, or systematically varying Se content across several crystals.

@@ -81,6 +81,12 @@ works through each item you marked *Will fix*, using your note on it as the inst
 | `scripts/` | `paper_text.py`, `assemble.py`, `check_evidence.py` (is each quote really in the paper), `build_dashboard.py` |
 | `dashboard/template.html` | the dashboard: one self-contained file that works offline |
 
+## Research
+
+The evaluation, the referee data and every run are in [`research/`](research/), summarized in
+[EVALUATION.md](EVALUATION.md). A sample dashboard on a published paper, with its referees'
+real concerns overlaid: `research/eval/sample/2601.01843/dashboard.html`.
+
 ## Status
 
 Version 0.2, an early release for feedback from working physicists. Known limits: Word

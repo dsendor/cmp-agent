@@ -1,0 +1,117 @@
+{
+  "overall_feedback": "The paper takes an interesting approach. It uses thermal-noise sideband spectroscopy of a SQUID-embedded Al nanostring to detect magnetic-field-dependent shifts of the mechanical frequency, and it attributes the discrete steps to single-vortex entry. The measurement chain is clearly described, and most of the arithmetic checks out (ξ, λ, κ_GL, B_c1^ZFC, ΔB per vortex, Δα_L, Δk, x_rms, S_FF). However, the physical interpretation has several gaps that bear directly on the headline claims.\n\n(i) By the authors' own estimates the film thickness is d ≈ ξ. Standard thin-film theory says parallel vortices cannot nucleate for d ≲ 1.8ξ, and the entry-field and vortex-density formulas used come from perpendicular-field (Pearl-vortex) strip geometries.\n\n(ii) The identification ρΔΩ² = α_L is not derived. Vortices pinned in the string co-move with it, so it is unclear what displaces them relative to their pins. Vibrating-reed theory instead gives a stiffening controlled by B²/μ0, and an order-of-magnitude estimate of that term is comparable to the observed background.\n\n(iii) The 'single vortex per jump' attribution conflicts with the authors' own estimate that ~1.25–0.63 mT corresponds to one vortex, while the jumps are 1.5–5 mT apart.\n\n(iv) The density used (ρ_eff = m_eff/V) is inconsistent with the 'nearly uniform mode' assumption.\n\n(v) The 'attonewton force' resolvability argument compares a stiffness-change-times-thermal-amplitude to force noise, which is not the relevant detection criterion.\n\nIn addition, evidence for stochasticity and history dependence is thin: the datasets do not overlap within a cooldown, one jump field (22.5 mT) appears in both cooldowns, and there are no down-sweeps. The fitting procedure and the jump-identification criterion are underspecified. The quantitative pinning stiffnesses and energies, and the 'single-vortex' and 'attonewton' framing in the abstract and conclusion, should be treated as tentative until these points are addressed.",
+  "comments": [
+    {
+      "title": "Film thickness d ≈ ξ is below the threshold for parallel-vortex nucleation",
+      "quote": "Notably, ξ is comparable with the thickness and width of our nanostring, while λ > w, d.",
+      "explanation": "I first checked the numbers: ξ = 0.85√(1600·10) nm ≈ 108 nm and λ ≈ 0.84 µm both follow from Eq. (5), and κ_GL ≈ 7.8 is correct. The difficulty is what these numbers imply for an in-plane field.\n\nThe vortices are supposed to lie along the in-plane field, threading the l×d cross-section with d = 110 nm ≈ ξ. Thin-film theory in parallel field (Saint-James/de Gennes, Tinkham Ch. 4) says vortices cannot form inside a film of thickness d ≲ 1.8ξ. Such a film stays vortex-free until a second-order transition at H_c∥ ≈ √24 Φ0/(2πξd), which here is ~130 mT. A vortex core of diameter ~2ξ ≈ 0.2 µm also does not fit into a 0.11 µm film.\n\nThe entry-field and density expressions used (Eqs. 6–7, from Stan et al. and Bronson et al.) were derived for Pearl vortices in thin strips in perpendicular field, with the strip width as the relevant length. The paper substitutes d for w without justification.\n\nThe authors caution that the lengths are estimates. Even so, the central claim needs at least an argument for why vortices with d/ξ ≈ 1 are expected in this geometry. Alternatively, a perpendicular field component (misalignment) or vortices in wider parts of the circuit may be responsible for the steps.",
+      "type": "technical",
+      "severity": "major",
+      "suggested_fix": "Compare d/ξ with the known parallel-field vortex-nucleation threshold (d ≈ 1.8ξ) and explain why vortices are nonetheless expected. Replace the perpendicular-strip expressions (Eqs. 6–7) with parallel-field thin-slab results. Quantify the out-of-plane field component arising from B_ip misalignment as an alternative source of perpendicular vortices."
+    },
+    {
+      "title": "Mapping ρΔΩ² → Labusch parameter is not derived; magnetic field-line stiffening of comparable size is not ruled out",
+      "quote": "In the small-amplitude Campbell regime, vortices trapped at defects or sample edges oscillate within their pinning wells, acting as distributed springs that stiffen the resonator.",
+      "explanation": "Eq. (8) assumes that a displacement δx of the string displaces each vortex by δx relative to its pinning site. Vortices pinned inside the string, however, translate with it. Under a rigid translation in a uniform field, the pin-to-vortex displacement is zero.\n\nIn vibrating-reed theory (Brandt, Esquinazi, Neckel; Refs. 39–40), the restoring force comes from tilting the sample relative to the field direction. The frequency shift is governed by the magnetic stiffness B²/μ0, and α_L enters only through the Campbell length λ_C² = B²/(μ0α_L), with saturation for strong pinning. The result scales roughly as B², close to the observed k = 1.81.\n\nAn order-of-magnitude estimate supports this concern. Taking B²/(μ0 ρ d l) at ~35 mT gives ~10¹¹ s⁻², comparable to the observed total shift (2π)²·6×10⁹ Hz² ≈ 2.4×10¹¹ s⁻². The exact prefactor depends on geometry, but the magnitudes overlap.\n\nThe authors mention 'magnetomotive stiffening' as a possible source of the smooth background but dismiss it qualitatively. As a result, the extracted α_L (and hence ⟨k_p⟩, k_p, U) may not measure pinning at all.",
+      "type": "technical",
+      "severity": "major",
+      "suggested_fix": "Derive the coupling between string displacement and vortex displacement for this geometry, e.g. using Brandt's vibrating-reed result Δω² ∝ (B²/μ0)/(1+λ_C²k²). Quantitatively compare the B²/μ0 field-line-tension contribution with the measured background before identifying ρΔΩ² with α_L."
+    },
+    {
+      "title": "'One jump = one vortex' contradicts the paper's own vortex-count estimate",
+      "quote": "Interpreting one resolved frequency jump as originating from the entry of a single vortex into the nanostring area",
+      "explanation": "Section IV estimates ΔB ≈ 1.25 mT per vortex near threshold and ≈ 0.63 mT at higher field. It then reports jump spacings of 1.5–5 mT, i.e. roughly 2–8 vortices per interval.\n\nUsing Eq. (7) with B_c1 = 5 mT gives N ≈ (30 − √150) mT · ld/Φ0 ≈ 28 vortices at 30 mT, yet only ~5 jumps are identified per dataset. Either most vortices enter without a resolvable jump (contributing to the smooth background), or each jump involves several vortices.\n\nThe text itself says 'one or a few flux quanta'. The pinning stiffness k_p ≈ AΔα_L and the energy U ≈ 0.09–0.44 eV, however, are computed assuming exactly one vortex per jump. If n vortices enter per jump, k_p and U are smaller by a factor n. The 'single-vortex pinning energy' claim in the abstract and conclusion therefore rests on an assumption the paper's own numbers argue against.",
+      "type": "logical",
+      "severity": "major",
+      "suggested_fix": "Report the expected number of vortices N(B_ip) from Eq. (7) alongside the number of observed jumps. Present k_p and U as k_p ≈ AΔα_L/n with n the number of vortices per jump, giving a range for n ≈ jump spacing/ΔB. Soften 'single-vortex' in the abstract and conclusion accordingly."
+    },
+    {
+      "title": "Effective density ρ_eff = m_eff/V is inconsistent with the uniform-spring/uniform-mode assumption",
+      "quote": "(for our device, ρeff = 910 kg m−3)",
+      "explanation": "The value 910 kg m⁻³ equals m_eff/V_geom = 0.6 pg/(30×0.2×0.11 µm³), i.e. about a third of the Al density of 2700 kg m⁻³. So the mode is clearly not uniform: m_eff/m ≈ 0.34.\n\nFor a uniform spring density α_L acting on the local displacement u(x)=u0φ(x), the added modal stiffness is α_L∫φ²dV and the modal mass is ρ∫φ²dV. The mode weighting therefore cancels, giving ΔΩ² = α_L/ρ_bulk.\n\nUsing m_eff/V_geom in the denominator while integrating the spring density without mode weighting is inconsistent. It underestimates α_L, Δα_L, k_p and U by a factor ≈ 2700/910 ≈ 3. Describing the fundamental string mode as '(nearly) uniform' is also inaccurate, since it is approximately sinusoidal.",
+      "type": "technical",
+      "severity": "moderate",
+      "suggested_fix": "Use ΔΩ² = α_L∫φ²dV/(m_eff) with the actual mode shape. For a uniform α_L this reduces to α_L/ρ_Al with ρ_Al ≈ 2700 kg m⁻³. Rescale α_L, ⟨k_p⟩, k_p and U by ≈3, or justify the 910 kg m⁻³ value explicitly."
+    },
+    {
+      "title": "⟨k_p⟩ uses n_v = B/Φ0 inconsistently with Eq. (7), and the quoted range does not follow from the inset",
+      "quote": "we estimate an average single-vortex pinning stiffness",
+      "explanation": "The text estimates ⟨k_p⟩ = α_LΦ0/B_ip, i.e. the uniform limit n_v = B/Φ0. In the 10–35 mT window, however, Eq. (7) gives a substantially lower density: at 10 mT, n_v is ~3.4× smaller than B/Φ0 for B_c1 = 5 mT.\n\nThe numbers also do not reproduce. With α_L ≈ 2×10¹⁴ N m⁻⁴ at 35 mT, α_LΦ0/B ≈ 12 N m⁻². Because α_L ∝ B^1.81, ⟨k_p⟩ ∝ B^0.81, which falls to ~4 N m⁻² at 10 mT. The resulting range is roughly 4–12 N m⁻², not 10–20 N m⁻².",
+      "type": "technical",
+      "severity": "minor",
+      "suggested_fix": "Compute ⟨k_p⟩ = α_L·ld/N(B_ip) with N from Eq. (7), state the B_ip value(s) at which it is evaluated, and correct the quoted range."
+    },
+    {
+      "title": "Empirical B_c1 ≈ 5 mT is not supported by the data and conflicts with the threshold-free power-law fit",
+      "quote": "The trend sets in at Bip ≈ 5 mT (Fig. 2(d)).",
+      "explanation": "The data in Fig. 2(d) and Fig. 4 begin at ≈6 mT, so no onset can be observed. The fitted model A0 + C B^k with k = 1.81 is smooth from B = 0 and contains no threshold.\n\nIf the background were due to vortex pinning beginning at B_c1, α_L should vanish below B_c1 and the natural fit form would be ∝ (B − B_c1)^k or follow Eq. (7). The absolute α_L shown in the Fig. 4 inset also requires Ω0,bare (the zero-field frequency). No zero-field point is shown, and the fit offset A0 is referenced to 35 mT.",
+      "type": "logical",
+      "severity": "moderate",
+      "suggested_fix": "Add Ω0 data at B_ip < 5 mT, including B_ip = 0, to fix Ω0,bare. Fit the background with an explicit threshold, e.g. ϑ(B_ip − B_c1)^k or α_L ∝ n_v(B) from Eq. (7) times ⟨k_p⟩. Report the fitted B_c1 with its uncertainty."
+    },
+    {
+      "title": "Force-noise comparison is not the relevant criterion for resolving frequency steps",
+      "quote": "well below the 3–17 aN force steps, confirming that individual vortex-entry events are mechanically resolvable",
+      "explanation": "A vortex entering does not apply a static force; it changes the stiffness. The 'force step' ΔF = Δk·x_rms is a stiffness change multiplied by the thermal amplitude, not a force exerted by the vortex. Comparing it with the thermal force noise √S_FF·√BW does not establish that the step is resolvable.\n\nWhat matters is the frequency-estimation uncertainty of Ω0 from the dome fit, together with slow frequency fluctuations of the resonator (e.g. its Allan deviation). The 10 Hz lower end of the jumps is half the 20 Hz linewidth and appears comparable to the error bars in Fig. 3 (~10⁸ Hz² in f² ↔ ~10 Hz).\n\nThe 'attonewton-scale forces' framing in the abstract thus overstates what is measured. In addition, a double-sided PSD integrated over a positive-frequency bandwidth requires a factor of 2.",
+      "type": "logical",
+      "severity": "moderate",
+      "suggested_fix": "Replace the force-noise argument with the measured frequency uncertainty: the standard error of fitted Ω0 per field point and the frequency stability at fixed B_ip. State jump significance as ΔΩ/σ_Ω. Rephrase the abstract to 'stiffness changes of ~10⁻⁶ N/m' rather than attonewton forces."
+    },
+    {
+      "title": "Evidence for stochastic, history-dependent jumps is limited",
+      "quote": "the stochastic, history-dependent jumps in Ω0(Bip) are the hallmark of vortex entry and pinning in thin-film type-II superconductors",
+      "explanation": "The two datasets in Fig. 3(a) cover essentially non-overlapping field ranges (~12–19 mT and ~19–30 mT), so reproducibility within a cooldown is not tested. Across cooldowns, the 22.5 mT jump appears in both Fig. 3(a) and 3(b), which argues against full stochasticity.\n\nThere are no down-sweeps or field-cycling data showing hysteresis, so history dependence is asserted rather than demonstrated. With only one cooldown-to-cooldown comparison, the cooldown dependence could also be due to other sources, such as fit-parameter changes or two-level-system and frequency drift.",
+      "type": "logical",
+      "severity": "moderate",
+      "suggested_fix": "Add repeated up-sweeps over the same B_ip range within one cooldown and a down-sweep to test hysteresis. Then compile a table of jump fields per sweep, so that both reproducible and stochastic jump positions can be distinguished."
+    },
+    {
+      "title": "Fitting procedure underspecified; jumps could arise from other fit parameters",
+      "quote": "The fitted parameters are obtained by nonlinear least-squares optimization.",
+      "explanation": "Ω0(B_ip) is not measured directly; it is extracted by fitting Eq. (3) with I_c, L_l, η, Ω0 and φ_off. The paper does not say which of these are free versus fixed at each B_ip, nor does it report their evolution.\n\nA vortex entering the string arm, or the SQUID leads or junction electrodes, would also change φ_off (trapped flux) and possibly I_c. That would offer a direct, independent signature of vortex entry. Conversely, correlated parameters could produce apparent steps in Ω0.\n\nThe paper also notes that Ω0 equals Ωm(Φb → (n+½)Φ0). This model-independent value is not shown as a cross-check.",
+      "type": "technical",
+      "severity": "moderate",
+      "suggested_fix": "State which parameters are free and which are fixed, and plot fitted φ_off(B_ip) and I_c(B_ip) alongside Ω0(B_ip). Show the directly measured Ωm at Φb = Φ0/2 as a model-independent check of the jumps."
+    },
+    {
+      "title": "No objective criterion for identifying jumps",
+      "quote": "Arrows mark abrupt frequency steps attributed to vortex entry events.",
+      "explanation": "The jumps are marked by eye. Some marked steps, e.g. at 12 mT and 18 mT, are comparable in size to the point-to-point scatter and error bars. Since the extracted k_p and U range (14–70 N m⁻², 0.09–0.44 eV) is set by the jump-size distribution, the identification method matters quantitatively.",
+      "type": "technical",
+      "severity": "minor",
+      "suggested_fix": "Define jumps via a statistical criterion, e.g. residuals from the smooth fit exceeding 3σ between consecutive points, or a step-detection algorithm. Report each jump's ΔΩ with its uncertainty."
+    },
+    {
+      "title": "Eq. (3) treats L_J as a function of applied flux despite non-negligible loop screening",
+      "quote": "is the Josephson inductance of a single junction with critical current Ic",
+      "explanation": "With L_l = 136 pH and I_c = 1.3 µA, the screening parameter β_L = 2L_lI_c/Φ0 ≈ 0.17 (or 2πL_lI_c/Φ0 ≈ 0.54). At this level the internal flux differs from the applied Φb, and the cos(πΦb/Φ0) dependence is modified.\n\nIncluding L_l in the denominator while evaluating L_J at the applied flux is therefore only approximate. It could systematically bias Ω0 obtained from the dome fit. The divergence of L_J at half flux also relies on perfectly symmetric junctions (footnote 55).",
+      "type": "technical",
+      "severity": "minor",
+      "suggested_fix": "Evaluate L_J at the self-consistent internal flux Φ = Φb − L_l J(Φ). Alternatively, show that the resulting correction to Ω0 is small compared with the 10–50 Hz jumps."
+    },
+    {
+      "title": "Symbol α overloaded",
+      "quote": "Possible junction asymmetry is described by α (default α = 0).",
+      "explanation": "α is already used for the surface-scattering factor (α = 1.33 in Eq. 5), and α_L denotes the Labusch parameter. In addition, Eq. (3), which is stated to be the fitted model, contains no asymmetry parameter. It is therefore unclear how α enters the present fits; it appears only in the legacy Eq. (A1).",
+      "type": "technical",
+      "severity": "minor",
+      "suggested_fix": "Rename the junction asymmetry (e.g. a_J). State explicitly whether the Eq. (3) fits include asymmetry, and if so, give the modified expression for L_J(Φb)."
+    },
+    {
+      "title": "Field-cooled barrier statement is irrelevant and questionable",
+      "quote": "Under field-cooled (FC) conditions, the screening established during cooling can enhance the Bean–Livingston barrier",
+      "explanation": "Under field cooling, vortices nucleate as the sample passes through T_c in the applied field, so a surface barrier to entry is not the governing mechanism. The experiment is moreover performed under ZFC conditions. The 282 mT value therefore plays no role and could mislead readers about the relevant entry field.",
+      "type": "logical",
+      "severity": "minor",
+      "suggested_fix": "Remove the FC estimate, or state explicitly that it does not apply to the ZFC protocol used here."
+    },
+    {
+      "title": "Pinning-energy estimate extrapolates harmonic stiffness to an assumed range",
+      "quote": "Assuming an optimum pinning site with radius rp ∼ ξ ∼ 0.1 µm",
+      "explanation": "U ≈ ½k_p r_p² L_line combines a small-amplitude curvature, measured at displacements of ~pm, with an assumed range r_p ~ ξ and line length ~w. Since U ∝ r_p², a factor-2 uncertainty in r_p changes U by a factor of 4.\n\nCombined with the single-versus-multiple vortex issue and the density factor, the quoted 0.1–0.4 eV is an order-of-magnitude estimate. It is not a 'quantitative extraction', as stated in the abstract.",
+      "type": "logical",
+      "severity": "minor",
+      "suggested_fix": "Present U as an order-of-magnitude estimate with explicit dependence U = ½k_p r_p² w. Give the range implied by r_p ∈ [ξ/2, 2ξ], and change 'quantitative extraction' in the abstract to 'estimate'."
+    }
+  ]
+}

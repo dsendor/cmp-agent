@@ -1,0 +1,242 @@
+# Review of "Anomalous spin–lattice coupling in a 2D antiferromagnetic semiconductor revealed by surface acoustic Rayleigh waves"
+
+## Summary
+
+The manuscript uses angle-resolved Brillouin–Mandelstam spectroscopy (BMS) to measure a Rayleigh-type surface acoustic wave in a ~220 nm exfoliated NiPS₃ flake on SiO₂/Si. It reports a ~5.5% drop in phase velocity near T_N. Temperature-dependent Raman spectra, DFT elastic tensors for the AFM and NM states, and COMSOL modelling of the heterostructure are used to support the claim of a "giant" magnetoelastic renormalization.
+
+Probing long-wavelength elasticity across T_N in exfoliated vdW magnets is worthwhile, and BMS suits this problem. However, the central claim has several weaknesses:
+
+- It rests on a small number of temperature points from a single flake at a single wavevector.
+- There are unexplained inconsistencies in the room-temperature data.
+- Plausible extrinsic confounds are not controlled, notably the anomalous temperature dependence of amorphous SiO₂, laser heating, adsorbate loading and thermal-mismatch strain.
+- The theory reproduces the effect only at the ~10% level in magnitude, using a methodologically questionable NM reference state.
+
+Several physical statements and equations also need correction. My concerns are listed below, roughly grouped by topic.
+
+---
+
+## A. Central BMS result: data quality, sampling and internal consistency
+
+1. **Room-temperature velocities disagree between Fig. 3 and Fig. 4.**
+   - At θ = 35° (q ≈ 0.01355 nm⁻¹), Fig. 3(a,b) gives f ≈ 4.2 GHz and v ≈ 1945 m/s at room temperature.
+   - At the same q and temperature, Fig. 4(a,b) gives f ≈ 4.0 GHz and v ≈ 1865 m/s.
+   - This ~4% discrepancy is comparable to the claimed 5.5% magnetic effect. It must be explained (different flake? different spot? recalibration? angle offset?).
+
+2. **The 5.5% figure depends on the reference point.** It is computed from the 200 K maximum (~1925 m/s), not from a paramagnetic baseline. Relative to 300 K (~1865 m/s), the AFM-phase velocities (1805–1837 m/s) are only ~1.5–3% lower.
+
+3. **The non-monotonic paramagnetic behaviour is unexplained.** The 3% stiffening from 300 K to 200 K is large for anharmonic stiffening over 100 K. It may itself be anomalous (e.g., short-range correlations or substrate effects). The "expected anharmonic stiffening" assumption should be justified with a fitted baseline.
+
+4. **Temperature sampling is far too sparse to locate the anomaly.** There are no data between 150 K and 200 K. The velocity drop could begin anywhere in this 50 K window, so claiming the anomaly occurs "at T_N" is not supported. Dense sampling (≤5 K steps) across 130–200 K is essential.
+
+5. **The putative maximum rests on one point.** Its existence and position (~210 K in the guide-to-the-eye curve) are determined solely by the 200 K datum. The dash-dotted curve in Fig. 4(b) implies structure that the data cannot resolve.
+
+6. **The AFM-phase points are not "nearly constant".** They vary by ~30 m/s and are non-monotonic (150 K < 120/130 K > 90 K). The 90 K point is the lowest of all, which contradicts "saturation at lower temperatures."
+
+7. **The 80 K data are missing from Fig. 4(b).** Fig. 4(a) shows eight spectra (300–80 K), but Fig. 4(b) plots only seven points (90–300 K). Please explain why the 80 K point is omitted.
+
+8. **The peak shift is small relative to the linewidth and signal-to-noise.** The shift is ~0.15–0.25 GHz, while the peak width is ~1 GHz. At 90 K and 80 K the peak is barely distinguishable from the background in Fig. 4(a). The robustness of the single-Lorentzian fit should be demonstrated, for example with fit residuals and sensitivity to fit window and background model.
+
+9. **No background model is described.** Fig. 4(a) shows a strongly rising low-frequency background (tail of the elastic/central peak) that grows on cooling. Fitting "a single Lorentzian" without an explicit background term can bias the peak position systematically with temperature.
+
+10. **The error bars appear to be statistical fit errors only.** Systematic uncertainties in θ, finite collection aperture (q-spread), sample drift and repositioning after thermal contraction are not included.
+
+11. **Only a cooling run is shown.** There is no heating run, no thermal cycling and no test of hysteresis or reproducibility.
+
+12. **Results appear to come from a single flake.** Measurements on several flakes, ideally of different thicknesses, are needed to establish reproducibility.
+
+13. **The temperature dependence is measured at one wavevector only.** Full dispersions above and below T_N would allow the film's elastic constants to be extracted by inverse fitting. That is far more informative than a single-q velocity.
+
+14. **Only propagation along b is measured.** The zigzag order breaks a/b equivalence. Measuring along a would be a key test of the magnetoelastic interpretation, since anisotropic changes in c₁₁ vs c₂₂ are predicted in Table 1.
+
+15. **The flake's T_N is not determined independently.** It is assumed equal to the bulk value. Magnon/two-magnon Raman features, which are known in NiPS₃ (refs. 28, 29), could be used to confirm T_N on the same flake.
+
+16. **The magnitude is reported inconsistently.** The abstract, Fig. 4 and conclusions say "~5.5%". The DFT comparison and sensitivity discussion say "~6%". Use one consistently defined number with an uncertainty.
+
+17. **Intensity changes on cooling are not discussed.** The Bose-factor reduction (~4× from 300 K to 80 K) should be quantified, and any additional intensity loss explained (e.g., optical changes, condensation).
+
+## B. Extrinsic confounds not ruled out
+
+18. **The amorphous SiO₂ layer is a potential confound.** Amorphous silica has anomalous elastic behaviour: its moduli decrease on cooling over much of the 80–300 K range. With qh ≈ 3 and a 300 nm SiO₂ layer, the Rayleigh mode samples the oxide appreciably. A temperature-dependent BMS measurement of the bare SiO₂/Si substrate is essential. Including temperature-dependent SiO₂ constants in the FEM model would also help.
+
+19. **Laser heating in BMS is not addressed.**
+    - The BMS laser power, spot size and any heating calibration are not reported.
+    - NiPS₃ absorbs at 532 nm, and SiO₂ is a poor thermal conductor. Local heating at typical BMS powers (mW to tens of mW) could be tens of kelvin.
+    - Such heating would shift the apparent transition temperature and distort the temperature axis.
+    - The reported 0.024 mW applies only to the Raman measurements.
+
+20. **Adsorbate or ice loading is not addressed.** Condensation of residual gases or water on the flake at low temperature mass-loads the surface and lowers Rayleigh velocity. Cryostat vacuum conditions and controls are not described.
+
+21. **Thermal-mismatch strain is not addressed.** On cooling, differential contraction between NiPS₃ and Si/SiO₂ builds biaxial strain in the clamped film. This changes the effective elastic constants independently of magnetism. Partial slippage of a vdW-bonded flake could cause abrupt changes.
+
+22. **Substrate clamping is not discussed.** NiPS₃ shows spontaneous magnetostriction and thermal-expansion anomalies at T_N. In a substrate-clamped film, this produces magnetically induced stress rather than free strain. The comparison with fully relaxed DFT tensors therefore needs discussion.
+
+23. **The measurement geometry may shift with temperature.** Thermal contraction of the cold-finger mount can change incidence angle, focus and probed spot position. How θ and spot position were maintained at fixed values across temperature is not described.
+
+24. **Spot size versus flake size is not specified.** At θ = 50° the spot is elongated. The flake's lateral dimensions relative to the spot are not given, so contributions from flake edges or bare substrate cannot be excluded.
+
+25. **The substrate-only control was done only at room temperature.** It establishes mode assignment but not the substrate's temperature evolution, which is needed (see 18).
+
+## C. Mode assignment and BMS physics
+
+26. **Selection rule is stated imprecisely.** The paper says only modes with displacement "perpendicular to the phonon propagation direction" contribute (Loudon). For the surface-ripple mechanism, what matters is the out-of-plane (surface-normal) displacement at the free surface. An in-plane shear-horizontal displacement is also perpendicular to q but does not scatter via ripple.
+
+27. **Missing Sezawa/guided modes are not explained.** In a slow-on-fast system with qh ≈ 2.6–4, higher-order Sezawa modes are generally expected, and the authors observe them on the bare substrate. Their absence on NiPS₃ (or their location outside the spectral window) should be discussed using the computed spectrum.
+
+28. **Elasto-optic contributions are not considered.** NiPS₃ is only partially absorbing at 532 nm in a 220 nm film, and the SiO₂ layer creates optical interference. The relative weighting of ripple versus elasto-optic scattering, and its possible temperature dependence, should be discussed.
+
+29. **Fabry–Pérot parameters are missing.** Free spectral range, mirror spacing, finesse and spectral resolution are not given, so the precision of a ~0.2 GHz shift cannot be judged.
+
+30. **Collection geometry is unspecified.** Objective NA and the resulting q-spread are not reported. These broaden the peak and can shift its apparent centre at oblique incidence.
+
+31. **"Single well-defined dispersive peak" overstates Fig. 3(a).** At 45–50° the signal is weak and broad. The 50° spectrum barely shows a peak, yet it anchors the high-q end of the dispersion.
+
+## D. Finite-element modelling
+
+32. **Agreement with experiment is weaker than the effect being studied.**
+    - The simulated frequency at q = 0.0135 nm⁻¹ (4.6 GHz) exceeds the measured value (4.2 GHz) by ~10%.
+    - Simulated velocities (1980–2220 m/s) are 10–15% above experiment (1710–1970 m/s).
+    - Describing this as "close agreement" is generous when the claimed magnetic effect is 5.5%.
+
+33. **Like-for-like comparisons are not made.** The NM 0 K elastic constants are compared with room-temperature data. The AFM 0 K constants are not compared with low-temperature data in a matching way.
+
+34. **Material parameters are not reported.** Density, elastic constants and orientation are missing for SiO₂ and Si (Si crystal orientation, propagation direction relative to Si axes), and NiPS₃ density is also missing.
+
+35. **The crystal tensor orientation in the model is not described.** In C2/m, the layer normal is c* (not c), and the Voigt convention (unique axis b ↔ y) must be stated. How the tensor was rotated into the model frame is not explained.
+
+36. **The bottom boundary condition and Si thickness are not described.** The bottom of the Si "half-space" is fixed at an unspecified finite thickness, which can generate spurious box modes. A perfectly matched layer or convergence with respect to depth should be shown.
+
+37. **Floquet boundary conditions are described confusingly.** They are said to be applied along both x and y with a phase k. For propagation along b, the phase should be applied along the propagation direction only, with zero phase transversely. The text ("u(x) is the displacement along x direction") conflates displacement component with position.
+
+38. **Mesh convergence and the eigenmode-selection criterion are not reported.** How "the" Rayleigh mode was identified among the eigenmodes is not described.
+
+39. **"Linear electrodynamic equation" should read elastodynamic.** Also, "eigenfrequency study to reflect the experimental excitation" is unclear; eigenfrequency analysis does not model excitation.
+
+40. **The sensitivity analysis is not quantitative in the main text.** It should state the velocity change per 20% change in each c_ij. It should also state the film-modulus change required to produce the observed 5.5%.
+
+## E. DFT calculations
+
+41. **There is no Hubbard U.** Ni²⁺ 3d states in NiPS₃ are typically treated with DFT+U, or at least tested for U sensitivity. Plain PBE-D3 elastic constants for a correlated magnetic insulator need justification and U-dependence tests.
+
+42. **The NM state is a poor proxy for the paramagnet.**
+    - Forcing zero local moments on Ni²⁺ (S = 1) changes the electronic structure qualitatively and may make the system metallic.
+    - The paramagnet retains local moments with disordered orientations.
+    - The NM–AFM difference therefore conflates moment formation with long-range order.
+    - Disordered-local-moment or special quasirandom structure approaches, or averaging over several magnetic configurations (FM, Néel, stripy, zigzag), would be more appropriate.
+
+43. **The DFT/FEM effect is an order of magnitude smaller than experiment.** It gives 0.54%, about 10× below the measurement. Yet the abstract says the calculations "reproduce... its magnetic-order-induced shift." That claim is not supported and should be revised.
+
+44. **The trends in key constants do not support the explanation.**
+    - The sensitivity analysis says Rayleigh velocity is most sensitive to c₃₃ and c₄₄.
+    - DFT gives c₄₄ unchanged (9.7 → 9.7 GPa) and c₅₅ slightly increased.
+    - The emphasised c₆₆ change is irrelevant for sagittal-plane motion along b.
+    - The conclusion that experiment "implies a sizable reduction in the shear- and out-of-plane-related coefficients" is thus not supported, and partly contradicted, by the authors' own DFT.
+
+45. **Emphasising c₆₆ is misleading.** c₆₆ (in-plane xy shear) chiefly governs shear-horizontal waves. It is highlighted as "the most notable variation," yet it cannot drive softening of a Rayleigh wave propagating along b, and it hardens.
+
+46. **The c₃₅ sign change is likely numerical noise.** A change from −0.5 to +0.4 GPa is within typical finite-difference precision. Its emphasis is not warranted without convergence tests.
+
+47. **The supercell description is inconsistent.** A "1×4×2 supercell" with dimensions 11.499 × 19.914 × 12.308 Å looks more like 2×2×2 of the conventional cell (a ≈ 5.8, b ≈ 10.1 Å). Please clarify the cell, how the zigzag order and interlayer stacking were imposed, and the relaxed lattice parameters versus experiment for both states.
+
+48. **Convergence tests are missing.** No k-mesh convergence is shown (3×2×3), and strain-amplitude dependence is not tested (0.015 is relatively large for soft interlayer constants). Please clarify what "four displacements" means.
+
+49. **Smearing and electronic state are not specified.** Gaussian smearing of 0.01 eV is stated, but whether the NM state is metallic, and whether smearing affects its elastic constants, is not discussed.
+
+50. **Spin–orbit coupling is not included.** The introduction stresses SOC-driven anisotropy as central to magnetism and magnetoelasticity, yet SOC is absent from the calculations.
+
+51. **Volume effects are not separated.** Fully relaxing each magnetic state separately means part of the c_ij difference is a volume/magnetostriction effect. This is not separated from the intrinsic magnetoelastic term, and it is not representative of a clamped film.
+
+52. **Magnetic domains are not considered.** Zigzag order admits three in-plane domain orientations. The macroscopically probed elastic response is a domain average, unlike the single-domain AFM tensor used in modelling. Domain walls can also contribute softening (ΔE effect).
+
+53. **The DFT tensor is not compared with prior measurements.** There is no comparison with experimental elastic data for NiPS₃, including the same group's earlier BMS study of MPS₃ acoustic phonons (ref. 36).
+
+## F. Theoretical interpretation
+
+54. **The optical-phonon equation is incorrect.** The spin–phonon frequency shift is conventionally Δω ∝ (∂²J/∂u²)⟨Sᵢ·Sⱼ⟩, i.e., the second derivative. The first derivative ∂J/∂u enters forces and static displacements, not harmonic frequencies.
+
+55. **Two kinds of magnetoelastic energy are conflated.** The expression E_me = −Σ B_αβ ε_αβ S_α S_β is a single-ion/anisotropic form. The exchange-striction mechanism invoked in the text has the form Σ (∂J_ij/∂ε) ε ⟨Sᵢ·Sⱼ⟩.
+
+56. **c_eff = c⁽⁰⁾ − λ²χ_m is not appropriate as written.** For an antiferromagnet with coupling quadratic in the order parameter, Landau theory gives a step in c at T_N governed by order-parameter thermodynamics. Relevant quantities are the staggered susceptibility or specific-heat-like terms, not the uniform magnetic susceptibility χ_m, which in quasi-2D NiPS₃ peaks broadly above T_N.
+
+57. **The 11% modulus estimate assumes v ∝ √c of the film alone.** Because the mode shares energy with the substrate, the required change in film constants must exceed 11%. The authors' own FEM should be used to state the actual required change.
+
+58. **The optical versus acoustic dichotomy is overstated.** Exchange-striction contributions to elastic constants also scale with nearest-neighbour ⟨Sᵢ·Sⱼ⟩. Acoustic modes therefore also probe short-range correlations, not uniquely long-range order. The turnover near ~200 K, well above T_N, would itself be consistent with short-range correlations.
+
+59. **Strain need not modulate all exchanges coherently.** NiPS₃ has competing J₁ (FM), J₂ and J₃ (AFM) exchanges whose strain derivatives can have opposite signs. The argument that strain "coherently modulates all exchange interactions" with a single-signed effect therefore does not follow. The same cancellation argument used for optical modes applies.
+
+60. **The "continuum limit" framing needs care.** The claim that this "quantitatively links" macroscopic softening to exchange-striction is unsupported, since no ∂J/∂ε values are calculated or used.
+
+## G. Raman section
+
+61. **Polarization selection rules are misstated.** For C2h with unique axis b, Ag modes have xx, yy, zz, xz components and Bg modes have xy, yz. In z(xx)z̄ with x along a crystal axis, Bg modes should vanish. The statement that "both Ag and Bg modes are visible in the parallel configuration" requires stating the polarizer orientation relative to the crystal axes, or invoking the pseudo-trigonal near-degeneracy explicitly.
+
+62. **"All Raman-active modes are observed" is an overclaim.** Fifteen Raman-active modes (8Ag + 7Bg) are expected, but only about 8 peaks are resolved.
+
+63. **Fig. 2(a) axis labels are wrong.** The x-axis is labelled "Temperature (K)" but should be Raman shift; the y-axis is labelled "Raman Shift" but should be intensity.
+
+64. **The anharmonic fitting procedure is unclear.** It is not stated whether the fit used only paramagnetic-phase data and was extrapolated. Fit parameters are not given, the curves appear linear, and no anharmonic fits are shown for the FWHM panels (d, e) despite the caption referring to deviations from the trend.
+
+65. **Lorentzian fits are inconsistent with a reported Fano asymmetry.** The 255 cm⁻¹ mode is described as Fano-asymmetric yet fitted with Lorentzians, which biases position and width.
+
+66. **The 588 cm⁻¹ mode may not be featureless.** Fig. 2(c) shows a plateau below ~130 K, which is not clearly "no detectable signature."
+
+67. **Spectrometer resolution is not given.** Grating, spectral resolution and temperature-stability details are missing, so deviations of ~0.3 cm⁻¹ cannot be judged.
+
+68. **The laser-power rationale is contradictory.** A power of 0.024 mW is said to "ensure a high signal-to-noise ratio"; very low power reduces signal-to-noise.
+
+69. **Null results conflict with prior reports and need explanation.** Not reproducing the ~176 cm⁻¹ splitting (ref. 25) and other reported spin–phonon signatures could indicate sample, resolution or configuration differences. This weakens the premise that optical phonons are insensitive in NiPS₃. Cross-polarized temperature-dependent data, where magnetic features are strongest, and analysis of the low-temperature broad background near ~400 cm⁻¹ (possibly magnetic continuum) are missing.
+
+70. **The temperature ranges in Methods do not match the figures.** Methods give 77–300 K for Raman, while Fig. 2 shows 90–290 K.
+
+## H. Sample characterization and crystal orientation
+
+71. **Axis identification from cleavage edges is ambiguous.** The [100] and [110] edges are both zigzag-type and 60° apart. The direction perpendicular to a [110] edge is not b. Because the monoclinic bulk distinguishes these directions, independent confirmation is needed, for example by angle-resolved polarized Raman, SHG or linear dichroism.
+
+72. **The magnetic structure description may be incorrect.** The text states adjacent layers couple antiferromagnetically along c. My understanding of Wildes et al. (ref. 32), with k = [010], is that the interlayer stacking in NiPS₃ is ferromagnetic, in contrast to FePS₃. Please verify this and state which interlayer configuration the DFT used.
+
+73. **Thickness characterization is minimal.** Only an "average thickness of ~220 nm" is given. Thickness uniformity over the BMS spot matters for qh-dependent dispersion and should be documented.
+
+## I. Framing, novelty and literature
+
+74. **The "2D" framing is misleading.** A 220 nm film is roughly 350 layers and is bulk-like magnetically. The title, the Mermin–Wagner discussion and the "fragile 2D ground state" motivation do not apply to the system studied.
+
+75. **Key prior work is omitted.** Nanomechanical-resonator studies of FePS₃, NiPS₃ and MnPS₃ (e.g., Šiškins et al., Nat. Commun. 2020) detected elastic and thermal-expansion anomalies at T_N in exfoliated MPS₃ flakes. This undercuts the claim that acoustic/elastic responses of vdW magnets across T_N are "largely unexplored." Such work should be cited and compared quantitatively.
+
+76. **"Giant," "anomalous" and "rarely reported" are not substantiated.** Velocity anomalies of a few percent at magnetic transitions are well documented by ultrasound (refs. 21–24). A quantitative comparison with other magnets is needed.
+
+77. **The cross-material comparison of coupling constants is unfair.** The claim of a coupling constant "an order of magnitude higher than FePS₃, CrBr₃, Cr₂Ge₂Te₆" relies on refs. 49–52, which define and extract spin–phonon constants differently. The comparison is not like-for-like and is unrelated to the elastic quantity measured here.
+
+78. **The abstract and conclusions overstate the agreement with theory.** "Reproduce both the Rayleigh-wave dispersion and its magnetic-order–induced shift" and "corroborate... link them to exchange-striction" go beyond what a 10× magnitude mismatch and an inconsistent c_ij trend support.
+
+## J. Presentation, reproducibility and minor issues
+
+79. **Supplementary information was not provided for review.** This includes Supplementary Tables 1–2 and Figs. 1–9. Key results such as the sensitivity table and substrate spectra should appear at least partly in the main text.
+
+80. **Data and code availability statements are absent.**
+
+81. **Typos and wording errors should be corrected:**
+    - "Temperaure" (Fig. 4b)
+    - "REFRENCES"
+    - "intermolecular vibrations of (P₂S₆)⁴⁻ units" should be intramolecular
+    - "higher-frequency modes above originate" (dangling "above")
+    - "spin propagation vector" should be magnetic propagation vector
+    - garbled author list in ref. 19
+    - "monoclinic C2/m structure possesses 13 independent elastic constants": correct, but the axis convention should be specified
+
+82. **The Fig. 3(c) colour scale is unlabelled.** It shows "Max/Min" without saying which quantity is plotted (total displacement magnitude? u_z?).
+
+83. **The dashed line in Fig. 4(a) suggests more than the data show.** As a "guide to the eye," it implies a sharp kink between 200 K and 150 K that the data cannot resolve. A plot of fitted peak frequency with error bars is more appropriate.
+
+---
+
+## Recommendation
+
+The core observation may well be real and of interest, but it is not yet established at the level claimed. At minimum, the authors should:
+
+- resolve the room-temperature inconsistency between Figs. 3 and 4;
+- provide dense temperature sampling across T_N, with heating and cooling runs, on multiple flakes;
+- measure the temperature dependence of the bare SiO₂/Si substrate and quantify laser heating;
+- extract film elastic constants by fitting full dispersions above and below T_N;
+- revisit the DFT treatment (U, paramagnetic proxy, convergence) and reconcile its predictions with the sensitivity analysis;
+- correct the theoretical expressions and tone down the "giant/2D/reproduce" claims.
+
+I would recommend major revision.

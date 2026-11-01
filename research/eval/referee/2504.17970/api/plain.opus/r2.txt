@@ -1,0 +1,161 @@
+# Referee Report
+
+**Manuscript:** *Correlated insulating states in slow Dirac fermions on a honeycomb moiré superlattice* (Yang, Liang, Hu et al.)
+
+## Summary
+
+The authors study twisted MoSe₂ homobilayers (2.9°–4.0°). In this system the topmost Γ-valley moiré bands form a spin-degenerate, graphene-like honeycomb lattice with a strongly reduced Dirac velocity. They use 2s Rydberg-exciton sensing in a nearby WS₂ layer and report incompressible states at:
+
+- ν = −1 and ν = −2;
+- several fractional fillings between 0 and −1.
+
+They then use two moiré trions with different spatial character (on-site X₂⁺ and charge-transfer X₁⁺) to argue three things:
+
+1. The ν = −2 state is a Mott insulator with one hole per site, rather than a sublattice CDW.
+2. ν = −2 shows no MCD response, which they interpret as antiferromagnetic or spin-gapped.
+3. ν = −1 shows Curie–Weiss behaviour with a small positive Θ_CW, which they interpret as weak ferromagnetism.
+
+From the melting temperature they estimate U₀/t ≈ 5 (D1) and ≈ 17 (D2).
+
+## Overall assessment
+
+The platform is timely and attractive. A spin-degenerate, SU(2)-symmetric honeycomb Hubbard simulator is a genuinely interesting target. The experiment combines sensor-layer compressibility with spatially resolved trion spectroscopy, which is a creative approach. The X₁⁺/X₂⁺ correlation with ν = −1 and −2, reproduced in two devices, is the most compelling result in the paper.
+
+However, several central claims go beyond what the data support:
+
+- the filling calibration;
+- the Mott-vs-CDW identification;
+- the U₀ extraction and the implied dielectric constant;
+- the magnetic conclusions at both integer fillings.
+
+There are also internal inconsistencies in numbers and text. I recommend **major revision**.
+
+---
+
+## Major comments
+
+### 1. Filling-factor calibration is not internally consistent
+
+The authors state that fillings are assigned using "equal voltage spacing between the two integer fillings and the charge-neutral condition." The quoted voltages do not show this:
+
+- The charge-neutral feature is at V_tg ≈ −1 V, ν = −1 at −2.36 V, and ν = −2 at −3.48 V.
+- That gives spacings of 1.36 V and 1.12 V, a ~20% discrepancy.
+- Using the stated geometry (d_t = 6.6 nm, d_b = 9.5 nm, ε_hBN = 3, V_bg = 1.15 V_tg), I reproduce n_M ≈ 4.6 × 10¹² cm⁻² from the 1.12 V interval.
+- The 1.36 V interval would instead give ≈ 5.6 × 10¹² cm⁻².
+
+The discrepancy may reflect the valence-band onset being offset from the 2s blueshift at −1 V (i.e., the in-gap region), or contact nonlinearity. Either way, it must be addressed explicitly, because the fractional-filling assignments in Fig. 2b depend directly on the linear mapping. The authors themselves note that the nonlinear gating effect is strongest at low doping (ν ≤ −1/3), which is exactly where most of the fractional states lie.
+
+Further problems:
+
+- In the trion section, X₁⁺ peaks at V_tg ≈ −2.67 V (written as +2.67 V in the text). This is ~0.3 V, roughly a quarter of a filling unit, from the −2.36 V assigned to ν = −1. Calling the two "well matched" needs justification. Differences in temperature (1.6 K vs 7 K) or measurement position should be stated, and the fillings re-calibrated for each dataset.
+- The identification of ν = −1 and −2 rests on these being the "largest" and most thermally robust features. This is plausible but circular to some extent. An independent density check would greatly strengthen the assignment, for example Landau-level or quantum-oscillation features in the sensor or graphene contact, or a comparison with the geometric capacitance referenced to the band edge.
+
+**Requests:**
+- Provide the fractional-filling positions with uncertainties.
+- Show the residuals from the linear assignment.
+- Discuss reproducibility at position P2, where the set of fractional features in Ext. Fig. 5b appears different.
+
+### 2. Mott vs CDW identification at ν = −2
+
+The trion argument is clever but rests on several assumptions that need more support:
+
+- **(a) Spatial character of the trions.** The assignment of X₂⁺ as on-site and X₁⁺ as charge-transfer relies on DFT and a binding-energy argument. The main text contains a logic error: it says "Since the exciton-hole distance is larger in X₂⁺, the Coulomb attraction and binding energy become smaller." This should be X₁⁺. Beyond the typo, independent evidence would help, such as electric-field dependence, g-factors, or comparison with ref. 37. In particular, where the K-valley intralayer exciton itself sits within the moiré potential should be justified; it need not coincide with the Γ-valley hole minima.
+- **(b) Doubly occupied sites.** The claim that doubly occupied sites cannot bind an exciton is central both to the CDW exclusion and to the decrease of X₂⁺ beyond ν = −2. This is borrowed from triangular-lattice work (ref. 38) and should be justified for this system. Γ–K intervalley trions are not obviously Pauli-blocked by a Γ-valley singlet.
+- **(c) Explicit CDW prediction.** The authors should state what the CDW scenario predicts quantitatively for X₁⁺ and X₂⁺ versus ν. Ideally they should show a simple model of both curves for both scenarios, so readers can judge how discriminating the data are.
+
+### 3. U₀ extraction, U₀/t, and the implied dielectric constant
+
+There are three problems here.
+
+**The U₀–T_m relation.** T_m is defined operationally as the temperature where the 2s spectral-weight contrast falls to 10% of its maximum. The paper calls this a lower bound on Δ, but then converts it to U₀ using U₀ ≈ 4.75 k_B T_m from QMC (ref. 39). The authors need to specify which thermodynamic quantity in ref. 39 that coefficient refers to, and why it maps onto this sensor-defined T_m. As written, the "lower bound" and "estimate" language are mixed.
+
+**Marginal U₀/t and circular logic.**
+- U₀/t ≈ 5 for D1 is close to the established U_c/t ≈ 3.8 (ref. 40).
+- t ≈ 5 meV comes from a continuum model, with no stated uncertainty.
+- U_c/t for the pure on-site Hubbard model is not directly applicable when, as the authors' own HF stresses, U₁ and longer-range terms are important.
+- The logic is circular. U₀ is extracted by assuming a Mott state, and then U₀/t > U_c/t is used to support the Mott state.
+
+**The implied dielectric constant, ε_eff ≈ 27–30.** This is several times larger than expected for hBN encapsulation (ε ~ 4–5), even accounting for nearby gates. It implies that the bare-model U₀ (100–200 meV) is overestimated by roughly 4–8×.
+- The authors should discuss the physical origin: gate screening at ~7–10 nm, the WS₂ sensor at 1 nm, interband screening from remote moiré bands, or HF overestimating gaps.
+- This matters for the central narrative. With ε ≈ 28, the continuum coupling e²/(εħv) is not dramatically larger than in suspended graphene. The correlation enhancement may then be better attributed to lattice-scale U/t than to the "slow velocity" per se, and the paper's framing should be adjusted accordingly.
+- HF agreement with experiment is only qualitative. Ext. Fig. 4c shows a weak gap variation between 2.9° and 3.8° (≈48→46 meV at ε = 25), whereas the measured T_m nearly doubles (≈65 → ≈105 K).
+
+### 4. Magnetism at ν = −2 is overinterpreted
+
+**Zero MCD does not imply zero susceptibility.** The absence of MCD is taken to imply "zero magnetic susceptibility." With t ≈ 5 meV and U₀ ≈ 25 meV, the expected superexchange is J ~ 4t²/U ~ 4 meV (~45 K). A 2D Heisenberg antiferromagnet at T ≪ J has a finite susceptibility of order 1/J, reduced but not zero. The expected MCD amplitude should be estimated relative to ν = −1 to show the null result is significant.
+
+**The probe may simply be insensitive at ν = −2.** The MCD at ν = −1 is dominated by the RP feature near 1.620 eV. The spectral content at ν = −2 is different: X₂⁺ is maximal and the RP may be weak or shifted. A paramagnetic control at nearby non-integer filling (e.g., ν ≈ −1.5 or −2.3), with comparable spectral features, is needed.
+
+**Reliance on ref. 10 for a spin-liquid interpretation.** The gapped spin liquid of Meng et al. (ref. 10) was subsequently shown not to exist in the half-filled honeycomb Hubbard model. Larger-scale QMC (Sorella, Otsuka & Yunoki 2012; Assaad & Herbut 2013) finds a direct semimetal-to-Néel transition. Citing ref. 10 without this context, both in the introduction and in the MCD discussion, is misleading and should be corrected.
+
+**The Conclusion overstates the result.** It asserts a "Mott insulator with antiferromagnetic coupling between carriers." The main text itself concedes that the scenarios cannot be distinguished. Please align the two.
+
+### 5. Ferromagnetism at ν = −1 is not established
+
+The data do not demonstrate ferromagnetism:
+
+- **Statistical significance.** Θ_CW = +0.20 ± 0.20 K is consistent with zero at 1σ. The second point (+1.10 ± 0.40 K) is more suggestive, but two points of differing magnitude do not establish a sign.
+- **Fit range.** The fit uses roughly seven temperatures between 1.6 and 7 K. Θ_CW is extracted by extrapolating over a window only a few times larger than Θ itself.
+- **MCD as a proxy for magnetization.** Assuming MCD ∝ M with a temperature-independent proportionality constant is questionable. The authors note that the method fails above 7 K, which casts doubt on it within 1.6–7 K as well.
+- **Integration window inconsistency.** The main text and Methods say the MCD is integrated around 1.620 eV (RP). The Fig. 5c caption says "near the resonance of X₂⁺." Please clarify; this affects the interpretation.
+
+I suggest the authors rephrase this as "no evidence for antiferromagnetic coupling; the data are consistent with weak ferromagnetic or negligible exchange." They should also compare quantitatively with the computed J at ε ≈ 27–30 (Fig. 5d inset), converting J to the expected Θ_CW for the triangular network of occupied sites.
+
+### 6. Non-monotonic ν = −1 contrast and the Pomeranchuk analogy
+
+The spectral-weight contrast is defined relative to "conductive states." The authors should specify which reference filling is used.
+
+This matters because T* ≈ 15 K coincides with the melting range of the neighbouring fractional states (13–25 K, Fig. 3c). If the reference filling, or the background near ν = −1, is itself partially incompressible at low T, the contrast would rise as those states melt. That would produce a non-monotonic curve with no Pomeranchuk physics.
+
+This alternative should be ruled out, for example by showing the raw 2s energy and amplitude at ν = −1 and at the reference filling separately versus T. If a Pomeranchuk-type mechanism is kept, the authors need an entropy argument consistent with the J scale they infer (≲1 K).
+
+### 7. ν = −1 melting and twist-angle independence
+
+The ν = −1 state is attributed to U₁, which should scale roughly with 1/a_M. The observed twist-angle independence of T_m is explained only by "local moiré potential," which is vague and needs elaboration.
+
+Separately, in D1 and D3 both integer states have T_m ≈ 65 K. The authors should exclude the possibility that this reflects a sensing limit, such as 2s broadening, rather than intrinsic melting. D2 reaching ~105 K argues against a universal limit, but sensor geometry and quality may differ between devices.
+
+### 8. Abstract and framing
+
+- "Reduced by nearly two orders of magnitude" (abstract) conflicts with "over thirty times slower" (main text). My estimate, v ≈ 3t·a_hex/(2ħ) with t = 5 meV and a_hex = a_M/√3 ≈ 2.9 nm, gives ~3 × 10⁴ m/s. That is ~30× slower than graphene, i.e., about 1.5 orders of magnitude.
+- "Persists up to 110 K" applies to D2 only. The main device has T_m ≈ 65 K. Please specify.
+- "Detect a Mott gap" overstates the measurement. The probe measures incompressibility; no gap magnitude is measured.
+- The concurrent Cornell work (ref. 45, arXiv:2412.07150) on the same system is acknowledged only in a note. A substantive comparison in the main text would help readers: consistency of fillings, gap scales, and the nature of the ν = −2 state.
+
+---
+
+## Minor comments
+
+1. **Sign errors.** V_tg ≈ "2.67 V" and "3.50 V" in the trion section should be negative.
+2. **"Chiral symmetry" terminology.** The statement that "the Mott insulator phase breaks the chiral symmetry, while the CDW phase breaks the AB sublattice symmetry" is imprecise. In the Dirac description both are mass terms. The Néel state breaks spin SU(2), and the CDW (Semenoff mass) breaks sublattice/inversion. Please clarify which symmetry is meant.
+3. **Terminology for ν = −1.** The ν = −1 state is called a "sublattice-polarized electronic crystal" in the main text and a "generalized Wigner crystal" in the Conclusion. Please use consistent terminology. Note that a sublattice-polarized state at one hole per cell is effectively a triangular-lattice Mott/charge-ordered state.
+4. **Model naming.** "MacDonald-Bistritzer model" vs "Bistritzer-MacDonald" should be made consistent. Note also that ref. 19 is the relevant Γ-valley continuum model.
+5. **Sentence on charge distribution.** "Unlike the fractional filling and ν = −1 states, the charge distribution in the ν = −2 state is the result of energy competition between U₀ and U₁." The ν = −1 state also involves such competition. Please rephrase.
+6. **Electric-field range in Fig. 2c–d.** The field range (±50 mV/nm) is modest. The argument for Γ-valley character from E-insensitivity would be stronger with a quantitative comparison to the expected response of K-valley, layer-polarized holes.
+7. **Fig. 3b colours.** The caption says ν = −1 green and ν = −2 yellow; the plot appears orange. Also, "weigtht" is misspelled in the figure axis.
+8. **Fig. 3d.** The broken twist-angle axis is confusing. Consider plotting T_m versus θ directly with error bars.
+9. **Ext. Fig. 4.** State which HF solution (Néel AFM vs CDW) is the ground state at ε ≈ 27–30 and 3.8°, and the energy difference between them. This directly supports or undermines the Mott assignment.
+10. **References.**
+    - Ref. [2] is never cited in the text.
+    - Ref. [45] is referred to by arXiv number rather than citation number.
+    - Ref. [15] contains a stray "165".
+    - Ref. [32] (*Remote imprinting of moiré lattices*) seems an unusual citation for contact-resistance-induced dispersion; please check.
+11. **Acknowledgements.** These list "M.Z.", who is not an author. Please check. The author list also has "Jerry. I Dadap" (punctuation).
+12. **Methods.**
+    - State the reference filling used for the "conductive state" in the spectral-weight contrast.
+    - State the temperature at which filling calibration was done for each dataset.
+    - Give uncertainties on d_t, d_b, and ε_hBN, and propagate them to n_M and θ.
+13. **Data availability.** Please consider depositing the raw spectra.
+14. **Minor language.** "Fraction fillings" should be "fractional fillings," and "correlated insulation states" should be "correlated insulating states."
+
+---
+
+## Recommendation
+
+**Major revision.** The observation of multiple incompressible states in a Γ-valley honeycomb moiré system, together with the filling-selective trion response, is valuable and likely publishable. Before the strong claims in the title, abstract, and conclusion can be supported, the authors should:
+
+- resolve the filling-calibration inconsistencies;
+- substantiate or soften the Mott-vs-CDW and magnetic conclusions;
+- justify the U₀ and ε_eff extraction;
+- correct the reliance on ref. 10;
+- align the Conclusion with the caveats stated in the main text.

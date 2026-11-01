@@ -1,0 +1,125 @@
+{
+  "overall_feedback": "The paper reports Pt-coated YIG powders made by dynamic powder sputtering and consolidated by low-temperature/high-pressure pressing. The composites show a field-odd, magnetization-saturating transverse thermoelectric voltage in two orthogonal magnetothermal geometries. The fabrication approach is novel and practically interesting, the paper is clearly written, and the derived quantities check out: κ = D·c_p·ρ, relative densities, PF = σ^eff S², the 14.4 nV/K value from Fig. 3e, and the Table S1 σ^eff values all reproduce from the reported data. The problems lie mainly in what is claimed from these data.\n\n- **Performance comparison.** The central framing is that trans-scaling improves heat-to-electricity conversion, but the only comparison with conventional devices is σ^eff. The composites' S_SSE (7.5–17.3 nV/K) is, by typical literature values, one to two orders smaller than bulk Pt/YIG LSSE. A like-for-like PF comparison may therefore not favor the composites.\n- **Size of the σ^eff advantage.** The \"2–3 orders\" figure is too strong for the lower-conductivity samples.\n- **Attribution of the signal.** Several exclusion arguments are qualitative: magnetization dilution is not quantified, there is no XRD or Hall detection limit, and there is no non-magnetic (e.g., GGG/Pt) control composite. Isotropy is presented as supporting SSE, although any bulk transverse effect in a random composite would be isotropic.\n- **Pt thickness dependence.** It is interpreted with thin-film intuition even though σ^eff changes 4–6× while S changes only ~20%.\n- **Reproducibility and methods.** Nominal Pt thicknesses come from deposition time, there is one sample per condition, and the Hx–∇zT measurement uses a single gradient. Particle size and sample geometry are missing.\n- **Internal inconsistencies.** These include the Ms value versus the Fig. 3f axis, duplicate PDF card numbers, Cu-Kα wavelengths, and a configuration-label typo.",
+  "comments": [
+    {
+      "title": "σ^eff gain is presented as evidence of improved performance/trans-scale SSE without a power-factor comparison to conventional devices",
+      "quote": "In summary, our samples exhibited 2–3 orders of magnitude higher effective electrical conductivity compared to the conventional thin-film-based planar FMI/NM geometries, clearly demonstrating the successful realization of trans-scale SSE.",
+      "explanation": "I agree with the authors that σ of the Pt layer alone misrepresents device-level performance, and normalizing by total device thickness (Eq. S2) is sensible. However, output power depends on σ^eff·S², not σ^eff alone.\n\nThe composites' S_SSE is 7.5–17.3 nV/K. For bulk Pt(10 nm)/YIG single crystals, typical room-temperature LSSE values expressed as E_y/∇T are of order 0.1–0.5 μV/K (e.g., the Uchida et al. PRX 2014 data that Table S1 itself uses). That is roughly 10–30× larger than the composites.\n\nTaking σ^eff ≈ 53 S/m from Table S1 and S ≈ 0.3 μV/K gives PF ≈ 5×10⁻¹² W/mK². This is about an order of magnitude above the best composite (5.1×10⁻¹³ W/mK²). The larger σ^eff appears to be largely offset, or more than offset, by a much smaller S.\n\nThe paper never makes this comparison, yet the Introduction states that the design 'enhances the overall heat-to-electricity conversion capability'. A high σ^eff shows that a percolating Pt network exists. It does not by itself demonstrate volumetric spin-current utilization or 'successful realization of trans-scale SSE'.",
+      "type": "logical",
+      "severity": "major",
+      "suggested_fix": "Add to Table S1 the S_SSE and PF_SSE = σ^eff S_SSE² computed for the same literature devices. Then restate the conclusion as an improvement in σ^eff accompanied by a reduced S_SSE, and report whether the net PF is higher or lower than in conventional Pt/YIG."
+    },
+    {
+      "title": "'2–3 orders of magnitude' overstates the σ^eff advantage for the lower-conductivity samples",
+      "quote": "The effective electrical conductivity of the composites is 2–3 orders of magnitude higher than conventional thin-film-based YIG/Pt devices.",
+      "explanation": "Table S1 gives conventional σ^eff values of 0.02–0.53 ×10² S/m (2–53 S/m). The composites span 5.62–49.64 ×10² S/m.\n- The 15-RT sample (562 S/m) versus Pt(10 nm)/YIG single crystal (53 S/m) is only ~10×, one order of magnitude.\n- 15-300 (839 S/m) is ~16×.\n- Only when the best composite is compared with the most resistive reference does the ratio approach ~3.4 orders.\n\nThe composite σ^eff values for the 15-nm samples also fall inside the quoted range for oxide-based bulk ANE materials ((3–26)×10² S/m), so 'higher than' those materials holds only for the 30-nm samples. Finally, conventional σ^eff is set mainly by the arbitrary substrate/FM thickness (Eq. S3), which makes the comparison somewhat geometry-dependent.",
+      "type": "technical",
+      "severity": "moderate",
+      "suggested_fix": "Replace '2–3 orders' with '1–3 orders of magnitude (≈10× to ≈2500×, depending on the sample and reference)'. State that only the 30-nm samples exceed the oxide ANE materials' conductivity range."
+    },
+    {
+      "title": "Pt-thickness dependence of S_SSE is not consistent with the simple λ_s argument given the large σ^eff change",
+      "quote": "The 15-nm-thick Pt samples exhibited slightly higher SSSE than the 30-nm-thick Pt samples, qualitatively consistent with the typical Pt thickness dependence of",
+      "explanation": "In thin-film YIG/Pt with t ≫ λ_s, the ISHE field scales roughly as λ_s/(σ t). Doubling t (with similar σ) should then roughly halve E.\n\nHere, going from 15 to 30 nm, σ^eff increases by 5.9× (300 °C) and 4.1× (RT). Yet S_SSE decreases only by ~1.2×. In a shunting picture, the open-circuit field is the generated ISHE current divided by the network conductance. A 4–6× rise in conductance with nearly unchanged S implies the generated current also rose ~4–5×. That is not what a 'small λ_s' argument predicts.\n\nThe percolative composite clearly obeys different scaling (connectivity, fraction of active interfaces, current loops within the Pt network). Invoking the thin-film thickness dependence as qualitative support is therefore misleading.",
+      "type": "logical",
+      "severity": "moderate",
+      "suggested_fix": "Remove the appeal to thin-film λ_s scaling. Instead, report the ratio S(15)/S(30) together with σ^eff(30)/σ^eff(15), and state that the weak S dependence despite a 4–6× conductance increase indicates network/percolation effects that a thin-film model does not capture."
+    },
+    {
+      "title": "Isotropy does not discriminate SSE from other bulk transverse effects; sign consistency between geometries not discussed",
+      "quote": "This consistency supports the assignment of the signal to SSE, confirming both the directional isotropy of the system and its potential for energy harvesting applications.",
+      "explanation": "It is a nice result that the 30-RT sample gives nearly the same coefficient in both geometries (14.8 vs 14.4 nV/K). However, any transverse effect of the form E ∝ ∇T × M is expected to be isotropic in a macroscopically random composite, including ANE from a minority FM phase. The rotation test therefore establishes isotropy, not the SSE origin per se.\n\nThe sign is also not discussed. For a coefficient of fixed sign, E ∝ ∇T × M gives x̂ × ẑ = −ŷ for Hz–∇xT and ẑ × x̂ = +ŷ for Hx–∇zT. Yet both Fig. 3b and 3e show positive E_y at positive field. Whether this is consistent depends on the electrode polarity and ∇T sign conventions, which are not specified. Agreement in sign as well as magnitude would be a stronger consistency check.",
+      "type": "logical",
+      "severity": "moderate",
+      "suggested_fix": "State explicitly the voltage-polarity and ∇T sign conventions in both geometries and show that the signs agree with E ∝ ∇T × M. Rephrase the sentence to say that isotropy is a necessary consequence of a bulk-distributed mechanism rather than evidence specific to SSE."
+    },
+    {
+      "title": "Hx–∇zT measurement relies on a single gradient and an underspecified temperature-gradient determination",
+      "quote": "The Hx-∇𝑧𝑇 configuration was conducted in a similar manner, with the 30-RT sample bridged by two Cu blocks to apply a z-directional temperature gradient",
+      "explanation": "The isotropy claim rests on comparing 14.4 nV/K (Hx–∇zT) with 14.8 nV/K (Hz–∇xT). The rotated-geometry value comes from a single ∇zT = 2.64 K/mm (Fig. 3e), with no linear-in-∇T check of the kind shown in Fig. 3c.\n\nThe Cu-block bridge uses adhesive thermal tapes. The paper does not say where the thermocouples sit, how the in-plane gradient across the sample length is obtained, or how tape and contact drops are handled. The authors themselves note that interfacial drops bias S. The geometry also differs (sapphire sandwich vs Cu bridge with tape), so the ~3% agreement may partly be fortuitous.\n\nSample dimensions (L_x, L_y, L_z) for either SSE measurement are not given.",
+      "type": "technical",
+      "severity": "moderate",
+      "suggested_fix": "Add E_y^sat versus ∇zT for at least 3–4 gradients in the Hx–∇zT geometry. Specify the thermocouple locations and the distance used to compute ∇zT, and list the sample dimensions for both configurations."
+    },
+    {
+      "title": "Configuration label typo in the isotropy comparison",
+      "quote": "consistent with that obtained in the Hx-∇𝑧𝑇 configuration (Figs. 3c and S5)",
+      "explanation": "The value 14.4 nV/K is itself the Hx–∇zT result. The comparison, as the cited Figs. 3c and S5 indicate, is with the Hz–∇xT configuration. As written, the sentence compares the measurement with itself, which could confuse readers on the paper's key isotropy test.",
+      "type": "technical",
+      "severity": "minor",
+      "suggested_fix": "Change 'Hx-∇zT configuration (Figs. 3c and S5)' to 'Hz-∇xT configuration (Figs. 3c and S5)'."
+    },
+    {
+      "title": "Magnetization-decrease argument against FM secondary phases is not quantified",
+      "quote": "In contrast, we observe a decrease in saturation magnetization upon the deposition of paramagnetic Pt (Fig. 3f)",
+      "explanation": "The logic is reasonable in principle: Fe-based FM phases have higher Ms than YIG, so their presence would raise Ms. However, Pt simultaneously dilutes the YIG moment, so a net decrease does not exclude a small FM fraction.\n\nFor example, ~1 wt% Fe3O4 would add only ~3% to Ms, easily masked by a Pt mass fraction of ~5–15%. A rough estimate for 15–30 nm shells on few-μm particles, using Pt's density of 21.45 g/cm³, gives that order.\n\nFig. 3f also appears to show similar Ms for the 15- and 30-nm samples, although the Pt mass fraction should differ by ~2×. This is not discussed. Only if the measured decrease matches the expected Pt dilution does the argument become quantitative.",
+      "type": "logical",
+      "severity": "moderate",
+      "suggested_fix": "Estimate the Pt mass fraction for each sample (e.g., from deposited Pt mass or EDX/ICP). Compare the expected diluted Ms, M_YIG(1−w_Pt), with the measured Ms, and give an upper bound on any FM impurity fraction consistent with the residual."
+    },
+    {
+      "title": "Quoted YIG Ms (37.9 emu/g) inconsistent with room-temperature value and with Fig. 3f axis",
+      "quote": "YIG (37.9 emu/g) exhibits much lower values than those of common Fe-based FMs",
+      "explanation": "37.9 emu/g corresponds to 5 μ_B per Y3Fe5O12 formula unit, i.e., the T → 0 value. At 300 K, the temperature of the SQUID measurements and of the comparison Fe-oxide values, YIG's Ms is ≈27–28 emu/g.\n\nFig. 3f plots the YIG single crystal saturating near ~0.027 'emu/g', three orders of magnitude below either number. The y-axis is likely raw moment in emu, or the normalization is off. As shown, a reader cannot verify the Ms comparisons or the claimed Pt-induced decrease in absolute terms.",
+      "type": "technical",
+      "severity": "minor",
+      "suggested_fix": "Use the room-temperature YIG Ms (~27–28 emu/g) in the comparison. Correct the Fig. 3f/S6 axis to mass-normalized values (or relabel it as 'emu' and give the sample masses)."
+    },
+    {
+      "title": "Duplicate PDF card number and inconsistent Cu-Kα wavelength in the XRD analysis",
+      "quote": "FePt: PDF#43-0661",
+      "explanation": "PDF#43-0661 is assigned both to Y2O3 (Fig. S3a legend and Note S2) and to FePt (Fig. S3b and Note S2). One assignment must be wrong. Since the FePt reference lines are the basis for excluding an FM metallic phase, the wrong card would undermine that exclusion.\n\nIn addition, the Methods use λ(Cu-Kα) = 0.15406 nm for the angle conversion while Note S2 states 0.15418 nm. Note S2 also refers to the XRD data as 'Fig. S2' (which is the TEM figure) rather than Fig. S3.",
+      "type": "technical",
+      "severity": "minor",
+      "suggested_fix": "Give the correct, distinct ICDD card numbers for Y2O3 and FePt (e.g., L1₀/A1 FePt card as appropriate). Use a single Cu-Kα wavelength consistently, and change the 'Fig. S2' references in Note S2 to 'Fig. S3'."
+    },
+    {
+      "title": "Exclusion of parasitic contributions lacks a non-magnetic control and detection limits",
+      "quote": "Through rigorous signal and material characterization, we confirm that the observed signals originate purely from the SSE of YIG, with negligible parasitic contributions.",
+      "explanation": "The authors give several supporting arguments: XRD shows no FM phases, magnetization shows a single loop, Hall data are linear, and literature indicates a negligible YIG/Pt proximity effect. Each is qualitative.\n- XRD typically cannot detect phases below ~1–5 wt%, or nm-thick interfacial phases at a Pt/YIG interface formed on crushed (damaged) crystal surfaces.\n- No detection limit is given for the Hall test against the ~±100 nV scatter in Fig. 3e.\n- The α-Fe2O3/YFeO3 discussion states that their formation 'could not be distinguished' by XRD, so they are not excluded.\n\nThe most direct control would be an identically processed Pt-coated non-magnetic insulator composite, e.g., GGG or Al2O3 powder. Such a control would rule out Pt-intrinsic or processing-related field-odd signals. Overlaying E_y(H) with M(H) measured on the same piece would also strengthen the case. 'Confirm… purely' is stronger than the evidence supports.",
+      "type": "logical",
+      "severity": "moderate",
+      "suggested_fix": "Add a measurement on a GGG–Pt (or Al2O3–Pt) composite prepared identically, and overlay normalized E_y(H) and M(H) for the same sample. Otherwise, soften the wording to 'consistent with SSE of YIG, with no detectable parasitic contribution within the stated XRD/Hall sensitivity'."
+    },
+    {
+      "title": "Nominal Pt thicknesses and logic linking thickness to continuity",
+      "quote": "ensuring clear observation of the SSE without discontinuities in the Pt channels",
+      "explanation": "Two issues arise.\n\nFirst, the 15- and 30-nm thicknesses are not measured. The Methods state they are 'labeled based on the corresponding deposition durations', extrapolated from the 1 h/5 nm sample. On tumbling powders, the deposited thickness depends on the total powder surface area, batch mass and particle-size distribution, none of which are given. Shadowing during tumbling also makes coverage heterogeneous.\n\nSecond, the sentence ties being 'well above λs' to the absence of discontinuities. Continuity is governed by the island-to-film threshold (~5 nm, Fig. S2), not by λ_s. Being well above λ_s actually reduces S through shunting by inactive Pt.",
+      "type": "technical",
+      "severity": "moderate",
+      "suggested_fix": "Report the powder batch mass and particle-size distribution, and measure the actual Pt thickness/coverage on the 15- and 30-nm powders by TEM or EDX/ICP. Rephrase the sentence to: 'both above the ~5 nm continuity threshold (Fig. S2), although well above λ_s, which implies some shunting'."
+    },
+    {
+      "title": "Single sample per condition; sample-to-sample variability unknown",
+      "quote": "All properties reported in this study were measured from samples prepared in a single batch.",
+      "explanation": "The paper draws trends from four samples, one per condition: RT pressing yields ~2× higher S than 300 °C, and PF varies by 630%, 'strongly suggesting the importance of optimizing the Pt thickness and sintering conditions'. Pressed powder composites with 67–75% density and percolating Pt networks can show substantial pellet-to-pellet variation in σ and S. Without repeats, it is unclear whether the differences reflect the processing variables. The origin of the lower S after 300 °C pressing is also not discussed.",
+      "type": "logical",
+      "severity": "moderate",
+      "suggested_fix": "Report σ^eff and S_SSE for at least two independently pressed pellets per condition, with a standard deviation. If that is not possible, state explicitly that the trends are based on a single pellet per condition and remove the 'strongly suggesting' language."
+    },
+    {
+      "title": "Particle size, pressing duration and geometry are missing although central to the concept",
+      "quote": "The initial YIG powders were prepared by crushing YIG single crystals (Ferrisphere Inc.).",
+      "explanation": "The trans-scale concept hinges on grain size relative to λ_m (~10 μm) and on the Pt shell fraction, yet several parameters are not reported:\n- the powder particle-size distribution (sieving or measured distribution);\n- the powder batch mass per sputtering run;\n- the pressing dwell time;\n- the final pellet and cut-sample dimensions.\n\nWithout these, the work is not reproducible, the Pt volume fraction cannot be estimated, and there is no way to relate S to the λ_m argument of Fig. 1d.",
+      "type": "technical",
+      "severity": "moderate",
+      "suggested_fix": "Add the particle-size distribution (e.g., D10/D50/D90 from SEM or laser diffraction), the powder mass per sputtering run, the pressing dwell time, and the dimensions of each measured specimen to the Methods."
+    },
+    {
+      "title": "Low κ attributed to interfacial phonon scattering without considering pressed-powder contact resistance",
+      "quote": "cannot be attributed solely to the relative density (e.g., 75% for 30-RT) and might be due to enhanced phonon scattering at the YIG/Pt interface",
+      "explanation": "The κ values are internally consistent: D·c_p·ρ reproduces 1.46–1.87 W/mK. However, the reasoning implicitly assumes a simple porosity scaling. In cold- or warm-pressed, unsintered powders, heat transport is limited by the small particle–particle contact areas (constriction resistance), which can reduce κ far below porosity-based estimates (Maxwell–Eucken gives ~0.67 for 25% porosity).\n\nThe relative density is also computed against YIG alone (5.11 g/cm³), ignoring the Pt contribution to the theoretical density. This overstates densification, especially for the 30-nm samples. Interfacial phonon scattering is therefore one of several possibilities and is speculative as stated.",
+      "type": "logical",
+      "severity": "minor",
+      "suggested_fix": "Compute the theoretical density including the estimated Pt fraction. Mention grain-contact constriction in unsintered pressed powders as an alternative explanation alongside interfacial phonon scattering."
+    },
+    {
+      "title": "'Bad metal' label and 'robust mechanical integrity' are not well supported",
+      "quote": "all of which fall within the “bad metal” regime",
+      "explanation": "'Bad metal' (as in ref. 50) refers to an intrinsic electronic phase whose resistivity exceeds the Mott–Ioffe–Regel limit, typically ρ ~ 10⁻⁵ Ωm (σ ~ 10⁵ S/m). The composites (σ ~ 10²–10³ S/m) are two to three orders below that. Their conductivity is also extrinsic, arising from a percolating network of good-metal Pt.\n\nSimilarly, the abstract's 'robust mechanical integrity' is asserted without any mechanical test; only 67–75% density and crack-free pellets are mentioned.",
+      "type": "logical",
+      "severity": "minor",
+      "suggested_fix": "Describe the conductivity as 'semiconductor-like effective conductivity arising from a percolating Pt network' instead of 'bad metal'. In the abstract, replace 'robust mechanical integrity' with 'mechanically self-supporting pellets' unless mechanical data are added."
+    }
+  ]
+}

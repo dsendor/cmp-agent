@@ -1,0 +1,117 @@
+{
+  "overall_feedback": "The paper presents ARPES and DFT data on Co1/4TaSe2, a layered intercalated TMD with type-A AFM order and T_N = 178 K. It argues that the material is a g-wave altermagnet and reports momentum-resolved signatures of spin splitting along Γ′–M′ at k_z ≈ π/2c. The symmetry argument (opposite-spin Co sites related by a mirror rather than by inversion or translation) is reasonable, and the material is an interesting addition to the small set of experimentally studied altermagnets. However, the central experimental claim is not well supported by the evidence shown:\n- The DFT splitting quoted in the text (~0.01 Å⁻¹) is nearly an order of magnitude smaller than the splitting extracted from the MDC fit (~0.09 Å⁻¹).\n- The quoted instrumental peak width (~0.08 Å⁻¹) is inconsistent with the stated 0.1° angular resolution.\n- The photon-energy-to-k_z assignments (48 eV → k_z ≈ 0, 55 eV → π/2c) are not justified by any inner potential. A free-electron final-state estimate suggests 48→55 eV spans close to a full π/c rather than π/2c, which would place 55 eV near a nodal plane.\n- No spin-resolved ARPES is presented. Statements about g-wave alternation and 'complete spin-polarization' of constant-energy contours therefore rest on the DFT overlay, not on measurement.\n\nThe temperature-dependent discussion also has problems. It compares only two temperatures without accounting for Fermi–Dirac broadening at 200 K. It describes the Γ′ pocket inconsistently (electron-like vs hole-like), and its conclusions (gap closing, Γ′ pocket closing, absence of precursor fluctuations) go beyond the data shown. The DFT methods omit key choices: SOC, U, the magnetic configuration used, and the computed moment. A more cautious framing, a quantitative and self-consistent splitting comparison, an explicit k_z calibration, and ideally spin-resolved data would substantially strengthen the work.",
+  "comments": [
+    {
+      "title": "DFT splitting (~0.01 Å⁻¹) is inconsistent with fitted ARPES splitting (~0.09 Å⁻¹)",
+      "quote": "The momentum separation between these Fermi crossings is about 0.01",
+      "explanation": "The text says the DFT momentum separation between the opposite-spin Fermi crossings of the dog-bone pocket is about 0.01 Å⁻¹. The Voigt fit of the 55 eV MDC (Fig. 2h) finds two peaks separated by ~0.09 Å⁻¹. I first wondered whether these quantities referred to different bands or different cuts. The text, however, identifies the MDC feature with the same dog-bone pocket near M′ and calls the result 'consistent with our DFT results'. A factor of ~9 discrepancy is not consistency. Either the measured double-peak structure is not the altermagnetic splitting predicted by DFT, or one of the numbers is misreported. This directly undermines the main claim of 'observation' of altermagnetic splitting.",
+      "type": "technical",
+      "severity": "major",
+      "suggested_fix": "Report the DFT splitting at E_F along the exact measured cut (including k_z broadening) alongside the fitted ARPES value. If they truly differ by ~9×, drop the 'consistent with DFT' claim or identify an alternative origin for the second MDC peak."
+    },
+    {
+      "title": "Quoted instrumental momentum width contradicts stated angular resolution",
+      "quote": "The energy and angular resolution was set to 20 meV and 0.1",
+      "explanation": "At hν = 55 eV the kinetic energy is roughly 50 eV. An angular resolution of 0.1° then corresponds to Δk ≈ 0.512·√50·(0.1·π/180) ≈ 0.006 Å⁻¹. Later the paper states that the 'instrumental (Gaussian) peak width' is ~0.08 Å⁻¹, which corresponds to ~1.3° — an order of magnitude worse. It also says the 0.09 Å⁻¹ separation is 'close to the momentum resolution limit'. It is unclear how the 0.08 Å⁻¹ Gaussian width was determined; it may reflect intrinsic or k_z broadening rather than instrumental resolution. Fixing it in the Voigt fit strongly affects whether two peaks are needed. Fitting two components separated by about one Gaussian width to a weak shoulder is a fragile basis for the central claim.",
+      "type": "technical",
+      "severity": "major",
+      "suggested_fix": "State how the 0.08 Å⁻¹ Gaussian width was obtained (e.g., from a reference spectrum or a free parameter). Report fit uncertainties and a statistical comparison (e.g., reduced χ² or F-test) of one- versus two-peak fits."
+    },
+    {
+      "title": "Photon energy to k_z mapping is unjustified and appears inconsistent with c = 12.45 Å",
+      "quote": "hν = 55 eV (kz ≈ π/2c) to 51 eV (kz ≈ π/4c)",
+      "explanation": "No inner potential or k_z calibration (e.g., a photon-energy scan) is given. With c = 12.45 Å, π/c ≈ 0.25 Å⁻¹. A free-electron final-state estimate (work function ~4.5 eV, V0 ~10–20 eV) gives a change in k_z of ~0.22–0.23 Å⁻¹ between 48 and 55 eV. That is close to a full π/c, not π/2c. If 48 eV is at k_z ≈ 0, then 55 eV would lie near k_z ≈ π/c, which the paper itself says is a nodal (spin-degenerate) plane. The roughly linear assignment 48/51/55 eV → 0/π/4c/π/2c is also inconsistent with the √(hν) dependence. Because the 'vanishing of splitting' at 48 eV is a key piece of evidence, the k_z assignment must be established.",
+      "type": "technical",
+      "severity": "major",
+      "suggested_fix": "Provide the photon-energy-dependent k_z map, the inner potential V0 used, and the resulting k_z values for 48, 51 and 55 eV (with the kz periodicity 2π/c). Revise the assignments if they do not hold."
+    },
+    {
+      "title": "Spin polarization and g-wave alternation are inferred from DFT, not measured",
+      "quote": "The spin-splitting of the Fermi surface shows clear\ng-wave symmetry with a six-fold alternation of the\nopposite-spin Fermi surfaces.",
+      "explanation": "The ARPES is not spin-resolved. The predicted splittings (~0.01 Å⁻¹) are far below what can be distinguished in the Fermi-surface maps of Fig. 2(a–d). Statements about six-fold alternation, 'complete spin-polarization' of the -150 meV contour, and 'open spin-split pockets crossing the K′ point' therefore describe the red/blue DFT overlay, not the data. Presenting these as observations overstates what is experimentally shown. The only experimental evidence is a broadening or shoulder in spin-integrated MDCs, which can also arise from k_z broadening, matrix elements, or nearby non-magnetic bands.",
+      "type": "logical",
+      "severity": "major",
+      "suggested_fix": "Rephrase these sentences to attribute the spin texture to the DFT calculation. Present the experimental evidence as spin-integrated broadening consistent with the predicted splitting, or add spin-resolved ARPES along Γ′–M′ versus Γ′–K′."
+    },
+    {
+      "title": "Susceptibility alone cannot 'confirm' type-A order",
+      "quote": "Magnetic susceptibility measurements confirm type-A antiferromagnetic ordering",
+      "explanation": "Fig. 1(d) shows a cusp/suppression at 178 K with FC/ZFC divergence. This establishes an AFM-like transition but not the specific type-A stacking or the c-axis moment direction. The main text correctly attributes the magnetic structure to prior neutron work [41]. The abstract claim is stronger than the data in this paper support. The FC/ZFC bifurcation and the upturn at low T are also not discussed.",
+      "type": "logical",
+      "severity": "minor",
+      "suggested_fix": "Change to 'Magnetic susceptibility measurements show an antiferromagnetic transition at T_N = 178 K, consistent with the type-A order determined by neutron diffraction [41]'."
+    },
+    {
+      "title": "Γ′ pocket described as both electron-like and hole-like",
+      "quote": "The red box in Fig. 3(c) shows the band forming the small hole-like pocket around the Γ′ point.",
+      "explanation": "Earlier the Fermi surface description says it 'is described by a small electron-like pocket surrounding the Γ′ point'. Here the same Γ′ pocket is called hole-like. The interpretation of the temperature change depends on this: a 'downward shift away from E_F' removes a hole pocket from E_F but would enlarge an electron pocket. The conclusion's 'closing of the small Γ′ pocket' therefore rests on an ambiguous identification.",
+      "type": "technical",
+      "severity": "moderate",
+      "suggested_fix": "Determine the carrier character from the dispersion (and DFT) and use it consistently. Then re-state whether the observed intensity loss implies the pocket sinking below E_F or shrinking."
+    },
+    {
+      "title": "Temperature-dependent conclusions overstate two-temperature data",
+      "quote": "shows the suppression of the spectral intensity at the Fermi energy, potentially indicating",
+      "explanation": "Only 7 K and 200 K are compared. At 200 K the Fermi–Dirac width (~4k_BT ≈ 70 meV) alone redistributes and suppresses intensity near E_F. There is no indication that spectra were divided by the resolution-broadened Fermi function. The text hedges with 'potentially', yet the abstract and conclusion make stronger claims. These include 'closing of energy gaps' (no gap is identified or quantified), 'closing of the small Γ′ pocket', and 'vanishing of the altermagnetic spin-splitting' at high temperature. The narrower band at 200 K could also reflect thermal and matrix-element changes rather than loss of splitting.",
+      "type": "logical",
+      "severity": "moderate",
+      "suggested_fix": "Divide the 7 K and 200 K spectra by the resolution-convolved Fermi–Dirac function before comparison, quantify any gap (EDC leading edge or symmetrized EDCs) and pocket size at both temperatures, and limit the abstract/conclusion to what those quantities show."
+    },
+    {
+      "title": "Claims about precursor fluctuations and RKKY hybridization are unsupported",
+      "quote": "The absence of strong precursor fluctuations above TN suggests",
+      "explanation": "With measurements only at 7 K and 200 K, no statement about precursor fluctuations near T_N can be made. Likewise, the claims that 'RKKY-mediated coupling ... results in band hybridization features appearing below T_N' and 'momentum-selective gap openings' are not linked to any specific feature or analysis in the figures. This paragraph reads as speculation presented as a conclusion.",
+      "type": "logical",
+      "severity": "moderate",
+      "suggested_fix": "Either add temperature-dependent data across T_N (e.g., 150, 170, 185 K) showing the evolution of a specific feature, or remove the sentence on precursor fluctuations and label the RKKY/hybridization picture as a hypothesis."
+    },
+    {
+      "title": "Broadening as evidence of splitting is not quantified and has alternative causes",
+      "quote": "gradual broadening of the spectral intensity corresponding to the gradual separation of the spin-split bands",
+      "explanation": "Fig. 2(f,g) indicates broadening only by a hand-drawn 'white line' of approximate width. MDC widths can change with cut direction and photon energy for many reasons: varying band velocity, k_z broadening (which depends on k_z dispersion), and orbital matrix elements. The 48 eV comparison is also made at a different photon energy with different matrix elements. Without fitted widths and a control band that DFT predicts to be spin-degenerate along the same cuts, the trend cannot be attributed to altermagnetic splitting.",
+      "type": "logical",
+      "severity": "moderate",
+      "suggested_fix": "Plot fitted MDC FWHM versus rotation angle and photon energy for the dog-bone band and for a DFT-degenerate control band. Overlay the DFT-predicted splitting convolved with resolution."
+    },
+    {
+      "title": "DFT methodology underspecified",
+      "quote": "A 9×9×4 k-point mesh was utilized for Brillouin zone sampling",
+      "explanation": "Several choices that determine the splitting are not stated:\n- whether spin–orbit coupling was included (relevant given Ta 5d);\n- whether a Hubbard U was applied on Co;\n- which magnetic configuration and moment direction were imposed;\n- the resulting Co moment, to compare with the 1.35 μB neutron value;\n- any Fermi-level shift used for the overlay.\nThe lattice values used (c = 12.47 Å) also differ slightly from the quoted experimental c = 12.4535 Å, despite being described as experimental. These omissions prevent reproduction of the predicted ~0.01 Å⁻¹ splitting.",
+      "type": "technical",
+      "severity": "moderate",
+      "suggested_fix": "State the SOC setting, the U value (or U = 0), the imposed type-A configuration with c-axis moments, the computed Co and Ta/Se moments, and any rigid shift of E_F applied when overlaying on ARPES."
+    },
+    {
+      "title": "Uniqueness claim contradicts discussion of Co1/4NbSe2",
+      "quote": "is unique among the discussed altermagnetic materials",
+      "explanation": "The introduction discusses Co1/4NbSe2 at length as a layered, intercalated van der Waals TMD in which altermagnetic splitting was reported by DFT and ARPES [38, 40]. Claiming that Co1/4TaSe2 is unique due to its layered vdW structure contradicts this.",
+      "type": "logical",
+      "severity": "minor",
+      "suggested_fix": "Restrict the comparison to MnTe and CrSb, or state that Co1/4TaSe2 joins Co1/4NbSe2 as a layered vdW altermagnet, distinguished by its stronger Ta 5d SOC and higher T_N."
+    },
+    {
+      "title": "Internal tension between 'well localized' moments and itinerant explanation",
+      "quote": "Our DFT calculations show that magnetic moments are well localized on Co, with only about 10% of the opposite-sign magnetization generated in the TaSe2 layers",
+      "explanation": "The same sentence says the moments are 'well localized' and that the reduced moment arises from Co forming an itinerant band. It then cites neutron data showing 'no magnetization on other atoms' as support ('Indeed'), although DFT predicts ~10% induced moment on TaSe2. The DFT Co moment itself is never given, so the reader cannot judge agreement with the 1.35 μB neutron value.",
+      "type": "logical",
+      "severity": "minor",
+      "suggested_fix": "Report the DFT Co moment and induced Ta/Se moments numerically. Describe the induced TaSe2 moment as below neutron sensitivity rather than as confirmed by the neutron data."
+    },
+    {
+      "title": "Incorrect figure reference for high-temperature diamonds",
+      "quote": "(gray diamonds in Fig. 2(d))",
+      "explanation": "The high-temperature Γ′–M′ cut with gray diamonds is Fig. 3(d); Fig. 2(d) is a constant-energy contour at -150 meV. This could confuse readers trying to locate the evidence for the narrowed band above T_N.",
+      "type": "technical",
+      "severity": "minor",
+      "suggested_fix": "Change to '(gray diamonds in Fig. 3(d))'."
+    },
+    {
+      "title": "'Two peaks of similar width' fit lacks reported amplitudes and uncertainties",
+      "quote": "where we find two peaks of similar width separated by ∼ 0.09",
+      "explanation": "Fig. 2(h) shows a dominant peak and a much weaker shoulder component. Two opposite-spin bands of the same pocket would be expected to have comparable spectral weight. A strongly unequal amplitude ratio needs explanation, for example matrix elements or a different band. No fit parameters, amplitude ratio, or uncertainties are given.",
+      "type": "technical",
+      "severity": "minor",
+      "suggested_fix": "Tabulate the fitted positions, widths, and amplitudes with uncertainties for both components, and comment on the amplitude ratio."
+    }
+  ]
+}

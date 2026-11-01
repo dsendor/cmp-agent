@@ -1,0 +1,158 @@
+# Referee Report
+
+**Manuscript:** "Resolving the Bulk-Boundary Correspondence Paradox on Low-Symmetry Surfaces of Weyl Semimetals" (Li, Yang et al., arXiv:2509.10106)
+
+---
+
+## 1. Summary of the submission
+
+The authors report ARPES measurements on a cut-and-cleaved (103) facet of the noncentrosymmetric Weyl semimetal NdAlSi. They compare the data with semi-infinite surface Green's function calculations and six-layer slab calculations. They make four main claims:
+
+1. **A BBC paradox.** On the (103) surface, the surface Brillouin zone (SBZ) periodicity followed by surface states is incommensurate with the projected bulk BZ. They argue this creates an apparent breakdown of the bulk-boundary correspondence (BBC).
+2. **A resolution and a universal criterion.** Including projections from higher-order bulk BZs produces shifted replicas that form a "momentum-space moiré" superlattice commensurate with the SBZ. They formalize this as an "LCM criterion," N_min = lcm[den(a₁), den(a₂)], with N_min = 3 for (103). They also find an emergent "new SBZ" one third the size of the "theoretical SBZ," which matches experiment.
+3. **A new experimental route to surface-bulk resonance states (SBRSs).** Disorder suppresses coherent surface states and acts as a filter that exposes "surface-bulk projected states" (SBPSs) and SBRSs.
+4. **Surface Fermi arc loops (SFALs).** Fermi arcs "from different bulk BZs" may hybridize into closed loops, which would relax the equality between the Chern number on a loop and the enclosed chiral charge.
+
+The experimental effort is real. ARPES on a non-natural, high-index facet of an RAlSi compound is difficult, and the comparison of eight terminations is useful. However, I believe the central conceptual claim (items 1–2) rests on an incorrect construction of the surface Brillouin zone. Once the SBZ is constructed correctly, the "paradox" does not arise. Several downstream claims (items 2 and 4, and the slab vs. Green's function interpretation) inherit this problem. Some statements about topology also conflict with established theorems. I cannot recommend publication in the present form.
+
+---
+
+## 2. Major issues
+
+### 2.1 The "paradox" comes from using a non-primitive surface reciprocal basis
+
+**The standard result.** For any rational facet (hkl), the 2D reciprocal lattice of the surface is exactly the orthogonal projection of the 3D bulk reciprocal lattice onto the surface plane. The proof is short:
+
+- For any in-plane lattice translation **t**, PG·**t** = G·**t** ∈ 2πℤ, so every PG belongs to the surface reciprocal lattice.
+- Conversely, every surface reciprocal vector is the projection of some bulk reciprocal vector.
+
+Two consequences follow:
+- Bulk states at fixed **k**∥, integrated over k⊥, are automatically SBZ-periodic.
+- Every bulk Weyl point W folds to a unique point in the SBZ, because P(W+G) = PW + PG.
+
+There is therefore no mismatch to resolve. The "shadow" of the 3D Wigner–Seitz polyhedron (pink lines) is simply not a unit cell of the projected lattice for generic facets. This is well known from projected bulk band structures of high-index and vicinal surfaces.
+
+**What the authors' own formula shows.** In SM Section 6 the authors choose g₁ = Pb₁, g₂ = Pb₂ as "the surface-BZ primitive basis," and then find Pb₃ = −(1/3)g₁. This means Pb₁ and Pb₂ do *not* span the projected lattice. They span an index-3 sublattice, and the true primitive vector along that direction is Pb₃ = g₁/3. The "new SBZ whose period along k∥ is one third of the theoretical SBZ" is therefore just the correct SBZ. The "theoretical SBZ" (purple lines) is three times too large.
+
+**A check with the numbers in the paper.** I estimated the SBZ using a = 4.204 Å, c = 14.519 Å, and the body-centred tetragonal (I4₁md) lattice:
+
+- In-plane primitive translations of the (103) plane are **t₁** = (0, a, 0) and **t₂** = (−3a/2, a/2, c/2). The latter is a lattice vector, (−2a,0,0) + (a/2,a/2,c/2), and is orthogonal to the (103) normal.
+- The component of **t₂** perpendicular to **t₁** has length ½√(9a² + c²) ≈ 9.62 Å.
+- The resulting 2D lattice is centred-rectangular. Its SBZ is an elongated hexagon with:
+  - flat edges at k∥ = ±π/9.62 ≈ ±0.33 Å⁻¹;
+  - vertices near k_y ≈ ±0.75–0.85 Å⁻¹.
+
+As far as I can read from the axes, this matches the green "experimental SBZ" in Figs. 1c, 1e and 2. The purple "theoretical SBZ" in Fig. 4 spans k∥ ≈ ±1 Å⁻¹, which is three times larger (3 × 0.65 ≈ 1.96 Å⁻¹).
+
+**What this means for the paper's claims.** The experimental periodicity is exactly what elementary surface crystallography predicts. The following are artefacts of the basis choice and should be removed:
+- the "LCM criterion";
+- the "2π/3 phase between three nonequivalent surface unit cells";
+- the "momentum-space moiré."
+
+**Specific requests:**
+- (i) Construct the SBZ directly from the 2D lattice of translations parallel to the (103) plane, and overlay it on Figs. 1, 2 and 4.
+- (ii) Fold all bulk Weyl points from the *first* BZ into this SBZ, and show that the result matches Fig. 4d.
+- (iii) Explain the statement that the purple SBZ is "determined by the (103) cross section of half a primitive unit cell." An SBZ is defined by the in-plane translation lattice, not by a cross-section of a 3D cell.
+
+The redefinitions in SM Sec. 6 ("we identify 2SBZ′ as the (redefined) SBZ and set g₁ ≡ 2g₁′ … b₁ ≡ 2b₁′, b₃ ≡ 2b₃′ … so that 'three bulk projections match one surface unit' remains valid") rescale basis vectors in order to preserve a desired conclusion. This is a symptom of the same problem.
+
+### 2.2 Errors in the general formalism (SM Sec. 6)
+
+- **The closed form is not restricted to orthogonal lattices.** The authors say a₁ = −h/l, a₂ = −k/l holds only for orthogonal lattices. In fact it holds for *every* lattice and every metric. Since G = hb₁ + kb₂ + lb₃ is normal to the plane, PG = 0, which gives Pb₃ = −(h/l)Pb₁ − (k/l)Pb₂ directly.
+- **Irrational coefficients cannot occur.** It follows that the coefficients are always rational. The claim that non-orthogonal lattices (hexagonal, monoclinic, …) can give irrational aᵢ and N_min = ∞ is incorrect for any crystal facet with integer Miller indices. N_min is simply the index of the sublattice spanned by Pb₁ and Pb₂, which equals |l| for a primitive basis and coprime indices. It is not a new criterion.
+- **Exact reconstruction does not require infinitely many BZs.** The claims that "exact spectral reconstruction is achieved only in the infinite-projection limit" and that "no finite cutoff can fully capture all projected Weyl points" are incorrect. At fixed **k**∥, the line **k**∥ + s**n̂** is periodic with period |G_normal|, the shortest reciprocal vector along the normal. Integrating over one period gives the exact projection. Likewise, the set of projected Weyl points modulo the surface reciprocal lattice is finite and is fully obtained from the first BZ.
+- **The M_min^(adj) = 2N_min argument is ill-posed.** It compares truncated sets of BZ copies, but copies of the same bulk BZ carry identical (gauge-periodic) information. This also undercuts the quasicrystal analogy in Sec. 8.
+- **Crystallographic misstatements.**
+  - NdAlSi is body-centred *tetragonal*, not "body-centred cubic."
+  - The reflection condition for I-centring is h+k+l = 2n. "All-even/all-odd" is the F-centring rule.
+
+### 2.3 Fermi arcs "from different bulk BZs," SFALs, and the Chern-number claim
+
+- **There are no distinct arcs per bulk BZ.** Surface states are eigenstates of the semi-infinite Hamiltonian at a given **k**∥ in the (correct) SBZ. Translating by a bulk reciprocal vector does not produce a new arc; it produces the same state. So "arcs originating from different bulk zones" that "hybridize" (main text, Fig. 4g; SM Sec. 7) do not exist as separate objects. Fig. 4g is described as schematic, but the main-text conclusions rely on this picture.
+- **The Chern-number relation is a theorem.** The statement that "the strict equality between the Chern number enclosed by a surface loop and the net projected chiral charge is relaxed" contradicts it. For any closed loop in the SBZ that avoids projected bulk states, the signed count of surface-state crossings equals the net chirality of the Weyl points projecting inside (Belopolski et al., PRL 116, 066802, which the authors cite). Hybridization cannot change this.
+  - A closed surface contour that encloses zero net chirality is simply a topologically trivial surface state. Such states are common and are not a new boundary topology "inaccessible on high-symmetry facets."
+  - The paper should either drop the "relaxed equality" claim or provide a concrete model calculation showing a violation. I do not believe one exists.
+- **SFAL identification is not demonstrated.** In Fig. S15 the caption states that loop cuts L1–L4 "indicate nonzero Chern number." No signed crossing count is shown, and no enclosed projected chirality is tabulated. Please:
+  - show the Fermi-velocity sign at each crossing along each loop;
+  - list the projected Weyl points (with chirality, after correct folding) inside each loop;
+  - compare the two.
+
+  The main text appropriately concedes that SFALs remain unproven, but the abstract ("experimental results further suggest…") overstates the evidence.
+- **Energies of the Weyl points.** Please state where the relevant Weyl points (W1/W2/W3 families) lie relative to E_F in the paramagnetic phase. Then justify that the constant-energy contours at E_F are the right place to look for arcs.
+
+### 2.4 Interpretation of slab vs. Green's function calculations
+
+The claim is that finite slabs "truncate the bulk projections" and miss SBPSs specifically because the facet is low-symmetry. Meanwhile, Green's functions "include contributions from infinitely many bulk BZs." Neither characterization is accurate:
+
+- A slab built with the correct 2D in-plane cell has exactly the same in-plane periodicity as the semi-infinite system.
+- A **six-layer** slab gives poor agreement because it is very thin. Its k⊥ quantization is coarse, and states on the top and bottom surfaces hybridize. This is generic and unrelated to facet symmetry.
+- The comparison is also unbalanced: 36 layers are used for (001) but 6 for (103).
+
+To support any facet-dependent conclusion, the authors should show convergence of the (103) slab with thickness, for example 6, 20 and 40 layers.
+
+Additional methodological details are needed for the Green's function calculation:
+- the tight-binding/Wannier model (projections, disentanglement windows, quality of the band fit);
+- the principal-layer definition for (103);
+- the broadening used.
+
+The phrase "SOC included as a second-order perturbation" is unusual for VASP and should be clarified. A 6×6×6 k-mesh is coarse for a semimetal and should be justified. Refs. [48, 49] (DFPT, Quantum ESPRESSO) are cited but not used anywhere in the text.
+
+### 2.5 Surface preparation and characterization
+
+(103) is not a natural cleavage plane of RAlSi, which cleave along (001). The surface was produced by diamond-wire cutting, a pre-cut, and an in-situ "controlled cleavage." The data shown do not establish that the result is a flat, well-ordered (103) surface:
+
+- XRD (Fig. 1d) confirms the bulk orientation of the cut. It says nothing about surface flatness, faceting, or termination.
+- Please provide LEED (ideally with the expected centred-rectangular pattern) and/or STM or AFM. Also give the miscut angle and the spatial extent of the "flat" vs. "uneven" regions relative to the 10–50 µm beam spots.
+- Microfaceting into low-index terraces such as (001) or (101) must be ruled out explicitly. Facets would produce superposed, tilted Fermi surfaces and could mimic or distort periodicities.
+- The XPS (Fig. S2) shows an additional Si 2p shoulder and a broadened Al 2p line on the uneven surface. This suggests chemically modified sites, not merely structural disorder. The statement that termination is "unchanged" should be softened or supported quantitatively.
+- The measurements were taken at 8 K (I05) and 18 K (Bloch). T_N of NdAlSi is ≈ 7 K, so the I05 data are close to the transition. Please comment on possible short-range order or fluctuation effects. "Curie temperature" should also be replaced with the appropriate transition.
+
+### 2.6 The SS / SBPS / BS / SBRS classification and the "disorder filter"
+
+The four-way classification is central to the claimed "new experimental strategy," but the operational criteria are not internally consistent.
+
+- **Photon-energy independence does not discriminate.** By the authors' own definition, SBPSs are k⊥-integrated bulk weight and are also photon-energy independent (Figs. S4, S6). Yet photon-energy independence is used in Fig. S1 to assign features to surface states. This test cannot separate SSs from SBPSs; only linewidth and disorder sensitivity remain.
+- **The disorder ordering is unexplained.** Moderate disorder supposedly reveals k⊥-integrated SBPSs, while *strong* disorder reveals k⊥-dispersive bulk states (Fig. 3e shows clear k⊥ modulation on a "strongly disordered" surface). Physically, increasing disorder should shorten coherence and *increase* k⊥ broadening. The authors need a mechanism, or should consider that the "strongly disordered/uneven" regions differ in some other way, such as facet orientation or a different exposed plane.
+- **The selection logic is circular.** Surface resonances (SBRSs) also have enhanced surface weight, so the same disorder should suppress them too. "Disorder suppresses surface weight" therefore cannot by itself isolate SBRSs. A quantitative criterion is needed, such as linewidth vs. disorder, or a k⊥-dependence analysis with a stated inner potential.
+- **Novelty is overstated.** Using adsorbates or disorder to quench surface states and expose bulk/resonant features is well established, including in the authors' own Ref. [15]. The terms "SBPS" and "SBRS" largely rename projected bulk continua and surface resonances. The claim of "direct and unambiguous identification … a new experimental strategy" is too strong.
+- **The Fig. 1f evidence is weak.** A single-hν map samples a curved k⊥ surface through the bulk BZ, and bulk intensities are modulated by matrix elements. Such maps are *never* strictly SBZ-periodic, on (001) or any other facet. Fig. 1f therefore does not demonstrate an intrinsic "non-commensurability." Similarly, the green-box periodicity "extracted from (e)" should be determined quantitatively, for example by autocorrelation or FFT of the map.
+
+---
+
+## 3. Minor issues
+
+- Please state the inner potential used for the hν → k⊥ conversion and show the k⊥ path for Fig. 3. The photon-energy range is inconsistent: 125–195 eV in the text, 125–205 eV in the Fig. 3b caption, and ~80–240 eV in Fig. 3e.
+- Define the in-plane axes (k_y, k∥) with respect to crystallographic directions, and give the sample azimuth.
+- The terminations are described inconsistently: "Si-Al plane termination" and "four possible terminations" (Methods) vs. "Si-terminated surface cleaved at the Al-Si layer" and "four cleavage planes, eight terminations" (SM Sec. 4).
+- The Fig. 3 caption concedes that the boxed features "are not strictly identical." Denser sampling, or an explicit computation of the k⊥ period |G_normal|, would make the replica argument quantitative. With correct folding, it becomes trivial.
+- "BCC paradox" (p. 6) should read "BBC paradox."
+- Ref. [21] "SraAl4" should be SrAl₄.
+- Ref. [29] is PRB **94** (2016), not 2015.
+- SM ref. [3], cited for the lattice constants, is a different paper from the one implied.
+- Language is frequently promotional, e.g. "universal criterion," "inaugurate a new frontier," "never explored," "remarkable accuracy." Agreement between ARPES and DFT is asserted qualitatively throughout; quantitative comparisons (band positions, Fermi-level offset) would help.
+- "Perhaps typically preserving the canonical picture" (p. 7) is an unclear hedge.
+- The supplementary claim that slab-calculated surface states "often agree better with experiment than those from the Green's function method" for (001) needs support beyond self-citation.
+
+---
+
+## 4. Assessment and recommendation
+
+**What has value:**
+- the first ARPES data on a (103) facet of an RAlSi Weyl semimetal;
+- the termination survey (Fig. S8);
+- the observation that a semi-infinite Green's function reproduces the measured surface spectra.
+
+With proper surface characterization, these could support a solid, more modest paper on the electronic structure of a high-index facet.
+
+**What is not supported:**
+- The headline claims (an apparent BBC paradox, its resolution through a multi-BZ "LCM"/"moiré" construction, and a "universal criterion") follow from choosing Pb₁, Pb₂ as SBZ primitive vectors when they span only an index-3 sublattice of the projected reciprocal lattice.
+- The experimentally observed "new SBZ" is the conventional SBZ of the (103) surface.
+- The statements that crystal facets can require infinitely many BZs or irrational coefficients are incorrect.
+- The proposal that hybridization relaxes the loop-Chern-number/chirality equality conflicts with a theorem.
+
+**Recommendation:** Reject in current form, or major revision with a fundamental reframing. A revised version should:
+1. construct the (103) SBZ correctly and show that bulk Weyl-point folding from the first BZ reproduces the observed periodicity;
+2. remove or substantially recast the paradox/LCM/moiré narrative and the SFAL topology claims;
+3. add LEED/STM evidence of surface order and exclude microfaceting;
+4. provide a thickness-converged slab comparison and Wannier/Green's function details;
+5. demonstrate any topological arc assignment by explicit signed crossing counts around loops enclosing correctly folded projected Weyl points.

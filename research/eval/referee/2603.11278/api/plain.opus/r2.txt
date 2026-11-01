@@ -1,0 +1,157 @@
+# Referee Report
+
+**Manuscript:** "Pseudo Point Nodal Superconducting Gap in Spin-Triplet UTe₂" (Hosoi et al., arXiv:2603.11278)
+
+---
+
+## 1. Summary of the submission
+
+The authors report b-axis thermal conductivity κ_b on two molten-salt-grown UTe₂ crystals (RRR ≈ 410 and 350) down to ~50 mK, in zero field and in fields along a, b and c. Their main findings are:
+
+1. **Zero-field residual.** The residual κ_b⁰/T is negligible, with an upper bound of 0.0017 W/K²m. This is far below the universal line-node value of ≈0.054 W/K²m.
+2. **Zero-field temperature dependence.** κ_b/T decreases monotonically, roughly as T². It shows no sign of the low-temperature peak that the authors calculate for clean point nodes with non-unitary scattering (c = 0.15).
+3. **Weak field response.** The T → 0 field-induced enhancement is weak and anisotropic, smallest for H ∥ b.
+4. **Kink for H ∥ a.** A kink appears at H*/H_c2^a ≈ 0.015. Below it, H ∥ a and H ∥ b give similar responses in reduced field; above it, H ∥ a (H ⊥ j_Q) grows faster.
+
+The authors interpret the kink with a Doppler-shift model in which a finite gap minimum produces a "thermally insulating" ring in the vortex unit cell below H*. From this they infer Δ_min/Δ₀ ≈ 0.1 along b, a "pseudo point node." They conclude that UTe₂ is fully gapped in the ab-plane (A_u or B₁u), and that non-unitary mixed states are excluded.
+
+**Overall assessment.** The b-axis measurement is new and valuable. It is the configuration most directly sensitive to putative B₂u nodes, and it was previously unavailable because b-axis crystals were too small. The data appear to be of high quality, and a b-axis κ measurement on ultraclean crystals would be of broad interest.
+
+However, the central claims rest on:
+- a model-dependent argument about a peak that may lie largely outside the measured temperature window;
+- a zero-field temperature dependence that does not obviously match the authors' own gapped model;
+- a low-field kink defined by a handful of points without error bars;
+- a theoretical model whose central prediction (vanishing field response below H*) is not what is observed.
+
+Alternative explanations for a field scale H ~ (Δ_min/Δ₀)² H_c2 are not considered. The language ("definitively resolve," "excluding non-unitary mixing") substantially exceeds what is demonstrated. I recommend **major revision**.
+
+---
+
+## 2. Major concerns
+
+### 2.1 The zero-field T-dependence is not shown to be consistent with Δ_min ≈ 0.1Δ₀, and the phonon contribution is not separated
+
+With Δ₀ ≈ 4 K (as the authors take), Δ_min ≈ 0.4 K ≈ 0.2 T_c. Over the measured window (50–300 mK), Δ_min/T ranges from ~8 down to ~1.3.
+
+- **Expected behaviour.** In this window the quasiparticle contribution should be strongly activated. The pseudo-node curve in Fig. 2c is essentially zero below T/T_c ≈ 0.05 (≈ 0.1 K).
+- **Observed behaviour.** The data in Fig. 2b and its inset follow a nearly T² law in κ/T down to the lowest temperatures. Between ~0.1 and ~0.05 K they drop by roughly the factor of 4 expected from T². Activated behaviour with Δ_min ≈ 0.4 K would give a drop of order e⁴.
+
+So within the authors' own framework, the sub-100 mK signal cannot be quasiparticle-dominated. The obvious candidate is phonons: boundary-limited phonon conduction gives κ_ph/T ∝ T², exactly the observed form.
+
+Please address the following:
+
+- **Phonon estimate.** Provide an estimate of κ_ph using known sound velocities or the Debye temperature and the sample cross-section. Prior κ_a studies [29, 30] provide a template. Then decompose κ_b/T into quasiparticle and phonon parts.
+- **Direct fit.** Fit the data directly with an activated form plus a phonon term. Compare this with a pure power law and with the point-node calculation.
+- **Field insensitivity of phonons.** Reconsider the statement that "κ_ph is insensitive to magnetic fields." In clean superconductors, phonons scatter on vortices, and phonon–quasiparticle scattering changes with field. The 1 T suppression at 0.3 K therefore does not cleanly establish quasiparticle dominance at all temperatures.
+
+If phonons dominate below ~0.1 K, this does not necessarily invalidate the conclusion of a gap. It does, however, change which features of the data carry information about the gap.
+
+### 2.2 The "absence of a low-T peak" argument is window- and parameter-dependent
+
+Fig. 2c is offered as evidence against true b-axis point nodes, but it has several weaknesses.
+
+- **Peak position.** For Γ/Δ₀ = 0.002 and c = 0.15, the calculated peak lies at T/T_c ≲ 0.01, i.e. ~10–20 mK. This is below the 50 mK base temperature. Within the measured window the point-node curve shows only a shallow minimum followed by a rise. Its visibility in the data depends on its amplitude in absolute units, which is never shown.
+- **No comparison in physical units.** The calculation is plotted in units of κΔ₀/N₀v_F²T, while the data are in W/K²m. Please convert using the normal-state value and overlay theory and experiment on the same axes. For orientation, L₀/ρ₀ ≈ 1.4 W/K²m for sample #A, which agrees with the normalization in Fig. 3.
+- **Parameter justification.** Please justify Γ/Δ₀ = 0.002 from ρ₀, Δ₀ and v_F, and show the range of (Γ, c) over which the peak or minimum would be resolvable above 50 mK.
+- **Unitary-limit loophole.** The authors note that an ultraclean sample in the unitary limit (c → 0) would be consistent with the data. In that case point nodes give a finite, non-universal residual that can be very small for small Γ. This scenario is not quantitatively excluded. Please estimate the expected κ⁰/T for B₂u point nodes along j_Q in the unitary limit with your Γ, and compare it with the 0.0017 W/K²m bound.
+
+As it stands, the zero-field data alone do not discriminate between true and pseudo point nodes. The abstract and text should say so.
+
+### 2.3 The kink at H* is under-resolved and lacks uncertainty analysis
+
+The central experimental claim is the kink in Fig. 4b at H ≈ 0.015 H_c2^a ≈ 0.18 T.
+
+- **Few points, no error bars.** Only a few field points lie below the kink, and no error bars are given. Each κ⁰/T point is an extrapolation from ≥50 mK using a polynomial (Fig. 3).
+- **Signal size relative to uncertainty.** The absolute values involved (~0.002–0.005 × (κ/T)_N, i.e. ~0.003–0.007 W/K²m) are comparable to the zero-field residual upper bound (0.0017 W/K²m). They are therefore comparable to the systematic uncertainty of the extrapolation itself.
+
+Please provide:
+
+- **Extrapolation uncertainties.** Give uncertainties for each κ⁰/T and show how robust the result is to the choice of fitting form. Options include a polynomial of differing order, a phonon T² term plus a residual, and different fitting ranges.
+- **Raw-data kink.** Show the field dependence of κ/T at fixed low temperature (e.g. 60, 80, 100 mK) from field sweeps. This demonstrates the kink without relying on extrapolation.
+- **Field protocol.** Describe the field protocol (field-cooled vs. zero-field-cooled) and any hysteresis. At these fields the vortex lattice may be disordered, pinned or in a non-equilibrium state.
+- **Initial jump.** Explain the apparent jump between H = 0 and the first finite-field point (~0.005 H_c2). This jump is not captured by the model.
+
+### 2.4 The theory does not reproduce the data, and alternative interpretations of H* are not considered
+
+The series-resistor Doppler model (Fig. 4d) predicts κ⁰/T ≈ 0 below H*, followed by a sharp onset. The data instead show a finite, monotonic rise below H* followed by a change of slope. The authors attribute the discrepancy to the limitations of the semiclassical approach. That is fair, but it means the model's distinctive prediction is not what is observed. What remains is only the existence of a field scale H ~ (Δ_min/Δ₀)² H_c2.
+
+That field scale is generic. It arises in any system with a small energy gap on part of the Fermi surface:
+
+- **Overlapping vortex-bound states.** Quasiparticles near a gap minimum have an effective coherence length ξ_min ~ ħv_F/Δ_min ≈ 10ξ₀. Their vortex-bound states begin to overlap and delocalize when the intervortex spacing R ~ ξ₀(H_c2/H)^½ becomes comparable to ξ_min, i.e. at H/H_c2 ~ (Δ_min/Δ₀)² ~ 0.01. This is the same scale. It is also the established mechanism for the rapid low-field rise of κ in multiband superconductors such as MgB₂ and NbSe₂ (Sologubenko et al.; Boaknin et al.).
+- **Tension with the core-transport argument.** The core-level-spacing argument (Δ₀²/ε_F ≈ 0.13 K) assumes the full gap Δ₀. Near the gap minimum the relevant spacing is ~Δ_min²/ε_F ~ 1 mK, so core states there are effectively continuous and spatially extended. This conflicts with the argument that vortex-core conduction is negligible.
+- **Multiband small-gap scenario.** UTe₂ has distinct electron and hole cylinders, so a scenario with an isotropic small gap on one sheet can produce a similar threshold. The direction-specific nature of the minimum (along k_b) rests entirely on the H ∥ a vs. H ∥ b comparison. As discussed in §2.5, that comparison is confounded.
+
+The manuscript should discuss these alternatives and explain which observation, if any, distinguishes a k_b-localized minimum from a small gap on one band.
+
+### 2.5 The H ∥ a vs. H ∥ b comparison is confounded and partly cross-sample
+
+Fig. 4c treats [H ∥ a] − [H ∥ b] as isolating "the Doppler shift contribution." This assumes all other field effects are identical in the two geometries, which they are not.
+
+- **Different vortex scattering.** In the j_Q ⊥ H configuration quasiparticles scatter on vortices crossing their path. In the j_Q ∥ H configuration they move along vortex lines. Vortex scattering is therefore intrinsically anisotropic, independent of the Doppler shift.
+- **Cross-sample comparison.** The H ∥ b data exist only for sample #B, and H ∥ c only for #A. The pink points in Fig. 4c subtract #B data from #A data, combining samples with different RRR. Please measure H ∥ b on #A, and H ∥ a, b and c on the same sample.
+- **Normalization by H_c2.** "Isotropic below H*" is a statement about reduced fields, normalized by H_c2^b = 23 T and H_c2^a = 11.7 T. H_c2^b in UTe₂ is strongly affected by field-reinforced superconductivity. H_c2^a may be influenced by paramagnetic effects. Neither need equal the orbital field that sets the Doppler scale E_H = aΔ₀(H/H_c2)^½. The coherence-length anisotropy relevant to vortex spacing should be used instead, for example from the initial slopes dH_c2/dT near T_c. This normalization also directly affects the Δ_min estimate.
+- **Field alignment.** Please state the alignment accuracy. A few degrees of misalignment for H ∥ b adds a component along a or c, and given the H_c2 anisotropy this could matter at the low-field end.
+
+### 2.6 A key test is missing: the low-field H ∥ c data
+
+For a minimum along k_b, fields along both a and c are perpendicular to the minimum and should produce a threshold at a comparable reduced field. The abstract states that "below the threshold, κ_b/T remains isotropic for all field orientations." However, Fig. 4b shows only H ∥ a and H ∥ b, and the H ∥ c data in Fig. 4a are too sparse at low field to evaluate. Showing the low-field H ∥ c response would be a direct, falsifiable test of the pseudo-node picture, and it should be included.
+
+### 2.7 Sample geometry and the directional selectivity of the probe
+
+The sample is ~360 µm along b (the heat-current direction) and ~370 µm along a, giving a length-to-width aspect ratio of ~1. Heat flow with spot-welded contacts in such a geometry is unlikely to be uniform. This raises three issues:
+
+- **Geometric factor.** The geometric-factor error may be significant. Agreement with the Wiedemann–Franz law validates the ratio κ/σ, but not the anisotropy of either quantity.
+- **Contamination by κ_a.** Non-uniform heat flow can admit contributions from κ_a. This is critical because the paper's core argument is directional selectivity, j_Q ∥ b versus a.
+
+Please provide contact geometry details, finite-element or similar estimates of current uniformity, and, ideally, a comparison of ρ_b measured in situ with known ρ_b values.
+
+Relatedly, please describe:
+- how the RuO₂ (or other) thermometers were calibrated in field at 50 mK;
+- how thermal decoupling at the lowest temperatures was checked.
+
+### 2.8 Theoretical interpretation: the "anomalous" framing and the non-unitary exclusion are overstated
+
+**A strongly anisotropic gap is generic, not anomalous.** For A_u, d = (c₁k_x, c₂k_y, c₃k_z) gives |Δ| ∝ |c₂| along k_b. A pseudo point node along b therefore requires only |c₂| ≪ |c₁|, an anisotropy in the d-vector coefficients rather than Fermi-surface fine-tuning. Similarly, for B₁u on a cylindrical Fermi surface, d ≈ (c₁k_y, c₂k_x, …) gives an in-plane minimum along k_b when c₁ is small. This also bears on how the authors distinguish A_u from B₁u. The claim that the gap structure is "anomalous from the perspective of conventional pairing mechanisms" and "highly improbable" should be reconsidered in light of this.
+
+**The proposed unitary mixed state has unstated consequences.** Real mixing of different irreducible representations (B₂u + αA_u) breaks the D₂h point-group symmetry, producing a nematic state. It also generally requires either two transitions or a symmetry-breaking field. This sits uneasily with the single-component evidence the authors themselves cite (ultrasound [25], strain [24]). Please state this explicitly.
+
+**The non-unitary exclusion is not demonstrated.** For a non-unitary triplet state the two spin-split gaps are |d|² ± |d × d*|. Whether nodes survive depends on the specific components. "Excluding non-unitary mixing" in the abstract should be supported by an explicit argument or toned down. Non-unitary states are already disfavoured by the Kerr [26] and µSR [27] measurements cited.
+
+### 2.9 Engagement with Hayes et al. [30]
+
+Ref. [30] reached the opposite conclusion ("robust nodal behavior") from κ_a. The present work borrows its parameter a = 0.72, so a direct, quantitative reconciliation is needed. The authors should address:
+
+- whether the present model, applied to κ_a geometries, reproduces the field dependences reported in [29] and [30];
+- whether the different conclusions stem from sample quality, the measurement window, or the analysis.
+
+---
+
+## 3. Minor and technical comments
+
+1. **Fig. 1 caption inconsistency.** The caption says "d, e: H applied perpendicular and parallel to point nodes, respectively," but then describes d as "H ∥ nodes" and e as "H ⊥ nodes." The panel labels agree with the latter.
+2. **Specific heat.** The claim that the pseudo-node gap gives C/T ∝ T² above 0.3 K should be shown in the main text or quantified, e.g. with a fit range and exponent. Note also that a gap of ~0.4 K lies just at the edge of the Schottky-free window, not entirely below it.
+3. **Specific-heat field formula.** The bracket placement in the field-dependence formula, C/T ∝ −(H/H_c2) ln[H/H_c2 + (Δ_min/aΔ₀)²], should be checked and derived in the SI.
+4. **Δ_min estimate.** With a = 0.72 and H*/H_c2 = 0.015, the formula gives Δ_min/Δ₀ ≈ 0.09. Please state the plausible range of a and the resulting uncertainty, e.g. 0.06–0.12.
+5. **Model Fermi surface.** The model uses a square Fermi-surface cross-section, and the authors note that this alone causes the anomalously rapid rise for Δ_min = 0. A model with realistic UTe₂ sheet shapes (rounded rectangular electron and hole cylinders [12]) would make the comparison much more convincing. It should also specify which sheet hosts the minimum.
+6. **B₂u nodal topology.** On a quasi-2D cylinder with sin(k_z c) dependence, B₂u nodes may also appear at the zone boundary k_z = ±π/c. This should be mentioned in the discussion of nodal topology.
+7. **Polynomial extrapolation.** The fitting form and its order should be specified.
+8. **Notation.** Notation is inconsistent between κ_b⁰ and κ⁰_b, and between H*, H*_a and E*_H. In the Fig. 4c caption, the order "H ∥ j_Q (H ∥ b) and H ⊥ j_Q (H ∥ a)" is reversed relative to the definition of the difference.
+9. **Typos.** Examples include "Moreover, The Fermi," "quasipartcles," "the the excitations," and "sample#A."
+10. **Tone.** Phrases such as "definitively resolve" and "strongly suggest... fully gapped" should be moderated to match the evidence.
+
+---
+
+## 4. Recommendation
+
+**Major revision.**
+
+The b-axis data are a genuine advance and deserve publication. At present, however, the evidence for a specific pseudo point node with Δ_min/Δ₀ ≈ 0.1 along k_b is suggestive rather than conclusive. The most important additions are:
+
+- a phonon/quasiparticle decomposition and a direct test of whether the zero-field T-dependence is compatible with the inferred Δ_min (§2.1);
+- theory–experiment comparison in common units, including the unitary-limit scenario (§2.2);
+- error bars, together with raw fixed-temperature field sweeps around H* (§2.3);
+- low-field H ∥ c data, and same-sample comparisons across all field directions (§2.5, §2.6);
+- a discussion of alternative origins of the field scale H*, including multiband small gaps and overlapping vortex states (§2.4);
+- a toned-down symmetry discussion (§2.8).
+
+If the kink survives these checks and appears for H ∥ c but not H ∥ b in the same sample, the case for a k_b-localized gap minimum would be considerably strengthened.
