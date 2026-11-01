@@ -1,0 +1,77 @@
+{
+  "overall_feedback": "This is an interesting and carefully executed experiment. It is the first real-space imaging of gate-induced suppression of Meissner screening in Nb microstructures, and several observations are striking: polarity and temperature independence of r0 versus P, suppression even with a floating island, and vortex expulsion at low power. The algebra of the hot-spot model checks out. Eq. (2) is the correct 3D Yukawa-type solution of Eq. (1) with r_d=√(Dτ). Eq. (3) and the definition P_d = 4πe r_d^3 ρ_c/(ατ) follow correctly from ρ(r0)=ρ_c. The quoted lifetimes (≈0.65 ns and ≈325–360 ns) follow from the stated D values. My main concerns are in the interpretation rather than the arithmetic:\n- The arguments that exclude Joule heating and a field effect are weaker than presented. The NEP model itself is mathematically a heat-diffusion model and should also show temperature dependence through ρ_c(T). P and V_G are monotonically linked within any sweep, so the claimed lack of V_G correlation rests only on drift of the onset voltage.\n- The 3D diffusion form is adopted even though quasiparticle diffusion in a 20 nm film (the interpretation the authors favour) would be 2D.\n- The substrate-diffusion alternative is dismissed using a room-temperature thermal diffusivity of glass.\n- The fitted P_d values differ by ~2.6× between devices, which contradicts the claim of device-independent reproducibility at equal P.\n- The geometric definition of r0 relative to the 80 nm gap is ambiguous.\n- Given the very long Pearl length (λ²/d ≈ 3 µm, comparable to the island size), the extraction of r0 is strongly model-dependent, and no fit uncertainties are given.\n- The identification of µW-scale, µm-range Meissner suppression with the transport GCS (observed at nW) is asserted more strongly than the data support.",
+  "comments": [
+    {
+      "title": "Temperature independence does not discriminate Joule heating from the NEP hot-spot model",
+      "quote": "First, Joule heating caused by the leakage current can be excluded because the quenching does not depend on temperature.",
+      "explanation": "I first read this as a clean exclusion argument. However, the proposed alternative is itself formally a steady-state diffusion of energy carriers with relaxation (Eq. 1), and the dissipated power P is ultimately heat.\n- In the NEP model, the critical density ρ_c should depend strongly on bath temperature. Between 0.4 K and 5.6 K the gap of a 20 nm Nb/Ti film shrinks appreciably and the thermal quasiparticle background rises, so fewer excess quasiparticles are needed to quench. τ and D are also T-dependent.\n- The NEP model therefore also predicts a T-dependent P_d, yet the paper fits both temperatures with a single P_d.\n- Conversely, a Joule hot spot whose core temperature far exceeds T_c would give an r0 that depends only weakly on bath temperature.\n\nThe observed T-independence is thus as surprising for the favoured model as for Joule heating. It does not by itself exclude heating; it mainly constrains how ρ_c varies with T. The text also does not state T_c of the films used for D3. This matters because 5.6–5.8 K may be close to T_c, and the Outlook even speaks of reaching 'above the critical temperature of Nb'.",
+    "type": "logical",
+      "severity": "major",
+      "suggested_fix": "Quote T_c (and ideally Δ(T)) for the D2/D3 films. Show that a thermal hot-spot model with T-dependent SiO2/Kapitza conductances would predict a measurable r0 difference between 0.4 K and 5.6 K. Also state why ρ_c(T) in the NEP model is expected to be nearly constant over this range, or fit P_d separately at each temperature."
+    },
+    {
+      "title": "Claim of 'weak correlation' with V_G is not borne out by Fig. 3b",
+      "quote": "Data of a plotted against gate voltage |VG| showing only weak correlation thereby ruling out a direct field effect.",
+      "explanation": "In the inset of Fig. 3b, each temperature subset shows a steep, monotonic increase of r0 with |V_G|. Because I_L rises exponentially above onset, P=I_L V_G and V_G are monotonically related within any single I–V branch, so strong correlation with V_G is unavoidable. What the data actually show is that the two subsets are offset in V_G at equal r0, presumably because V_G^ON drifted between them. This does argue against a purely V_G-controlled mechanism. However, the exclusion then rests entirely on the drift in onset voltage (vSILC-like behaviour) and on only two clusters. 'Weak correlation' overstates this, and a field effect with a time-varying effective field (e.g., trapped charge in the oxide, which the Methods mention) is not excluded.",
+      "type": "logical",
+      "severity": "moderate",
+      "suggested_fix": "Rephrase as 'r0 is not a single-valued function of |V_G|: datasets with V_G^ON shifted by ~3 V give the same r0 at equal P but different r0 at equal V_G'. Also quantify this, e.g., the spread of V_G at fixed r0 versus the spread of P at fixed r0."
+    },
+    {
+      "title": "Dimensionality of the diffusion model inconsistent with the favoured quasiparticle interpretation",
+      "quote": "ρ(r) = αP τ\n4πr2\nd\nr\nexp −\nr\nrd\n",
+      "explanation": "Eq. (2) is the correct solution of Eq. (1) in three dimensions (Green's function e^{-r/r_d}/(4πDr)). This is appropriate for NEPs spreading in a bulk substrate, up to a factor of 2 for a surface source on a half-space. However, the authors then favour quasiparticle diffusion in the Nb film (D~5·10⁻⁴ m²/s, τ~0.7 ns). The film is 20 nm thick and effectively 2D, where the steady-state solution is ρ ∝ K0(r/r_d)/(2πD d) rather than e^{-r/r_d}/r. This changes the functional form of r0(P): it is no longer a Lambert-W function. It also changes the meaning of the fitted r_d and therefore the inferred τ. As written, the paper cannot both use Eq. (3) and remain agnostic about which carrier diffuses.",
+      "type": "technical",
+      "severity": "moderate",
+      "suggested_fix": "Also fit the data with the 2D form, ρ(r0) ∝ K0(r0/r_d) giving P/P_d = K0(1)/K0(r0/r_d), and report r_d and τ for both geometries. Alternatively, explicitly restrict the 3D model to the substrate-diffusion scenario and state the half-space factor of 2."
+    },
+    {
+      "title": "Substrate-diffusion scenario dismissed using an inappropriate diffusivity",
+      "quote": "For substrate diffusion, D ∼ 1 · 10−6 m2/s (for\nglass [29]) implying τ ∼ 350 ns, which appears unreasonably long [30].",
+      "explanation": "The arithmetic is right: (0.6 µm)²/10⁻⁶ m²/s ≈ 360 ns. However, 10⁻⁶ m²/s is the room-temperature thermal diffusivity of glass. At sub-K to few-K temperatures, the diffusivity of amorphous SiO2 differs by orders of magnitude. Moreover, the NEPs here are high-energy non-equilibrium phonons that may propagate quasi-ballistically and can reach the intrinsic Si beneath the 300 nm oxide, where low-T phonon diffusivity is very large. The authors themselves note later that a BTE treatment is needed. Using the room-temperature value to call the substrate scenario 'unreasonable' biases the interpretation toward quasiparticle diffusion.",
+      "type": "technical",
+      "severity": "moderate",
+      "suggested_fix": "Replace the room-temperature glass value with a low-temperature estimate for SiO2 or Si phonon transport (or a ballistic mean-free-path estimate) and recompute τ. Alternatively, state that the substrate scenario cannot be evaluated without such data instead of calling it unreasonable."
+    },
+    {
+      "title": "Reproducibility 'for all devices at same P' contradicted by fitted P_d values",
+      "quote": "We find below that the experimental hallmark of the GCS – the suppression of superconductivity – is reproducible given the same applied power P for all our devices.",
+      "explanation": "Taken literally, this means equal P gives equal suppression across devices. The fitted parameters, however, are r_d=0.57 µm, P_d=0.95 µW for D3 and r_d=0.65 µm, P_d=0.36 µW for D2b. Evaluating Eq. (3) at P=1 µW gives r0≈0.59 µm for D3 but r0≈1.0 µm for D2b, a ~70% difference. The text likely means reproducible within a device or cooldown, or qualitatively reproducible. As written, it overstates device independence and hides a physically interesting device-to-device variation in α/ρ_c.",
+      "type": "logical",
+      "severity": "minor",
+      "suggested_fix": "Rephrase to 'within each device, r0 is a reproducible function of P across cooldowns, temperatures and polarities'. Also discuss the factor ~2.6 difference in P_d between D2b and D3, e.g., from different gate geometry or creation yield α."
+    },
+    {
+      "title": "Ambiguous origin of r0 relative to the 80 nm gate–island gap",
+      "quote": "we assume that the quenching extends radially from the tip of the gate electrode up to a critical distance r0.",
+      "explanation": "If r0 is measured from the gate apex (the source in Eq. 2), then the suppression observed inside the island extends only to r0 minus the ~80 nm gap. The field-step-shift method, which compares to a V_G=0 reference, measures how far the superconducting edge has receded into the island, not the distance from the apex. Fig. 3a nonetheless plots r0 starting from 0 and fits it directly with Eq. (3), which assumes distance from the source. For Fig. 4e the authors do account for an increased source distance (~0.8 µm), so the convention matters. An ~80 nm offset is ~15% of r_d and would bias both fitted parameters.",
+      "type": "technical",
+      "severity": "minor",
+      "suggested_fix": "State explicitly whether the plotted r0 is the recession of the superconducting edge or the distance from the apex. If it is the recession, fit r0^meas + d_gap = r_d W0(eP/P_d) with d_gap≈80 nm and report the changed r_d and P_d."
+    },
+    {
+      "title": "Relevant screening length is the Pearl length (~3 µm), not λ; implications for r0 extraction",
+      "quote": "The\ngate and ohmic leads are barely resolved because their\nwidth is of order of the penetration depth (λ ∼ 240 nm,\nTable S2).",
+      "explanation": "For a 20 nm film with λ≈240 nm, the Methods' own λ_eff=λ²/d gives ≈2.9 µm. The Pearl length 2λ²/d is ≈5.8 µm, which exceeds the 3 µm island size. Thin-film screening is governed by this length, not by λ. The leads are therefore unresolved because their width is ≪ λ_eff, not because it is comparable to λ. The same applies to the 'corner effect' explanation. More importantly, with λ_eff comparable to the island size, the stray-field maxima are broad and the positions of field edges depend strongly on λ_eff and on the assumed geometry of the suppressed region. Yet r0 is quoted with ~0.05–0.1 µm precision, and the two extraction methods assume different geometries: rectangles of varying width versus a circular cut-out. λ_eff is also expected to differ between 0.4 K and 5.6 K. No uncertainties are given for the fitted r_d and P_d.",
+      "type": "technical",
+      "severity": "moderate",
+      "suggested_fix": "Replace λ with λ_eff=λ²/d≈2.9 µm in this argument. Report how r0 extracted by each method depends on the assumed λ_eff (including its T-dependence) and on rectangle versus circle geometry. Give fit uncertainties for r_d and P_d."
+    },
+    {
+      "title": "Identification of the observed µW, µm-scale suppression with the transport GCS is overstated",
+      "quote": "Here, we report that the GCS also manifests in a\nsuppression of Meissner screening, establishing the phenomenon as a genuine feature of superconductivity that is not restricted to transport.",
+      "explanation": "The authors acknowledge that the required powers are 'several orders of magnitude higher' than in transport measurements. They also note that leakage currents are hundreds of nA, compared with nA or less in transport studies, and they suggest the result 'may hint at differences'. The mechanism they ultimately favour is leakage-current-induced quasiparticle generation, a known non-equilibrium pair-breaking effect. Observing that a µW of dissipated power suppresses Meissner screening over µm shows that such injection suppresses the condensate. It does not by itself establish that the nW-scale transport GCS is the same phenomenon. Nor does it make the GCS 'a genuine feature of superconductivity', a phrase that evokes the intrinsic field-effect interpretation the paper argues against.",
+      "type": "logical",
+      "severity": "moderate",
+      "suggested_fix": "Rephrase the abstract to: 'we show that gate leakage power suppresses Meissner screening over micron distances, consistent with a quasiparticle/NEP mechanism of the GCS'. Explicitly note the orders-of-magnitude power difference from transport GCS as an open question."
+    },
+    {
+      "title": "Comparison of fitted lifetime to a hot-spot formation time is not like-for-like",
+      "quote": "This is\nroughly ten times longer than the time for hot-spot formation reported in [13] and within the order of magnitude of superconducting single photon detector recovery [28].",
+      "explanation": "The τ in Eq. (1) is a relaxation or decay time of the diffusing population. A hot-spot formation time is a rise time and a different quantity, so the factor-of-ten comparison does not test the consistency of the model. The SNSPD recovery time in [28] is largely set by kinetic inductance and electrical circuit constants, not just quasiparticle relaxation. These comparisons lend the inferred τ≈0.7 ns more plausibility than they warrant.",
+      "type": "logical",
+      "severity": "minor",
+      "suggested_fix": "Compare τ to measured quasiparticle recombination or energy-relaxation times in Nb films at the relevant temperatures (e.g., the electron–phonon relaxation time in thin Nb, or hot-spot relaxation times as in Ref. [33]), rather than to formation or circuit-limited recovery times."
+    }
+  ]
+}

@@ -1,0 +1,149 @@
+{
+  "overall_feedback": "The paper reports a half-quantized longitudinal conductance plateau (about 0.5 e^2/h) in a mm-scale magnetic TI (QAHI) bar crossed by a Nb strip, and interprets it as the transport signature of a single chiral Majorana edge mode in an N = 1 chiral topological superconductor phase predicted by refs. 32-34. The theoretical framing (QAHI Hamiltonian, BdG extension, N = 2C counting, asymmetric pairing Delta1 != Delta2 opening an N = 1 window) is a faithful summary of the cited proposals, and the materials work (6 QL Cr-doped (Bi,Sb)2Te3 with clean zero Hall plateaus in a control bar) is solid. The central weakness is the inference itself: a 0.5 e^2/h plateau between the C = +/-1 and C = 0 regimes is also expected from much more mundane physics, most obviously a superconducting (or simply metallic) strip that makes good electrical contact to the QAHI and equilibrates the edge states, which turns the device into two QAH segments in series. The paper does not rule this out: it does not state whether the Nb is floating or grounded, does not report interface transparency, and offers no control in which superconductivity is removed while the QAHI is kept intact (e.g. a normal-metal strip of the same geometry, or field/temperature conditions that kill the Nb but not the QAH state). The temperature dependence shown (up to about 470 mK, far below the Nb Tc) tests the QAHI bulk, not the superconductivity. Further concerns: the measured sigma12 configuration is underspecified (a true longitudinal four-probe signal in the QAH regime should give zero resistance, not e^2/h), the plateaus sit at +/-80 mT rather than near the quoted coercive field of 150 mT, the Nb is in the vortex (mixed) state at these fields so the TSC bulk is not obviously gapped, the paper's own ref. 34 predicts Andreev oscillations rather than clean e^2/h transmission in the N = 2 phase, the plateau precision (+/-0.05 to 0.07 e^2/h) is quoted as 'quantization', and there are internal inconsistencies in the Fig. 1a panel assignments and between text and caption on which devices show high-field kinks. The concluding claims ('for the first time', 'concrete evidence', 'clearly reveal') overstate what has been shown; the abstract's 'promising evidence' is closer to what the data support.",
+  "comments": [
+    {
+      "title": "A trivial mechanism (QAH segments in series via a well-coupled metallic strip) also gives 0.5 e^2/h and is not ruled out",
+      "quote": "Any backscattering processes from the TSC𝒩=±2 or the NSC𝒩=0 phase would only involve a",
+      "explanation": "The authors correctly identify that the half plateau is the signature predicted by Chung et al. and Wang et al. for the N = 1 phase, and they argue against Barkhausen noise. My first concern was whether any non-Majorana scenario also yields 0.5 e^2/h. Checking the Landauer-Buttiker picture: if the Nb strip (normal or superconducting) is strongly coupled to the QAHI and acts as an equilibrating reservoir across the full 1 mm width, each QAH segment on either side contributes h/e^2 and the two in series give a total of 2h/e^2, i.e. sigma12 = 0.5 e^2/h, whenever the QAHI regions are in the C = +/-1 state and the strip region is not perfectly transmitting. Such a plateau would naturally appear in the field window where the QAHI regions under and outside the strip reverse at slightly different fields (proximity or strain can shift the coercive field under the Nb). The sentence quoted asserts that the N = 2 and N = 0 phases would give only 'considerably small Andreev scattering', but this assumes a weakly coupled, non-equilibrating superconductor, which is exactly what has to be demonstrated. The paper gives no interface resistance, does not say whether the Nb (8 mm long, so it extends well beyond the 1 mm QAHI bar) is electrically floating or grounded through a lead, and shows no device with a normal-metal strip. Without this, the half plateau does not discriminate between the Majorana scenario and simple series equilibration, which undermines the central claim.",
+      "type": "logical",
+      "severity": "major",
+      "suggested_fix": "Add a control device identical in geometry but with a non-superconducting metal strip (e.g. Au or Ti/Au only, no Nb) and report sigma12(H) at 20 mK; report the Nb/TI interface resistance and state whether the Nb bar is floating or grounded. If the normal-metal device also shows 0.5 e^2/h, the plateau cannot be attributed to the N = 1 phase."
+    },
+    {
+      "title": "Temperature dependence tests the QAHI bulk, not the superconductivity",
+      "quote": "the half-integer plateaus gradually narrow down due to the thermally",
+      "explanation": "The authors use the temperature evolution (plateaus vanish above 390-470 mK) as further confirmation of the CMEM interpretation. I checked what this actually probes: the Nb Tc is several kelvin (the inset of Fig. 2a shows superconductivity well above 1 K), so at 400 mK the superconductor is essentially unchanged, and the authors themselves attribute the disappearance to thermally activated bulk carriers in the QAHI. Any mechanism that requires a well-quantized QAHI, including the series-equilibration scenario, would show the same narrowing. So this measurement does not link the plateau to superconductivity at all, and it cannot by itself 'further confirm' the N = 1 phase. A test that removes superconductivity while preserving the QAH state is what is needed.",
+      "type": "logical",
+      "severity": "major",
+      "suggested_fix": "Add a measurement in which superconductivity is suppressed but the QAHI is preserved, for example sigma12 versus perpendicular field in a device where the Nb is replaced by a lower-Hc2 superconductor that is driven normal within the sweep range, or compare sigma12 with the Nb driven normal by an in-plane field; state explicitly that the 400 mK disappearance reflects the QAHI gap and not the pairing gap."
+    },
+    {
+      "title": "Measured quantity sigma12 is underspecified: a four-probe longitudinal signal in the QAH regime should not equal e^2/h",
+      "quote": "through the outer two probes and measuring the potential drop across the inner two probes",
+      "explanation": "The text calls sigma12 the 'total longitudinal conductance' and states it equals e^2/h in the fully saturated QAH regime. In a standard four-probe longitudinal geometry with voltage probes on the same edge of a QAHI, the dissipationless chiral edge gives zero voltage drop and hence divergent conductance, not e^2/h. Getting e^2/h implies the voltage probes 1 and 2 are effectively on opposite edges, or are the current-carrying contacts themselves, i.e. something closer to a two-terminal or diagonal measurement, which is what the Chung et al. prediction refers to. Fig. 1b is not reproduced in enough detail in the text to resolve this, and the conversion from measured V12 and I12 to sigma12 (including whether contact resistances are included) is not given. Because the 0.5 versus 1 ratio depends on exactly which contacts are used and on whether contact resistance is subtracted, the reader cannot reproduce or independently check the quantization.",
+      "type": "technical",
+      "severity": "moderate",
+      "suggested_fix": "State explicitly the positions of probes 1 and 2 relative to the edges and to the Nb strip, give sigma12 = I12/V12 (or the actual formula used), and show the corresponding Landauer-Buttiker prediction for this contact geometry in the C = 1, N = 2 and N = 1 cases."
+    },
+    {
+      "title": "Plateau field (+/-80 mT) does not match the coercive field (+/-150 mT) that the theory ties it to",
+      "quote": "These plateaus occur at ± 80 mT, with conductance values of 0.49e2/h.",
+      "explanation": "The text earlier says the control Hall bar shows its zero plateaus at HC = +/-150 mT and that 'during every reversal of the magnetization, sigma12 presents a half-integer plateau close to the coercive fields'. In the proposed scenario, the N = 1 window should lie between the C = +/-1 and C = 0 states of the adjacent QAHI regions, i.e. near the reversal field of the QAHI. Yet the clearest plateaus sit at +/-80 mT, roughly half the coercive field measured on the same wafer. Part of this may be temperature (Fig. 2a plots Hc(T)), but the 150 mT figure and the 80 mT figure are both quoted without stating the temperature for each, and no explanation is given for why the QAHI regions of the TSC device would reverse at such a different field from the control bar. This mismatch is also what one would expect if the region under the Nb reverses at a different field from the bare QAHI, which feeds the alternative explanation above.",
+      "type": "technical",
+      "severity": "moderate",
+      "suggested_fix": "Report the coercive field of the control bar and the plateau fields of the TSC devices at the same temperature, overlay sigma12(H) of the TSC device with sigma_xy(H) of the control bar on one field axis, and, if they differ, measure the Hall response of the QAHI region under or adjacent to the Nb directly."
+    },
+    {
+      "title": "Nb is in the vortex state at the relevant fields, so a gapped TSC bulk is not established",
+      "quote": "the superconducting reservoir is ensured even when the QAHI is driven into a single",
+      "explanation": "The authors argue that because Hc2 of the Nb is more than ten times the QAHI coercive field, superconductivity is ensured. Hc2 only marks the complete destruction of superconductivity; a 200 nm Nb film in perpendicular field of 80-150 mT is in the mixed state (thin-film demagnetization makes the effective Hc1 very small), with a vortex spacing of order sqrt(Phi0/B), roughly 100-150 nm. The proximitized TI surface under such a film is then threaded by a dense vortex lattice, each vortex core being gapless and in a TSC hosting a Majorana zero mode. A 0.6 mm wide TSC region filled with vortices is not obviously a fully gapped bulk that allows transport only along the edge, which is the premise of the 0.5 e^2/h prediction. Relatedly, the introduction's statement that ~0.1 T is more than an order of magnitude below 'the critical field of typical superconducting metals' is true only of the upper critical field of type-II films, not of thermodynamic or lower critical fields of elemental superconductors.",
+      "type": "technical",
+      "severity": "moderate",
+      "suggested_fix": "Estimate the vortex density in the Nb at 80 and 150 mT and discuss its effect on the induced gap and on bulk transport across the 0.6 mm TSC region, citing the relevant theory (or showing a numerical simulation with disorder/vortices) that the N = 1 half plateau survives in the mixed state; replace 'critical field of typical superconducting metals' by 'upper critical field of type-II superconducting films such as Nb'."
+    },
+    {
+      "title": "Claimed near-perfect e^2/h transmission in the N = 2 phase conflicts with the Andreev oscillations predicted in ref. 34",
+      "quote": "incident edge modes can almost perfectly transmit through the device, leading to σ12 = e2/h, as",
+      "explanation": "The authors state that in the N = 2 phase the two CMEMs recombine into the incident QAH mode and transmit perfectly, giving sigma12 = e^2/h. However, their own ref. 34 (Lian, Wang, Zhang, 'Edge-state-induced Andreev oscillation in QAHI-superconductor junctions') predicts that in the N = 2 phase the two Majorana modes generally propagate with different velocities, so an incoming electron is converted into a superposition of electron and hole whose weight oscillates with the length of the TSC edge. Over an edge of order a millimetre the transmitted charge should then vary strongly with field and chemical potential, not sit at e^2/h. The observed 0.98 e^2/h in the N = 2 regime is therefore itself a puzzle within the authors' framework, and if it reflects incoherent averaging or equilibration under the Nb, the same averaging would bear on how the 0.5 plateau should be interpreted.",
+      "type": "logical",
+      "severity": "moderate",
+      "suggested_fix": "Discuss the prediction of ref. 34 explicitly and give the condition (velocity matching, decoherence length, or averaging over the mm-scale edge) under which sigma12 = e^2/h is expected in the N = 2 phase, together with an estimate of the relevant length scales for this device."
+    },
+    {
+      "title": "Fig. 1a panel assignments contradict each other",
+      "quote": "topological transition in the TSC region can only occur between 𝒩 = ±2 [Fig. 1a (i), (iv)] and 𝒩",
+      "explanation": "Here panels (i) and (iv) are assigned to N = +/-2 and panel (vii) to N = 0. A few paragraphs later, panels (i) and (vii) are the fully transmitting N = +/-2 / C = +/-1 configurations giving sigma12 = e^2/h, and panels (iii), (iv), (v) are the NI phase where the QAHI regions are shut off and the TSC passes through N = -1, 0, 1. Panel (iv) cannot be both N = +/-2 and the N = 0 / NI configuration, and (vii) cannot be both N = 0 and N = +/-2. Since Fig. 1a is the main guide to the phase sequence that underpins the interpretation, a reader trying to map field ranges to phases could reach the wrong assignment.",
+      "type": "logical",
+      "severity": "minor",
+      "suggested_fix": "Change the first reference to read 'between N = +/-2 [Fig. 1a (i), (vii)] and N = 0 [Fig. 1a (iv)]', consistent with the later description."
+    },
+    {
+      "title": "'Structural asymmetry is preserved' contradicts the condition Delta1 = Delta2",
+      "quote": "asymmetry is preserved between the top and the bottom surface states, ∆=∆1=∆2, and the",
+      "explanation": "The logic of the paragraph is that equal pairing on both surfaces (Delta1 = Delta2) corresponds to a top/bottom symmetric structure, and that broken structural inversion symmetry gives Delta1 != Delta2 and opens the N = 1 window. The phrase 'structural asymmetry is preserved' says the opposite of what is meant. Context (the next sentence on broken structural inversion symmetry) makes the intent recoverable, so this is a wording error, but it sits at the key step of the argument.",
+      "type": "technical",
+      "severity": "minor",
+      "suggested_fix": "Replace 'When structural asymmetry is preserved' with 'When structural inversion symmetry between the top and bottom surfaces is preserved'."
+    },
+    {
+      "title": "Text and Fig. 2b caption disagree on which devices show high-field features",
+      "quote": "In all three devices, the kinks at high-field reversals are",
+      "explanation": "The text states that in all three devices the high-field kinks are narrower than the low-field plateaus and vanish at lower temperature. The Fig. 2b caption says 'Only device I exhibits a sudden increase of sigma12 at the high-field shoulder of the sigma12 valley.' If devices II and III do not show a resolvable high-field feature at 350 mK, it is unclear how their high-field kink widths and vanishing temperatures (470 and 390 mK) were determined. Since the presence of the feature at both low- and high-field shoulders is used in the Barkhausen argument, this inconsistency matters.",
+      "type": "logical",
+      "severity": "moderate",
+      "suggested_fix": "Either show the high-field kinks for devices II and III (with their temperature dependence) or restrict the 'all three devices' statement to the low-field plateaus and state that only device I shows a high-field feature."
+    },
+    {
+      "title": "Plateau precision of +/-0.05 to 0.07 e^2/h is described as quantization",
+      "quote": "the 20 mK result presents distinct plateaus with the quantized value",
+      "explanation": "The values 0.49, 0.51(+/-0.05), 0.52(+/-0.06), 0.48(+/-0.07) and 0.50(+/-0.06) e^2/h are all compatible with 0.5, which the authors rightly point out. But the uncertainties are 10-14 percent of the plateau value, and the paper itself reports a residual parallel bulk conductance of ~0.05 e^2/h in the NI phase that is not subtracted. At this precision, values from about 0.43 to 0.57 e^2/h are indistinguishable, so the data establish 'a plateau near one half' rather than quantization. It is also not stated how the error bars were defined (noise on the plateau, spread across sweeps, or fit uncertainty).",
+      "type": "technical",
+      "severity": "moderate",
+      "suggested_fix": "Define the error bars (e.g. standard deviation of sigma12 over the field interval of the plateau across N sweeps), and replace 'quantized value of 0.50(+/-0.06) e^2/h' with 'plateau value of 0.50(+/-0.06) e^2/h'."
+    },
+    {
+      "title": "Parallel bulk conduction is not accounted for in the plateau values",
+      "quote": "leaving a finite conductance of ~ 0.05 e2/h",
+      "explanation": "The authors acknowledge residual bulk carriers giving ~0.05 e^2/h in the NI phase and say these become thermally activated and destroy the plateau above ~400 mK. If a parallel channel of this size is present at the plateau fields too, the edge contribution in the N = 1 window would be ~0.44-0.45 e^2/h rather than 0.5, and conversely the agreement with 0.5 might partly reflect a combination of a different edge value plus background. The paper does not say whether any background was subtracted or how the bulk channel varies between the NI dip and the plateau fields.",
+      "type": "technical",
+      "severity": "minor",
+      "suggested_fix": "State whether the ~0.05 e^2/h background is present at the plateau fields and report the plateau values both with and without subtracting it, so readers can judge how close the edge contribution is to 0.5 e^2/h."
+    },
+    {
+      "title": "Uniform-exchange-field theory applied to a multidomain magnetization reversal",
+      "quote": "magnetic field reduces, the TSC region experiences the first topological phase change, leading to",
+      "explanation": "The phase sequence is derived from a model with a spatially uniform exchange field lambda that is tuned continuously, and the text describes it as the field being 'reduced'. In the experiment, the reversal near the coercive field proceeds via magnetic domains (the authors invoke a multidomain regime themselves in the Barkhausen discussion), so in the relevant field window lambda is not uniform: the sample is a mixture of +lambda and -lambda regions with domain walls carrying their own chiral modes. Mapping the domain-averaged magnetization onto a uniform lambda, and hence onto a sharp N = 1 window, is a non-trivial step that is not justified. In addition, the magnetization reversal occurs as |H| increases in the opposite direction, so describing the sequence as 'reducing the magnetic field' is misleading about where in the sweep each phase lies.",
+      "type": "logical",
+      "severity": "moderate",
+      "suggested_fix": "State the assumption that the reversal can be treated as a uniform lambda passing through zero, and cite or provide a calculation (e.g. a network model with random magnetic domains, as in the QAH plateau-transition literature, ref. 38) showing that the N = 1 half plateau survives in a multidomain state; describe the sequence in terms of magnetization rather than 'reducing the magnetic field'."
+    },
+    {
+      "title": "Tension between 'superconductivity ensured' and the invoked large interfacial exchange field",
+      "quote": "between the Nb and the magnetic TI may provide a much larger effective field, which suppresses",
+      "explanation": "To explain why the high-field kinks are weaker than the low-field plateaus, the authors invoke an interfacial exchange coupling that provides 'a much larger effective field' suppressing superconductivity in the TSC region. Earlier, the comparison of Hc2 with Hc was used to argue that superconductivity is ensured. If the effective field at the interface is much larger than the applied field, the Hc2 comparison no longer guarantees proximity-induced pairing, which weakens the earlier argument. The explanation is also untested: no estimate of the exchange field is given, and it is not clear why it would differ between the low- and high-field shoulders, since the magnetization is saturated in both.",
+      "type": "logical",
+      "severity": "minor",
+      "suggested_fix": "Either give an estimate of the interfacial exchange field and show it is consistent with both the persistence of pairing at the low-field plateau and its suppression at the high-field kink, or drop the claim that the Hc2 comparison 'ensures' the superconducting reservoir and present the low/high-field asymmetry as unexplained."
+    },
+    {
+      "title": "Reproducibility over 'many' sweeps is asserted but not quantified",
+      "quote": "observation, the half-integer plateaus can be well repeated with clear temperature traces (Fig. 3a).",
+      "explanation": "Reproducibility across field sweeps is the main argument against Barkhausen jumps, and the abstract says the signature 'can be well repeated during many magnetic reversal sweeps'. The evidence pointed to, Fig. 3a, is a set of traces at different temperatures, which shows continuity in temperature, not repeatability of identical sweeps at fixed temperature. The number of sweeps, sweep rate, and the spread of plateau position and value across sweeps are not reported. Repeatability is also a necessary but not sufficient condition: reproducible domain configurations pinned by the Nb edges would also be repeatable.",
+      "type": "technical",
+      "severity": "minor",
+      "suggested_fix": "Report the number of repeated sweeps at 20 mK for each device, the sweep rate, and the mean and standard deviation of the plateau field and plateau value across those sweeps, and show overlaid repeated traces at fixed temperature."
+    },
+    {
+      "title": "Concluding claims overstate the evidence",
+      "quote": "quantization originated from the single CMEMs, which provides concrete evidence to the",
+      "explanation": "The abstract describes the result as 'promising evidence', which is a fair characterization. The conclusion upgrades this to the observation, 'for the first time', of 'conductance quantization originated from the single CMEMs' that 'provides concrete evidence' and 'can clearly reveal the physical picture of Majorana scattering'. The introduction likewise claims higher-dimensional Majorana states have 'never been probed directly or indirectly in any experiments'. Given that the plateau precision is ~10 percent, that alternative explanations producing 0.5 e^2/h (series equilibration through a well-coupled strip, multidomain effects) are not excluded, and that no control removes superconductivity, the stronger language is not supported.",
+      "type": "logical",
+      "severity": "moderate",
+      "suggested_fix": "Align the conclusion with the abstract, e.g. 'we observe a half-integer conductance plateau consistent with the transport signature predicted for single chiral Majorana edge modes', and remove 'for the first time', 'concrete evidence' and 'clearly reveal' unless the normal-metal and superconductivity-suppressed controls are added."
+    },
+    {
+      "title": "Predicted plateau value written with inverted units",
+      "quote": "close to the predicted value (0.5 h/e2)",
+      "explanation": "Everywhere else the plateau is quoted as a conductance, 0.5 e^2/h. Here it is written as 0.5 h/e^2, which is a resistance (and 0.5 h/e^2 would correspond to a conductance of 2 e^2/h). Context makes the intent clear, but the expression as written is a dimensional error.",
+      "type": "technical",
+      "severity": "minor",
+      "suggested_fix": "Replace '(0.5 h/e2)' with '(0.5 e2/h)'."
+    },
+    {
+      "title": "Chiral TSC Chern number described as odd-integer",
+      "quote": "superconductor (TSC) in two-dimensions can be described by an odd-integer Chern number 𝒩",
+      "explanation": "A 2D chiral TSC (class D) is characterized by an integer Chern number N, with N even or odd; the paper itself relies on N = +/-2 and N = 0 phases. Odd N is the case that hosts an unpaired Majorana edge mode. Saying the TSC is described by an odd-integer N contradicts the later use of N = 2C.",
+      "type": "technical",
+      "severity": "minor",
+      "suggested_fix": "Replace 'an odd-integer Chern number N' with 'an integer Chern number N, with odd N required for an unpaired chiral Majorana edge mode'."
+    },
+    {
+      "title": "200 nm Nb film treated as a two-dimensional superconductor",
+      "quote": "linearized Ginzburg–Landau theory for two-dimensional superconductors",
+      "explanation": "The linear temperature dependence of the perpendicular Hc2 near Tc, Hc2 = Phi0/(2 pi xi^2(0)) (1 - T/Tc), holds for both thin films and bulk in perpendicular field, so the fit itself is fine. But the Nb layer is 200 nm thick, several times the Nb coherence length (~40 nm), so it is not a two-dimensional superconductor in the GL sense; the 2D qualifier matters only for parallel field. The label is misleading about what the fit establishes.",
+      "type": "technical",
+      "severity": "minor",
+      "suggested_fix": "Replace 'for two-dimensional superconductors' with 'for the perpendicular upper critical field, Hc2(T) = Phi0/(2 pi xi(0)^2)(1 - T/Tc)', and report the extracted xi(0)."
+    }
+  ]
+}

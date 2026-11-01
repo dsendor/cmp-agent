@@ -1,0 +1,63 @@
+# Test set for the lookalike assistant. AI only; nothing here is human-checked.
+#
+# new: posted after the model's training data (first version July 2026 or later). The main
+#      test. No answer key; a physicist rates each flag (ratings/<id>.md), and
+#      scripts/followup.py checks back for new versions, comments and replies.
+# known: older papers whose later history is known. A sanity check only: the model may know
+#      them, and the library was partly built from the papers that answer them. Each
+#      answer-key entry is a lookalike id (or a short name when no entry exists) with the
+#      source that establishes it.
+
+new:
+  - {id: "2607.09511", version: v1, title: "Majorana parity qubit in coupled minimal Kitaev chains", family: kitaev}
+  - {id: "2608.12897", version: v1, title: "Observation of Time-Domain Braiding of Non-Abelian Anyons at nu = 5/2 State", family: charge}
+  - {id: "2610.18817", version: v1, title: "Single anyons and anyon binding in a quantum Hall dot", family: charge}
+  - {id: "2608.17404", version: v1, title: "Flux-tunable global and local superconductivity in a topological insulator nano-SQUID", family: zbp, careful: true}
+  - {id: "2608.27444", version: v1, title: "Trapping e/4 quasiparticles in bilayer graphene", family: charge, careful: true}
+  # Careful papers with a planted test. Original and planted runs are text only (no PDF),
+  # so the only difference between them is the removed passages (planted_removed.txt in
+  # the run folder). planted: the lookalikes those passages address.
+  - {id: "2608.26022", version: v1, title: "Symmetry Origins of the Field-Free Superconducting Diode Effect in the Kagome Superconductor CsV3Sb5", family: diode, careful: true, text_only: true, planted: [fine-tuning-and-selection, diode-vortex-screening]}
+  - {id: "2609.38003", version: v1, title: "Reversible field-free superconducting diode effect controlled by an antiferromagnet", family: diode, careful: true, text_only: true, planted: [diode-vortex-screening, micromagnet-stray-field]}
+  # Secondary: one run each, for the ratings sheets only (not in the stability table).
+  - {id: "2609.01233", version: v1, title: "Interferometry reveals spin-singlet fractional quantum Hall edges in graphene", family: charge, secondary: true}
+  - {id: "2610.29124", version: v1, title: "Magnetization and Josephson current coupling drives the Josephson diode effect in FeTe0.55Se0.45 van der Waals junctions", family: shapiro, secondary: true}
+
+known:
+  - id: "1710.10701"
+    version: v1
+    title: "Quantized Majorana conductance (Zhang et al. 2018, retracted 2021)"
+    key:
+      - {explanation: fine-tuned-plateau, also: [fine-tuning-and-selection], source: "https://arxiv.org/abs/2101.11456", where: "p. 5", quote: "the measurements shown in Figs. 3 and 4 were selected after finetuning parameters in a dedicated search for quantized plateaus"}
+      - {explanation: disorder-induced-zbp, source: "https://arxiv.org/abs/2101.11456", where: "p. 8", quote: "Our experiments cannot exclude the ugly regime of random disorder."}
+      - {explanation: quasi-majorana-smooth-confinement, source: "https://arxiv.org/abs/2101.11456", where: "p. 8", quote: "disorder-induced states and local, quasi-Majoranas can also yield plateau behaviour"}
+      - {explanation: one-end-only, also: [local-probe-loophole], source: "https://arxiv.org/abs/2101.11456", where: "p. 9", quote: "Our local measurements should be complemented with non-local conductance"}
+  - id: "1204.4212"
+    version: v2
+    title: "Observation of the fractional ac Josephson effect (Rokhinson, Liu and Furdyna 2012)"
+    note: "No retraction. The key is the set of mechanisms later work showed can remove the first step in a trivial junction; it says nothing about which acted here. Frolov et al. 2026's four cases are their own trivial devices, so this paper (the claim his Example 3 answers) stands in for 'one of the four cases'."
+    key:
+      - {explanation: shapiro-landau-zener, source: "https://arxiv.org/abs/2005.00077", where: abstract, quote: "We ascribe our observations to the high transparency of our junctions allowing Landau-Zener transitions."}
+      - {explanation: shapiro-nonlinear-resistance, source: "https://arxiv.org/abs/2106.00495", where: abstract, quote: "for chosen values of peak positions and amplitudes, we can suppress the odd Shapiro steps, or any steps"}
+      - {explanation: switching-jump-blind-region, source: "https://arxiv.org/abs/2403.07370", where: abstract, quote: "The missing first Shapiro step coincides with a sharp voltage jump during superconducting switching"}
+      - {explanation: heating, source: "https://arxiv.org/abs/1911.04512", where: "Sec. III C, p. 10", quote: "overheating effects [207, 208]"}
+      - {explanation: fine-tuning-and-selection, source: "https://arxiv.org/abs/2309.09368", where: "Discussion, p. 10", quote: "disclose how fine-tuned and selected the figures are"}
+  - id: "1606.05712"
+    version: v1
+    title: "Chiral Majorana edge state in a QAH insulator-superconductor structure (He et al. 2017, retracted 2022)"
+    key:
+      - {explanation: chiral-plateau-superconductor-short, source: "https://arxiv.org/abs/1904.06463", where: "p. 9", quote: "the strip also serves as an electrical short for the QAH device."}
+      - {explanation: percolation, source: "https://arxiv.org/abs/1708.06752", where: abstract, quote: "can also arise from the percolation of quantum Hall edges well before the onset of the TSC"}
+  - id: "2207.02472"
+    version: v4
+    title: "InAs-Al hybrid devices passing the topological gap protocol (Microsoft Quantum 2023)"
+    key:
+      - {explanation: protocol-parameter-sensitivity, source: "https://arxiv.org/abs/2502.19560", where: abstract, quote: "the outcome of the TGP is sensitive to the choice of magnetic field range, bias voltage range, data resolution, and cutter voltage pair (junction transparency)"}
+      - {explanation: trivial-andreev-band-gap-reopening, source: "https://arxiv.org/abs/2210.03507", where: abstract, quote: "The simultaneous occurrence of a trivial BRS and ZBPs mimics the basic features required to pass the so-called \"topological gap protocol\"."}
+      - {explanation: fine-tuning-and-selection, source: "https://arxiv.org/abs/2502.19560", where: "Conclusions, p. 3", quote: "Compounding all this is selective presentation of results"}
+  - id: "1809.05513"
+    version: v1
+    title: "Flux-induced Majorana modes in full-shell nanowires (Vaitiekenas et al. 2020)"
+    key:
+      - {explanation: full-shell-flux-andreev, source: "https://arxiv.org/abs/2008.02348", where: abstract, quote: "may result in robust zero-bias peaks, features that could be easily misinterpreted as originating from Majorana zero modes"}
+      - {explanation: abs-quantum-dot, source: "https://arxiv.org/abs/2008.02348", where: abstract, quote: "This can be understood in terms of quantum dots forming in the junction and hosting Andreev levels in the Yu-Shiba-Rusinov regime."}

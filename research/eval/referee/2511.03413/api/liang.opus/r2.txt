@@ -1,0 +1,151 @@
+# Review outline
+
+**Submission:** "Force-Based Reading and Writing of Individual Single-Atom Magnets" (Adachi, Ueda, Yasui, Sugimoto)
+
+---
+
+## 1. Significance and novelty
+
+- **Core claim.** The authors use magnetic exchange force microscopy (MExFM) on a qPlus/LER sensor (f₀ ≈ 1 MHz, A = 65 pm) with a Co-functionalized tip to:
+  - read the bistable magnetic state (Ho↑/Ho↓) of individual Ho adatoms on 3 ML MgO/Ag(001) through Δf contrast;
+  - write that state by mechanically approaching the tip beyond point contact (z < 0), at near-zero bias.
+- **Importance of the system.** Ho/MgO is the benchmark single-atom magnet. So far its read/write has relied on spin-polarized tunneling current (Natterer et al., Nature 2017) or XMCD ensemble methods. A force-based, nominally current-free read/write channel would add a new manipulation modality.
+- **Conceptual novelty.** The proposed mechanism is a transient, tip-induced lateral displacement of Ho from the C₄ᵥ O-top site toward the C₂ᵥ bridge site, which "unlocks" quantum mixing between the ±8 states. Using adsorption-site symmetry as a mechanical "write gate" is an appealing idea and, if substantiated, of broad interest ("mechano-spintronics").
+- **Relation to prior work.** Novelty should be weighed against several earlier lines of work:
+  - MExFM imaging and exchange-force spectroscopy (Kaiser 2007; Schmidt 2011; Pielmeier & Giessibl 2013; Hauptmann 2017, 2020);
+  - proposals and attempts at exchange-force-driven switching (Schmidt 2012; Wieser 2013);
+  - tip-induced control of single-spin anisotropy and exchange (e.g., Oberg et al., Nat. Nanotech. 2014);
+  - mechanical control of spin states in molecular junctions (e.g., Parks et al., Science 2010).
+
+  Against this background, the genuinely new elements are (i) the demonstration on a 4f single-atom magnet with long-lived states and (ii) the symmetry-reduction write mechanism. The latter is currently the least well supported part of the work.
+
+## 2. Potential reasons for acceptance
+
+- **Technically demanding, multi-signal measurement.** The experiment combines simultaneous Δf, time-averaged current, deconvolved conductance and dissipation recording at 4.5 K and 3 T, with deliberate tip functionalization by Co pick-up. Control measurements with non-magnetic vs. magnetic tips (Fig. S5) and on Co and Ho_bridge reference adatoms establish the tip's spin sensitivity.
+- **Clear qualitative read-write-read sequences.**
+  - Fig. 2 and Fig. S9 show reads in both directions (↓→↑ and ↑→↓).
+  - These sequences are cross-validated by the spin-polarized current before and after the operation (Figs. S6, S9b).
+  - Real-time telegraph noise in Δf at constant height (Figs. 4a,b) shows that force-channel readout has enough bandwidth and SNR to follow individual switching events.
+- **Spin-resolved Δf imaging.** Fig. 5 images two adatoms, switches one, and re-images it. This is a convincing "bit-addressing" demonstration in principle.
+- **Steep distance dependence of the write process.** Fig. 4c and Fig. S13 show a qualitatively distinct, much steeper distance dependence for force-induced switching than for current-induced switching. This hints at a different physical channel.
+- **Supporting evidence for the mechanism.** The atom-manipulation experiment (Fig. S11) shows that the same approach protocol, pushed slightly further, irreversibly converts Ho_top to Ho_bridge. This provides circumstantial support for the proposed reaction coordinate.
+- **Accessible modeling.** A crystal-field model with Stevens operators illustrates the strong difference in ±8 mixing between C₄ᵥ and C₂ᵥ (Table 5, Fig. S3). The overall narrative is clear.
+
+## 3. Potential reasons for rejection
+
+### 3.1 The writing mechanism is not established; plausible alternatives are neither excluded nor tested
+
+- **The telegraph statistics conflict with a near-equilibrium, bath-driven mechanism.**
+  - The calculated Ho↑–Ho↓ splitting at 3 T is 3.47 meV (Table 5), whereas k_BT ≈ 0.39 meV.
+  - For a spin–phonon or thermal-electron relaxation channel (both mechanisms proposed in SI Sec. 14), detailed balance would force occupation strongly toward the ground state, with a dwell-time ratio of order e^(−9) ~ 10⁻⁴.
+  - Yet Figs. 4a,b show comparable dwell times (seconds) in both states.
+  - Hence either (i) the level splitting under the tip is very different from the free-adatom value, or (ii) energy is supplied non-thermally, for example by the 1 MHz, 130 pm peak-to-peak mechanical loading cycle or by tunneling electrons at 1 mV / ~nA.
+  - Neither possibility is discussed. As written, the proposed mechanisms cannot account for the data.
+- **Exchange-field-induced level crossing is dismissed too quickly.**
+  - The authors exclude exchange forces as the driver by citing bidirectional switching [25]. However, a tip exchange field of a few meV (comparable to the measured F_MExFM ~0.1 nN acting over ~10 pm, i.e., ~6 meV) could cancel the 3.47 meV Zeeman splitting.
+  - Bringing ±8 near degeneracy would naturally produce bidirectional, near-symmetric telegraph switching through a transverse perturbation. Such a perturbation could come from the asymmetric tip itself, the hyperfine interaction, or small distortions.
+  - This scenario predicts specific dependences that are not measured:
+    - a strong dependence of the switching distance and rate on B field magnitude and direction;
+    - a resonance-like rather than monotonic z-dependence.
+  - It is at least as consistent with the data as the "partial displacement toward bridge" hypothesis.
+- **The lateral displacement is inferred, not observed.**
+  - The evidence consists of (i) the double-minimum Δf(z) shape (Fig. S8), (ii) irreversible manipulation at somewhat smaller z (Fig. S11), and (iii) switching always occurring at z < 0 (Fig. S13).
+  - Each of these is also compatible with other explanations: tip-apex relaxation, Co-cluster reconfiguration, multi-atom-tip imaging artifacts, or vertical compression changing the Ho–O bond.
+  - No quantity directly tracks the Ho's lateral coordinate at the switching distance, for example the dependence of switching on the tip's lateral offset or direction, or DFT relaxation of the tip–Ho–MgO junction.
+- **The model is too schematic to support quantitative claims.**
+  - H = αH_C₂ᵥ + (1−α)H_C₄ᵥ is a linear interpolation between two point-charge crystal fields. α is not mapped to any physical displacement in pm.
+  - The resulting curve (Fig. S3c) is non-monotonic, with a dip near α ≈ 0.1 and a kink near α ≈ 0.3, and these features are not explained.
+  - The point-charge model with Q_M = +3e ignores covalency and the metallic tip, which in contact is not "electrically neutral" in any crystal-field sense (screening, image charges, hybridization).
+  - The model omits the ¹⁶⁵Ho hyperfine interaction (I = 7/2), which is known to be central to quantum tunneling of magnetization (QTM) and stability in Ho/MgO (Donati 2016; Forrester 2019).
+  - The model also omits the Co-tip exchange field, which acts precisely in the regime where switching occurs.
+  - The transition-probability metric I₀₁ (Eq. S6) assumes a fixed bath. The "relative transition probability" therefore cannot be compared with the measured absolute rates.
+
+### 3.2 The "current-free", "nondissipative" and "low heat" claims are not supported by the data
+
+- **Tunneling current is substantial during writing.**
+  - Writing happens at or beyond point contact, where the deconvolved conductance is ~10⁻² G₀ (Fig. S7d, S12b).
+  - At V = 1 mV (Fig. 4) this corresponds to roughly 0.1–1 nA of static current. Even at 200 µV, the time-averaged current is 0.04–0.08 nA (Fig. S7c).
+  - Current-induced or current-assisted processes therefore cannot be excluded:
+    - inelastic transitions within the ground multiplet;
+    - Joule or local heating;
+    - electron spin–spin scattering, which the authors themselves list as a possible mechanism.
+  - Excluding them requires showing that the rate is independent of bias magnitude and polarity down to V ≈ 0. This control is not reported; Fig. 4 uses 1 mV, other figures 200 µV, and no V-dependence is given.
+- **The dissipation channel cannot resolve the relevant energies.**
+  - The noise in Fig. S7e is ~±0.01 eV/cycle. A single switching event involves ~3.5 meV per event at ~1 s⁻¹, i.e., 10⁶ oscillation cycles.
+  - The "negligible dissipation" therefore says nothing about whether the write process is dissipative.
+  - Maintaining a 1 MHz oscillation also has its own (macroscopic) power budget.
+- **No energy-per-bit comparison is provided.**
+  - The abstract and conclusion emphasize low heat generation and "minimal energy loss". Yet no estimate is given of the energy expended per write or read, and no comparison is made with the current-based protocol of Natterer et al.
+  - Without this, the device-oriented framing is speculative.
+
+### 3.3 Readout is marginal and its quantitative analysis is questionable
+
+- **Small, near-contact contrast.**
+  - The Δf difference between ↑ and ↓ is ~0.2–0.4 Hz on a background of −5 to −30 Hz: Fig. 3a, Fig. 4 (~0.15 Hz), and Fig. 5c (~0.5 Hz at the minimum only).
+  - The force difference (Fig. 3b inset) is resolvable only in a ~20 pm window around z ≈ 0–0.02 nm and again below −0.08 nm, i.e., essentially at contact.
+  - This is not exchange "across a vacuum gap" in the sense of earlier MExFM work. The relevant regime should be stated explicitly, and its implications for non-invasiveness discussed.
+  - Fig. 5 is a single example, and the right atom's profile also changes slightly between images. Without repeat statistics, tip-height drift cannot be excluded as a contributor.
+- **The definition of z = 0 is inconsistent with the data.**
+  - The SI defines z = 0 from the "point conductance" G₀ = 7.748×10⁻⁵ S.
+  - However, the measured conductance at z = 0 is only ~10⁻² G₀ (Fig. S7d, S12b).
+  - Because every switching threshold is quoted relative to point contact ("always at z < 0"), this ambiguity directly affects the central mechanistic argument.
+- **Force inversion is applied where its assumptions break down.**
+  - The Sader–Jarvis inversion assumes a smooth, conservative, single-valued F(z).
+  - Δf(z) shows abrupt steps (near z ≈ 0.02 nm and −0.05 nm in Figs. 3a, S8a, S12a). The authors themselves attribute these to structural rearrangement of the junction.
+  - With A = 65 pm, these discontinuities are smeared into neighboring z. F_MExFM(z), including its sign change from FM to AFM coupling, may therefore partly reflect state- or configuration-dependent relaxation rather than exchange.
+  - It is not demonstrated that the adatom remained in the assigned spin state throughout each Δf(z) curve down to −0.11 nm. This is precisely the range in which switching is reported for other tips.
+- **State assignment and contrast sign are tip-dependent.**
+  - In Fig. 2 (tip 1) the switch ↓→↑ at −0.13 nm produces an upward Δf jump. In Fig. S9 (tip 12) the switch ↑→↓ at −0.03 nm also produces an upward jump.
+  - The sign of the read contrast thus depends on tip and distance. The ↑/↓ assignment rests on spin-polarized current, whose sign depends on the (unknown) spin polarization of the Co cluster.
+  - An independent calibration is needed, for example the B-field-polarity dependence of the ground-state population or comparison with a known reference.
+  - The labeling convention is also confusing: Ho↑ corresponds to ⟨J_z⟩ = −8 as the ground state. This needs explicit clarification.
+
+### 3.4 "Writing" is stochastic, poorly reproducible and statistically thin
+
+- **The write process is not deterministic.**
+  - At the write distance the spin telegraphs in both directions (Fig. 4). The final state in Figs. 2 and S9 is whichever state happened to be occupied at retraction.
+  - A controllable write therefore requires a read-verify-retract loop. Its fidelity, latency and success probability are not quantified, nor is it shown that the state is retained with the native Ho_top lifetime after retraction.
+- **The write threshold is highly variable, and the safe window is narrow.**
+  - The switching distance spreads over ~0 to −140 pm across tips (Fig. S13). Note that the axis is mislabeled "nm" and is presumably pm.
+  - Irreversible conversion to Ho_bridge occurs only slightly closer than the switching distance (Fig. S11).
+  - The number of atoms studied, the number of write attempts, and the fraction that ended in destructive displacement or tip changes are not reported.
+- **The locality claim (Fig. 4c) is not supported.**
+  - The force-induced rates rest on 3–4 points per tip over ~10–15 pm, with two separate fits and no error bars. They are also compared with current-induced data from a different tip at z = 160–290 pm.
+  - A steeper vertical decay does not demonstrate lateral localization. That requires a laterally resolved rate map, or at least nearest-neighbor non-disturbance tests, which are absent.
+
+## 4. Suggestions for improvement
+
+1. **Discriminating experiments and modeling for the write mechanism.**
+   - Measure switching rates as a function of:
+     - bias magnitude and polarity, including V ≈ 0 with the current recorded;
+     - B field, including field reversal and several magnitudes, to test the exchange-field/level-crossing scenario;
+     - oscillation amplitude, including the static limit if possible;
+     - lateral tip offset and direction, as the most direct probe of the "push toward bridge" coordinate.
+   - Report the separate rates Γ↑→↓ and Γ↓→↑ versus z and compare their ratio with detailed balance.
+   - Complement this with DFT or relaxed-structure calculations of the Co-tip/Ho/MgO junction. These would provide the real Ho displacement and the resulting crystal field, and should include the tip exchange field and the hyperfine interaction in the spin Hamiltonian. Replace α with a physical coordinate.
+
+2. **Make the readout quantitative and robust.**
+   - Report read fidelity: Δf histograms for each state, SNR versus bandwidth and z, and statistics across several atoms and tips.
+   - Show approach/retract control cycles that stay above the write threshold and yield identical minima, ruling out drift or hysteresis artifacts.
+   - Fix and justify the z = 0 definition so that it is consistent with the measured G(z).
+   - Verify Sader–Jarvis results with smaller amplitudes or direct Δf comparisons in the regime of discontinuities, and confirm that no switching occurred during each spectrum.
+   - Provide an independent ↑/↓ assignment and state the J_z sign convention explicitly.
+
+3. **Turn "writing" into a characterized protocol.** Implement and quantify a read-verify-retract scheme, reporting:
+   - write success probability and time-to-write;
+   - post-write retention lifetime;
+   - the probability of destructive Ho_top→Ho_bridge conversion versus z;
+   - total numbers of atoms, tips and events.
+   
+   In addition, replace the sparse Fig. 4c with denser data and error bars, and support the locality claim with lateral rate maps and tests on closely spaced adatoms.
+
+4. **Calibrate the claims and improve the presentation.**
+   - Moderate the "current-free/nondissipative/low-heat" language, or support it with an explicit energy-per-operation estimate compared with current-based read/write.
+   - Situate the work more carefully relative to prior tip-induced exchange and anisotropy control and to MExFM switching proposals.
+   - Correct presentation issues:
+     - S13 axis units;
+     - leftover non-English annotations in Fig. 4;
+     - the "Ag(100)" vs "Ag(001)" inconsistency;
+     - missing error bars;
+     - fit details in Fig. 4c.
+   - Consolidate the tip-dependence (Table 1) into the main text, so readers can see that sign and threshold vary between tips.

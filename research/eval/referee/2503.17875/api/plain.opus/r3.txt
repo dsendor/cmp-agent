@@ -1,0 +1,178 @@
+# Referee Report
+
+**Manuscript:** *Heavy fermions, mass renormalization and local moments in magic-angle twisted bilayer graphene via planar tunneling spectroscopy* (Zhang, Wu, Călugăru, Hu, Taniguchi, Watanabe, Bernevig, Andrei)
+
+---
+
+## 1. Summary of claims
+
+The authors use a planar tunneling device to study MATBG (θ ≈ 1.06–1.08°). The device has a graphite probe, a 2 nm hBN barrier, and a ~30 nm hBN top gate. By measuring both dI/dV_b and dI/dV_g, they extract the inverse compressibility dμ/dn (Eq. 3). From dμ/dn they derive three further quantities:
+
+1. **Chemical potential μ(ν).** This gives a flat-band width of 26 meV, a 10 meV CNP gap, and a 1.3 meV correlated gap at ν = 2 with an apparent g-factor of 5.4.
+2. **A filling-dependent "cyclotron" mass.** It swings from ≳0.6 m_e just below positive integers to ~0.06 m_e just above them. The authors interpret this as f-like holes versus c-like electrons in the topological heavy-fermion (THF) model.
+3. **The entropy S(ν, T)** via a Maxwell relation. They report two "plateaus" near 10 K and 20 K, which they identify with 4-fold and 8-fold degenerate isospin local moments. They attribute the change in degeneracy to heterostrain, supported by an atomic-limit THF calculation.
+
+## 2. Overall assessment
+
+Using planar tunneling to obtain thermodynamic quantities is appealing. The simultaneous dI/dV_b and dI/dV_g measurement, and the explicit treatment of the large bias-electrode capacitance, are useful methodological contributions. The basic phenomenology is consistent with SET/STM literature:
+
+- the dμ/dn sawtooth (cascade),
+- the ν = 2 gap at 0.3 K,
+- Chern-insulator fans from ν = 1, 2, 3.
+
+However, the paper's headline claims go considerably beyond what the analysis currently supports:
+
+- the "heavy fermion mass renormalization by a factor of 10";
+- "entropic evidence for 4- and 8-fold local moments."
+
+Specifically:
+- the extraction of dμ/dn rests on an unstated and questionable approximation;
+- the effective-mass analysis applies a non-interacting formula with fixed degeneracy in exactly the regime where both assumptions fail;
+- the entropy "plateaus" are, on inspection of the data, non-monotonic in temperature, which is thermodynamically forbidden at fixed filling. This points to systematic error rather than new physics.
+
+I recommend **major revision**. Detailed points follow.
+
+---
+
+## 3. Major issues
+
+### 3.1 Derivation of Eq. (3) contains a hidden approximation that is likely invalid in the flat bands
+
+From Methods Eqs. (1) and (5), with κ ≡ dμ/dn, A ≡ ρ(μ+eV_b), and B ≡ ρ(μ), one gets exactly:
+
+- dI_n/dV_b + (C_b/C_g) dI_n/dV_g = eI_0 A
+- κ = (e²/C_g)(dI_n/dV_g) / [eI_0 (A − B)]
+
+Eq. (3) in the main text follows only if **B = ρ(μ(n)) is neglected relative to A = ρ(μ+eV_b)**.
+
+- Neither the main text nor Methods (Eq. 7 retains B) states this assumption or justifies it.
+- Inside the flat bands, ρ(E_F) is precisely the large flat-band DOS. It is plausibly comparable to or larger than the DOS at the probing energy.
+  - V_b = ±42 mV lies only ~20 meV beyond the ~22 mV inelastic threshold.
+  - The flat bands are 26 meV wide.
+- Neglecting B rescales κ by a filling-dependent factor A/(A−B). This directly distorts the sawtooth amplitude, the integrated μ(ν), the mass, and the entropy.
+
+**Requested:**
+- (a) State the approximation explicitly and estimate B/A as a function of filling.
+- (b) Show that the extracted dμ/dn, and hence μ(ν) and S, are independent of the probing bias. Repeat the analysis at several V_b on both bias polarities.
+- (c) Ideally, benchmark against a known quantity, e.g. remote-band or monolayer/Bernal-bilayer compressibility in the same device geometry.
+
+### 3.2 Treatment of the tunneling process and probe
+
+Eq. (1) is the standard elastic expression with a constant probe DOS. The authors, however, state that tunneling is phonon-assisted, with momentum mismatch Δk ≈ 0.53 Å⁻¹ bridged by a ~20 meV ZA phonon. The geometry, a twisted graphite/hBN/TBG junction, is essentially a momentum-resolving one (cf. the quantum twisting microscope, Ref. 39).
+
+Consequences that need discussion:
+
+- **"E_F = μ(n) ≈ ±22 mV" conflates two things.** The inelastic threshold is a bias offset; it does not shift the Fermi level. This sentence should be rewritten. The integration limits in Eq. (1) should be offset by ħω_ph, and the phonon matrix element and its momentum selectivity should be discussed.
+- **Graphite does not have a constant DOS near its K points.** A momentum-selective process means the signal is not simply the angle-integrated TBG DOS. How does this affect the interpretation of dI_n/dV_b as ρ?
+- **Phonon absorption channels are temperature dependent.** This matters for the entropy analysis (§3.5), which relies on small temperature derivatives of the extracted μ.
+- **The transmission normalization T(n) ∝ exp(0.258 ν) is phenomenological.** Its temperature dependence and the possible bias dependence of the barrier are not discussed. Also, because I_n = I/T(n), dI_n/dV_g contains a term −I·T′/T²·(dn/dV_g). Please confirm this term was included, and explain how the DC current entered the analysis.
+
+### 3.3 Carrier-density calibration and the quantum-capacitance correction
+
+**Bias-induced doping is large.** C_b V_b/e at V_b = −42 mV is ≈ 1.3 μF/cm² × 0.042 V / e ≈ 3.4 × 10¹¹ cm⁻² ≈ **0.5 n₀**. Small errors in C_b therefore produce sizeable filling offsets. The 0.2 shift of the ±4 peaks could reflect a C_b error as much as quantum capacitance. Please quantify the uncertainty in C_b and how it propagates.
+
+**The correction risks circularity.** The n(V_g) calibration (0.30 × 10¹² V_g cm⁻²) comes from the measured Landau fan, so it already encodes the actual, quantum-capacitance-inclusive filling. Applying a further filling-dependent remapping that moves the band-edge peaks onto exactly ν = ±4 is a nonuniform rescaling of the x-axis that partly assumes the answer. The SI procedure should be described in the main text. Please show that the conclusions, especially near ν = 3–4 where the entropy integration starts, are insensitive to it.
+
+**Geometric capacitance cross-check.** The ratio C_g/C_b ≈ 1/27 implies C_g ≈ 0.048 μF/cm². For a 30 nm hBN gate dielectric (ε ≈ 3–4) one expects ~0.09–0.12 μF/cm². Please reconcile this, e.g. with the actual top-hBN thickness (Methods says 30–50 nm).
+
+### 3.4 Effective-mass analysis (Eq. 4, Fig. 3)
+
+**The quantity extracted is a thermodynamic DOS mass, not a cyclotron mass.** Eq. (4) is the 2D parabolic-band relation between DOS and mass. dμ/dn includes Hartree and exchange contributions, which is precisely why it becomes negative below integer fillings. Where dμ/dn ≤ 0, Eq. (4) gives a divergent or negative "mass." The "heavy" points just below integers in Fig. 3a appear to be exactly those near-zero/negative regions, apparently truncated. Interpreting negative compressibility as heavy quasiparticles is not justified.
+
+**A fixed g′ = 4 is inconsistent with the physics invoked.** In both cascade/flavor-polarization and THF pictures, the number of active flavors resets after each integer filling (Dirac revivals). Since m* ∝ 1/(g′·dμ/dn), using the correct reduced degeneracy above integers (g′ = 3, 2, 1) *raises* the "light" mass by up to a factor of 4. The headline "factor of 10 mass renormalization" is therefore partly an artifact of the assumed degeneracy.
+
+**The data do not discriminate THF from other models.** The asymmetry (low dμ/dn just below an integer, high just above) is the generic cascade phenomenology also captured by Hartree–Fock flavor-polarization models (Refs. 18, 22). The authors acknowledge consistency with "both symmetric and symmetry-broken phases." They should state clearly what, if anything, is uniquely heavy-fermion here, beyond a reinterpretation of the known sawtooth.
+
+**The theory comparison in Fig. 3c is at T = 20 K and ε = 0.001, while Fig. 3b data are at 0.3 and 4 K.** Please compare at matched temperatures, or explain why this is appropriate.
+
+**Landau-level mass extraction (Methods, Ext. Fig. 2):**
+- The model is mislabeled. E_N − E_0 = ħω_c√(N(N−1)) is the *massive chiral* (Bernal-bilayer-like) spectrum, not that of "massive Dirac fermions."
+- The text and figure differ: the text says √(N(N+1)), Ext. Fig. 2e says √(N(N−1)).
+- Converting bias spacing to energy spacing ignores the lever-arm effect of Eq. (2). In LL gaps, dμ/dn is large, so ΔV_b ≠ ΔE/e. This directly biases the extracted 0.174 m_e and 0.047 m_e.
+- The nonzero intercepts (~22 mV and ~60 mV) should be explained.
+
+### 3.5 Entropy: the "plateaus" violate thermodynamic monotonicity
+
+This is the central claim of the paper and, in my view, its weakest part.
+
+**S(T) is non-monotonic in the data.** At fixed filling, (∂S/∂T)_ν = C_ν/T ≥ 0. Yet Ext. Fig. 4c shows:
+- at ν = 2, S ≈ 4.2 k_B at ~17 K falling to ≈ 3.5 k_B at ~22 K;
+- at ν = 3, ≈ 3.2 → 2.5 k_B over the same range.
+
+Both decreases exceed the plotted error bars. Fig. 4c shows similar decreases at ν = 1 between ~6 K and ~10 K. What are called "plateaus" are actually local maxima followed by decreases. Physically allowed entropy cannot do this, so these features most likely reflect **temperature-dependent systematic errors** in the tunneling-derived μ(ν, T). Possible sources:
+- the T(n) background,
+- phonon-population effects in the tunneling channel,
+- thermal smearing entering through the A, B terms in §3.1,
+- the filling correction near ν = 4, where the integration starts.
+
+**Implied heat capacities are implausible.** The jump in S at ν = 2 from ≈ 0 to ≈ 1.4 k_B between ~5 and ~6 K implies C ≈ T dS/dT of order 8 k_B per moiré cell.
+
+**Error bars likely underestimate systematics.** They come from three-point linear fits of a quantity that is itself an integrated derivative. The features in S are derivatives of very small wiggles in the smooth curves of Ext. Fig. 4b.
+
+**Requested validation:**
+- (a) Demonstrate S(T) monotonicity, or explain its violation.
+- (b) Show the temperature grid explicitly, and the robustness of S to the fit window and to V_b.
+- (c) Check that S ≈ 0 (or sensible) in regions where it must be, e.g. just beyond ν = 4 in the gap and in the remote bands.
+- (d) Show the hole side. Fig. 4b plots −4 < ν < 0 only for the model curves.
+- (e) Most importantly for a "local moment" claim, show the **magnetic-field dependence of the entropy**, especially in-plane field to address spin moments, as in Rozen et al. and Saito et al. The abstract and introduction say local moments were uncovered from T and B dependence, but no B-dependent entropy is presented.
+
+**Model comparison:**
+- The degeneracy formulas are typeset as fractions, "ln(8/(ν+4))" and "ln(4/|ν|)." They are presumably binomial coefficients, ln C(8, ν+4) and ln C(4, |ν|). Please correct this; as written they are wrong.
+- The atomic-limit THF calculation uses U₁ = 23 meV and ε = 0.001, both "set to match the experimental data." With two tuned parameters and a model that by the authors' own admission gives the wrong low-T limit, "good agreement" with two broad features is weak evidence.
+- The zero-hybridization limit at 10–20 K needs justification, since the bare f–c hybridization in THF (γ ≈ 25 meV) greatly exceeds k_BT (~1–2 meV). Please quantify the f–c decoupling scale (e.g. the Kondo/coherence temperature) that makes this limit applicable.
+- The strain-split 4+4 scenario predicts a specific crossover energy of ~1–2 meV. Can this be independently connected to features in the tunneling spectra, such as the ~15 mV CB/VB splitting?
+- **Comparison with prior entropy measurements** (Refs. 11, 42) is needed quantitatively, not just qualitatively. For example, compare S(ν = 1, T ≈ 10 K) and the field suppression reported there.
+
+**"S at CNP saturates to zero below 12 K, as also observed in SET"** needs a reference. It should also be reconciled with the expected Dirac-like c-electron contribution.
+
+### 3.6 Interpretation of the ν = 2 gap and g-factor
+
+- A gap decreasing linearly with B shows that the lowest charged excitation carries net Zeeman moment. It does not by itself establish a spin-unpolarized (singlet) ground state.
+- An effective g ≈ 5.4 is more naturally read as a multi-spin-flip (skyrmion-like) excitation (cf. Ref. 20) or an orbital/valley contribution. Please discuss these alternatives.
+- "Intervalley coherent spin singlet observed in transport [13]" overstates what transport can establish.
+- The roughly constant gap below 1.5 T should be explained.
+- Δ₀ = 1.75 meV from the fit versus Δ = 1.3 meV measured at B = 0 should be reconciled.
+- The gap estimate from Δμ over 1.9 < ν < 2.1 includes the background dμ/dn over that interval. Please state how it is subtracted.
+
+### 3.7 Single device, sample characterization
+
+- All conclusions rest on one device and a ~1 μm² probe area. Please comment on reproducibility (additional devices or probe locations) and on twist-angle homogeneity under the probe.
+- The 10 meV CNP gap is large for non-aligned MATBG. Please state whether either hBN is aligned to the TBG, since that would break C₂ and directly affect both the f-orbital degeneracy counting and the entropy model.
+- The heterostrain value used in theory (0.1%) should be supported by an independent measurement if possible.
+
+---
+
+## 4. Minor issues and inconsistencies
+
+1. **Twist angle quoted inconsistently:** 1.06° ± 0.02° (main text), 1.08° (Fig. 1b caption), 1.07° (Methods). The formula θ = a(2/(√3 n₀))^{1/2} is dimensionally incorrect; it should be θ = a(√3 n₀/2)^{1/2}. The numbers quoted (n₀ = 0.67 × 10¹² cm⁻² → 1.07°) are consistent with the corrected form.
+2. **Temperature up to which the cascade/mass asymmetry persists** is variously ~50 K, ~70 K, and ~77 K. Also, the main text attributes the temperature dependence to "Fig. 3b," which shows only 0.3 and 4.2 K; this should be Fig. 3d.
+3. **0th LL degeneracy lifting:** "above 3.5 T" (main text) versus "above 1.5 T" (Methods).
+4. **Fig. 2a caption** says V_b = ±42 mV; the text says −42 mV for the electron side. Please clarify which polarity is used for which side.
+5. **Phonon gap description:** reconcile the "~60 meV flexural phonon" with the 20 meV ZA phonon used here (the former is presumably the K-point out-of-plane mode relevant for metal tips).
+6. **Sign convention:** C_b = e∂n/∂V_b is negative under the stated convention ne = C_gV_g − C_bV_b.
+7. **Equation numbering in Methods** is inconsistent: (1), (5), (6), (7), (11)–(13); "solving equations (4) and (5)" refers to the wrong equations.
+8. **Fig. 4e** (non-monotonic dμ/dn near ν = 1, "HFL"/"LM" regions, Pomeranchuk-like effect) appears only in the caption and is never discussed in the text.
+9. **Fig. 3a:** state how points with dμ/dn ≤ 0 are handled, and whether m* is truncated.
+10. **Typographical errors:**
+    - "Kenji Wanatabe" → Watanabe in the author list;
+    - "Seeback" → Seebeck;
+    - "valance" → valence;
+    - "filings" → fillings.
+11. **References:**
+    - duplicates: 1 = 30, 28 = 60, 23 = 57;
+    - Ref. 4 author list is garbled;
+    - Ref. 7 and several others have formatting irregularities;
+    - Ref. 27 is cited in Methods for tunneling assumptions but is a Kondo-lattice theory paper.
+12. **Energy resolution:** "high energy resolution" should be quantified, given 0.2–1 mV AC modulation and thermal broadening, especially for resolving the 1.3 meV ν = 2 gap.
+
+---
+
+## 5. Recommendation
+
+**Major revision.** The device platform and the dI/dV_g-based compressibility extraction are of genuine interest. However, to support the claims of heavy-fermion mass renormalization and entropic evidence for 4- and 8-fold local moments, the authors need to:
+
+1. justify or remove the approximation in Eq. (3) and demonstrate bias-independence of dμ/dn;
+2. reformulate the mass analysis without a fixed g′ = 4 and without reading negative compressibility as heavy mass;
+3. resolve the thermodynamically forbidden non-monotonicity of S(T) and provide independent validation of the entropy extraction, ideally including magnetic-field dependence.
+
+Without these, the observations are best described as a tunneling-based reproduction of known cascade and Pomeranchuk-type phenomenology, not as new evidence for heavy fermions and strain-split local moments.

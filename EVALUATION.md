@@ -64,6 +64,15 @@ What this settled:
   Running inside Claude Code with another model is not measured.
 - **Presentation and copy lanes** are newer and not yet measured.
 
+## The full record
+
+Everything behind these numbers is in [`research/`](research/): the referee concerns for each
+paper, every review and judge call, the scoring scripts and the API harness that ran them
+(`research/eval/api/`, keys read from environment variables), and the running log of what was
+tried and why (`research/eval.md`). Step-by-step reports: `research/eval/step3-report.md` and
+`research/eval/step4-plan.md`. A sample dashboard on a published paper, with its real
+referees' concerns overlaid: `research/eval/sample/2601.01843/dashboard.html`.
+
 ## References
 
 - Liang et al., "Can large language models provide useful feedback on research papers? A

@@ -1,0 +1,133 @@
+{
+  "overall_feedback": "This is an ambitious and carefully constructed experiment-plus-theory paper. It extends the time-domain braiding (dilute-anyon partitioning) scheme from nu = 1/3 to nu = 5/2, using one two-QPC device in two configurations so that the charged (Abelian) and neutral (Ising) sectors are probed separately. The theory is extensive. I checked the zero-temperature Poisson-limit Fano factors in Table 1 against the closed-form expressions (cot(3 pi/16) = 1.50 for PH-Pf, 4/3 for A-Pf, 8/pi = 2.55 and 2.0 for the neutral case), as well as the monodromies and scaling dimensions, and they are internally consistent. The binomial and Poisson generating functions are also correct. My main concerns are about how far the data support the headline conclusions. (i) The neutral-configuration measurement does not separate PH-Pf from A-Pf (the Supplement even says A-Pf is closer for one data set), and it is never compared with an Abelian alternative with M_n not equal to 0. So 'evidence for non-Abelian anyons' rests on agreement with one value of M_n plus the exclusion of a single incoherent-heating model. (ii) The PH-Pf versus A-Pf discrimination in the charge configuration comes mostly from subleading processes that are computed approximately (saddle-point plus an empirical reduction factor as small as 0.09, and a cutoff-sensitive intermediate term at delta = 1/2). It also assumes ideal CFT scaling dimensions, which are notoriously nonuniversal in GaAs, and no independent check of delta from the measured R(V_S) is shown. (iii) No quantitative experimental uncertainties are given, the main-text panels for the two configurations come from different cooldowns, and the heating model that is used to rule out the incoherent mechanism is linearized in Delta T / T, although Delta T is several times T in the relevant regime. There are also several localized issues: the cross-correlation (Johnson-like) term is called negligible at e*V >> kT even though the theory keeps it, a missing factor R_iQPC in the main-text intermediate-process expression, the validity condition for dilution, and a few textual mislabelings. None of these invalidates the work, but the claims in the abstract and Outlook should be scaled back, or supported by the additional comparisons suggested below.",
+  "comments": [
+    {
+      "title": "Cross-correlation term is not negligible in the stated regime; correct condition is kT << hbar I_iQPC/e*",
+      "quote": "this term becomes negligible so that the measured noise",
+      "explanation": "Eq. (6) writes S_D^exc = S_dQPC - 4 kT dI_dQPC/dV_vir. The main text (after Eq. 3 and after Eq. 4) and Methods then state that the second term vanishes for e*V_S >> kT, so that S_D 'coincides with the partition noise'. At first this seemed like a harmless simplification, but the Supplement keeps this term explicitly in Eqs. (S35), (S37), (S41), (S44), (S46) and (S51), so the authors evidently do not treat it as negligible in the computation. Physically, the detection QPC in the time-domain-braiding regime is driven by thermal (energy ~kT) excitations. Its equilibrium-like noise ~4kT G_d is cancelled by the cross term only to the extent that the dilute beam modifies the correlator on the thermal time scale. The relevant comparison is therefore between kT and the anyon arrival rate hbar I_iQPC/e*, not between kT and e*V_S. With I_iQPC = R_iQPC V_S e^2/2h and e* = e/4 one finds hbar I_iQPC/(e* kT) = (4/pi) R_iQPC (e*V_S/kT), which is about 11.7 R_iQPC at e*V_S/2kT = 4.6. The argument I/(2 pi kT) entering the Beta functions of Eq. (S38) is then of order 0.4 for R_iQPC ~ 0.2, i.e. not large. In the neutral configuration, where I_dQPC = 0 identically, S_dQPC and the cross term are of the same order, and the measured signal is their difference. So describing S_D1 as 'the partition noise at QPC2' is misleading. The comparison with theory is unaffected because the full expressions are used, but the physical interpretation in the main text is not accurate.",
+      "type": "technical",
+      "severity": "moderate",
+      "suggested_fix": "Replace the statement with: 'The cross-correlation term is retained in all theoretical Fano factors [Eqs. (S35), (S37)]; it becomes negligible only when kT << hbar I_iQPC/e* << e*V_S.' Also report its relative size at the bias points used (e*V_S/2kT = 4.6 and 5.0)."
+    },
+    {
+      "title": "Main-text intermediate-process term is missing the factor R_iQPC",
+      "quote": "Δinterm (𝑡𝑡2 − 𝑡𝑡1 ) = −�1 − 𝑅𝑅iQPC + 𝑅𝑅iQPC 𝑀𝑀𝑐𝑐∗ �𝑒𝑒",
+      "explanation": "I took the zero-temperature limit (alpha = e*V_S/kT -> infinity) of f^c_interm in Eq. (S26). The asymptotics psi(delta - i z) - psi(1 - delta - i z) ~ i(2 delta - 1)/z and sin(pi delta + i alpha/2) ~ (i/2) e^{alpha/2} e^{-i pi delta} give f^c_interm -> nu (e/e*)^2 delta_c (2 delta - 1) tan(pi delta), which matches the main-text bracket. However, Eq. (S27) gives Delta^c_interm = i sgn(t1 - t2) R_iQPC f^c_interm Delta^c_TDB, and Eq. (S25) states that interm/TDB is proportional to R_iQPC. The main-text expression has no R_iQPC prefactor, while the neighbouring Delta_triv does carry R_iQPC. Read literally, the main-text formula makes the intermediate process of the same order as time-domain braiding, which contradicts the statement that it is subdominant.",
+      "type": "technical",
+      "severity": "moderate",
+      "suggested_fix": "Insert the factor R_iQPC: Delta_interm(t2 - t1) = -R_iQPC (1 - R_iQPC + R_iQPC M_c*)^{I_S (t2 - t1)/e*} i sgn(t2 - t1) nu (e/e*)^2 (2 delta - 1) delta_c tan(pi delta)."
+    },
+    {
+      "title": "Supplement and main text disagree on which order the neutral data favor",
+      "quote": "although the A-Pf prediction lies closer to the measured values and is therefore",
+      "explanation": "The main text says the neutral-configuration data 'remain slightly closer to the PH-Pf prediction', and that 'Measurements on the other devices show the same behavior'. Supplementary Note 1, discussing the representative data set 1 (Fig. S1 g,h), says the opposite: the A-Pf prediction lies closer to the measured values. The sentence is also internally odd: an alternative lying closer to the data does not make it 'less clearly distinguishable' while the data 'agree well with PH-Pf'. I first wondered whether the sentence refers to a different bias range. Nothing in the text supports that reading, and the only quantitative neutral comparison given (2.37 vs 2.33 and 2.0) is from data set 3. A reader cannot tell which order the neutral data favor across data sets.",
+      "type": "logical",
+      "severity": "moderate",
+      "suggested_fix": "State for each data set (S1-S4) the measured F_neutral at a common bias (e.g. e*V_S/2kT = 5) together with the PH-Pf and A-Pf predictions. Rewrite the main-text sentence to say the neutral data do not discriminate between the two orders, and that for data set 1 they lie closer to A-Pf."
+    },
+    {
+      "title": "Claimed cross-validation and exclusion of A-Pf are overstated",
+      "quote": "channels are consistent with the PH-Pf order, while contradicting the A-Pf order.",
+      "explanation": "The Outlook claims that the simultaneous agreement of Figs. 2b and 3b with PH-Pf gives 'robust cross-validation' and contradicts A-Pf. Three points weaken this. (1) By the authors' own account the neutral configuration agrees with both orders within uncertainty, so the exclusion of A-Pf rests solely on the charge configuration. (2) Supplementary Note 1 states that Figs. 1b and 2b come from data set 4 (Device C, second cooldown with a 0.3 V gate bias), while Fig. 3b comes from data set 3 (Device C, first cooldown). So the two 'simultaneous' measurements shown in the main text were not taken in the same cooldown, even though the paper stresses that both configurations can be realized in one device. (3) Both theoretical orders have identical M_c and M_n, so 'cross-validation of two distinct phenomena' really tests the scaling dimensions and the subleading processes, not the braiding phases. Agreement of PH-Pf with both configurations is encouraging, but 'contradicting A-Pf' is stronger than the evidence supports.",
+      "type": "logical",
+      "severity": "major",
+      "suggested_fix": "Show the charge- and neutral-configuration panels in the main text from the same cooldown (e.g. data set 4 for both, or data set 3 for both), and reword the Outlook to: 'the charge-configuration data favor PH-Pf over A-Pf, while the neutral-configuration data are consistent with M_n = 0 for both orders.'"
+    },
+    {
+      "title": "Non-Abelian claim lacks comparison with Abelian (M_n not equal to 0) alternatives or a generic-dephasing scenario",
+      "quote": "Together, these results provide evidence for the presence of non-Abelian anyons.",
+      "explanation": "The non-Abelian signature is M_n = 0 in the neutral configuration. With M_n = 0 the braiding factor Delta^n_TDB = exp[-(I_iQPC/e*) coth(e*V_S/2kT)|t|] is a purely real decay. That is the same functional form that complete dephasing of the thermal loop by each passing neutral excitation would produce. Both theories compared (PH-Pf and A-Pf) have M_n = 0, so the data are never confronted with a hypothesis with M_n not equal to 0. Using the authors' own closed form F_neutral^limit = cot(pi delta)/(1 - 2 delta) (nu/2 pi)(e/e*)^2 Re[(1 - M_n)^{2 delta - 1}]/Re[(1 - M_n)^{2 delta - 2}], one finds that the Fano factor is in principle quite sensitive to M_n. For example, an Abelian e/4 quasiparticle with an upstream neutral boson (delta = 3/8, M_n = -i, as in a 113-type order) gives about 5.3, compared with 2.0-2.5 for M_n = 0. Showing this contrast would considerably strengthen the claim. The only alternative actually ruled out is one specific incoherent-heating model (Supplementary Note 3), and it is excluded by a factor of about two in a linearized calculation (see separate comment).",
+      "type": "logical",
+      "severity": "major",
+      "suggested_fix": "Add to Table 1 and Fig. 3b the predicted F_neutral for at least one Abelian candidate with upstream neutral modes (e.g. the 113 or K = 8 strong-pairing order, with its M_n and delta) and for a phenomenological partial-coherence model with |M_n| treated as a free parameter. Then state the range of M_n compatible with the data."
+    },
+    {
+      "title": "PH-Pf/A-Pf discrimination assumes ideal CFT scaling dimensions without an independent check",
+      "quote": "This difference originates from their distinct total scaling dimensions",
+      "explanation": "Because M_c and M_n are the same for PH-Pf and A-Pf, every difference between the predictions comes from delta = 1/4 versus 1/2, inserted at their ideal fixed-point values. In GaAs, the tunneling exponents extracted from QPC nonlinearities at 5/2 (e.g. Ref. [17]) and at other fractions typically differ from the ideal CFT values, because of edge reconstruction, long-range Coulomb interaction and non-fixed-point physics. The paper itself raises the possibility that the edges are not in the ideal regime (Supplementary Note 3). The statement that other nonuniversal effects 'are also expected to cancel out, as suggested by fractional-charge measurements' is not a justification: the fractional charge is insensitive to delta, while these Fano factors depend on it directly. The authors already have the ingredient for a consistency check: Eq. (S22) predicts the bias dependence of R_iQPC(V_S), which at e*V_S >> kT scales as V_S^{2 delta - 2}, i.e. V_S^{-3/2} for PH-Pf. This is a strong, testable dependence, and the measured R_QPC(V_S) are shown in Figs. S1-S4 (a,e).",
+      "type": "technical",
+      "severity": "major",
+      "suggested_fix": "Fit the measured R_iQPC(V_S) of each data set with the form of Eq. (S22), report the extracted effective delta, and show how F_charge^th and F_neutral^th change when that effective delta is used instead of 1/4 or 1/2."
+    },
+    {
+      "title": "A-Pf exclusion is driven by approximately computed subleading terms (reduction factor 0.09)",
+      "quote": "remains robust against slight variations in the reduction factor or the details of the integration.",
+      "explanation": "The Poisson-limit values F_charge^limit = 1.5 (PH-Pf) and 1.33 (A-Pf) differ by only about 11%. Yet at e*V_S/2kT = 4.6 the A-Pf prediction drops to 0.94 while PH-Pf stays at 1.49. The large A-Pf shift therefore comes from the subdominant trivial and intermediate processes. For delta = 1/2 these are suppressed only by R_iQPC^{2 - 2 delta} = R_iQPC and by R_iQPC respectively, which is not small for the 'not sufficiently small' R_QPC2 used. The trivial term is computed with a saddle-point approximation that, by the authors' account, overestimates the integral, and it is corrected by a single empirical factor: C_rd = 0.47 and 0.44 for PH-Pf, but 0.09 for the A-Pf charge configuration. A factor of about 11 between the approximation and the exact integral is not a 'slight variation'. It is not stated whether C_rd depends on e*V_S/kT, on R_iQPC, or on the binomial versus Poisson model, and if numerical integration is available, it is unclear why it is not used directly. The robustness statement addresses PH-Pf, where these terms are small, but not the A-Pf curve that is being excluded.",
+      "type": "technical",
+      "severity": "major",
+      "suggested_fix": "Replace the saddle-point-plus-C_rd treatment with the direct numerical integration used to calibrate C_rd (at each V_S). Report F_charge^{A-Pf, TDB only} at e*V_S/2kT = 4.6 next to the 1.57 given for PH-Pf, so readers can see how much of the A-Pf/PH-Pf separation comes from the subleading terms."
+    },
+    {
+      "title": "Intermediate-process contribution at delta = 1/2 may retain cutoff dependence, contradicting 'nonuniversal parameters cancel'",
+      "quote": "this short-time term is required to cancel the apparent divergence of the long-time",
+      "explanation": "For A-Pf (delta = 1/2), Eq. (S50) contains the term (2 pi T a/v)^{1 - 2 delta}/(1 - 2 delta), which is singular at delta = 1/2, and the authors say it cancels the divergence of the long-time part in the current. A cancellation of 1/(1 - 2 delta) poles generically leaves a finite remainder proportional to ln(2 pi kT a/hbar v), i.e. a dependence on the nonuniversal cutoff and velocities. The authors state that the intermediate process 'has a finite contribution to the noise' for A-Pf, but they do not say how the delta -> 1/2 limit was taken there, or whether a ln(a) term survives. Similar 0/0 structures appear in Eq. (S38) (1/sin(2 pi delta)) and Eq. (S41) (1/cos(pi delta)) at delta = 1/2, and the limit procedure is stated only for F_neutral^limit. If a logarithm survives, the A-Pf charge prediction depends on a/v, which contradicts the claim that velocities cancel and the 'no fitting parameter' claim for the A-Pf curve.",
+      "type": "technical",
+      "severity": "moderate",
+      "suggested_fix": "Give the explicit delta -> 1/2 limit of the intermediate-process rates and noise for A-Pf. Either show that the ln(2 pi kT a/hbar v) terms cancel in both I_dQPC and S_dQPC, or state the cutoff value used and show the sensitivity of F_charge^{A-Pf} to it."
+    },
+    {
+      "title": "Incoherent-heating exclusion uses a linear-in-Delta T result where Delta T is several times T",
+      "quote": "of ∆T /T with ∆T ≡ Tex − T and integrating the resulting linear-order contribution over time",
+      "explanation": "Eq. (S64) is derived to linear order in Delta T/T, but Eq. (S65) then inserts the fully nonlinear Tex from Eq. (S61). Take constant R, so that P_heat = G0 V_S^2 R(1 - R)/2, with R ~ 0.2, |c_c| + |c_n| = 3/2, and e*V_S/2kT = 5 (eV_S = 40 kT). Then Eq. (S61) gives Tex^2 - T^2 of about 26 T^2, so Tex is about 5T and Delta T/T is about 4. The linear expansion is therefore far outside its validity in exactly the regime used for Fig. S9, and the 'factor of roughly two' by which the model falls short may not survive a nonlinear treatment. The model also fixes several phenomenological choices that directly set the magnitude: equipartition of P_heat by central charge between the modes, full local thermalization to a single Tex, and only the extreme l_ch-eq << L. In addition, the heating comparison is done only for data set 4, whereas the main-text neutral figure uses data set 3. Ruling out incoherent heating is central to the non-Abelian claim, so this calculation should be made more robust.",
+      "type": "technical",
+      "severity": "moderate",
+      "suggested_fix": "Compute S_D1^exc in the heating model by inserting the full Green function of Eq. (S63) with the nonlinear Tex(V_S) into the rates (S31), without expanding in Delta T/T. Show the result for all four data sets, and give an upper bound in which all of P_heat goes into the upstream neutral mode."
+    },
+    {
+      "title": "Dilution condition reduces to R_iQPC << 1/8, which may not hold",
+      "quote": "provided that the injected anyon beam is sufficiently diluted",
+      "explanation": "The stated condition is e*V_S >> h I_iQPC/e*. With I_iQPC = R_iQPC V_S e^2/2h and e* = e/4, this becomes eV_S/4 >> 2 R_iQPC eV_S, i.e. R_iQPC << 1/8, independent of bias. (With hbar instead of h it would be R_iQPC << pi/4, so the choice of constant matters.) The authors state that R_QPC2 is 'not sufficiently small' and switch to a binomial model, and the bound R_iQPC R_dQPC <~ 0.02 suggests R_iQPC can be 0.1-0.3. The binomial model is a heuristic extension. It is unclear whether time-domain braiding still dominates in this regime, and this matters especially for A-Pf, whose subleading terms scale only as R_iQPC.",
+      "type": "technical",
+      "severity": "moderate",
+      "suggested_fix": "State the condition explicitly as R_iQPC << 1/8 (or with the correct constant), report the measured R_iQPC at the bias points used for the quoted Fano factors (4.6 and 5.0), and show F^th computed with both the Poisson and the binomial models at those points."
+    },
+    {
+      "title": "No quantitative experimental uncertainty on the Fano factors",
+      "quote": "noise agrees well with both predictions within experimental uncertainty",
+      "explanation": "The comparisons between theory and experiment are given as single numbers at single bias points (F_charge = 1.54 vs 1.49/0.94 at 4.6; F_neutral = 2.37 vs 2.33/2.0 at 5.0), with no error bars or stated uncertainty. The Fano-factor panels in Figs. S1-S4 (d,h) show large scatter, diverging near zero bias, and the noise panels show no error bars. Without an uncertainty, 'within experimental uncertainty', 'slightly closer to PH-Pf' and 'well separate' cannot be assessed, and the choice of bias point for the quoted values is not justified.",
+      "type": "logical",
+      "severity": "moderate",
+      "suggested_fix": "Give the statistical uncertainty (from averaging time) and the systematic uncertainty (gain calibration, electron temperature T = 10 mK, R measurement) on F_charge and F_neutral. Report bias-averaged values over a stated window (e.g. 3 < e*V_S/2kT < 6) for each data set, together with a reduced chi-square for the PH-Pf and A-Pf curves."
+    },
+    {
+      "title": "Coherence assumption justified by the agreement it is meant to underpin",
+      "quote": "theory implies that this condition is met in our devices",
+      "explanation": "The theory assumes L = 1.4 um is shorter than the phase-coherence and inter-mode equilibration lengths. The text then cites agreement with that theory as evidence the assumption holds, which is circular. The supporting reference [42] shows absence of thermal equilibration, which is not the same as phase coherence or absence of charge equilibration (the two are explicitly distinguished in Supplementary Note 3). There is also a tension: the PH-Pf fixed-point edge is itself reached through disorder-driven inter-mode tunneling, which is the kind of process the coherence requirement excludes over L.",
+      "type": "logical",
+      "severity": "minor",
+      "suggested_fix": "Replace the sentence with an independent estimate of the charge-equilibration and dephasing lengths at 10 mK for this heterostructure (or a bound from the measured absence of current at the detection QPC in the neutral configuration), and state that agreement with theory is consistent with, but does not establish, L << l_ch-eq."
+    },
+    {
+      "title": "Binomial model: particles and holes are counted at the injection QPC, not the detection QPC",
+      "quote": "Nh the total number of particles and holes incident on the detection QPC during the time interval",
+      "explanation": "Eq. (S17) fixes N_p - N_h = I_S|t1 - t2|/e*, where I_S is the current impinging on the injection QPC, and in Eq. (S18) each of these attempts is reflected with probability R_iQPC. N_p and N_h are therefore numbers of attempts at the injection QPC. The number incident on the detection QPC would be set by I_iQPC = R_iQPC I_S. The text also does not explain why the incoming nu = 1/2 channel current should be modeled as a train of discrete e/4 attempts with a Boltzmann particle/hole ratio exp(e*V_S/kT). This is a phenomenological choice that affects the finite-R predictions.",
+      "type": "technical",
+      "severity": "minor",
+      "suggested_fix": "Change 'incident on the detection QPC' to 'incident on the injection QPC (attempts, each reflected with probability R_iQPC)', and add one sentence stating that the binomial attempt model with Np/Nh = exp(e*V_S/kT) is a phenomenological interpolation that reduces to the controlled Poisson result as R_iQPC -> 0."
+    },
+    {
+      "title": "Mislabeling: statement about intermediate process attributed to trivial partitioning",
+      "quote": "the contribution of the trivial partitioning process to the tunneling",
+      "explanation": "This sentence closes Supplementary Note 2E3 (Intermediate Process), cites W^interm/W^TDB proportional to R_iQPC and Eq. (S25), which concern the intermediate process, but names it 'trivial partitioning'. The trivial term scales as R_iQPC^{2 - 2 delta} [Eq. (S19)], so the mislabeling could confuse readers comparing the two scalings.",
+      "type": "technical",
+      "severity": "minor",
+      "suggested_fix": "Replace 'the trivial partitioning process' with 'the intermediate process'."
+    },
+    {
+      "title": "Excess over F_charge = 1 does not by itself favor PH-Pf",
+      "quote": "substantially exceeds the baseline that corresponds to ℱcharge = 1, favoring the PH-Pf order.",
+      "explanation": "An excess over F_charge = 1 is a generic signature of time-domain braiding with Im M_c not equal to 0, and both orders have F_charge^limit > 1 (1.5 and 1.33). What favors PH-Pf is that the finite-bias A-Pf prediction (0.94) falls below 1 because of subleading terms, which is a different and more model-dependent argument (see the separate comment on the reduction factor).",
+      "type": "logical",
+      "severity": "minor",
+      "suggested_fix": "Rephrase as: 'The noise substantially exceeds the trivial baseline F_charge = 1, signaling time-domain braiding; quantitatively it follows the PH-Pf prediction (1.49 at e*V_S/2kT = 4.6), while the A-Pf prediction (0.94) lies below the data.'"
+    },
+    {
+      "title": "Reference excitation is not deep in the linear regime",
+      "quote": "so that it produced only negligible back-action on the injected",
+      "explanation": "The stated criterion R^diff V_ref << V_S concerns back-action. The differential reflection R^diff_QPC2 is meant to be a linear response, which requires e*V_ref << kT. The quoted value e*V_ref/2kT ~ 0.3 (I checked: V_ref = 2 uV, T = 10 mK gives 0.29, and I_ref ~ 39 pA is consistent) corresponds to e*V_ref/kT ~ 0.6. That is not small, and it smooths R^diff over about 5% of the plotted bias range. This enters the denominator of F_neutral directly.",
+      "type": "technical",
+      "severity": "minor",
+      "suggested_fix": "Add the linearity criterion e*V_ref << kT, and either show that F_neutral is unchanged when V_ref is halved, or quote the estimated nonlinear correction to R^diff_QPC2 at e*V_ref/kT = 0.6."
+    }
+  ]
+}

@@ -1,0 +1,109 @@
+{
+  "overall_feedback": "This is a well-motivated STM/STS study. The authors exploit the cluster-to-cluster variation of 1T-layer filling in 4Hb-TaS2 to assemble an evolution of the spectral function from a depleted narrow band toward half filling. The high-energy hump is used as a doping marker and as a normalization reference, which is a sensible choice. The extracted roughly constant U and the redistribution of weight between the LHB and UHB look qualitatively Hubbard-like. The observed suppression of the 1T proximity gap with filling is new and interesting.\n\nThe central interpretive claims rest on weaker footing than the text suggests.\n\n(i) Spatial inhomogeneity is treated as equivalent to filling control in a homogeneous lattice. Near-half-filled clusters (~12%) sit inside a matrix of ~0.2-filled clusters, yet the data are compared to homogeneous-lattice DMFT and Brinkman–Rice physics. For such isolated clusters, an impurity description is arguably the natural one.\n\n(ii) The argument against Kondo screening uses a T_K formula in which the 1T bandwidth W0 replaces the hybridization width Γ to the 1H bath. This makes the 'all parameters experimentally accessible' claim and the ~40 K estimate unreliable.\n\n(iii) Several quantitative statements are internally inconsistent or overstated:\n- 'an order of magnitude smaller' HWHM versus a factor of ~2–4 in Fig. 3h;\n- the gray Kondo curve not matching T_K ≈ 40 K;\n- U/W0 ~ 2 versus the U/W = 1.67 used in DMFT;\n- 'symmetrical transfer' versus the clearly asymmetric LHB/UHB weights.\n\n(iv) The linear-in-T width is not analyzed against thermal and instrumental broadening.\n\n(v) The local-moment/Zeeman interpretation of the 'nonsuperconducting puddles' sits uneasily with the claim that the central peak is a coherent Fermi-liquid band.\n\nThe filling calibration (0.2 e to 1.0 e), the Se-counting argument and the DMFT methods are also underspecified. These issues are fixable with additional analysis and more careful wording, but as written the 'unambiguous' demonstration of Brinkman–Rice Mott physics over a Kondo scenario is overstated.",
+  "comments": [
+    {
+      "title": "Kondo temperature formula uses the 1T bandwidth instead of the hybridization to the 1H bath",
+      "quote": "the Kondo temperature can be calculated with the Anderson impurity model as",
+      "explanation": "The authors deserve credit for trying to make the Kondo-versus-Mott comparison quantitative.\n\nIn the Anderson impurity model (Haldane's formula), however, the prefactor and exponent of T_K depend on the hybridization width Γ = πρV² between the localized level and the conduction bath. Here the relevant bath is the 1H electrons, or the surrounding clusters. The paper substitutes W0, the ~80 meV width of the 1T narrow band, for Γ. That quantity is not a hybridization strength with the 1H layer; it is a property of the 1T band itself.\n\nThe claim that 'all the microscopic parameters are experimentally accessible' therefore does not hold: Γ to the 1H layer is not measured anywhere in the paper. Because T_K depends exponentially on 1/Γ, the ~40 K estimate could easily be off by orders of magnitude. A smaller Γ would give a T_K of order 1 K, with a HWHM comparable to what is observed.\n\nI checked that the stated numbers do reproduce T_K ≈ 45–50 K for ε ≈ −76 to −95 meV, U = 190 meV, W0 = 80 meV, so the arithmetic is fine. The issue is the physical identification. Since this estimate is the main quantitative argument used to rule out Kondo screening, it is central to the paper's conclusion.",
+      "type": "technical",
+      "severity": "major",
+      "suggested_fix": "Replace W0 with an independently estimated 1T–1H hybridization width Γ, for example from DFT interlayer hopping or from the width of the zero-bias resonance itself. Alternatively, invert the argument: state the value of Γ that a Kondo interpretation would require to match the observed HWHM, and discuss whether it is physically implausible."
+    },
+    {
+      "title": "Spatially inhomogeneous clusters compared to homogeneous-lattice DMFT / Brinkman–Rice",
+      "quote": "In closing, we have made use of subtle interlayer charge transfer to establish an ensemble of doped Mott insulators with a large variety of electron fillings in the 1T layer of 4Hb-TaS2.",
+      "explanation": "The strategy is clever, but it implicitly assumes that each cluster's local spectrum equals that of a uniform lattice at the same filling.\n\nThe near-half-filled clusters showing the zero-bias peak are only ~12% of the surface. They are embedded among clusters with ~0.2 e filling. Brinkman–Rice and lattice DMFT describe a uniform system in which every site has the same filling and the bath is determined self-consistently by equivalent sites. For a rare near-half-filled cluster, the 'bath' consists of depleted neighbors plus the 1H layer. That is precisely an Anderson-impurity situation.\n\nIn DMFT the lattice quasiparticle peak is itself a self-consistent Kondo resonance. So the meaningful distinction is not 'Kondo versus Mott' but which bath does the screening. The paper does not address how intercluster hopping between clusters of very different fillings fits into the single-band homogeneous picture of Fig. 3g. Without this, the comparison to DMFT and the language of a 'filling-controlled Mott transition' are not justified for the most correlated clusters.",
+      "type": "logical",
+      "severity": "major",
+      "suggested_fix": "Add an analysis of a model in which a single near-half-filled cluster is embedded in a matrix of ~0.2 e clusters coupled to a metallic (1H) bath, for example a real-space or impurity calculation. Show whether its spectral evolution is distinguishable from homogeneous-lattice DMFT, or else restate the claim as a local, impurity-like correlated state."
+    },
+    {
+      "title": "'Order of magnitude smaller' HWHM is not supported by Fig. 3h",
+      "quote": "is generally an order of magnitude smaller, does not saturate but decreases linearly with temperature from 4.2 to 0.3 K",
+      "explanation": "Fig. 3h shows a measured HWHM of ~0.65–1.7 meV against a Kondo expectation of ~2.5 meV, a factor of ~1.5–4. Fig. 3f at 0.3 K gives FWHM 1.4–3.4 meV, i.e. HWHM 0.7–1.7 meV. Neither figure supports a factor of ten.\n\nThere is also an internal inconsistency. With T_K ≈ 40 K, the T = 0 limit of the quoted formula is Γ = k_B T_K ≈ 3.4 meV. Recomputing T_K at the ε = −76 meV of Fig. 3h gives ~49 K and Γ ≈ 4.2 meV. Yet the gray curve sits at ~2.5 meV, which corresponds to T_K ≈ 29 K.\n\nThe magnitude of the discrepancy is part of the evidence against Kondo, so these numbers should be consistent.",
+      "type": "technical",
+      "severity": "moderate",
+      "suggested_fix": "Replace 'an order of magnitude smaller' with the actual ratio (~2–4×). Recompute the gray Kondo curve in Fig. 3h with the T_K for ε = −76 meV and the stated α, and report both T_K and α explicitly."
+    },
+    {
+      "title": "Linear-in-T peak width not separated from thermal and instrumental broadening",
+      "quote": "which suggests an essential mechanism at zero temperature",
+      "explanation": "A linear increase of an STS peak width with T is the generic signature of Fermi–Dirac thermal broadening of the tip and sample (FWHM ≈ 3.5 k_BT), together with lock-in modulation. The observed slope is ~0.27 meV/K in HWHM, only about twice the pure thermal contribution (~0.15 meV/K).\n\nThe paper does not state whether the fits deconvolve thermal broadening or the 0.05–0.2 meV modulation. It also does not say whether the Kondo comparison curve includes the same broadening.\n\nIn addition, a Brinkman–Rice quasiparticle peak at finite doping has a finite intrinsic width (~ZW) at T = 0 and should also saturate at low T. The absence of saturation therefore does not by itself discriminate between the two scenarios. The phrase 'an essential mechanism at zero temperature' is too vague to evaluate.",
+      "type": "technical",
+      "severity": "moderate",
+      "suggested_fix": "Fit the temperature series with a model in which the intrinsic Lorentzian (or Fano) is convolved with the Fermi–Dirac derivative at each T and with the lock-in modulation. Report the intrinsic width versus T, and plot it alongside the Kondo expression convolved in the same way."
+    },
+    {
+      "title": "U/W0 ~ 2 vs DMFT U/W = 1.67, and 'near the border' of the Mott criterion",
+      "quote": "places the system near the border line of the Mott criterion",
+      "explanation": "The experimental ratio quoted is U/W0 ≈ 190/80 ≈ 2.4 (stated as ~2). The DMFT in Fig. 3g and the Methods uses U/W = 1.67, and no justification is given for the difference.\n\nW0 itself is taken as the FWHM of the dI/dV peak at ~0.2 filling. This is not the bare bandwidth: for a semicircular DOS, FWHM ≈ 0.87 W. The peak may also already be correlation-narrowed or broadened.\n\nFor a single-band Hubbard model in DMFT, the half-filled Mott transition occurs at U_c ≈ 1.5W. A ratio of ~2–2.4 would place the half-filled system well into the Mott insulating side rather than 'near the border'. The conclusion therefore depends sensitively on an uncertain definition of W0.",
+      "type": "technical",
+      "severity": "moderate",
+      "suggested_fix": "State how W0 maps onto the model bandwidth W, for example by comparing with the DFT narrow-band width in Fig. 1e. Then either run DMFT at the experimentally inferred U/W or justify the choice of 1.67, and quote U_c for this lattice to support the 'near the border' statement."
+    },
+    {
+      "title": "Electron-count calibration (0.2 e to 1.0 e) is ambiguous",
+      "quote": "By integrating the spectral weight below EF and calculating its proportion to the total weight of this narrow band, we find that approximately 0.2 electrons remain in each SoD cluster.",
+      "explanation": "The narrow band is spin-degenerate and can hold two electrons per cluster. A below-EF fraction f therefore corresponds to 2f electrons, and it is not stated whether 0.2 e means f = 0.1 or f = 0.2. The answer matters for where half filling lies.\n\nIn addition, dI/dV is not a pure LDOS. The setpoint normalization (−800 to −1000 mV) and tunneling matrix elements affect the ratio, and the 10 meV modulation in Fig. 1d broadens the peak.\n\nFinally, the colour bar of Fig. 2d is labeled 0.2 e to 1.0 e, but no procedure is given for assigning a filling to each spectrum. The text uses ε as a proxy without a mapping from ε to n. Fig. 3's horizontal axes are therefore 'filling' only qualitatively.",
+      "type": "technical",
+      "severity": "moderate",
+      "suggested_fix": "Give the explicit formula n = 2 × (weight below EF)/(total narrow-band weight), or justify the alternative. Provide the calibration curve mapping ε (or the −0.5 eV hump energy) to n for the spectra in Fig. 2d, including how the 1.0 e endpoint was assigned."
+    },
+    {
+      "title": "Se-counting argument vs observed fraction of correlated clusters",
+      "quote": "approximately 13% of the clusters are influenced",
+      "explanation": "The arithmetic is correct: 26 S × 0.5% ≈ 0.13, or 12.2% with Poisson statistics.\n\nHowever, the paper reports that ~12% of clusters show the full zero-bias peak and that a 'series of intermediate states' also exists, along with a continuum of fillings in Fig. 2d. If only Se-containing clusters are affected, the 12% with ZBP plus the intermediate clusters must together fit within 13%. That leaves almost nothing for the intermediate states. A single isoelectronic Se substitution would also have to change the filling by ~0.8 e.\n\nThe text attributes the continuum to interlayer spacing, but it does not reconcile the counting. It also ignores that Se in the adjacent 1H layer or the lower S plane may matter. As written, the quantitative match is presented as confirmation without checking whether it actually holds.",
+      "type": "logical",
+      "severity": "minor",
+      "suggested_fix": "Report the full histogram of fillings (or ε) across the ~4000 clusters. State what fraction is depleted, intermediate and ZBP-like, and compare the total non-depleted fraction with the Se-substitution probability, including Se in neighboring 1H layers."
+    },
+    {
+      "title": "Paramagnetic local-moment interpretation in tension with coherent-band interpretation",
+      "quote": "The linear field dependence can be attributed to Zeeman splitting with a Landé factor of g ~2 for the localized electrons in these clusters",
+      "explanation": "Earlier, the central peak is argued to be a coherent Brinkman–Rice quasiparticle band rather than a Kondo resonance. Here the same clusters are described as hosting localized electrons with local moments, behaving as paramagnetic impurities.\n\nA coherent Fermi-liquid band is Pauli-paramagnetic, not a free local moment. Field-induced splitting of a zero-bias peak with g ≈ 2 is in fact a standard hallmark used to identify Kondo resonances, which is the scenario the paper argues against.\n\nThe Fano fitting used for the FWHM in Fig. 3f likewise implies interference typical of impurity-resonance tunneling. The paper should explain how a single interpretation accounts for both behaviors.",
+      "type": "logical",
+      "severity": "moderate",
+      "suggested_fix": "Report the field at which splitting becomes resolvable and compare it with the zero-field width. Explicitly discuss why a field-split peak with g ≈ 2 supports a 'local-moment' doped-Mott cluster rather than a Kondo resonance with small T_K."
+    },
+    {
+      "title": "1H described as 'charge reservoir' yet invoked for proximity SC",
+      "quote": "the 1H layers primarily act as a charge reservoir",
+      "explanation": "The paper argues that 1H electrons play little role in screening (no Kondo) and act only as a charge reservoir. Later, the 1T superconducting gap is attributed to proximity coupling to the 1H layer, and its suppression to renormalized 1T–1H coupling.\n\nCoupling strong enough to induce a 0.35 meV gap is also a hybridization channel for screening a local moment. The alternative explanation for gap suppression on the correlated clusters, pair breaking by local moments, is not discussed. That mechanism would naturally produce the same correlation between moments and the absence of a gap.\n\nThe absence of YSR states in the 1H layer is noted but not connected to this argument.",
+      "type": "logical",
+      "severity": "minor",
+      "suggested_fix": "Add a discussion of magnetic pair breaking as an alternative explanation for the vanishing 1T gap. Estimate the 1T–1H hybridization implied by the induced 0.35 meV gap, and use it consistently in the Kondo T_K estimate."
+    },
+    {
+      "title": "'Symmetrical' weight transfer contradicts Fig. 3d",
+      "quote": "The symmetrical transfer of spectral weight from the original coherent part",
+      "explanation": "Fig. 3d and the accompanying text show the LHB carrying markedly more weight than the UHB (~70% vs ~25–30%) away from half filling, with the asymmetry decreasing only toward n = 1. This is the expected Hubbard behavior: in the atomic limit the LHB weight is 1 − n/2 and the UHB weight is n/2. It is not a symmetrical transfer, and calling it 'symmetrical' could mislead readers about what was observed.",
+      "type": "technical",
+      "severity": "minor",
+      "suggested_fix": "Replace 'symmetrical transfer' with a statement that weight transfers from the coherent peak to the LHB and UHB with a filling-dependent asymmetry, approaching equal weights only near half filling, as expected for the Hubbard model."
+    },
+    {
+      "title": "Inconsistent line-shape models and figure reference",
+      "quote": "The FWHM is obtained via Fano fitting.",
+      "explanation": "The main text says the LHB, UHB and central peak were fitted with Lorentzians (Fig. 3b), but the Fig. 3f caption says the central-peak FWHM comes from Fano fits. It is unclear which width is used in Figs. 3e, 3f and 3h, and the two can differ substantially for asymmetric peaks.\n\nSeparately, the text cites 'its spectral weight, Fig. 3g' for the central-peak weight, whereas Fig. 3g is the DMFT panel and the weight is in Fig. 3e.",
+      "type": "technical",
+      "severity": "minor",
+      "suggested_fix": "State which line shape (Lorentzian or Fano, with the q parameter reported) defines the widths in Fig. 3e, 3f and 3h. Correct the reference for the central-peak spectral weight from Fig. 3g to Fig. 3e."
+    },
+    {
+      "title": "DMFT setup underspecified",
+      "quote": "In this model, the onsite interaction strength is set to 1.67 W (where W represents the bandwidth).",
+      "explanation": "The Methods do not give several items needed to reproduce Fig. 3g:\n- the temperature of the CT-HYB runs;\n- how the filling n is tuned (chemical potential at fixed U?);\n- whether the DFT band used is from monolayer 1T-TaS2 or the 4Hb structure;\n- how W is defined from that band;\n- MaxEnt settings (default model);\n- whether the NRG and QMC runs share the same lattice DOS.\n\nAt finite QMC temperature the quasiparticle peak near n → 1 can be thermally destroyed. That would bear directly on the claimed 'vanishing' of the central peak.",
+      "type": "technical",
+      "severity": "minor",
+      "suggested_fix": "List in the Methods the DMFT temperature (β), the lattice DOS used and the definition of W, the chemical potentials corresponding to each n in Fig. 3g, and the MaxEnt default model and parameters."
+    },
+    {
+      "title": "Overstated 'unsurpassed energy resolution' and 'unambiguous' claims",
+      "quote": "toward half filling with an unsurpassed energy resolution.",
+      "explanation": "The doping-dependent spectra in Figs. 2–3 are acquired with a 2 meV lock-in modulation. This resolution is standard rather than unsurpassed, and sub-kelvin STS with ~0.05 meV modulation is routine in the field.\n\nCombined with the open issues above (the Kondo estimate, the inhomogeneity, and the thermal broadening analysis), the abstract's claim that the data 'unambiguously demonstrate' Brinkman–Rice Mott physics is stronger than the evidence supports.",
+      "type": "logical",
+      "severity": "minor",
+      "suggested_fix": "Replace 'unsurpassed energy resolution' with the actual resolution (temperature and modulation). Soften 'unambiguously demonstrate' to 'are consistent with' a doped-Mott, Brinkman–Rice-like evolution."
+    }
+  ]
+}

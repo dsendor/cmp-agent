@@ -1,0 +1,131 @@
+Review outline:
+
+**1. Significance and novelty**
+
+- **What the paper does.** The authors assemble C₃-symmetric TBTAP trimers (and hexamers) on Pb(111) atom by atom using lateral manipulation. They report:
+  - spatially resolved dI/dV maps with charging/discharging rings;
+  - a central, chiral region of negative differential conductance (NDC) at Vs ≈ 0.7–0.9 V;
+  - in-gap YSR states.
+- **Proposed mechanism.** The trimer is modelled as a three-impurity Anderson model (TIAM) with on-site U, inter-site W ≈ 50 meV, ε ≈ −90 meV and t = 0, solved with a Pauli master equation (PME). In this picture:
+  - the dominant dI/dV peaks are often intra-cluster charge rearrangements at fixed total charge, not changes of total charge;
+  - NDC arises from tip-pumped non-equilibrium populations of singly occupied excited states. Without inter-site hopping these states cannot interconvert directly, so occupation is "wasted" on sites far from the tip.
+- **Genuinely attractive aspects.**
+  - A finite, fully enumerable (8-state) correlated cluster whose many-body transitions can be mapped in real space.
+  - Direct visualization of the tip-gated frustrated −2e charge configuration on a triangle.
+  - A simulation tool that combines tip electrostatics, orbital-resolved tunneling matrix elements and a master equation, made publicly available.
+- **Limits on novelty.**
+  - NDC associated with tip-gated charging rings in molecular layers and 2D arrays is already established (Fernández-Torrente et al. PRL 2012; Kumar et al. ACS Nano 2019; Nazin/Ho; moiré discharge cascades).
+  - NDC from population trapping or "dynamical channel blockade" in triangular triple dots is a known theoretical concept (Kostyrko & Bulka 2009; Wrześniewski & Weymann 2018).
+  - The incremental advance is therefore the real-space imaging of such a mechanism in an engineered three-molecule cluster, not the discovery of molecular NDC per se.
+  - Claims of "first observation" and of a "molecular Gunn diode" are overstated.
+- **Role of the superconducting substrate.** It is explicitly irrelevant to the NDC. The YSR part is only loosely connected to the main message, which weakens the paper's coherence.
+
+**2. Potential reasons for acceptance**
+
+- **Clean, well-controlled experimental platform.**
+  - Atomically precise assembly of identical trimers and hexamers, with demonstrated mechanical stability (manipulation of the whole hexamer).
+  - High-quality 2D dI/dV and current maps over a dense voltage series (Figs. 2, S7, S8, S14).
+  - The NDC is visible directly in I(V), not only in lock-in dI/dV (Fig. 1D).
+- **Strong qualitative agreement between experiment and simulation.**
+  - The flower-like ring overlap, the central NDC triangle and its chirality are reproduced.
+  - The chirality is captured once DFT-derived SOMO tunneling matrix elements are included.
+  - The NDC persists with s-orbital matrix elements, indicating that orbital symmetry shapes the effect but is not its origin.
+- **Conceptually useful reinterpretation of charging rings.** The demonstration that many ring crossings correspond to charge redistribution at constant total charge is a valuable caution for the wider community interpreting discharge rings in molecular arrays and moiré systems.
+- **Tractable many-body model with physically interpretable parameters.**
+  - W ≈ 50 meV is consistent with the earlier dimer study.
+  - The frustration criterion W > −ε/2 is transparent.
+- **Reproducibility.** Open simulation code and Zenodo data support reproducibility and reuse by other groups.
+- **Breadth of evidence.** Complementary low-energy YSR spectroscopy (trimer: split YSR pair; hexamer: inner molecules non-radical) provides independent, if indirect, information on charge and spin states.
+
+**3. Potential reasons for rejection**
+
+**3.1 The proposed NDC mechanism rests on a parameter regime contradicted by the authors' own data.**
+
+- **The non-equilibrium population trapping requires the substrate not to relax the cluster faster than the tip pumps it.**
+  - The PME uses Γs ≈ 0.01 meV ≪ kBT. Yet the authors state that the YSR fits require Γs = 10–20 meV, i.e. ~50–100 × kBT and comparable to the 10–25 meV many-body energy separations in Fig. 3A.
+  - The tip coupling inferred from I ≈ 400 pA is only ħI/e ≈ 1–2 µeV, so Γt/Γs ~ 10⁻⁴ under realistic conditions.
+- **The justification offered is a non sequitur.** The paper argues that "ring size depends on electrostatics, not on Γ." That is true for ring positions, but the NDC is a population effect, not a ring-position effect.
+- **Cotunneling would likely destroy the trapped populations.** With Γs ~ 10–20 meV, inelastic cotunneling through the substrate, which is precisely the "charge rearrangement via the conductive substrate" invoked by the authors, would relax, e.g., |100⟩ ↔ |010⟩.
+  - Its rate scales roughly as Γs²/ΔE ~ meV, orders of magnitude faster than tip pumping.
+  - This would restore quasi-equilibrium and remove the proposed NDC.
+  - Neglecting cotunneling is justified only by the artificially small Γs.
+- **Internal inconsistency in the hybridization assumptions.** The NRG treatment uses ζ = 1 (fully non-local substrate hybridization), which maximizes substrate-mediated inter-site processes, while the PME assumes these channels are absent.
+- **Consequence.** Unless the authors show that NDC survives at realistic Γs (with cotunneling, or with level broadening Γs ~ ΔE), the central claim that "NDC emerges purely from electron correlations" through non-equilibrium occupancy is not established.
+
+**3.2 Alternative explanations for the NDC are not excluded, and the model is weakly constrained.**
+
+- **Competing mechanisms are not ruled out.**
+  - The authors themselves invoke a different, equilibrium mechanism for the hexamer: charge-induced enhancement of the tunneling barrier for non-resonant and neighbour channels (TCNQ-type, Ref. 18).
+  - Field-induced orbital polarization, vibronic satellites, or tip-induced molecular displacement at 0.7–0.9 V could also produce current drops.
+  - In Fig. S4, the dip feature (P4) and satellites appear even on a single molecule. Data near the dip are shown only for selected points; reproducibility across trimers and tips is not reported.
+- **The fit has many free parameters.** These include rtip, ztip, zC, zS, Qxx, β, W, ε, the orbital maps, and an ad hoc vertical rescaling of molecular positions (Fig. S5).
+  - Some fitted values are unphysical: the image plane at zS = −0.09 nm versus the ~0.3 nm molecule–surface distance.
+  - There is a sign or notation inconsistency: mirroring at "z = −2zS".
+  - The tip height is fixed at 0.6 nm, while the experiment shows strong tip-height dependence of peak positions (Fig. S4) that is not reproduced as a test.
+  - "Almost perfect match" is asserted visually, without residuals, parameter uncertainties or correlation analysis. W is likely correlated with the electrostatic lever-arm parameters.
+- **Parameter inconsistency across methods.** The PME uses ε = −90 meV, while the NRG uses ε = −104 or −106 meV (Figs. S10G, S11C).
+  - The YSR splitting is reproduced by tuning Γ1 from 20 to 19.5 meV (2.5%), which is ad hoc and indistinguishable from other sources such as structural asymmetry or the quadrupole-induced ε splitting the authors already include in the PME.
+  - The YSR "check" therefore adds limited independent validation.
+
+**3.3 Insufficient experimental characterization of the robustness and generality of the NDC.**
+
+- **The word "robust" is not substantiated.** Missing are:
+  - statistics over multiple trimers and both enantiomers;
+  - multiple tips;
+  - setpoint and tip-height series focused on the NDC region;
+  - forward/backward sweeps for hysteresis;
+  - current time traces to exclude telegraph switching.
+- **Key measurement details are missing.**
+  - Lock-in modulation amplitudes, which the Methods state are "indicated in captions," are absent for Figs. 1, 2 and 4.
+  - It is not stated whether maps are constant-height or constant-current, which strongly affects apparent NDC.
+  - Feedback setpoints for the spectra in Fig. 1C–F are not given.
+- **The mechanism predicts testable dependences that are not explored.**
+  - If NDC stems from non-equilibrium pumping, its magnitude should depend on Γt/Γs and hence on tip height and current.
+  - It should depend on temperature in a way distinct from equilibrium barrier mechanisms.
+  - Neither dependence is reported, despite tip-approach data already existing (Fig. S4).
+- **Unsupported device claims.** Phrases such as "molecular Gunn diode," "functional NDC device," oscillators and logic are not backed by the data.
+  - The "device" uses the STM tip as one electrode and operates at 2.6 K.
+  - The peak-to-valley ratio is modest (~480→400 pA).
+  - The Gunn effect is a bulk transferred-electron phenomenon and is a misnomer here.
+
+**3.4 The hexamer section and the overall narrative are underdeveloped and partly inconsistent.**
+
+- **The hexamer results do not support the stated conclusions.**
+  - The hexamer receives no modelling.
+  - Its NDC is attributed to a different, well-known mechanism (charging-induced barrier increase, as in TCNQ).
+  - Its spectral signatures differ: charging dips at negative bias, with no central NDC after ring intersection.
+  - Yet the Conclusions claim the hexamer "confirms the robustness of these effects," a logical inconsistency.
+- **Charge-state assignments in the hexamer rest on absence of evidence.** The assignment "outer charged, inner neutral" relies on missing YSR or charging features. The statement that discharging the outer molecules would need >1.2 V is speculative.
+- **Presentation errors undermine confidence.**
+  - Sign errors: Vs = 0.45 V instead of −0.45 V; Fig. 4 labels show positive voltages while the caption lists negative ones.
+  - Unit and value errors: "Vs = 790 meV"; "Vs = 1.9 V" for a YSR map at 1.9 mV; ±1.8 mV in the text versus 1.9 mV in the caption.
+  - Inconsistent terminology: "NDR" versus "NDC".
+  - The ring-overlap onset is quoted both as 570 mV and as the start of the series.
+  - "Doubly-occupied ground state" is used ambiguously (two electrons on the cluster versus a doubly occupied site).
+  - DFT is performed for a −3e trimer, while the model ground state is −2e. This affects the SOMO maps used for the chirality simulation.
+  - The claim that chirality results from "incommensurate size with the Pb lattice" rather than from the H/halogen-bond motif is not substantiated.
+- **The YSR material dilutes the paper.** It is acknowledged to be unrelated to the NDC and lacks a clear role in the main argument.
+
+**4. Suggestions for improvement**
+
+1. **Test the NDC mechanism in the physically relevant coupling regime.**
+   - Extend the transport theory to realistic Γs (10–20 meV), with Γt fixed by the measured current. Possible routes include a real-time diagrammatic or 1st+2nd-order (cotunneling) master equation, or a Redfield/RTD approach including coherences.
+   - Alternatively, provide a quantitative argument (e.g., from the experimental ring widths) that the effective Γs relevant for intra-cluster relaxation is small.
+   - Show a phase diagram of NDC amplitude versus Γt/Γs and versus ζ, and state explicitly where the mechanism breaks down.
+2. **Discriminate between competing NDC mechanisms experimentally.**
+   - Systematic tip-height/setpoint series across the NDC window, predicting and comparing how the NDC depth scales with Γt.
+   - Forward/backward bias sweeps and current time traces to exclude switching or hysteresis.
+   - Statistics over several trimers, both chiralities, and different tips.
+   - If possible, temperature dependence, and a direct comparison with simulations of the alternative barrier-modulation mechanism invoked for the hexamer.
+3. **Make the modelling quantitatively transparent and self-consistent.**
+   - Report all fitted parameters with uncertainties and correlations (especially W versus the electrostatic lever-arm parameters), and quantitative fit metrics such as peak positions versus Vs and ring radii versus Vs.
+   - Reproduce the Fig. S4 tip-height peak shifts with the same electrostatic model as an independent test.
+   - Use one consistent ε in PME and NRG, or explain the difference.
+   - Justify zS and the mirror-plane position physically.
+   - Redo the SOMO/DFT for the −2e state, or show insensitivity to this choice.
+   - Clarify the many-body spin structure behind the YSR assignment and the labelling in Fig. S11.
+4. **Reframe and tighten the manuscript.**
+   - Position the work relative to prior molecular-array charging-ring NDC and to triple-dot population-blockade theory, and replace "first observation" and "molecular Gunn diode" with accurate language.
+   - Either model the hexamer (even a reduced electrostatic or PME model) or present it as a contrasting case with a distinct mechanism, and correct the Conclusions accordingly.
+   - Move the YSR analysis to the SI or connect it explicitly to the charge-state assignment.
+   - Fix the sign, unit, caption and terminology errors, and add the missing measurement parameters (modulation amplitude, constant-height versus constant-current mode, setpoints) to all figure captions.

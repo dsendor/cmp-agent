@@ -1,0 +1,119 @@
+```json
+{
+  "overall_feedback": "The manuscript reports a striking phenomenology in AlOx/KTaO3(111) 2DEGs. Back-gate cycling progressively raises Tc and Rs. Red-light illumination at 10 K resets them, and the reset/rewrite operation is reproducible (Fig. 2c, Supp. Fig. 4). The transport data are internally consistent in several places I checked: Rs ≈ 1/(neμ) matches Supp. Fig. 1, and the ~5.4% illumination drop in Rs matches the ~4% μ and ~1.7% n changes in Figs. 2d,e. The weak point is the microscopic interpretation. The paper identifies the dielectric-loss peaks (PNR flipping at ~30 K, OV ionization at ~100 K) as the origin of features in Δ_L and in dark relaxation at 35 K and 95 K. These are processes with very different characteristic timescales, and the authors' own Arrhenius parameters do not appear to support a coincidence at the same temperatures. The text also describes minima of τ at 35 K and 95 K that the plotted data do not show. The relaxation-magnitude metric ΔR/R1 conflates photoresponse amplitude with relaxation fraction, and the illumination flux is admittedly not controlled across temperature. Carrier densities come from a single-band Hall analysis, which in a multiband Ta-5d system makes the n/μ decomposition at the 1–2% level questionable; the extracted n also moves opposite to the electrostatic expectation. The link between Tc and 'PNR alignment' is inferred rather than measured. A simpler empirical regularity — Tc anticorrelates with μ under all manipulations — is not discussed. Claims of 'complete erasure' and 'robust non-volatility over a wide temperature range' are stronger than the data shown. With a more careful treatment of timescales, normalization, and alternative explanations, the experimental core would be valuable.",
+  "comments": [
+    {
+      "title": "Arrhenius parameters imply dielectric relaxations far faster than the ~10^3 s dark relaxation and gate-loop timescales they are said to coincide with",
+      "quote": "Remarkably, these two temperatures coincide with the dielectric loss peaks at similar temperatures (Fig. 3c)",
+      "explanation": "The Arrhenius fits are a nice piece of analysis, and the temperature 'coincidence' is central to the paper's mechanism. However, the loss peaks are frequency-dependent: their position depends on the probe frequency (0.1–4001 Hz). Reading Fig. 3c roughly, Peak 1 sits near ln f ≈ 0 at T ≈ 32 K, with slope E_a1/k_B ≈ 880 K. Peak 2 sits near ln f ≈ 0 at T ≈ 100 K, with slope ≈ 2740 K. Using the authors' own law ω = ω_1(2) exp(−E_a/k_B T), the relaxation rate at 35 K (Peak 1) and at 95 K (Peak 2) is of order 10 Hz, i.e. tens of milliseconds. Shifting to the ~10^3 s timescale of the dark relaxation (τ in Fig. 4c), or to minute-scale gate sweeps, moves the expected features to roughly 24–25 K and 75–80 K. So if the same thermally activated processes controlled the transport relaxations, they would not be bottlenecks at 35 K and 95 K on those timescales. Either different processes are involved, or the correspondence is coincidental. The 'coincidence' is therefore not supported by the quantitative dielectric data and needs to be reconciled.",
+      "type": "logical",
+      "severity": "major",
+      "suggested_fix": "Extrapolate the fitted Arrhenius laws to the experimental timescales of the transport measurements (sweep period for Δ_L; τ ≈ 10^3 s for dark relaxation). Report the predicted crossover temperatures alongside 35 K and 95 K, and explicitly discuss the discrepancy or the distribution of barriers needed to explain it."
+    },
+    {
+      "title": "Stated minima of τ at 35 K and 95 K are not what Fig. 4c shows",
+      "quote": "It is notable that the relaxation is accelerated twice at 35 K and 95 K (Fig. 4a)",
+      "explanation": "The text says the acceleration shows up as 'two minima in τ (Fig. 4c)' at 35 K and 95 K. In Fig. 4c, however, τ is lowest around 25–30 K (≈0.68×10^3 s), and τ at 35 K (≈0.78×10^3 s) is already rising. More strikingly, τ at 95 K (≈1.38×10^3 s) is the global maximum of the dataset, directly after a minimum at ~90 K (≈0.78×10^3 s). The maxima of ΔR/R1 at 35 and 95 K are consistent with Fig. 4b, but the claimed τ minima are not. In addition, below ~30 K ΔR/R1 ≈ 0 (Fig. 4b), and the text states PPC does not decay at 10 K. A single-exponential τ fitted to an essentially zero amplitude (e.g. τ ≈ 1.3×10^3 s at 10 K) is not meaningful, yet it is used to argue that τ decreases with warming below 35 K.",
+      "type": "technical",
+      "severity": "moderate",
+      "suggested_fix": "Correct the text to match Fig. 4c: τ minima near ~25–30 K and ~90 K, and a τ maximum at 95 K. Show fit uncertainties for τ, and omit or flag τ values where ΔR/R1 is within noise of zero."
+    },
+    {
+      "title": "ΔR/R1 metric and uncontrolled illumination flux conflate photoresponse amplitude with relaxation dynamics",
+      "quote": "making it difficult to keep a constant illuminating flux at varying temperature",
+      "explanation": "Fig. 4b normalizes the relaxation amplitude by R1, the total sheet resistance at the end of illumination. Its magnitude therefore depends on (i) how large the photo-induced drop was at that temperature and (ii) what fraction of it relaxes. Supp. Fig. 5a instead normalizes by ΔR0 (the illumination-induced drop). There the 180 K curve shows a clearly visible recovery, whereas Fig. 4a/4b report ΔR/R1 ≈ 0 above ~110 K. The Methods also admit that the LED I–V characteristic is non-monotonically temperature-dependent and that the drive was fixed only for 10 K. The incident flux, and hence the photoresponse, thus varies with temperature in an uncontrolled way. The 'two maxima' in Fig. 4b may partly reflect temperature-dependent photoresponse or LED output rather than relaxation physics. Also, some curves (e.g. 95–110 K in Fig. 4a) do not look saturated at the end of illumination, so 'fully illuminated' is not uniform.",
+      "type": "logical",
+      "severity": "moderate",
+      "suggested_fix": "Present the relaxation fraction ΔR/ΔR0 versus T (as in Supp. Fig. 5a) alongside ΔR/R1. Report the LED optical power, or at least I_L and V_L, at each temperature, ideally calibrated with a photodiode at the sample position."
+    },
+    {
+      "title": "Single-band Hall extraction of n and μ in a multiband 2DEG; n moves opposite to the electrostatic expectation",
+      "quote": "We therefore performed three measurements following exactly the same procedures of illuminations and gate cycles, one under zero field and two under finite magnetic fields",
+      "explanation": "The mechanism relies heavily on decomposing Rs changes into n and μ at the 1–5% level: illumination raises n by ~1.7%, n 'rapidly drops' beyond −17 V, and n changes are insensitive to cycle type. Three concerns remain. First, KTO(111) 2DEGs host several Ta-5d subbands. A single-band n = B/(eR_xy) at 6 T in a multiband system gives a Hall density weighted by subband mobilities, so changes in relative mobilities alone can shift the apparent n. Second, μ is computed from Rs measured in a separate zero-field run, so errors in n and μ are anticorrelated by construction. Third, in Supp. Fig. 1c the Hall n is highest at −50 V and lowest at +50 V, the opposite of what back-gate electrostatics predicts. The magnitude is also off: with ε ≈ 1600 and d = 0.5 mm, a 100 V swing should change n by only ~1.7×10^12 cm^−2 (~1.7%), with the opposite sign. This anomaly is not discussed but bears directly on the OV charge-transfer picture.",
+      "type": "technical",
+      "severity": "moderate",
+      "suggested_fix": "Fit the full R_xy(B) and R_xx(B) field dependence with a two-band model, or at least show R_xy(B) linearity. Explicitly compare the measured Δn(Vg) with the capacitive estimate CΔVg/e, and discuss the sign reversal."
+    },
+    {
+      "title": "Tc–PNR link is inferred, not measured; the simpler Tc–mobility anticorrelation is not addressed",
+      "quote": "Our observations are consistent with this picture as both superconductivity and PNR alignment are strengthened by gate cycling and suppressed by illumination.",
+      "explanation": "PNR alignment is never measured directly in this work. It is postulated from the dielectric loss and the Δ_L–ε deviation, so 'PNR alignment strengthened by gate cycling' is an assumption rather than an observation. Across every manipulation shown, Tc tracks a simpler variable. Within each stabilized loop (Fig. 1e, Supp. Fig. 1), Tc is highest at −50 V, where μ is lowest and Rs highest. Gate cycling lowers μ and raises Tc, and illumination raises μ and lowers Tc. Disorder- or scattering-related Tc enhancement has been discussed for KTO interfaces, including ref. 17's observation that gating mainly changes mobility. The current argument therefore does not distinguish the PNR-mediated picture from one where Tc is controlled by ionized-OV scattering or the associated change in confinement.",
+      "type": "logical",
+      "severity": "moderate",
+      "suggested_fix": "Plot Tc versus μ (and versus Rs) for all states — loop points, cycled states, and L0–L4. Discuss explicitly whether a single Tc(μ) curve collapses the data. If it does, temper the PNR-pairing claim to a hypothesis."
+    },
+    {
+      "title": "'Complete erasure' not demonstrated relative to the pristine state",
+      "quote": "and its complete erasure by light illumination at cryogenic temperatures.",
+      "explanation": "Fig. 2i shows that successive illuminations shift the transition from L0 to L4 toward lower temperature. Complete erasure would require showing that L4 (or the illuminated baseline, 795 Ω at 10 K) matches the pristine, never-gated state. No such comparison is given. Moreover, Hall data show the illuminated state has higher n and μ than the gate-cycled state, and the paper states that the system does not fully recover to the pre-illumination state on warming. This suggests the illuminated state is a distinct, photo-doped state rather than a restoration of the original one. The stepwise reductions from L1 to L4, including a 9000 s exposure, also leave open whether saturation was reached.",
+      "type": "logical",
+      "severity": "moderate",
+      "suggested_fix": "Overlay the pristine (pre-gating) R(T) transition and Rs, n, μ at 10 K with those of L4. Replace 'complete erasure' with 'reset' or 'erasure to a photo-doped baseline' unless the states coincide."
+    },
+    {
+      "title": "Absence of photoresponse at 2 K contradicts the argument that photon energy ≫ activation energy enables activation at any temperature",
+      "quote": "and therefore can be activated by red light illlumination even at extremely low temperatures",
+      "explanation": "The argument is that because E_a1 (76 meV) and E_a2 (236 meV) are much smaller than 1.97 eV, the light can drive these processes even at very low T. This reasoning is not physically sufficient: photons are absorbed through specific optical transitions, and a thermal reorientation barrier for PNRs is not 'activated' simply because the photon carries more energy. It is also contradicted by Fig. 2b, where no obvious Rs change occurs at 2 K, apart from heating artifacts, while large drops occur at 10 and 15 K. If photoionization of deep defects drove the effect, the 2 K null result would be hard to explain. Instead, it suggests a thermally assisted step (or heating) is required, which bears on the proposed erasure mechanism.",
+      "type": "logical",
+      "severity": "moderate",
+      "suggested_fix": "Remove the 'even at extremely low temperatures' inference. Discuss explicitly why the photoresponse vanishes at 2 K, e.g. by quantifying the temperature dependence of the illumination-induced ΔRs between 2 and 10 K."
+    },
+    {
+      "title": "Opposite charge-transfer directions invoked for the same negative gate branch",
+      "quote": "Conversely, in the negative branch, electrons hop from the OVs back into the 2DEG, leaving positively charged OVs acting as strong scattering centers",
+      "explanation": "In the first Discussion paragraph, the negative branch transfers electrons from OVs into the 2DEG, which would increase n. A later paragraph states that the gate cycle 'drives the excess electrons to tunnel back into deep donor states when Vg is swept beyond –17 V', with n dropping (Fig. 2g). Both processes are assigned to the same negative-voltage branch but move charge in opposite directions. The text does not explain which dominates, or how a negative back-gate — which pushes electrons toward the interface and deepens confinement — drives electrons into deep traps. The reasoning is also unclear energetically, since lowering E_F would not normally promote recapture into deep donors.",
+      "type": "logical",
+      "severity": "moderate",
+      "suggested_fix": "Provide a band diagram for the negative branch showing E_F relative to shallow OV and deep donor levels. State explicitly which states are emptied and which are filled beyond −17 V, consistent with the measured Δn sign in Fig. 2g and Supp. Fig. 1c."
+    },
+    {
+      "title": "Gate-current evidence uses a different initial state and sweep order than the memory experiment it is cited to explain",
+      "quote": "After the sample is fully illuminated at 10 K, the first gate cycle generates a remarkable asymmetric",
+      "explanation": "The main text cites Supp. Fig. 3a to explain the initial drift of Tc and Rs in Fig. 1. Fig. 1 starts from the as-cooled pristine state and sweeps first to −50 V. Supp. Fig. 3 starts after full illumination and, per its caption, sweeps first to +50 V. The irreversible Ig spike therefore documents the illuminated-state response to a positive-first cycle, not the pristine drift in Fig. 1. Separately, Ig is attributed entirely to displacement current, without ruling out dc leakage through the 0.5 mm substrate. Such leakage would also be asymmetric and history-dependent.",
+      "type": "logical",
+      "severity": "minor",
+      "suggested_fix": "Show Ig for the actual Fig. 1 protocol (pristine, negative-first). Report the integrated charge ∫Ig dt per cycle compared with the Hall-derived Δn·e·A, and the dc leakage at fixed Vg."
+    },
+    {
+      "title": "Elevated value mislabeled as baseline in Supplementary Note 4",
+      "quote": "but the same baseline level as in the first group",
+      "explanation": "In Supplementary Note 4, R_s^b denotes the post-illumination baseline (795 Ω) and R_s^a the gate-elevated value. In item 2, the elevated 856 Ω·sq⁻¹ is written as R_s^b, which contradicts the definition in item 1 and the sentence itself ('but the same baseline level'). The supplementary notation (R_s^b, R_s^a) also differs from the main text (R_s^0, R_s^A, R_s^B). Supp. Fig. 4 appears to use positive-first cycles (Type B in main-text terms), but this is not stated. Finally, illumination flux is listed as a tuning knob, but it was not varied.",
+      "type": "technical",
+      "severity": "minor",
+      "suggested_fix": "Change the 856 Ω·sq⁻¹ label in item 2 to R_s^a and adopt the main-text notation (R_s^0, R_s^A/R_s^B). State the cycle type used in Supp. Fig. 4, and remove 'flux' from the list of demonstrated tuning knobs."
+    },
+    {
+      "title": "Dielectric measurement: large ac amplitude, bulk versus interface, and low ε relative to literature",
+      "quote": "at 5 V and multiple frequencies, we extract dielectric constant",
+      "explanation": "The dielectric method and its derivation (Eqs. 1–2, tanδ = cotθ) are correct. However, the 5 V ac amplitude is 10% of the ±50 V cycling range that the paper shows produces hysteresis and memory. The 'linear' response may therefore be perturbed by the very switching processes being probed, and the amplitude dependence is not shown. The measurement also probes the full 0.5 mm substrate, so the loss peaks characterize bulk KTO (including any OVs from the 500 °C UHV anneal). The interface region relevant to the 2DEG may behave differently. Finally, the low-T ε of ~1600 is well below the ~4000 typically reported for bulk KTaO3. This suggests a geometric or series-layer correction, which affects the quantitative Δ_L–ε correlation. The assignment of Peak 2 to OV charge states rests only on matching an activation energy to literature values.",
+      "type": "technical",
+      "severity": "minor",
+      "suggested_fix": "Report tanδ and ε at, e.g., 0.5, 1, and 5 V amplitude to demonstrate linear response. Comment on the discrepancy with literature ε(T) for KTaO3."
+    },
+    {
+      "title": "Δ_L ∝ ε − ε∞ relation: ε∞ and the frequency used are unspecified",
+      "quote": "This amplifies the OVs’ influence on the 2DEG, thus giving rise to the observed linear dependence",
+      "explanation": "The displacement-field argument (D = εε0V/d at fixed V) naturally predicts charge transfer proportional to ε itself. It does not explain why the offset ε∞, described only as a 'high-temperature limit', should be subtracted. Its numerical value is not given, and KTaO3's ε keeps decreasing up to room temperature. Fig. 3a also notes that ε depends on frequency (the 0.1 Hz curve differs from the others), but Fig. 3d does not state which frequency's ε is plotted against Δ_L. The location of the 35 K 'kink' depends on this choice.",
+      "type": "technical",
+      "severity": "minor",
+      "suggested_fix": "State the numerical value of ε∞ obtained from the fit and the measurement frequency of ε used in Fig. 3d (e.g. 13.777 Hz). Justify the offset, for example as the non-polar background polarizability."
+    },
+    {
+      "title": "Thermal and gate history between temperatures in the multi-temperature loop study not specified",
+      "quote": "Gate cycles are conducted at multiple temperatures from 5 K to 180 K.",
+      "explanation": "The paper shows that gate memory persists up to ~100 K and that illumination leaves residual changes even at 180 K. The Δ_L(T) data in Fig. 3a,d and Supp. Fig. 2 therefore depend on whether the sample was reset (warmed to room temperature, illuminated, or otherwise) between temperature points. The order of temperatures (warming or cooling sequence) is also not stated. Without this information the Δ_L(T) curve cannot be reproduced, and history could contribute to the apparent kink at 35 K.",
+      "type": "technical",
+      "severity": "minor",
+      "suggested_fix": "State the measurement sequence (temperature order) and the reset protocol applied before the four cycles at each temperature, e.g. 'warmed to 300 K and recooled' or 'illuminated for 900 s at 10 K'."
+    },
+    {
+      "title": "Non-volatility over a wide temperature range is overstated",
+      "quote": "highlighting the robustness of non-volatility in a wide operating temperature range.",
+      "explanation": "The non-volatility evidence is mainly at 10 K over a few thousand seconds. Above 15 K the illuminated state relaxes measurably in the dark (Fig. 4a, Supp. Fig. 5a), and the gate-imprinted hysteresis shrinks to vanishing above ~100 K (Supp. Fig. 2). That the state 'does not fully recover' within a ~2×10^3 s window at 180 K shows incomplete relaxation on that timescale, not robust retention.",
+      "type": "logical",
+      "severity": "minor",
+      "suggested_fix": "Rephrase to: 'non-volatile at 10 K over ≥10^4 s, with partial dark relaxation (τ ~10^3 s) at higher temperatures'. If possible, add a long-time retention measurement at 10 K."
+    }
+  ]
+}
+```

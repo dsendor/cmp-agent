@@ -1,0 +1,132 @@
+# Referee Report
+
+**Manuscript:** *Interaction-limited conductivity of twisted bilayer graphene revealed by giant terahertz photoresistance* (Shilov, Kravtsov et al., arXiv:2509.02552)
+
+---
+
+## 1. Summary
+
+The authors irradiate TBG devices with 0.14 THz CW radiation to raise the electron temperature *T*ₑ while holding the lattice at *T*_L = 2 K. They make two claims:
+
+1. **Positive photoresistance in metallic TBG.** Δρ_THz is positive in metallic regions of TBG across twist angles, and reaches up to 70% of ρ in magic-angle devices. It is positive even where ρ ∝ *T*. The authors conclude that electron–electron interactions, not phonons, dominate the *T*-dependent resistivity, including the linear-in-*T* regime near the magic angle.
+2. **Umklapp-free *T*² resistivity.** In a 1.58° device, ρ ∝ *T*² persists at fillings (|ν| ≈ 0.1, ν ≈ 3.8) said to lie below the umklapp threshold. The authors attribute this to momentum-conserving inter-pocket e–e scattering, enabled by trigonal warping and the lack of Galilean invariance. They support this with a Sharma–Principi–Maslov-type estimate (Eq. 1) whose prefactor brackets the measured *A* ≈ 0.1 Ω/K².
+
+The experimental idea is attractive. Hot-electron transport at fixed lattice temperature is a natural way to address the long-standing e–ph versus e–e ambiguity in TBG, and the data quality appears high. However, the central inference, that "positive Δρ_THz ⇒ e–e scattering dominates," is not unique as presented. Several quantitative elements needed to support the strong conclusions are missing or deferred to an unavailable Supplement. The second part, the umklapp-free *T*² claim, depends on threshold estimates that I could not reproduce.
+
+---
+
+## 2. Major Comments
+
+### 2.1 Positive ∂ρ/∂*T*ₑ does not uniquely identify current-relaxing e–e scattering
+
+The experiment establishes that ρ depends on *T*ₑ. Several mechanisms other than e–e collisions produce a positive *T*ₑ-dependence at fixed *T*_L, and these need to be addressed explicitly.
+
+- **Temperature-dependent screening of charged-impurity scattering.** This gives the well-known metallic dρ/d*T* ∝ *T*/*T*_F in low-density 2D systems (Gold–Dolgopolov; Zala–Narozhny–Aleiner interaction corrections in the ballistic regime). It depends only on *T*ₑ and is particularly relevant at the low *T*_F of flat bands.
+- **Fermi-smearing of an energy-dependent τ(ε) or density of states.** The authors themselves invoke smearing to explain negative Δρ at ν = 0, ±4. Near van Hove singularities and in strongly dispersive τ(ε) regimes, the same smearing can produce *positive* Δρ.
+- **Suppression of superconducting fluctuations or isospin order.** At ν ≈ 1.7 in MATBG and *T*_L = 2 K, the device is near the superconducting dome and the regime of Pomeranchuk-type isospin physics. Heating-induced suppression of paraconductivity, or *T*ₑ-dependent band renormalization, would produce positive Δρ unrelated to scattering rates.
+- **Hot-electron phonon emission in TBG specifically.** The MLG control (Fig. 2f) is not an adequate proxy:
+  - MLG has much weaker e–ph coupling.
+  - It has a different Bloch–Grüneisen scale and a much smaller dρ/d*T* at low *T* regardless of mechanism.
+  - It has a different absorption and heat capacity.
+  - Near the magic angle, *v*_F can approach or fall below the sound velocity (the "ultrasubsonic" regime, Ref. 23). There e–ph scattering is strongly inelastic, and the assumption that e–ph resistivity depends only on *T*_L breaks down.
+
+  A TBG-specific estimate of the e–ph Δρ under hot-electron conditions is needed.
+
+The abstract's claim of a "direct separation" of e–e and e–ph contributions should therefore be softened, or backed by the quantitative analysis requested in 2.2.
+
+### 2.2 The *T*ₑ calibration is partially circular; a quantitative decomposition is missing
+
+The authors estimate *T*ₑ "from the comparison of Δρ_THz with standard transport ρ(*T*) measurements" and from SdHO damping.
+
+- **Circularity.** Calibrating *T*ₑ through ρ(*T*) assumes the conclusion, namely that ρ depends only on *T*ₑ.
+- **What would be informative.** The key quantity is the ratio *R* = (∂ρ/∂*T*ₑ)|_{T_L} / (dρ/d*T*)|_eq. Here *T*ₑ must be determined independently, for example by SdHO damping at the same power or, ideally, Johnson-noise thermometry. *R* ≈ 1 would support the authors' claim; *R* < 1 would quantify the phonon fraction. Plotting *R* versus ν and *T*_L would actually deliver the advertised separation.
+- **SdHO calibration at finite *B*.** Absorption at 0.14 THz under finite *B* (cyclotron and magnetoplasmon effects, as the Bernstein-mode feature in Fig. 2f illustrates) may differ substantially from *B* = 0. The transfer of *T*ₑ to zero field needs justification.
+- **Consistency check.** At ν = 1.7 in MATBG1, dρ/d*T* = 92 Ω/K. A 15 K rise therefore implies Δρ ≈ 1.4 kΩ, while Fig. 2b shows Δρ of order 2–2.5 kΩ at maximum power. Please reconcile these, and state where and in which device the 70% figure is obtained.
+- **Power dependence.** Please provide *T*ₑ(*P*). The saturation in Fig. 2d could reflect saturation of *T*ₑ or of ρ(*T*ₑ), and the two have different implications.
+
+### 2.3 The THz experiment says little about the linear-in-*T* regime where phonon theories apply
+
+Δρ_THz is measured at *T*_L = 2 K with *T*ₑ ≲ 17 K. Fig. 2e shows that Δρ_THz vanishes by *T*_L ≈ 30 K. Phonon-based explanations of linear-in-*T* resistivity mostly concern the tens-of-kelvin range and above.
+
+The vanishing of Δρ_THz with *T*_L is attributed to faster cooling, but it is equally consistent with a crossover to *T*_L-controlled (phonon) resistivity. Without independent *T*ₑ at elevated *T*_L, the statement that the linear-in-*T* resistivity is "often misattributed to e–ph scattering" is not supported over the temperature range in which that debate takes place.
+
+### 2.4 The umklapp-threshold fillings should be shown explicitly; my estimates disagree
+
+The text gives umklapp thresholds of *k*_F > *g*/(4√3) (κ-pockets) and *k*_F > *g*/4 (γ-pocket), translated into −3.5 < ν < 0.5 and 0.45 < ν < 3.45.
+
+My estimates use circular pockets with eightfold degeneracy at low filling, consistent with the *k*_TF = 8α_e *k*_F used in the Methods, and fourfold degeneracy near full filling. They give:
+
+| Pocket | Threshold | Implied filling |
+|---|---|---|
+| κ-pockets | *k*_F = *g*/(4√3) | ν_th = π√3/36 ≈ 0.15, independent of θ |
+| γ-pocket | *k*_F = *g*/4 | ν_th ≈ 4 − π√3/24 ≈ 3.77 |
+
+If these estimates are correct, ν = 0.1 and ν = 3.8 lie only marginally below threshold, not far below it. The authors should:
+
+- State the degeneracy, the definition of *g*, and the band-structure model used to convert *k*_F to ν, including trigonal warping (non-circular pockets change the threshold).
+- Account for thermal smearing. Fig. 3b extends to *T* ≈ *T*_F/2. If the umklapp threshold lies only a few meV above *E*_F, thermally activated umklapp is not suppressed at 30–100 K. The relevant comparison is the energy distance to threshold versus *k*_B*T*.
+- Show the *T*² prefactor *A*(ν) across the threshold (currently in the Supplement). This is the most direct evidence and belongs in the main text.
+
+### 2.5 Robustness of the *T*² identification
+
+- **Degeneracy.** Fitting up to *T* ≈ *T*_F/2 lies outside the low-*T* regime in which Eq. 1 is derived.
+- **Sensitivity to ρ₀.** Log–log plots of ρ − ρ₀ are sensitive to the choice of ρ₀. Please show the local exponent d ln(ρ − ρ₀)/d ln *T* and state how ρ₀ was determined.
+- **Bipolar conduction.** With *E*_F ≈ 20 meV at |ν| = 0.1, *k*_B*T* reaches about 9 meV at 100 K. Thermally excited minority carriers and charge puddles are not negligible near the CNP, so the claim that the system "remains unipolar at all measured *T*" needs quantification.
+- **Missing photoresistance link.** No THz photoresistance data are shown for the 1.58° device at ν = 0.1 or 3.8. The abstract's "coexisting photoresistance and robust quadratic-in-*T* resistivity" therefore rests on separate devices. Δρ_THz at these fillings in the same device is essential.
+
+### 2.6 The theoretical comparison is weakly constraining and possibly outside its validity range
+
+- **Breadth of the prediction.** The predicted prefactor spans two orders of magnitude (0.005–0.5 Ω/K²), so agreement with 0.1 Ω/K² is not a stringent test. The statement that Λ ≈ 0.2–0.3 gives the "best correspondence" amounts to a one-parameter fit.
+- **Distinctive predictions.** Eq. 1 makes testable predictions that should be compared with the data, notably the density dependence of *A* (roughly ∝ Λ(*n*)/*v*_F⁴ at fixed angle) and the twist-angle dependence through *v*_F.
+- **Perturbative regime.** The trigonal-warping treatment appears perturbative in *k*_F*a* with *a* the moiré period. At ν = 0.1 and θ = 1.58° I estimate *k*_F*a* ≈ 0.8, so the warping is not a small parameter. Please comment.
+- **Regime of disorder.** In a non-Galilean-invariant system, momentum-conserving e–e collisions yield a finite dc resistivity only in conjunction with momentum relaxation by disorder (Refs. 5, 8). Matthiessen-like additivity of ρ_ee holds only when τ_imp ≪ τ_ee-related scales, and saturation is expected otherwise. Given the emphasis on very low disorder, please estimate τ_imp and τ_ee. Explain why no saturation is seen up to ~100 K.
+- **Dielectric environment.** α_e is defined with ε₀ alone. The hBN dielectric environment should enter α_e and the Thomas–Fermi model.
+- **Above |ν| = 4.** The appeal to quantum geometry or Wannier localization to explain the weak *T*-dependence above |ν| = 4 is speculative. It should be framed as such, or supported quantitatively.
+
+### 2.7 Experimental details needed to assess heating
+
+- **Power.** Give the absolute incident and estimated absorbed THz power and the field strength at the sample.
+- **Lattice temperature.** Estimate the lattice and substrate temperature rise under modulated illumination at 44.4 Hz.
+- **Non-thermal effects.** Assess possible contributions beyond thermal heating, given that ω/2π = 0.14 THz may give ωτ ~ 1: non-thermal distributions, dynamic nonlinear conductivity, and rectification.
+- **Spatial uniformity.** Discuss the uniformity of heating along the channel given antenna-concentrated near fields. Specify which contacts are used for ρ and Δρ (two- versus four-terminal) to exclude photo-induced changes in contact resistance.
+- **Thermalization.** Justify the claim of femtosecond thermalization at 2–17 K, where e–e times are likely in the picosecond range.
+- **Reproducibility.** State the number of devices, the twist-angle homogeneity, and how reproducible each key observation is.
+
+---
+
+## 3. Minor Comments
+
+1. **Figure references in text.** Several do not match the figures. "Figure 1a shows exemplary transport data" should refer to Fig. 1c. "Fig. 1b" for the THz data should be Fig. 1d.
+2. **Fig. 1 caption.** "The lattice remains intact" should read "remains cold."
+3. **Fig. 2f normalization.** The MLG data are normalized (Δρ/ρ), while the TBG panels are absolute. Please use comparable normalization and give the MLG density, mobility, and estimated *T*ₑ.
+4. **Fig. 2e colour scale.** The scale (1.5 to −6 kΩ) is asymmetric and unlabeled as to sign convention. Please clarify.
+5. **Density claim.** The text claims access to densities "as low as 10¹¹ cm⁻²," but ν = 0.1 at 1.58° corresponds to about 6 × 10¹¹ cm⁻². Please clarify which data reach 10¹¹ cm⁻².
+6. **Methods wording.** "Broadband triangular coupling" is missing "antenna." Also explain the origin of the π prefactor in the dual-modulation formula (presumably square-wave modulation).
+7. **Planckian bound.** The statement that dρ/d*T* = 92 Ω/K is consistent with the Planckian bound should give the *n* and *m** used.
+8. **Typographical errors.** "previosuly"; "a relative weak" should be "relatively weak."
+9. **Supplementary Information.** Key elements are relegated to the unavailable Supplement: *T*ₑ calibration, the 70% figure, the *A*(ν) enhancement in the umklapp window, and the optical setup. At minimum *A*(ν) and *T*ₑ(*P*) should appear in the main text.
+
+---
+
+## 4. Assessment
+
+**Strengths**
+- A conceptually clean and broadly applicable probe.
+- Large, reproducible-looking effects.
+- A clear connection to the open problem of *T*² resistivity in dilute single-pocket metals (SrTiO₃, Bi₂O₂Se).
+- A plausible theoretical mechanism.
+
+**Weaknesses**
+- The main interpretive step treats *T*ₑ-sensitivity as equivalent to e–e current relaxation without excluding other *T*ₑ-dependent mechanisms (2.1).
+- The heating is not quantified independently of the quantity being interpreted (2.2).
+- The THz data do not reach the temperature range in which the linear-in-*T* debate takes place (2.3).
+- The umklapp-free claim rests on threshold fillings that need explicit justification and may be marginal (2.4).
+
+**Recommendation: major revision.** The paper could become a significant contribution if the authors:
+
+- provide an independent *T*ₑ calibration and the ratio *R* = (∂ρ/∂*T*ₑ)/(dρ/d*T*) versus ν and *T*_L;
+- address the alternative *T*ₑ-dependent mechanisms, including a TBG-specific estimate of hot-electron e–ph Δρ;
+- present the umklapp-threshold calculation explicitly, together with *A*(ν) across the threshold and Δρ_THz for the 1.58° device;
+- test a distinctive prediction of Eq. 1, such as the density or twist-angle dependence of *A*, rather than relying on order-of-magnitude agreement.
+
+The abstract's claims of "direct separation" and of phonon mechanisms being "misattributed" should be moderated unless these analyses support them.

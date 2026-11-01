@@ -1,0 +1,94 @@
+Review of "Majorana parity qubit in coupled minimal Kitaev chains" (Zatelli, Roovers, van Loo et al., arXiv:2607.09511)
+
+SUMMARY
+
+The authors couple two two-site Kitaev chains (poor man's Majorana, PMM, chains) in an InSb/Al nanowire through a central coupler quantum dot. They read out the chain parities in single shot by quantum capacitance, with an off-chip resonator on the superconductor. The global parity is fixed by pinching off the leads. Baseband pulses bring the chains to their sweet spots and bring the coupler toward resonance. This produces coherent oscillations between |ee> and |oo> (global even) and, using an auxiliary parity-switching dot, between |eo> and |oe> (global odd). The main results are:
+(i) The oscillation frequency scales as 1/(V0 - VC), about 107 MHz at the main operating point, with T2Rabi = 26 +/- 2 ns.
+(ii) The frequency depends periodically on flux (period about 5 mT, consistent with the loop area) and is suppressed near phi = pi.
+(iii) At the joint sweet spot, the even and odd manifolds oscillate at nearly equal frequencies (113.4 +/- 0.5 vs 117.7 +/- 0.4 MHz). Hybrid-gate detuning along the diagonal and antidiagonal kills the oscillations selectively in one manifold, as Eqs. (1) and (2) predict.
+(iv) Detuning a single dot degrades the oscillations more gently than detuning both dots of one chain, as the PMM sweet-spot protection predicts.
+A quasistatic-noise model reproduces the main features qualitatively. The authors conclude that this is "the first coherent control of a Majorana qubit".
+
+OVERALL ASSESSMENT
+
+This is a technically strong and carefully executed experiment, and an important step for the quantum dot Kitaev-chain platform. Moving from transport and static parity readout to time-domain coherent dynamics between parity states of two PMM chains is a real milestone. The even/odd manifold comparison is a clever and genuinely informative diagnostic, and the Methods are unusually candid about tuning, drift, phase jumps and cooldown differences. The data in Figs. 2 and 3 convincingly show coherent parity oscillations whose dependence on coupler detuning, flux and hybrid-gate detuning follows the effective Hamiltonian.
+
+The headline claims go further than the data, however. The main gaps are these:
+(a) Only the driven (coupler-on) evolution is characterized. The idle coherence of the encoded state, where any Majorana protection would act, is never measured.
+(b) The even/odd frequency equality is partly a tuning criterion and has limited sensitivity to Majorana overlap.
+(c) The agreement with the model is qualitative, with hand-chosen noise parameters.
+(d) The comparison with a "conventional charge qubit" is not controlled.
+(e) SPAM is not characterized.
+I would support publication after a major revision that adds at least an idle-coherence measurement (Ramsey or echo) and quantitative SPAM figures, and tones down the framing, or else explicitly justifies it.
+
+MAJOR ISSUES
+
+1. No measurement of idle-state coherence; "qubit" and "protection" claims rest on driven evolution only.
+All time-domain data are free evolution under a large transverse term (the coupler pulse). The observed T2Rabi (about 26 ns, quality factor f*T2Rabi about 3) mostly characterizes the operation. By construction the operation is first-order sensitive to coupler charge noise: since f is proportional to 1/(V0 - VC), delta f / f = delta muC / muC. The authors acknowledge in the Conclusion that coupling-based operations are not protected. But the encoding's claimed advantage, protection of the idle degenerate state, is never tested. The setup can clearly do a Ramsey sequence: two pi/2 coupler pulses separated by a variable idle time with the chains at (or deliberately slightly off) the sweet spot. A Hahn echo variant would also be possible. Either would give T2* and T2E of the encoded state. That measurement, ideally repeated with single-dot versus double-dot detuning during the idle period, would be a direct test of the second-order sweet-spot protection. It is the quantity that should improve with chain length. Pan, Das Sarma and Liu (Ref. 8), whom the authors cite, specifically propose Rabi and Ramsey protocols for this system. Without idle coherence, and with readout in only one basis, I think "Majorana qubit" should be qualified, for example "coherent parity oscillations / single-axis coherent control of a PMM parity qubit". Alternatively the authors should add the Ramsey data.
+
+Related: the paper claims arbitrary single-qubit rotations are possible (Eq. 1 and the Fig. 1b discussion) but shows rotations about a single (X) axis only. Rotations about tilted axes (finite epsilon12 + epsilon34 during the pulse) are seen, but only as unwanted tilts in Figs. 3 and 4. A demonstration of controlled Z or tilted-axis rotations, even a simple two-pulse sequence with a Z idle in between, would substantiate the "qubit control" language.
+
+2. The even/odd frequency equality is partly a tuning criterion, and its discriminating power should be quantified.
+Methods III states that a successful tuning is indicated by "oscillations with similar frequencies and contrast in both manifolds". So the equality at the chosen operating point (Fig. 3h) is partly a selection criterion, not an independent test. The main text should say this plainly. The more independent evidence is (i) that the ~5% agreement persists across VC (Fig. 3b), and (ii) the diagonal/antidiagonal selectivity in Fig. 3c-j. These deserve more emphasis than the single matched point.
+
+The sensitivity of the test is also modest. With Eq. (22), epsilon14/epsilon23 = muL1*muR2/(4 tL tR). Take t = 20 ueV as in Table 1 and the quasistatic sigma_mu = 1.5 ueV. The expected overlap term is then of order 10^-3. Frequency equality at the percent level is therefore expected for essentially any configuration with the outer dots near resonance. The test mainly certifies that the inner-site couplings have balanced electron and hole components in both chains. It is not a sensitive probe of Majorana separation. As the authors note in Methods VIII, quasi-Majorana or generic two-subsystem scenarios can give the same effective Hamiltonian.
+
+The measured discrepancy at the sweet spot is statistically significant: 4.3 +/- 0.6 MHz, (fodd - feven)/(fodd + feven) = 0.019. It is also not explained. Eq. (22) assumes zero longitudinal terms. If one instead attributes the difference to a residual longitudinal term in one manifold, a term of only sqrt(117.7^2 - 113.4^2), about 31 MHz (about 0.13 ueV), suffices. If one attributes it to epsilon14, the required |muL1*muR2| is of order 30 ueV^2, i.e. outer-dot offsets of about 5 ueV, several times the assumed noise. The authors should discuss which explanation is favored. Contrast and offset of the oscillations distinguish a Z tilt from an X change, so the data may already discriminate. They should also clarify the metric quoted as "about 5%": the Fig. 3b axis is (fodd - feven)/(fodd + feven), which is half the relative frequency difference.
+
+3. Missed, sharper tests of spatial separation that the setup already permits.
+The theory sections (Eqs. 11-16, 22-25) make specific predictions that would make the Majorana interpretation much stronger than the present data do.
+ (a) Outer- vs inner-dot detuning in both manifolds. epsilon14 depends only on the outer dots (Eq. 14), so simultaneous outer-dot detuning (Fig. 4g) should split feven and fodd in proportion to muL1*muR2. Inner-dot detuning (Fig. 4h) should not. Fig. 4 shows only the even manifold. Measuring Fig. 4g,h in the odd manifold and plotting (feven - fodd)/(feven + fodd) against muL1*muR2 would directly test Eq. (22), which Methods XI says cannot otherwise be quantified.
+ (b) phi = pi in both manifolds. At phi = pi the transverse term is linear in lambda_plus/minus (Eq. 23). A residual oscillation frequency, or its absence within the time window, therefore bounds lambda_L + lambda_R (even) and lambda_L - lambda_R (odd). The authors should extract this bound from Fig. 2e and measure the odd manifold at phi = pi. At present the phi = pi locality argument (Methods XI) relies on Fig. ED6i,j, which comes from the earlier cooldown in which the odd-manifold check had not been developed (Methods III). That is the weaker dataset.
+ (c) Consistency at phi = pi. With the Table 1 parameters (tLR of order 0.4 ueV, sigma_lambda of about 0.05), Eq. (25) predicts dephasing of the return probability toward 0.5 on a timescale of tens of ns, within the measured window. The main text, by contrast, states that near phi = pi "we observe neither oscillations nor fast dephasing". Please compare the measured phi = pi traces quantitatively with Eq. (25). Fig. ED9b, where dephasing at pi is seen and attributed to "imperfect tuning", and Methods XI, where the same dephasing is attributed to noise-induced overlap, give two different explanations for the same feature. These should be reconciled.
+
+4. "Close agreement with our model" is overstated.
+Methods VII states that the noise standard deviations were chosen to "qualitatively reproduce" the data and that "no fitting procedure is performed". The abstract and main text should say "qualitative agreement". A quantitative comparison is needed for at least the following:
+ - T2Rabi(VC) and f(VC) from Fig. 2c,d against the simulation.
+ - The detuning widths in Fig. 4, single-dot versus double-dot, which is the key protection signature.
+ - The phi = pi behavior.
+Further points:
+ - The quasistatic model predicts Gaussian decay envelopes, but the data are fit with exponential envelopes (Eq. 3). Please show which envelope describes the data better, and comment on what that implies for the noise spectrum.
+ - The simulations use square pulses from muC -> infinity (Methods VII; ED10 caption). The experiment uses 25 ns ramps, during which the qubit evolves appreciably (ED2b shows oscillation versus ramp duration at zero pulse duration). The ramps are comparable to T2Rabi and to several oscillation periods, so they contribute both phase and decoherence. Either include the ramps in the model or show that they do not affect the extracted f and T2Rabi.
+ - In the model, sigma on t and Delta is 0.07 ueV. This enters the longitudinal term (t - Delta)/2 linearly and is not protected by the PMM sweet spot. In frequency units it is of order 10 MHz, comparable to the protected second-order contribution from dot noise (about muL1*muL2/(2t), roughly 0.06 ueV for sigma_mu = 1.5 ueV). An explicit error budget would clarify what "partial protection" means quantitatively at the operating point: which noise source dominates T2Rabi at strong and at weak coupling, and how much of it the sweet spot actually suppresses. The non-monotonic T2Rabi(VC) is attributed to a crossover from coupler-noise to chain-noise dominated dephasing. The error budget would test that claim.
+ - Fig. ED6 reports uncompensated VC -> VRH cross-capacitance that moves the right chain from CAR-like to ECT-like with VC. Methods V lists the compensations applied in the main-text data, and VC -> VRH is not among them. If this crosstalk is present in Fig. 2a/3a, the chains move off the sweet spot as VC is swept. That would be an alternative explanation for part of the T2Rabi(VC) dependence. Please clarify.
+
+5. The charge-qubit comparison is not controlled.
+The statement that detuning one dot per chain "reduces the coupled chains to an effective double QD" and gives "a direct comparison to a conventional charge qubit, for which no coherent oscillations are resolved under the same measurement conditions" is used as evidence for the benefit of PMM protection. Three things undercut it. First, the detunings in Fig. 4g,h span about 0.6 mV; with the stated lever arm of about 0.03 that is about 18 ueV, comparable to t and Delta, so the system is not in the double-dot limit over most of the range. Second, the effective inter-site coupling, the energy scales and the readout contrast differ between the two configurations. Third, the absence of resolved oscillations depends on the time resolution and the 25 ns ramps. A meaningful comparison would plot dephasing rate against the measured sensitivity of the qubit frequency to each gate (df/dV), or compare against a deliberately prepared double-dot charge qubit with matched tunnel coupling. Otherwise I suggest removing or softening this claim. Similarly, "confirming that the encoded qubit is distributed across every site of the two chains" overstates what Fig. 4 shows: that the qubit energy depends on all four dots holds for any coupled four-dot system.
+
+6. State preparation and measurement are not characterized.
+The probabilities are raw conditional probabilities from heralded initialization. Please report:
+ - assignment fidelities for |ee>, |oo> and the odd states in the readout configuration;
+ - the overlap error from the Gaussian mixture model;
+ - relaxation during the 50 us wait and the 500 us integration, given parity lifetimes of 8 to 60 ms (an error of order 1 to 6%);
+ - the effect of the skewed |oo>/|ee> population in the readout configuration (ED3f).
+The interpretation of Fig. 4 rests on asymptotic values (decay to 0.5 for dephasing versus toward 1 for an axis tilt), and these asymptotes are directly shifted by SPAM, so this matters. The ~5% leakage is attributed to readout error or parity switching. Fig. 2b should show whether leakage depends on pulse duration. Also state explicitly that leakage into excited states of the same chain parity (e.g. |e+ e>, about 2|Delta| away) is invisible to the readout (Methods IX) and is not included in the "leakage" figure.
+
+7. Framing of the priority claim.
+"First coherent control of a Majorana qubit" depends heavily on definitions. Two-site PMMs have, as the authors say, only limited protection. Coherent single-electron exchange between two subsystems with degenerate even/odd ground states is, at the level of the effective Hamiltonian, indistinguishable from a fermion-parity qubit built from conventional ABS or YSR states, unless the spatial-separation tests in point 3 are carried out. I suggest framing the result as coherent control of a parity qubit encoded in poor man's Majoranas. The paper should also situate it explicitly against recent parity-measurement work in nanowire tetron and box-qubit devices, and against Andreev and Kitaev-transmon qubits. The current Introduction does neither.
+
+MINOR ISSUES
+
+- Terminology: the oscillations are free precession under a non-resonant baseband pulse (as in Hayashi et al., Ref. 32), not resonantly driven Rabi oscillations. "Rabi" and "T2Rabi" are used loosely. A sentence noting this would help readers from the superconducting-qubit community.
+- Fig. 2e: given the 2.5 mT (half-period) phase jump reported in Methods III and the retuning at each 1 mT step, explain how phi of about 0 is identified for each main-text dataset. Comment on the likely origin of a jump of exactly about pi (flux trapping? a parity change in the loop?).
+- ED7 caption gives B_perp = 15.6 mT as phi of about 0, while Fig. 2e shows suppression (phi = pi) near 11 and 16 mT. Methods III reconciles this through the phase jump, but the caption should note that ED7o predates the jump.
+- ED6 and ED9 use negative VC values (coupler starting below the Fermi level) while the main text uses positive values. State this in the ED6 caption as well as ED9.
+- Single device and two cooldowns: state this explicitly in the main text. Note also that the ED9 dataset lacks the odd-manifold verification, so it should not be counted as an independent reproduction of the sweet-spot result.
+- Retuning before every 2D sweep (1 to 4 h each) indicates substantial drift. A time trace of the qubit frequency at fixed settings, or an Allan-type analysis, would directly support the quasistatic-noise assumption and is cheap to obtain.
+- Methods VI: fit uncertainties come from curve_fit with absolute_sigma = False and uniform weights. Given ramp effects and possible non-exponential envelopes, consider bootstrap or residual-based uncertainties, especially for the even/odd frequency comparison.
+- Fig. 3c uses a fixed 18 ns duration, about two periods. Mixing maps at fixed duration conflate frequency and contrast. A short note on how the sweet spot is located from these maps, and on its uncertainty in VLH and VRH, would help.
+- Eq. (1) and Methods VIII: say explicitly that the identities iγ1γ2 = iγ3γ4 and iγ2γ3 = iγ1γ4 hold with the sign fixed by the global parity convention. This makes the sign change between Eqs. (1) and (2), and between Eqs. (9) and (10), easier to follow.
+- Abstract: "in close agreement with our model" -> "in qualitative agreement".
+- The relative hardware delay between the RF lines (about 2 ns or less) is neglected relative to the ramp time. It is a sizable fraction of the oscillation period (about 9 ns), so a brief justification would help.
+
+SPECIFIC REQUESTS (in rough order of importance)
+
+1. Ramsey (and ideally echo) measurement of the encoded state at the joint sweet spot. Repeat it with single-dot and double-dot detuning during the idle period.
+2. SPAM characterization and, where relevant, SPAM-corrected versions of Figs. 2b, 3h-j and 4.
+3. Odd-manifold data for the outer- and inner-dot detunings of Fig. 4g,h, tested against Eq. (22).
+4. A quantitative bound on lambda_plus/minus from the phi = pi data in both manifolds, and a reconciliation with Eq. (25).
+5. A quantitative model-data comparison for T2Rabi(VC) and the Fig. 4 detuning widths, with the ramps included, and an explicit noise budget.
+6. Revised framing of the "first Majorana qubit" and "charge qubit comparison" statements.
+
+RECOMMENDATION
+
+Major revision. The experimental achievement is significant and the data are of high quality. But the central interpretive claims, a Majorana qubit with demonstrated partial protection in close agreement with theory, need the idle-coherence, SPAM and spatial-separation tests above. The alternative is to rephrase the claims so that they match what the driven-evolution data establish.

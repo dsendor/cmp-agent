@@ -1,0 +1,215 @@
+# Referee report: "Twist-tuned exchange and hysteresis in a bilayer van der Waals magnet" (Mondal et al.)
+
+## Summary of the submission
+
+The authors fabricate a CrSBr bilayer with a nominal 3° twist between two hBN-encapsulated monolayers. They compare its magneto-photoluminescence (PL) with that of a natural (pristine) bilayer, using the A-exciton energy as a proxy for the relative orientation of the two layer magnetisations.
+
+**Main experimental finding.** For fields along the easy b-axis, the twisted sample shows pronounced hysteresis between antiparallel (AP) and parallel (P) states.
+- At spot 1, the P→AP switching occurs at ≈0 T.
+- The pristine bilayer switches at ≈0.18 T with no measurable hysteresis.
+- For fields along a and c, no hysteresis is seen in either sample.
+
+**Interpretation.** The authors use a macrospin two-sublattice model with a spatially averaged interlayer exchange field h_E. Twisting is argued to reduce h_E, making P and AP simultaneously metastable over a broad field range.
+
+**Parameter extraction.** h_E, h_x and h_y are obtained from three measured fields (h_P−, h_⊥x, h_⊥y). The fourth measured field, the AP→P switching field h_AP+, is acknowledged to disagree strongly with the model and is discarded.
+
+**Spatial variation.** Spatially resolved loops at three spots show different switching fields, which are attributed to local variations of the averaged exchange.
+
+## General assessment
+
+The experiment is interesting and the data in Fig. 2c/4b are striking. A clean, square AP↔P hysteresis in a small-angle-twisted CrSBr bilayer is worth reporting. The exciton-energy readout is well established, and the a/b/c-axis dataset is useful.
+
+However, the paper's central mechanistic claim is not supported by the analysis as presented. The central claim is that hysteresis arises because twisting lowers the averaged interlayer exchange, which can then be "quantitatively extracted".
+
+1. **The model does not discriminate pristine from twisted.** By the authors' own admission, the model predicts large hysteresis for the pristine bilayer too, where none is seen. It therefore does not explain the key experimental contrast.
+2. **The extraction relies on a selective and internally inconsistent identification of measured switching fields** with stability limits of the model.
+3. **Essential controls and structural characterisation are missing**, in particular:
+   - an artificially stacked 0° bilayer;
+   - verification of the twist angle;
+   - more than one twisted sample.
+
+Several claims, such as "deterministic control", "programmable magnetic memories" and "coherent averaging across the moiré supercell", go beyond what is demonstrated.
+
+I cannot recommend publication in its current form. I would be glad to see a revised version addressing the points below.
+
+---
+
+## Major issues
+
+### 1. The model does not explain the difference between pristine and twisted bilayers
+
+**What the extraction predicts.** With the extracted pristine parameters (h_E = 0.27 T, h_x = 0.36 T), the model predicts h_AP+ = √(h_x(2h_E+h_x)) ≈ 0.57 T and h_P− = 0.18 T. That is a ~0.4 T wide hysteresis.
+
+**What is observed.** No hysteresis is observed. The authors call this an "anomaly" and set the measured h_AP+ aside in all samples.
+
+**Why this undermines the paper.** The model attributes hysteresis to the coexistence of metastable AP and P minima, and it predicts this coexistence for both samples. The difference between pristine and twisted, which is the headline result, is therefore not captured by the theory at all. The statement that the twist-tuned exchange "stabilizes both parallel and antiparallel spin configurations across a broad field range" is, within this model, equally true of the pristine bilayer.
+
+**What the "anomaly" really is.** It is not new. Measured coercive or switching fields in real magnets are generically far below the Stoner–Wohlfarth (coherent-rotation) spinodals, because reversal proceeds by nucleation at defects and edges followed by domain-wall propagation (Brown's paradox).
+
+**The more conventional reading.** The pristine bilayer switches close to the thermodynamic AP/P crossing field. In the authors' notation this is h_P = h_E, the field at which E_AP = −h_E equals E_P = h_E − 2h. Within this reading:
+- the twisted sample's hysteresis reflects enhanced nucleation or pinning barriers, for example from the moiré-modulated exchange, interface disorder or inhomogeneity;
+- it need not reflect a qualitatively different free-energy landscape.
+
+**Requested.**
+- Frame the discrepancy in this context and cite the relevant literature.
+- Discuss why a macrospin spinodal analysis is appropriate for one branch but not the other.
+- Moderate the claim of "quantitative extraction" accordingly.
+
+### 2. Assigning the measured P→AP jump to h_P− is inconsistent with the authors' own model
+
+This can be checked directly from Eq. (S4).
+
+**The model's prediction.** On the ϕ = π/2 manifold, the energy is f = (2h_E − h_x) sin²β − 2h sinβ + const. This is minimised at sinβ = h/h_P−. Thus:
+- the instability of P at h_P− is a continuous (supercritical) bifurcation into the canted state;
+- β departs smoothly from π/2, with no barrier;
+- the C state is stable down to h_C− (Table S1, consistent with f_ϕϕ > 0 for sin²β > h_x/(2h_E+h_x));
+- only at h_C− does a discontinuous jump to AP occur.
+
+The model therefore predicts, on decreasing field, a continuous exciton-energy evolution from the P value starting at h_P−, followed by an abrupt jump to AP at h_C−.
+
+**What is observed.** At spot 1 (and in the pristine sample) there is a single abrupt P→AP jump with no precursor canting.
+
+**The authors' argument does not resolve this.** Supplementary Note 1 argues that the system "prefers" to jump to AP because reversing a single sublattice is stochastically easier. Within the model, however, reaching C from P at h_P− requires no reversal and no barrier crossing. The argument is therefore not consistent with the model's own energy landscape.
+
+**Consequence.** The identification "measured P→AP field = h_P− = 2h_E − h_x" underlies every extracted h_E in Table S2, so this identification needs to be reconsidered.
+
+If the abrupt jump is instead identified with h_C−, or with a nucleation field, the extracted parameters change substantially.
+
+### 3. The a- and c-axis data contradict the premise that twisting "primarily tunes the interlayer exchange"
+
+| Sample | h_⊥x | h_⊥y |
+|---|---|---|
+| Pristine | 0.90 T | 1.60 T |
+| Twisted spot 1 | 0.575 T | 1.90 T |
+
+If only h_E changed, both saturation fields would shift by the same amount, 2Δh_E, in the same direction. Instead, h_⊥x decreases by ~0.33 T while h_⊥y increases by ~0.30 T. The fit therefore requires the hard-axis anisotropy h_y to increase by ~50% (1.06 → 1.61 T) upon a 3° twist. This is physically surprising and is not discussed.
+
+**Possible explanations the authors should examine:**
+- **c-axis saturation not reached.** The c-axis sweep only extends to 2 T. The twisted FM-state energy along c (1.323 eV) differs from the b- and a-axis FM energies (1.320 eV), suggesting incomplete saturation. This would make h_⊥y, and hence h_y, unreliable.
+- **Field misalignment.** Out-of-plane field misalignment, or vector-magnet cross-talk.
+- **Sample differences.** Different dielectric environment, strain, or doping between the two samples. The fabrication of the pristine bilayer is not described in Methods, including whether it is encapsulated in the same way.
+
+**Abrupt a-axis transition.** The twisted a-axis data (Fig. 2d, Fig. S9b) show an abrupt jump near ±0.5–0.6 T rather than the continuous canting predicted by Eq. (S7), and there is a visible discontinuity in the decreasing-field sweep. This first-order-like feature is not captured by the model.
+
+One natural ingredient is missing from the model: in a twisted bilayer, the two layers' principal axes are rotated by ±1.5° relative to the applied field. This gives each layer a transverse field component of opposite sign. For the a-axis case, this can generate a discontinuity. For the b-axis case, it slightly modifies the switching.
+
+**Requested.** Include the layer-dependent axis misalignment in the model, or at least estimate its effect.
+
+### 4. The comparison with bulk parameters is not like-for-like
+
+Table S2 compares the bilayer h_E = 0.27 T with the bulk h_E = 0.395 T of Cham et al. and describes this as good agreement.
+
+In a bulk two-sublattice description, each layer couples to two neighbouring layers. In a bilayer, each layer couples to one. For the same interlayer J, the bilayer exchange field should therefore be roughly half the bulk value, ≈0.2 T.
+
+Notably, ≈0.2 T is close to the measured pristine switching field (0.18 T). This is again consistent with the thermodynamic-switching interpretation of point 1 (h_P = h_E), rather than with the spinodal assignment.
+
+**Requested.** Address the coordination-number difference explicitly.
+
+### 5. Missing controls: attribution to the *twist* is not established
+
+The pristine reference is a natural exfoliated bilayer with ideal registry and a clean interface. The twisted sample differs from it in several respects at once:
+- artificial stacking via a PC/PDMS dry transfer at 100 °C, which can introduce interfacial contamination, bubbles and strain;
+- possible translational offset;
+- different encapsulation history;
+- the twist itself.
+
+**Requested to attribute the hysteresis to the twist:**
+- **A 0° artificially stacked (tear-and-stack or aligned) bilayer** fabricated by the identical process. This is the essential control.
+- **Ideally, a second twist angle** (e.g. 1° and/or 5–10°). This would support "twist-tuned" and "deterministic control" claims. One sample at one angle cannot establish tunability with twist.
+- **More than one sample at ~3°**, to establish reproducibility.
+
+### 6. Twist angle and structure are not characterised
+
+- **Twist angle.** The only evidence for 3° is the nominal setting of the rotator. Please state whether the two monolayers came from the same parent flake (tear-and-stack) or from different flakes. If different flakes, the relative alignment relies on identifying the crystal axes of each, with an uncertainty that should be quantified.
+- **Structural verification.** The actual angle and its homogeneity should be verified, for example by:
+  - polarisation-resolved reflectance or Raman on each monolayer region before stacking;
+  - TEM or 4D-STEM, or conductive/torsional AFM, on the device or a twin device.
+- **AFM data.** AFM is described in Methods but no AFM data are shown. Please show thickness and topography, including bubble-free regions at the measured spots.
+- **Layer number of the pristine bilayer.** State how this was established.
+
+### 7. The "coherent averaging / monodomain" claim is assumed, not demonstrated
+
+**The moiré length is never quantified.** For a rectangular lattice (a ≈ 3.5 Å, b ≈ 4.8 Å) at 3°, the moiré periodicities are of order 7–9 nm and anisotropic. These numbers should be stated. They should then be compared with the relevant magnetic length scale, for example √(A_intra/J_inter), with A_intra the intralayer exchange stiffness. This would show quantitatively that the layer magnetisation cannot follow the moiré-scale exchange modulation.
+
+**The measurements cannot distinguish monodomain from multidomain behaviour.**
+- The PL spot (~1 µm) averages over ~10⁴ moiré cells.
+- An abrupt step within one 10 mT field increment shows that the region under the laser switches quickly. It does not show coherent macrospin switching; fast domain-wall propagation would look identical.
+- The intermediate energies and multi-step transitions at spots 2 and 3 (Fig. 4c,d) are attributed to a canted state. Partial switching of domains within the laser spot is an equally plausible explanation.
+- A canted state should show the specific field dependence sinβ = h/h_P−, i.e. cos²(θ/2)-type energy vs. field. This could be tested quantitatively against the data.
+
+**Requested.**
+- Spatial PL/reflectance maps at fixed fields within the hysteretic window.
+- Ideally, a domain-imaging technique (RMCD/MOKE microscopy, NV magnetometry).
+
+### 8. Switching at exactly zero field (spot 1) needs to be ruled out as an artefact
+
+At spot 1, the P→AP transition occurs at ~0 T in both sweep directions (Fig. 2c, Fig. S10 at all B_max). Coincidence with the zero crossing of the magnet supply is a known pitfall with superconducting vector magnets, through:
+- remanent or trapped flux;
+- polarity-switching transients;
+- field overshoot at zero.
+
+**Requested.**
+- Hall-probe or reference-sample calibration of the actual field near zero.
+- Sweeps with dwell times.
+- Approach to small positive fields from +0.3 T, then holding the field and monitoring over time.
+- Sweep-rate dependence.
+
+### 9. Experimental conditions that can affect switching fields
+
+- **Laser power.** Excitation powers "from 600 nW to 240 µW" are mentioned. Please specify the power used for each hysteresis dataset. Local laser heating at 4.7 K, and possible photo-induced effects, can strongly modify switching fields and coercivity. A power dependence of h_AP+ and h_P− should be shown.
+- **Loop asymmetry.** The loops are asymmetric: at spot 1 the AP→P switch is at ≈+0.18 T in one direction and ≈−0.23 T in the other (Table S2 lists 0.237 T). Please report both branches and discuss possible causes:
+  - layer-inequivalence (top vs bottom hBN, different AP variants ↑↓ vs ↓↑);
+  - field offset.
+- **History dependence (Fig. S10).** The AP→P field depends on B_max: ≈−0.19 T for B_max ≤ 0.2 T vs ≈−0.23 T for B_max = 0.3 T. This history dependence is characteristic of domain or pinning physics, or of AP-variant selection, rather than of a single-domain macrospin. It deserves discussion.
+
+### 10. Exciton energetics: a possible tension with "reduced interlayer coupling"
+
+The AP–P exciton shift is larger in the twisted sample (~16 meV) than in the pristine one (~12 meV). The AP-state energy is also higher (1.336 vs 1.332 eV).
+
+In the picture of Wilson et al., the shift arises from spin-dependent interlayer electronic hybridisation. Interlayer superexchange is also mediated by interlayer hopping. A larger magnetism-dependent shift together with a ~50% smaller exchange therefore requires explanation. Plausible contributions include different dielectric screening, strain, or doping.
+
+Spots 1–3 also differ in their FM-state energies (1.320 vs 1.318 eV). Please discuss.
+
+### 11. Overstated application claims
+
+**No zero-field bistability.** In all datasets, the zero-field state reached after a sweep is AP. At spot 1 the P state collapses at ~0 T; at spots 2 and 3 it collapses at ±0.14–0.16 T. There is thus no zero-field bistability between P and AP, so the device is not a non-volatile memory without a bias field.
+
+**AP variants are not read out.** The two AP variants (↑↓ vs ↓↑), which would be the natural carrier of AFM memory, are degenerate in exciton energy and are not distinguished by this readout.
+
+**Requested.** The claims of "programmable magnetic memories", "deterministic control" and "harnessing the robustness of antiferromagnetic order" should be toned down, or supported by retention measurements and a readout of the AP variant.
+
+---
+
+## Minor issues
+
+1. **Main-text description of Fig. 2c.** The text states that during the forward sweep the exciton "redshifts from 1.336 eV to 1.320 eV with a switching field of just 3 mT". In the data, the transition near 0 T in the forward sweep is a *blueshift* (P→AP, 1.320 → 1.336 eV). Please correct.
+2. **Pristine hysteresis wording.** "Only a very narrow hysteresis" (main text), "negligible" (Fig. 1) and "no hysteresis" (SI) should be made consistent and quantified.
+3. **Sign convention in Fig. 3c.** With ΔE_X ∝ cos²(θ/2), the P state (θ = 0) gives the maximum and AP gives zero. Yet the plot shows AP as the high-energy plateau. Clarify the sign convention (ΔE_X as redshift magnitude?).
+4. **Coordinate frames.** In Methods the lab frame uses "out-of-plane y-axis". In the model, y = crystal c and z = crystal b. Please use a single unambiguous notation.
+5. **Broken cross-references in the SI.** There are many instances of "subsection , ,", "Sec. ()", "Sec. .", and "Supplementary Note illustrate thes". The main text refers to "Eq. (S1)" where Eq. (1) is meant.
+6. **Fig. S12 caption.** It describes panel a as the sample image, b as the b-axis and c as the c-axis. The panels actually show b-, a- and c-axis data, and the text claims a-axis data exist for spot 3. Please fix.
+7. **B-exciton energy.** It is quoted as 1.37 eV in the text and 1.367 eV in the Fig. S5 caption.
+8. **Error propagation in Table S2.** Propagate the stated uncertainties (±15/25/50 mT) into h_E, h_x and h_y. Also note that model (systematic) uncertainty dominates. Give the derivation of the error estimates rather than "we therefore estimate".
+9. **Positioning relative to prior work.** Discuss the relation to prior twisted-CrSBr work more explicitly, in particular:
+   - Boix-Constant et al. (refs. 19, 40; orthogonal twists, programmable hysteresis);
+   - the predictions of Liu, Zhang & Lu (ref. 33) for small-angle twisted CrSBr.
+
+   A quantitative comparison of the extracted ~50% exchange reduction with the registry-averaged J predicted in ref. 33 would considerably strengthen the paper.
+10. **Polarisation data (Fig. S8).** These are informative, but a 3° twist cannot be resolved from them. If possible, use separately measured monolayer regions to confirm the relative axes.
+11. **Data availability.** "Upon request" is weak; please deposit the raw spectra and field sweeps in a public repository.
+12. **Methods detail.** Methods should describe:
+    - the pristine-bilayer fabrication and encapsulation;
+    - sweep rates;
+    - integration times;
+    - the excitation power for each dataset.
+
+---
+
+## Recommendation
+
+**Major revision.** The observation itself is potentially valuable, but the manuscript needs the following.
+
+1. **Re-examine the theoretical interpretation** (points 1–4). Either reconcile the macrospin analysis with the absence of a canted precursor and with the pristine data, or recast the hysteresis in terms of nucleation and pinning. If the latter, adjust the parameter-extraction claims accordingly.
+2. **Add the essential controls and characterisation** (points 5–6): a 0° artificially stacked bilayer, twist-angle verification and, ideally, additional angles and samples.
+3. **Strengthen the domain and artefact analysis** (points 7–9).
+4. **Moderate the application claims** (point 11).

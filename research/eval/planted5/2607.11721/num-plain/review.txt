@@ -1,0 +1,67 @@
+Referee report: "High-field Josephson effect enabled by a moire Hofstadter spectrum" (arXiv:2607.11721v1)
+
+SUMMARY
+
+The authors study ballistic MoRe/graphene/hBN Josephson junctions in which the graphene is aligned to one hBN layer (device GH1: theta ~ 0.21 deg, L ~ 200 nm, W ~ 1.5 um). They show Fabry-Perot oscillations in Ic in both the main Dirac band and the hole-side moire minibands, a Fraunhofer pattern consistent with a uniform current distribution, and, as the headline result, pockets of zero resistance with oscillating Ic that reach about 6 T when the Fermi level sits in the electron-side minibands (n/ns > 1). In the main Dirac band the pockets stop at the semiclassical 2rc = L boundary, as in earlier ballistic graphene junctions. They argue that the high-field supercurrent comes from magnetic breakdown turning flat Landau levels into dispersive Hofstadter bands with finite group velocity, which restores a finite Thouless energy. The evidence is a qualitative match between a computed Fermi-level <v^2>/vF^2 map and the measured 1/R map. A second device (GH2) shows similar behaviour up to 5 T, and a non-aligned control junction does not.
+
+The experiment is interesting and the data look careful: the flux-creep protocol, the Dynes-Fulton analysis, the length dependence of delta E and IcRN, and the normal-state Landau fan at 200 nA bias all help. The main claim is plausible and would interest the mesoscopic superconductivity and moire communities. The quantitative link between the theory and the data is weaker than the text suggests, though, and there are several numerical inconsistencies, one of them in a headline comparison. I recommend major revision.
+
+MAJOR ISSUES
+
+1. The single-mode quantum limit in the main text is off by a factor of two and contradicts the SI.
+   Main text, Section II.C: "IQ = e Delta/h ~ 106 +/- 2 nA, where Delta ~ 1.4 meV". With Delta = 1.4 meV, e Delta/h = (1.4 mV)(e^2/h) = 1.4e-3 V x 3.874e-5 S ~ 54 nA. SI Section E gives the same expression as "IQ = e Delta/h ~ 53 +/- 1 nA". The 106 nA figure is about 2e Delta/h and matches neither the formula as written nor the SI. This matters for the argument. The text calls the measured Ic ~ 48 +/- 2 nA at 2.5 T "comparable to the quantum ballistic limit of a single ABS mode". Against 106 nA, that is under half the limit. Against the correct ~53 nA, it is about 90% of it, which is a much stronger statement. Please correct the main-text value and its uncertainty so the two match (~53 +/- 1 nA), and state which convention you use (e Delta/h versus e Delta/hbar; Beenakker's short-junction single-channel result is e Delta/hbar ~ 340 nA). Also explain why a single-channel limit is the right benchmark for a 1.5 um wide junction carrying a chaotic set of trajectories.
+
+2. The threshold velocity vH ~ 0.42 vF, and the <v^2>/vF^2 ~ 0.17 criterion built on it, do not follow from the paper's own parameters.
+   The crossover E_Th^H = hbar vH / L ~ Delta needs vH = Delta L / hbar = (1.4 meV)(200 nm)/hbar ~ 4.25e5 m/s. That is 0.42 vF only if vF = 1.0e6 m/s. But the paper uses vF = 0.8e6 m/s throughout. The main text gives E_Th ~ 2.6 meV in the Dirac band, which is hbar(0.8e6 m/s)/(200 nm). The SI says the Hofstadter calculation "use[s] ... a Fermi velocity of vF = 0.8 x 10^6 m/s", and that is the vF that normalises <v^2>/vF^2 in Fig. 3. With vF = 0.8e6 m/s the crossover is vH ~ Delta/E_Th x vF ~ 0.53 vF, so <v^2>/vF^2 ~ 0.28, not 0.17. The text then uses a third value: "the range of densities where <v^2>/vF^2 > 0.1". The Fig. 3d colour-bar limits are said to be "imposed by the Thouless energy" but are not given numerically. Since the 1/R versus <v^2> overlap is the paper's only quantitative link between theory and experiment, please (a) use one vF consistently, (b) state the threshold that follows from it, and (c) show that the match in Fig. 3c-e survives at ~0.28. If the match only works at 0.1 to 0.17, the conclusion needs softening.
+
+3. The paper says both "long-ballistic" and "short-junction" regime.
+   SI Section D and the main text (p. 4) say the junctions are in the long-ballistic regime (Ic ~ exp(-kBT/delta E), IcRN ~ E_Th ~ 1/L). But E_Th ~ 2.6 meV > Delta ~ 1.4 meV in the Dirac band, which means xi = hbar vF/Delta ~ 380 nm > L = 200 nm. That is the short or intermediate regime for GH1. Section II.D then sets the criterion as the "short-junction limit is preserved if E_Th^H >~ Delta". Please reconcile these. Possibly GH1 is intermediate and only GH3 and GH4 are truly long. Also explain how the regime enters the Hofstadter argument. Relatedly, SI Section D says "for a ballistic sample the RN does not depend on L", yet SI Section F explains the weaker GH2 supercurrent by "the normal state resistance RN increases with increasing length L". Both cannot hold.
+
+4. The comparison of theory and experiment is qualitative.
+   The case rests on "bright regions ... coincide" in Fig. 3d-e and Fig. S18. Please add a quantitative measure: an overlap or correlation metric between the thresholded <v^2>/vF^2 map and the superconducting mask, with the threshold fixed beforehand (issue 2), and a null comparison, for example the same metric against the unreconstructed Dirac-cone 2rc = L boundary or against shuffled maps. Also address:
+   - Fig. 3d shows only the xi = + valley, while SI Eq. 55 averages the two valleys. Which one is compared to the data?
+   - A Fermi-level average of v^2 is a proxy for vH with no derivation here. Ref. [47] uses it for Brown-Zak conductivity, not for Andreev transport. Some estimate of Ic (or E_Th^H) from the computed bands, even to order of magnitude, would help a lot.
+   - The calculation ignores disorder broadening, which at 100 mK and B ~ 5 T may be comparable to the widths of the high-q Hofstadter subbands. That bears directly on whether the "dispersive band crowding" survives in a real device.
+   - Theory uses theta = 0.20 deg against the measured 0.21 +/- 0.01 deg. Please show the result is not sensitive to this, since ns and the flux-to-field conversion depend on it.
+
+5. Device statistics and reproducibility are thinner than the main text says.
+   The main text says "The principal observations reported here were reproduced across multiple additional devices". From the SI, only GH2 shows high-field superconductivity (to 5 T). GH3 and GH4 show neither high-field superconductivity nor clear Fabry-Perot oscillations. So the headline result rests on two devices, and the text should say so. The non-aligned control (SI Section H) has L ~ 300 nm against L ~ 200 nm for GH1, so the like-for-like comparison is with GH2. Please state that, and if possible give the maximum field reached in the control against the 2rc = L line in numbers.
+
+6. The 2.5 T example is not strong evidence.
+   The "48 nA at 2.5 T, n/ns ~ 1.8" example lies close to the dashed 2rc = L line. Using the paper's own ns (B at 1/5 flux ~ 5.1 T gives a moire cell of ~162 nm^2 and ns ~ 2.5e12 cm^-2), 2rc = L at n = 1.8 ns gives B ~ 2hbar sqrt(pi n)/(eL) ~ 2.5 T. Please quote Ic, IcRN and the oscillation statistics for fields well above that line (4 to 6 T), where the claim actually matters.
+
+7. Ruling out the quantum Hall mechanism.
+   (a) The Landau fan at 200 nA bias (Fig. S14) is used to show no Landau quantization in the normal state. At 200 nA through a few-kOhm two-terminal junction the voltage is near 2 Delta/e, and with only 100 mK base temperature heating is possible. Both could blur Landau-level features. Please give the bias voltage, show that a lower bias just above the local Ic gives the same result, and show that the same protocol does resolve Landau levels in the n/ns < 1 region.
+   (b) The argument that chiral Andreev supercurrents (Ic <~ 1 nA, E_J/kB ~ 24 mK, which the paper rounds to "~30 mK") are washed out at 100 mK is reasonable. Note, though, that other groups see them at comparable temperatures. A short comment on electron temperature versus base temperature would help.
+
+8. Statement about the expected Fraunhofer current at 4.3 T.
+   The text says the conventional Fraunhofer Ic at 4.3 T "would be ~0.01 nA". With a 2.2 mT period, Phi/Phi0 ~ 1950 at 4.3 T, so the 1/(pi Phi/Phi0) envelope is ~1.6e-4 Ic(0). Getting 0.01 nA needs Ic(0) ~ 60 nA, which seems low given the zero-field Ic in Fig. 1d and the statement that 200 nA is "well above the maximum Ic for B > 10 mT". Please give the Ic(0) used. The point stands qualitatively, but the number should be reproducible.
+
+MINOR ISSUES
+
+- Fermi velocity of the Dirac band. The main text gives vF ~ 0.8e6 m/s, but SI Section C extracts (0.7 +/- 0.1)e6 m/s from Eq. (4). The SI also calls the delta E value vF ~ (0.34 +/- 0.05)e6 m/s at n/ns ~ 1.3 "in good agreement" with (0.5 +/- 0.1)e6 m/s. These differ by about 1.4 sigma and by a factor of about 1.5, so "consistent" is more accurate.
+- SI Section B: "carrier densities of almost +/- 6.0 x 10^-12 cm^-2" should be 10^12. At 6e12 cm^-2 and ns ~ 2.4 to 2.5e12 cm^-2 (theta ~ 0 to 0.21 deg), n/ns is ~2.4 to 2.5, not "~2.7". The 70 V figure (5e12 cm^-2, n/ns ~ 2.0) is self-consistent.
+- SI Section E: B* ~ Delta/(e L vF) with vF = 0.5e6 m/s gives 14 mT (GH1) and ~9 mT (GH2), against the quoted 13 and 8 mT. Fine within rounding. In the same paragraph, the minimum period "2.2 +/- 0.4 mT, corresponds to one and two units of ... phi0" is garbled, and "4.4 +/- 0.5 m" is missing the T.
+- The main text gives high-field periods of 2.3 to 3.4 mT. SI Fig. S10 gives up to 4.4 mT at intermediate fields. Please say which field range each set refers to.
+- Section II.D, sentence garbled: "ranging from E_Th ~ 2.6 meV at the main Dirac band, to E_Th ~ 1.6 meV at the moire minibands is E_Th ~ 2.6 meV".
+- "chaotic billboard" should be "chaotic billiard" (main text and SI).
+- Two flux quanta are used, h/2e for the superconducting interference and h/e for the moire flux. They are written phi0 and Phi0, which is easy to misread. Consider explicit symbols.
+- Fig. S18: the caption says (a,b) are velocities and (c,d) are 1/R, while the text says (a),(c) and (b),(d). Please fix one.
+- "explore to test this constraint" (Introduction) and "Quantum Hal regime" (SI Section G) are typos.
+- The "first realization of a ballistic Josephson effect across the moire minibands" claim cites the first author's thesis [37] and Indolese et al. [38]. Please explain how this work differs from [38], which already measured supercurrent in graphene/hBN minibands.
+- Data availability "upon reasonable request" is weak for a claim that depends on map overlap. Please deposit the n-B maps and the computed <v^2> maps.
+
+CHECKS THAT PASS
+
+These internal numbers are consistent and I reproduced them:
+- E_Th = hbar vF/L: 2.6 meV (vF = 0.8e6 m/s) and 1.6 meV (0.5e6 m/s) for L = 200 nm.
+- Delta ~ 1.764 kB Tc = 1.37 meV for Tc = 9.0 K.
+- Table S1: Delta B_phys = phi0/[W(L + 0.45 um)] gives 2.12, 1.84, 1.45 and 1.31 mT.
+- Flux-to-field conversions: 1/3 -> 8.54 T, 1/5 -> 5.1 T, 6/29 -> 5.3 T, 4/25 -> 4.1 T, 5/36 -> 3.6 T, 1/20 -> 1.28 T. The implied moire period (~13.7 nm) agrees with theta = 0.21 deg and delta = 0.018.
+- Magnetic breakdown onset at n ~ 0.9 ns: pi/(2 sqrt 3) = 0.907.
+- Exactly 205 distinct rational fluxes p/q with p <= 6 between 1/20 and 1/3.
+- E_J/kB ~ 24 mK for Ic = 1 nA.
+
+RECOMMENDATION
+
+Major revision. The data are worth publishing. Before the Hofstadter-band explanation can be taken as established, the authors need to fix the IQ value (issue 1), set the velocity threshold from one consistent vF and recheck the overlap (issue 2), settle the junction-regime contradiction (issue 3), and add a quantitative test of the theory-experiment match (issue 4).

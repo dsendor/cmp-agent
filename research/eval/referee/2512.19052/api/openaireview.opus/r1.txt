@@ -1,0 +1,111 @@
+```json
+{
+  "overall_feedback": "The paper reports a gate-cycling memory and an optical reset of the normal-state resistance and Tc in AlOx/KTaO3(111) 2DEGs, together with dielectric-loss and dark-relaxation data. The phenomenology is interesting, and several internal numbers check out. The Arrhenius slopes in Fig. 3c match the stated 76 and 236 meV over the 0.1–4001 Hz window. The Hall-derived changes in n and μ (Figs. 2d,e; Supp. Fig. 1) reproduce the observed Rs changes via Rs = 1/(neμ). The dielectric-constant derivation in Methods is algebraically consistent. The main weakness is the microscopic interpretation, which rests on matching characteristic temperatures (35 K and 95 K) across measurements that probe very different time scales; this matching is not quantitatively consistent. Specific problems:\n- Using the authors' own Arrhenius parameters, both proposed processes (PNR flipping and OV ionization) would be thermally frozen at the 1.4–10 K temperatures where the memory is written and erased.\n- The relaxation time τ varies by only a factor of ~2 over 10–180 K, which is hard to reconcile with activation barriers of 76 and 236 meV.\n- At 95 K, τ in Fig. 4c is a maximum, not the minimum claimed in the text.\n- The claim that illumination lowering Tc 'contradicts the expected trend' conflicts with the paper's own data, which show Tc anticorrelated with mobility. The proposed PNR–superconductivity link is therefore not distinguished from a simple Tc–disorder correlation.\n- 'Complete erasure' is asserted without comparing to the pristine state.\nThere are also normalization and notation inconsistencies (Fig. 4 vs. Supp. Fig. 5; Supp. Note 4), uncontrolled illumination dose across temperatures, and missing gate-sweep parameters.",
+  "comments": [
+    {
+      "title": "Proposed activated processes would be thermally frozen where the memory is written",
+      "quote": "electrons hop from the 2DEG to neutralize OVs during the positive branch of the gate cycle with the assistance of the electric field",
+      "explanation": "The authors extract Arrhenius parameters for PNR flipping (Ea1 = 76 meV) and OV ionization (Ea2 = 236 meV). Fig. 3c implies attempt rates of ~10^12 s^-1. Extrapolating these to the temperatures where the memory is written (Rs at 1.4 K in Fig. 1; 10 K in Fig. 2) gives absurdly slow rates: exp(-882/10) ~ 10^-38 for PNRs and exp(-2740/10) for OVs. Both processes are therefore completely frozen on any laboratory time scale. Yet the Discussion invokes OV charge exchange in both gate branches and PNR re-alignment by gate cycling at these temperatures. The electric field cannot obviously compensate. 50 V across 0.5 mm is only ~1 kV/cm, which lowers barriers of tens to hundreds of meV negligibly for nanoscale dipoles. The phrase 'with the assistance of the electric field' is not quantified. The same tension appears in the dark relaxation (Fig. 4c): τ stays within 0.7–1.4×10^3 s from 10 K to 180 K. Processes with these barriers would instead change τ by many orders of magnitude. Some non-thermal mechanism (tunneling, field-driven charge injection, light-induced) may be at work, but it then contradicts the identification with the thermally activated dielectric peaks.",
+      "type": "logical",
+      "severity": "major",
+      "suggested_fix": "Compute the expected PNR and OV switching rates at 1.4–10 K and over 10–180 K from the fitted ω1(2) and Ea1(2). Either propose and quantify a field- or tunneling-assisted mechanism that reconciles these rates with gate-induced switching and the nearly temperature-independent τ, or state explicitly that the dielectric peaks are not the same processes that operate during low-temperature gating."
+    },
+    {
+      "title": "τ at 95 K is a maximum, not a minimum, in Fig. 4c",
+      "quote": "relaxation is accelerated twice at 35 K and 95 K (Fig. 4a), respectively manifested by two maxima",
+      "explanation": "The text says the 35 K and 95 K features appear as maxima in ΔR/R1 and as 'two minima in τ'. In Fig. 4c, however, the τ minima sit near ~28–32 K and ~90 K. The 95 K point (≈1.38×10^3 s) is the largest τ in the whole data set. So at 95 K the relaxation is slowest, not 'accelerated'. The ΔR/R1 peak there coincides with a τ maximum, which contradicts the text and the proposed scenario ('ionization is thermally activated to cause... a drop in τ'). The τ fits are also fragile in several regimes:\n- At 10–25 K, ΔR/R1 ≈ 0, so τ is essentially undefined.\n- The fitted τ values are comparable to the ~2.2×10^3 s observation window.\n- The 95 K trace is very noisy.\n- No error bars are given.",
+      "type": "technical",
+      "severity": "moderate",
+      "suggested_fix": "Correct the statement to match Fig. 4c: τ minima occur near ~30 K and ~90 K, and τ is maximal at 95 K. Add fit uncertainties to Figs. 4b,c, and omit τ values where ΔR/R1 is indistinguishable from zero."
+    },
+    {
+      "title": "Temperature coincidences ignore the frequency dependence of the loss peaks",
+      "quote": "implying that the hysteretic evolution of the lattice is imprinted onto the 2DEG",
+      "explanation": "The loss-peak temperatures Tp1 and Tp2 are strongly frequency dependent. Over 0.1–4001 Hz, Tp1 spans ~27–40 K and Tp2 ~83–110 K (Fig. 3c). The gate sweeps (minutes, with 10-min holds) and the dark relaxation (τ ~ 10^3 s) probe time scales of ~10^-3 Hz or slower. Extrapolating the authors' Arrhenius fits to ~10^-3 Hz places the peaks near ~24 K and ~73 K, and at τ ~ 10^3 s lower still. The matching of 35 K and 95 K across Fig. 3b, Fig. 3d and Fig. 4 therefore depends on an unstated choice of frequency. It does not follow from a consistent time-scale argument, which weakens the central evidence linking the 2DEG to the two lattice excitations.",
+      "type": "logical",
+      "severity": "moderate",
+      "suggested_fix": "Extrapolate the Arrhenius fits to the actual time scales of gate cycling (from the sweep rate) and of dark relaxation (τ), report the predicted Tp1 and Tp2 there, and compare these with the 35 K and 95 K features. Alternatively, state which measurement frequency the comparison assumes and why."
+    },
+    {
+      "title": "'Expected trend' for Tc contradicts the paper's own Tc–μ correlation",
+      "quote": "Our observations are consistent with this picture as both superconductivity and PNR alignment are strengthened by gate cycling and suppressed by illumination.",
+      "explanation": "The authors call the Tc reduction by illumination 'counterintuitive' given the increase in μ and n. Their own data show the opposite correlation. In Fig. 1e,f and Supp. Fig. 1, gate cycling raises Tc while μ drops by ~6% and Rs rises. Along the stabilized loops, Tc is highest at negative Vg, where Rs is highest. Earlier gating studies on KTO(111) interfaces (refs. 17, 18) likewise report Tc increasing as mobility decreases at nearly fixed n. Lower Tc after illumination, together with higher μ, is therefore exactly what this correlation predicts. It does not require PNR alignment as an additional factor. No measurement directly links PNR alignment to Tc. The argument is only that both change in the same direction under the same stimuli, which a Tc–disorder (or Tc–μ) relation explains equally well.",
+      "type": "logical",
+      "severity": "major",
+      "suggested_fix": "Plot Tc against μ (and against Rs) for all gate-cycled and illuminated states (Fig. 1e, Supp. Fig. 1, Fig. 2h,i) on a single graph. If all states collapse onto one curve, drop the claim that illumination 'contradicts the expected trend' and present the PNR mechanism only as a hypothesis; if they do not collapse, use the deviation as the evidence for an extra PNR contribution."
+    },
+    {
+      "title": "'Complete erasure' not demonstrated against the pristine state",
+      "quote": "light illumination at cryogenic temperatures fully erases the field-induced memory.",
+      "explanation": "The abstract and conclusions claim complete erasure. The evidence, however, consists of stepwise Tc decreases from a gate-cycled state L0 to L4 (Fig. 2i) and a return of Rs to a post-illumination 'baseline' at 10 K. Neither is compared with the pristine, never-gated state, whose Tc ≈ 1.017 K is marked by the star in Fig. 1e. Fig. 1 reports Rs at 1.4 K, whereas the baseline of 795 Ω is at 10 K, so the two cannot be compared directly. The paper also states that the system 'does not fully recover to the pre-illumination state' during warming. Since illumination itself photodopes (raising n and μ), the illuminated state may be a distinct state rather than an erased one.",
+      "type": "logical",
+      "severity": "moderate",
+      "suggested_fix": "Add a direct comparison of Tc and of Rs at the same temperature for (i) the pristine cooled-down state, (ii) the gate-cycled state L0 and (iii) the fully illuminated state L4. Replace 'complete/fully erases' with 'resets toward a photodoped baseline' unless (iii) coincides with (i)."
+    },
+    {
+      "title": "Comparing photon energy with activation barriers does not justify optical activation; 2 K data show no effect",
+      "quote": "much smaller than the photon energy of 1.97 eV, and therefore can be activated by red light",
+      "explanation": "A photon energy exceeding a thermal barrier does not by itself imply the photon can drive PNR reorientation or OV charge-state changes. That requires an optical transition with nonzero cross-section, for example a specific defect-to-band excitation, whose energetics are unrelated to Ea1 or Ea2. The claim that activation occurs 'even at extremely low temperatures' is also contradicted by Fig. 2b. There, no obvious Rs change occurs under illumination at 2 K, apart from heating artifacts, while clear changes appear only at 10 K and 15 K.",
+      "type": "logical",
+      "severity": "moderate",
+      "suggested_fix": "Remove the inference from Ea < hν. Replace it with the specific photo-excitation channel invoked in Fig. 2a (deep in-gap donor → conduction band), and explicitly address why no illumination effect is observed at 2 K."
+    },
+    {
+      "title": "Dark-relaxation magnitudes in Fig. 4 appear inconsistent with Supp. Fig. 5 and the size of the illumination drop",
+      "quote": "is normalized against the total drop of sheet resistance",
+      "explanation": "Fig. 4b reports ΔR/R1 ≈ 0.14 at 35 K, i.e. a 14% rise in Rs relative to the post-illumination value. Yet illumination itself changes Rs by only ~5% at 10 K (840 → 795 Ω). In Fig. 4a the illumination-induced drop at 35 K is only ~0.03 of R1. Taken at face value, the dark relaxation therefore overshoots the pre-illumination Rs several-fold. That conflicts with the picture of partial recovery, and with Supp. Fig. 5a, where the same dark relaxation, normalized to the total illumination drop ΔR0, is a fraction of ΔR0. Either the normalization in Fig. 4 is not ΔR/R1 as labelled, or the two figures come from different data with different behaviour.",
+      "type": "technical",
+      "severity": "moderate",
+      "suggested_fix": "Report, for each temperature, the absolute Rs values before illumination, at the end of illumination (R1) and after relaxation. Make the normalizations in Fig. 4 and Supp. Fig. 5 explicit and consistent, for example by plotting ΔR/ΔR0 in both."
+    },
+    {
+      "title": "Illumination dose not controlled across temperatures; LED drive description inconsistent",
+      "quote": "making it difficult to keep a constant illuminating flux at varying temperature",
+      "explanation": "Methods state that light is produced by a dc forward current IL. They then say the same VL was kept for illumination at 10 K, because the IL–VL characteristic is temperature dependent. The temperature-dependent data in Fig. 4 and Supp. Fig. 5 therefore use an unknown and varying photon flux. Because ΔR/R1 and τ are compared quantitatively across temperatures to identify the 35 K and 95 K features, a temperature-dependent dose (and LED self-heating) could create or distort these features. 'Fully illuminated' (saturation) is not demonstrated at each temperature. The optical power at the sample is not given.",
+      "type": "technical",
+      "severity": "moderate",
+      "suggested_fix": "State which quantity (IL or VL) was held fixed in each experiment and report the estimated optical power at the sample versus temperature. Show that Rs saturates during the 1300 s illumination at every temperature used in Fig. 4, so that the dark-relaxation parameters do not depend on dose."
+    },
+    {
+      "title": "Gate-current evidence comes from the illuminated state, not the pristine initial drift it is cited to support",
+      "quote": "After the sample is fully illuminated at 10 K, the first gate cycle generates a remarkable asymmetric",
+      "explanation": "The main text uses the asymmetric Ig hysteresis (Supp. Note 3) to support the explanation of the 'initial drift' of Tc and Rs in Fig. 1. That drift occurs on the first gate cycles after cooldown, near 1.4 K. The Ig data, however, were taken at 10 K after full illumination, a state that the authors themselves describe as photodoped with excess electrons. The Ig data also start with a positive sweep, whereas Fig. 1 starts toward −50 V. The asymmetric displacement current may therefore reflect the return of photo-pumped electrons (cf. the −17 V threshold in Fig. 2g) rather than the mechanism behind the pristine drift. In addition, leakage current is not separated from displacement current.",
+      "type": "logical",
+      "severity": "moderate",
+      "suggested_fix": "Show Ig recorded during the very first gate cycles of a freshly cooled (never-illuminated) sample at the temperature used in Fig. 1, and separate leakage from displacement current, for example by integrating Ig at fixed Vg holds."
+    },
+    {
+      "title": "Assignment of loss Peak 2 to OV charge states rests on an energy match only",
+      "quote": "2 is associated with OVs’ charge state",
+      "explanation": "The only evidence given for this assignment is that Ea2 = 236 meV falls within 200–300 meV values reported for OV ionization. In a metal/insulator/2DEG stack with a depleted interfacial region and an AlOx layer, thermally activated loss peaks routinely arise from Maxwell–Wagner (interfacial) polarization. That mechanism would produce a similar Arrhenius peak, with an activation energy set by the conductivity of the space-charge layer. The dielectric response is also an average over the full 0.5 mm substrate, so it does not specifically probe the interfacial region that couples to the 2DEG.",
+      "type": "logical",
+      "severity": "moderate",
+      "suggested_fix": "Test for a Maxwell–Wagner origin by measuring tan δ versus dc gate bias, or on a bare (non-reduced) KTO(111) substrate with identical electrodes. If Peak 2 persists without the 2DEG and OV layer, it cannot be attributed to interfacial OVs."
+    },
+    {
+      "title": "Notation error in Supplementary Note 4",
+      "quote": "leading to a higher sheet resistance",
+      "explanation": "In Supp. Note 4, R_s^b denotes the post-illumination baseline (795 Ω·sq⁻¹) and R_s^a the gate-elevated value. The second group then assigns the elevated value of 856 Ω·sq⁻¹ to R_s^b, while stating that the baseline is unchanged. The supplementary notation (R_s^a, R_s^b) also differs from the main text (R_s^0, R_s^A, R_s^B). In the main text the superscripts A and B denote sweep types, which invites confusion.",
+      "type": "technical",
+      "severity": "minor",
+      "suggested_fix": "Write R_s^a = 856 Ω·sq⁻¹ for the second group. Use one notation throughout, for example R_s^0 for the baseline and R_s^A / R_s^B for the elevated values after Type A / Type B cycles."
+    },
+    {
+      "title": "Novelty overstated relative to cited prior work",
+      "quote": "a previously unrecognized interplay between the superconducting interface and emergent lattice excitations",
+      "explanation": "The introduction itself notes that Tc 'is universally enhanced by gate cycles at cryogenic temperature but only recovered at room temperature' (ref. 30), and that work also reports coexisting ferroelectricity. The gate-imprinted Tc enhancement, and its attribution to polar lattice degrees of freedom, are therefore not entirely new. Describing the observation as 'Unexpectedly' and the interplay as 'previously unrecognized' overstates the novelty; the genuinely new elements appear to be the optical reset and the dielectric correlation.",
+      "type": "logical",
+      "severity": "minor",
+      "suggested_fix": "Rephrase to state explicitly that gate-cycling Tc enhancement was reported in ref. 30. Identify the optical erasure and the dielectric-loss correlation as the new contributions."
+    },
+    {
+      "title": "n and μ inferred from separate runs whose reproducibility is not shown",
+      "quote": "We therefore performed three measurements following exactly the same procedures of illuminations and gate cycles",
+      "explanation": "The Hall-derived changes in Figs. 2d–g are small: Δn/n ≈ 1.5–4% and Δμ/μ ≈ 4–10%. They are assembled from three separate runs (B = 0, +6 T, −6 T). The authors' own data show that the state depends sensitively on history (illumination time, cycle order, number of cycles). Run-to-run reproducibility at the percent level must therefore be demonstrated before the Type A vs. Type B difference in μ can be trusted. That difference is used to explain the 840 vs. 856 Ω·sq⁻¹ contrast. Key protocol parameters are also missing: gate sweep rate, holding times in the main experiments, and whether the Hall response at ±6 T is linear (single-band).",
+      "type": "technical",
+      "severity": "minor",
+      "suggested_fix": "Report the run-to-run spread of Rs at matched points of the three runs, together with the gate sweep rate and hold times. Show the Hall resistance versus B up to 6 T to justify single-band extraction of n."
+    }
+  ]
+}
+```

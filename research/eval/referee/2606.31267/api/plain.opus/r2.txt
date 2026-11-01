@@ -1,0 +1,188 @@
+# Referee Report
+
+**Manuscript:** "Orientation-tunable correlated Chern insulating states in chiral twisted double bilayer graphene proximitized by WSe₂"
+
+## Summary of claims
+
+The authors study AB-BA (chiral) twisted double bilayer graphene (cTDBG, θ ≈ 0.8–0.93°) with monolayer WSe₂ on one side. They make two main claims:
+
+1. **Theory.** A continuum model with Φ-dependent proximity SOC, using λ_I(Φ) = λ_I,0 cos 3Φ with λ_I,0 = 2 meV and constant λ_R = 0.5 meV, predicts the following at D = 0.5 V/nm:
+   - At Φ = 0° the first valence band carries C_K = +2.
+   - At Φ = 15°, at Φ = 30°, and without WSe₂, it is trivial.
+   - The phase boundary is Φ_c ≈ 9°.
+2. **Experiment.**
+   - Three Φ ≈ 0° devices show a ν = −1 correlated insulator, with a C = +1 Landau-fan trajectory and R_xy reaching 97.6% of h/e² at ~3 T.
+   - A Φ ≈ 15° device (D3) and a Φ ≈ 30° device (D5) show a ν = −1 insulator with C = 0.
+   - Bare cTDBG devices show no ν = −1 insulator.
+
+The authors conclude that the WSe₂ alignment angle deterministically selects the topology of the correlated state.
+
+## Overall assessment
+
+The question is timely, and the experimental contrast between aligned and misaligned devices is potentially interesting. However, I have three central concerns:
+
+- **Theory.** The theoretical narrative is not internally consistent with the parameters used. The predicted topological transition appears to be extremely fine-tuned.
+- **Alignment.** The experimental determination of Φ has an unaddressed 30° ambiguity.
+- **Chern assignment.** The Chern-insulator assignment rests on finite-field fan slopes, without zero-field evidence of time-reversal breaking.
+
+Together, these leave the central causal claim, that Φ controls topology via Ising/Rashba competition, insufficiently supported. I recommend **major revision**.
+
+---
+
+## Major concerns
+
+### 1. The "Ising vs. Rashba competition" narrative is inconsistent with the model's own parameters
+
+With λ_I(Φ) = 2.0 cos 3Φ meV and λ_R = 0.5 meV:
+
+| Φ | λ_I | Ising vs. Rashba |
+|---|---|---|
+| 15° | 2.0 × cos 45° ≈ 1.41 meV | Ising ≈ 3× larger |
+| 9° (claimed Φ_c) | ≈ 1.78 meV | Ising ≈ 3.6× larger |
+| ≈ 25° | ≈ 0.5 meV | Rashba first equals Ising |
+
+Rashba therefore does not "dominate" at 15°. The abstract's statement that "Rashba coupling dominates at larger Φ" does not hold, and neither do similar statements on pp. 6, 10 and 11.
+
+What the model actually implies is a threshold effect: C_K changes from +2 to 0 when λ_I drops from 2.0 to ~1.8 meV, a ~10% change in a ~2 meV term. Rashba competition plays no evident role. The authors should:
+
+- Present a phase diagram of C_K in the (λ_I, λ_R) plane, and in (Φ, D) and (Φ, θ).
+- Show the direct gaps above and below the relevant band as functions of λ_I.
+
+This would let readers judge how close the Φ = 0° point is to a gap closing. It would also show whether the conclusion survives plausible uncertainties in λ_I,0, which literature values place anywhere from ~1 to ~3 meV.
+
+### 2. Physical plausibility of the Ising-driven C = 0 → +2 transition
+
+The authors should explain more carefully why a ~2 meV Ising term changes the topology at all. Three observations raise doubts.
+
+**The Ising term acts as a small spin-dependent layer potential.** With λ_R → 0 and negligible λ_KM, s_z is conserved. In that limit, H_I = (λ_I/2)τ_z s_z, applied with weights (0.35, 1) on L3 and L4, is a sublattice-independent, layer-dependent scalar potential of opposite sign for the two spins. Each spin sector is therefore bare cTDBG with a slightly different effective interlayer potential.
+
+**That potential is tiny compared with the displacement-field potential.** At D = 0.5 V/nm, Eq. (7) gives U_d = eD·d_t/ε ≈ 0.5 × 1.005 / 3 ≈ 170 meV across the stack. The Ising perturbation is ±1 meV on L4 and ±0.35 meV on L3.
+
+**Opposite-sign perturbations should not both produce C = +1.** Fig. 2j/m and the caption state that the bare band has C = 0 and that *both* spin-split subbands acquire C = +1. Yet the two subbands are subject to perturbations of *opposite* sign. Near a generic single gap closing, opposite-sign perturbations of the mass give opposite Chern changes, not identical ones.
+
+Either additional ingredients are essential, or the Φ = 0° point sits at a non-generic band touching. Possible additional ingredients include Rashba-induced spin mixing, inter-subband touchings, or the way "first valence band" is defined when subbands overlap.
+
+To resolve this, please provide:
+
+- Berry-curvature maps for each subband.
+- Explicit confirmation that each subband is isolated over the whole mBZ. The Kubo formula of Eq. (14) is ill-defined at touchings.
+- A gauge-invariant lattice computation of C, e.g. Fukui–Hatsugai–Suzuki.
+- Convergence with respect to the 6k_θ cutoff and k-mesh.
+- Results for −λ_I, since cos 3Φ changes sign at Φ = 60°; see point 4.
+
+Relatedly, the statement in the Introduction that "the Ising SOC opens a proximity-induced gap at each valley that carries finite Berry curvature" should be stated more precisely. A sublattice-independent Ising term does not by itself gap a Dirac point. In bilayer systems it acts through layer asymmetry.
+
+### 3. The Φ dependence of the SOC parameters is oversimplified relative to the cited literature
+
+Eqs. (12–13) assume a pure cos 3Φ Ising dependence and an angle-independent Rashba term, attributed to Ref. 44.
+
+- Several of the cited works (Refs. 42–44, 57) report non-monotonic angular dependences for WSe₂, notably of the Rashba term, at intermediate angles. The constant-λ_R assumption therefore needs explicit justification.
+- Ref. 46 reports an experimental Φ dependence of the proximity SOC in bilayer graphene, which is directly relevant. A quantitative comparison with Ref. 46 is needed.
+
+Because the predicted transition is so sensitive to λ_I (point 1), the angular form matters at the ~10% level. The authors should show that Φ_c is robust to the functional form adopted.
+
+### 4. Determination of Φ: 30° (and 60°) ambiguity, and circular validation
+
+Φ is set by aligning straight edges of WSe₂ and graphene under an optical microscope, and the authors claim ±2° accuracy. Two problems arise.
+
+**Zigzag vs. armchair ambiguity.** Inter-edge angles of 60°/120° identify the edge *family* but cannot distinguish zigzag from armchair edges, which differ by 30°. Both edge types occur in exfoliated graphene and TMDs. Edge matching therefore cannot by itself distinguish Φ ≈ 0° from Φ ≈ 30°, which are exactly the two cases being contrasted.
+
+**60° ambiguity.** WSe₂ lacks inversion symmetry, so 0° and 60° alignments are inequivalent. In the authors' model, cos 3Φ = −1 at 60°, which flips the sign of λ_I. The paper should state what the model predicts for negative λ_I, and whether the experiment can tell the two cases apart.
+
+**Circular validation.** The statement that "consistency of the measured Chern numbers … provides an a posteriori confirmation of the alignment assignment" is circular. The Chern number is the quantity whose Φ dependence is being tested.
+
+Requested evidence:
+
+- An independent crystallographic determination, e.g. second-harmonic generation on WSe₂ and graphene edge-type identification by Raman D-peak polarization, or post-measurement imaging.
+- Ideally, an in-device measurement of the proximity SOC, e.g. Landau-level crossings near CNP or weak antilocalization as in Refs. 37–38, showing that λ_I is indeed larger in the "0°" devices than in the "15°/30°" devices.
+
+Without this, the experimental Φ axis is not established.
+
+### 5. The Chern-insulator assignment is based only on finite-field data
+
+A trajectory of slope C = +1 emanating from ν = −1 is consistent with a Chern insulator. However, it is also what one expects from Landau levels of a *trivial* flavor-polarized insulator: once fewer flavours are active, singly-degenerate pockets doped away from ν = −1 produce LLs with slopes ±1, ±2, …. The state becomes well developed only above ~0.3 T, and Fig. 4d shows R_xx minima of order 10² Ω rather than vanishing values.
+
+To support the claim of an intrinsic C = +1 state with spontaneous isospin polarization, as stated in the abstract, the authors should:
+
+- Report low-field R_xy at ν = −1, including any anomalous Hall signal and hysteresis under B sweeps, as done in Refs. 4, 14, 30, 55.
+- Show the ±B behaviour, including whether a C = −1 counterpart appears.
+- Compare quantitatively with the expected LL sequence of a trivial insulator.
+- State the sign convention linking C = +1 to R_xy = −h/e² on the hole side, and describe the (anti)symmetrization procedure.
+
+If no zero-field signature exists, the language should be tempered to "field-stabilized C = +1 state". The conclusion that the correlated state "tracks single-particle topology" should then be weakened accordingly.
+
+### 6. Insufficient statistics and an overstated "controlled comparison"
+
+The trivial side rests on one device at 15° (D3) and one at 30° (D5), with the 30° data only in the Supplement. The statement that D2 and D5 "differ only in Φ" is an overstatement. Devices sharing a nominal θ still differ in:
+
+- twist-angle inhomogeneity and heterostrain;
+- disorder;
+- hBN alignment;
+- the sign convention of D relative to the WSe₂ side.
+
+Please:
+
+- Report hBN–graphene alignment angles for all devices. Accidental hBN alignment is a well-known alternative source of Chern bands, and Supplementary Section XI shows that sublattice asymmetry can contribute.
+- Report twist-angle homogeneity, e.g. from multiple contact pairs.
+- Show Landau fans for D3/D5 at more than one D. Theory says topology is D-dependent, and a C = 0 assignment at a single D = 0.6 V/nm is not conclusive.
+
+### 7. The role of WSe₂ in creating the ν = −1 insulator is unexplained
+
+The bare cTDBG devices D6 and D7 show no ν = −1 insulator, but the Φ ≈ 30° device does. Yet in the model the 30° band structure, with λ_I = 0 and λ_R = 0.5 meV, is nearly identical to the bare one (compare Fig. 1j–l with Fig. 2m).
+
+This undermines the attribution of the valence-band correlated state to "SOC-induced band flattening and enhanced Berry curvature" (p. 8). It points instead to non-SOC effects of the WSe₂, such as dielectric environment, strain, or disorder. The authors should address this directly.
+
+Relatedly, the claim that previous TDBG studies observed correlated states "exclusively in the conduction band" should be qualified. Most such studies concern AB-AB stacking. The relevant comparison is the authors' own cTDBG controls at matched θ and D.
+
+### 8. Theory–experiment parameter mismatch and the role of D
+
+Several mismatches and omissions should be addressed:
+
+- **Parameter mismatch.** Chern numbers are reported only at D = 0.5 V/nm and θ = 0.9°. The experiments are at D = 0.6 V/nm and θ = 0.80–0.93°. Please compute C at the experimental parameters.
+- **D dependence.** Show C(D) for each Φ, and compare with the D range over which the C = +1 fan is observed.
+- **Sign of D.** Proximity SOC acts only on the WSe₂-adjacent layers. Whether valence-band holes are polarized toward or away from WSe₂ depends on the sign of D, so the theory should predict a ±D asymmetry. Is the C = +1 state present at both signs of D, and is the observed asymmetry consistent with the model? Fig. 3 suggests the ν = −1 feature is stronger on one side of D; this should be discussed explicitly.
+- **Screening.** Eq. (7) uses an unscreened linear potential, which likely overestimates the interlayer asymmetry. Given the sensitivity discussed in point 2, the effect of layer screening (e.g. self-consistent Hartree) should be checked.
+
+### 9. Interaction effects are not modelled
+
+The conclusion that "the topological response of the correlated state is governed by the single-particle band topology" is inferred, not computed. Hartree–Fock renormalization in flat bands can be comparable to, or larger than, the ~meV SOC scale and can reshuffle Berry curvature.
+
+At minimum, a Hartree–Fock calculation of the flavor-polarized ν = −1 state at Φ = 0° and 15° would substantially strengthen the link between the single-particle Chern numbers and the measured C. If this is not feasible, the limitation should be stated clearly.
+
+---
+
+## Minor comments
+
+1. **Terminology.** "Twist angle" is used for both θ and Φ, e.g. "Rashba SOC is relatively insensitive to the twist angle" on p. 3 and "twist-angle engineering" on p. 4. Please use "alignment angle" consistently for Φ.
+2. **"Deterministically."** Given one or two devices per trivial-side angle and the open alignment ambiguity, this wording is overstated in the abstract, introduction and discussion.
+3. **Intrinsic topology.** The Introduction emphasizes that cTDBG has nontrivial valley Chern numbers "even at zero displacement field", yet the bare-cTDBG reference (Fig. 2m) is trivial at D = 0.5 V/nm. Please show the bare C(D) so readers can reconcile these statements.
+4. **Activation gap.** The Arrhenius fit "below T* ≈ 2.7 K" appears to use very few temperature points (Fig. 3f shows 1.5, 2.0 and 3.0 K in this regime), spanning less than a factor of 2 in T. Please show the fit and the data points explicitly. Dilution-fridge data down to lower T would give a far more reliable gap.
+5. **Error bars in Fig. 4d.** These are said to "indicate deviation from −h/e²". Error bars should represent measurement uncertainty; deviation from quantization is better shown as a separate quantity.
+6. **Fig. 2a–i.** The relevance of non-interacting Fermi surfaces at ν = −1 to the topological argument is unclear, since the non-interacting system is metallic there. Please clarify what "lower pair of flat valence bands" refers to.
+7. **Missing model parameters.** v₃ and v₄ are not given numerically. Please list all continuum-model parameters, and specify whether the 0.35 L3 scaling applies equally to all SOC terms.
+8. **Sign conventions.**
+   - Eq. (9) uses σ_x and σ_y, while the kinetic term uses σ = (−σ_x, σ_y). Please confirm the Rashba term is written consistently with this convention.
+   - Clarify the layer ordering (L1…L4) relative to the WSe₂ side and the sign of D.
+9. **Phase boundary.** Φ_c ≈ 9° appears only in the Discussion, Methods and Supplement. The corresponding phase diagram (Supplementary Fig. 11a) belongs in the main text, since it is central to the claim.
+10. **Prior work.** Ref. 50 (TDBG/WSe₂) and Ref. 46 (Φ-programmable SOC in BLG) deserve a more concrete comparison of the observed phenomenology.
+11. **Fig. 4c.** The labels "(1, −1)" and "(1, −2)" appear to be (C, ν), whereas the caption uses (ν, C). Please make them consistent.
+
+---
+
+## Summary of requested additions
+
+| Priority | Request |
+|---|---|
+| Essential | Independent crystallographic determination of Φ, resolving the zigzag/armchair (30°) and 0°/60° ambiguities |
+| Essential | In-device estimate of λ_I (LL crossings or WAL) for aligned vs. misaligned devices |
+| Essential | Low-field Hall/hysteresis at ν = −1; ±B data |
+| Essential | Chern-number phase diagrams in (λ_I, λ_R), (Φ, D), (Φ, θ); gap sizes; Berry-curvature maps; gauge-invariant C calculation |
+| Important | Correction of the "Rashba dominates" narrative, or a demonstration that Rashba matters |
+| Important | Landau fans for D3/D5 at several D; hBN alignment for all devices |
+| Important | Explanation of why WSe₂ at Φ ≈ 30° induces the ν = −1 insulator while bare cTDBG does not |
+| Desirable | Hartree–Fock analysis of the ν = −1 state; screening-corrected D potential |
+| Desirable | Additional devices on the trivial side and at intermediate Φ |
+
+## Recommendation
+
+**Major revision.** The experimental observation of a field-stabilized C = +1 trajectory in some WSe₂/cTDBG devices but not others is potentially valuable. As presented, however, the theoretical mechanism is internally inconsistent and appears fine-tuned. The Φ assignment is not independently verified, and the Chern-insulator claim lacks zero-field evidence. Addressing points 1, 2, 4 and 5 is necessary before the central conclusion can be considered established.

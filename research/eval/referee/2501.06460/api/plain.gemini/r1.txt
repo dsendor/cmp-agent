@@ -1,0 +1,62 @@
+Here is a comprehensive peer review and summary of the paper **"Probing electric field tunable multiband superconductivity in alternating twisted quadralayer graphene"** by Le Liu *et al.*
+
+---
+
+### **1. Executive Summary**
+In this manuscript, the authors investigate the electronic transport and superconducting properties of alternating twisted quadralayer graphene (ATQG) at a twist angle of $\theta = 1.58^\circ$. As a member of the alternating twisted multilayer graphene (ATMG) family ($N=4$), this system hosts one moiré flat band coexisting with two dispersive Dirac bands. 
+
+Using a dual-gated Hall bar geometry, the authors map out the superconducting phase diagram as a function of carrier density ($n$) and electric displacement field ($D$). By analyzing high-field Landau fan diagrams ("Dirac spectroscopy"), they successfully disentangle the carrier density contributions of the dispersive Dirac bands from the flat band. Furthermore, by measuring critical currents both inside and outside the superconducting regime, they extract an ultra-slow flat-band Fermi velocity ($v_n \approx 1700\text{ m/s}$) and a large superfluid stiffness ($D_s \approx 4 \times 10^7\text{ H}^{-1}$). The results point toward strong-coupling superconductivity operating near the BCS–BEC crossover limit, where the superfluid weight is dominated by quantum geometric (quantum metric) contributions rather than conventional band dispersion.
+
+---
+
+### **2. Key Findings & Scientific Contributions**
+
+*   **Robust Multiband Superconductivity:** The authors demonstrate 2D superconductivity with a maximum Berezinskii–Kosterlitz–Thouless (BKT) transition temperature of $T_{\text{BKT}} = 1.6\text{ K}$ (onset $T_c \approx 2\text{ K}$) at an optimal displacement field of $D = 0.26\text{ V/nm}$, alongside an in-plane critical magnetic field ($B_\parallel \approx 7\text{ T}$) that violates the conventional Pauli limit by a factor of ~2.
+*   **Disentangling Flat and Dispersive Bands:** Using the Landau levels (LLs) of the dispersive Dirac bands as an internal chemical potential sensor, the authors determine that the flat band has an interaction-broadened bandwidth of $\sim 50\text{ meV}$ (five times larger than the $\sim 10\text{ meV}$ predicted by the non-interacting continuum model). They also pinpoint the half-filling cascade transition of the flat band ($\nu_{\text{flat}} = 2$) at a total filling factor of $\nu_{\text{tot}} \approx 2.36$.
+*   **Doping- and Field-Tunable BCS–BEC Crossover:** By extracting the Ginzburg–Landau coherence length ($\xi$) and estimating the inter-particle distance ($1/k_F$), the authors show that the coupling strength parameter $k_F \xi$ reaches $\sim 2$ near half-filling and at finite $D$, placing the system squarely in the strong-coupling BEC crossover regime.
+*   **Anomalous Suppression near the VHS:** Counterintuitively, when $D > 0.3\text{ V/nm}$ drives the system toward a van Hove singularity (VHS)—evidenced by a diverging Hall density $n_H$—the superconducting $T_c$ and coupling strength *decrease*, defying conventional BCS expectations.
+*   **Quantum Metric-Driven Superfluid Stiffness:** Following the methodology recently established for twisted bilayer graphene (Tian *et al., Nature* 2023), the authors identify two critical current boundaries: one for superconducting depairing ($j_s$) and one for Zener–Klein interband tunneling ($j_n$). The extracted superfluid stiffness $D_s$ exceeds the conventional Fermi-liquid contribution ($e^2 n^* / m^*$) by an order of magnitude, providing compelling transport evidence for quantum metric-enhanced superconductivity in a multiband moiré system.
+
+---
+
+### **3. Strengths of the Manuscript**
+
+1.  **High-Quality Experimental Data:** Fabricating homogeneous quadralayer devices with controlled alternating twist angles is notoriously difficult. The transport data (Supplementary Fig. 1) show impressive device uniformity, clear Landau fans, and sharp superconducting transitions.
+2.  **Timely and Impactful Topic:** Understanding the role of quantum geometry in flat-band superconductors and the interplay between flat and dispersive bands in $N>3$ moiré systems is at the forefront of condensed matter physics.
+3.  **Comprehensive Characterization:** The combination of high-field Dirac spectroscopy, low-field Hall density measurements, and non-linear $dV/dI$ critical current analysis within a single device provides a self-consistent and thorough physical picture.
+
+---
+
+### **4. Critiques, Weaknesses, and Major Questions**
+
+While the experimental results are compelling, several analytical assumptions and omissions require clarification or revision:
+
+1.  **Contradiction in the $\Delta / k_B T_c \approx 0.2$ Estimation (Page 6):**
+    The authors estimate the pairing gap using $\Delta \approx \hbar v_n / \xi$, arriving at $\Delta / k_B T_c \approx 0.2$, which is an order of magnitude *lower* than the BCS weak-coupling limit of $1.75$. However, throughout the rest of the paper (and in Supplementary Fig. 5, where $T^* / T_{\text{BKT}} = 2.19$), the authors argue that the system is in the **strong-coupling BEC regime** with pre-paired electrons, which fundamentally requires $\Delta / k_B T_c \gg 1.75$. 
+    *   *The flaw:* The BCS relation $\xi = \hbar v_F / (\pi \Delta)$ breaks down in the flat-band limit ($v_F \to 0$). As shown in recent theoretical works (including Ref. 45 by co-author K. T. Law), the coherence length $\xi$ in flat bands is bounded by the **quantum metric**, not the Fermi velocity. Plugging a vanishing $v_n$ into a conventional BCS formula yields an unphysically small $\Delta$. The authors should explicitly state that $\Delta \approx \hbar v_n / \xi$ is invalid here because $\xi$ is governed by quantum geometry, rather than presenting $\Delta / k_B T_c \approx 0.2$ as the actual pairing gap ratio.
+
+2.  **Inconsistency in the Fractional Filling $\nu_{\text{flat}} = 10/3$ Assignment (Pages 3–4):**
+    In Section II.B, the authors observe a Landau fan emanating from $\nu_{\text{tot}} \approx 3.3$ and infer that it corresponds to a charge density wave (CDW) state at fractional filling $\nu_{\text{flat}} = 10/3 \approx 3.33$ of the flat band. However, the core premise of Section II.B is that $\nu_{\text{tot}} = \nu_{\text{flat}} + \nu_{\text{Dirac}}$. According to Fig. 2e, at $\nu_{\text{tot}} = 3.3$, the Dirac band carrier density is $n_{\text{Dirac}} \approx 0.8 \times 10^{12}\text{ cm}^{-2}$, which corresponds to $\nu_{\text{Dirac}} = 4 n_{\text{Dirac}} / n_0 \approx 0.55$. This means that at $\nu_{\text{tot}} = 3.3$, the flat band filling is actually $\nu_{\text{flat}} \approx 3.3 - 0.55 = 2.75$, *not* $10/3$. Conversely, $\nu_{\text{flat}} = 10/3$ should occur at $\nu_{\text{tot}} \approx 3.9$. The authors need to reconcile this discrepancy.
+
+3.  **Missing Device Dimensions for Critical Current Density ($j_s, j_n$):**
+    The calculations of the drift velocity ($v_n \approx 1700\text{ m/s}$) and superfluid stiffness ($D_s$) rely entirely on converting the measured DC current $I_{\text{dc}}$ (in nA) into a 2D current density $j$ (in A/m) by dividing by the Hall bar channel width $W$. However, the channel width $W$ and length $L$ are never stated in the main text or Supplementary Information, and **Supplementary Fig. 1a lacks a scale bar**. These dimensions must be provided to ensure the quantitative validity of $v_n$ and $D_s$.
+
+4.  **Definition of $k_F$ as a Function of Displacement Field $D$ (Fig. 4c):**
+    In Section II.C ($D=0$), $k_F$ is calculated using $n^*$, which is counted from the half-filling of the flat band ($\nu^* = |\nu_{\text{flat}} - 2|$). In Fig. 4c, the authors plot $\xi \times k_F$ as a function of $D$ at fixed $\nu_{\text{tot}} = 2.31$. As $D$ increases, the flat and Dirac bands strongly hybridize, and the cascade reset position shifts. How exactly is $k_F$ (and $n^*$) defined and extracted as a function of $D$ in Fig. 4c and Fig. 5d? Is $n^*$ assumed to be constant, or is it extracted from the Hall density $n_H$?
+
+---
+
+### **5. Minor Points and Typos**
+
+*   **Abstract vs. Main Text ($T_{\text{BKT}}$):** The abstract states a "maximum BKT transition temperature of 1.6 K," while Section II.A (page 3) only mentions $T_{\text{BKT}} = 1.1\text{ K}$ (which is for $D=0$). The $1.6\text{ K}$ value is buried in Supplementary Fig. 5b ($D = 0.26\text{ V/nm}$). It would improve readability to explicitly mention the $1.6\text{ K}$ result in Section II.A or II.D of the main text.
+*   **Page 5, end of Section II.C:** Typo *"AQTG"* instead of *"ATQG"*.
+*   **Page 11, Fig. 1f caption:** Typo *"Rxx vesus T"* instead of *"versus"*.
+*   **Page 12, Fig. 2e caption:** Typo *"nDirac verus vtot"* instead of *"versus"*.
+*   **Page 17, Supplementary Note 1.1:** Typo *"quatralayer"* instead of *"quadralayer"*.
+*   **Page 18, Supplementary Fig. 1a:** Please add a scale bar to the optical micrograph.
+*   **Pages 22 & 23:** There are two sections labeled *"Supplementary Note 6"*. The second one on page 23 should be *"Supplementary Note 7"*.
+
+---
+
+### **6. Overall Assessment**
+This is a strong, well-executed experimental paper that advances our understanding of multiband moiré superconductors. It bridges the gap between twisted trilayer graphene and the broader multilayer family, providing crucial experimental evidence for the role of quantum geometry in flat-band superfluidity. Once the theoretical interpretation of the pairing gap ($\Delta / k_B T_c$), the $\nu = 10/3$ filling assignment, and the missing device dimensions are addressed, this work will be well-suited for publication in a high-impact physics or materials journal (e.g., *Nature Communications*, *Physical Review X*, or *Nature Physics*).

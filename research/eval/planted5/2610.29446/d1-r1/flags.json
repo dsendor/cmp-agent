@@ -1,0 +1,80 @@
+{
+  "paper": "2610.29446",
+  "version": "v1",
+  "library_version": "0.5",
+  "checks": [
+    {"id": "zbp-dot-search", "status": "not done"},
+    {"id": "zbp-wide-ranges", "status": "partly"},
+    {"id": "zbp-both-ends", "status": "done"},
+    {"id": "zbp-transparency", "status": "not done"},
+    {"id": "zbp-nonlocal-gap", "status": "partly"},
+    {"id": "zbp-raw-conductance", "status": "partly"},
+    {"id": "report-counts", "status": "not done"},
+    {"id": "report-ranges", "status": "partly"},
+    {"id": "report-processing", "status": "partly"}
+  ],
+  "lookalikes": [
+    {"id": "abs-quantum-dot", "status": "tested in part", "note": null,
+     "tests": [
+       {"test": "Dot signatures searched for in the same device (Coulomb diamonds or resonances above the gap, peaks that split and recross)", "shown": "no"},
+       {"test": "Zero-bias state compared at both ends", "shown": "all"}],
+     "source": null},
+    {"id": "quasi-majorana-smooth-confinement", "status": "tested in part", "note": null,
+     "tests": [
+       {"test": "Bulk gap closing and reopening in nonlocal conductance", "shown": "part"},
+       {"test": "Correlated zero modes at both ends", "shown": "part"}],
+     "source": null},
+    {"id": "disorder-induced-zbp", "status": "tested in part", "note": null,
+     "tests": [
+       {"test": "End-to-end correlation", "shown": "part"},
+       {"test": "Bulk gap closing and reopening", "shown": "part"},
+       {"test": "Insensitivity to gates that should not matter in a clean topological phase", "shown": "no"}],
+     "source": null},
+    {"id": "kondo-resonance", "status": "not tested", "note": "not mentioned",
+     "tests": [
+       {"test": "Even-odd occupancy of the dot", "shown": "no"},
+       {"test": "Temperature dependence", "shown": "no"},
+       {"test": "Zeeman splitting in field", "shown": "no"}],
+     "source": null},
+    {"id": "trivial-andreev-band-gap-reopening", "status": "tested in part", "note": null,
+     "tests": [
+       {"test": "Protocol tested on trivial models or devices", "shown": "part"},
+       {"test": "Parameters the protocol does not use varied (other gates, field direction)", "shown": "no"}],
+     "source": null},
+    {"id": "one-end-only", "status": "ruled out for the claim", "note": null,
+     "tests": [
+       {"test": "Both ends compared at the same settings", "shown": "all"},
+       {"test": "Nonlocal conductance", "shown": "no"}],
+     "source": null},
+    {"id": "local-probe-loophole", "status": "tested in part", "note": null,
+     "tests": [
+       {"test": "Nonlocal measurement (both ends or nonlocal conductance)", "shown": "all"},
+       {"test": "Overlap estimated through a quantum dot in series", "shown": "no"}],
+     "source": null},
+    {"id": "fine-tuning-and-selection", "status": "tested in part", "note": null,
+     "tests": [
+       {"test": "Devices and datasets measured, and how many showed the effect", "shown": "no"},
+       {"test": "How the shown data were chosen", "shown": "no"},
+       {"test": "A second device or dataset shown", "shown": "part"}],
+     "source": null},
+    {"id": "outside: oscillating end-mode splitting that is near zero at the chosen length", "status": "not tested", "note": "argued, not tested",
+     "tests": [
+       {"test": "End-mode energy followed over consecutive chain lengths at both ends", "shown": "no"},
+       {"test": "Splitting measured, or bounded, within the experimental energy resolution", "shown": "no"}],
+     "source": "https://arxiv.org/abs/2104.11503"},
+    {"id": "outside: trivial end states inside a trivial minigap of a magnetic chain", "status": "not tested", "note": "data bear on it",
+     "tests": [
+       {"test": "Local defect placed at one chain end, comparing the energies of the two end states", "shown": "no"}],
+     "source": "https://arxiv.org/abs/2211.00561"}
+  ],
+  "questions": [
+    "How many chains of each length did you assemble and measure, and how many of the long chains showed zero-bias end modes?",
+    "Why were the others set aside, for example chains that broke or developed stacking faults from the strain you describe in Sec. S6?",
+    "Which chain lengths beyond Cr4, Cr5, Cr8 and Cr12 did you build (Cr6, Cr7, Cr9 to Cr11, longer than Cr12), and which bias, setpoint, temperature and field ranges did you measure beyond the ones shown?",
+    "What does the second-best Cr12 chain look like, and is the \"Cr*12\" chain in the RF data the same chain as in Fig. 4?",
+    "The 16.8 µeV splitting comes from the calculation with ΓD = 5 µeV. What is your experimental energy resolution with a PtIr tip at 30 mK and a 30 µV lock-in excitation, and can the measured Cr12 spectra bound the splitting? By my estimate Eq. (1) with ξM = 10.5 Å, L = 57 Å, kF = 0.18 a0^-1 and the free-electron mass gives about 9.5 µeV, and 16.8 µeV gives ξM of about 11 Å; which mass and kF did you use, and how is \"three lattice sites\" counted, given that 10.5 Å is about 2.2 spacings of 4.75 Å?",
+    "Which Rashba coupling produces Fig. 2(b), Fig. 3, Fig. 4(c,d) and the 16.8 µeV splitting? Sec. S2 gives αR ≈ 1.8 eV·Å, Sec. S4 says 3.6 eV·Å, and Sec. S7 reports calculated gaps of 84 and 146 µeV next to the measured 204 ± 50 µeV.",
+    "Adding atoms leaves the bulk Hamiltonian unchanged, so how does the length series separate a phase transition from the Shiba band filling in as levels are added? A topological invariant for the infinite chain at your fitted parameters would help.",
+    "Did you measure the end modes in a magnetic field, or after placing a defect atom at one end of a Cr12 chain? Both would help separate trivial end states from Majorana-like ones."
+  ]
+}

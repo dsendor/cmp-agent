@@ -1,0 +1,117 @@
+{
+  "overall_feedback": "This is an interesting combined experiment/theory study. Triangular TBTAP trimers are assembled by lateral manipulation on Pb(111). Tip-gated Coulomb rings and regions of negative differential conductance (NDC) are mapped in detail. A compact three-site Anderson/Pauli-master-equation model reproduces the evolution of the rings remarkably well. The physical picture is plausible and clearly illustrated in Fig. 3: frustrated N=2 occupancy, tip-driven intra-cluster rearrangements, and NDC from a non-equilibrium mixture of singly occupied states. My main concerns are about how far the model supports the specific NDC mechanism.\n\n1. **Coupling regime.** The PME is run at Γs ≈ 0.01 meV, but the authors' own estimate of the real substrate coupling is 10–20 meV, and their NRG treatment uses ζ=1. In that regime, substrate-mediated cotunneling and effective inter-site coupling would be expected to relax exactly the metastable non-equilibrium populations on which the NDC explanation rests. The justification given (ring positions are electrostatic) does not cover this.\n2. **Key energy scale.** The bare level ε_id = −90 meV is read off a single STS peak. This identification is inconsistent with the model's own many-body addition energies when W = 50 meV. ε also differs between the PME (−90 meV) and NRG (−104/−106 meV) calculations without explanation, which matters because the N=2 ground state hinges on the narrow condition W > −ε/2.\n3. **Formal issues.** There are a spinless 8-state reduction that is not acknowledged as such, sign errors in the master-equation Fermi-function arguments and in the image-charge position, and incompletely specified fitting parameters and measurement conditions.\n4. **Hexamer.** The hexamer results are not modeled. They appear to involve a different NDC mechanism, yet they are presented as confirming the robustness of the trimer mechanism.",
+  "comments": [
+    {
+      "title": "Sequential-tunneling PME with Γs≈0.01 meV may not support the non-equilibrium NDC mechanism at the real Γs = 10–20 meV",
+      "quote": "Although this assumption might be questionable, since the value of the substrate coupling, fitted from the YSR characteristics [27], is Γs = 10 − 20 meV, the size of the discharge rings depends mainly on the local electrostatic environment and not on the coupling.",
+      "explanation": "The authors acknowledge the mismatch, and their argument is reasonable for the *position* of the rings, which is set by electrostatics and W. However, the NDC mechanism in Fig. 3 is not a ring-position effect. It relies on the singly occupied states |100⟩, |010⟩, |001⟩ being mutually inaccessible ('cannot transit from one state to another by single-electron tunneling'). That leaves a non-equilibrium mixed population set purely by the tip-driven cycle.\n\nIn the sequential limit this metastability is real: kBT = 0.22 meV versus level splittings of ~10 meV. With Γs = 10–20 meV, though, Γs is comparable to these splittings. Substrate-mediated cotunneling (e.g. 100→010 via virtual 000 or 110) would then occur at rates of order Γs²/ΔE. Picoampere tip currents correspond to ħ·rate ≈ 1 µeV, so these cotunneling rates exceed the tip-induced rates by many orders of magnitude. They would thermalize the singly occupied manifold toward the instantaneous ground state, removing the 'wasted' occupation that produces NDC.\n\nThe statement that cotunneling can be neglected is therefore a consequence of the chosen parameter, not of the physical system. The NRG results themselves show hybridization shifting charge transitions by ~10 meV (−58.5 vs −50 meV, −111.5 vs −100 meV). That shift is comparable to the energy differences governing the 'mix' region.",
+      "type": "technical",
+      "severity": "major",
+      "suggested_fix": "Add a cotunneling-inclusive calculation (e.g. second-order/real-time diagrammatic or 1st+2nd-order von Neumann/RTD in QmeQ) at Γs of a few to 20 meV. Show that the population mixing and the NDC region in Fig. 3B survive. Otherwise, state explicitly that the NDC mechanism has only been demonstrated in the Γs ≪ kBT limit."
+    },
+    {
+      "title": "Inconsistent treatment of inter-site coupling: ζ=1 in NRG vs. purely diagonal, incoherent PME",
+      "quote": "We focus on the most strongly correlated system with ζ = 1 (see the discussion below Eq. (S5)), which enables single-channel calculations.",
+      "explanation": "Using ζ=1 for the YSR calculation is understandable for computational reasons. It means, however, that all three sites hybridize with a single common substrate channel (Γs_ij = Γs). That is the maximal substrate-mediated inter-site coupling, which generates effective hopping/exchange and coherences between sites.\n\nThe PME, by contrast, keeps only diagonal populations and t=0. The NDC explanation explicitly requires that 'charge rearrangement within the cluster is allowed only via the conductive substrate' while singly occupied states cannot interconvert directly. The YSR agreement is presented as an 'additional check for the reliability of the model'. Yet the YSR model contains exactly the non-local coupling that the transport model discards. The two calculations thus describe physically different models.",
+      "type": "logical",
+      "severity": "moderate",
+      "suggested_fix": "Either include the off-diagonal Γs_ij = ζΓs terms (with coherences, e.g. a Redfield/1vN master equation) in the transport calculation and show the NDC persists for the ζ used in NRG, or state explicitly that the YSR check is performed in a different (ζ=1) limit from the transport model."
+    },
+    {
+      "title": "Identification of ε_id = −90 meV with the STS peak conflicts with the model's own addition energies",
+      "quote": "The value of the molecular energy level in the absence of the scanning tip was fixed to εid = −90 meV as assumed from the data in Fig. S2.",
+      "explanation": "Within the authors' t=0 model, the cluster ground state is a doubly occupied state such as |011⟩ (energy 2ε+W). Spectral peaks therefore occur at many-body addition/removal energies, not at the bare ε_id:\n- removal from |011⟩ costs E(011) − E(001) = ε+W ≈ −40 meV;\n- addition costs E(111) − E(011) = ε+2W ≈ +10 meV.\n\nA resonance at −90 mV would correspond to removal from a singly occupied state (E(100) − E(000) = ε), which is not the ground state. Lever-arm and tip-field effects are small at −90 mV and would not obviously account for this.\n\nSince the frustrated N=2 ground state depends on the narrow inequality W > −ε/2 (45 meV vs. W = 50 meV), the identification of ε is not cosmetic. It directly underpins the charge assignments in Figs. 1E–F and 3D.",
+      "type": "technical",
+      "severity": "moderate",
+      "suggested_fix": "Interpret the −90 mV feature in terms of many-body transitions of the trimer (or of an isolated monomer measured separately), or treat ε_id as a fit parameter jointly with W. Report the confidence region in (ε_id, W) for which the N=2 ground state and the observed ring evolution are reproduced."
+    },
+    {
+      "title": "On-site energy differs between PME (−90 meV) and NRG (−104/−106 meV) without explanation",
+      "quote": "W = 50 meV, ε = −104 meV, t = 0",
+      "explanation": "The text says the NRG used 'similar parameters as for the simulation of the discharge rings'. Fig. S10G nevertheless uses ε = −104 meV and Fig. S11C uses ε = −106 meV, whereas the PME fixes ε_id = −90 meV.\n\nThe difference matters. In the isolated (Γ→0) limit, ε = −104 meV with W = 50 meV gives −ε/2 = 52 meV > W, so the ground state would be triply occupied rather than doubly occupied. Only the Γ-renormalized NRG transition at −111.5 meV keeps it at N≈2. The choice of ε for the YSR fit is not justified, and the near-coincidence with the N=2/N=3 boundary is not discussed.",
+      "type": "technical",
+      "severity": "moderate",
+      "suggested_fix": "State why ε was changed from −90 to −104/−106 meV for the NRG fits. Either show the YSR spectrum at ε = −90 meV or acknowledge that the hybridization-induced level renormalization should also enter the PME."
+    },
+    {
+      "title": "U→∞ reduction to 8 states implicitly drops spin; spin degeneracy factors are not discussed",
+      "quote": "significantly reducing the size of the configuration space of the molecular subsystem from 43 = 64 to 23 = 8 states",
+      "explanation": "For spin-1/2 sites with double occupancy forbidden, each site has three states (empty, ↑, ↓), giving 3³ = 27 configurations, not 2³ = 8. The 8-state space is a spinless model. This is a further approximation beyond U→∞, but it is presented as a consequence of large U.\n\nIn sequential-tunneling Coulomb-blockade transport, spin degeneracy gives asymmetric factors (2 for adding to an empty site, 1 for removal). These factors alter steady-state populations and can themselves produce or modify NDC. The comparison in Fig. S6 (QmeQ, U = 200 meV) is said to show little difference in dI/dV, but it is not stated whether that calculation was spinful.",
+      "type": "technical",
+      "severity": "moderate",
+      "suggested_fix": "State explicitly that the PME model is spinless (8 states). Confirm that the spinful U→∞ (27-state) calculation gives the same NDC region and population mixing, or report the difference."
+    },
+    {
+      "title": "Sign of the Fermi-function argument in the Pauli master equation (Eq. S7)",
+      "quote": "(Ea − Eb − µα)/kBTα",
+      "explanation": "With Na = Nb − 1, the rate for adding an electron from lead α (a→b) should be proportional to fα(Eb − Ea) = f((Eb − Ea − µα)/kBT). Eq. S7 instead uses f(x_{a,b}) with x_{a,b} = (Ea − Eb − µα)/kBT, which has the opposite sign of the energy difference. The c-terms (Nc = Nb + 1) use the same functional form with x_{c,b}. A single definition of x cannot give correct addition and removal factors in both sums simultaneously.\n\nThere are further notational slips:\n- The rate is written with T_ba T_ab (rather than |T_ba|²); T_ab = ⟨a|d†|b⟩ vanishes for Na < Nb.\n- V_αi is not defined (t_αi was used earlier).\n- The populations are labeled P_α, clashing with the lead index α.\n- Γ is defined with π in Eq. S5 but with 2π in Eq. S7.\n\nSince the code was checked against QmeQ, these are likely transcription errors, but readers reproducing the method would be misled.",
+      "type": "technical",
+      "severity": "moderate",
+      "suggested_fix": "Define x^α_{a,b} = (Eb − Ea − µα)/kBT for Nb = Na + 1. Write the a→b rate as Γ f(x) and the b→a rate as Γ f(−x), using |T^α_ba|² in Γ^α_{a→b}. Apply the same rule to the c-terms with x^α_{b,c} = (Ec − Eb − µα)/kBT, and replace V_αi by t_αi and P_α by P_b."
+    },
+    {
+      "title": "Image-charge position has the wrong sign",
+      "quote": "mirrored across the substrate at z = −2zS",
+      "explanation": "The mirror plane is at z = zS < 0 and the molecules sit at z = 0. The image of a charge at z = 0 then lies at z = 2zS, which is below the plane (−0.18 nm for zS = −0.09 nm). The stated position z = −2zS = +0.18 nm would place the image above the molecular plane, toward the tip.",
+      "type": "technical",
+      "severity": "minor",
+      "suggested_fix": "Replace 'z = −2zS' with 'z = 2zS' (i.e., a distance 2|zS| below the molecular plane)."
+    },
+    {
+      "title": "Sign error in hexamer ring-intersection voltage",
+      "quote": "The charging rings around the inner molecules in the hexamer increase in size and intersect at Vs = 0.45 V.",
+      "explanation": "All hexamer charging occurs at negative sample voltage; the Fig. 4 caption says the rings intersect at Vs = −0.45 V. The positive sign in the text contradicts the stated mechanism (positive tip voltage pulling the levels below EF).",
+      "type": "technical",
+      "severity": "minor",
+      "suggested_fix": "Change to 'intersect at Vs = −0.45 V'."
+    },
+    {
+      "title": "Hexamer NDC has a different (unmodeled) origin but is used to confirm the trimer mechanism",
+      "quote": "The observation of similar phenomena in a more complex hexamer structure further confirms the robustness of these effects.",
+      "explanation": "In the trimer, NDC is attributed to a non-equilibrium mixture of singly occupied states arising from frustrated intra-cluster rearrangement. For the hexamer, the authors instead invoke the TCNQ-type mechanism of Ref. [18]: charging of an inner molecule raises the tunneling barrier for other paths. They also note that, unlike the trimer, 'no new patterns emerge at the center of the structure after the rings intersect'. No calculation is performed for the hexamer.\n\nThe hexamer therefore does not test the trimer mechanism; it shows a different kind of NDC. The section title and conclusion present it as confirmation of the robustness of 'these effects'.",
+      "type": "logical",
+      "severity": "moderate",
+      "suggested_fix": "Rephrase the conclusion to state that the hexamer shows charging-induced NDC of a different (barrier-modulation) type, consistent with Ref. [18], and that it does not test the non-equilibrium-occupancy mechanism identified in the trimer."
+    },
+    {
+      "title": "Fitting procedure and several fitted parameters are not reported",
+      "quote": "Other parameters of the model were fitted from a broad set of experimental data plotted in Fig. S7.",
+      "explanation": "The supplement lists rtip, ztip, zC, zS and W. Several parameters that control the ring shapes and the NDC region are not given:\n- the decay constant β of t_ti;\n- the quadrupole moment Qxx;\n- the ratio Γt/Γs, which controls the tip-driven populations;\n- any lever-arm or offset conventions.\n\nThe fitting method (least squares on which observables, or visual matching) is also not described. The main text claims the 'almost perfect match' lets them 'pinpoint' W = 50 meV. Without the fitting metric and the parameter correlations (e.g., W versus ε_id and zS), the reader cannot assess how uniquely W is determined. The PhotonMap branch is cited, but the parameter values are needed to reproduce the figures.",
+      "type": "technical",
+      "severity": "moderate",
+      "suggested_fix": "Add a table listing all PME parameters used for Figs. 2, 3, S7 (β, Qxx, Γt, Γs, kBT, orbital-grid settings). Describe the fitting objective, and give the range of W (at fixed ε_id) that reproduces the ring-intersection voltages within experimental uncertainty."
+    },
+    {
+      "title": "Experimental acquisition parameters for spectra and maps are missing",
+      "quote": "using modulation amplitudes indicated in the figure captions",
+      "explanation": "The Methods defer the lock-in parameters to the figure captions. However, the captions of Figs. 1C–F, 2, 4, S7, S8 and S14 give neither modulation amplitude nor frequency, and do not say whether the maps are constant-height or what the setpoint/tip height is.\n\nFig. S4 shows that the charging peaks shift by ~45 mV over 120 pm of tip approach, so the tip height is a key control parameter for comparing with the simulation (which fixes ztip = 0.6 nm). The modulation amplitude also matters because the NDC dips and satellite peaks are only tens of mV wide.",
+      "type": "technical",
+      "severity": "minor",
+      "suggested_fix": "Add to each relevant caption the acquisition mode (constant height), the setpoint used to open the feedback (I, Vs), any tip offset Δz, and the lock-in modulation amplitude and frequency."
+    },
+    {
+      "title": "Independence from superconductivity is assumed in the model rather than demonstrated",
+      "quote": "demonstrates that the NDC emerges purely from electron correlations, independent of the underlying superconductivity",
+      "explanation": "Neglecting Δ ≈ 1.3 meV at biases of ~0.8 V is very plausible. However, the 'demonstration' consists of a model in which superconductivity was set to zero from the outset, so the model cannot show independence from it. No experimental control is presented, such as a measurement with superconductivity quenched by a magnetic field or above Tc, or on a normal-metal substrate.",
+      "type": "logical",
+      "severity": "minor",
+      "suggested_fix": "Rephrase to 'is fully reproduced by a model that neglects superconductivity', or add a normal-state (B > Bc) measurement of the trimer NDC."
+    },
+    {
+      "title": "'Molecular Gunn diode' analogy is misleading",
+      "quote": "molecular memory [27] vs. molecular Gunn diode",
+      "explanation": "The Gunn effect is a bulk transferred-electron (intervalley) instability that produces domain formation and oscillations. The NDC here arises from Coulomb-blockade population effects in a three-site cluster probed by an STM tip. No oscillation or two-terminal device behavior is shown, so the label overstates the functional analogy.",
+      "type": "logical",
+      "severity": "minor",
+      "suggested_fix": "Replace 'molecular Gunn diode' with 'molecular NDC element'."
+    },
+    {
+      "title": "Inconsistent voltage for the YSR spatial map",
+      "quote": "The spatial map of dI/dV at Vs = ±1.8 mV in Fig. S10I",
+      "explanation": "The supplementary text gives ±1.8 mV for this map, while the Fig. S10 caption states Vs = 1.9 mV. The panel label reads '1.9 V', which is evidently a typo for mV. Because the two YSR pairs are only 0.1 meV apart (1.85 and 1.95 mV), the exact bias determines which YSR component is imaged.",
+      "type": "technical",
+      "severity": "minor",
+      "suggested_fix": "State the single correct bias (presumably Vs = +1.9 mV) consistently in the text, caption and panel label."
+    }
+  ]
+}

@@ -1,0 +1,58 @@
+Review of arXiv:2608.19099, "Large Field-Free Superconducting Diode Effect with Nonmonotonic Polarity Reversals in NbSe2/CrBr3 Heterostructures" (Sun, Xiao, Shen, Hao et al.)
+
+SUMMARY OF CLAIMS
+
+The authors report a zero-field superconducting diode effect (SDE) in exfoliated NbSe2/CrBr3 stacks. The headline number is a zero-field efficiency of 35.7% (device #1). The polarity is set by field history, and the sign-change fields have the "wrong" sign for a simple ferromagnetic proximity picture (Bcf < 0, Bcb > 0). They explain this with layered ferrimagnetism in CrBr3: the interfacial layer can point against the net magnetization. A generalized GL model gives the nonreciprocity from a cubic, odd-in-q term, alpha3 proportional to lambda_I * gamma * Beff * cos(3 theta), with no linear Lifshitz term, so the condensate stays at q = 0.
+
+The experiment looks interesting and the inverted sign-change fields are a striking observation. In its current form, though, the manuscript has internal numerical inconsistencies in its key figures of merit. It is also missing basic sample information needed to judge the mechanism, and the theory is applied well outside its range of validity. I recommend major revision.
+
+MAJOR ISSUES
+
+1. The zero-field efficiency of device #1 is reported as two different numbers.
+   Page 2, second column: "after undergoing the magnetic field training, the field-free SDE efficiency reaches -71.4%." A few lines later, for the same device, the same forward sweep (Fig. 2(c)) and the same 200 mK, the efficiency is "ultimately reaching -35.7% at 0 mT". The abstract, the introduction, Fig. 3(b) and the summary all use 35.7%. These describe the same quantity (zero field, after training, device #1), so both cannot be right. The ratio is exactly 2 (71.4 = 2 x 35.7), which points to a normalization slip, for example dividing Delta Ic by the mean of |Ic+| and |Ic-| instead of their sum. That would double eta. The authors must state which value is correct and confirm that every eta in the paper and SM uses the definition eta = (|Ic+| - |Ic-|)/(|Ic+| + |Ic-|) given in the text. If -71.4% is correct, the headline, the abstract and the Fig. 3(b) comparison all change. If -35.7% is correct, the "training" comparison with the -15.2% zero-field-cooled value also needs restating.
+
+2. The rectification bias current in Fig. 3(a) looks incompatible with the critical currents shown elsewhere.
+   The text says device #3 was driven with "a 705 uA excitation current between |Ic+| and |Ic-|". In Fig. 1(c) (device #1), the current sweeps only reach +/-300 uA, and both critical currents fall inside that range. Device #3 is a different sample, but nothing in the text says it is several times larger or thicker. Please give |Ic+| and |Ic-| for device #3 (and the dimensions of every device) so the reader can check that 705 uA really lies between them. If this is a typo (e.g., 70.5 uA), please correct it. As written, a reader comparing with Fig. 1 will doubt the rectification demonstration.
+
+3. The sample characterization the mechanism depends on is missing.
+   The whole explanation rests on the number of CrBr3 layers and their stacking (FM vs AFM interlayer coupling is stacking dependent, refs. [35, 38, 39]). The main text gives no CrBr3 or NbSe2 thicknesses (layer counts) for any device. The micromagnetic model is a trilayer, but it is not stated whether any measured device is a trilayer. Please give:
+   - NbSe2 and CrBr3 layer counts for devices #1, #2 and #3, and how they were determined;
+   - whether the RMCD loops were measured on the transport devices themselves, at what temperature, and over what field range;
+   - a direct overlay of the RMCD switching fields (B0, Bco) on the transport Bcf and Bcb for the same device. The central claim that Bcf and Bcb fall inside the ferrimagnetic plateau is currently asserted, not shown quantitatively;
+   - critical current densities, not just currents, so efficiencies and Delta Ic can be compared fairly in Fig. 3(b).
+
+4. Alternative explanations for the inverted sign-change fields are not excluded convincingly in the main text.
+   In tens of mT of out-of-plane field, a thin NbSe2 film at 200 mK holds vortices. Vortex-entry asymmetry and edge-barrier effects (refs. [18-20], especially Hou et al. [19]) produce SDEs of this size. Two mundane effects could also give an "inverted" compensation field:
+   (a) the stray return field of a finite, perpendicularly magnetized CrBr3 flake. Outside the flake footprint, and near its edges, this field points opposite to M. If the NbSe2 channel or its voltage probes extend beyond the CrBr3, the local field sign the superconductor sees need not follow the net magnetization;
+   (b) trapped flux or remanent vortices in NbSe2 and in the measurement magnet (superconducting-magnet remanence after the 6 T training is typically several mT, comparable to the Bcf and Bcb scale).
+   The authors say self-fields, Meissner screening and geometric asymmetry are ruled out "in SM". Given how central this is, please bring the key controls into the main text: a NbSe2 device without CrBr3 (or with a nonmagnetic hBN spacer) measured with the same field protocol; the magnet's remanent-field calibration; and the CrBr3 vs NbSe2 footprint for each device.
+
+5. The GL theory is used outside its range of validity, and its predictions are not tested.
+   (a) The expansion is "near Tc" and "to first order in alpha3", yet the data are at 200 mK and eta reaches 36% (or 71%, see issue 1). An efficiency of tens of percent means the cubic term is comparable to the quadratic term at the depairing momentum, so a first-order perturbative treatment cannot account for it quantitatively. Please either give a quantitative estimate of alpha3 (from lambda_I, gamma and a plausible Bprox) showing the model can reach the observed eta, or present the model as qualitative only.
+   (b) The model makes testable predictions that the paper does not check. (i) eta proportional to cos(3 theta): the SDE should vanish for transport along particular crystal directions and reverse sign between directions 60 degrees apart. Please report the current direction relative to the NbSe2 crystal axes for each device. (ii) A characteristic temperature dependence of eta near Tc (for a cubic term, eta should scale roughly as sqrt(1 - T/Tc) to leading order). Fig. 1(e) shows the SDE persists with temperature, but eta(T) is not extracted. (iii) eta proportional to Beff: eta(B) at fields above the magnetic switching should be linear in B with a slope fixed by the material. Testing any one of these would greatly strengthen the claimed mechanism.
+   (c) Novelty framing. Nonreciprocity from a trigonal, cubic-in-q term in an Ising superconductor under an out-of-plane field has been discussed before, and Bauriedl et al. [14] measured an out-of-plane-field SDE in few-layer NbSe2. Please discuss more carefully how the present mechanism differs from prior trigonal-symmetry treatments, rather than contrasting only with Rashba/helical theories [16, 17]. "A distinct mechanism for nonreciprocal superconductivity" is overstated if the novelty lies in the magnetic texture setting Beff, not in the cubic term itself.
+
+6. Eq. (3) needs checking.
+   With f = (alpha0 + alpha2 q^2 + alpha3 q^3)|Delta|^2 + beta|Delta|^4, minimizing gives fmin = -a(q)^2/(4 beta), not "-alpha2(q)/beta". The notation alpha2(q) also clashes with the coefficient alpha2. Differentiating to first order in alpha3 gives a current proportional to -(2 alpha0 alpha2 q + 3 alpha0 alpha3 q^2 + 2 alpha2^2 q^3 + 5 alpha2 alpha3 q^4) up to a constant prefactor, with the two alpha3 terms carrying the same sign. In the text as printed, the alpha0 alpha3 q^2 term appears with the opposite sign to the alpha2 alpha3 q^4 term. Please check the signs and prefactors, and write fmin correctly.
+
+7. Statistics and reproducibility.
+   Critical-current switching is stochastic. Please state how many I-V sweeps went into each Ic, give error bars on Ic and eta in Fig. 2, and show the eta(B) data for device #2 (only described as "similar"). Please also show that the zero-field state is reproducible across repeated training cycles, including the -15.2% zero-field-cooled value and the trained value. Please also address self-heating at the large currents used (hundreds of uA): is the voltage-state branch hysteretic, and could Joule heating set one branch's apparent Ic?
+
+MINOR ISSUES
+
+- Fig. 2 caption: the eta formula is missing a bracket. It should read eta = (|Ic+| - |Ic-|)/(|Ic+| + |Ic-|), as in the main text.
+- Fig. 4 caption: "solid (dashed) contours indicate cases with (without) Bcb" presumably means Beff.
+- Fig. 4 caption: "fileds" should be "fields".
+- Page 2: "Beyond 0 mT, as the field increases to 50 mT, the SDE efficiency gradually decreases." Please say whether this means the signed value or the magnitude.
+- Page 2: "the original efficiency after zero-field cooling is -15.2%, as shown in Fig. 1(d)". Fig. 1(d) is not labeled with a field-history state. Please mark in Fig. 1 which state (zero-field-cooled or trained) is shown, and reconcile it with the 35.7% headline.
+- The 45.3% maximum at about -10 mT is not field-free and should not be confused with the zero-field figure of merit. Please keep the two clearly separated in the text and in Fig. 3(b).
+- Fig. 3(b): state the temperature of each literature point, and whether each is a Josephson junction or a bulk/film SDE. Mixing the two makes "among the highest" hard to judge.
+- Please quantify "the behavior mirrors that of the forward sweep": time-reversal symmetry requires eta_backward(B) = -eta_forward(-B). Showing this overlay would be a good internal consistency check.
+- Page 1: "Moreover,upon" is missing a space.
+- Fig. 1(c) calls the current directions "forward" and "backward", and Fig. 2 uses the same words for field sweeps. Distinct terms would avoid confusion.
+
+ASSESSMENT
+
+The observation of history-programmable zero-field SDE with inverted compensation fields is potentially significant. However, the key efficiency number is internally inconsistent (35.7% vs 71.4% for the same state), the Fig. 3(a) bias current does not fit with the critical currents shown elsewhere, and the layer counts and RMCD-to-transport correspondence that the mechanism depends on are missing. The paper also needs main-text controls against vortex and stray-field explanations, and either a quantitative or an explicitly qualitative treatment of the GL model. I would reconsider after these are addressed.
+
+TL;DR: Major revision. The same zero-field efficiency for device #1 is given as -71.4% and -35.7% (an exact factor of 2, likely a normalization error). The 705 uA rectification bias in Fig. 3(a) sits far outside the +/-300 uA range in which device #1's critical currents fall. CrBr3 and NbSe2 layer counts are missing. Vortex and stray-field alternatives need main-text controls. The near-Tc, first-order GL model cannot quantitatively give eta of tens of percent at 200 mK, and its cos(3 theta) and temperature predictions go untested.

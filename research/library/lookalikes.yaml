@@ -1,0 +1,816 @@
+# Lookalike library: topological transport
+#
+# Each entry is an ordinary effect that can produce a signal claimed as evidence of a
+# topological state. Every entry cites at least one source with a URL and a verbatim
+# passage. Every entry starts `checked: ai`; only David changes that.
+#
+# Validate with: python3 cmp-assistant/scripts/check.py           (fields, URLs, style)
+#                python3 cmp-assistant/scripts/check.py --quotes  (also fetches each arXiv
+#                source and confirms every quote appears in it)
+#
+# Frolov et al. 2026 (Science 391, 137-142, https://doi.org/10.1126/science.adk9181) is
+# paywalled. Quotes and page numbers come from its preprint, arXiv 2309.09368v1 (2023).
+# The published text may differ.
+
+meta:
+  subfield: topological transport (hybrid superconductor-semiconductor devices, Josephson junctions, quantum dots)
+  version: 0.5
+  updated: 2026-10-24
+  families:
+    zbp: zero-bias conductance peaks taken as Majorana zero modes
+    quantization: conductance at or near 2e^2/h taken as proof
+    nonlocal: nonlocal conductance and gap closing and reopening
+    island: Coulomb blockade spectroscopy of hybrid islands
+    shapiro: missing odd Shapiro steps taken as the fractional Josephson effect
+    supercurrent: unusual supercurrent taken as triplet or exotic pairing
+    charge: fractional shifts taken as fractional charge or anyons
+    chiral: half-quantized conductance taken as chiral Majorana edge modes
+    kitaev: zero-energy states in quantum dot Kitaev chains taken as Majorana modes
+    diode: nonreciprocal supercurrent taken as exotic pairing
+    practice: how data is taken, processed and chosen (applies to every signature)
+
+lookalikes:
+
+  - id: abs-quantum-dot
+    family: zbp
+    signature: A zero-bias conductance peak at finite magnetic field in a nanowire tunneling device, read as a Majorana zero mode.
+    lookalike: Trivial Andreev bound states in an unintended quantum dot near the tunnel barrier.
+    mechanism: Disorder or the gate and barrier geometry confine a small region near the barrier, and its Andreev bound states can cross zero energy and stick near it as field or gate voltage changes.
+    control: Look for the dot itself (Coulomb diamonds or resonances above the gap, peaks that split and recross), and test whether the zero-bias state is seen at both ends of the wire.
+    tests:
+      - Dot signatures searched for in the same device (Coulomb diamonds or resonances above the gap, peaks that split and recross)
+      - Zero-bias state compared at both ends
+    data_that_reveals_it: Wider gate scans that show the peak moving off zero and back, finite-bias resonances characteristic of a dot, and other devices where similar peaks appear in regimes with no expected topological phase.
+    sources:
+      - url: https://arxiv.org/abs/2309.09368
+        title: Frolov et al. 2023, preprint of Science 391, 137-142 (2026)
+        where: Example 2, p. 6
+        quote: "there exists a more likely explanation for these effects being due to Andreev bound states in unintended quantum dots near the tunnel barrier."
+      - url: https://arxiv.org/abs/1705.02035
+        title: Liu, Sau, Stanescu and Das Sarma 2017, Phys. Rev. B 96, 075161
+        where: abstract
+        quote: "We find that the \"sticking together\" propensity of ABSs to produce a zero-energy midgap state is generic in class D systems, and by itself says nothing about the topological nature of the underlying SC nanowire."
+      - url: https://arxiv.org/abs/1911.04512
+        title: Prada et al. 2020, Nature Reviews Physics 2, 575-594 (arXiv v3)
+        where: Sec. II C, p. 7
+        quote: "Interestingly, for high enough fields, the lowest-energy, spin-split ABSs can cross the Fermi level, denoting a quantum phase transition from the singlet ground state to a spin-polarized state [50, 157]."
+      - url: https://arxiv.org/abs/1911.04512
+        title: Prada et al. 2020, Nature Reviews Physics 2, 575-594 (arXiv v3)
+        where: Sec. IV B, p. 12
+        quote: "Near-zero bound states can also be generically present in a tunneling spectroscopy nanowire setup if there is a non-superconducting section between the tunnel barrier and the superconducting wire"
+    checked: ai
+
+  - id: quasi-majorana-smooth-confinement
+    family: zbp
+    signature: A zero-bias peak that stays pinned near zero energy over a range of field and gate voltage, read as spatially separated Majorana modes.
+    lookalike: Quasi-Majorana (partially separated) Andreev bound states from a smooth confinement potential, in the trivial phase.
+    mechanism: A smooth potential at the wire end lets a trivial Andreev state split into two overlapping Majorana components whose energy stays exponentially close to zero.
+    control: Look for a bulk topological transition (gap closing and reopening seen in nonlocal conductance) and for correlated zero modes at both ends; in the open regime a true Majorana gives a quantized conductance dip, per Vuik et al.
+    tests:
+      - Bulk gap closing and reopening in nonlocal conductance
+      - Correlated zero modes at both ends
+    data_that_reveals_it: Two-end measurements on the same wire, nonlocal conductance across the transition field, and the full field range showing where the peak first appears relative to any gap closing.
+    sources:
+      - url: https://arxiv.org/abs/1207.3067
+        title: Kells, Meidan and Brouwer 2012, Phys. Rev. B 86, 100503
+        where: abstract
+        quote: "The possible existence of such near-zero energy levels implies that the mere observation of a zero-bias peak in the tunneling conductance is not an exclusive signature of a topological superconducting phase even in the ideal clean single channel limit."
+      - url: https://arxiv.org/abs/1806.02801
+        title: Vuik, Nijholt, Akhmerov and Wimmer 2019, SciPost Phys. 7, 061
+        where: abstract
+        quote: "As a consequence, quasi-Majorana states mimic most of the proposed Majorana signatures: quantized zero-bias peaks, the $4\\pi$ Josephson effect, and the tunneling spectrum in presence of a normal quantum dot."
+      - url: https://arxiv.org/abs/2207.02472
+        title: Microsoft Quantum (Aghaee et al.) 2023, "InAs-Al hybrid devices passing the topological gap protocol", Phys. Rev. B 107, 245423
+        where: Section 6, p. 31
+        quote: "By design, Stage 2 of the TGP weeds out stable ZBP clusters in which quasi-MZMs don’t evolve into true MZMs."
+      - url: https://arxiv.org/abs/1911.04512
+        title: Prada et al. 2020, Nature Reviews Physics 2, 575-594 (arXiv v3)
+        where: Sec. IV C, p. 13
+        quote: "This telltale feature is often observed in experiments, see e.g. Fig. 5 (c), and should be taken as a strong hint that the zero mode might not be the result of an underlying bulk topological transition."
+      - url: https://arxiv.org/abs/1711.06256
+        title: Moore, Stanescu and Tewari 2018, Phys. Rev. B 97, 165302
+        where: abstract
+        quote: "Despite being topologically trivial, ps-ABSs can generate signatures identical to MZMs in local charge tunneling experiments."
+    checked: ai
+
+  - id: disorder-induced-zbp
+    family: zbp
+    signature: A zero-bias peak, possibly near 2e^2/h, read as a Majorana zero mode.
+    lookalike: Disorder-induced subgap states (the "ugly" regime of Pan and Das Sarma).
+    mechanism: Strong disorder in the chemical potential, gap or g factor creates subgap states that can sit at zero energy and give zero-bias peaks of any height between 0 and 4e^2/h.
+    control: Check for end-to-end correlation and a bulk gap closing and reopening; test sensitivity to gate voltages that should not matter in a clean topological phase.
+    tests:
+      - End-to-end correlation
+      - Bulk gap closing and reopening
+      - Insensitivity to gates that should not matter in a clean topological phase
+    data_that_reveals_it: Peak heights scattered across devices and gate settings, peaks that appear and vanish with small changes in gate voltage, and the absence of correlated peaks at the other end.
+    sources:
+      - url: https://arxiv.org/abs/1910.11413
+        title: Pan and Das Sarma 2020, Phys. Rev. Research 2, 013377
+        where: abstract
+        quote: "We find that, although the topological Majorana zero modes are immune to weak disorder, strong disorder (ugly) completely suppresses topological superconductivity and generically leads to trivial zero bias peaks."
+      - url: https://arxiv.org/abs/2101.11456
+        title: Zhang et al. 2021, "Large zero-bias peaks in InSb-Al hybrid semiconductor-superconductor nanowire devices" (replaces the retracted Nature 556, 74)
+        where: p. 3
+        quote: "These disorder-induced states may lead to ZBPs with conductance values anywhere between 0 and 4e2/h, and thus including 2e2/h."
+      - url: https://arxiv.org/abs/1911.04512
+        title: Prada et al. 2020, Nature Reviews Physics 2, 575-594 (arXiv v3)
+        where: Sec. IV B, p. 12
+        quote: "The combination of multiband wires with disorder has been shown [226, 234, 235] to produce topologically trivial zero energy states in class D Hamiltonians [236, 237]."
+    checked: ai
+
+  - id: crowded-trivial-subgap-states
+    family: zbp
+    signature: Zero-bias peaks with zero-bias pinning at finite field, seen in many devices, read as Majorana bound states.
+    lookalike: Several families of trivial subgap states from multiple subbands that overlap and interact near zero energy.
+    mechanism: Multiband wires host many Andreev-like states at finite field, and their crowding near zero energy produces peaks that pin at zero bias.
+    control: Compare the field and gate range where peaks appear with the narrow range where theory predicts a topological phase; model the device's subbands.
+    tests:
+      - Field and gate range of the peaks compared with the predicted topological range
+      - Subband model of the device
+    data_that_reveals_it: How common zero-bias peaks are across devices and gate settings (if they are everywhere, that argues against a phase predicted only in a narrow range).
+    sources:
+      - url: https://arxiv.org/abs/1902.02773
+        title: Chen et al. 2019, Phys. Rev. Lett. 123, 107703
+        where: abstract
+        quote: "At finite magnetic field, resonances that strongly resemble Majorana bound states, including zero-bias pinning, become common to the point of ubiquity."
+      - url: https://arxiv.org/abs/1911.04512
+        title: Prada et al. 2020, Nature Reviews Physics 2, 575-594 (arXiv v3)
+        where: Sec. IV B, p. 12
+        quote: "Strong interband coupling in multimode clean wires with a single short-range potential inhomogeneity have also been shown to conspire to produce approximate zero energy states of non-topological states [89, 172]."
+    checked: ai
+
+  - id: kondo-resonance
+    family: zbp
+    signature: A zero-bias conductance peak in a hybrid nanowire device with a superconducting contact.
+    lookalike: A Kondo resonance in a quantum dot coupled to the superconductor.
+    mechanism: A spin-1/2 dot strongly coupled to the leads forms a Kondo resonance at zero bias, which can persist when the superconducting gap is small compared with the Kondo temperature.
+    control: Check the even-odd occupancy of the dot (Kondo appears in odd Coulomb valleys), the temperature dependence, and the field dependence (Kondo splits with Zeeman energy).
+    tests:
+      - Even-odd occupancy of the dot
+      - Temperature dependence
+      - Zeeman splitting in field
+    data_that_reveals_it: Gate scans across several charge states showing the peak only in alternating valleys, and temperature or field series.
+    sources:
+      - url: https://arxiv.org/abs/1207.1259
+        title: Lee et al. 2012, Phys. Rev. Lett. 109, 186802
+        where: abstract
+        quote: "Below the critical field, we observe a persisting zero-bias Kondo resonance that vanishes only for low B or higher temperatures, leaving the room to more robust sub-gap structures at bias voltages between \\Delta and 2\\Delta."
+    checked: ai
+
+  - id: weak-antilocalization
+    family: zbp
+    signature: A zero-voltage conductance peak of order e^2/h in a disordered superconducting nanowire.
+    lookalike: Weak antilocalization from disorder, with phase conjugation from particle-hole symmetry.
+    mechanism: Quantum interference survives disorder averaging in class D, giving a zero-bias peak without a topological phase.
+    control: Use the distinguishing tests Pikulin et al. propose (they identify methods to separate the Majorana resonance from weak antilocalization); look at the dependence on the number of channels and on disorder.
+    tests:
+      - A distinguishing test from Pikulin et al.
+      - Dependence on channel number or disorder
+    data_that_reveals_it: Many-channel devices showing a similar peak, and peak behavior as the number of open channels changes.
+    sources:
+      - url: https://arxiv.org/abs/1206.6687
+        title: Pikulin, Dahlhaus, Wimmer, Schomerus and Beenakker 2012, New J. Phys. 14, 125011
+        where: abstract
+        quote: "We show that weak antilocalization by disorder competes with resonant Andreev reflection from a Majorana zero-mode to produce a zero-voltage conductance peak of order e^2/h in a superconducting nanowire."
+    checked: ai
+
+  - id: fine-tuned-plateau
+    family: quantization
+    signature: A zero-bias peak whose height stays near 2e^2/h over a range of gate voltage or field (a "quantized plateau"), read as proof of a Majorana zero mode.
+    lookalike: A plateau-like peak height from fine-tuned trivial states (Andreev bound states, disorder states or quasi-Majoranas), found by a dedicated search.
+    mechanism: When parameters are tuned until a plateau appears, trivial states can hold a near-constant peak height over a limited range, while similar peaks elsewhere sit above or below 2e^2/h.
+    control: Report how the plateau was found, show the same peak over wider ranges, and show peak heights from other regimes and devices; a plateau above 2e^2/h in the same device argues against the Majorana reading.
+    tests:
+      - How the plateau was found
+      - Same peak over wider gate and field ranges
+      - Peak heights from other regimes and devices
+    data_that_reveals_it: Wider gate and field ranges around the plateau, other regimes of the same device, other devices, and the measurement history (how long the search took).
+    sources:
+      - url: https://arxiv.org/abs/2309.09368
+        title: Frolov et al. 2023, preprint of Science 391, 137-142 (2026)
+        where: Example 2, p. 6
+        quote: "However, in other regimes, we observe similar plateaus with values exceeding 2e2/h, and this contradicts the Majorana explanation. The plateau-shaped appearance of the signal is a result of fine-tuning to an expected pattern."
+      - url: https://arxiv.org/abs/2101.11456
+        title: Zhang et al. 2021, replaces the retracted Nature 556, 74
+        where: Discussion, p. 8
+        quote: "such a dedicated search has the potential to lead to confirmation bias and effectively yield false-positive evidence for MZMs."
+      - url: https://arxiv.org/abs/2004.08583
+        title: Yu et al. 2021, Nature Physics 17, 482-488
+        where: abstract
+        quote: "The nearly quantized resonances evolve in the tunnel barrier strength, magnetic field and magnetic field orientation in a way consistent with Majorana zero modes."
+      - url: https://arxiv.org/abs/2207.02472
+        title: Microsoft Quantum (Aghaee et al.) 2023, Phys. Rev. B 107, 245423
+        where: Section 4.1.2, p. 17
+        quote: "So a ZBP, no matter how stable or well-quantized, cannot prove that the system is in a topological phase."
+      - url: https://arxiv.org/abs/1911.04512
+        title: Prada et al. 2020, Nature Reviews Physics 2, 575-594 (arXiv v3)
+        where: Sec. IV C, p. 13
+        quote: "Until recently, both cases were considered strong signatures of emergent Majoranas after a bulk topological transition, but a growing body of literature shows that this is not necessarily the case [84, 85, 87, 88, 246]."
+    checked: ai
+
+  - id: series-resistance-subtraction
+    family: quantization
+    signature: A conductance value at or within a few percent of 2e^2/h.
+    lookalike: The choice of subtracted series resistance (filters, contacts, amplifier impedance) moves the extracted conductance toward the quantized value.
+    mechanism: Extracted conductance depends on the series resistance subtracted from the measured circuit, so a different value of that resistance shifts the peak height.
+    control: Calibrate the series resistance independently, report the value and how it was obtained, and show the raw data before subtraction.
+    tests:
+      - Series resistance calibrated independently, with its value
+      - Raw data before subtraction
+    data_that_reveals_it: Raw two-terminal data, the calibration measurement, and the above-gap conductance (which should be consistent with the chosen resistance).
+    sources:
+      - url: https://arxiv.org/abs/2309.09368
+        title: Frolov et al. 2023, preprint of Science 391, 137-142 (2026)
+        where: Example 2, p. 6
+        quote: "Furthermore, the value of conductance reported in a figure is sensitive to a subtracted series resistance, which can be chosen to bring the value closer to the quantized value(38)."
+      - url: https://arxiv.org/abs/2101.11456
+        title: Zhang et al. 2021, replaces the retracted Nature 556, 74
+        where: Appendix B, p. 22
+        quote: "Because of the additional series resistances in the circuit, the actual voltage across the device, V, is less than the applied voltage Vdc"
+    checked: ai
+
+  - id: one-end-only
+    family: nonlocal
+    signature: A nearly quantized zero-bias peak that behaves like a Majorana mode, measured from one end of the wire.
+    lookalike: A state localized at one end (a trivial bound state), with no partner at the other end.
+    mechanism: Majorana modes come in pairs at the two ends, so a peak seen only at one end, with a dip or nothing at the other end for the same settings, points to a local trivial state.
+    control: Fabricate tunnel probes at both ends and compare the two ends at the same field and gate settings; measure nonlocal conductance.
+    tests:
+      - Both ends compared at the same settings
+      - Nonlocal conductance
+    data_that_reveals_it: The other end's tunneling spectrum for the same parameters, and nonlocal conductance.
+    sources:
+      - url: https://arxiv.org/abs/2004.08583
+        title: Yu et al. 2021, Nature Physics 17, 482-488
+        where: abstract
+        quote: "We only find nearly quantized zero bias peaks localized to one end of the nanowire, while conductance dips are observed for the same parameters on the other end. This undermines the Majorana explanation as Majorana modes must come in pairs."
+    checked: ai
+
+  - id: trivial-andreev-band-gap-reopening
+    family: nonlocal
+    signature: An apparent closing and reopening of the bulk gap in nonlocal conductance, together with zero-bias peaks at the ends (the basis of the topological gap protocol).
+    lookalike: A trivial Andreev band formed by many bound states in the bulk of a long Rashba nanowire.
+    mechanism: Overlapping bulk Andreev states can mimic a gap that closes and reopens, and trivial end peaks can appear at the same time, so both protocol criteria pass in a trivial wire.
+    control: Test the protocol on trivial models and devices first, and vary parameters the protocol does not use (other gates, field direction) to see whether the reopening signature persists as a phase boundary should.
+    tests:
+      - Protocol tested on trivial models or devices
+      - Parameters the protocol does not use varied (other gates, field direction)
+    data_that_reveals_it: Nonlocal conductance over wider gate and field ranges, the full set of regions that passed and failed the protocol, and devices that pass in regimes with no expected topological phase.
+    sources:
+      - url: https://arxiv.org/abs/2210.03507
+        title: Hess, Legg, Loss and Klinovaja 2023, Phys. Rev. Lett. 130, 207001
+        where: abstract
+        quote: "The simultaneous occurrence of a trivial BRS and ZBPs mimics the basic features required to pass the so-called \"topological gap protocol\"."
+      - url: https://arxiv.org/abs/2309.09368
+        title: Frolov et al. 2023, preprint of Science 391, 137-142 (2026)
+        where: Example 2, p. 6
+        quote: "Though a pre-declared set of criteria for what constitutes a Majorana observation can also be emulated with trivial mesoscopic effects(40, 41)."
+    checked: ai
+
+  - id: micromagnet-stray-field
+    family: zbp
+    signature: Zero-bias peaks or a zero-bias plateau at zero applied magnetic field, read as topological superconductivity from an exotic time-reversal-breaking mechanism.
+    lookalike: Stray fields from nearby magnets (micromagnets or magnetic layers) acting on trivial Andreev states in quantum dots.
+    mechanism: Dipolar fields from magnets break time-reversal symmetry locally, so Andreev bound states in a dot can reach zero energy with no applied field.
+    control: Measure the magnets' switching (hysteresis in field), map the stray field, and look for quantum dot signatures; compare with devices without magnets.
+    tests:
+      - Magnet switching (hysteresis in field)
+      - Stray field mapped or bounded
+      - Comparison with devices without magnets
+    data_that_reveals_it: Field sweeps through the magnets' switching fields, other gate regimes of the same device, and other devices.
+    sources:
+      - url: https://arxiv.org/abs/2305.19970
+        title: Jiang et al. 2023, arXiv 2305.19970
+        where: abstract
+        quote: "In contrast, our stray field profiles are not designed to create Majorana modes, and our data are compatible with a straightforward interpretation in terms of trivial states in quantum dots."
+      - url: https://arxiv.org/abs/2309.09368
+        title: Frolov et al. 2023, preprint of Science 391, 137-142 (2026)
+        where: Introduction, p. 2
+        quote: "However, the signal is a result of fine-tuning of non-topological Andreev bound states in a quantum dot with the assistance of remote micromagnets."
+    checked: ai
+
+  - id: full-shell-flux-andreev
+    family: zbp
+    signature: Zero-bias peaks in full-shell nanowires that appear in odd Little-Parks lobes, read as Majorana modes from odd vorticity.
+    lookalike: Flux-tunable Andreev levels in a quantum dot in the tunnel junction region.
+    mechanism: A dot forms in the junction and hosts Yu-Shiba-Rusinov-like Andreev levels whose Zeeman and Little-Parks field dependence can give robust zero-bias peaks.
+    control: Compare short and long junction regions; the zero-bias peaks track the junction, so devices with short junctions should lack them if this lookalike holds.
+    tests:
+      - Short and long junction regions compared
+    data_that_reveals_it: Devices with different junction lengths, and gate scans of the junction region showing dot levels.
+    sources:
+      - url: https://arxiv.org/abs/2008.02348
+        title: Valentini et al. 2021, Science 373, 82-88
+        where: abstract
+        quote: "The intricate magnetic field dependence of the Andreev levels, through both the Zeeman and Little-Parks effects, may result in robust zero-bias peaks, features that could be easily misinterpreted as originating from Majorana zero modes, but are unrelated to topological superconductivity."
+      - url: https://arxiv.org/abs/2309.09368
+        title: Frolov et al. 2023, preprint of Science 391, 137-142 (2026)
+        where: Discussion, p. 9
+        quote: "In nanowires with a full superconducting shell, a coincidence of zero-bias conductance peaks and Little-Parks oscillations was demonstrated to be accidental and not due to Majorana modes induced by odd vorticity(60, 61)."
+    checked: ai
+
+  - id: protocol-parameter-sensitivity
+    family: practice
+    signature: A device that passes an automated, pass/fail protocol for a topological phase (for example the topological gap protocol), presented as an unbiased test.
+    lookalike: A protocol outcome set by data choices (field range, bias range, resolution, which gate or cutter settings are included) and by how the protocol's thresholds are defined in code.
+    mechanism: When thresholds depend on the data window (such as a maximum conductance within the chosen range) or on pixel counts, changing the range or resolution can flip a pass to a fail with the device unchanged.
+    control: Publish the code and every dataset, state why each range and resolution was chosen, and rerun the protocol with the ranges, resolution and gate settings varied; check that the code matches the definitions in the paper and that simulations and experiments use the same version.
+    tests:
+      - Code and every dataset published
+      - Reason given for each range and resolution
+      - Protocol rerun with ranges, resolution and gates varied
+    data_that_reveals_it: Measurements of the same device with different ranges or settings, datasets that failed, and the released code run on narrower or coarser data.
+    sources:
+      - url: https://arxiv.org/abs/2502.19560
+        title: Legg 2025, Comment on "InAs-Al hybrid devices passing the topological gap protocol" (arXiv v2, 2026)
+        where: Abstract, p. 1
+        quote: "the outcome of the TGP is sensitive to the choice of magnetic field range, bias voltage range, data resolution, and cutter voltage pair (junction transparency)"
+      - url: https://arxiv.org/abs/2502.19560
+        title: Legg 2025, Comment on "InAs-Al hybrid devices passing the topological gap protocol" (arXiv v2, 2026)
+        where: Issue 2, p. 2
+        quote: "by reducing the magnetic field range to 1.8 T – 2.8 T, this device now fails the TGP, even though the purported topological region is still well within this selected data range."
+    checked: ai
+
+  - id: chiral-plateau-superconductor-short
+    family: chiral
+    signature: A half-quantized two-terminal conductance plateau (0.5 e^2/h) in a quantum anomalous Hall insulator covered by a superconductor, read as chiral Majorana edge modes.
+    lookalike: A superconducting strip with a transparent contact to the quantum anomalous Hall film, which acts as an electrical short for the device.
+    mechanism: When the superconductor couples strongly to the chiral edge modes, the two-terminal conductance is half-quantized wherever the magnetization is well aligned, with no Majorana physics needed.
+    control: Measure the contact transparency directly (Andreev enhancement in a separate finger contact), and check whether the plateau appears across the whole field range of aligned magnetization, including above the superconductor's critical field.
+    tests:
+      - Contact transparency measured directly
+      - Plateau checked across the full field range of aligned magnetization, including above the superconductor's critical field
+    data_that_reveals_it: Contact characterization, the field range above the strip's critical field, and other samples and geometries; magnetic disorder can also give the plateau through percolating edges, which wider sample sets reveal.
+    sources:
+      - url: https://arxiv.org/abs/1904.06463
+        title: Kayyalha et al. 2020, Science 367, 64-67 (https://doi.org/10.1126/science.aax6361); arXiv title "Non-Majorana origin of the half-quantized conductance plateau in quantum anomalous Hall insulator and superconductor hybrid structures"
+        where: Abstract, p. 2
+        quote: "When the magnetic TI film is in the QAH state with well-aligned magnetization, we found that the two-terminal conductance is always half-quantized."
+      - url: https://arxiv.org/abs/1904.06463
+        title: Kayyalha et al. 2020, Science 367, 64-67
+        where: p. 9
+        quote: "the strip also serves as an electrical short for the QAH device."
+      - url: https://arxiv.org/abs/1708.06752
+        title: Huang, Setiawan and Sau 2018, Phys. Rev. B 97, 100501(R)
+        where: abstract
+        quote: "we propose that a nearly flat conductance plateau, similar to that expected from CMEMs, can also arise from the percolation of quantum Hall edges well before the onset of the TSC or at temperatures much above the TSC gap."
+    checked: ai
+
+  - id: island-states-coulomb-spacing
+    family: island
+    signature: Even-odd modulated Coulomb blockade peaks or peak-spacing oscillations in a hybrid island, read as overlapping Majorana modes.
+    lookalike: Low-energy, longitudinally confined island states.
+    mechanism: Ordinary confined states in the island give even-odd Coulomb blockade patterns that look like those predicted for Majorana modes.
+    control: On the same island, open the junctions and check for a zero-bias peak in tunneling spectroscopy; Majorana modes should give both signatures together.
+    tests:
+      - Tunneling spectroscopy on the same island with the junctions opened
+    data_that_reveals_it: Tunneling spectroscopy of the same island in the open regime, and the dependence on parameters the Majorana model says should not matter.
+    sources:
+      - url: https://arxiv.org/abs/2203.07829
+        title: Valentini et al. 2022, Nature 612, 442-447
+        where: abstract
+        quote: "Specifically, we observe junction-dependent, even-odd modulated, single-electron CB peaks in InAs/Al hybrid nanowires (NWs) without concomitant low-bias peaks in tunneling spectroscopy."
+      - url: https://arxiv.org/abs/2309.09368
+        title: Frolov et al. 2023, preprint of Science 391, 137-142 (2026)
+        where: Discussion, p. 9
+        quote: "earlier claims of Coulomb peak spacing oscillations having a relation to Majorana physics are not justified(62, 63), because oscillations are strongly dependent on fine-tuning of irrelevant parameters."
+      - url: https://arxiv.org/abs/1911.04512
+        title: Prada et al. 2020, Nature Reviews Physics 2, 575-594 (arXiv v3)
+        where: Sec. IV C, p. 14
+        quote: "However, the observations may also be compatible with pairs of quasi-MBSs, as the splittings of the latter can become exponentially suppressed due to reasons other than spatial separation [248]."
+    checked: ai
+
+  - id: shapiro-landau-zener
+    family: shapiro
+    signature: Missing first (or odd) Shapiro steps under microwave irradiation, read as the 4pi-periodic fractional Josephson effect.
+    lookalike: Landau-Zener transitions in highly transparent, topologically trivial junctions.
+    mechanism: In high-transparency junctions a few modes undergo Landau-Zener transitions and carry an effectively 4pi-periodic current, which removes odd steps without Majorana modes.
+    control: Measure the junction transparency, the frequency dependence (Dartiailh et al. find the transition probability independent of frequency), and the effect at zero field, where no topological phase is expected.
+    tests:
+      - Junction transparency measured
+      - Frequency dependence
+      - Same measurement at zero field
+    data_that_reveals_it: The same pattern in trivial junctions or at zero field, and a wider frequency and power range.
+    sources:
+      - url: https://arxiv.org/abs/2005.00077
+        title: Dartiailh et al. 2021, Nature Communications 12, 78
+        where: abstract
+        quote: "Here, we report on missing odd steps in topologically trivial Josephson junctions fabricated on InAs quantum wells. We ascribe our observations to the high transparency of our junctions allowing Landau-Zener transitions."
+      - url: https://arxiv.org/abs/1911.04512
+        title: Prada et al. 2020, Nature Reviews Physics 2, 575-594 (arXiv v3)
+        where: Sec. III C, p. 10
+        quote: "It has been argued that the interpretation of the measurements needs to include the deviations from the tunnel junction behavior, such as non-sinusoidal supercurrents [204], overheating effects [207, 208], capacitive shunting [209], Landau-Zener tunneling between the Andreev bands and to the quasiparticle continuum [183, 205, 210]."
+    checked: ai
+
+  - id: shapiro-nonlinear-resistance
+    family: shapiro
+    signature: Missing odd Shapiro steps (several in a row, over a range of frequencies), read as the fractional Josephson effect.
+    lookalike: Rounding of steps that are not fully developed, superimposed on a bias-dependent (non-monotonic) resistance, with fine-tuning.
+    mechanism: Peaks in differential resistance as a function of bias suppress chosen Shapiro steps even with only the ordinary 2pi-periodic current.
+    control: Show the differential resistance versus bias without irradiation, the full frequency and power maps, and whether even steps also go missing in other regimes.
+    tests:
+      - Differential resistance versus bias without irradiation
+      - Full frequency and power maps
+      - Whether even steps also go missing in other regimes
+    data_that_reveals_it: Other frequencies (steps reappear at higher frequency), other fields and gate settings where even steps vanish or extra steps appear, and the dc I-V curve.
+    sources:
+      - url: https://arxiv.org/abs/2211.08710
+        title: Zhang et al. 2022, arXiv 2211.08710
+        where: abstract
+        quote: "Potentially responsible for our observations is rounding of not fully developed steps superimposed on non-monotonic resistance versus voltage curves, but several origins may be at play."
+      - url: https://arxiv.org/abs/2106.00495
+        title: Mudi and Frolov 2022, arXiv 2106.00495
+        where: abstract
+        quote: "In the presence of only the standard 2$\\pi$ Josephson current, for chosen values of peak positions and amplitudes, we can suppress the odd Shapiro steps, or any steps, thus providing a possible explanation for the observation of missing Shapiro steps."
+      - url: https://arxiv.org/abs/2309.09368
+        title: Frolov et al. 2023, preprint of Science 391, 137-142 (2026)
+        where: Example 3, p. 7
+        quote: "By way of explanation, we notice that the missing steps are observed at relatively low frequencies, where rounding of the Shapiro steps makes them less distinct."
+    checked: ai
+
+  - id: field-enhanced-supercurrent-resonances
+    family: supercurrent
+    signature: Josephson supercurrent that grows with magnetic field, read as triplet or other exotic pairing.
+    lookalike: Finite-voltage mesoscopic resonances (multiple Andreev reflection, Andreev bound states, self-induced Shapiro steps) that move with field and change the switching current.
+    mechanism: When a finite-bias resonance moves to higher voltage with field, it alters the junction's phase dynamics and raises the measured switching current.
+    control: Plot the differential resistance at finite bias alongside the switching current, and show the effect across gate voltage and in other devices.
+    tests:
+      - Finite-bias differential resistance plotted with the switching current
+      - Effect followed across gate voltage and in other devices
+    data_that_reveals_it: Gate ranges outside the window where the effect appears, other devices (most may show a maximum at zero field), and the finite-bias map.
+    sources:
+      - url: https://arxiv.org/abs/2309.09368
+        title: Frolov et al. 2023, preprint of Science 391, 137-142 (2026)
+        where: Example 1, p. 4
+        quote: "If one of these peaks moves to higher voltage in magnetic field, it leads to a larger switching current. The explanation does not involve the unusual triplet pairing and suggests that supercurrents growing with field do not prove exotic superconductivity."
+      - url: https://arxiv.org/abs/2309.09368
+        title: Frolov et al. 2023, preprint of Science 391, 137-142 (2026)
+        where: Example 1, p. 4
+        quote: "While we found examples of supercurrent increasing above the zero-field value in a few devices, most samples exhibit a maximum supercurrent at zero field."
+    checked: ai
+
+  - id: charge-trap-fractional-shift
+    family: charge
+    signature: Coulomb blockade or interference patterns shifted by a fraction of a period (for example about 1/3), read as fractional charge or anyon braiding.
+    lookalike: Integer charges moving in a nearby charge trap or side dot that is capacitively coupled to the device.
+    mechanism: Adding one electron to a capacitively coupled side dot shifts the main dot's levels by a fraction of a period.
+    control: Show the shifts are absent where the exotic state is not expected (for example zero field), check for gate leakage, and map where in two-gate space the shifts occur.
+    tests:
+      - Shifts absent where the exotic state is not expected
+      - Gate leakage checked
+      - Map of where in two-gate space the shifts occur
+    data_that_reveals_it: Datasets with and without jumps, repeated sweeps (charge jumps that do not repeat are stochastic), and the dependence of shifts on both gates.
+    sources:
+      - url: https://arxiv.org/abs/2309.09368
+        title: Frolov et al. 2023, preprint of Science 391, 137-142 (2026)
+        where: Example 4, p. 9
+        quote: "Instead, the explanation of these jumps is that near the quantum dot under investigation there is another, capacitively coupled dot (Fig. 4B)."
+      - url: https://arxiv.org/abs/2101.11456
+        title: Zhang et al. 2021, replaces the retracted Nature 556, 74
+        where: p. 5
+        quote: "While some charge jumps occur stochastically and do not repeat upon remeasuring the same parameter range, other are reproducible."
+    checked: ai
+
+  - id: fine-tuning-and-selection
+    family: practice
+    signature: Any striking "smoking gun" figure (a peak, a plateau, a missing step, a shift) shown from one device or one parameter setting.
+    lookalike: A non-representative example picked from many similar patterns, after fine-tuning during measurement.
+    mechanism: Mesoscopic devices produce a fluid multitude of patterns, so tuning knobs until the expected pattern appears and then showing that example can produce the signature with no new physics.
+    control: State how many devices and datasets were measured, how many showed the effect, how the shown data were chosen, and what the second-best example looks like.
+    tests:
+      - Devices and datasets measured, and how many showed the effect
+      - How the shown data were chosen
+      - A second device or dataset shown
+    data_that_reveals_it: All devices and cooldowns, the full parameter ranges explored, and the datasets that were set aside.
+    sources:
+      - url: https://arxiv.org/abs/2309.09368
+        title: Frolov et al. 2023, preprint of Science 391, 137-142 (2026)
+        where: Abstract, p. 1
+        quote: "The smoking gun patterns are achieved by fine-tuning during data acquisition and by subsequent data selection to pick non-representative examples out of a fluid multitude of similar patterns that do not generally fit the \"smoking gun\" designation."
+      - url: https://arxiv.org/abs/2309.09368
+        title: Frolov et al. 2023, preprint of Science 391, 137-142 (2026)
+        where: Discussion, p. 10
+        quote: "However, the paper should then make it clear that the signal persists, and disclose how fine-tuned and selected the figures are, what the second-best regime or sample looks like, and how many high-quality samples and datasets the authors were able to obtain."
+      - url: https://arxiv.org/abs/2501.18631
+        title: Akrap, Frolov et al. 2026, Report on reproducibility in condensed matter physics, Phys. Rev. B 113, 119601 (arXiv v2)
+        where: Section V.1, p. 10
+        quote: "We recommend that the authors also discuss how their second- and third-best datasets appear, to help readers assess the degree of reproducibility within the study."
+    checked: ai
+
+  - id: spin-orbit-length-pinning
+    family: zbp
+    signature: A zero-bias peak that barely moves with magnetic field, read as a Majorana zero mode.
+    lookalike: An Andreev state in a normal segment with strong spin-orbit coupling, whose length is close to an odd multiple of the spin-orbit length.
+    mechanism: Strong spin-orbit coupling shrinks the state's effective g factor, and a length resonance places it near zero energy, so it stays pinned in field without a topological phase or smooth confinement.
+    control: Check whether the pinning survives changes of parameters other than field; Prada et al. list this pinning as holding only against field, with the rest fine-tuned.
+    tests:
+      - Pinning tested against parameters other than field
+    data_that_reveals_it: Gate sweeps of the normal segment, and devices with different segment lengths, which should break the length condition and unpin the state.
+    sources:
+      - url: https://arxiv.org/abs/1911.04512
+        title: Prada et al. 2020, Nature Reviews Physics 2, 575-594 (arXiv v3)
+        where: Sec. IV B, p. 12
+        quote: "When the length of the N section is further tuned to an approximately odd-integer multiple of the SO length, an ABS will appear pinned near zero energy respect to VZ [81]."
+    checked: ai
+
+  - id: exceptional-point-zero-mode
+    family: zbp
+    signature: A zero-bias peak robustly pinned at zero in a tunneling setup open to a normal lead.
+    lookalike: An exceptional-point zero mode in a trivial wire coupled to the lead.
+    mechanism: Coupling to the reservoir makes the spectrum non-Hermitian, and at an exceptional point the real part of the lowest mode locks to zero, which needs an asymmetry in how the two Majorana components couple to the lead.
+    control: Measure the overlap of the two Majorana components (nonlocal or quantum-dot-assisted schemes); Prada et al. note the nonlocality reached this way is generally poor.
+    tests:
+      - Overlap of the two Majorana components measured
+    data_that_reveals_it: Two-end or dot-assisted measurements that show strongly overlapping components.
+    sources:
+      - url: https://arxiv.org/abs/1911.04512
+        title: Prada et al. 2020, Nature Reviews Physics 2, 575-594 (arXiv v3)
+        where: Sec. IV B, p. 13
+        quote: "An EP requires a finite coupling asymmetry of the two Majorana components to the reservoir."
+      - url: https://arxiv.org/abs/1911.04512
+        title: Prada et al. 2020, Nature Reviews Physics 2, 575-594 (arXiv v3)
+        where: Sec. V, p. 16
+        quote: "However, the wavefunction non-locality obtained by such means is generally poor."
+    checked: ai
+
+  - id: transparent-junction-pi-crossing
+    family: shapiro
+    signature: A zero-energy crossing of Andreev levels at phase difference pi in a Josephson junction, read as the protected crossing behind the 4pi Josephson effect.
+    lookalike: An accidental zero-energy crossing of ordinary Andreev states in a highly transparent junction.
+    mechanism: In a short, high-density junction the ordinary Andreev energy at phase pi falls with transparency and touches zero as the transparency approaches one.
+    control: Tune the junction transparency or density; the topological crossing does not depend on transparency, while the ordinary one opens into an anticrossing.
+    tests:
+      - Transparency or density tuned through the crossing
+    data_that_reveals_it: Barrier-gate and density sweeps of the same junction.
+    sources:
+      - url: https://arxiv.org/abs/1911.04512
+        title: Prada et al. 2020, Nature Reviews Physics 2, 575-594 (arXiv v3)
+        where: Sec. III A, p. 7
+        quote: "This contrasts with the protected (TN-independent) ϕ = π crossing in topological SNS junctions, as we will see."
+    checked: ai
+
+  - id: switching-jump-blind-region
+    family: shapiro
+    signature: A missing first Shapiro step under microwave irradiation, read as the fractional Josephson effect.
+    lookalike: A sharp voltage jump at the superconducting switching that hides the first step in the measurement's blind region.
+    mechanism: When the junction switches with a sharp jump, the voltage range of the first step falls inside the jump and is never sampled.
+    control: Show the dc switching curve and whether the first step returns when the jump is softened by higher microwave power, temperature or field, or at higher frequency.
+    tests:
+      - Dc switching curve shown at the same settings
+      - First step followed as the jump is softened (power, temperature, field) or at higher frequency
+    data_that_reveals_it: Power, temperature, field and frequency series of the same junction.
+    sources:
+      - url: https://arxiv.org/abs/2403.07370
+        title: Ubiquitous missing first Shapiro step in Al-InSb nanosheet Josephson junctions, arXiv 2403.07370 (2024)
+        where: abstract
+        quote: "The missing first Shapiro step coincides with a sharp voltage jump during superconducting switching, yet reappears when the jump is lowered and softened by increasing microwave power, temperature, or magnetic field."
+    checked: ai
+
+  - id: false-poor-mans-majorana
+    family: kitaev
+    signature: Zero-energy states in a two- or three-site Kitaev chain of quantum dots at a "sweet spot" (poor man's Majoranas), read as precursors of topological Majorana modes.
+    lookalike: False poor man's Majoranas, which pass the same local tests and evolve into trivial localized states in longer chains.
+    mechanism: In realistic dot-superconductor arrays many near-zero states at sweet spots trace back to zero-energy states that exist without superconductivity, and the most stable sweet spots sit where false states are common.
+    control: Luethi et al. find no conductance signature that separates true from false states; extend the chain (or add a site) and test whether the state survives, and model the device's microscopic parameters.
+    tests:
+      - Chain extended or a site added
+      - Microscopic model of the device
+    data_that_reveals_it: Measurements as sites are added, sweeps away from the sweet spot, and the number of sweet spots found versus kept.
+    sources:
+      - url: https://arxiv.org/abs/2408.10030
+        title: Luethi et al. 2024, "Fate of poor man's Majoranas in the long Kitaev chain limit", arXiv 2408.10030
+        where: abstract
+        quote: "We provide an explanation for the occurrence of these states and show that there is no clear conductance signature that is able to distinguish PMMs that evolve into true topological states from PMMs that evolve into trivial states."
+      - url: https://arxiv.org/abs/2504.06732
+        title: Luethi et al. 2025, "Properties and prevalence of false poor man's Majoranas in two- and three-site artificial Kitaev chains", arXiv 2504.06732
+        where: abstract
+        quote: "Finally, we demonstrate that the PMMs most stable to perturbations in chemical potential and with the largest excitation gaps appear in a region of parameter space that also has a large ratio of false to true PMMs."
+    checked: ai
+
+  - id: local-probe-loophole
+    family: practice
+    signature: Any evidence from a single local probe (a peak, pinning, quantization) read as proof of separated Majorana modes.
+    lookalike: Any trivial zero mode with overlapping Majorana components, which local probes cannot distinguish from separated ones.
+    mechanism: A local probe reads the density of states at one end, so it cannot measure how far apart the two Majorana components are.
+    control: Nonlocal measurements (probes at both ends, nonlocal conductance) or tunneling through a quantum dot in series to estimate the overlap.
+    tests:
+      - Nonlocal measurement (both ends or nonlocal conductance)
+      - Overlap estimated through a quantum dot in series
+    data_that_reveals_it: Correlated or uncorrelated features at the two ends, and overlap estimates across similar-looking devices.
+    sources:
+      - url: https://arxiv.org/abs/1911.04512
+        title: Prada et al. 2020, Nature Reviews Physics 2, 575-594 (arXiv v3)
+        where: Sec. IV C, p. 14
+        quote: "This kind of interpretation loophole is likely unavoidable in almost any type of experiment using purely local probes, which explains the longevity of the MBS vs ABS controversy."
+    checked: ai
+
+  - id: coulomb-dominated-interferometer
+    family: charge
+    signature: Oscillations in a quantum Hall Fabry-Perot interferometer read as Aharonov-Bohm interference of fractional quasiparticles (charge or statistics).
+    lookalike: Coulomb-dominated oscillations, where bulk-edge charging sets the periodicity.
+    mechanism: Coulomb coupling between the edge and localized bulk states makes the interferometer area jump with quasiparticle number, adding periodicities, and in the strong-coupling limit only the Coulomb-dominated periodicity remains.
+    control: Map resistance in the field and gate plane; the two regimes give stripes with different spacings and slopes of opposite sign; report the regime and the charging parameters.
+    tests:
+      - Field and gate map with stripe slope and spacing
+      - Regime and charging parameters reported
+    data_that_reveals_it: Full field and gate maps, temperature dependence, and devices with different bulk-edge coupling.
+    sources:
+      - url: https://arxiv.org/abs/1010.4598
+        title: Halperin, Stern, Neder and Rosenow 2011, "Theory of the Fabry-Perot quantum Hall interferometer", Phys. Rev. B 83, 155440
+        where: abstract
+        quote: "In the limits where either the AB or the CD periodicities dominate, a color map of resistance will show a series of parallel stripes in the B-V_G plane, but the two cases show different stripe spacings and slopes of opposite signs."
+    checked: ai
+
+  - id: diode-vortex-screening
+    family: diode
+    signature: A superconducting or Josephson diode effect (unequal critical currents in the two directions), read as finite-momentum or other exotic pairing.
+    lookalike: Asymmetric vortex edge or surface barriers and the Meissner screening current, present in ordinary superconducting films.
+    mechanism: With a small field, screening currents and asymmetric barriers for vortex entry make the critical current depend on direction in a conventional superconductor.
+    control: Run the same measurement on a plain film or junction of the parent superconductor, and track the effect against field, sample width and edge quality.
+    tests:
+      - Same measurement on a plain film or junction of the parent superconductor
+      - Effect followed against field, sample width or edge quality
+    data_that_reveals_it: Control samples, field sweeps near zero (the effect appears at fields as small as about 1 Oe), and the dependence on geometry.
+    sources:
+      - url: https://arxiv.org/abs/2205.09276
+        title: Hou et al. 2023, "Ubiquitous superconducting diode effect in superconductor thin films", Phys. Rev. Lett. 131, 027001
+        where: abstract
+        quote: "Meanwhile, we reveal the ubiquity of Meissner screening effect induced SC diode effect in superconducting films, which should be eliminated with great care in the search of exotic superconducting states harboring finite-momentum Cooper pairing."
+    checked: ai
+
+# Ordered checks per kind of signal, modeled on the stages of the topological gap protocol
+# (arXiv 2207.02472) without its pass/fail verdict: the critique (arXiv 2502.19560) shows a
+# binary verdict inherits every data choice. Each check names the lookalikes it addresses;
+# a report says, for each check, whether the paper did it, partly did it, or didn't.
+checks:
+
+  - family: zbp
+    signal: A zero-bias conductance peak in a hybrid nanowire or planar device, including peaks at or near 2e^2/h and peaks in hybrid islands.
+    note: Passing every check makes trivial explanations less likely and does not prove a topological phase.
+    note_source:
+      url: https://arxiv.org/abs/2207.02472
+      title: Microsoft Quantum (Aghaee et al.) 2023, Phys. Rev. B 107, 245423
+      where: Section 4.1.2, p. 17
+      quote: "So a ZBP, no matter how stable or well-quantized, cannot prove that the system is in a topological phase."
+    steps:
+      - id: zbp-dot-search
+        check: Look for unintended quantum dots near the barrier and in the junction (Coulomb resonances above the gap, peaks that split and recross, even-odd patterns across charge states).
+        addresses: [abs-quantum-dot, kondo-resonance, full-shell-flux-andreev, spin-orbit-length-pinning]
+        sources:
+          - url: https://arxiv.org/abs/2309.09368
+            title: Frolov et al. 2023, preprint of Science 391, 137-142 (2026)
+            where: Example 2, p. 6
+            quote: "there exists a more likely explanation for these effects being due to Andreev bound states in unintended quantum dots near the tunnel barrier."
+      - id: zbp-wide-ranges
+        check: Show the peak over wide gate, field and field-angle ranges, including where it is absent, and report peak heights everywhere.
+        addresses: [fine-tuned-plateau, crowded-trivial-subgap-states, disorder-induced-zbp, quasi-majorana-smooth-confinement]
+        sources:
+          - url: https://arxiv.org/abs/2309.09368
+            title: Frolov et al. 2023, preprint of Science 391, 137-142 (2026)
+            where: Discussion, p. 9
+            quote: "It is important to vary the experimental parameters over a wider range to see whether the behavior persists"
+      - id: zbp-both-ends
+        check: Measure tunneling at both ends of the wire at the same settings and compare.
+        addresses: [one-end-only, local-probe-loophole, quasi-majorana-smooth-confinement, exceptional-point-zero-mode]
+        sources:
+          - url: https://arxiv.org/abs/1711.06256
+            title: Moore, Stanescu and Tewari 2018, Phys. Rev. B 97, 165302
+            where: abstract
+            quote: "Measuring such correlations is the clearest and most straightforward test of topological MZMs in SM-SC heterostructures that can be done in a currently accessible experimental set-up."
+      - id: zbp-transparency
+        check: Show the peak stays as the junction transparency (barrier or cutter gates) changes.
+        addresses: [abs-quantum-dot, fine-tuned-plateau, weak-antilocalization]
+        sources:
+          - url: https://arxiv.org/abs/2207.02472
+            title: Microsoft Quantum (Aghaee et al.) 2023, Phys. Rev. B 107, 245423
+            where: Section 4.1.2, p. 17
+            quote: "ZBPs that are stable with respect to changes of the cutter gate voltages is a mandatory requirement of the TGP."
+      - id: zbp-nonlocal-gap
+        check: Measure nonlocal conductance for a bulk gap that closes and reopens where the end peaks appear; note that a trivial Andreev band can mimic this.
+        addresses: [quasi-majorana-smooth-confinement, disorder-induced-zbp, trivial-andreev-band-gap-reopening]
+        sources:
+          - url: https://arxiv.org/abs/2207.02472
+            title: Microsoft Quantum (Aghaee et al.) 2023, Phys. Rev. B 107, 245423
+            where: Section 6, p. 31
+            quote: "By design, Stage 2 of the TGP weeds out stable ZBP clusters in which quasi-MZMs don’t evolve into true MZMs."
+      - id: zbp-raw-conductance
+        check: State the series resistance subtracted and how it was calibrated, and show the raw data.
+        addresses: [series-resistance-subtraction]
+        sources:
+          - url: https://arxiv.org/abs/2309.09368
+            title: Frolov et al. 2023, preprint of Science 391, 137-142 (2026)
+            where: Example 2, p. 6
+            quote: "Furthermore, the value of conductance reported in a figure is sensitive to a subtracted series resistance, which can be chosen to bring the value closer to the quantized value(38)."
+
+  - family: shapiro
+    signal: Missing odd Shapiro steps or other signs of a 4pi-periodic Josephson effect.
+    steps:
+      - id: shapiro-dc-curve
+        check: Show the dc V(I) and dV/dI without irradiation at the same settings, marking the switching jump and any resistance peaks against the voltage of the missing step.
+        addresses: [switching-jump-blind-region, shapiro-nonlinear-resistance]
+        sources:
+          - url: https://arxiv.org/abs/2403.07370
+            title: Ubiquitous missing first Shapiro step in Al-InSb nanosheet Josephson junctions, arXiv 2403.07370 (2024)
+            where: abstract
+            quote: "The missing first Shapiro step coincides with a sharp voltage jump during superconducting switching, yet reappears when the jump is lowered and softened by increasing microwave power, temperature, or magnetic field."
+      - id: shapiro-frequency-power
+        check: Show full frequency and power maps; trivial mechanisms make steps return at higher frequency.
+        addresses: [shapiro-nonlinear-resistance, switching-jump-blind-region, shapiro-landau-zener]
+        sources:
+          - url: https://arxiv.org/abs/2309.09368
+            title: Frolov et al. 2023, preprint of Science 391, 137-142 (2026)
+            where: Example 3, p. 7
+            quote: "By way of explanation, we notice that the missing steps are observed at relatively low frequencies, where rounding of the Shapiro steps makes them less distinct."
+      - id: shapiro-trivial-regime
+        check: Run the same measurement where no topological phase is expected (zero field, a control junction) and show the pattern is absent there.
+        addresses: [shapiro-landau-zener, shapiro-nonlinear-resistance, transparent-junction-pi-crossing]
+        sources:
+          - url: https://arxiv.org/abs/2005.00077
+            title: Dartiailh et al. 2021, Nature Communications 12, 78
+            where: abstract
+            quote: "Here, we report on missing odd steps in topologically trivial Josephson junctions fabricated on InAs quantum wells. We ascribe our observations to the high transparency of our junctions allowing Landau-Zener transitions."
+      - id: shapiro-transparency
+        check: Measure the junction transparency (for example from the excess current) and tune it.
+        addresses: [shapiro-landau-zener, transparent-junction-pi-crossing]
+        sources:
+          - url: https://arxiv.org/abs/1911.04512
+            title: Prada et al. 2020, Nature Reviews Physics 2, 575-594 (arXiv v3)
+            where: Sec. III A, p. 7
+            quote: "This contrasts with the protected (TN-independent) ϕ = π crossing in topological SNS junctions, as we will see."
+
+  - family: kitaev
+    signal: Zero-energy states or qubit behavior in quantum dot Kitaev chains (poor man's Majoranas).
+    steps:
+      - id: kitaev-sweet-spots
+        check: Report how sweet spots were found, how many were found, and how many were kept, with the surrounding charge stability maps.
+        addresses: [false-poor-mans-majorana, fine-tuning-and-selection]
+        sources:
+          - url: https://arxiv.org/abs/2504.06732
+            title: Luethi et al. 2025, arXiv 2504.06732
+            where: abstract
+            quote: "Finally, we demonstrate that the PMMs most stable to perturbations in chemical potential and with the largest excitation gaps appear in a region of parameter space that also has a large ratio of false to true PMMs."
+      - id: kitaev-extend-chain
+        check: Add a site or extend the chain and test whether the state survives.
+        addresses: [false-poor-mans-majorana]
+        sources:
+          - url: https://arxiv.org/abs/2408.10030
+            title: Luethi et al. 2024, arXiv 2408.10030
+            where: abstract
+            quote: "We provide an explanation for the occurrence of these states and show that there is no clear conductance signature that is able to distinguish PMMs that evolve into true topological states from PMMs that evolve into trivial states."
+
+  - family: charge
+    signal: Fractional periodicity or fractional shifts in quantum dots or quantum Hall interferometers, read as fractional charge or anyon statistics.
+    steps:
+      - id: charge-regime-map
+        check: Map the oscillations in the field and gate plane and say which regime (Aharonov-Bohm or Coulomb-dominated) they are in.
+        addresses: [coulomb-dominated-interferometer]
+        sources:
+          - url: https://arxiv.org/abs/1010.4598
+            title: Halperin, Stern, Neder and Rosenow 2011, Phys. Rev. B 83, 155440
+            where: abstract
+            quote: "In the limits where either the AB or the CD periodicities dominate, a color map of resistance will show a series of parallel stripes in the B-V_G plane, but the two cases show different stripe spacings and slopes of opposite signs."
+      - id: charge-control-regime
+        check: Show the effect is absent where the exotic state is not expected, and rule out charge traps and gate leakage.
+        addresses: [charge-trap-fractional-shift]
+        sources:
+          - url: https://arxiv.org/abs/2309.09368
+            title: Frolov et al. 2023, preprint of Science 391, 137-142 (2026)
+            where: Example 4, p. 9
+            quote: "However, there is no reason to expect fractional charges in this regime, because the quantum dot is measured at zero applied magnetic field, away from the fractional quantum Hall regime."
+      - id: charge-repeat-sweeps
+        check: Repeat sweeps to separate reproducible shifts from stochastic charge jumps.
+        addresses: [charge-trap-fractional-shift]
+        sources:
+          - url: https://arxiv.org/abs/2101.11456
+            title: Zhang et al. 2021, replaces the retracted Nature 556, 74
+            where: p. 5
+            quote: "While some charge jumps occur stochastically and do not repeat upon remeasuring the same parameter range, other are reproducible."
+
+  - family: practice
+    signal: Every signature.
+    steps:
+      - id: report-counts
+        check: Report devices and datasets measured, how many showed the effect, and why the others were set aside.
+        addresses: [fine-tuning-and-selection]
+        sources:
+          - url: https://arxiv.org/abs/2501.18631
+            title: Akrap, Frolov et al. 2026, Report on reproducibility in condensed matter physics (arXiv v2)
+            where: Section V.1, p. 10
+            quote: "Information about the number of samples tested should be reported."
+      - id: report-ranges
+        check: Disclose the full parameter ranges measured and why each shown range was chosen.
+        addresses: [fine-tuning-and-selection, protocol-parameter-sensitivity]
+        sources:
+          - url: https://arxiv.org/abs/2501.18631
+            title: Akrap, Frolov et al. 2026, Report on reproducibility in condensed matter physics (arXiv v2)
+            where: Section V.1, p. 9
+            quote: "When reporting experiments, include the full ranges of experimental parameters."
+      - id: report-processing
+        check: Give the processing steps from raw data to figures, with data and code.
+        addresses: [series-resistance-subtraction, protocol-parameter-sensitivity]
+        sources:
+          - url: https://arxiv.org/abs/2501.18631
+            title: Akrap, Frolov et al. 2026, Report on reproducibility in condensed matter physics (arXiv v2)
+            where: Section V.1, p. 9
+            quote: "Authors should specify full data processing steps from original raw data to published figures."

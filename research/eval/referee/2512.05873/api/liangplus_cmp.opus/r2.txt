@@ -1,0 +1,160 @@
+Review outline:
+
+**1. Significance and novelty**
+
+The manuscript reports high-resolution in-plane-field sweeps of the mechanical frequency of a 30 µm Al nanostring embedded in a SQUID-terminated microwave cavity. It interprets two features as vortex physics:
+- a smooth Ω0² ∝ B_ip^1.81 background, read as Campbell-regime pinning elasticity;
+- discrete 10–50 Hz frequency steps, read as single-vortex entry.
+
+Using an electromechanical platform as a non-invasive, device-integrated probe of flux entry in sub-micron superconductors is attractive, and it matters for flux-mediated optomechanics, where in-plane fields are central to reaching large g0. As presented, however, the vortex interpretation of both features rests mainly on plausibility arguments. The quantitative single-vortex claims (pinning energy, attonewton forces) depend on assumptions that are not tested and are in places internally inconsistent.
+
+**2. Potential reasons for acceptance**
+
+- The platform is clever. Ω0 is extracted at a flux bias where the circulating-current spring term should vanish, which in principle separates intrinsic stiffening from Lorentz-force effects.
+- The data quality is high: 0.25 mT field steps, a frequency resolution of order 10 Hz on a 5.8 MHz mode, and a background exponent reproduced across three cooldowns (including Ref. 46).
+- The step-like features are visible above the error bars in Fig. 3 and appear at least partly at different fields after thermal cycling. That is suggestive of history-dependent flux entry.
+- The topic connects vortex physics with superconducting quantum-device engineering and would interest both communities.
+
+**3. Concerns**
+
+**A. Must address**
+
+**1. Can this geometry host Abrikosov vortices in a parallel field at all?**
+
+The authors' own estimates give ξ ≈ 108 nm, d = 110 nm and w = 200 nm, so d/ξ ≈ 1. The vortex core (diameter ~2ξ) is then larger than the film thickness. Ginzburg–Landau treatments of films in parallel field (e.g. Tinkham, cited as Ref. 32) indicate that vortices cannot nucleate for d ≲ 1.8ξ; the film instead goes normal through a second-order transition. In addition, λ ≈ 0.84 µm exceeds both d and w, so screening is weak and the flux carried by a "vortex" inside the film is far less than Φ0.
+
+The entry-field and density expressions also come from the wrong geometry. Eqs. (6) and (7), from Stan et al., Likharev and Bronson et al., are derived for narrow strips in *perpendicular* field, with the strip width as the relevant length. Here d is substituted for w without justification.
+
+The material parameters themselves are not measured:
+- ℓ_f is set equal to a ~10 nm grain size.
+- The "double-layer Al shadow evaporation" raises the question of whether the string is a bilayer with an AlOx interlayer. In that case each layer would be thinner still.
+
+The authors should:
+- measure T_c, the normal-state sheet resistance and RRR of co-fabricated films, to obtain ℓ_f, ξ and λ independently;
+- state the layer structure of the string;
+- determine the parallel critical field of the string (where the mechanical/SQUID response collapses), to anchor ξd;
+- justify, ideally with TDGL simulations of the real 0.2 × 0.11 µm² cross-section, that vortex states exist and what their entry field and flux content are.
+
+Without this, the central premise of the paper is not established.
+
+**2. The jumps are not shown to originate in the nanostring rather than elsewhere in the circuit or in the fit.**
+
+Ω0(B_ip) is the output of a multi-parameter fit of Eq. (3) at each field. The fit includes Ic, Ll, η, a flux offset φ_off and (per Appendix A) a junction asymmetry α. Ω0 is effectively an extrapolation to Φb → Φ0/2, where the cavity may not be tunable: the 7.4 → 6.6 GHz range and the Fig. 2(c) data stop short of ±0.5 at high field. Several alternative sources could produce steps:
+- Vortex entry into the wide Al leads, ground plane, CPW centre conductor or junction electrodes. A misalignment of only 1° at 35 mT gives ~0.6 mT perpendicular field, far above Φ0/A_loop.
+- Field-dependent (Fraunhofer-type) changes of Ic.
+- Jumps in φ_off.
+
+Any of these could produce steps in a fitted Ω0 if Eq. (3) is imperfect; for example, it omits the asymmetry it is said to include.
+
+The authors should:
+- show raw Ωm at fixed Φb (including the point closest to half flux) versus B_ip;
+- plot all fitted parameters (Ic, φ_off, η, Ll, α) together with cavity ω_c and Q_i against B_ip on the same axis as Fig. 3, so readers can check whether steps in Ω0 coincide with steps in circuit parameters;
+- state the field-alignment procedure and the residual misalignment.
+
+**3. Discreteness and stochasticity of the jumps are not demonstrated statistically.**
+
+The arrows in Fig. 3 appear to have been placed by eye. The evidence for stochasticity is weak on several counts:
+- The two "successive datasets" in Fig. 3(a) cover non-overlapping field ranges (≈12–20 mT and ≈20–30 mT), so reproducibility within a cooldown cannot be assessed.
+- Across cooldowns, two of the four step fields in Fig. 3(b) (20.5 and 22.5 mT) coincide with, or lie within one field step of, those in Fig. 3(a) (20.0 and 22.5 mT).
+- Some features are non-monotonic, for example the dip after 20 mT in Fig. 3(a) and the decrease after 27 mT in Fig. 3(b). This is unexpected for added pinned vortices.
+
+The following would test the claim:
+- an objective step-detection analysis, for instance a piecewise fit with an information criterion against a smooth model, with significance levels;
+- repeated sweeps over the same field range within one cooldown;
+- up- and down-sweeps, since hysteresis and exit steps are the hallmark of pinned flux;
+- FC versus ZFC runs: no entry steps, and a different Ω0(B) baseline, are expected under FC;
+- time traces at fixed field near a step, to exclude drift and to look for telegraph switching or creep.
+
+**4. The step counting is inconsistent with the single-vortex interpretation, so k_p and U are not single-vortex quantities.**
+
+Using the paper's own Eq. (7) with B_c1 = 5 mT and A = ld = 3.3 × 10⁻¹² m², N increases from ≈7 at 12 mT to ≈28 at 30 mT. Roughly 20 entries should therefore occur in the range of Fig. 3(a), yet about 5 steps are observed, with spacings of 1.5–5 mT against predicted spacings of 0.63–1.25 mT. Either each step corresponds to several vortices, or most entries are unresolved.
+
+- If steps are multi-vortex bundles, k_p and U per vortex are overestimated by up to ~2–8×.
+- If entries are unresolved, then single entries produce sub-resolution shifts. This contradicts the use of the resolved 10–50 Hz steps as single-vortex signatures. It also leaves unexplained how a smooth background can arise from a mechanism whose elementary events are claimed to be individually resolvable.
+
+The contribution of a localized pinned vortex also scales with the squared mode amplitude u²(x₀) at its position: it vanishes at the clamps and is maximal at mid-string. Eq. (9) instead assumes a "nearly uniform" mode. The fundamental mode is sinusoidal, so even a true single vortex gives a position-dependent step.
+
+The authors should:
+- reconcile the number of steps with the expected number of entries;
+- include mode-shape weighting;
+- present k_p and U as ranges spanning the plausible vortices-per-step and position distributions, or soften the "single-vortex pinning energy" claim in the abstract and conclusion.
+
+**5. The attribution of the smooth background to the Labusch parameter is not supported.**
+
+- **The model predicts the wrong exponent.** The authors' uniform-pinning model, α_L = n_v⟨k_p⟩ with n_v from Eq. (7), predicts a threshold at B_c1 and k ≈ 1 at high field. The fitted A0 + C·B^k has no threshold, and the Fig. 4 inset shows α_L rising from zero at B = 0.
+- **B_c1 is not derived from data.** The "empirical" B_c1 ≈ 5 mT is taken from where the trend "sets in", but no data exist below 6.2 mT (Fig. 2d) or 12 mT (Fig. 3a). The argument is therefore circular.
+- **A Meissner-state alternative is not excluded.** k = 1.81 is close to 2, which is generic for electromagnetic mechanisms. One such mechanism is the angular anisotropy of the diamagnetic energy of a thin strip tilting in a nearly parallel field during out-of-plane motion; this gives a stiffness ∝ B² even with no vortices. The authors list "in-plane screening" and related effects but dismiss them only because steps exist, which says nothing about the background.
+- **Classical vibrating-reed theory is not used.** In Brandt–Esquinazi theory (Refs. 38–40), which the authors cite, the frequency shift from pinned flux is set mainly by the magnetic line tension B²/μ0. α_L enters through the Campbell length λ_C = (B²/μ0α_L)^½. With the quoted α_L ~ 10¹⁴ N m⁻⁴ at 30 mT, λ_C ≈ 2.7 µm, much larger than d and w. That regime needs explicit discussion.
+
+The authors should:
+- make a quantitative comparison with vibrating-reed theory for this geometry;
+- estimate the Meissner-state angular stiffening for a strip with Pearl length 2λ²/d ≈ 13 µm;
+- measure the temperature dependence of the background up to T_c; pinning elasticity and screening scale differently with T;
+- show Γm(B_ip). Campbell-regime pinning and vortex entry should also change dissipation.
+
+**B. Should address**
+
+**6. The "attonewton force" framing is misleading.**
+
+Δk·x_rms is not a force acting on the resonator. Comparing it with the thermal force noise √S_FF (Sec. V) is not a valid detection criterion. What is detected is a frequency shift, so the relevant sensitivity is the frequency resolution: the Lorentzian-fit uncertainty or Allan deviation for the given integration time, compared with Γm/2π = 20 Hz.
+
+The quoted step range also does not match the figures. The lower end of 10 Hz is comparable to the Fig. 3 error bars (~1 × 10⁸ Hz² in Ω²/(2π)², i.e. ≈5–9 Hz) and to half the linewidth. Meanwhile the arrowed steps in Fig. 3 read as ≈0.6–0.8 × 10⁹ Hz², i.e. ≈50–70 Hz.
+
+The authors should report steps in frequency units with uncertainties, compare them with the measured frequency noise, and reconsider "attonewton-scale forces" in the abstract. The calculation of x_rms also assumes a mode temperature of 85 mK; the actual mode occupancy should be verified from the calibrated sideband area.
+
+**7. The pinning-energy estimate is fragile.**
+
+U = ½k_p r_p² L_line uses a harmonic potential extrapolated to r_p ~ ξ and sets L_line ~ w, even though d ~ ξ. The modal density ρ_eff = 910 kg m⁻³ combines the modal mass (0.6 pg) with the full physical volume (6.6 × 10⁻¹⁹ m³; the physical mass is ≈1.8 pg). For a uniform added stiffness density, the consistent quantity is the material density weighted by the mode overlap.
+
+The authors should:
+- state a propagated uncertainty;
+- compare with the core-condensation upper bound (B_c²/2μ0)πξ²L_line, which for B_c of order 10 mT is ~1–2 eV;
+- explain why 0.1–0.4 eV is physically reasonable.
+
+**8. The magnetoelastic estimate omits tensile amplification.**
+
+For a prestressed string, ΔΩ/Ω ≈ Δε/(2ε0). From f = 5.8 MHz and l = 30 µm, the implied stress is ≈300 MPa, so ε0 ~ a few × 10⁻³. The core volume fraction πξ²n_v reaches ~0.3 at 30 mT. Together these raise the authors' 10⁻⁸ estimate by roughly two orders of magnitude, to about 10⁻⁶. That is still likely below the observed 10⁻⁵, but the authors should redo the estimate properly.
+
+**9. Single device, single temperature, single field orientation.**
+
+All conclusions come from one string at 85 mK, and the result is not shown in a second device. The strongest test of the vortex picture would be the predicted geometric scalings, B_c1 ∝ 1/(ξd) and ΔB ∝ 1/(ld). These could be checked on a second device with different d or l, or on a string of a strongly type-II material such as Nb or NbN. A null reference would also help, for example:
+- a geometry where the field is parallel to the string axis; or
+- measurements approaching T_c, where pinning signatures should evolve.
+
+**10. Fitting transparency and dataset consistency.**
+
+The following should be specified or provided:
+- which Eq. (3) parameters are free and which are shared across fields;
+- the asymmetry α mentioned in Appendix A but absent from Eq. (3);
+- the flux range actually covered at each field;
+- parameter correlations, in particular between η, Ll and Ω0;
+- how the error bars in Figs. 3 and 4 are obtained.
+
+Fig. 4 combines Ref. 46 data, originally analysed with Eq. (A1) without Ll, with new data analysed with Eq. (3). The authors should show that re-fitting the old data with Eq. (3) leaves Ω0 unchanged, and state whether C and A0 are fitted separately for each cooldown with a common k.
+
+**11. Backaction and probe retuning.**
+
+The cooperativity is said to be "below unity", not ≪ 1. With κ/2π = 2.5 MHz and Γm/2π = 20 Hz, C < 1 still allows g/2π up to ~3.5 kHz and optical-spring shifts of a few Hz for small detunings. As ω_c and the flux responsivity change with B_ip, ω_p is retuned at every point. The authors should give the actual C, the detuning accuracy, and a check that the step sizes are independent of probe power and detuning, including agreement between the VNA-based and thermal-noise-based extractions.
+
+**C. Minor**
+
+12. Fig. 2(c,d) appear to show the Ref. 46 dataset: the field values 6.20–35.00 mT match the black squares in Fig. 4. This should be stated in the Fig. 2 caption.
+
+13. The Fig. 4 caption refers to "blue circles", but the new data are plotted in green. The text says "black filled circles", while the caption says "black squares".
+
+14. From the Fig. 4 inset, ⟨k_p⟩ = α_LΦ0/B_ip comes out at ≈5–14 N m⁻² over 10–30 mT rather than "10–20". It is also field-dependent (∝ B^0.81), which itself conflicts with the uniform-pinning picture.
+
+15. The field-cooled entry discussion (B_c1^FC ≈ 282 mT, an "enhanced Bean–Livingston barrier") is not used and is physically unclear, since under FC no entry is needed. Either remove it or measure FC.
+
+16. Call A = ld the cross-section normal to the vortex axis, and state the direction of B_ip relative to the string and to δx explicitly in the text.
+
+17. The claims of in situ determination of B_c2 and of "directly mapping the disorder landscape" (Conclusion) are not demonstrated. They should be framed as outlook.
+
+18. Define where P_probe < 2 fW is referenced (at the device or at the fridge input). Clarify whether g0 = η(∂Φω_c)lBx_zpf uses B_ip or the total field.
+
+**4. Suggestions for improvement**
+
+1. **Field-history protocol on the same device and cooldown.** Run ZFC up-sweep, down-sweep and FC sweeps over overlapping ranges, with objective step detection. Hysteresis, exit steps and FC/ZFC differences would be the most direct evidence for pinned flux in the string.
+2. **Multi-observable tracking.** Plot Ω0, Γm, φ_off, Ic, ω_c and Q_i on a common B_ip axis. Coincident steps in Γm but not in circuit parameters would localize the events to the mechanical element.
+3. **Independent material and geometry characterization plus simulation.** Obtain T_c, resistivity, layer structure and the parallel critical field of the string. Combine these with TDGL modelling of the actual cross-section, and with a quantitative vibrating-reed or Meissner-stiffening calculation of the background, so that the k ≈ 1.8 law is compared against predictions rather than fitted phenomenologically.
+4. **Temperature series and a second device.** Repeat the measurements at several temperatures toward T_c and on a device with a different thickness or length. This would test the predicted scalings of the entry field and step spacing, and turn the single-vortex quantification from an order-of-magnitude estimate into a measurement.

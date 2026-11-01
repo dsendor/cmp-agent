@@ -1,0 +1,216 @@
+Review outline:
+
+## 1. Significance and novelty
+
+The paper addresses a contested question for the pressure-induced superconductor La₄Ni₃O₁₀: what structural phases separate the ambient monoclinic state from the high-pressure tetragonal state. It reports four results:
+
+- a pressure–temperature boundary for the I4/mmm → P2₁/c transition, from about 1030 K at 0 GPa to about 20 K at 14 GPa, based on single-crystal XRD in He-loaded DACs and ambient PXRD;
+- the claim that no intermediate Bmab phase exists, supported by β ≠ 90° and DFT-PBE relaxations;
+- a null result for DW satellites in ambient-pressure SXRD;
+- Raman evidence for extra modes below about 130 K, interpreted as a third structural phase below 2/m symmetry.
+
+A well-constrained structural P–T diagram for this compound would be valuable to the nickelate community. However, the two most novel claims (no Bmab window, and a P2₁/c-breaking low-temperature phase) currently rest on evidence that does not discriminate them from the alternatives.
+
+## 2. Potential reasons for acceptance
+
+- **First P–T structural map.** It is the first map of the tetragonal/monoclinic boundary spanning 20–1030 K. It uses hydrostatic (He) single-crystal diffraction at three temperatures, which goes beyond room-temperature-only studies.
+- **Consistent crystallographic framework.** The paper uses one setting (F4/mmm ↔ B2₁/a) to compare the phases. This clarifies why the "β ≈ 100°" of the standard setting is misleading; the transformation matrices are a useful service.
+- **Free-symmetry DFT.** The relaxation within P2₁/c, which contains all candidate supergroups, is a sensible way to test for intermediate phases. The authors are candid about PBE pressure errors and about how sensitive the result is to the force threshold.
+- **Multi-technique ambient characterization.** Combining ambient-pressure synchrotron SXRD with polarized Raman on the same growth batch is valuable, and the honest reporting of a null XRD result is useful to the field.
+
+## 3. Concerns
+
+### A. Must address
+
+**1. The evidence does not yet discriminate P2₁/c (B2₁/a) from Bmab near the phase boundary, especially at 300 K.**
+
+The "no intermediate Bmab" claim is the headline, but the experimental evidence for it has four weaknesses.
+
+- **β at 300 K is at the resolution limit.**
+  - Fig. 4(b) shows β − 90° at 300 K of only a few hundredths of a degree across the whole 2/m range; the text itself calls it "negligible" (p. 8).
+  - At 80 and 20 K, the point-to-point scatter of β (roughly 0.1–0.3°) is much larger than the claimed "error bars smaller than symbols".
+  - This scatter suggests that the real uncertainty, which is dominated by systematic effects from fitting overlapping pseudo-merohedral twin domains, is underestimated.
+- **Twinning does not discriminate.** The reflections in Fig. 2(c) that appear to violate the B-centering are attributed to twin domains. Bmab and B2₁/a share the same B-centered cell and both generate 90° twin domains from F4/mmm. The twin argument therefore explains the data under either model.
+- **The superlattice vector does not discriminate.** The q = (½,½,0) superlattice of Fig. 2(b) is common to both space groups.
+- **The refinement comparison is not quantified.** The decisive evidence is said to be the "much better" B2₁/a fit (Table S4). The reader cannot judge this without:
+  - the number of refined parameters (including twin fractions);
+  - identical twin models for both space groups;
+  - the data-to-parameter ratio;
+  - a significance test such as the Hamilton R-ratio.
+
+Please provide the following:
+
+- realistic β uncertainties, for example from refinements of independent runs or crystals, or from bootstrap;
+- β values, with these uncertainties, specifically at 10.5 GPa/300 K and at the last 2/m points at 80 and 20 K;
+- a Hamilton test with matched twin models;
+- an explicit list of reflection classes allowed in B2₁/a but extinct in Bmab, taking all twin-domain superpositions into account, with their observed I/σ and its pressure dependence.
+
+If such reflections cannot be shown to exist close to the boundary, the claim should be restated as "no evidence for Bmab within our resolution".
+
+**2. The DFT calculation, as performed, cannot rule out an intermediate phase at finite temperature, and its numerical precision is not shown to be adequate.**
+
+- **Only 0 K is addressed.** The relaxation is a static 0 K enthalpy minimization. The Bmab phase of Ref. [22] is reported at room temperature. Entropic or anharmonic stabilization of a Bmab window between the monoclinic and tetragonal phases at finite T is therefore not addressed. The statement "definitely ruled out" (p. 11) should be restricted to 0 K.
+- **Energy convergence versus enthalpy differences.** The total-energy convergence is quoted as 1 mHa (about 27 meV per cell) with a 2×4×4 k-mesh for a metal. Methods do not state the smearing. The relevant enthalpy differences between P2₁/c and Bmab differ by a β change of about 0.1–0.4°, which are likely sub-meV.
+- **Relaxation sensitivity.** The authors report that relaxing to 5·10⁻⁵ Ha/Bohr can leave the structure in tetragonal or orthorhombic configurations depending on the starting point. This indicates an extremely flat landscape. Free relaxation alone is then not conclusive.
+- **Spin treatment is not stated.** It is not specified whether the calculations are spin-polarized. The ambient ground state hosts an SDW, and magnetoelastic coupling could shift Pc and the relative stability of tilt patterns.
+- **Fit form presupposes a continuous transition.** The fits impose α = 1/2 mean-field scaling using only the last three points near Pc. With essentially two free parameters per order parameter, this is weakly constrained. It also presupposes a continuous transition, which the experiment questions (see concern 6).
+
+Please provide:
+
+- constrained relaxations in I4/mmm, Fmmm, Bmab and P2₁/c at each pressure, with enthalpy differences H(G) − H(I4/mmm) plotted versus P;
+- k-point and smearing convergence of these differences, demonstrated at the sub-meV level;
+- the spin configuration used, with a test of at least one magnetic configuration;
+- ideally, Γ/X-point phonons of the Bmab structure near Pc, to show whether it is dynamically unstable toward P2₁/c.
+
+**3. The Raman argument for a symmetry lower than P2₁/c is not valid as presented.**
+
+- **Polarization axes are not aligned with crystal axes.** The mode count assumes that A_g appears only in parallel (yy) and B_g only in crossed (yz) geometry. But Table I states that Y and Z "are in the (bc) plane but not aligned with a particular axis". For polarizations rotated by φ from b, both A_g (bb, cc tensor components) and B_g (bc component) contribute to both channels. Observing 31 modes in yy (more than 24 A_g) is therefore not a violation of P2₁/c selection rules.
+- **Twin domains scramble the selection rules further.** The XRD shows four twin domains related by 90° rotations about the stacking axis, which interchange the in-plane axes. Unless the Raman spot (size not given) is shown to be single-domain, the selection rules are additionally mixed.
+- **The excess total is marginal.** The total of 51 against 48 allowed is only three modes. It depends on assigning weak features, and these could instead be:
+  - two-phonon features;
+  - DW amplitude or phase modes;
+  - phonons from intergrown or secondary phases. The flux product contains NiO and La₂NiO₄, and La₂NiO₄₊δ itself orders stripes in the 100–200 K range.
+- **Backfolding is not point-group breaking.** As the authors acknowledge (pp. 14–16), new modes from an incommensurate DW reflect zone-folding, i.e. broken translational symmetry. This does not require loss of inversion or of the 2-fold axis. The step from "new modes" to "Pc or P2₁" and a "third structural phase" (abstract, conclusions) is therefore not established.
+
+Please provide:
+
+- angle-resolved polarized Raman with polarizations referenced to the crystal axes, determined by Laue/XRD on the same crystal;
+- the Raman spot size and evidence of single-domain illumination;
+- reproducibility over several spots and crystals;
+- an explicit consideration of DW amplitude modes and folded phonons.
+
+If the authors want to claim inversion-symmetry breaking, a direct probe is needed, such as optical SHG versus T or Friedel-pair intensity differences in the DESY data. Otherwise the conclusion should be softened to "translational and/or point symmetry lowering associated with the DW".
+
+**4. The existence and strength of the DW in the measured crystals is not established, which undermines both the XRD null result and the Raman interpretation.**
+
+- **No characterization of the DW in these crystals.** No resistivity, susceptibility or specific heat is shown for these flux-grown crystals. Oxygen stoichiometry is not reported; EPMA confirms only La:Ni = 4:3. T_DW and its sharpness depend strongly on δ, and the paper itself attributes discrepancies between groups to sample growth.
+- **The XRD null result is not quantified.** It is uninformative without a detection limit. Zhang et al. report satellites at roughly 10⁻⁴–10⁻⁵ of Bragg intensities, measured on large floating-zone crystals. Here a 50 µm crystal with 10 s/deg exposures was used.
+- **The DESY data are not used to look for lattice anomalies at T_DW.** These include the negative thermal expansion of b reported in [36–38]. Methods mention refinements only at 230 and 80 K.
+
+Please provide:
+
+- transport or magnetization on crystals from the same batch showing T_DW;
+- an oxygen-content determination (e.g. TGA reduction);
+- an upper bound on satellite intensity relative to strong main reflections at the expected wavevectors, compared with Zhang et al.;
+- lattice parameters versus T across 100–160 K from the DESY data;
+- a statement of whether the Raman and XRD crystals come from the same growth and whether they are the same crystal.
+
+### B. Should address
+
+**5. How the phase boundary is determined is under-documented, and the boundary carries no uncertainty.**
+
+- **Coarse bracketing.** Fig. 1 contains only about four new points. The boundary is bracketed coarsely: 10.5→15 GPa at 80 K and 12.5→15 GPa at 20 K in Fig. 2(a). The 20 K point at 14 GPa does not appear among the Fig. 2(a) panels, and the 300 K row omits the bracketing pressures 10.5 and 11.3 GPa.
+- **Qualitative criterion.** The transition is identified from peak shape ("broadened and anisotropic"). This is qualitative and can be confounded by pressure-gradient and strain broadening.
+- **Unsupported "linear suppression".** There are no data between 0 and about 10 GPa above 300 K. The linear suppression in Fig. 1 is therefore an interpolation across most of the diagram.
+- **Different criteria at the two ends.** The ambient point comes from PXRD and the high-pressure points from SXRD, with different criteria.
+
+Please provide:
+
+- a table of all measured (P, T) points with their phase assignment;
+- horizontal error bars spanning the bracketing pressures;
+- a quantitative order parameter versus P at each T, such as the integrated (½,½,0) superlattice intensity and the peak splitting or width along two orthogonal directions;
+- the number of crystals used;
+- whether pressure was changed at low T or each pressure was reached at 300 K and then cooled.
+
+**6. The order of the transition is described inconsistently and is not analyzed group-theoretically.**
+
+- **Three incompatible descriptions.** On p. 8 a jump in β at the onset is attributed to a "weak first-order" transition. In the same paragraph the transition is called "continuous". The DFT is fitted with mean-field square-root scaling.
+- **Fig. 3(c) is suggestive.** At 80 K the tilt is still about 7° at about 9.5 GPa, while the boundary lies near 13 GPa. This hints at a discontinuity.
+- **Landau allowance is not shown.** Whether a direct continuous I4/mmm → P2₁/c transition is permitted depends on whether P2₁/c is reached by a single irreducible representation of I4/mmm (at the X point) or requires coupled irreps. In the latter case the transition is generically first order or proceeds via an intermediate phase.
+
+Please provide:
+
+- an ISOTROPY/Bilbao-type irrep decomposition of the distortion and the corresponding Landau argument;
+- a search for hysteresis between compression and decompression at fixed T;
+- reconciliation of the wording across the text and abstract.
+
+**7. The room-temperature transition pressure disagrees with the literature cited in the paper, and this is not discussed.**
+
+- The introduction states Pc ≈ 15 GPa at room temperature [19–22].
+- The present data place the 300 K transition at 10.5–11.3 GPa (Figs. 1, 2b,c).
+
+A 4 GPa discrepancy is significant for the claim that superconductivity coincides with tetragonal symmetry. Please discuss possible origins:
+
+- pressure medium and hydrostaticity;
+- oxygen stoichiometry δ;
+- growth method;
+- the detection criterion.
+
+Please also show how the present boundary compares with the superconducting onset pressures at low T.
+
+**8. Several statements go beyond what was measured.**
+
+- **Superconductivity.** "This affirms that superconductivity emerges only once the system is restored to the tetragonal phase" (p. 17). No superconductivity measurements were made on these samples, and the boundary near 20 K lies around 14 GPa, close to the scattered literature Pc of 5–40 GPa.
+- **Growth method.** The transition is called "remarkably impervious to variations in the crystal growth process, whether it be by flux or the floating zone method". Only flux crystals were studied.
+- **Wording.** "Unequivocally" (abstract, p. 11) should be moderated given concerns 1–2.
+
+**9. The equation-of-state fits need details.**
+
+- **Large temperature dependence of K₀.** K₀ changes from 155(4) GPa at 300 K to 182–185 GPa at 80–20 K, about a 17% stiffening over 220 K. This is unusually large for an oxide and suggests correlation with K₀′ or a fixed K₀′.
+- **Data range.** It is not stated whether the fit range spans both 2/m and 4/mmm data, which may differ in V if the transition is first order.
+
+Please report:
+
+- the EOS order and whether K₀′ is fixed or free;
+- the pressure range and phases included;
+- the covariance between K₀ and K₀′;
+- a quantitative comparison with [19].
+
+**10. Internal numerical inconsistencies.**
+
+- **β at 300 K.** Ambient-pressure PXRD (Fig. S1, p. 5) gives β − 90° ≈ 0.1–0.2°. Fig. 4(b) at 300 K shows values near 0.02–0.05° even at the lowest pressures.
+- **Tilt angle at 6 GPa.** Fig. 3(b) quotes Ni1–O2–Ni2 = 171.1° at 6 GPa/300 K, i.e. a tilt of 8.9°. Fig. 3(c) at about 6 GPa appears closer to 6–7°.
+- **Tilt angle at the boundary.** Fig. 3(c) shows a non-zero tilt (about 1.5°) near 11 GPa at 300 K, while 11.3 GPa is assigned F4/mmm.
+- **Low-T distortion.** The text says (b−a)/(b+a) increases at 80 and 20 K. Fig. 4(c) does not clearly show this.
+- **T_DW values.** T_DW is quoted as 135 K (abstract), 130 K (main text) and 120–150 K or "~120 K" (Raman).
+
+**11. Raman sample temperature and the transition window.**
+
+- **Heating.** Laser heating raises the base temperature from 2 K to 26 K. The heating at intermediate temperatures, and how it was calibrated (e.g. Stokes/anti-Stokes ratio, or a power series), is not described.
+- **Window.** Since the appearance of new modes is placed at 120–150 K, please give the effective sample temperature for each spectrum in Fig. 6(c–e).
+- **Intensity criterion.** Please state the intensity criterion used for counting a mode as "present", since the counts underlie the symmetry argument.
+
+### C. Minor
+
+**12. Single tilt angle.** The octahedral-tilt order parameter is a single angle, Ni1–O2–Ni2. Bmab and P2₁/c differ in the relative tilt sense of the inner and outer octahedra and between neighboring blocks. Reporting tilt angles for each octahedron (and any in-plane rotation) would make the structural distinction concrete. The statement "At 15 GPa, the octahedra is perfect" should read "untilted", since the apical and basal bond lengths still differ.
+
+**13. Precision and description of the DFT result.**
+- Pc = 16.47 ± 0.04 GPa is over-precise given the stated ΔP of 1–3 GPa; quote the systematic uncertainty alongside it.
+- The description of the P2₁/c cell in Methods ("stacking axis oriented along a and is doubled") conflicts with the standard-setting description in the main text and Fig. 3. Please clarify.
+- State the smearing, spin state and pseudopotential valence configurations.
+
+**14. Mode counting in Pc/P2₁.** For Pc/P2₁, the Raman-active optic counts should subtract the acoustic modes, giving roughly 50 A and 49 B rather than 51/51. This does not change the conclusion but should be correct.
+
+**15. Choice of panels in Fig. 2(a).** The panels should include the pressures that bracket the boundary at each temperature (10.5 and 11.3 GPa at 300 K; about 13–14 GPa at 80 and 20 K).
+
+**16. Literature attribution.** Please check the attribution of the Bmab assignment to [37]. Please also cite and discuss explicitly the Bmab-versus-P2₁/a debate in earlier powder and single-crystal work.
+
+**17. Ambient high-temperature PXRD reversibility.** Heating to 1223 K in a quartz capillary may change the oxygen content. Please report heating/cooling hysteresis and reversibility of Ts.
+
+**18. Typos and wording.**
+- "PsuedoDojo"
+- "propoposal"
+- "P_c" in Table I
+- "La₂nio₄.125"-style lowercase formulas in the references
+- frequent "we state"
+
+**19. Data availability.** Given the claims, deposit the CIFs (all P–T points), the frame data for key pressures and the Raman spectra in a repository rather than "upon reasonable request".
+
+## 4. Suggestions for improvement
+
+1. **Make the Bmab-versus-B2₁/a decision quantitative near the boundary.** Measure several closely spaced pressures (for example 9–12 GPa at 300 K and 11–15 GPa at 20 K) on compression and decompression. For each, report:
+   - the (½,½,0)-type superlattice intensity;
+   - β with realistic errors;
+   - I/σ of B2₁/a-only reflection classes after twin modeling;
+   - Hamilton tests.
+   
+   This would turn the central claim from a fit-quality preference into a symmetry-resolved observation and would also settle the order of the transition.
+
+2. **Strengthen the DFT with constrained-symmetry enthalpy curves.** Converge H(P) at the sub-meV level for I4/mmm, Fmmm, Bmab and P2₁/c. Add a spin-polarized check and Bmab phonons at Pc to show whether it is dynamically unstable. This would make the "no intermediate phase at 0 K" statement robust.
+
+3. **Recast the Raman analysis around symmetry-resolved data.** Perform angle-resolved polarized Raman on an XRD-oriented, preferably single-domain region, and complement it with temperature-dependent SHG. This would distinguish:
+   - zone-folding by the DW;
+   - DW collective modes;
+   - genuine loss of inversion symmetry (Pc/P2₁).
+
+4. **Characterize the DW in the very same crystals.** Use resistivity or magnetization, oxygen content, and a quantified satellite detection limit with T-dependent lattice parameters from the DESY data. This would connect the XRD null result and the Raman anomalies to a known T_DW and allow a meaningful comparison with Zhang et al. and with Raman studies that see no new modes (Gim et al.) or only 48 modes (Suthar et al.).

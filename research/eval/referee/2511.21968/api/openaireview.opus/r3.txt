@@ -1,0 +1,135 @@
+```json
+{
+  "overall_feedback": "This is a clearly motivated study. It uses angle-resolved surface Brillouin scattering to track a Rayleigh-type surface acoustic wave in exfoliated NiPS3 across T_N, alongside temperature- and polarization-resolved Raman, DFT elastic tensors and COMSOL modelling of the NiPS3/SiO2/Si stack. Several things are done well: the RT dispersion and its slow-on-fast character are documented; the q values match q=(4π/λ)sinθ; the DFT tensors respect monoclinic (unique-axis b) symmetry, and c66≈(c11−c12)/2 holds well. However, the central claim of a 'giant' ~5.5% magnetoelastic softening rests on thin evidence. The temperature series has a single point at 200 K and no data between 150 and 200 K. The 5.5% figure is measured from the PM maximum rather than from an extrapolated background. The RT velocity in Fig. 4 (~1865 m/s) disagrees by ~4% with Fig. 3b (~1945 m/s) at the same q, so reproducibility is comparable to the effect size. Known substrate (SiO2) temperature effects are not controlled for. The theory does not quantitatively support the experiment. DFT gives a 0.54% shift, ~10× smaller than measured, and leaves c44 (one of the two constants the Rayleigh mode is most sensitive to) unchanged. The abstract nonetheless states that the calculations 'reproduce' the magnetic shift. The DFT setup also raises concerns: a non-spin-polarized proxy for a local-moment paramagnet, no Hubbard U is mentioned, an ambiguous supercell, and an interlayer AFM stacking that seems inconsistent with k=[010]. The atomistic discussion contains formula-level problems: the optical-phonon shift is written in terms of the first rather than second derivative of J, and the elastic renormalization is written via a uniform susceptibility with a single-ion-like coupling while being called exchange striction. Key BMS and FEM parameters (laser power and heating, temperature stage, substrate constants, Si thickness, axis mapping) are missing. The conclusions should be toned down or supported with denser temperature data, repeat or cycled measurements, and substrate controls.",
+  "comments": [
+    {
+      "title": "Sparse temperature sampling cannot localize the anomaly at T_N, and the 5.5% is measured from a one-point maximum",
+      "quote": "the spectral position of the Rayleigh peak increases gradually upon cooling from RT to ~200 K, followed by a distinct drop at around 𝑇𝑁, and then remains nearly constant at lower temperatures.",
+      "explanation": "Fig. 4(b) has points at roughly 300, 250, 200, 150, 130, 120 and 90 K. There are no measurements between 150 and 200 K, so the 'drop at T_N' is a single interval of 50 K. It could have started anywhere above 155 K, including as a fluctuation-driven precursor in the PM phase. The quoted 1920 → 1815 m/s (5.5%) compares the single highest PM point (200 K) with the AFM data. Measured from the 300 K value (1865 m/s), the difference to the AFM data is only ~2.7%. No anharmonic background is fitted, unlike the Raman analysis. A background extrapolated from 300–200 K would itself be ill-determined from three points. The 'nearly constant' low-T regime spans 1805–1836 m/s with error bars up to ±25 m/s. Fig. 4(a) also shows an 80 K spectrum with no corresponding point in Fig. 4(b). For the headline result, the magnitude and the T_N assignment are therefore not robustly established.",
+      "type": "logical",
+      "severity": "major",
+      "suggested_fix": "Add BMS points at ~5 K spacing between 140 and 200 K, ideally on both cooling and warming. Fit a Varshni/anharmonic background to the PM data and quote the softening relative to that background at a given T, with uncertainty, rather than relative to the 200 K maximum. Also add or explain the missing 80 K point."
+    },
+    {
+      "title": "Room-temperature velocity at q=0.0135 nm⁻¹ differs between Fig. 3 and Fig. 4 by an amount comparable to the claimed effect",
+      "quote": "incidence angle fixed at 𝜃 = 35°, maintaining a constant in-plane wavevector.",
+      "explanation": "At θ=35°, q=(4π/532 nm)·sin35°≈0.01355 nm⁻¹. In Fig. 3(b) the RT peak is at ~4.2 GHz, giving v=2πf/q≈1945 m/s. In Fig. 4(b) the 300 K point at the same q is ~1865 m/s (f≈4.02 GHz). This ~4% discrepancy between nominally identical measurements is close to the 5.5% magnetic softening being claimed. It suggests that run-to-run, spot-to-spot, angle-calibration or cryostat-window effects are not negligible. Without explaining it, one cannot judge whether the step across T_N exceeds the systematic uncertainty.",
+      "type": "technical",
+      "severity": "major",
+      "suggested_fix": "State whether Figs. 3 and 4 come from the same flake and spot, and reconcile the two RT values. Report the systematic uncertainty from repeated RT measurements and angle calibration in the cryostat, and compare the T_N step against it."
+    },
+    {
+      "title": "No control for the temperature dependence of the SiO2/Si substrate",
+      "quote": "The initial increase reflects the expected reduction of anharmonic lattice vibrations upon cooling, which leads to lattice stiffening and thus a higher acoustic phase velocity.",
+      "explanation": "The authors argue that at q≈0.0135 nm⁻¹ the Rayleigh mode still penetrates appreciably into the substrate; this is the basis of the slow-on-fast dispersion. Amorphous SiO2 is well known to have anomalous elastic behaviour: its moduli and sound velocities decrease on cooling below room temperature. The film also experiences thermal-mismatch strain on cooling. Both effects change the hybrid mode velocity independently of magnetism. The paper measures the bare substrate only at RT (Supplementary Fig. 5) and has no non-magnetic reference film. The PM trend and the low-T level could therefore be partly substrate-driven, making the attribution of the full ~5.5% to magnetoelasticity insecure.",
+      "type": "logical",
+      "severity": "moderate",
+      "suggested_fix": "Measure the bare SiO2/Si substrate modes versus temperature (80–300 K) under the same geometry. Alternatively, include the known T-dependent SiO2 elastic constants in the COMSOL model to quantify the non-magnetic background. Ideally also measure a non-magnetic isostructural reference film (e.g. ZnPS3) of similar thickness."
+    },
+    {
+      "title": "DFT/FEM shift is ~10× smaller than experiment, yet is described as reproducing the magnetic shift",
+      "quote": "Although this reduction is smaller than the experimentally observed drop (~6 %), the trend confirms that the AFM ordering leads to elastic softening of the Rayleigh mode.",
+      "explanation": "The computed change (4.603 → 4.578 GHz) is 0.54%, an order of magnitude below the measured 5.5%. It is also well below the ~10% absolute offset between simulated (~4.6 GHz) and measured (~4.2 GHz) RT frequencies. A sign agreement on a 0.5% effect from a 0 K NM-vs-AFM comparison is weak corroboration. Nevertheless the abstract states that the calculations 'reproduce both the Rayleigh-wave dispersion and its magnetic-order–induced shift'. The text also inconsistently quotes the experimental drop as ~6% here and ~5.5% elsewhere.",
+      "type": "logical",
+      "severity": "major",
+      "suggested_fix": "Revise the abstract and conclusions to state that DFT/FEM reproduce the sign but only ~10% of the magnitude (0.54% vs 5.5%). Use a single consistent experimental value (5.5%) throughout."
+    },
+    {
+      "title": "Inferred 'shear' softening contradicts the DFT tensor and the sensitivity analysis",
+      "quote": "implies a sizable reduction in the shear- and out-of-plane-related elastic coefficients",
+      "explanation": "The sensitivity analysis says v_R is most sensitive to c33 and c44. In Table 1, c44 is identical in NM and AFM (9.7 GPa), and c55 slightly increases. The constant highlighted as 'most notable' (c66, which rises by 17%) is an in-plane xy shear that should hardly affect a sagittal-plane Rayleigh wave propagating along b. Thus the experimental requirement (a large shear reduction) is not what DFT predicts. This also explains the 0.54% result. The text presents the DFT as supporting the experimental inference when it actually points to a discrepancy in c44, the very constant that would be needed.",
+      "type": "logical",
+      "severity": "moderate",
+      "suggested_fix": "State explicitly that DFT predicts no change in c44 and only a ~8% reduction in c33. Use the Supplementary Table 2 sensitivities to report what c44 reduction alone would be needed to give a 5.5% velocity drop, and discuss this as an open discrepancy."
+    },
+    {
+      "title": "Spin–phonon frequency shift written with the first instead of the second derivative of J",
+      "quote": "Their magnetic renormalization is governed by the derivative of the exchange integral with respect to an atomic displacement 𝑢𝛼",
+      "explanation": "In the standard treatment (Granado et al., PRB 60, 11879; Lockwood & Cottam), expanding H = Σ J_ij(u) S_i·S_j to second order in the phonon coordinate gives a frequency renormalization Δω ∝ (1/(2μω)) Σ (∂²J_ij/∂u²)⟨S_i·S_j⟩. The first derivative ∂J/∂u produces a force, i.e. a static displacement (exchange striction), not a change in the harmonic force constant. The stated Δω_opt ∝ (∂J_ij/∂u_α)⟨S_i·S_j⟩ is therefore incorrect as a formula for the frequency shift.",
+      "type": "technical",
+      "severity": "moderate",
+      "suggested_fix": "Replace with Δω_opt ≈ (1/(2μω₀)) Σ_ij (∂²J_ij/∂u_α²)⟨S_i·S_j⟩. Note separately that ∂J_ij/∂u_α governs exchange-striction displacements."
+    },
+    {
+      "title": "Magnetoelastic renormalization formula is unjustified and internally inconsistent",
+      "quote": "When long-range AFM order sets in, this coupling renormalizes the elastic tensor as",
+      "explanation": "Several problems arise. (i) The energy E_me = −Σ B_αβ ε_αβ S_α S_β is a single-ion/anisotropic (Callen–Callen) form tying strain indices to spin-component indices; a general form needs B_αβγδ ε_αβ S_γ S_δ. Exchange striction instead couples strain to S_i·S_j, yet B_αβ is said to quantify ∂J_ij/∂ε_αβ. (ii) For a coupling linear in strain and quadratic in the order parameter, Landau theory gives a step-like Δc ∝ −λ²/b (b being the quartic Landau coefficient) below T_N, plus fluctuation terms. The result c^eff = c^(0) − λ²χ_m with the uniform magnetic susceptibility is not derived. (iii) In an antiferromagnet the uniform χ_m shows no singularity at T_N; the relevant quantity is the staggered order parameter. (iv) No B or λ values are estimated. The claim that this 'quantitatively links' the macroscopic softening to exchange striction is therefore not supported.",
+      "type": "technical",
+      "severity": "moderate",
+      "suggested_fix": "Write the coupling as E_me = Σ_ij (∂J_ij/∂ε_αβ) ε_αβ ⟨S_i·S_j⟩ (or λ ε L² with L the staggered order parameter). State the Landau result Δc = −λ²/(2b) (or Δc ∝ −λ²χ_L with the staggered susceptibility). Estimate λ from the DFT strain dependence of J, or drop 'quantitatively'."
+    },
+    {
+      "title": "Δc/c ≈ 2Δv/v neglects substrate participation, so 11% underestimates the required NiPS3 softening",
+      "quote": "implying an effective modulus reduction of Δ𝑐𝑒𝑓𝑓⁄𝑐𝑒𝑓𝑓 ≃ (2)(Δ𝑣𝑅⁄𝑣𝑅) ≃ 11%.",
+      "explanation": "The relation v ∝ √(c/ρ) applies to a homogeneous half-space. Here the authors themselves stress that the mode at q≈0.0135 nm⁻¹ is a hybrid with substantial weight in SiO2/Si, whose moduli are not affected by magnetic order. The fractional velocity change is then a weighted (diluted) response to the film constants. A 5.5% velocity drop therefore requires more than 11% softening of the relevant NiPS3 constants. Density and thickness changes from magnetostriction are also ignored. The 11% figure is thus a lower bound at best, which strengthens the conflict with the DFT values.",
+      "type": "technical",
+      "severity": "moderate",
+      "suggested_fix": "Use the FEM model to invert the measured 5.5% shift: scale c33 and c44 (or a uniform film modulus) until the computed f at q=0.0135 nm⁻¹ drops by 5.5%, and report that required film-modulus change instead of the homogeneous-medium estimate."
+    },
+    {
+      "title": "Non-magnetic DFT state is a poor proxy for the local-moment paramagnet, and no Hubbard U is specified",
+      "quote": "Since NiPS3 is paramagnetic (PM) above 𝑇𝑁, the NM state is used as an approximation to the high-temperature PM phase.",
+      "explanation": "Above T_N, NiPS3 retains local Ni²⁺ (S=1) moments with short-range correlations; only long-range order is lost. A non-spin-polarized calculation quenches the moments entirely, changing Ni–S bonding, volume and the electronic structure. The NM–AFM difference thus mainly reflects moment formation rather than order–disorder. Moreover, the Methods list plain PBE-D3 with no +U. Most NiPS3 studies use DFT+U, as plain GGA poorly describes the Mott-like gap and moment-dependent bonding. Both choices may explain the poor agreement in magnitude.",
+      "type": "technical",
+      "severity": "moderate",
+      "suggested_fix": "Use PBE+U (U≈4–6 eV on Ni) and model the PM phase with spin-polarized disordered-local-moment/SQS configurations or an average over FM and other collinear configurations, rather than a non-spin-polarized state. Report the U value and resulting moments."
+    },
+    {
+      "title": "Interlayer coupling stated as AFM, inconsistent with k=[010]",
+      "quote": "Adjacent layers are additionally coupled antiferromagnetically along the c-axis.",
+      "explanation": "A propagation vector k=[010] for the C-centered monoclinic cell has zero component along c*. Magnetic cells in adjacent layers are therefore identical, i.e. the stacking is ferromagnetic; Wildes et al. (ref. 32) report ferromagnetically coupled planes for NiPS3. Stating AFM interlayer coupling contradicts the quoted k. If the DFT AFM configuration was built with interlayer AFM (the ×2 doubling along c suggests this might be so), the computed 'AFM' tensor corresponds to a different magnetic structure.",
+      "type": "technical",
+      "severity": "moderate",
+      "suggested_fix": "Correct the description to ferromagnetic interlayer stacking consistent with k=[010]. State explicitly the spin configuration used in the DFT supercell; if interlayer AFM was used, recompute with the experimental stacking."
+    },
+    {
+      "title": "Supercell specification is ambiguous",
+      "quote": "The simulations were carried out for a 1×4×2 supercell of NiPS3 (lattice dimensions (AFM): 11.499 × 19.914 × 12.308 Å)",
+      "explanation": "The conventional C2/m cell of NiPS3 is about 5.8 × 10.1 × 6.6 Å (β≈107°). The quoted dimensions are close to 2×2×~2 conventional cells, not 1×4×2 of either the conventional or primitive cell. The reference cell, the c-axis length (12.3 Å vs 2c≈13.3 Å), β, and how the zigzag order maps onto the supercell are unclear. This affects reproducibility of the elastic tensors in Table 1.",
+      "type": "technical",
+      "severity": "minor",
+      "suggested_fix": "State the reference cell (conventional or primitive), the supercell matrix, the relaxed a, b, c and β for NM and AFM, the Ni moment arrangement, and the Cartesian axis convention (x∥a, y∥b, z∥c*) used for the Voigt indices."
+    },
+    {
+      "title": "BMS and FEM methods are underspecified",
+      "quote": "The scattered light was directed into a high-resolution, high-contrast 3 + 3 tandem Fabry-Perot interferometer (The Table Stable, Switzerland), coupled to a detector and spectrum analyzer.",
+      "explanation": "For a temperature-dependent anomaly near T_N, the actual sample temperature matters. Yet the paper omits several key BMS details: the BMS laser power, spot size and estimated heating of a 220 nm absorbing film on SiO2; the cryostat and temperature sensor location; the polarization configuration; the mirror spacing/free spectral range; accumulation times; and how θ was calibrated through the cryostat window. The Raman section, by contrast, gives the power (0.024 mW). The FEM description also omits the Si thickness ('represented numerically by a finite thickness', with a fixed bottom that can introduce spurious modes), the cell length L_x, the SiO2/Si elastic constants and densities, the NiPS3 density, and how the DFT tensor axes were rotated onto the propagation direction along b.",
+      "type": "technical",
+      "severity": "moderate",
+      "suggested_fix": "Add the BMS laser power on sample, spot size, an estimated local temperature rise, the cryostat/sensor details, polarization, FSR and acquisition time. For FEM, give the Si thickness, L_x, all material parameters (ρ, c_ij for NiPS3, SiO2, Si) and the tensor orientation."
+    },
+    {
+      "title": "Crystal-axis and magnetic-domain identification for q∥b is not secure",
+      "quote": "These edges align with the zigzag (a-axis) direction, while the armchair direction (b-axis) is perpendicular to it.",
+      "explanation": "The authors note that cleavage edges lie along <100> or <110>, at 60° to each other. In the pseudo-hexagonal NiPS3 layer, [100] and [110]-type edges are optically indistinguishable zigzag directions. An edge perpendicular to q could therefore correspond to b or to one of the ±60° pseudo-equivalent armchair directions. More importantly for this study, the zigzag AFM order breaks the pseudo-threefold symmetry, and exfoliated films typically host three magnetic domain orientations. The relation between q and the ferromagnetic chain direction is thus not fixed by the optical image. This matters for interpreting anisotropic magnetoelastic changes such as c22 versus c11.",
+      "type": "logical",
+      "severity": "minor",
+      "suggested_fix": "Confirm the b-axis by polarization-resolved Raman (e.g. the angular dependence of the Ag/Bg intensities) or by linear dichroism/birefringence below T_N. Note possible zigzag domain averaging over the BMS spot."
+    },
+    {
+      "title": "Loudon selection rule misstated",
+      "quote": "only modes with displacement components perpendicular to the phonon propagation direction contribute significantly to the scattered intensity",
+      "explanation": "The surface-ripple mechanism of Loudon (ref. 42) gives an intensity proportional to the surface-normal displacement |u_z(0)|². 'Perpendicular to the propagation direction' would also include the in-plane shear-horizontal displacement, which does not couple via the ripple mechanism. Since NiPS3 absorbs at 532 nm, elasto-optic contributions in the film may also play a role.",
+      "type": "technical",
+      "severity": "minor",
+      "suggested_fix": "Rephrase as 'modes with a significant surface-normal displacement component u_z at the free surface dominate the ripple-scattering intensity', and mention the possible elasto-optic contribution in the absorbing film."
+    },
+    {
+      "title": "Overstated claims about Raman completeness and simulation agreement",
+      "quote": "shows the unpolarized Raman spectrum in which all Raman-active modes are observed, confirming the structural quality of the sample.",
+      "explanation": "The representation gives 15 Raman-active modes (8Ag+7Bg). Fig. 1(c) shows about 8–9 fitted features, several labelled as unresolved Ag/Bg pairs, so not all modes are individually observed. Similarly, a 4.6 GHz simulated versus 4.2 GHz measured frequency (and ~2150 vs ~1945 m/s) is a ~10% discrepancy, larger than the magnetic effect under study, yet it is described as 'close agreement'.",
+      "type": "logical",
+      "severity": "minor",
+      "suggested_fix": "Say 'the main Raman-active modes (with several Ag/Bg pairs unresolved) are observed'. Describe the FEM agreement as 'within ~10% in absolute frequency, with the same dispersion trend'."
+    },
+    {
+      "title": "'Giant' and 'rarely reported' framing exceeds the evidence",
+      "quote": "revealing a giant spin–lattice interaction rarely reported in two-dimensional magnets",
+      "explanation": "The effect comes from a single flake at one q, with sparse temperature points and no repeat or cycling. Its magnitude depends on the choice of PM reference (2.7–5.5%), and theory reproduces only ~10% of it. Ultrasonic studies of bulk antiferromagnets routinely report elastic anomalies of a few percent at T_N. Labelling the effect 'giant' and unprecedented is therefore an overstatement at this stage.",
+      "type": "logical",
+      "severity": "minor",
+      "suggested_fix": "Replace 'giant ... rarely reported' with 'a sizable (~3–5%) magnetoelastic velocity anomaly', and compare quantitatively to known T_N elastic anomalies in bulk antiferromagnets (e.g. refs. 21–24)."
+    }
+  ]
+}
+```

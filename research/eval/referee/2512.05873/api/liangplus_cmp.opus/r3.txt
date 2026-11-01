@@ -1,0 +1,182 @@
+Review outline:
+
+## 1. Significance and novelty
+
+The manuscript places a 30 µm × 200 nm × 110 nm Al nanostring in the loop of a SQUID that terminates a λ/4 microwave cavity. It tracks the string's "intrinsic" mechanical frequency Ω0 as a function of in-plane field B_ip and makes two claims:
+
+- the smooth increase Ω0² ∝ B_ip^1.81 is Campbell-regime pinning elasticity, with Labusch parameter α_L ~ 10¹⁴ N m⁻⁴;
+- superimposed step-like jumps of 10–50 Hz are individual (or few) vortex-entry events, from which single-vortex pinning stiffnesses, pinning energies of 0.09–0.44 eV and "attonewton" forces are extracted.
+
+Using an optomechanical sensor that is integrated in a quantum-circuit-like geometry to probe vortex matter in situ is attractive and timely. The interpretation is the issue. As presented, both the smooth background and the jumps have plausible non-vortex origins that are not excluded, and the vortex picture has internal inconsistencies.
+
+The paper should also be positioned more explicitly relative to:
+- Bolle et al. (Ref. 56), who already resolved single-vortex entry mechanically in mesoscopic superconductors;
+- the vibrating-reed theory of Brandt, Esquinazi and co-workers (Refs. 38–42), which makes quantitative predictions for field-induced stiffening.
+
+## 2. Potential reasons for acceptance
+
+- The platform is well characterised and builds on the authors' earlier work. The flux-dependent Lorentz-force spring (Eq. 3, Fig. 2c) is clearly reproduced, and the field resolution (0.25 mT) is substantially better than in Ref. 46.
+- The power-law background is reproduced across a thermal cycle and agrees with the earlier low-resolution data (Fig. 4).
+- If the jumps are confirmed as vortex events, the result would show that device-integrated nanomechanics can detect flux entry in sub-micron superconducting elements. That is relevant to flux noise and quasiparticle physics in quantum circuits.
+- The order-of-magnitude estimates are arithmetically consistent with the stated inputs. I checked ξ, λ, κ_GL, B_c1, Δα_L, k_p, U, Δk, x_rms and S_FF.
+- Data are openly available.
+
+## 3. Concerns
+
+### A. Must address
+
+**1. The smooth B_ip^1.81 background is not shown to be vortex-related; a residual Lorentz-force spring is a leading alternative.**
+
+- *How Ω0 is obtained.* Ω0(B_ip) is obtained by fitting Eq. 3 to each flux dome. Eq. 3 assumes symmetric junctions (Footnote 55; Appendix A, "default α = 0").
+- *Why asymmetry matters.* For an asymmetric SQUID the Josephson inductance does not diverge at Φ_b = (n+½)Φ0. A Lorentz-force spring term proportional to η²B_ip²l²/m_eff therefore survives at the dome minimum. To leading order it is a fraction of order |α| of the zero-flux term.
+- *Size of the effect.* The dome amplitude at 35 mT in Fig. 2(c) is ~1 kHz, i.e. Δ(f²) ~ 10¹⁰ Hz². The "background" in Fig. 4 is ~6.5 × 10⁹ Hz². Junction asymmetries of 10–20%, which are common, would therefore account for a significant part of the background.
+- *Shape of the effect.* Such a residual has essentially the B² shape that is fitted (k = 1.81 ± 0.05).
+- *Other leakage paths.* The same holds for any field-dependent error in the other inputs to the Lorentz term, notably I_c(B_ip). This is expected because the in-plane field threads the junction barriers (Fraunhofer suppression).
+- *Classic vibrating-reed stiffening.* Field-induced stiffening ∝ B² is also the generic vibrating-reed result from flux-line tension and demagnetisation (Refs. 38–40), independent of pinning details. So k ≈ 2 does not single out Campbell pinning.
+- *What the text leaves open.* The text acknowledges "magnetomotive stiffening, in-plane screening, or higher-order corrections" but dismisses them only because of the jumps. That argument does not apply to the background.
+
+Requested:
+- List which fit parameters are free and which are fixed (I_c, L_l, η, α, φ_off, Ω0) for each B_ip, with their values and uncertainties versus B_ip.
+- Refit with α free.
+- Show the raw Ω_m(Φ_b = Φ0/2, B_ip) without any model.
+- Measure with B_ip rotated parallel to the string, where the Lorentz term vanishes but vortices still enter.
+- Measure the temperature dependence of the background. α_L should depend strongly on T approaching T_c; a geometric or Lorentz residual should follow I_c(T) instead.
+
+**2. The statistical and experimental basis for identifying "jumps" is insufficient, and several marked jumps look like artefacts.**
+
+- *Step size versus resolution.* The steps (10–50 Hz) are comparable to the mechanical linewidth (Γ_m/2π = 20 Hz). They are only a few times larger than the error bars in Fig. 3, which appear to be ~0.1–0.2 × 10⁹ Hz², i.e. ~5–15 Hz.
+- *Arrows at the dataset boundary.* In Fig. 3(a), the "20.0 mT" jump coincides with the boundary between Dataset 2 (red, 12–20 mT) and Dataset 1 (blue, 20–30 mT). Drift between runs, or the choice of reference Ω0(20 mT), could produce it.
+- *Arrows at first data points.* The "12.0 mT" arrow in Fig. 3(a) and the "18.0 mT" arrow in Fig. 3(b) point at, or next to, the first data point of their datasets. A step cannot be established there.
+- *Downward excursions.* Several features are non-monotonic: a dip after 20 mT in Fig. 3(a), and a decrease after the 27 mT feature in Fig. 3(b). The entry-adds-stiffness model predicts only upward steps.
+- *"Stochastic" positions.* The two datasets in the same cooldown cover non-overlapping field ranges, so within-cooldown reproducibility is never tested. Across cooldowns, features at ~20/20.5 mT and 22.5/22.5 mT coincide. This sits uneasily with "positions vary between cooldowns" and could indicate geometric entry points, or an apparatus feature such as field-coil steps.
+- *Alternative sites.* Because Ω0 is a fit output, a vortex entering elsewhere would shift the fitted Ω0 through parameter correlations. Candidate sites include the wide SQUID leads, the junction electrodes, the CPW centre conductor or ground planes; misalignment of B_ip gives an out-of-plane component, and wide films have much lower entry fields. Such an event changes φ_off, I_c or ω_c.
+
+Requested:
+- Repeated up/down sweeps over the same field range within one cooldown, to test hysteresis and history dependence.
+- Several more cooldowns.
+- An objective step-detection criterion with significance levels.
+- Fixed-field time traces or Allan deviation to quantify drift.
+- Simultaneous plots of φ_off, I_c and ω_c versus B_ip, showing that the jumps are absent from those parameters.
+
+**3. Whether this string can host vortices in this field geometry is not established, and the entry-field formulas are applied outside their range of validity.**
+
+As I read Fig. 1(a), B_ip is in-plane and perpendicular to the string, so vortices would run along w. The relevant cross-section is a slab of thickness d = 110 nm in parallel field.
+
+- *Slab criterion.* With the authors' own estimate ξ ≈ 108 nm, d/ξ ≈ 1. Ginzburg–Landau theory for thin slabs in parallel field predicts no vortex state below d ≈ 1.8ξ; the film goes directly to the normal state at B_c∥. The vortex core (~2ξ) does not fit in the thickness.
+- *Penetration depth.* With λ ≈ 0.84 µm ≫ d, w, the field penetrates almost completely and screening currents are weak. This undercuts the "edge screening sheet current" picture.
+- *Misapplied formulas.* Eq. 6, Eq. 7 and the 1.65Φ0/d² expression come from Likharev, Stan et al. and Bronson et al. (Refs. 67, 70, 72, 73). Those treat thin strips in perpendicular field (Pearl vortices) with the strip width as the relevant length. Here d is substituted for it.
+- *Mean free path.* The mean free path is set equal to an assumed 10 nm grain size. This is unusually small for a 110 nm Al film.
+- *Layer structure.* The string is made by double-layer shadow evaporation. If it is an Al/AlOx/Al bilayer, the relevant thickness for vortex physics is roughly halved, which makes vortex formation even less favourable.
+
+Requested:
+- Measured residual resistivity (or RRR), T_c and sheet resistance of co-deposited films, to obtain l_f and ξ.
+- The layer structure of the string.
+- A measurement of the string's parallel critical field. This should be accessible as loss of SQUID tunability.
+- A model of vortex entry appropriate to a slab of thickness d ≈ ξ in parallel field.
+
+**4. The background and the jumps are mutually inconsistent within the vortex picture, and the coupling mechanism is not derived.**
+
+- *Too few jumps.* Using the paper's own numbers (A = ld = 3.3 × 10⁻¹² m², n_v ≈ B/Φ0), about 19 vortices should enter between 12 and 24 mT. Each would carry ⟨k_p⟩ ≈ 10–20 N m⁻², i.e. a ~10–20 Hz step. Fig. 3 shows ~4–5 steps in that range.
+- *Smooth rise between steps.* Between steps the frequency continues to rise smoothly with roughly the background slope. If α_L = n_v⟨k_p⟩ with discrete n_v, Ω0² should be a staircase. A smooth rise requires k_p of already-pinned vortices to grow with B, as B^0.81 for k = 1.81. That is neither stated nor justified.
+- *Bundles.* The jump spacing (1.5–5 mT) exceeds the predicted 0.63–1.25 mT. Attributing jumps to "one or a few flux quanta" then makes the per-vortex k_p and U extracted from each jump uncertain by the unknown bundle size. This conflicts with the "single-vortex pinning energies" in the abstract.
+- *Mechanism.* No microscopic coupling between string motion and vortex displacement relative to pinning sites is given for this geometry. In vibrating-reed theory the restoring force arises from tilting the sample relative to B; uniform translation in a uniform field gives no force. For out-of-plane flexure with B along w, the local rotation axis is parallel to B to first order.
+- *Campbell length.* With α_L ≈ 2 × 10¹⁴ N m⁻⁴ at 35 mT, λ_C = (B²/μ0α_L)^½ ≈ 2 µm, far larger than d and w. In Brandt's treatment this is the regime where the reed response is not set by α_L alone.
+
+Requested:
+- A derivation of the stiffening for the actual mode, field and vortex orientation. It should include any role of the circulating current J, which exerts a Lorentz force on vortices along the motion direction.
+- A quantitative comparison with Refs. 38–40.
+- A reconciliation of the step count and step sizes with the background.
+
+### B. Should address
+
+**5. The effective density is likely wrong, which biases all α_L values low.**
+
+- ρ_eff = 910 kg m⁻³ equals m_eff divided by the geometric volume (0.6 pg / 6.6 × 10⁻¹⁹ m³), not m_eff/V_eff.
+- For a spatially uniform α_L, Eq. 8 requires the material density (≈2700 kg m⁻³).
+- This underestimates α_L, Δα_L, k_p and U by a factor of ~3 (or ~2, depending on the mode-mass convention).
+- α_L also relies on Ω0,bare extrapolated from a power law. There are no data below ~6 mT and none at zero field.
+
+**6. The claimed onset B_c1 ≈ 5 mT is not supported by the data or the fit.**
+
+- The fit A0 + C B^k has no threshold, and the lowest data point in Fig. 4 is ~6 mT. The statement that "the trend sets in at B_ip ≈ 5 mT (Fig. 2(d))" cannot be read from the figure.
+- The analysis also switches between Eq. 7 (n_v vanishing at B_c1) and the uniform approximation n_v ≈ B/Φ0. The latter is used for ⟨k_p⟩ and is inconsistent with a threshold.
+
+Requested:
+- Measure down to zero field, and fit with an explicit onset.
+
+**7. The force and sensitivity argument conflates quantities, and "real time" is overstated.**
+
+- What is detected is a shift in resonance frequency. The figure of merit is frequency resolution (fit uncertainty or Allan deviation at the measurement bandwidth), not thermal force noise compared with ΔF = Δk·x_rms. The "3–17 aN force steps" are not forces acting on the string.
+- The mode temperature is assumed to be 85 mK and is not calibrated.
+- The data are quasi-static field sweeps reconstructed from dome fits, not time-resolved records. The abstract and Section V ("captures spontaneous flux dynamics in real time") should be revised, or time traces added.
+
+**8. The pinning-energy estimate rests on unverified assumptions.**
+
+- U = ½k_p r_p² L_line assumes a harmonic well out to r_p ~ ξ and L_line = w, so U scales as r_p².
+- The range should be presented as an order-of-magnitude estimate, with the bundle ambiguity from Concern 4 propagated.
+- It should be compared with the condensation-energy bound for a core segment, (B_c²/2μ0)πξ²w, which is ~1 eV for thin-film Al.
+
+**9. Only one device and one temperature are measured.**
+
+- All data come from a single device at 85 mK. There is one thermal cycle and no second sample.
+- The vortex interpretation predicts testable scalings:
+  - step spacing ∝ 1/(ld);
+  - background vanishing at T_c with a characteristic α_L(T);
+  - dependence on field angle.
+- A second device with different d or w, or a temperature series, would considerably strengthen the claims.
+
+**10. The flux-bias sweep may itself move vortices.**
+
+- Each Ω0 point requires sweeping B_oop across a dome. This changes the circulating current J through the string, which exerts a Lorentz force on any vortices present.
+- The authors should show that domes are reversible (forward/backward sweeps) and that the dome sweep does not trigger the jumps.
+
+**11. Fig. 4 mixes data analysed with two different models.**
+
+- The data from Ref. 46 were extracted with Eq. A1, which neglects L_l. The new data use Eq. 3.
+- The datasets come from different cooldowns and are aligned by referencing to 35 mT.
+- Please reanalyse the old data with Eq. 3, or state the size of the model-dependent offset.
+
+### C. Minor
+
+12. Text and figures disagree:
+   - Section V describes the Ref. 46 data as "black filled circles", whereas the Fig. 4 caption and legend show black squares.
+   - The Fig. 4 caption describes the new data as "blue circles", whereas the plotted data and legend are green.
+   - Eq. 4 uses Ω²0,bare + ϑB^k, whereas the figures use A0 + CB^k.
+   - k = 1.81 ± 0.05 is quoted for Figs. 2(d), 3(a), 3(b) and 4. Please state whether this is one global fit or independent fits, and give the per-dataset values.
+
+13. Appendix A gives initial values but not which parameters are free. It does not explain how the Ω0 error bars are derived, for example whether they include parameter covariance.
+
+14. The plotted point spacing in Fig. 3, particularly Dataset 2, appears coarser than the stated 0.25 mT resolution. Please clarify.
+
+15. The field-cooled expression 1.65Φ0/d² is a threshold for vortex trapping on cooling, not a Bean–Livingston barrier "delaying penetration". Rephrase.
+
+16. Please describe the calibration of field alignment and how the out-of-plane component of the in-plane magnet is compensated.
+
+17. There are duplicate or incorrect references:
+   - 34 and 70 are duplicates;
+   - 42 and 82 are duplicates;
+   - 36, 69 and 79 are the same work, and 79 is listed as Phys. Rev. B instead of Phys. Rev. Applied.
+
+18. The single-photon strong-coupling framing in the abstract and conclusion is tangential to the results. Consider toning it down.
+
+19. The quoted relative step size "∆Ω0/Ω0 ∼ 10⁻⁵" is more accurately (2–9) × 10⁻⁶.
+
+## 4. Suggestions for improvement
+
+1. **Isolate the vortex contribution with orthogonal controls.**
+   - Rotate B_ip parallel to the string, where the Lorentz term is absent.
+   - Perform a temperature series up to T_c.
+   - Fit with junction asymmetry free and show raw half-flux frequencies.
+   - Together these would separate Lorentz-residual, geometric and pinning contributions to the background.
+2. **Establish the jumps statistically.**
+   - Repeat up/down sweeps over identical field ranges within and across several cooldowns.
+   - Use a predefined step-detection criterion.
+   - Show that φ_off, I_c and ω_c are featureless at the identified fields.
+3. **Anchor the superconducting parameters experimentally.**
+   - Measure ρ_n/RRR, T_c, the layer structure and B_c∥ of the string.
+   - Recast vortex entry for a slab of thickness d ≈ ξ in parallel field.
+   - Recompute α_L with the correct density.
+4. **Provide a quantitative mechanical model.**
+   - Derive vortex–string coupling for the actual mode, field and vortex geometry, including the Campbell length relative to d.
+   - Compare it with Brandt's vibrating-reed predictions.
+   - Reconcile the number and size of steps with the smooth background.

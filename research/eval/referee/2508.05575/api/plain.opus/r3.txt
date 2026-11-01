@@ -1,0 +1,155 @@
+# Referee Report
+
+**Manuscript:** "Negative differential conductance in triangular molecular assemblies" (Li, Pokorný, Hapala, et al., arXiv:2508.05575v1)
+
+## Summary
+
+The authors use lateral STM manipulation to assemble TBTAP molecules on Pb(111) into a C₃-symmetric trimer and a hexamer, and study them by STS at 2.6 K.
+
+For the trimer, they report:
+- tip-induced discharging rings that expand and overlap with increasing bias;
+- regions of negative differential conductance (NDC) near the cluster centre at V_s ≈ 0.7–0.9 V, with a chiral spatial pattern.
+
+They model the trimer as a three-impurity Anderson model (TIAM) with inter-site capacitive coupling W ≈ 50 meV, solved with a Pauli master equation (PME) coupled to an electrostatic tip model. The proposed mechanism has four parts:
+- The ground state is charge-frustrated, with two electrons on three sites.
+- Many dI/dV peaks are intra-cluster charge rearrangements rather than changes in total charge.
+- NDC arises when tip-driven, non-equilibrium occupation spreads over singly occupied configurations whose empty site is far from the tip.
+- Orbital symmetry produces the chirality.
+
+NRG calculations of the superconducting TIAM reproduce a pair of split YSR states. In the hexamer, the inner molecules appear neutral and show charging rings with NDC at negative bias. The authors attribute this to a different, barrier-modulation mechanism.
+
+## Overall assessment
+
+The experimental data are of high quality and visually compelling. The finite, tractable cluster is a good platform for relating charging-ring phenomenology to many-body states.
+
+Two insights are valuable and deserve emphasis:
+- Charging-ring crossings need not correspond to changes in total charge.
+- NDC can emerge from non-equilibrium population of near-degenerate configurations.
+
+However, I have significant concerns in three areas:
+- the internal consistency of the theoretical model with the parameters the authors themselves extract from experiment, especially substrate coupling and level position;
+- whether the Pauli master equation is adequate for a mechanism that hinges on near-degenerate states and slow inter-site relaxation;
+- several claims in the framing (device, "Gunn diode", "gate control", "quantitative" agreement, robustness via the hexamer) that are stronger than the evidence supports.
+
+I would support publication after major revision.
+
+---
+
+## Major issues
+
+### 1. The transport regime assumed in the PME is inconsistent with the extracted substrate coupling, and this directly threatens the NDC mechanism
+
+The PME simulations use Γ_s ≈ 0.01 meV ≪ k_BT ≈ 0.22 meV. The authors' own YSR analysis, here and in Ref. 27, gives Γ_s = 10–20 meV, three orders of magnitude larger. The authors argue that ring size and shape are set by electrostatics rather than by Γ. That is plausible for the *positions* of ground-state crossings, but it is not obviously true for the *NDC*, which is explicitly a non-equilibrium effect.
+
+The mechanism (Fig. 3) works as follows:
+- The tip pumps the cluster into a mixture of singly occupied configurations |100⟩, |010⟩, |001⟩.
+- These cannot relax into each other because direct hopping is zero, and first-order substrate processes through the doubly occupied intermediates are energetically suppressed at k_BT ≈ 0.2 meV.
+- Under that assumption the substrate cannot re-thermalize the population.
+
+With Γ_s ≈ 20 meV, this changes. In Fig. 3A the relevant doubly occupied intermediates lie only ~10–20 meV above the singly occupied states, so they are within the level broadening. Substrate-mediated cotunneling (inelastic charge rearrangement 100 → 1x0 → 010) would then occur at rates of order Γ_s²/ΔE, i.e., on the meV scale.
+
+By contrast, the tip pumping rate is tiny. From the measured currents of a few hundred pA, ħI/e is only ~μeV. Equilibration would therefore win by roughly three to four orders of magnitude, which naively removes the non-equilibrium population responsible for NDC.
+
+The width of the experimental peaks points the same way. With an effective lever arm of ~0.15–0.2, a ~15 mV-wide peak in V_s corresponds to only a few meV in energy, which is hard to reconcile with Γ_s = 20 meV.
+
+I ask the authors to:
+- state the Γ_t/Γ_s ratio used in the simulations and show that the NDC is insensitive to it;
+- go beyond sequential tunneling for at least one representative line cut, for example with the 2vN or RTD/cotunneling approaches available in QmeQ, using realistic Γ_s, or argue quantitatively why substrate-mediated rearrangement is slow;
+- reconcile the Γ_s values used for YSR (20 meV) and for transport (0.01 meV), or acknowledge that they describe incompatible regimes.
+
+If NDC survives only for Γ_s far below the YSR-derived value, this should be stated clearly. It would be an interesting result in itself, since it would imply that the YSR-derived Γ_s is not the relevant rate for charge rearrangement.
+
+### 2. Neglect of coherences and of non-local hybridization in the PME
+
+The mechanism relies on near-degenerate states: |010⟩ and |001⟩ are exactly degenerate by symmetry along the chosen cut, and singly occupied states cross. Pauli master equations are known to fail in exactly this situation when degenerate states couple to a common lead. Coherences between them can produce interference and dark-state effects; see the authors' Refs. 11, 12 and 52, the last of which is cited specifically for "the role of coherences".
+
+The two calculations also treat substrate-mediated coupling inconsistently:
+- The YSR/NRG calculations use ζ = 1, the maximal non-local substrate hybridization Γ_sij = Γ_s.
+- The PME transport model has no inter-site coherence at all.
+
+A non-zero ζ generates an effective substrate-mediated hopping and exchange that would mix the singly occupied configurations. This is precisely what the NDC mechanism requires to be absent.
+
+I ask the authors to:
+- repeat key calculations with a first-order von Neumann or Redfield approach (available in QmeQ) that retains coherences and includes ζ;
+- show how the NDC evolves with direct hopping t and with ζ. The statement that "the best fit was obtained for t = 0" should be supported by showing how quickly the NDC disappears as t increases.
+
+### 3. Inconsistent level position and charge-state assignment
+
+There are several related consistency problems:
+
+- **Level position used in different calculations.** ε_d = −90 meV is used in the PME and taken from the broad STS feature at −90 mV (Fig. S2). The NRG YSR fits use ε = −104 meV (Fig. S10G) and −106 meV (Fig. S11C). These should be reconciled or the differences justified.
+- **Interpretation of the −90 mV feature.** Within the authors' own model, the occupied-state peak of a cluster with a 2e⁻ ground state corresponds to the removal energy E(2) − E(1) = ε + W, not ε. If the −90 mV peak is ε + W, then ε ≈ −140 meV. Since the N = 3 / N = 2 crossover lies at ε = −2W = −100 meV, this would place the ground state in the triply occupied regime, contrary to the paper's central "frustrated −2e" picture. The authors should clarify how this peak maps onto many-body transitions. Hybridization broadening and tip gating at negative bias should also be considered.
+- **DFT charge state.** The DFT geometry and SOMO (Fig. S3) are computed for a trimer charged with three electrons, while the model asserts a −2e ground state. Please comment on whether this matters for the orbital shapes used in the chirality simulations.
+- **Spin-state labels.** The NRG section labels the ground state in the relevant ε window as a doublet ("first at ε = −58.5 meV between the singlet and doublet GS, second at −111.5 meV between doublet and triplet"). The main text refers to a "doubly-occupied ground state". Please clarify the spin and charge character of each phase and which transitions give the observed YSR pair.
+- **Independent evidence for −2e.** Independent support for the 2e⁻ assignment would considerably strengthen the paper. Possible sources are KPFM / LCPD measurements, or a systematic comparison with monomer and dimer ring onsets measured with the same tip.
+
+### 4. "Quantitative" / "almost perfect" agreement needs quantification and a parameter-sensitivity analysis
+
+**The fit itself.** The model contains many fitted parameters: r_tip, z_tip, z_C, z_S, Q_xx, β, W, ε_d, t, and the orbital-based tunneling matrix. Some fitted values are unphysical in a literal sense, e.g. z_S = −0.09 nm versus a ~0.3 nm molecule–surface distance. Comparisons are qualitative (arbitrary units, visual map matching), and Fig. S5 required rescaling the molecular overlay along one axis "to fit the charging rings".
+
+Please provide:
+- quantitative comparisons, such as ring radii versus V_s along defined cuts, NDC onset and extinction voltages, and peak positions in Fig. 1E/F versus Fig. 3D;
+- a sensitivity or correlation analysis showing that W ≈ 50 meV is uniquely determined and not degenerate with the electrostatic parameters;
+- a statement of which features are robust predictions and which are fitted.
+
+**Missing experimental details needed to judge the comparison:**
+- whether dI/dV maps were taken at constant height or constant current. If constant current, the tip–sample distance, and hence the gating field, varies across the map; Fig. S4 shows this has a strong effect;
+- setpoints and lock-in modulation amplitudes for Figs. 1, 2 and 4. The Methods say these are "indicated in the figure captions", but they mostly are not;
+- how many trimers and tips were measured, and how reproducible the NDC pattern is.
+
+**A test of the chirality mechanism.** The chirality is attributed to the incommensurate adsorption. Do the authors observe both enantiomeric trimers? If so, demonstrating that the NDC pattern mirrors accordingly would be a strong, clean test.
+
+### 5. The hexamer section does not support the robustness claim made in the Conclusions
+
+The hexamer is under-analysed relative to the claims made about it:
+
+- **Contradiction with the main text.** The main text states three things about the hexamer:
+  - its NDC arises from a different mechanism, the barrier/field effect of Ref. 18;
+  - "no new patterns emerge at the center of the structure after the rings intersect";
+  - no theoretical analysis was performed.
+
+  Yet the Conclusions claim that "the observation of similar phenomena in a more complex hexamer structure further confirms the robustness of these effects". These statements are contradictory and should be reconciled.
+- **Section title.** The heading ("Negative differential conductance in triangular hexamer assemblies") implies an analogous result. The text describes a chiral pattern of *positive* dI/dV near the centre and NDC that is generic to each charging ring.
+- **Neutral inner molecules.** The assignment of neutral inner and charged outer molecules is plausible given the YSR data (Fig. S12D). However, the electrostatic argument (outer charges push the inner levels above E_F) would benefit from even a minimal six-site estimate using the same W.
+- **Recommendation.** Either add a minimal model or present the hexamer explicitly as a contrasting case showing how topology changes the mechanism. The latter framing would actually be more interesting.
+
+### 6. Framing and claims
+
+Several claims go beyond what is demonstrated:
+
+- **"Device" and "molecular Gunn diode".** The NDC is a property of the tip–cluster–substrate junction. The STM tip acts simultaneously as electrode and gate, so there is no stand-alone two-terminal element. The Gunn effect is a bulk transferred-electron, domain-forming phenomenon with no mechanistic relation to the present effect. I recommend removing the Gunn-diode analogy and toning down the "device", "functional platform" and "programmable nanoelectronics" language.
+- **"Gate-controlled charging".** There is no independent gate; the "gate" is the tip field, which is tied to the bias. Please rephrase.
+- **"First observation of NDC in a molecular system engineered using lateral manipulation".** This is difficult to verify and probably too strong, given prior STM work on NDC in manipulated or assembled atomic and molecular structures (e.g., Refs. 4, 5, 16, 18, 35 and related work). Please qualify it or remove it.
+- **"NDC independent of the underlying superconductivity".** This is shown only by a model that omits superconductivity. Given the energy scales (~0.8 V versus Δ ≈ 1.3 meV), it is expected rather than surprising. If the authors want to make the claim experimentally, quenching Pb superconductivity with a small magnetic field (above the critical field) would be straightforward. Alternatively, present it as an expected consequence of the energy-scale separation.
+- **Alternative NDC mechanisms.** These should be discussed and, where possible, excluded:
+  - charge-state-dependent barrier modulation, as invoked for the hexamer;
+  - vibronic effects (satellite peaks P3/P4 in Fig. S4; cf. Ref. 25 on Ag(111));
+  - tip-induced molecular displacement at the high fields involved.
+
+  Showing that the model NDC disappears when a specific ingredient is removed (for example, the distance dependence of t_ti, or the near-degeneracy) would clarify which ingredients are essential.
+
+---
+
+## Minor issues
+
+1. **Image-charge position.** In the Supplementary electrostatics, "mirrored across the substrate at z = −2z_S" appears to have a sign error. An image plane at z_S < 0 gives image positions at 2z_S, measured relative to molecules at z = 0.
+2. **Fermi-function argument in Eq. (S7).** The definition x_{a,b} = (E_a − E_b − μ_α)/k_BT appears to have the energy difference with the wrong sign for an electron-addition process a → b (with N_a = N_b − 1). It should presumably be (E_b − E_a − μ_α). Please check, and also use T_exp versus T_α consistently.
+3. **Eq. (S6).** The integration notation is unclear; please specify the integration variable and limits.
+4. **Units.** "V_s = 790 meV" (p. 5) should read 790 mV or 0.79 V.
+5. **Bias sign.** In the hexamer text, "intersect at V_s = 0.45 V" should presumably be −0.45 V.
+6. **YSR map voltage.** Fig. S10I caption gives "V_s = 1.9 V"; the text says ±1.8 mV in one place and 1.9 mV elsewhere. Please unify.
+7. **Terminology.** "NDR" (Fig. 2 caption) and "NDC" are used interchangeably; choose one.
+8. **Typos.** "an molecular system" (p. 2); "Current cmponent" (Fig. 3B axis); "must determined" (S5); "Fermi energy energy" (Fig. S2).
+9. **Rate-hierarchy statement.** In the main text, "Γ_t < Γ_s ≪ k_BT_exp" should be accompanied by the actual values used, together with a note that the experimental Γ_s violates this hierarchy (see Major issue 1).
+10. **Fig. 1C/D positions.** Spectra in Fig. 1C/D would be easier to interpret if the tip positions relative to the molecular orbitals and nodal planes were indicated. It would also help to state whether the NDC dips on individual molecules (yellow and blue curves) correspond to the "mix" region of Fig. 3.
+11. **YSR splitting.** Attributing the ~0.1 meV splitting to a 2.5% tip-induced change in Γ₁ is plausible but ad hoc. Please show whether the splitting varies with tip position or height as this interpretation predicts.
+12. **Fig. S2 vibrational features.** Please state whether the vibrational assignments (±20, ±35, ±55 mV) are supported by calculation.
+13. **Data and code availability.** Please provide the Zenodo DOI. The statement that the ana_cont modification is "available upon request" should ideally be replaced by a public repository, as was done for the PME code.
+
+---
+
+## Recommendation
+
+**Major revision.** The experiment is interesting and well executed, and the many-body interpretation of ring crossings is insightful. The central theoretical claim, however, is that NDC arises from non-equilibrium occupancy in a frustrated three-site cluster, and it currently rests on a sequential-tunneling, coherence-free model operated three orders of magnitude away from the authors' own estimate of the substrate coupling.
+
+Demonstrating that the mechanism survives realistic Γ_s, cotunneling, and substrate-mediated coherence, or else clearly delimiting where it applies, together with resolving the parameter inconsistencies and moderating the framing, would make this a strong contribution.

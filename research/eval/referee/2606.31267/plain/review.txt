@@ -1,0 +1,90 @@
+Referee report
+
+Manuscript: "Orientation-tunable correlated Chern insulating states in chiral twisted double bilayer graphene proximitized by WSe2"
+
+1. Summary of the submission
+
+The authors study chiral (AB-BA) twisted double bilayer graphene (cTDBG, theta about 0.8 to 0.93 degrees) with monolayer WSe2 on the top bilayer. A continuum model with an orientation-dependent valley-Zeeman (Ising) term lambda_I(Phi) = lambda_I,0 cos(3 Phi) and a constant Rashba term predicts that at D = 0.5 V/nm the first valence band carries C_K = +2 at Phi = 0 and C_K = 0 at Phi = 15 and 30 degrees and without WSe2 (Fig. 2j to m). In transport, two Phi of about 0 devices (D1, D2) show a resistive state at nu = -1; D1 shows a Landau-fan feature of slope C = +1 projecting to nu = -1 with Rxy reaching 97.6% of h/e^2 near 3 T (Fig. 4a to d). A Phi of about 15 degrees device (D3) shows a nu = -1 feature that does not disperse with B (Fig. 4f), assigned C = 0. Supplementary devices (D4, D5 at Phi of about 30 degrees, and two bare cTDBG devices) are said to follow the same pattern. The headline claim is that the WSe2 alignment angle deterministically selects whether the quarter-filled correlated state is a Chern insulator or trivial.
+
+The question is interesting and timely, and a clean demonstration that the TMDC alignment angle switches the Chern number of a correlated state would be a useful result. In its present form, however, the manuscript does not establish the claim. The theory, as specified, appears either fine-tuned or internally inconsistent; the alignment angle, which is the independent variable, is not independently measured; and the experimental contrast rests on a single large-angle device with Rxx-only evidence. Details follow.
+
+2. Major concerns
+
+2.1 The theoretical mechanism, as written, does not obviously produce the claimed topology change.
+
+(a) The Ising term used (Eq. 8, H_I = (lambda_I/2) tau_z s_z, identity in sublattice) is a pure valley-Zeeman term. Within one valley it is spin-diagonal and k-independent, so on a layer where it acts it is simply a spin-dependent constant energy shift. If applied uniformly it cannot change any band eigenvector and therefore cannot change any Chern number; the introduction's statement that the Ising term "opens a proximity-induced gap at each valley that carries finite Berry curvature" does not apply to this term (it is the Kane-Mele/staggered term, Eq. 10, set here to 0.01 meV, that opens a Berry-curvature-carrying gap). The only way Eq. 8 can affect topology in this model is through its layer selectivity (L3 and L4 only, with a 0.35 scaling): it then acts on each spin species as an additional layer potential of about plus or minus 1 meV.
+
+(b) That makes the reported result very hard to understand. In the K valley the two spin species see layer potentials of opposite sign, yet both spin-resolved subbands are said to carry C = +1 (Fig. 2 caption), whereas without WSe2 the same band has C = 0. A perturbation of either sign changing C from 0 to +1 implies that the no-SOC band is at, or extremely close to, a gap closing with an adjacent band. Further, between Phi = 0 (lambda_I = 2.0 meV) and Phi = 15 degrees (lambda_I = 1.41 meV, with lambda_R = 0.5 meV fixed) the potential changes by only about 0.3 meV per spin, yet C_K changes from +2 to 0; the stated critical angle Phi_c of about 9 degrees corresponds to lambda_I of about 1.78 meV, that is, a 0.2 meV change flips the topology. Consistent with this, Fig. 2j and 2k, and Fig. 2a to c versus 2d to f, are visually almost indistinguishable. A topological assignment controlled by a sub-meV gap in a continuum model, with layer potentials U_d/3 of order 50 meV at D = 0.5 V/nm (Eq. 7 with the stated d_t and epsilon gives U_d of about 167 meV), is not robust to any of the uncertain inputs (v3, v4, Delta', u0/u0', the 0.35 layer factor, epsilon, theta, D, lattice relaxation, Hartree screening).
+
+Requested: (i) plot the minimum direct gap between the first valence band and its neighbours (including the spin partner) as a function of Phi, D and lambda_I, with and without SOC; (ii) show C_K as a phase diagram in (Phi, D) and (lambda_I, lambda_R) at the experimental theta values (0.80, 0.83, 0.93 degrees), not only at 0.9 degrees; (iii) show how C_K depends on the layer-decay factor and on whether SOC acts on L4 only; (iv) state clearly whether the "with WSe2" calculations include any sublattice potential (Supplementary Section XI mentions a "sublattice asymmetry" scenario that is not defined in the Methods), since that would confound the Phi = 0 versus no-WSe2 comparison.
+
+(c) The narrative is inconsistent with the model's own parameters. The abstract and main text state that Rashba coupling "dominates at larger Phi" and that the Phi of about 15 degrees device is in a Rashba-dominated regime, but in Eqs. 12 to 13 lambda_I(15 degrees) = 1.41 meV is nearly three times lambda_R = 0.5 meV; Rashba exceeds Ising only above about 25 degrees. Likewise the Discussion invokes an "emergent reflection symmetry at larger Phi", but the mirror symmetry exists only at Phi = 30 degrees. The introduction says Rashba alone does not modify topology, while the main text explains the transition by Rashba-induced gap closings. The physical explanation of the transition needs to be rewritten to match what the model actually does.
+
+(d) The angular dependence is assumed rather than computed. Eq. 12 to 13 (cos 3 Phi for Ising, constant Rashba) is presented as following from ref. 44, but the cited tight-binding and DFT studies (refs. 42 to 44, 57) report non-trivial Phi dependence, including a Rashba term that varies substantially and peaks at intermediate angles for WSe2, and an Ising term that is not well described by cos(3 Phi) for all TMDCs. Since the predicted Phi_c depends directly on this form, please use the published Phi-dependent parameters for WSe2 (or the authors' own DFT, Supplementary Figs. 9 to 10) and show the result. The statement that the Ising term "decreases almost linearly" near Phi = 0 is also inconsistent with cos(3 Phi), which is flat there.
+
+(e) Chern number computation. Eq. 14 as written (sum over n < n_F and m > n_F) gives the total Chern number of all occupied bands, not the Chern number of an individual band or of an individual spin subband. With Ising splitting of about 2 meV, much smaller than the bandwidth, the two spin subbands overlap in energy and are separated only by Rashba-induced anticrossings, so a per-subband Chern number is well defined only if a direct gap exists everywhere in the mBZ. Please specify how band-resolved and subband-resolved Chern numbers were obtained, use a gauge-invariant lattice method (for example Fukui-Hatsugai-Suzuki), and report k-mesh and plane-wave cutoff convergence.
+
+(f) The link from single-particle band Chern numbers to the many-body state is asserted, not shown. There is no interacting (for example Hartree-Fock) calculation at nu = -1. In TDBG and related systems, interaction-renormalized bands frequently differ in topology from the non-interacting ones, and Chern insulators have been reported in TDBG without any SOC (for example ref. 55, which the authors cite but do not discuss in this context). The conclusion that "the topological response of the correlated state is governed by the single-particle band topology" needs either an interacting calculation or substantial softening.
+
+2.2 The independent variable Phi is not independently determined.
+
+Phi is assigned only from optical alignment of straight edges, with an estimated uncertainty of plus or minus 2 degrees. Two problems:
+
+(a) Straight edges of both graphene and WSe2 can be zigzag or armchair, and these differ by 30 degrees. Using inter-edge angles of 60 or 120 degrees identifies edges of the same family but does not tell which family it is. The assignment Phi of about 0 versus Phi of about 30 degrees is therefore ambiguous at exactly the scale that matters. The quoted plus or minus 2 degrees addresses only the scatter within a family (ref. 63).
+
+(b) The Methods state that "the consistency of the measured Chern numbers across all aligned devices then provides an a posteriori confirmation of the alignment assignment." This is circular: the measured Chern number is the dependent variable whose Phi dependence is being tested.
+
+Requested: an independent determination of Phi for each device (for example polarization-resolved SHG on the WSe2 combined with a graphene edge-type assignment, or post-measurement lattice imaging, or Raman-based edge identification), and, ideally, a transport measure of the induced SOC in each device (for example spin-split Landau level crossings in the bilayer, as in ref. 38) showing that lambda_I actually differs between the Phi of about 0 and Phi of about 15 and 30 degree devices. The angle of the hBN layers relative to graphene should also be reported, since hBN alignment is a known alternative source of Chern bands (refs. 14, 30).
+
+2.3 The evidence for C = 0 at Phi of about 15 degrees is thin and confounded by sample quality.
+
+(a) The contrast rests on one device per large-angle category (D3 in the main text, D5 in the Supplement). With twist-angle disorder, strain and hBN alignment varying from device to device, one device cannot separate Phi from sample-specific factors. The "controlled comparison" of D2 and D5 (both theta = 0.80 degrees) controls only the nominal average twist angle.
+
+(b) For D3 only Rxx is shown. No Rxy data are presented for D3 or D5. The C = 0 assignment is made from the absence of a dispersing feature in Rxx.
+
+(c) Fig. 4f shows almost no Landau-level structure anywhere, including from the CNP, and Rxx exceeds about 10 kOhm over most of the density range shown, whereas D1 (Fig. 4a) shows well-resolved quantum oscillations. This suggests D3 is substantially more disordered or inhomogeneous, which by itself could suppress a (t, s) = (1, -1) state. The argument that the measurement temperature is low enough does not address disorder. In addition, the "nu = -1 feature" in Fig. 4e and 4f is hard to distinguish from the broadened CNP insulating region; the colour scale in 4f (starting near 10^4 Ohm) differs from 4a, which hampers comparison. There is also a feature starting near nu = -2 at B of about 1.5 T in Fig. 4f whose boundary appears to disperse with negative slope; it is not discussed.
+
+Requested: quality metrics for all seven devices (CNP and nu = +/-4 resistance, Landau-level onset field, mobility or quantum scattering time, twist-angle homogeneity from multiple contact pairs), Rxy fan diagrams for D3 and D5, fans at several D (including D < 0), and ideally more than one device at large Phi.
+
+2.4 The Chern insulator at Phi of about 0 is shown only at finite field.
+
+The (1, -1) state in D1 becomes resolvable above about 1 T (Fig. 4c draws it from about 1.2 T, and Rxy is only 79.7% of h/e^2 at 2 T), and near-quantization holds in a window of roughly 2.5 to 4.5 T before Rxy falls back to 87.5% and below. Field-induced (t, s) = (1, -1) symmetry-broken Chern states are commonly observed in moiré graphene without any zero-field Chern band (for example ref. 12 and related work in MATBG and TDBG), so this state alone does not demonstrate that the zero-field ground state at nu = -1 is a Chern insulator, nor that its Chern number derives from SOC-modified band topology. The abstract's "Phi of about 0 devices exhibit C = +1 Chern insulators, consistent with spontaneous isospin polarization" is stronger than the data; the body text's "C = +1 Chern insulator response under applied magnetic field" is the accurate wording.
+
+Requested: low-field Rxy hysteresis loops at nu = -1 (anomalous Hall signal, coercive field, temperature dependence) or an explicit statement that no anomalous Hall effect is observed; Rxy versus n at fixed B showing a plateau; and confirmation that Rxy was antisymmetrized in B (the Methods are silent, and Fig. 4b shows only B > 0). Also, the sign of C is not a test of the theory, since valley polarization can select either K (C = +1) or K' (C = -1); please state this, and state the sign convention relating C to the sign of Rxy (here C = +1 corresponds to Rxy = -h/e^2).
+
+2.5 The activation gap is not supported by the data shown.
+
+From Fig. 3f the resistance minimum is at T* of about 2.7 K and the measured temperatures below T* are 1.5 and 2.0 K, so the Arrhenius fit appears to rest on two or three points over less than a factor of two in temperature. My estimate from the plotted peak values (about 38 kOhm at 1.5 K and 17 kOhm at 2.0 K) reproduces Delta of about 0.8 meV, so the quoted uncertainty of plus or minus 0.04 meV understates the real uncertainty. More importantly, the same device at the same D reaches only about 60 kOhm at 20 mK (Fig. 3e), whereas an activated law with Delta = 0.78 meV would predict a resistance larger by many orders of magnitude. The resistance therefore saturates at a value of order h/e^2, which points to parallel conduction, inhomogeneity or hopping, not a clean gapped insulator. Part of the 2.0 K curve in Fig. 3f is drawn dashed without explanation. Please show the full R(T) from 20 mK upward, fit with a model that accounts for the metallic background, and qualify the "robust correlated insulator" language accordingly.
+
+2.6 The claim that SOC creates valence-side correlations is not supported.
+
+The text states that correlated states in TDBG without SOC were "observed exclusively in the conduction band" and that the nu = -1 state here reflects "SOC-induced band flattening and enhanced Berry curvature." No reference supports the first statement (and it should be compared specifically with prior cTDBG work, for example ref. 56), and the calculations do not show SOC-induced flattening: a meV-scale SOC cannot appreciably change bandwidths of tens of meV. The bare cTDBG devices D6 and D7 differ from the WSe2 devices in dielectric environment, disorder and possibly twist angle, so their lack of a nu = -1 state does not isolate SOC. Moreover, D3 has comparable correlated behaviour with a topologically trivial band, which argues against Berry curvature being the driver. Please either support this claim or remove it.
+
+2.7 Displacement-field polarity is an untested, discriminating prediction.
+
+WSe2 contacts only the top bilayer, so the effective SOC felt by carriers should depend strongly on the sign of D (polarization toward or away from WSe2); the authors make this point themselves in discussing Fig. 3e. The zero-field maps (Fig. 3b, 3d) show nu = -1 features at both D > 0 and D < 0. Fans and Hall data at D < 0, together with the theoretical C_K(D) for both polarities, would provide a strong internal test of the mechanism that does not rely on comparing different devices.
+
+2.8 Theory and experiment are compared at different parameters.
+
+Topology is computed at theta = 0.9 degrees and D = 0.5 V/nm; the fans are at D = 0.6 V/nm in devices at 0.80 to 0.93 degrees. Given the sensitivity noted in 2.1(b), the comparison should be made at the experimental theta and D, with the mapping between experimental D and model U_d (screening, epsilon) justified.
+
+3. Minor points
+
+- Fig. 4c labels read (1,-1), (1,-2), (2,-2), apparently (C, nu), while the caption lists (nu, C) = (-1,+1), (-2,+1), (-2,+2). Please use one convention.
+- The text says the C = +1 line "becomes well developed above approximately 0.3 T"; Figs. 4c and 4d indicate about 1 to 2 T.
+- Fig. 4d caption: "error bars ... indicate deviation from -h/e^2" is not an error bar. Show measurement uncertainty separately.
+- Fig. 2 caption: "Nontrivial topology emerges exclusively at Phi = 0" is not supported by calculations at only three angles; the Phi_c of about 9 degrees appears only in the Supplement and should be shown in the main text.
+- The statement that both Ising and Rashba terms produce "opposite spin polarizations in the two valleys" is not correct for the Rashba term.
+- The justification for neglecting PIA terms ("couple linearly to momentum") is weak given that the moiré bands are built from Dirac states at finite k; a quantitative check would help.
+- Values of v3 and v4 are not given; with the stated code release, the parameter table should be complete.
+- In Figs. 1j to l and 2l to m the bands are grey, which is not on the <Sz> colour bar; please explain.
+- Device table: D4 is never described in the main text. Please list theta, Phi, hBN thicknesses, hBN alignment and the measured Chern number for all seven devices in the main text or an extended data table.
+- "Deterministically controls" and "unambiguously assigned" are too strong given the plus or minus 2 degrees (and possible 30 degree) uncertainty and one device per large-angle category.
+- Methods: "Then, the first half ... was then picked up" (duplicated "then"); "Moirésuperlattices", "moiréflat" and similar missing spaces throughout.
+- Fig. 4a: a horizontal white line near 5.4 T looks like an artefact; please note or remove.
+
+4. Assessment
+
+The experiment addresses a good question and the Phi of about 0 data (Fig. 4a to d) are of reasonable quality. However: (i) as specified, the model's Phi-driven topology change appears to hinge on a sub-meV gap and is explained with a mechanism (Ising versus Rashba dominance) that does not match the model's own parameters; (ii) Phi is not independently measured and is "confirmed" by the outcome; (iii) the C = 0 assignment rests on Rxx from a single, apparently more disordered device, with no Hall data; and (iv) the Chern insulator at Phi of about 0 is established only at finite field. Each of these could be addressed, but together they mean the central claim, that the alignment angle selects the Chern number of the correlated state, is not yet demonstrated.
+
+Recommendation: major revision. I would be glad to see a revised version that includes independent Phi characterization, Hall data and quality metrics for the large-Phi devices, a gap-resolved and parameter-robust theory at the experimental theta and D, and a rewritten account of the mechanism.

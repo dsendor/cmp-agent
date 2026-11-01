@@ -1,0 +1,224 @@
+# Merged review
+
+## A. Must address
+
+**1. Electrostatic self-gating through the SrTiO₃ back gate is not excluded, and it reproduces the reported phenomenology.**
+
+The device is gated through SrTiO₃, whose permittivity is very large at low temperature. The AC channel potential therefore acts as a local gate shift, δV_g(r) = −φ(r).
+
+The potentials involved are not small:
+- In the axion regime, ρ_xx ≈ 4.5 h/e² (~115 kΩ/□), so 2 µA produces in-plane potentials of order 0.2–0.4 V.
+- In the QAH regime, the two edges differ by ≈ h/e² × 2 µA ≈ 52 mV.
+- In the dissipative antiparallel window at 1.7 K, ρ_yx ≈ −0.3 h/e². The two edges then sit at AC potentials differing by tens of mV at 2–5 µA.
+
+The structure of σ(V_g) near V_g⁰ evolves over only ~5–10 V of gate. A rough estimate therefore gives δρ/ρ of a few percent, and V^2ω of order 10⁻²·V^ω. This is comparable to, or larger than, the observed ~100 µV.
+
+Mixing this density modulation with the first-harmonic current gives 2ω voltages with every feature the paper attributes to boundary modes:
+- opposite signs on the left and right edges, so it obeys the C₂z relation;
+- odd in magnetization, through the Hall-driven edge potentials;
+- sign reversal between p- and n-type and across V_g⁰, since it scales as ∂ρ/∂n;
+- largest where ρ(n) is steep, just outside the quantized regimes, and vanishing at charge neutrality.
+
+The only control offered is the ground-electrode swap (Extended Data Fig. 3). This shifts the common-mode potential. Because the swap is the C₂z partner of the original configuration, the C₂z-odd part of φ(r) relative to the device midpoint is unchanged. The swap therefore tests the same symmetry, not the mechanism. In addition, the V^2ω_yx curves in Extended Data Fig. 3f visibly differ between the two groundings, and this is not discussed.
+
+The Christen–Büttiker characteristic-potential term ∂_eV_k T_ij in Eq. (8) is itself an electrostatic response. The authors must therefore state explicitly where they draw the line between "intrinsic nonlinear boundary transport" and gate-coupled electrostatics.
+
+Requested:
+- A quantitative self-gating estimate from the measured ∂ρ_xx/∂V_g, ∂ρ_yx/∂V_g (or dσ/dV_g) and the STO gate capacitance, compared with V^2ω.
+- Measurements with the gate floating versus grounded through different impedances, and under different gate-leakage and capacitance conditions.
+- A balanced or differential current drive with the midpoint grounded.
+- Ideally, a top gate with a low-ε dielectric, a different SrTiO₃ thickness, or a sample on a different substrate.
+
+**2. Joule-heating thermoelectric voltages are not excluded and share the reported signatures.**
+
+Joule heating is scalar and scales as I², so the temperature profile satisfies T(r) = T(−r). In Hall-dominated QAH and axion regimes, dissipation concentrates at hot spots at diagonally opposite current-contact corners and along the chiral or hinge channels. These hot spots are set by edge chirality, are related by C₂z, and flip with magnetization. The resulting ∂_xT is odd about the bar centre.
+
+Through an anomalous Nernst/Ettingshausen response, E_y ∝ M × ∇T, or through Seebeck voltages at the probe contacts, this produces Hall-pair voltages of opposite sign at the two ends of the bar. That is precisely an antisymmetric V_A with V_yx ≈ V_xx,R. Such a signal:
+- is quadratic in I;
+- flips with M;
+- changes sign with carrier type, as the Seebeck and Nernst coefficients do;
+- peaks where dissipation is large, at the plateau transitions and in the axion state;
+- disappears near T_C.
+
+The thermal time constant is far shorter than 1/(100 Hz). Frequency independence (≈6–107 Hz, Extended Data Fig. 4) and I² scaling (Extended Data Fig. 5) therefore do not discriminate against heating.
+
+The heating budget is not negligible. At 25 mK, with I = 2 µA and ρ_xx of a few h/e² (~100 kΩ), P ~ 0.4 µW, rising to 0.4–0.8 µW in the axion regime. Electron–phonon decoupling at these temperatures makes sizable electron-temperature rises and gradients plausible. The statement that 2 µA "minimizes heating" is therefore unsubstantiated.
+
+Requested:
+- In-phase and quadrature lock-in components of all 2ω signals, since thermal signals appear in a definite quadrature.
+- 3ω data.
+- An electron-temperature calibration at 25 mK from the first-harmonic response.
+- Current dependence at 25 mK down to well below 1 µA; currently only 2 µA is used at 25 mK.
+- DC ±I reversal measurements to isolate the I² component.
+- Measured thermoelectric coefficients, e.g. with an asymmetrically placed on-chip heater, to quantify Nernst and Seebeck contributions against V_A.
+
+**3. Contact nonlinearity is not characterized.**
+
+The ohmic contacts are hand-pressed indium dots on uncapped ~10 nm films, and these can be non-ohmic or asymmetric at mK temperatures. In the Hall regime, a rectified voltage at current lead 1 or 4 propagates along the chiral edge to the adjacent probe on one side only, as set by chirality. This yields a C₂z-related, M-odd pattern with opposite signs on the two edges.
+
+Requested:
+- DC I–V characteristics and two-terminal contact resistances for each contact pair.
+- DC rectification tests (±I_DC).
+- Two-terminal 2ω voltages across the current leads.
+- A check of whether V^2ω scales with contact resistance or contact area.
+
+**4. The C₂z "universal relation" is mechanism-agnostic and does not by itself establish a boundary origin.**
+
+The Methods derivation uses only three ingredients:
+- G^(1) and G^(2) are invariant under the electrode permutation 𝒞^2z;
+- the drive I^ω is 𝒞^2z-odd;
+- Eq. (1) is quadratic in V^ω.
+
+Any C₂z-respecting nonlinear mechanism therefore yields V_1 = V_4, V_2 = V_5, V_3 = V_6, i.e. V^2ω_xx,L = −V^2ω_xx,R = −V^2ω_yx. This includes self-gating, thermoelectric voltages, contact rectification, and bulk carriers in an inhomogeneous potential (items 1–3).
+
+What C₂z actually forbids is a uniform in-plane bulk σ^(2), which would give V_xx,L = +V_xx,R. A non-uniform nonlinear response from the interior can still produce V_xx,A. Likewise, V_A = [V_yx(left pair) − V_yx(right pair)]/2 is a gradient of the nonlinear transverse voltage along the bar. It is not uniquely an edge-channel quantity: a spatially varying bulk response, from ∇T or a gate-inhomogeneity density gradient, also contributes.
+
+Verifying the relation thus confirms device symmetry, not boundary dominance. The abstract's claim that it "allows us to distinguish nonlinear boundary transport from bulk contributions" is overstated. The authors should present the relation as a necessary consistency check for C₂z-symmetric devices, unless it is backed by the experiments in item 5.
+
+**5. No experiment directly tests the boundary origin.**
+
+Boundary and bulk contributions scale differently with device width, length and edge length. Only a single hand-scratched geometry with a single 1→4 current configuration is studied. No device-size dependence, Corbino reference, nonlocal measurement or permuted electrode configuration is reported.
+
+Requested:
+- Lithographically defined Hall bars with deposited contacts and well-controlled C₂z symmetry, in several widths, lengths and contact spacings. Show how V_xx,A, V_xx,S and V_yx scale with W and L, and whether V^2ω scales with edge length rather than area.
+- A Corbino or edgeless geometry as a null reference; boundary-mediated 2ω should be suppressed there.
+- Nonlocal configurations, and permuted electrode roles (current 2→5 or 3→6, current along the other axis), to test the terminal-permutation relations beyond one configuration.
+- Mapping of V^2ω versus position along x using multiple probe pairs. A boundary-channel picture predicts specific spatial profiles that differ from a bulk or ∇T-driven response.
+- Deliberately C₂z-broken layouts, such as offset Hall probes or asymmetric contacts, to test quantitatively the predicted violation of V_xx,L = −V_xx,R and the predicted growth of V_xx,S.
+
+**6. C₂z is not a crystalline symmetry of the sample, so the "bulk nonlinearity vanishes" premise is an assumption of the model.**
+
+(Bi,Sb)₂Te₃ is D₃d, and its surfaces have C₃v-type symmetry. The asymmetric V/Cr sandwich, with distinct dopants and concentrations, breaks inversion and leaves at most C₃v, which does not contain C₂z. Hexagonal warping and other C₃-symmetric terms allow nonzero in-plane σ^(2), with σ_xxx = −σ_xyy = −σ_yxy ≠ 0. This is the mechanism behind the bilinear magnetoresistance of TI surface states documented in Ref. 58, which the authors themselves cite.
+
+The C₂z of Eq. (5) is only a k·p quasi-symmetry, and the "quasi-symmetry" argument (Ref. 64) is asserted rather than quantified. The millimetre-scale, hand-scratched Hall bar with pressed indium dots is also only approximately C₂z symmetric.
+
+Requested:
+- The Hall-bar orientation relative to the crystal axes.
+- The twin-domain content on SrTiO₃(111), e.g. from XRD φ-scans or RHEED. 60° twins could average out trigonal terms and restore an effective sixfold, hence C₂z, symmetry; if so, this should be stated as the actual justification.
+- An estimate of the warping-induced bulk/surface σ^(2) at the relevant Fermi energies for realistic parameters, compared with the measured magnitudes.
+- Ideally, measurements with the current direction rotated relative to the crystal axes, to bound trigonal contributions.
+
+**7. Field (anti)symmetrization may manufacture the Axion-I/Axion-II sign reversal and discard diagnostic components.**
+
+The Methods state that all magnetotransport data are symmetrized or antisymmetrized in field. For hysteretic, M-odd 2ω data spanning four magnetic configurations, antisymmetrizing (H, sweep up) against (−H, sweep down) enforces V(H↑) = −V(−H↓). This means V(Axion-I) = −V(Axion-II) by construction.
+
+The two consequences are:
+- The configuration-dependent sign reversal of V^2ω_xx,A and of V^2ω_xx,S is presented as evidence that the response is "intrinsic to the axion state," yet it is partly imposed by the processing.
+- Any M-even 2ω component is discarded, although it would be diagnostic of contact rectification or heating-induced Seebeck signals.
+
+The pairing of up and down sweeps and the treatment of minor loops are unspecified. Raw, unsymmetrized up- and down-sweep 2ω data for all six terminals should be shown alongside the processed data. The protocol should be stated explicitly, and the M-even component reported.
+
+## B. Should address
+
+**8. The interpretation of V^2ω_xx,S as quantum-metric bulk transport is inconsistent with the paper's own symmetry framework, and its size is not small.**
+
+Under the authors' C₂z analysis, V^2ω_xx,S = (V^2ω_xx,R + V^2ω_xx,L)/2 must vanish identically. A nonzero V_xx,S therefore measures C₂z breaking, from one or more of:
+- device asymmetry: contact placement, width variations, hand-scratched geometry;
+- magnetic or doping inhomogeneity;
+- the crystalline C₃v terms of item 6.
+
+The attribution of V_xx,S to quantum-metric bulk transport "consistent with MnBi₂Te₄" has further problems:
+- It is unjustified without independent evidence.
+- The V/Cr sandwich lacks the PT symmetry underlying the quantum-metric dipole mechanism in even-layer MnBi₂Te₄.
+- The sign reversal of V_xx,S between Axion-I and Axion-II is automatic for any T-odd quantity on an imperfect geometry, and is in any case imposed by the antisymmetrization (item 7).
+
+V_xx,S is also not negligible. In Extended Data Fig. 7b (QAH, p-side), V_xx,S reaches roughly +7 µV against V_xx,A ≈ −17 µV. In Figs. 2b and 2d, V_xx,S reaches about 30% of V_xx,A near the axion extrema. Without a model of how much V_xx,S the device asymmetry should produce, the "dominance" claim is qualitative.
+
+The authors should recast V_xx,S as a measure of geometric or crystalline C₂z breaking, or reconcile the quantum-metric interpretation with their framework. They should also predict V_xx,S from warping terms (see item 10).
+
+**9. Quantitative deviations from V^2ω_yx = V^2ω_xx,R are not analysed.**
+
+At (V_g − V_g⁰) = −15 V, V_yx(0.25 T) ≈ −70.8 µV versus V_xx,A ≈ −36.3 µV. Fig. 2f shows a clear mismatch in the QAH branch. The relation is thus used selectively: as confirmation where it holds, and as "approximate C₂z" where it does not.
+
+The authors should report a quantitative deviation metric, such as (V_yx − V_xx,R)/V_xx,R versus V_g, B and T, use it as a figure of merit, and discuss the outliers.
+
+**10. The simulations operate in a regime far from the experiment and cannot establish the claimed microscopic origin.**
+
+The model and the device differ substantially:
+
+| | Simulation | Experiment |
+|---|---|---|
+| System | Phase-coherent, disorder-free tight-binding strip, 100 × 20 sites | Hand-scratched films, ~1 mm × 0.5 mm |
+| Transport regime | Ballistic | Diffusive and dissipative; σ_xx ≈ 0.22 e²/h in the axion state, short phase-coherence lengths |
+| Units | Arbitrary | µV at µA currents |
+| Exchange parameters | M_t = ±1.2, M_b = ±0.6 vs m₀ = 0.1 | Not connected to the measured gaps |
+
+The symmetry argument is regime-independent. However, the claims that go beyond symmetry rest on the ballistic calculation. These include the axion-regime enhancement "due to larger ∂_E T_ij," the role of hinge or in-band boundary states, and the sign structure versus doping.
+
+Inside the axion gap, the simulated resistance diverges because the transmissions vanish (Extended Data Fig. 8b). Yet Fig. 4f,g plots finite, near-linearly varying V^2ω across the same gap. It is unclear how second-order voltages are defined when G̃^(1) is near-singular, and whether the shaded-region values are meaningful. The measured axion state, by contrast, has finite σ_xx, likely from disorder, percolation, or bulk or side-surface conduction absent from the model.
+
+Other gaps:
+- There is no n_e–V_g mapping and no comparison of magnitudes, line shapes or line widths, nor of QAH-to-axion ratios.
+- Electron–hole asymmetry is added ad hoc through parabolic valence bands (Fig. S10).
+- Because the model imposes exact C₂z and omits warping, it cannot address V_xx,S.
+
+Requested:
+- Include disorder averaging and dephasing (e.g. Büttiker probes), with system-size scaling.
+- Add weak bulk or side-surface leakage reproducing σ_xx ≈ 0.2 e²/h.
+- Add C₃v warping terms to predict V_xx,S and bound non-boundary σ^(2).
+- Calibrate parameters to the measured exchange gaps.
+- Give magnitudes in physical units for at least an order-of-magnitude comparison with the µV-scale data.
+
+**11. The self-consistent characteristic-potential term ∂_eV_k T_ij is under-specified.**
+
+The term in Eq. (8) requires characteristic potentials, and hence an electrostatic model: screening, Thomas–Fermi/Lindhard or Poisson response, and gate capacitance. Neither the main text nor the Methods explains how it was obtained, or whether it was computed at all rather than approximated. Since it may dominate, and since it overlaps directly with the self-gating concern (item 1), the authors should:
+- describe the electrostatic model in the main text;
+- separate the ∂_E T and ∂_V T contributions explicitly;
+- test the sensitivity of the results to the screening model and the gate electrostatics.
+
+**12. The microscopic attributions to in-band boundary states, hinge currents and "boundary–bulk interplay" are asserted rather than demonstrated, and some of the cited evidence is generic.**
+
+"In-band boundary states buried in the metallic surface states" and "hinge currents" are invoked mainly because |V^2ω| is larger in the slightly doped than in the highly doped regime. That trend is generic for any response ∝ ∂σ/∂μ near a gap edge.
+
+Two other pieces of evidence are nearly tautological:
+- The null of V^2ω_xx on the QAH plateau follows from R_xx = 0 with dissipationless chiral transport. It does not show that the off-plateau signal is boundary-generated.
+- The sign reversal with magnetization is generic for any T-odd nonreciprocal (magnetochiral) response.
+
+Several phrases are not formulated as falsifiable predictions and lack a model of how bulk carriers enable the boundary nonlinearity: "requires assistance from bulk carriers," "assisted by bulk carriers," "boundary–bulk interplay," and "evolution of in-band boundary contributions into nonchiral top and bottom surface contributions." The spatial current maps and the hinge/surface/bulk separation are relegated to the SI and not tied to measurable quantities.
+
+The authors should present in the main text real-space maps of the second-order current or potential, and channel-resolved decompositions of G^(2) showing where the nonlinearity is generated. They should also derive at least one geometry-scaling prediction that distinguishes their mechanism from generic ∂σ/∂μ nonlinearities. Independent experimental evidence (item 5) should accompany these claims.
+
+**13. The nonreciprocal coefficient γ is ill-defined for a boundary effect, and the "giant" cross-material comparisons are not like-for-like.**
+
+γ = √2·V^2ω_xx,A/(R₀ i²) is built from V_A, the quantity attributed to boundary channels, yet it is normalized by a bulk current density. Edge or hinge transport does not scale with the cross-section. The definition is also incomplete:
+- It is unclear how i is defined (sheet or volume density, which thickness: ~6 nm or ~10 nm, for a 0.5 mm width).
+- It is unclear which resistance and electrode pair define R₀.
+- R₀ in the axion state is set by poorly defined residual conduction, and γ is trivially enhanced near an insulating state, where R₀ is large and the carrier density small.
+
+The gate value, temperature and current used for the maximum γ = 1.22×10⁻⁹ m² A⁻¹ should be stated, with uncertainties. The comparisons with WTe₂, MnBi₂Te₄ and heavy-metal/ferromagnet bilayers ("one order" and "four orders of magnitude" larger) conflate different geometries, mechanisms and definitions; most prior works use the electrode-independent longitudinal response.
+
+The authors should define a boundary-appropriate metric, such as a nonlinear conductance in units of e³/h, or V^2ω/(I²R) or V^2ω/(I²R²) per unit edge length or per channel. Alternatively, they should restrict comparisons to equivalent definitions and remove or temper "giant."
+
+**14. Sample statistics and control measurements are incomplete.**
+
+The main text relies on sample S1, with S2 in the Extended Data and S3–S4 only in the SI. The paper does not state:
+- whether the L/R and p/n sign relations hold in all devices;
+- the device-to-device spread in magnitude;
+- error bars for the key quantities.
+
+I² scaling and frequency independence are shown only at 1.7 K and (V_g − V_g⁰) = −5 V. At 25 mK only 2 µA is used, so given possible QAH breakdown and electron heating, the linear-response regime at 25 mK is unverified. The hysteresis and history dependence of the STO gate are not addressed for the dense gate maps in Fig. 3.
+
+The authors should move the S2–S4 statistics and the 25 mK current and frequency dependence into the main text or Extended Data, and characterize gate hysteresis.
+
+## C. Minor
+
+**15. Novelty relative to prior work should be stated more precisely.**
+
+Several elements are already established:
+- edge-mediated nonreciprocity in QAH films (Yasuda et al., Nat. Nanotechnol. 2020, Ref. 33);
+- nonlinear responses of quantum Hall states in TIs (Li et al., Nat. Mater. 2024, Ref. 43);
+- edge-controlled nonreciprocity in MnBi₂Te₄ (Zhang et al., Nat. Commun. 2022; Refs. 34, 35).
+
+The gauge-invariant nonlinear Landauer–Büttiker formalism is standard (Christen & Büttiker 1996). The terminal-permutation argument is essentially a Neumann-principle statement about the whole device.
+
+The authors should state precisely what is new: the axion-insulator, configuration-odd response, the explicit left/right electrode sign test, and the terminal-resolved symmetry criterion. They should also discuss the implications for interpreting existing MnBi₂Te₄ nonlinear Hall data (Refs. 27–29).
+
+**16. "Néel order" terminology is inappropriate for this heterostructure.**
+
+The antiparallel V/Cr sandwich is uncompensated: it has different dopants and concentrations (Cr 0.26 vs V 0.11) and a net magnetization. The two layers have different coercive fields, and the configuration is set by field history rather than by an exchange-coupled staggered order.
+
+Calling Axion-I/II opposite "Néel orders" and proposing "electrical readout of antiferromagnetic Néel order" overstates the analogy to compensated antiferromagnets such as even-layer MnBi₂Te₄. Use "antiparallel magnetization configuration," or justify the term.
+
+**17. Some descriptive statements about domains and coercive-field features are unsupported or contradictory.**
+
+The spikes near the coercive fields are attributed to "additional dissipation from the surface states" or domains, by analogy to quantum Hall plateau transitions, without supporting analysis. This attribution also sits uneasily with the statement that random domains "would induce a zero net nonreciprocal transport," which is itself asserted rather than demonstrated. The authors should either support these statements or soften them.

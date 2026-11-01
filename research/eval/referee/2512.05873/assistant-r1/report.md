@@ -1,0 +1,45 @@
+# Lookalike check: Resolving Abrikosov vortex entry in superconducting nano-string resonators (arXiv 2512.05873v1)
+
+*AI only. Written by the lookalike assistant on 2026-10-25 from arXiv version v1, with lookalike library version 0.5. A person hasn't checked it.*
+
+**What this is.** I read your paper against a library of 28 known lookalikes in topological transport. A lookalike is an ordinary effect that can produce the same signal as the one you report. For each one that could apply, I note what the paper already shows, quote it, and suggest a check where one could help. This doesn't judge whether your result is right. It lists the simple explanations a careful reader will ask about, so you can answer them first. Your paper measures vortex entry with cavity optomechanics, which is outside the library's scope. So I adapted the data-practice entries and the library's discrete-shift entry (charge traps) to your device, and I added two lookalikes from outside the library, each backed by a paper I opened.
+
+**The claim, as I read it.** You report discrete upward steps in the intrinsic mechanical frequency Ω0 of one suspended Al nanostring in a SQUID loop, at in-plane fields that change between cooldowns (Fig. 3, arrows). You read each step as the entry of a single vortex and use it to extract pinning energies of 0.09 to 0.44 eV. You read the smooth background, Ω0² following an offset power law in Bip with k = 1.81 (Figs. 2(d), 3, 4), as Campbell-regime pinning elasticity with αL of about 10^14 N m^-4.
+
+## Checks a careful reader will look for
+
+1. Report the devices and datasets measured, how many showed the effect, and why the others were set aside: Partly. "Two measurement runs were performed during the same cooldown (Fig. 3(a)), and a third after a complete thermal cycle (Fig. 3(b))." (p. 3). The paper does not say how many strings were made or measured.
+2. Disclose the full parameter ranges measured and why each shown range was chosen: Partly. "we increased the in-plane field resolution to 0.25 mT" (p. 3). The shown runs cover 12 to 30 mT and 18 to 35 mT at 85 mK. The 0.25 mT spacing appears only between about 20 and 24 mT in Dataset 1, and the other points sit 0.5 mT apart. No reason is given for any of the ranges.
+3. Give the processing steps from raw data to figures, with data and code: Partly. "The fitting procedure and initial parameter values are provided in Appendix A." (p. 3), and the data are on Zenodo (p. 6). The fitted ϕoff and Ic at each field, the meaning of the error bars and the code are not given.
+4. Show the steps are absent where vortex entry is not expected, and rule out other sources (adapted from the charge-trap check): Not done. The high-resolution runs start at 12 mT. No field-cooled run, down-sweep or control structure is shown.
+5. Repeat sweeps to separate reproducible shifts from one-off jumps (adapted): Partly. "a third after a complete thermal cycle (Fig. 3(b))" (p. 3). The two runs from the same cooldown cover adjacent ranges, 12 to 20 mT and 20 to 30 mT, so no range was measured twice within one cooldown.
+
+## Lookalikes
+
+| Lookalike | Status | Tests shown | What the paper shows (quote, page or figure) | Suggested check |
+|---|---|---|---|---|
+| Fine-tuning and selection: a non-representative run picked from many | Tested in part | Devices and datasets measured, and how many showed the effect: part; How the shown data were chosen: no; A second device or dataset shown: all (three runs, one device) | "Two measurement runs were performed during the same cooldown (Fig. 3(a)), and a third after a complete thermal cycle (Fig. 3(b))." (p. 3) | Say how many strings you measured, and show every run at this resolution, including any down-sweeps. |
+| Discrete jumps from a nearby coupled element (adapted from charge-trap-fractional-shift): flux trapped in the SQUID arms, junction leads or CPW, which the fit then passes into Ω0 | Not tested (data bear on it) | Shifts absent where the exotic state is not expected: no; Gate leakage checked (here, drift of the flux offset): no; Map of where in two-gate space the shifts occur (here, Boop and Bip): no | "we apply a flux offset ϕoff in the Josephson-inductance term ... to account for residual static fields" (p. 6, App. A) | Plot the fitted ϕoff and Ic against Bip next to Ω0, and read Ωm directly at Φb = (n + 1/2)Φ0, where p. 3 says it equals Ω0. If the steps show only in Ω0, they point to the string. |
+| Two-level-system telegraph frequency jumps (not in library) | Not tested (data bear on it) | Mechanical frequency tracked in time at a fixed field, looking for telegraph switching: no; Jumps followed in temperature: no | "Arrows mark abrupt frequency steps attributed to vortex entry events." (Fig. 3 caption, p. 4). In Fig. 3 the shifted level holds over several field points, which bears on it. | Hold Bip at a step field and record Ωm over time. Sweep back down: vortex exit should show hysteresis, while a two-level defect switches back and forth at fixed field. |
+| Residual Lorentz-force spring from junction asymmetry, for the smooth background (not in library) | Left open by the authors | Junction asymmetry fitted or bounded: no; Field dependence of the background followed where no vortices are expected: no | "Although the smooth, near-quadratic background could arise from magnetomotive stiffening, in-plane screening, or higher-order corrections to the Lorentz-force term in Eq. (3)" (p. 3); the fits use "default α = 0" (p. 6) | Leave α free in the Eq. (3) or (A1) fit, or bound it from your measured cavity tuning range (7.4 to 6.6 GHz). Then see how k = 1.81 and αL change. |
+
+## Questions about devices and data
+
+1. How many nanostring devices did you fabricate and measure, and how many showed the frequency jumps? The paper shows one device in three runs.
+2. If other devices or runs exist, why were they set aside?
+3. Which in-plane field ranges, sweep directions and temperatures did you measure beyond 12 to 30 mT and 18 to 35 mT at 85 mK, and what do the "extended field measurements" toward Bc2 (p. 5) show? The 0.25 mT spacing appears only between about 20 and 24 mT in Dataset 1; the other points sit 0.5 mT apart.
+4. What does the second-best dataset look like, and did you repeat any field range within one cooldown? The two runs in Fig. 3(a) cover 12 to 20 mT and 20 to 30 mT, and both are referenced to their own 20 mT value; how was the offset between them, and so the 20.0 mT step, fixed?
+5. The arrows at 12.0 mT and 18.0 mT sit on the first point of each run; what step do they mark? And a step at 22.5 mT appears in both cooldowns (with 20.0 and 20.5 mT close by); how often would that happen if entry fields were random?
+6. Do the fitted flux offset ϕoff and critical current Ic change at the jump fields, and do the jumps appear in Ωm read directly at Φb = (n + 1/2)Φ0, without the Eq. (3) fit?
+7. The step at 27.0 mT in Fig. 3(b) reads as about 0.95 × 10^9 Hz², which I convert to about 80 Hz at 5.8 MHz. How were the quoted 10 to 50 Hz step sizes obtained, and how did you decide that a step is one vortex, given that you also allow "one or a few flux quanta" (p. 4)?
+8. Did you fit the junction asymmetry α, and how do k = 1.81 and the Labusch parameter change when α is left free?
+
+## Related work
+
+- Luschmann et al. 2021, "Mechanical frequency control in inductively coupled electromechanical systems", <https://arxiv.org/abs/2104.10577>. Your earlier work on this platform: it reports a residual field-dependent shift of the mechanical frequency, which it attributes to flux pinning of vortices trapped in the nanostring. This is the coarse data in your Fig. 4.
+- Maksymowych et al. 2025, "Frequency Fluctuations in Nanomechanical Resonators due to Quantum Defects", <https://arxiv.org/abs/2501.08289>. At millikelvin temperatures, nanomechanical resonators show random telegraph jumps in frequency, which the authors attribute to single two-level defects. They separate them with time traces and temperature series.
+- Shevchuk, Steele and Blanter 2017, "Strong and tunable couplings in flux-mediated optomechanics", <https://arxiv.org/abs/1611.03842>. With asymmetric junctions, the SQUID critical current never reaches zero, even at half a flux quantum, which changes the flux-mediated couplings to a string in the loop.
+- Song et al. 2009, "Microwave response of vortices in superconducting thin films of Re and Al", <https://arxiv.org/abs/0812.3645>. Vortices trapped in Al and Re thin-film resonators shift the resonance frequency down and add loss. This is a reminder that the films around your string can also hold vortices.
+- Dykman et al. 2010, "Spectrum of an oscillator with jumping frequency and the interference of partial susceptibilities", <https://arxiv.org/abs/1006.2402>. Theory of an oscillator's spectrum when its frequency jumps at random, which applies when jumps are comparable to the linewidth (your Γm/2π = 20 Hz).
+
+Happy to rerun this if you share the fitted parameters per field or the Zenodo data in a form I can open.

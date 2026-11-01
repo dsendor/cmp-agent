@@ -1,0 +1,123 @@
+# Review of "Imaging of Gate-Controlled Suppression of Superconductivity via the Meissner Effect" (Scheidegger, Knapp, Ognjanović et al.)
+
+## Summary
+
+The authors use a millikelvin scanning NV magnetometer to image the stray field above thin (~20 nm) Nb/Ti islands in a ~1 mT out-of-plane field. They show that driving a leakage current between an adjacent gate and the island locally suppresses Meissner screening. The suppressed region:
+
+- is roughly circular, centred at the gate apex, and grows beyond 1 µm at a few µW;
+- depends on the dissipated power P = I_L·V_G, not on V_G, gate polarity, or bath temperature (0.4 K vs 5.6 K);
+- still forms when the voltage is applied between two gates with the island floating.
+
+The radius r₀(P) is fitted with a steady-state diffusion ("hot-spot") model of non-equilibrium particles (NEPs), giving r_d ≈ 0.6 µm and an inferred quasiparticle lifetime of ~1 ns. The authors also report that vortices leave the island at very low gate power.
+
+## Overall assessment
+
+This is, to my knowledge, the first real-space image of gate-induced suppression of superconductivity. It extends GCS studies beyond transport to the Meissner response, and the figures (especially Figs. 2 and 4) are compelling. The scaling with power, the polarity independence, and the floating-island result are valuable, and they are consistent with the growing view that, at least in leaky devices, GCS is driven by NEPs.
+
+However, several mechanistic conclusions are stated more strongly than the data support:
+
+- the exclusion of Joule heating;
+- the claim of "complete" suppression;
+- the relevance to low-leakage transport GCS.
+
+The quantitative model is also under-constrained. I would support publication after a major revision that addresses the points below.
+
+## Major concerns
+
+### 1. The argument excluding Joule heating is the weakest link.
+
+The paper excludes Joule heating because r₀(P) is the same at 0.4 K and 5.6 K. This needs much more care.
+
+- **Tc is not given in the main text.** For 20 nm Nb on 5 nm Ti, Tc is likely ~6–8 K, so 5.6 K may be T/Tc ≈ 0.7–0.9. The reader cannot judge how stringent the temperature test is without Tc (and λ(T), Table S2) in the main text.
+- **A thermal model would predict some temperature dependence, but its size is not obvious.** Suppose a hot spot must raise the local temperature to Tc, with κ ∝ Tⁿ. Then the radius scales with ∫κ dT from T_bath to Tc, which goes as Tc^(n+1) − T_bath^(n+1). Near Tc this predicts a sizeable dependence (roughly a factor 1.5–2 for n = 2 at T/Tc ≈ 0.7–0.8). Far below Tc, it predicts almost none.
+  - The authors should compute this with realistic κ(T) for a-SiO₂ and Si and with Kapitza boundary resistances. They can then show the predicted difference is outside their error bars.
+- **Heating of order kelvins is not excluded by a simple estimate.** For a point source on a half-space, ΔT ~ P/(2πκr). With P = 1 µW, r = 1 µm and κ(a-SiO₂, 1–5 K) ~ 10⁻²–10⁻¹ W m⁻¹ K⁻¹, this gives ΔT of order kelvins. The underlying Si will spread heat efficiently, so the real number is probably smaller, but the order of magnitude shows the thermal scenario cannot be dismissed qualitatively.
+- **The temperature independence is equally puzzling for the authors' own model.** The critical density ρ_c should depend on Δ(T) and on the superfluid density, both reduced at 5.6 K. A larger r₀ would therefore be expected at 5.6 K in the NEP picture too. The paper uses temperature independence against Joule heating without reconciling it with the hot-spot model.
+- **The distinction between the two pictures needs sharpening.** Dissipated power ultimately ends up as phonons. The line between "NEP hot spot" and "Joule heating" is really about whether the phonons thermalise locally. Eq. (1), with a loss term 1/τ, is formally almost the same as a heat-diffusion equation with a loss to the substrate. The authors should state precisely what observable distinguishes the two.
+- **The comparison to SNSPD hot spots is unexplained.** The text says these are "not caused by Joule heating" without explanation.
+
+### 2. What is actually being measured: complete suppression or enhanced λ?
+
+With λ ≈ 240 nm and d ≈ 20 nm, the effective penetration depth is λ_eff = λ²/d ≈ 2.9 µm, and the Pearl length 2λ²/d ≈ 6 µm. These lengths are comparable to or larger than the 3 µm island.
+
+- Screening is therefore weak, consistent with the ~5% field modulation (~50 µT out of 1 mT).
+- The stray-field "edge" in this regime is broad, and the extracted r₀ depends on modelling assumptions.
+
+The simulations assume a sharp circular cut-out with an otherwise unchanged λ. A more realistic picture is a radially varying quasiparticle density that enhances λ(r) continuously. The authors should show that the data distinguish a fully normal disk from a region of strongly enhanced λ. Otherwise, wording such as "complete suppression" and "turning the superconductor into a normal conductor" should be softened to an effective suppression radius.
+
+Related points:
+
+- The statement that the leads are barely resolved "because their width is of order of the penetration depth" should refer to the Pearl length.
+- Fig. 4 notes incomplete screening attributed to vortices and "non-superconducting grains." This inhomogeneity also affects r₀ extraction in D3 and should be discussed.
+
+### 3. The hot-spot model is under-constrained.
+
+- **The functional form is not discriminating.** Eq. (3) is a two-parameter, monotonically saturating function, so good agreement is not strong evidence for the specific physics.
+  - The 3D result ρ ∝ e^(−r/r_d)/r applies to substrate diffusion.
+  - Quasiparticle diffusion in a 20 nm film is effectively 2D, giving ρ ∝ K₀(r/r_d).
+  - The two give practically indistinguishable r₀(P) (both roughly logarithmic at large P). Yet the paper later says it cannot tell which channel dominates.
+  - The authors should either show that the two forms are distinguishable, or present the fit purely as a phenomenological parametrisation.
+- **Boundary conditions are simplified.** A source at the surface of a half-space gives an image factor of 2. The 300 nm SiO₂ on Si is a layered medium, and THz phonons entering Si are essentially ballistic over long distances. This makes "diffusion in glass" a questionable picture.
+- **The diffusion constants used are not justified for these conditions.**
+  - The 350 ns estimate uses room-temperature thermal diffusivity of glass (~10⁻⁶ m²/s). This is not appropriate for non-equilibrium phonons in a-SiO₂ at sub-kelvin temperatures.
+  - The quasiparticle diffusion constant is taken from Ref. [13], on a different material and film. D for the authors' own film could be estimated from the normal-state resistivity (Table S1) via the Einstein relation.
+- **Fit uncertainties are missing.** Uncertainties on r_d and P_d are not given.
+- **The device-to-device spread is unexplained.** P_d differs by a factor of ~3 between D3 (0.95 µW) and D2b (0.36 µW), while r_d is similar. Possible causes are differences in the yield α (e.g., filament location) or in ρ_c (film quality).
+- **Energy conservation is not addressed.** NEPs "relaxing" do not remove energy; they become a thermal background that may itself contribute to suppression.
+- **The assumed source location is not verified.** The model places a point source at the gate apex. Given the time-varying, vSILC-like leakage and possible filament formation, the authors should state how they know the dissipation is concentrated at the apex rather than elsewhere along the gate, in the Si, or along the leads. The circular shape in Fig. S6 is supportive. Do the centre positions stay fixed across sessions and after V_ON drifts?
+
+### 4. The exclusion of an electric-field effect is confounded, and the relevance to transport GCS is overstated.
+
+- **Fig. 3b is confounded by temperature.** The two clusters in r₀ vs |V_G| are the two temperature datasets: the 0.4 K data sit at higher V_G than the 5.6 K data. So "same r₀ at different V_G" is mixed up with "different temperature." Within each dataset, r₀ grows monotonically with V_G because P and V_G covary.
+  - A clean test would hold temperature fixed and compare equal-P points across sessions where V_ON has drifted.
+  - The D2a/D2b data across cool-downs may already allow this and should be shown in the main text.
+- **A µm-scale field effect was never plausible.** Electrostatic screening in a metal occurs over Ångströms, so a direct field effect over ~1 µm in a large island is implausible a priori. The relevant open question in the GCS debate concerns nanoscale constrictions with sub-nA or negligible leakage. These experiments, with hundreds of nA and µW, do not probe that regime.
+- **The abstract and introduction should be tempered.** They say the observations are "in conflict with" a field effect and "establish the phenomenon as a genuine feature of superconductivity." A more defensible claim is that, in these devices, suppression is driven by leakage-current dissipation via a non-local mechanism.
+- **The power discrepancy should be checked against the authors' own model.** The conclusion notes that the required powers are "several orders of magnitude higher" than in transport. Using r_d ≈ 0.57 µm and P_d ≈ 0.95 µW, suppressing a radius of ~100 nm would need only ~70 nW. Carrying out this comparison explicitly would tell readers whether a real discrepancy exists.
+- **Device D1 is underused.** D1 was designed "to mimic transport-based GCS devices," but only its superconducting parameters appear (Table S1). Simultaneous critical-current measurements and imaging on D1, or on a constriction in the same film, would be the most convincing bridge between transport GCS and the Meissner observations. If such data exist, they belong in the main text.
+
+### 5. The vortex observations are intriguing but under-characterised.
+
+Several basics are missing:
+
+- **Protocol:** the field-cooling protocol and whether vortices return when P is set back to zero (hysteresis).
+- **Timing:** whether expulsion happens during the gate turn-on transient or in steady state.
+- **Alternative explanations:** direct depinning by the leakage current or a thermal pulse; the normal region providing a low-barrier exit path.
+- **Temperature dependence:** the non-monotonic escape power (higher at 3.5 K than at 0.45 K and 5.8 K) is based on few datasets. Without statistics, the claim should be stated cautiously.
+
+## Minor comments
+
+1. **Wording in the Outlook:** "a temperature range from well below the superconducting gap to above the critical temperature of Nb" mixes energy and temperature. Meissner imaging above Tc would show no screening. Please clarify; does this refer to the Ti layer or to bulk Nb?
+2. **Fig. 2d:** state the r₀ values used in each simulated panel and how they were chosen (fit or by eye).
+3. **"Corner effect" (Fig. 4d):** the explanation that a long penetration depth "smoothens sharp features" is vague. A SuperScreen simulation with a hot spot near a corner would substantiate it.
+4. **Extended gate G2 (Fig. 4c):**
+   - Please specify the biasing configuration (G2 to island? G2 to G3?).
+   - Explain why lower current density should reduce the quench extent for the same total power. In the model as written, only total power and source geometry enter. Does the yield α depend on current density?
+5. **Floating-island case (Fig. 4e):** the quantitative agreement with a ~0.8 µm source offset is deferred to the SI. A short statement of the predicted vs measured r₀ in the main text would strengthen this key result.
+6. **Power during scans:** in constant-current mode, V_G and hence P drift over the hours a scan takes (Fig. S2). State how the reported P and its error bar are defined (scan mean? standard deviation?), and whether drift within a scan biases r₀.
+7. **Wiring leakage:** the ~60 GΩ parasitic path contributes ~0.2 nA at 10 V, which is negligible but worth stating. More importantly, discuss whether part of the leakage flows through the Si rather than across the 80 nm surface gap.
+8. **Methods, field relation:** B_NV = 2π(f_ZFS − f)/γ_e is valid only for small transverse fields. This is fine at 1 mT, but worth noting.
+9. **Use of Bz vs Bx:** clarify why Bz is shown in Fig. 2 and Bx in Fig. 4, and what reconstruction artefacts are expected in each.
+
+## Typographical and reference issues
+
+- **Typos and formatting:**
+  - "microcopy" → "microscopy" (introduction).
+  - "enviroment" → "environment" (Methods).
+  - A stray "and" in the affiliation list.
+- **Reference corrections:**
+  - [13]: the DOI (10.1038/s41567-023-01999-4) indicates 2023, but the year is given as 2021.
+  - [18]: missing year.
+  - [48]: the author is E. H. Brandt, not B. H. Brandt.
+  - [6]: missing comma ("mechanisms, parameters").
+- **Citation choices:**
+  - [11] (Kivelson & Rokhsar) is an unusual citation for "quasiparticles are formed from broken Cooper pairs"; a textbook reference would be more appropriate.
+  - Citing the review [6] for the lift-off process is odd; cite a fabrication reference or describe it fully in Methods (which is partly done).
+
+## Suggested additional analyses and experiments
+
+- A quantitative thermal model (with κ(T) and Kapitza resistances) compared directly with the data, ideally adding a bath temperature closer to Tc where thermal and NEP models should diverge most.
+- A comparison of sharp cut-out vs graded-λ simulations to justify the meaning of r₀.
+- Equal-power, different-voltage comparisons at fixed temperature.
+- Simultaneous transport and imaging on a nanowire (D1).
+- The substrate-variation experiment the authors propose (e.g., sapphire, diamond, AlN), which would directly test whether r_d ∝ √D.

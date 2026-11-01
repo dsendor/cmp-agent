@@ -1,0 +1,99 @@
+Referee report
+
+Manuscript: "Interferometry reveals spin-singlet fractional quantum Hall edges in graphene" (Ayache, Kim, Kuiri et al., arXiv:2609.01233v1)
+
+1. Summary of the claims
+
+The authors use a gate-defined bipolar (p-n) junction in hBN-encapsulated monolayer graphene as a Mach-Zehnder interferometer (MZI). The p side sits in a known integer state (nu_P = -1 or -2) and serves as the probe. The n side holds the target state. Because spin is conserved at the beam splitters and valley is not, an Aharonov-Bohm (AB) oscillation appears only when a probe channel and a target interface channel carry the same spin. The paper calibrates this in the integer regime: one frequency at (-2,1), two at (-2,2), none at (-1,1). It then applies it to nu_N = 2/3 and claims four things:
+
+(i) A transition near B = 9.5 T from a spin-unpolarized 2/3 edge (both spin-up and spin-down probes couple) to a spin-down-polarized edge (only the spin-down probe couples).
+(ii) In the unpolarized regime, AB oscillations at combination frequencies f_nm = n f10 + m f01 (f11 and f02 are named), which do not occur in a noninteracting MZI.
+(iii) An interpretation of f11 as a new two-electron interference between opposite-spin electrons. It is mediated by spin-charge separation and recombination on the SU(2)-symmetric singlet edge (a downstream chargon and an upstream spinon) and involves a "spin swap".
+(iv) A bosonization calculation in the weak-tunneling, high-temperature limit (Eqs. 3-5). Fitted to the thermal decay of the f10, f01 and f11 visibilities, it gives picosecond time delays.
+
+The experiment is clever. Using a p-n junction as a spin-selective interferometric probe of a fractional edge is, as far as I know, new at the level of coherent interference. If the main claims hold, the work would interest the FQH, edge-physics and graphene-hybrid communities. As the manuscript stands, the evidence for claim (i) is fairly convincing. The evidence for the stronger claims in the title and abstract (spin-singlet topological order, spin-charge separation, and a spin-swap two-electron interference) is mostly interpretive. The quantitative theory-experiment comparison also has internal consistency problems, set out below. I recommend major revision.
+
+2. Major issues
+
+2.1 The quantitative temperature analysis is exactly determined and appears to be outside its own validity regime.
+
+(a) Three fitted decay rates (B10 = 8.41 ps, B01 = 2.76 ps, B11 = 8.98 ps) are inverted through the three linear relations of Eq. (S14) to get three unknowns (dt_up, dt_down, dt_s). Any three positive rates can be inverted this way, provided the resulting delays come out positive. So the fit cannot test the model. I checked the arithmetic and it is correct: B10 + B01 - B11 = dt_s = 2.19 ps, which gives dt_up = 7.31 ps and dt_down = 1.67 ps. The main text says the results are "comparing ... with the experimental data", which implies a test that does not exist. To make the system overdetermined, the authors could use the decay of f02 (and f20 if present), the spin-polarized single-frequency decay (which involves v_P_down through Eq. S2), or integer-regime MZI decays at (-2,1) and (-2,2), which constrain v_P_up and v_P_down independently.
+
+(b) The asymptotic forms in Eqs. (3)-(5) need pi kB T dt / hbar >> 1. For dt_down = 1.67 ps, pi kB T dt / hbar = 1 at T of about 1.5 K. For dt_s = 2.18 ps it is about 1.1 K, and for dt_up = 7.31 ps about 0.33 K. The f11 derivation also needs kB T >> hbar vNc / l, and l/vNc < 2.18 ps here. Unless the temperature data extend well above 1 K, which the text does not say, the extracted delays imply the measurements are not in the regime used to extract them. In the crossover regime, x/sinh(x)-type forms (compare Eq. S2) bend the log-visibility curve. A linear fit after dropping the three lowest-temperature points then does not return the asymptotic slope. Please state the full temperature range, show the fits with uncertainties, and either use the full finite-temperature expressions or show that the conclusions survive.
+
+(c) The extracted numbers imply surprising velocities, and the paper does not discuss them. With l = 700 nm, dt_s = l/vNs + l/vNc = 2.18 ps requires both vNs and vNc to exceed 3.2 x 10^5 m/s. A neutral spin mode faster than 3 x 10^5 m/s, and faster than the integer channel next to it (v_P_up < 9.6 x 10^4 m/s), is unusual. Neutral modes are generally slow. The main text says the delays are "consistent with the typical edge velocity v ~ 1 x 10^5 m/s". That is not accurate for dt_s. The values also imply v_P_up and v_P_down differ by a factor of 2 to 5, which needs a physical explanation. Supplementary Note 7 itself calls the extraction "inconclusive". That caveat should appear in the main text and Methods, not only in the Supplement.
+
+(d) The "generalized visibility" divides by (dI00/dV)^(n+m) and assumes dI00/dV is proportional to T, which is the weak-tunneling theory prediction. The paper also says the predicted power-law prefactor is "not quantitatively reproduced". Please show the measured temperature dependence of the non-oscillating transmission. If it is not proportional to T, the normalization brings in an uncontrolled temperature dependence that shifts the fitted B_nm.
+
+2.2 Weak-tunneling theory against the actual beam-splitter regime.
+
+The theory is perturbative in the tunneling (second order for f10 and f01, fourth order for f11). Fig. 2b shows raw T and R traces, but the paper never quotes the beam-splitter transmissions T1 and T2 or the absolute visibilities. If the beam splitters are far from weak tunneling, the perturbative scaling dimensions and exponents do not apply directly. Please report T1, T2 and the absolute (not normalized) visibilities of each component. Please also compare the measured amplitude ratios (f11 to f10 and f01, f02 to f01) with the model's predicted gamma^4 versus gamma^2 scaling.
+
+2.3 Combination frequencies are necessary for the singlet interpretation but not sufficient for it.
+
+The central new claim rests on the presence of f11 = f10 + f01 and its assignment to the spin-swap process of Fig. 4d. Several alternatives need to be addressed explicitly:
+
+(a) Capacitive or Coulomb coupling between the two spin-resolved interferometers. Both loops share the same fractional n-side channel, so the charge transmitted through one loop modulates the phase of the other. Generic interaction-induced phase coupling produces harmonics and mixing products. A key discriminator is the difference frequency f(1,-1) = f10 - f01, which is about (-0.005 um^2, 51.6 V^-1) in (B, V_left) space and is clearly separable along the gate axis. The paper lists only n, m >= 0. Is f(1,-1) absent, and with what upper bound? Does the model predict it to be absent or suppressed? An explicit statement, with an FFT plot showing the region where f(1,-1) would appear, would strengthen the case a lot. The (-2,2) integer control shows no mixing products, which is useful. But there the two spin channels on the n side are spatially separate, while at 2/3 they share one channel, so the control is not equivalent.
+
+(b) Domain coexistence near the transition. Ref. [8] (NMR) reports domains at 2/3. Interestingly, f10 + f01 = (0.169 um^2, 94.0 V^-1), which is close in the gate axis to the single spin-polarized frequency (0.148 um^2, 91.8 V^-1), measured at a different field. This may be coincidental, but the authors should show that the f11 peak sits at f10 + f01 within the FFT resolution in both axes, give the window-limited resolution, and show how f11 behaves as B approaches 9.5 T.
+
+(c) Spin-unpolarized states that are not the SU(2) singlet. A (330)-like state, meaning two decoupled nu = 1/3 Laughlin states of opposite spin, is also spin-unpolarized at total filling 2/3. It would give f10 and f01 with the same spin-selection signature, and it has no upstream neutral mode. The title's claim of a "spin-singlet" edge (and, by extension, of spin-charge separation) rests on distinguishing these possibilities. As far as I can tell, the only distinguishing evidence is the f11 interpretation and the sign of dt_s in the temperature fit, and the fit, by 2.1, is not a test. Please state which observation excludes non-singlet unpolarized edges, and how. Measuring the upstream mode directly (noise or thermal detection upstream of the junction) would be decisive.
+
+(d) Calling f11 a "spin swap" is a statement about the model's dominant Keldysh configuration, not something the experiment observes. In the abstract and main text, please reword this so the data (an interaction-enabled combination frequency at phi_up + phi_down in the mean current) is separated from its theoretical interpretation. The relevant precedent should also be discussed: the two-particle AB effect at phi1 + phi2 (Samuelsson, Sukhorukov and Buttiker, PRL 2004; Neder et al., ref. [37]). There it shows up in current cross-correlations, whereas here the claim is that it shows up in the mean current.
+
+2.4 Internal consistency of the loop-area assignments.
+
+(a) f10 = 0.082 um^2 and f01 = 0.087 um^2 differ by only about 6% in the B axis. With a period of about 0.05 T, telling them apart in B needs a field window of several tenths of a tesla. Please give the scan windows and FFT resolutions, and say whether the assignment rests mainly on the gate axis.
+
+(b) At (-1, 2/3), low field, the single spin-up loop has an area of 0.121 um^2 (Fig. 3a). At (-2, 2/3), the spin-up loop (f10) has 0.082 um^2. Adding an inner spin-down channel on the p side changes the electrostatics, but a 50% change in the spin-up loop area needs explaining. This matters because the spin labeling of f10 and f01 rests on "different AB areas", and on the spin-up channel lying closer to the interface.
+
+(c) Supplementary Note 7 contains the stray text "after interchanging 10 and 01" near Fig. S3. This looks like a leftover editorial note. B10 and B01 differ by a factor of 3, and the whole velocity inference depends on which is which. Please confirm that the labels are consistent across Figs. 3c, 3e and S3.
+
+(d) The claim that the AB period is set by the electron charge (and not e/3) is argued but never checked independently. The loop area is not known a priori, so a factor-of-3 ambiguity in the B frequency could be absorbed into the inferred arm separation. A consistency check would help: the same gate lever arm across integer and fractional configurations, or a comparison of B-to-gate frequency ratios.
+
+2.5 Evidence that the 9.5 T change is a bulk spin transition.
+
+The transition is inferred from junction transmission and interference. Please show bulk transport in the right half across 9.5 T, for example Rxx or the plateau width or activation gap against B at fixed filling. A real phase transition normally shows a gap minimum. The paper should also discuss the prior experimental literature on field-tuned 2/3 transitions in monolayer graphene (for example Feldman et al., PRL 111, 076802 (2013), and related transport studies), and say whether the 9.5 T scale is consistent with them. In graphene, the (1,1,1/3,1/3) to (1,1,2/3,0) description also leaves open which spin-valley components are involved, including the nature of the nu = 0 background on both sides of the interface. Please give the explicit spin and valley assignment for each region and interface channel. In particular, please rule out valley-selective (not spin-selective) coupling as the origin of the high-field absence of oscillations at (-1, 2/3). The ED2 caption itself describes the (-1,1) channels as having "opposite spin and valley polarizations".
+
+2.6 Measurement conditions.
+
+Supplementary Note 3 gives an AC excitation of 1 to 5 nA. At nu = 2/3, 1 nA corresponds to about 39 uV, or eV/kB of about 0.45 K. That is far above the 10 mK base temperature and comparable to the visibility decay scales (kB T0 of about 0.27 to 0.9 K implied by the fitted B_nm). ED4 shows strong bias suppression of visibility. Please state the excitation actually used for the interference and temperature-dependence data. If it is in this range, the low-temperature visibilities, the normalization at 100 mK, and the exclusion of the three lowest-temperature points all need to be re-examined in that light. Please also report the electron temperature calibration.
+
+2.7 Novelty relative to prior spin-selective p-n junction work.
+
+Spin-selective equilibration across graphene p-n junctions has been used before to infer the spin polarization of broken-symmetry states (for example Amet et al., PRL 112, 196601 (2014)). Spin- and valley-resolved MZIs at p-n interfaces are refs. [18]-[21]. The claim to "develop a spin-sensitive probe" should be placed against these. The non-oscillating transmission also carries spin information of the Amet type, and the authors could use it as an independent check of the unpolarized-to-polarized assignment. The drop in mean transmission at 9.5 T in Fig. 2b already hints at this.
+
+2.8 Reproducibility and data.
+
+The number of devices and cooldowns is not stated. Are the transition, the combination frequencies and the temperature dependence reproduced in more than one device or thermal cycle? For a claim of this scope, depositing the data and analysis code in a public repository is preferable to "available upon reasonable request".
+
+3. Theory: specific points to check
+
+3.1 Eq. (S5) prefactor. With C = 8 pi log 2 - 4 i pi^2 from Eq. (S4), the coefficient of exp(i phi_up) in i e^2 C is e^2 (4 pi^2 + 8 i pi log 2). Its magnitude is about 43 e^2, not the 8 pi^2 (about 79 e^2) in Eqs. (3) and (S5). There may be a factor of 2 from the second correlator and an intended real part. Please show the step explicitly.
+
+3.2 The symbol C is used for two different constants (Eq. S4 and Eq. 5/S12). Please rename one. For C of about 7938 i, please report the numerical uncertainty and the convergence with respect to the cutoff a and the integration domain. Since the value is large, also discuss whether the fourth-order term remains small compared with the second-order terms over the experimental parameter range.
+
+3.3 Main-text Eqs. (3)-(5) restore hbar with different powers (hbar^4 against hbar^7) while the Supplement sets hbar = 1. Please check the dimensions.
+
+3.4 f02 appears in Fig. 3e, but the Supplement says its conductance is not derived. Why is f02 observed and f20 not, or is f20 also present? In the model, the smaller dt_down would favor spin-down harmonics, which could be made into a qualitative prediction.
+
+3.5 The model assumes delta-function interchannel interactions, SU(2) symmetry, and interface channels that extend to the physical edges. Supplementary Note 8 shows the combination frequencies survive weak SU(2) breaking. It would help to state which experimental signature, if any, separates the SU(2)-symmetric singlet from the broken-symmetry case with charged upstream components (q_u nonzero).
+
+3.6 The sign conventions for dt differ between Eq. (S2) (l/vNd - l/vP_down) and the main text (l/vP - l/vNc). Please unify them.
+
+4. Minor issues
+
+- ED3a labels one edge description "Girvin-MacDonald". The cited composite-edge picture is Johnson-MacDonald, ref. [22]. Please correct.
+- Supplementary Note 8 contains a stray file-name-like string ("suppl, (1,0) interference with SU(2) breaking").
+- The titles of Supplementary Notes 1 and 2 overlap ("Device fabrication and geometry" and "Device geometry").
+- The role of V_Si is described inconsistently. The main text says it fine-tunes the arm separation and uses it as an AB gate axis in Fig. 3a. Supplementary Note 2 says it tunes contact resistance. Please clarify that it acts through the 70 nm slit, and give its lever arm.
+- Please define the differential transmission dT precisely (derivative with respect to what, and how it is normalized), and state which contacts give I_T and I_R.
+- Fig. 2a uses a two-point Hall resistance to show the 2/3 plateau. Please state the contact resistance, or show four-terminal data.
+- Fig. 2b caption: please give the uncertainty in the compensation alpha of about 0.124 V/T and explain its origin.
+- The abstract and perspective use "novel" and "establish" for claims that are, at present, model-dependent interpretations. Please calibrate the wording (see 2.3).
+- The title says "spin-singlet". Given 2.3(c), "spin-unpolarized" is what the data most directly show, unless the authors add evidence that excludes non-singlet unpolarized edges.
+- Error bars are missing on all extracted frequencies, decay rates and time delays.
+
+5. Recommendation
+
+Major revision. The spin-selective interferometric probe and the identification of unpolarized and polarized 2/3 edges across a field-driven transition are a valuable result and fairly well supported, subject to 2.5 and 2.6. The headline claims about spin-singlet order, spin-charge separation and a spin-swap two-electron interference need: a demonstration that the combination frequencies cannot come from generic interferometer coupling or domain coexistence (2.3); an overdetermined and regime-consistent temperature analysis (2.1, 2.2); and clarification of the loop-area assignments and measurement conditions (2.4, 2.6). If these are addressed, the paper could be suitable for a high-profile journal.

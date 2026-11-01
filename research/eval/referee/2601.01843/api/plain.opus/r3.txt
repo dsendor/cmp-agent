@@ -1,0 +1,131 @@
+# Review of "Multiple nodal superconducting phases and order-parameter evolution in pressurized UTe₂"
+
+## Summary of claims
+
+The authors report point-contact spectroscopy (PCS) on the (001) surface of molten-salt-flux-grown UTe₂ from ambient pressure to 1.4 GPa. Their main claims are:
+
+1. A zero-bias conductance peak (ZBCP) at all pressures. They attribute it to a zero-energy Andreev bound state (ZABS), which requires a k_z-odd (p_z) component in the gap.
+2. Fits with an extended spin-triplet BTK model favour B₂u or B₃u over A_u and B₁u.
+3. The ratio ⟨Δ_z⟩/⟨Δ_x(y)⟩ distinguishes the pressure-induced phases. It rises from about 0.57 (SC1) to about 1.3 (SC3) and has a minimum versus temperature near the SC2–SC3 boundary.
+4. Combined with earlier NMR, SC2 may be B₂u and SC3 B₃u.
+
+Symmetry-resolved probes under pressure are scarce in UTe₂, so the topic matters. The data are reproducible at ambient pressure across three samples, and the theoretical framework is clearly laid out in the SI. However, the quantitative conclusions rest on a fitting procedure whose uniqueness is not shown. Several features also admit extrinsic explanations that are not excluded. In my view the central claims are not yet supported at the level stated.
+
+---
+
+## Major concerns
+
+### 1. Fitted gap magnitudes are physically implausible and unreconciled with the literature
+
+At ambient pressure the fits give Δ_x(y) ≈ 1.15–1.18 meV for all three samples, with T_c ≈ 2.1 K.
+
+- This implies 2Δ/k_BT_c ≈ 13, nearly four times the weak-coupling value.
+- The authors' own BCS curve in Fig. S2c sits at about 0.32 meV.
+- STM and other spectroscopies on UTe₂ report gaps of order 0.25–0.3 meV. The authors themselves use 0.25 meV in the simulations of Fig. S6.
+- At 1.2 GPa, Δ_z¹ ≈ 1.6 meV with T_c ≈ 3 K again gives 2Δ/k_BT_c > 10.
+
+This discrepancy is not discussed. It strongly suggests that the energy scale of the spectral features is not set by the superconducting gap alone. Possible contributors include spreading resistance, a non-ballistic or thermal contact regime, and series resistance that rescales the voltage axis. If so, the fitted Δ values, and hence their ratio, lose their meaning.
+
+The ambient-pressure Δ(T) in Fig. S2c also decreases roughly linearly from 0.3 K. That is unusual even for a nodal superconductor at T/T_c ≈ 0.15. At 0.8 GPa, Δ_x(y) *increases* from 0.87 to 1.00 meV between 0.5 and 1.1 K (Fig. S8). Both behaviours could reflect parameter compensation in the fits rather than intrinsic physics.
+
+### 2. Junction characterization is missing; extrinsic origins of the side dips are not excluded
+
+The manuscript reports none of the following:
+- the normal-state junction resistance R_N, or its evolution with pressure;
+- the contact size, or an estimate of the transport regime (Sharvin/Wexler) given the long mean free path implied by RRR ≈ 410.
+
+Without these, the ballistic BTK framework cannot be justified.
+
+More importantly, finite-bias conductance dips flanking a central peak are the textbook signature of the critical-current/thermal regime (Sheet et al., the authors' own Ref. 42). The 1.4 GPa spectra (Fig. 3d) are particularly suspicious: a broad flat-topped peak with deep dips (G ≈ 0.7) at ±2 mV.
+
+The argument against heating is made only for the ambient ZBCP. It relies on weak field dependence of the width below 2 T, which is not a discriminating test. For the side dips, which carry the central evidence for the p_z increase, no test is given. Recommended checks:
+- Do the dip positions track Δ(T) or a critical current I_c(T)?
+- How do they scale with R_N across different contacts?
+- How do they move with magnetic field?
+
+At pressures near the magnetically ordered phases, magnetic scattering and Kondo-type zero-bias anomalies should also be reconsidered. The ambient-pressure argument ("no magnetic order") does not carry over.
+
+### 3. The p_z weight is entangled with junction parameters that change with pressure
+
+The fitted junction parameters change dramatically between ambient and 0.8 GPa:
+
+| Pressure | Z | Γ (meV) |
+|---|---|---|
+| ambient | 1.67 | 0.39 |
+| 0.8 GPa | 1.2 | 0.10 |
+
+Fig. S6d shows that reducing Γ alone converts shoulders into side dips and satellite peaks. Sample S3 at ambient pressure, with smaller Γ = 0.16 meV, already shows satellite features (Fig. 2f).
+
+The statement that the 0.6 GPa dips "can only be reproduced by increasing the weight of the p_z component" is therefore not demonstrated. The authors should show that no combination of (Z, Γ) with Δ_z/Δ_x fixed near 0.57 fits the 0.6–1.2 GPa data. A χ² map or confidence region in the (Δ_z/Δ_x, Z, Γ) space would be appropriate.
+
+It is also unclear whether the same contact survives the entire pressure sequence. If it does, its changing Z and Γ indicate a modified interface. If it does not, sample-to-sample junction variation must be separated from pressure effects. Either way, attributing the spectral evolution to the order parameter requires more than one junction under pressure.
+
+### 4. Using absolute peak height to infer component weights is unreliable
+
+The conclusion that p_x(y) dominates at ambient pressure rests on G(0) < 1.2 being "significantly lower than 2". Several extrinsic factors routinely suppress absolute conductance amplitudes:
+- parallel non-superconducting channels, which are likely with Au-epoxy multi-grain contacts;
+- spreading resistance;
+- partial diffusive transport;
+- normalization choice (the axes are labelled "arb. unit", so the normalization should be specified).
+
+Attributing the reduced amplitude to the gap structure requires these to be addressed, for example with an effective-area or broadening parameter and a discussion of its degeneracy with Δ_z/Δ_x.
+
+### 5. The model's assumptions are not well matched to UTe₂
+
+- **Fermi surface.** The model uses a spherical Fermi surface. UTe₂ has quasi-2D cylindrical sheets along k_z (Ref. 39, co-authored by members of this team). Tunnelling along c into such sheets involves small v_z, and the k_z-linear gap expansion is questionable over a cylinder spanning the Brillouin zone. Node locations relative to the actual Fermi surface determine whether ABS form at all. The qualitative screening of irreducible representations should be checked with a realistic Fermi surface.
+- **Surface quality.** The (001) surface was mechanically polished rather than cleaved. Polishing introduces roughness and disorder and favours diffuse scattering. The kz→−kz specular-reflection mechanism, central to the ABS argument, is fragile under these conditions. The broad resistive transition (T_c⁰ = 2.1 K versus T_c^on = 2.6 K) in a sample described as ultraclean also deserves comment.
+- **Unitary-only states.** The model assumes d × d* = 0. This excludes non-unitary and multicomponent states such as B₂u + iB₃u, which several cited works (Refs. 16, 30) propose, particularly under pressure.
+
+### 6. The exclusion of A_u is weak
+
+A_u is simulated only for isotropic Δ_x = Δ_y = Δ_z with Γ = 0.01 meV. That is five times smaller than the Γ used for the other irreducible representations and about 40 times smaller than the experimental Γ ≈ 0.4 meV at ambient. With realistic broadening, the A_u peak splitting would likely be washed out. Anisotropic A_u states would also be expected to approach the B₂u/B₃u behaviour, as the authors concede in Remark (1).
+
+The phrasing "unambiguously suggesting the presence of p_z" and the abstract's assignment therefore overstate what is shown. A_u should be simulated with experimental Γ values and anisotropic gaps before being disfavoured.
+
+### 7. The proposed B₂u → B₃u transition is problematic
+
+A transition between two distinct one-dimensional irreducible representations on a temperature line inside the superconducting state cannot generically be a single continuous transition. Landau theory requires either a first-order transition or an intermediate mixed phase such as B₂u + iB₃u. A low-temperature phase emerging inside SC2 is the classic signature of a second order-parameter component condensing, as in UPt₃.
+
+The natural reading of the authors' data, together with Kinjo et al., is that SC3 is a two-component state, not pure B₃u. This should be discussed. Note also that the PCS data themselves cannot distinguish B₂u from B₃u on (001), as the authors state. The assignment therefore rests entirely on external NMR.
+
+### 8. The multi-channel superposition model and the significance of the ratio minimum
+
+- **Overfitting.** Eq. (2) doubles the number of free parameters. Fig. S9c uses two full gap sets plus weights, which risks overfitting. Multiple channels are also natural for Au-epoxy contacts made of many parallel micro-contacts with different Z. This is a junction effect, not "pressure inhomogeneity", and is hard to reconcile with the stated hydrostaticity of Daphne 7373 below 1.8 GPa.
+- **Arbitrary definition.** The weighted-average definition of the ratio in Eq. (3) is one arbitrary choice among several.
+- **Shallow minimum.** The minimum in ⟨Δ_z⟩/⟨Δ_x(y)⟩ versus T is shallow (about 1.26 → 0.98 → 1.14 at 0.8 GPa). Above the minimum the error bars are large: at 0.6 GPa the highest-T point is 1.9 ± 0.6. Close to T_c, the ratio of two small, correlated fit parameters is poorly constrained.
+
+Given these issues, describing the agreement with the SC2–SC3 line as evidence for "a phase transition rather than a crossover" is premature. Error bars should reflect parameter correlations, not only the statistical fit error.
+
+---
+
+## Suggested additional measurements and analyses
+
+- Report R_N, I–V curves, and contact-size estimates. Test dip positions against R_N and critical-current scaling. Measure multiple junctions under pressure.
+- Provide parameter-correlation and confidence analyses for (Δ_x, Δ_z, Z, Γ). Show explicitly that fits with fixed Δ_z/Δ_x fail for the pressurized data.
+- Use the field dependence of the ZBCP. A field along a couples differently to the d-vectors of B₂u (which has an x̂ component) and B₃u (which has none). The existing 8 T setup with H ∥ a could therefore test the proposed SC2 → SC3 representation change directly, across the SC2–SC3 boundary.
+- Simulate A_u, anisotropic A_u, and two-component states (e.g. B₂u + iB₃u) with experimentally relevant Γ. Ideally use a quasi-2D Fermi surface.
+- Discuss explicitly the large 2Δ/k_BT_c and the discrepancy with STM gap values.
+
+---
+
+## Minor issues
+
+- **Table S1:** the Δ_z and Δ_x(y) columns appear swapped relative to Fig. S7, Fig. S9a, and the main-text ratio of 0.57.
+- **Table I:** the "Spin component" column should state that it lists the d-vector component that is *absent*.
+- **Eq. below (S2):** k_F² = 2mε_F/ħ², not √(2mε_F/ħ²).
+- **References:** Ref. 1 journal name is garbled ("Pep. Rrog. Phys."); Ref. 2 should be *Annu. Rev. Condens. Matter Phys.*; Ref. 24 year is 2020, not 2002.
+- **Typos:** "Supplementray", "spits" for "splits", "constraints on" for "constrains", "differentiate conductance".
+- **Axis labels:** y-axes labelled "arb. unit" should be G/G_N, with the normalization procedure stated.
+- **Spectra at 1.0 and 1.4 GPa:** the double-dip spectra at 1.0 GPa and the flat-top spectra at 1.4 GPa are described but not fitted or interpreted.
+- **Data availability:** "all source data are available within the paper" is insufficient for a fitting-heavy study. Raw spectra and fitting code should be deposited.
+- **Consistency:** the abstract (B₂u or B₃u for all phases) and the discussion (B₂u for SC2, B₃u for SC3) should be harmonized.
+
+---
+
+## Recommendation
+
+**Major revision.** The data set is potentially valuable and the qualitative observation is interesting: a pressure-dependent evolution of the (001) point-contact spectrum, with side dips appearing above about 0.3 GPa.
+
+However, the quantitative order-parameter conclusions depend on a multi-parameter BTK fit whose junction parameters change with pressure. They also rely on gap magnitudes about four times larger than expected and on spectral features (side dips, flat tops) with well-known extrinsic origins. The proposed B₂u → B₃u assignment conflicts with basic Landau-theory expectations.
+
+Junction characterization, a demonstration of fit uniqueness, and a more careful theoretical treatment are needed before the claims of "multiple nodal phases distinguished by ⟨Δ_z⟩/⟨Δ_x(y)⟩" can be accepted.

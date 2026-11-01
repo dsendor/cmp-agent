@@ -1,0 +1,135 @@
+```json
+{
+  "overall_feedback": "This is a useful and carefully executed experiment. The Al λ/4 CPW resonators terminated by edge-contacted hBN/NbSe2/hBN stacks are a clean way to measure Lk. Table 1 is internally consistent: Lk,sq = Lk·W/L for all devices, and the frequency shifts match the stated ~200 MHz per 0.1 nH sensitivity. The DC-bias data are also consistent with the fitted I* = 0.4 mA. The weaknesses lie mostly in the interpretation layer.\n\n(i) The dirty-limit formula (Eq. 2/24) drops the factor of π from the Mattis–Bardeen result ħRs/(πΔ0) that the SI itself derives (Eq. 23). The fitted slope of 16.3 pH·K/Ω is then roughly 4× larger than the formula as written and ~12× larger than the correct one. The paper never states this, yet the 'crossover to dirty limit' narrative rests on that fit.\n(ii) The 'clean-limit' contribution is treated as a single 80 pH constant, contradicting its 1/d form. This produces an unphysical ratio Lk,sq/Lk,sq,clean = 0.7 < 1 and the headline '15×' enhancement. The SI's own A/d analysis implies a much smaller ratio for the thinnest film.\n(iii) The 'monolayer' device is ~2 nm by AFM. Its Raman shear feature at 19.04 cm⁻¹ corresponds to N ≈ 1.8 (not 1.5) under the stated relation, and a shear mode is by definition absent in a monolayer. Yet its Rs/Tc are taken from literature monolayer data. That single point anchors the linear fit.\n(iv) Rs/Tc come from different flakes or literature rather than from the microwave devices.\n\nOther issues:\n- The Kerr derivation has a sign problem (it yields positive K), and its numerical value is not reproducible from the stated inputs.\n- The Pearl-length formula is misprinted, and the Pearl-regime claim fails for the thick devices.\n- The comparison claims against amorphous films and junction arrays are overstated.\n- Several small numerical inconsistencies appear between text, table and figures.\n\nThe data appear valuable; the quantitative modelling and the 'monolayer' and 'highest at comparable thickness' claims need revision.",
+  "comments": [
+    {
+      "title": "Frequency difference for D6 inconsistent with stated resonance frequencies",
+      "quote": "the frequency difference fr,Al − fr,Al−NbSe2 = 0.45 GHz",
+      "explanation": "The same paragraph and Table 1 give fr,Al = 5.34 GHz and fr,Al−NbSe2 = 4.79 GHz for D6, so the difference is 0.55 GHz, not 0.45 GHz. I checked whether 0.45 GHz might refer to a different reference (e.g. the 5.6 GHz design value), but that would give 0.81 GHz. The extracted Lk = 0.274 nH is consistent with a 0.55 GHz shift at the stated sensitivity of ~200 MHz/0.1 nH. The 0.45 GHz appears to be a typo, but it is the one worked example in the main text.",
+      "type": "technical",
+      "severity": "minor",
+      "suggested_fix": "Change '0.45 GHz' to '0.55 GHz' (5.34 − 4.79 GHz)."
+    },
+    {
+      "title": "Dirty-limit formula drops the factor π derived in Eq. 23",
+      "quote": "The BCS superconducting gap is approximated to ∆0 ≈ 1.764kBTc for T ≪ Tc with",
+      "explanation": "Eq. 23 correctly reproduces the standard Mattis–Bardeen low-temperature result Lk,sq = ħRs/(πΔ0).\n- Substituting Δ0 = 1.764 kBTc should give Lk,sq = ħRs/(π·1.764 kB Tc), i.e. ≈1.38 pH per (Ω/K).\n- Eq. 24, and Eq. 2 in the main text, instead write ħRs/(1.764 kB Tc), which is ≈4.33 pH per (Ω/K).\n\nThis π is not a convention issue: it is lost between two consecutive lines of the SI. The error propagates into the main-text model used to interpret Fig. 4c. It changes the expected dirty-limit slope by a factor of π.",
+      "type": "technical",
+      "severity": "major",
+      "suggested_fix": "Replace Eq. 24 and the second term of Eq. 2 with Lk,sq,dirty = ħRs/(π·1.764 kB Tc) ≈ 1.38 pH·K/Ω × Rs/Tc, and redo the comparison in Fig. 4c with this prefactor."
+    },
+    {
+      "title": "Fitted slope of 16.3 is far from the model prediction, yet presented as confirming dirty-limit behaviour",
+      "quote": "A linear fit yields a slope of 16.3 which characterizes the dirty-limit dependence",
+      "explanation": "Eq. 2 predicts a slope with no free parameters, so the fitted slope is the actual quantitative test of the model.\n- With Eq. 2 as written, the slope is ħ/(1.764 kB) ≈ 4.3 pH·K/Ω.\n- With the correct Mattis–Bardeen factor of π, it is ≈1.4 pH·K/Ω.\n- With the a = 0.75 prefactor of Eq. 25, it is smaller still.\n\nThe measured 16.3 pH·K/Ω is therefore ~4–12× too large. The paper never mentions this; it only alludes vaguely to 'steeper-than-expected' scaling in the Pearl section.\n\nA related inconsistency follows. The ratio of 15 for the thinnest film implies ξ0/l ≈ 14. With ξ0 ≈ 8 nm, that gives l ≈ 0.6 nm, contradicting the ~15 nm mean free paths quoted from transport for encapsulated mono- and bilayers.\n\nThe SI fits also give a different slope: roughly 700 pH / 68 Ω/K ≈ 10 in Fig. S5b, versus 16.3 in Fig. 4c. The linear correlation with Rs/Tc does not, by itself, establish the dirty-limit mechanism.",
+      "type": "logical",
+      "severity": "major",
+      "suggested_fix": "Report the predicted slope ħ/(π·1.764kB) ≈ 1.38 pH·K/Ω alongside the fitted 16.3 pH·K/Ω (and the ~10 from Fig. S5b), and state explicitly that the measured slope exceeds BCS dirty-limit theory by roughly an order of magnitude."
+    },
+    {
+      "title": "Clean-limit term treated as a thickness-independent constant, producing an unphysical ratio < 1",
+      "quote": "kinetic inductance (Lk,sq/Lk,sq,clean) increases from 0.7 to 15 monotonically",
+      "explanation": "Eq. 2 gives the clean term as meff/(n0e²d), which scales as 1/d. Table S3, however, computes every ratio as Lk,sq/80 pH using the single Fig. 4c intercept; for example, 1195/80 = 14.95 and 56/80 = 0.70.\n\nThis creates three problems:\n- A ratio of 0.7 is unphysical, since the dirty term is non-negative. Through Eq. 26 it implies ξ0/l = −0.29.\n- The SI's own analysis gives A/d ≈ 70 pH for 10 layers (A ≈ 700 pH·nm). That implies a clean term of ~470 pH for the 1.5 nm film and a ratio of ~2.5 rather than 15.\n- Table S3 lists 1.79 and 1.75 for Lk,sq = 135 pH, whereas 135/80 = 1.69.\n\nThe parenthetical remark that 'the 1/d dependence can be considered' does not resolve this. The headline 0.7→15 progression is an artefact of using a constant clean term.",
+      "type": "technical",
+      "severity": "major",
+      "suggested_fix": "Compute Lk,sq,clean = A/d with A from the Fig. S5a intercept, recompute the Table S3 ratio column and ξ0/lMFP for each thickness, and replace the '0.7 to 15' statement with the resulting values."
+    },
+    {
+      "title": "'Monolayer' device is not supported by its own AFM/Raman data",
+      "quote": "This corresponds to a layer number less than 2, with a fitted value of N =1.5 (Fig. S7a).",
+      "explanation": "The abstract, Fig. 4, and Table S3 ('1 layer') present D1 as the monolayer limit. The evidence points the other way:\n- AFM gives 1.99 nm.\n- The SI states that the shear mode is absent in a monolayer, so observing a feature at 19.04 cm⁻¹ itself argues for N ≥ 2.\n- Inverting the stated relation ωs = 29.39 cos(π/2N) at 19.04 cm⁻¹ gives N ≈ 1.8, not 1.5. N = 1.5 would correspond to ≈14.7 cm⁻¹.\n- A non-integer layer number has no physical meaning for a uniform flake.\n\nThe device is therefore most plausibly a bilayer. Yet its Rs = 240 Ω and Tc = 3.5 K are taken from literature for atomically thin NbSe2 and placed at Rs/Tc = 68.6. That single point dominates the linear fit in Fig. 4c, and the thickness value also drives the 1/d fit in Fig. 4a.",
+      "type": "logical",
+      "severity": "major",
+      "suggested_fix": "Report D1 as bilayer (N ≈ 2 from ωs = 19.04 cm⁻¹), use bilayer Rs/Tc values in Table S3 and Fig. 4c, and replace 'monolayer limit' in the abstract and conclusions with 'bilayer'."
+    },
+    {
+      "title": "Rs/Tc for the Lk analysis come from different flakes or literature, not the measured devices",
+      "quote": "The Rs and Tc values are obtained from both our transport measurements and previous studies",
+      "explanation": "Each Lk,sq point in Fig. 4c is paired with Rs and Tc measured on a different DC device of nominally similar thickness (Table S1), or taken from Refs. 38/39. Two facts show why this matters:\n- The DC devices themselves show sample-to-sample scatter at fixed thickness: two 6 nm devices give Rs = 31 vs 29 Ω.\n- The paper attributes the dirty-limit term to sample-specific disorder (surface scattering, residues).\n\nUnder that hypothesis, pairing across samples cannot test the mechanism device by device. The x-axis uncertainty also appears nowhere in Fig. 4c.",
+      "type": "logical",
+      "severity": "moderate",
+      "suggested_fix": "State in Fig. 4c/Table S3 which DC sample or reference supplies each Rs,Tc pair, and add horizontal error bars reflecting the spread of Rs/Tc among same-thickness DC devices in Table S1."
+    },
+    {
+      "title": "Kerr derivation gives the wrong sign and its numerical value does not follow from the stated inputs",
+      "quote": "we calculate the Kerr coefficient to be K/2π = −3.8",
+      "explanation": "The SI writes the quartic energy as +½Lk I⁴/I*² and quantizes the current directly as I = Izpf(a+a*). This gives a positive K in Eq. 8, but a current-dependent inductance that increases with I lowers the frequency, so K must be negative. The sign error arises because current is not the canonical variable. Writing the energy in terms of flux Φ = L(I)I gives a negative quartic term, and the prefactor changes as well.\n\nThe number also does not reproduce. Inserting the stated values into Eq. 8 (fr = 4.79 GHz, L0 = 2.627 nH, Lk = 0.274 nH from Table 1, I* = 0.4 mA) gives |K|/2π ≈ 5.7 Hz, not 3.8 Hz.\n\nFinally, a factor-of-2 to 3 discrepancy with the measured −1.7 Hz is described as 'good agreement', and the participation of a lumped termination in a distributed λ/4 mode is not discussed.",
+      "type": "technical",
+      "severity": "moderate",
+      "suggested_fix": "Re-derive K by expanding the inductor energy in flux (Φ = L(I)I, I ≈ Φ/L0 − Φ³/(L0³I*²)), which yields a negative quartic term, use a† in place of a*, and state the Lk value used to obtain −3.8 Hz (Table 1's 0.274 nH gives ≈−5.7 Hz with the paper's prefactor)."
+    },
+    {
+      "title": "Quoted Kerr range inconsistent with Table 1 and with the abstract's sign",
+      "quote": "(K/2π = –0.008 to 14.7 Hz/photon)",
+      "explanation": "The conclusions drop the minus sign on 14.7 that the abstract includes. More substantively, Table 1 lists −0.006 Hz for D10 and D11, which is smaller in magnitude than the stated lower bound of −0.008 Hz (D12). The quoted range therefore does not match the data table.",
+      "type": "technical",
+      "severity": "minor",
+      "suggested_fix": "State the range as K/2π = −0.006 to −14.7 Hz/photon in both abstract and conclusions."
+    },
+    {
+      "title": "Kerr comparison to granular Al and Josephson arrays is not like-for-like",
+      "quote": "Typically, conventional superconducting inductors of similar dimensions, such as granular aluminum, with a self-Kerr coefficient of 4.5 MHz [58]",
+      "explanation": "A self-Kerr coefficient is a property of a mode, not of a material. It scales as (Lk/L0)·ω²/I*², i.e. with the participation ratio of the nonlinear element and its cross-section.\n- Here Lk is only ~10% of L0, and I* is large because the strip is ~4 µm wide.\n- The cited 4.5 MHz (Ref. 58) refers to a grAl transmon-type element, and the 8 MHz to JJ-chain plasma modes. Both are engineered for strong nonlinearity, with very different participation and volume.\n\nThe 'similar dimensions' qualifier is not substantiated. A geometry-normalized figure of merit, such as I*/Ic or I* per unit width and sheet inductance, would support the 'nearly linear' claim more convincingly.",
+      "type": "logical",
+      "severity": "moderate",
+      "suggested_fix": "Compare a geometry-independent quantity, e.g. I* normalized by strip width and Lk,sq (current density scale J* = I*/(W d)), against published J* for grAl, NbTiN and TiN, rather than mode Kerr coefficients of different devices."
+    },
+    {
+      "title": "Overclaim of highest Lk,sq at comparable thickness relative to Fig. 4b",
+      "quote": "exhibits one of the highest sheet kinetic inductances reported at comparable thicknesses",
+      "explanation": "Fig. 4b itself shows several amorphous films above the NbSe2 data at similar thicknesses:\n- TiN at ~6 nm is about 620 pH, versus 191 pH for NbSe2 at 5.9 nm.\n- NbTiN at ~3 nm is about 400 pH, versus 282 pH for NbSe2 at 4 nm.\n- grAl at ~10 nm is about 1100 pH, versus 56 pH for NbSe2 at 10 nm.\n\nOnly the thinnest NbSe2 point is high, and there is no comparison data at that thickness. The claim is not supported by the figure, except perhaps as a statement about the thinnest device alone.",
+      "type": "logical",
+      "severity": "moderate",
+      "suggested_fix": "Rephrase to: 'the thinnest (~2-layer) NbSe2 device reaches 1.2 nH/□, while at 4–12 nm NbSe2 Lk,sq values are comparable to or below those of amorphous TiN, NbTiN and grAl films of similar thickness.'"
+    },
+    {
+      "title": "Pearl-length formula misprinted and Pearl-regime claim fails for thick devices; λ inconsistent with own data",
+      "quote": "with both thickness and width much smaller than the estimated Pearl length (10-70 µm; see Supplementary Information)",
+      "explanation": "There are three separate problems.\n\n1. SI Eq. 27 writes Λ = 2λ/d, which is dimensionless; the main text correctly uses 2λ²/d.\n\n2. With λ = 230 nm, the claim does not hold for all devices:\n- 2λ²/d gives ~4.3, 3.5 and 2.0 µm for D10–D12 (25–52 nm).\n- These are comparable to their widths of 4.1, 3.4 and 2.3 µm, not much larger.\n- The '10-70 µm' range only covers d ≲ 10 nm, so 'all of our NbSe2 samples' is incorrect.\n\n3. The 230 nm value conflicts with the paper's own measurements:\n- λ² = Lk,sq·d/µ0 gives λ ≈ 0.93 µm for D6 and ≈1.2 µm for D1, so Λ = 2Lk,sq/µ0 would be ~200 µm to ~1.9 mm.\n- Bulk λ = 230 nm would give only ~6.6 pH for a 10 nm film, versus the measured 56 pH.\n\nThe invocation of 'confinement-enhanced' Lk in the Pearl regime is therefore built on an inconsistent λ.",
+      "type": "technical",
+      "severity": "moderate",
+      "suggested_fix": "Correct Eq. 27 to Λ = 2λ²/d, compute Λ directly from the measured Lk,sq as Λ = 2Lk,sq/µ0 for each device, and restrict the 'w ≪ Λ' statement to the devices for which it holds."
+    },
+    {
+      "title": "Assumed 1 nm per layer conflicts with the NbSe2 interlayer spacing",
+      "quote": "(1 layer = 1 nm)",
+      "explanation": "The 2H-NbSe2 c-axis lattice constant is ~1.25 nm per two layers, i.e. ≈0.63 nm per layer. Using 1 nm per layer maps, for example, 8.8 nm onto ~9 layers rather than ~14. That conflicts with the Raman assignments, unless the AFM includes a systematic offset of the kind the SI itself acknowledges.\n\nIn addition, the shear-mode frequency saturates near the bulk value for N ≳ 6, varying only from ~28.6 to 29.2 cm⁻¹ for N = 6–9. Distinguishing 7, 8 and 9 layers this way requires sub-0.3 cm⁻¹ precision, which is not demonstrated. The layer axis of Fig. 4a and the layer labels of Table S3 therefore rest on a questionable conversion.",
+      "type": "technical",
+      "severity": "moderate",
+      "suggested_fix": "Use the crystallographic 0.63 nm/layer conversion, report the AFM offset implied by comparison with Raman-derived N, and quote the fitted shear-mode frequencies with uncertainties for each device."
+    },
+    {
+      "title": "Extraction attributes all termination inductance to kinetic inductance; control-resonator variability unaddressed",
+      "quote": "a control resonator of the same geometry that is terminated instead by a 250 nm-thick aluminum film",
+      "explanation": "Through Eq. 12, Lk absorbs every difference between the NbSe2 termination and the Al control, including:\n- the geometric inductance of the narrow NbSe2 strip and the edge contacts;\n- any frequency offset between the two resonators.\n\nFor the thick devices D10–D12, Lk = 8–14 pH. That is comparable to the geometric inductance of a few-micron-long, few-micron-wide strip (~1 pH/µm order), so these values may be dominated by geometry.\n\nThe control frequencies fr,Al also vary from 5.21 to 5.62 GHz across devices, versus the 5.6 GHz design. That spread is equivalent to ~0.2 nH, larger than most of the extracted Lk. It is not stated whether the control resonator sits on the same chip as each experiment resonator, or how this variability enters the uncertainties in Fig. 4.",
+      "type": "technical",
+      "severity": "moderate",
+      "suggested_fix": "Subtract a simulated geometric inductance of each NbSe2 strip (using its W and L) from the extracted termination inductance, and state for each device whether the Al-terminated control was on the same chip, propagating the control-frequency uncertainty into the Lk,sq error bars."
+    },
+    {
+      "title": "Dimensional error in dirty-limit penetration depth",
+      "quote": "λdirty ≈ µ0λL",
+      "explanation": "Eq. 19 includes a stray factor µ0, so λdirty would not have units of length. The next equation (Eq. 21) uses λdirty² = λL²(ξ0/l) without µ0, so this is a typo. It should still be corrected, because the derivation is offered as justification for Eq. 2.",
+      "type": "technical",
+      "severity": "minor",
+      "suggested_fix": "Write Eq. 19 as λdirty ≈ λL (ξ0/lMFP)^{1/2}."
+    },
+    {
+      "title": "Inconsistent onset power and DC-bias range between text and Fig. 3",
+      "quote": "at the estimated sample power of −90 dBm",
+      "explanation": "There are two mismatches with Fig. 3:\n- The main text places the onset of the power-induced downshift at −90 dBm (green arrow), while the Fig. 3b caption gives −100 dBm for the same green arrow.\n- The text says the bias was swept 'up to IDC = 30 µA', but Figs. 3e–f show data only to ~15 µA.\n\nIn addition, Fig. 3a is labelled Pin = −100 dBm and Qi = 2×10⁴. The text instead describes a single-photon-limit measurement with Qi = 2.8×10⁴, even though −100 dBm is where the caption places the onset of nonlinearity.",
+      "type": "technical",
+      "severity": "minor",
+      "suggested_fix": "Use a single onset power value (−100 dBm per the Fig. 3b caption) in the text, state the bias range actually shown (0–15 µA) or add the 15–30 µA data, and label Fig. 3a with the power and Qi of the single-photon trace quoted in the text."
+    },
+    {
+      "title": "Quadratic Lk(I) taken as evidence for anisotropic nodeless pairing",
+      "quote": "consistent with the anisotropic nodeless pairing",
+      "explanation": "A quadratic Lk(I) at low current is the generic Ginzburg–Landau/depairing expectation for any fully gapped superconductor. It does not discriminate anisotropic nodeless pairing from isotropic s-wave. Nodal states would be expected to show a nonlinear-Meissner |I| term only at very low T and with sufficient sensitivity.\n\nMoreover, the measured fractional change is only ~10⁻³ over 0–15 µA, which gives little leverage on any non-quadratic terms. The statement implies more about pairing symmetry than the data can show.",
+      "type": "logical",
+      "severity": "minor",
+      "suggested_fix": "Rephrase as 'consistent with a fully gapped superconductor (no resolvable linear-in-|I| term within our ~10⁻³ fractional resolution)' and quote an upper bound on a linear |IDC| coefficient from the fit."
+    }
+  ]
+}
+```

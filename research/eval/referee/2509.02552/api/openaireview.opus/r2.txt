@@ -1,0 +1,101 @@
+{
+  "overall_feedback": "The paper's main idea is a good one. Using sub-meV THz photons to raise the electron temperature while holding the lattice near 2 K is a natural way to separate Te-driven from TL-driven resistivity, and the photoresistance data across twist angles, including the large signal in magic-angle devices, are striking. The observation of T² resistivity well below the umklapp threshold in a low-disorder 1.58° device is also interesting, as is the link to other dilute T² metals. The interpretation, however, outruns the evidence in several places.\n(i) A positive ΔρTHz shows that ρ depends on Te. It does not by itself single out electron–electron scattering. Te-dependent impurity scattering (screening, Fermi smearing at low T_F) and hot-electron phonon emission are also Te-driven, and the MLG control does not convincingly rule them out for TBG.\n(ii) The claim that interactions 'dominate' needs a quantitative comparison of ΔρTHz with ρ(Te) − ρ(TL) using an independently calibrated Te. The described calibration partly relies on ρ(T), which is circular.\n(iii) The theoretical comparison is weak. Eq. (1) is derived for trigonally warped Dirac pockets in the low-T limit, but it is also invoked near γ at ν = 3.8 and up to T ~ T_F/2. The predicted prefactor spans two orders of magnitude, so agreement with the data is not a stringent test.\nThere are also several localized errors and gaps:\n- a sign error in the stated hole-side umklapp range;\n- umklapp filling thresholds whose derivation from the stated k_F conditions is unclear;\n- incorrect figure-panel references;\n- under-specified ρ0 subtraction and absolute power and Te calibration.",
+  "comments": [
+    {
+      "title": "Positive photoresistance identifies Te-dependence, not specifically e–e scattering",
+      "quote": "The observed positive ∆ρTHz in doped TBG away from ν = 0, 2, ±4 indicates a strong contribution of electron interactions to its resistivity.",
+      "explanation": "The authors' logic is clear: with TL fixed, any rise of ρ under THz must come from Te, and they equate Te-dependence with electron–electron scattering. That equivalence does not hold in general.\n\nElectron–impurity scattering in graphene-based systems depends on Te through several channels:\n- temperature-dependent screening of charged impurities, which is the well-known Das Sarma–Hwang mechanism that gives a linear-in-T resistivity;\n- thermal smearing of an energy-dependent transport time.\n\nBoth effects become sizable when Te/T_F is not small. That is exactly the case in flat-band MATBG and in the dilute ν ≈ ±0.1 regime highlighted here, where E_F ~ 20 meV.\n\nHot-electron phonon emission with a cold lattice is also Te-driven (this is discussed separately below). The negative ΔρTHz at the CNP and band insulators already shows that Te affects ρ through non-scattering channels as well.\n\nSo a positive ΔρTHz is necessary, but not sufficient, for interaction-limited transport. Since this inference underlies the headline claim, the alternatives need to be addressed explicitly.",
+      "type": "logical",
+      "severity": "major",
+      "suggested_fix": "Estimate the Te-dependence of the impurity-limited resistivity in TBG at the relevant densities (thermal smearing and Te-dependent screening, e.g., via Boltzmann theory with RPA-screened charged impurities at Te ≈ 2–17 K). Show that it is small compared with the measured ΔρTHz, or restate the conclusion as 'Te-driven' rather than 'e–e-driven' resistivity."
+    },
+    {
+      "title": "MLG control is not a representative test of phonon emission or lattice heating in TBG",
+      "quote": "This is evident from the data obtained on a sample made of monolayer graphene (MLG) featuring phonon-limited conductivity.",
+      "explanation": "Using MLG to bound the hot-electron phonon-emission contribution is a sensible idea. However, the electron–phonon physics of MLG and small-angle TBG differ substantially:\n- the Bloch–Grüneisen temperature in MATBG is only a few K, compared with much higher values in doped MLG;\n- the paper itself cites enhanced, umklapp-assisted e–ph coupling in TBG (ref. 34);\n- the e–ph-limited ρ(T) slope in TBG is orders of magnitude larger.\n\nA vanishing ΔρTHz in MLG therefore does not establish that spontaneous phonon emission by electrons at Te ≈ 17 K is negligible in TBG.\n\nIn addition, the MLG Te rise under the same illumination is not quantified (absorption and specific heat differ). A small response could partly reflect a smaller ΔTe or a smaller dρ/dTe at high T_F, rather than the absence of phonon effects.\n\nFinally, under CW illumination the enhanced e–ph coupling in TBG channels absorbed power into phonons. A rise of the local lattice temperature (a bolometric effect) is not excluded by any measurement described.",
+      "type": "logical",
+      "severity": "major",
+      "suggested_fix": "Report the MLG Te rise (e.g., from SdHO damping in the same device) and compare ΔρTHz/ΔTe with dρ/dT in MLG. Estimate the TBG phonon-emission resistivity at Te ≈ 17 K, TL = 2 K using the e–ph models of refs. 18–25. Bound the lattice-temperature rise, for example from the TL-dependence of a TL-only-sensitive quantity or from heat-balance estimates."
+    },
+    {
+      "title": "'Electronic interactions dominate' is not quantitatively established; Te calibration partly circular",
+      "quote": "From the comparison of ∆ρTHz with standard transport ρ(T) measurements and the analysis of the THz-induced damping of Shubnikov–de Haas oscillations (SdHO)",
+      "explanation": "The abstract and conclusion claim that interactions dominate transport, including in the T-linear regime. To show that the Te channel accounts for most of dρ/dT, one must show ΔρTHz ≈ ρ_eq(T = Te) − ρ_eq(TL), with Te determined independently of ρ(T).\n\nPart of the stated Te calibration comes from comparing ΔρTHz with ρ(T). That comparison presupposes that all of the T-dependence is Te-driven, which is the very claim being tested.\n\nThe SdHO-based estimate is independent, but it is obtained at finite B, presumably at specific densities and devices. It is not shown how it transfers to the zero-field, MATBG, T-linear data.\n\nThe main text gives only 'up to 15 K'. Without a device- and density-specific Te, the fraction of the equilibrium T-dependence that is electronic cannot be extracted. The phrasing alternates between 'strong contribution' in the body and 'dominate' in the abstract.",
+      "type": "logical",
+      "severity": "major",
+      "suggested_fix": "For MATBG1 at ν = 1.7 and the 2° device, show ΔρTHz together with ρ_eq(TL + ΔTe_SdHO) − ρ_eq(TL), where ΔTe comes solely from SdHO damping at the same power. Quote the ratio as the electronic fraction of dρ/dT, or soften 'dominate' to 'contribute substantially'."
+    },
+    {
+      "title": "Sign error in hole-side umklapp filling range",
+      "quote": "−3.5 < ν < 0.5 in a hole-side band",
+      "explanation": "The hole-side miniband spans −4 < ν < 0, so a range extending to ν = +0.5 cannot lie within it. Fig. 3d marks the hole-side umklapp window with arrows near ν ≈ −3.5 and ν ≈ −0.5. The electron-side window, 0.45 < ν < 3.45, is written with the symmetric lower bound. As written, the text would also imply that umklapp is allowed at ν = −0.1, contradicting the paper's central argument that T² at ν = ±0.1 is umklapp-free.",
+      "type": "technical",
+      "severity": "moderate",
+      "suggested_fix": "Replace '−3.5 < ν < 0.5' with '−3.5 < ν < −0.5'."
+    },
+    {
+      "title": "Umklapp filling thresholds not reproducible from stated k_F conditions",
+      "quote": "Likewise, when the first miniband is nearly completely filled and Fermi pockets reside around the γ point of the BZ, the umklapp threshold becomes kF > g/4 (Fig. 3f).",
+      "explanation": "The thresholds k_F > g/(4√3) (κ pockets) and k_F > g/4 (γ pocket) are stated without derivation; the γ case is the standard 4k_F > g result. Converting them to filling with circular pockets and 4-fold spin/valley degeneracy gives inconsistent numbers:\n- κ pockets (two per flavor): |ν| ≈ 4·2πk_F²/A_BZ ≈ 0.60;\n- γ pocket: ν ≈ 4 − 4πk_F²/A_BZ ≈ 3.1.\n\nThe text quotes ≈0.45–0.5 and 3.45. The difference may come from non-circular, trigonally warped Fermi surfaces or from the measured Hall density. However, the method is not stated, and the location of these boundaries is central to the claim that ν = ±0.1 and 3.8 lie outside the umklapp window.",
+      "type": "technical",
+      "severity": "moderate",
+      "suggested_fix": "State how the ν thresholds were obtained (band-structure Fermi contours vs circular-pocket estimate vs n_H). Give the explicit k_F-to-ν conversion, including degeneracy and the moiré cell area for θ = 1.58°."
+    },
+    {
+      "title": "Dirac-cone trigonal-warping formula applied near γ at ν = 3.8",
+      "quote": "are ruled out at |ν| = 0.1 and 3.8",
+      "explanation": "The proposed mechanism relies on the Dirac-type dispersion breaking Galilean invariance. Eq. (4) is the trigonal-warping velocity correction of a Dirac cone, expanded in v_F k_F a, following Sharma et al. for a Dirac–Fermi liquid.\n\nAt ν = 3.8, however, the Fermi pockets sit near γ at the edge of the band insulator (Fig. 3f). There the dispersion is band-edge-like rather than Dirac-like, and the pockets of the two valleys are related by time reversal.\n\nThe paper uses the ν = 3.8 data (Fig. 3c) as equal evidence for umklapp-free T² resistivity, but Eq. (1) and the Λ estimates do not apply there. The prefactor comparison is therefore supported only for the near-CNP case.",
+      "type": "logical",
+      "severity": "moderate",
+      "suggested_fix": "Restrict the quantitative Eq. (1)/Λ comparison to ν = ±0.1. For ν = 3.8, either derive the interpocket T² coefficient for the γ-centred, trigonally warped pockets (with their actual velocity anisotropy) or explicitly label that case as not covered by Eq. (1)."
+    },
+    {
+      "title": "'Unipolar at all measured T' and the low-T limit are questionable at T ~ T_F/2",
+      "quote": "the Fermi energy is ∼ 20 meV, ensuring that the electron system remains unipolar at all measured T.",
+      "explanation": "Fig. 3b extends to ~100 K and explicitly marks T_F/2, so k_BT reaches ~8–9 meV against E_F ≈ 20 meV. For a Dirac pocket, the thermally excited minority-carrier fraction at E_F/k_BT ≈ 2–2.5 is of order exp(−E_F/k_BT) ~ 10%. That is not negligible for electron–hole drag or friction, which are very efficient resistive channels in graphene.\n\nThe same thermal tail also populates states above the umklapp threshold (|ν| ≈ 0.5), allowing activated umklapp.\n\nEq. (1) is explicitly a low-temperature (T ≪ T_F) result. Fitting a T² law up to T_F/2 and comparing its prefactor with Eq. (1) mixes regimes.",
+      "type": "technical",
+      "severity": "moderate",
+      "suggested_fix": "Restrict the T² fits and the prefactor comparison to T ≲ T_F/5 (≈ 40 K for E_F ≈ 20 meV). Replace 'unipolar at all measured T' with an explicit estimate of the minority-carrier density n_h(T)/n at the highest T used."
+    },
+    {
+      "title": "Agreement with theory is weakly constraining",
+      "quote": "Depending on the assumed screening model, Λ ranges between 0.01 and 1",
+      "explanation": "The order-of-magnitude estimates are internally sound. Rough integration of Eq. (2) with Eqs. (5) and (6) does give Λ ~ 10⁻² and Λ ~ 1, respectively. However:\n- The resulting window, A ≈ 0.005–0.5 Ω/K², spans two decades, so 'falls within the expected range' is a weak test.\n- 'Best correspondence for Λ ≈ 0.2–0.3' amounts to fitting a free parameter.\n- The calculation is second order in the interaction, while α_e = e²/(4πε0ℏv_F) is of order several for v_F ~ 3–5×10⁵ m/s, so its quantitative reliability is uncertain.\n- The values of v_F, k_F (including the degeneracy used), and a entering Eq. (1) at ν = 0.1 are not given, so the A range cannot be checked.\n\nA sharper test would be the density dependence predicted by Eq. (1). Since (k_F a)²/n is n-independent, A depends on n only through v_F and Λ(k_F). This could be compared with A(ν) near the CNP.",
+      "type": "logical",
+      "severity": "moderate",
+      "suggested_fix": "List the v_F, k_F (with degeneracy g = 8 or 4), and a used to evaluate A at ν = 0.1. Add a plot of the measured T² coefficient A versus ν for |ν| < 0.45 against the Eq. (1) prediction for both screening models."
+    },
+    {
+      "title": "Incorrect figure-panel references in the discussion of Fig. 1",
+      "quote": "ρ exhibits a pronounced increase at all carrier densities n away from the CNP",
+      "explanation": "Three references point to the wrong panels:\n- The transport data ρ(T, n) are in Fig. 1c, but the text says 'Figure 1a shows exemplary transport data'; Fig. 1a is a device cartoon.\n- The THz-induced change of resistance is shown in Fig. 1d, but the text cites Fig. 1b for 'measured the induced change of resistance'.\n- It also cites Fig. 1b for 'ρ exhibits a pronounced increase...'; Fig. 1b is an optical image.\n\nA reader following the references would look at the wrong panels.",
+      "type": "technical",
+      "severity": "minor",
+      "suggested_fix": "Change 'Figure 1a shows exemplary transport data' to 'Figure 1c', and change both THz-related 'Fig. 1b' citations to 'Fig. 1d'."
+    },
+    {
+      "title": "Residual resistivity subtraction underspecified for log–log exponent analysis",
+      "quote": "Temperature-dependent change in resistivity, ∆ρ = ρ − ρ0, shown for representative ν values",
+      "explanation": "The T² claim at ν = ±0.1 and ±3.8 rests on log–log plots of ρ − ρ0 from ~10 K. The apparent exponent at the low-T end is very sensitive to the choice of ρ0. It matters whether ρ0 is ρ(2 K), a fitted intercept of ρ = ρ0 + AT^α, or something else, and the paper does not say. A free ρ0 can bias α toward 2.",
+      "type": "technical",
+      "severity": "minor",
+      "suggested_fix": "State how ρ0 is determined. Report α from a three-parameter fit ρ = ρ0 + A T^α with uncertainties for each ν shown in Fig. 3b,c."
+    },
+    {
+      "title": "Absolute THz power and per-device Te not reported",
+      "quote": "plotted for radiation powers P = 0.03 (blue), 0.09, 0.19, 0.37, 0.57, 1 (orange) in units of Pmax",
+      "explanation": "All powers are normalized to Pmax, and Pmax (incident power or intensity at the sample) is not given in the main text or Methods. A single 'up to 15 K' Te estimate is quoted without saying which device or density it applies to. This makes it impossible to compare absorbed power, cooling, and ΔTe across MLG, 2°, 1.58°, and MATBG devices, which the control argument relies on.",
+      "type": "technical",
+      "severity": "minor",
+      "suggested_fix": "Report Pmax in mW and the estimated intensity at the sample. Add a table of ΔTe at Pmax for each device (MLG, 2°, 1.58°, MATBG1, MATBG2), with the method used for each."
+    },
+    {
+      "title": "'Small electronic specific heat' is questionable for flat bands",
+      "quote": "Furthermore, TBG exhibits a relatively small electronic specific heat",
+      "explanation": "For a degenerate Fermi system, C_e = (π²/3) D(E_F) k_B² T. Near the magic angle the flat-band density of states is strongly enhanced, so C_e at fixed T is larger, not smaller, than in MLG at comparable density. The small heat capacity exploited in ref. 35 refers to specific conditions (low density, superconducting state). The statement is used to justify efficient heating in all devices, including MATBG, and may mislead readers about the relative ΔTe across twist angles.",
+      "type": "technical",
+      "severity": "minor",
+      "suggested_fix": "Replace the sentence with a statement that efficient heating follows from the weak electron–phonon cooling power relative to the absorbed THz power, and note that C_e is enhanced in flat-band MATBG."
+    }
+  ]
+}

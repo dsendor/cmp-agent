@@ -1,0 +1,101 @@
+{
+  "overall_feedback": "The paper reports double-THz-pump optical-probe 2D spectra of FePS3. It assigns magnon rectification and SHG, third-order magnon signals, and Mag–Ph3 sum- and difference-frequency peaks, and supports the assignments with a Lindblad-based two-mode model. The experimental data are rich. The peak positions are internally consistent: 0.45 = 3.7 − 3.25, 6.95 = 3.7 + 3.25, and the Zeeman-split DFG positions at 9 T match ω_Mag± − ω_Ph3. The field and temperature dependences are carefully documented.\n\nThe central claim of 'definitive', sample-intrinsic three-wave mixing rests on a weak argument against detection nonlinearity. Linear scaling of the fundamental modes does not exclude a ΔLB readout with a term quadratic in the mode amplitudes. Such a term would produce the same quadratic-in-field DFG, SFG and rectification peaks, at the same 2D coordinates.\n\nThe theory section has several technical problems:\n- The quoted coupling constants are dimensionally inconsistent with the dimensionless quadratures in the Hamiltonian.\n- The estimate β^a_bb ~ 10⁻³ β^b_aa mixes a dynamical amplitude into a coupling constant.\n- The claimed reduction of X_a²X_b to a resonant two-mode-squeezing form a†b† + ab is not consistent with the mode frequencies involved. This likely explains the ~0.01 dB squeezing obtained.\n- The Duan criterion is quoted with the wrong vacuum normalization.\n- There is a sign slip in the driving superoperator.\n\nThere are also unexplained experimental inconsistencies. DFG peaks are clearly visible at 9 T with only 0.2 MV/cm, although their amplitude scales quadratically and they are weak at 0.58 MV/cm at 0 T. The field normalization quoted in the Fig. 2 caption also differs from other values in the paper.\n\nThe squeezing and entanglement outlook is overstated relative to what is calculated.",
+  "comments": [
+    {
+      "title": "Linear scaling of fundamentals does not rule out a detection (readout) nonlinearity",
+      "quote": "The linear response of these fundamental modes ensures that subsequent nonlinear features are intrinsic to the sample.",
+      "explanation": "The authors rightly check that Mag and Ph3 scale linearly, which rules out a nonlinear excitation of the fundamentals. However, it says nothing about the nonlinearity of the optical readout. Suppose ΔLB contains, besides the linear term, a term quadratic in the mode amplitudes, ΔLB ∝ c1 x_a + c2 x_a x_b + c3 x_a². This is natural because LB is generically a bilinear form of the order parameter, L_iL_j. Such a readout yields:\n- a component at ω_Mag − ω_Ph3 and ω_Mag + ω_Ph3 that scales as H², exactly as in Fig. 1g;\n- a temperature dependence locked to ω_Mag − ω_Ph3, as in Fig. 1d.\nIn the 2D NL channel S_AB − S_A − S_B, the cross term between the A-induced and B-induced linear oscillations survives the subtraction. It produces peaks at (ω_Mag − ω_Ph3, ω_Mag), (ω_Mag − ω_Ph3, −ω_Ph3), (ω_Mag + ω_Ph3, ω_Mag or ω_Ph3), (0, ω_Mag) and (2ω_Mag, ω_Mag). These are the same coordinates assigned to TWM, rectification and SHG. Neither the 1D field dependence nor the 2D peak positions therefore discriminate intrinsic TWM from detection nonlinearity. The 'definitive' and 'direct observation' language is not yet supported. Supplementary Note 1 may address the LB response function, but the main-text argument as written is a non sequitur.",
+      "type": "logical",
+      "severity": "major",
+      "suggested_fix": "Add a quantitative bound on quadratic readout terms. Options include: (i) measuring the probe-polarization or probe-wavelength dependence of the DFG/fundamental amplitude ratio, which should be constant for intrinsic TWM and vary for readout nonlinearity; or (ii) estimating c2/c1 from the static LB(T) ∝ L² curve and showing the predicted readout cross-term is far below the observed DFG amplitude. Replace 'ensures' with a statement of which mechanism the linear scaling actually excludes."
+    },
+    {
+      "title": "Coupling constants have units inconsistent with dimensionless quadratures",
+      "quote": "corresponding displacement quadratures",
+      "explanation": "In Eq. (1) and Eq. (4), X_a = a† + a and X_b = b† + b = Q/ℓ are dimensionless. Every coefficient multiplying X_a²X_b or X_b²X_a must therefore have units of energy. Yet the paper quotes β^b_aa = 17 meV/Å and β^a_bb = 0.017 meV/Å². These have different units from each other and from energy. This makes the stated ratio β^a_bb ~ 0.001 β^b_aa ill-defined. It is also unclear how the simulation actually converts 17 meV/Å into the energy-scale coefficient used, which presumably involves ℓ and possibly spin-length factors. The first-principles value from Ref. 9 refers to a derivative of exchange with respect to displacement, not to the dimensionless coupling in Eq. (1).",
+      "type": "technical",
+      "severity": "moderate",
+      "suggested_fix": "State the dimensionless-quadrature couplings in energy units, e.g. β^b_aa,eff = (∂J/∂Q)·ℓ·(spin factors) in meV, with ℓ for Ph3 given numerically. Report β^a_bb in the same units, so that the 10⁻³ ratio and the simulation input are unambiguous."
+    },
+    {
+      "title": "Estimate β^a_bb ~ 0.001 β^b_aa uses a dynamical amplitude inside a coupling constant",
+      "quote": "where Qb is the phonon displacement amplitude and l is the oscillator length",
+      "explanation": "The argument multiplies α_SOC ~ 0.1 by a factor Q_b/l to obtain 10⁻³, which implicitly requires Q_b/l ~ 0.01. Q_b is the driven phonon amplitude, a property of the excitation and not of the Hamiltonian. It cannot enter a Hamiltonian coefficient. Moreover, once the coupling is written in X_b = Q/ℓ, the natural suppression factor for a term second order in displacement is ℓ/a, with a a lattice length scale, not Q_b/ℓ. Also, Q_b/ℓ is ⟨X_b⟩, which for a coherently driven mode is typically not ≪ 1. Because the comparison in Fig. 4 that 'establishes' X_a²X_b as dominant uses exactly this ratio, the conclusion inherits the weakness. The result could depend on the chosen β^a_bb.",
+      "type": "technical",
+      "severity": "moderate",
+      "suggested_fix": "Replace Q_b/l with the Hamiltonian-level factor (ℓ/a or (∂²J/∂Q²)ℓ²/((∂J/∂Q)ℓ)) and give its numerical value. Alternatively, show the Fig. 4b comparison for a range of β^a_bb (e.g. 10⁻³–10⁻¹ β^b_aa) to demonstrate that the absence of Ph3 rectification is robust."
+    },
+    {
+      "title": "X_a²X_b does not linearize to a resonant a†b† + ab two-mode squeezer for these frequencies",
+      "quote": "Under strong driving, the linearized TWM Hamiltonian",
+      "explanation": "Linearizing X_a²X_b about a coherent magnon amplitude α(t) ∝ e^{−iω_Mag t} gives 2α(t)δX_a X_b. Its a†b† part rotates at e^{i(ω_Mag+ω_Ph3)t}, which multiplied by α(t) leaves residual oscillation at ω_Ph3 (or 2ω_Mag + ω_Ph3). It is therefore not resonant. Linearizing about the phonon instead gives single-mode magnon squeezing, which is resonant only if ω_Ph3 ≈ 2ω_Mag. A resonant magnon–phonon two-mode squeezer requires a pump at ω_Mag + ω_Ph3 = 6.95 THz. For DFG-type down-conversion, a third mode near 0.45 THz is required, and the model contains no such mode. The tiny calculated squeezing (~0.01 dB) and entanglement (E_N ~ 0.006) in Ext. Data Fig. 7 are consistent with this non-resonance. Hence the statement that the TWM 'acquires the canonical form' is not justified.",
+      "type": "technical",
+      "severity": "moderate",
+      "suggested_fix": "Specify the pump frequency required for resonance (ω_p ≈ ω_Mag + ω_Ph3 for a†b† + ab via a parametric drive). State explicitly that the current broadband magnetic-dipole drive of the magnon does not satisfy it. If enhancement is claimed, show the calculation with a narrowband drive at that frequency."
+    },
+    {
+      "title": "Duan criterion bound missing factor of 2 for X = a + a† normalization",
+      "quote": "two-mode EPR squeezing occurs when the combined variance satisfies",
+      "explanation": "The paper fixes vacuum variance Var(X) = 1 with [X, P] = 2i. Then for vacuum (a separable state), Var(u) + Var(v) = 2(g² + 1/g²) with u = |g|X_a − X_b/g and v = |g|P_a + P_b/g. Duan's bound a² + 1/a² holds for quadratures with [x, p] = i (vacuum variance 1/2). With the paper's normalization the separability bound is 2(g² + 1/g²), so the stated threshold is off by a factor of 2. Separately, using g both for the linear hybridization coupling and for the Duan scaling parameter invites confusion.",
+      "type": "technical",
+      "severity": "moderate",
+      "suggested_fix": "Replace the criterion with Var(u) + Var(v) < 2(g² + 1/g²) for X = a + a†, P = i(a† − a). Rename the Duan scaling parameter (e.g. r) to avoid a clash with the hybridization g. Recompute Ext. Data Fig. 7b accordingly."
+    },
+    {
+      "title": "DFG clearly visible at 9 T with 0.2 MV/cm despite quadratic scaling, while SFG absence is blamed on low field",
+      "quote": "do not appear clearly in the magnetic field measurements due to the reduced THz field",
+      "explanation": "At 0 T, Ext. Data Fig. 5 shows the Mag–Ph3 DFG becoming weak already at 0.58 MV/cm, with quadratic scaling. Extrapolating to 0.2 MV/cm gives an amplitude roughly 10 times smaller than at 0.58 MV/cm and about 40 times smaller than at 1.3 MV/cm. Yet Fig. 3c at 9 T and 0.2 MV/cm shows well-resolved Mag±–Ph3 DFG peaks on a colour scale comparable to the 0 T data. Low field is then invoked to explain why SFG is not seen in the magnet. Possible explanations, which the paper does not discuss, include:\n- field-enhanced coupling as Mag− approaches Ph3;\n- a different sample, normalization or detection configuration;\n- a different origin of the peaks.",
+      "type": "logical",
+      "severity": "moderate",
+      "suggested_fix": "Report the DFG/rectification amplitude ratio at 0 T and at 9 T under comparable field strength. Explicitly state whether the colour scales and normalizations of Fig. 3a and 3c are comparable. If the ratio is enhanced at 9 T, attribute it quantitatively, e.g. to the reduced Mag−–Ph3 detuning."
+    },
+    {
+      "title": "Sign of driving superoperator inconsistent with Hamiltonian",
+      "quote": "The light-matter coupling enters through the driving superoperators",
+      "explanation": "Eq. (1) contains the interaction +μ_a X_a H(t), and L contains −i[H, ρ]. The driving term in ρ̇ should then be −iH(t)[μ, ρ], i.e. C_μρ = −i[μ, ρ], not +i[μ, ρ] as in Eq. (7). It is also unclear whether H in Eq. (6) includes the drive term of Eq. (1), which would double count it, or the drive-free Eq. (4). The sign does not affect |S| maps but flips the relative sign between odd and even orders. Eq. (19) adds S^(2) and S^(3) coherently, so their interference is affected.",
+      "type": "technical",
+      "severity": "minor",
+      "suggested_fix": "Write C_μρ = −i[μ, ρ]. State that L in Eq. (6) uses the drive-free Hamiltonian of Eq. (4)."
+    },
+    {
+      "title": "Inconsistent field normalization for double-pump data",
+      "quote": "is measured and normalized to 1.1 MV/cm.",
+      "explanation": "The Methods and Fig. 3a,b state that the double-pump configuration reaches 1.3 MV/cm, and SFG is resolved 'at 1.3 MV/cm'. The Fig. 2 caption normalizes the field-dependence axes to 1.1 MV/cm. Ext. Data Fig. 5 only goes up to 0.93 MV/cm. A reader cannot tell which field corresponds to H_THz = 1 in Fig. 2d,e or how these data relate to Fig. 3.",
+      "type": "technical",
+      "severity": "minor",
+      "suggested_fix": "State the actual peak field of each double-pump dataset (Fig. 2a, 2d–e, 3a–b, Ext. Data Fig. 5) and use a single normalization, or explain why 1.1 MV/cm is the reference for Fig. 2."
+    },
+    {
+      "title": "Quadratic scaling of 2D DFG peaks rests on a narrow field range",
+      "quote": "shows the quadratic scaling in a limited",
+      "explanation": "The authors acknowledge the limited data, which is commendable. However, the 2D field dependence covers only 0.58–0.93 MV/cm plus an imposed origin. Over a factor-1.6 range, linear-with-offset, quadratic and cubic fits are hard to distinguish, and forcing the fit through zero biases the result. Since the 2D DFG assignment as a second-order process relies on this, the evidence is weaker than for the 1D DFG (Fig. 1g).",
+      "type": "logical",
+      "severity": "minor",
+      "suggested_fix": "Fit a free power law A·H^n to the Ext. Data Fig. 5 data without forcing the origin, and report n with its uncertainty for DFG I and DFG II."
+    },
+    {
+      "title": "Reduction of phonon-modulated exchange to the specific form X_a²X_b is not justified",
+      "quote": "As a consequence, the phonon-modulated exchange generates nonlinear couplings of the form",
+      "explanation": "The Methods note that the modulated exchange yields terms ∝ a², a†², and a†a, each multiplied by Q, with generally independent coefficients. They also note that in a two-sublattice AFM the magnon is a Bogoliubov combination. Collapsing these into X_a² X_b = (a² + a†² + 2a†a + 1)X_b assumes a particular ratio of coefficients. The ratio matters: a†a X_b alone (a frequency modulation) and (a² + a†²)X_b give different weights to rectification, SHG and DFG/SFG peaks. Since the paper uses the presence or absence of specific peaks to discriminate mechanisms, the chosen operator form needs justification.",
+      "type": "technical",
+      "severity": "minor",
+      "suggested_fix": "Write the general cubic form β1 a†a X_b + β2 (a² + a†²) X_b. Give the microscopic ratio β2/β1 for the zigzag AFM after the Bogoliubov transformation, or show that the simulated 2D maps are insensitive to it."
+    },
+    {
+      "title": "Mislabeling of the driven modes as infrared-active",
+      "quote": "dependence of the infrared-active modes rule out strong electric-field-driven nonlinear effects",
+      "explanation": "Throughout the paper, Mag and Ph3 are described as driven by H_THz, and the phonons are 'Raman-active'. Calling them 'infrared-active' contradicts this. It also muddles the argument, because linear scaling of magnetically driven modes is weak evidence against E-field-driven effects such as Zener tunnelling.",
+      "type": "technical",
+      "severity": "minor",
+      "suggested_fix": "Replace 'infrared-active modes' with 'magnetically driven magnon and Raman-active Ph3 modes'."
+    },
+    {
+      "title": "Squeezing/entanglement outlook overstated relative to calculation",
+      "quote": "the calculations confirm that optimal two-mode squeezing is achievable",
+      "explanation": "Ext. Data Fig. 7 shows sub-0.02 dB squeezing and E_N ≲ 0.006, oscillating at the mode frequencies. The calculation is closed-system-like over 20 ps at effectively zero temperature. No calculation with a narrowband source is presented, so the claim of 'substantial enhancement' is unsupported. Together with the abstract's emphasis on entangling excitations, this overstates what has been shown.",
+      "type": "logical",
+      "severity": "minor",
+      "suggested_fix": "Quote the actual computed values (≈0.02 dB, E_N ≈ 0.006). Either remove 'could be substantially enhanced with narrowband THz sources' or add the narrowband-drive calculation that supports it."
+    }
+  ]
+}

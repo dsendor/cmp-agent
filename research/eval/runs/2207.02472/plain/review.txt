@@ -1,0 +1,156 @@
+Referee report
+
+Manuscript: "InAs-Al Hybrid Devices Passing the Topological Gap Protocol" (Microsoft Quantum, arXiv:2207.02472v4)
+
+1. Summary of the submission
+
+The authors report three-terminal transport on gate-defined InAs/Al nanowires made from shallow-quantum-well 2DEGs. Simulations guided the design (single- and dual-layer gate layouts, four material stacks). They apply the topological gap protocol (TGP) of Pikulin et al. (arXiv:2103.12217). In Stage 1, it looks for zero-bias peaks (ZBPs) at both ends that survive changes in the cutter gates. In Stage 2, it asks for a gapped region with stable ZBPs at both ends whose boundary is mostly gapless in the antisymmetrized non-local conductance. Four devices (A to D) pass, with maximum "topological gaps" of 17 to 61 ueV. Device A passes in three runs over two cooldowns. Two devices (E, F) fail. The authors simulated 349 disorder realizations and found no false positives over B <= 3 T. From that they conclude that the false discovery rate (FDR) is below 8% at 95% confidence, and that devices A to D therefore have a "high probability" of being in a topological phase hosting MZMs.
+
+The materials and device work is substantial. The field needs a protocol fixed in advance, open data and open analysis code (Ref. 98), and this paper provides all three, which is a real improvement over earlier ZBP-only claims. The authors also say clearly that a ZBP alone proves nothing, which I welcome. My main concern is that the physical conclusion rests almost entirely on the simulated FDR. As currently defined and computed, the FDR does not support statements like "the probability that the candidate region is not topological is < 8%". The direct experimental evidence is modest: small regions in parameter space and gaps of a few bias steps. I list the issues in rough order of importance.
+
+2. Major issues
+
+2.1 The ground truth used to score the TGP is permissive.
+
+An ROI2 counts as a true positive if it overlaps any region where the scattering invariant is -1. That region is the union over both junctions and all five cutter settings (Appendix E.1). Three things make this a low bar:
+(a) Appendix A.4 says SI = -1 at a junction also occurs in the quasi-MZM scenario, where a second Majorana sits close to the first and both are weakly hybridized. So the reference label "topological" already includes the main trivial alternative the TGP is supposed to rule out.
+(b) Taking the union over two junctions and five transparencies makes the SI = -1 area larger than any single invariant would.
+(c) "Any overlap" means a large ROI2 that is mostly trivial still counts as a true positive. The authors note that "part of the ROI2s ... do not have SI = -1 and much of the SI = -1 region lies outside the ROI2".
+
+Requests:
+- Report, for every simulated ROI2, the fraction of its area with SI = -1. Use SI = -1 at both junctions simultaneously for the same cutter pair.
+- Report the FDR again under stricter definitions: majority overlap; SI = -1 at both ends; xi(0) < L inside the region; or the Pfaffian invariant together with a gap condition, as in the black regions of Fig. 7.
+- If the FDR stays low under these definitions, the claim becomes much stronger. If it does not, readers need to know.
+
+2.2 The FDR is conditional on the simulation model, and the model is checked only weakly.
+
+The text says this itself: the < 8% figure holds "provided that the simulated data is drawn from the same probability distribution as the data produced by real devices". Three concerns follow.
+
+(a) The disorder model is a quenched Gaussian potential with exponential correlations, projected onto the lowest sub-band and calibrated to Hall-bar mobility through an effective interface charge density. Section 3 attributes the large device-to-device variation in junction behavior to unscreened charged impurities in the depleted junctions. Measurement A2 shows an "impurity that moved". It is not clear that the transport simulations include junction-specific disorder, quantum dots in the barriers, smooth potentials at the junctions beyond the bulk disorder model, charge switching, or gate drift. These are the textbook sources of trivial ZBPs. If they are absent, the FDR says nothing about them. Please state exactly which mechanisms are in the transport simulations used for Table II, and which are not.
+
+(b) Section 5 dismisses coincidental gap closings plus trivial ZBPs because "such coincidences do not require any physics that is not incorporated in our simulations". This is circular. The question is precisely whether the experiment contains physics that the simulations leave out.
+
+(c) The model is validated by comparing a few summary statistics (maximum gap, SOI2 volume, centroid field; Tables III and IV). The two largest experimental outliers, the SOI2 volumes of A1 and A2 and the gap of device B, are explained as "long tails". Agreement within broad, non-Gaussian distributions on three coarse statistics would not rule out a quite different underlying model. Please also compare the full distributions, with the experimental points placed on them. Compare also features the protocol does not use directly: ZBP density away from the ROI, the zero-field induced gap and its Vp dependence, and the sub-gap conductance.
+
+2.3 The FDR depends on prevalence, which the paper does not discuss.
+
+The FDR is the fraction of positive calls that are false. It depends on how common topological regions are in the simulated population, not only on the protocol. In the simulations, 26% to 96% of devices pass and most contain topological regions. If real devices are more disordered, or have trivial mechanisms the model lacks, the experimental FDR can be much larger than the simulated one even if the protocol is unchanged.
+
+The paper declines to compute a false positive rate on negatives, arguing that "an arbitrary region is very likely to be negative". A device-level null test is both well defined and essential. Simulate devices that by construction have no topological phase in the scanned window: for example, reduced g-factor or larger induced gap so that no transition occurs below 2.5 T, strong smooth junction potentials, junction quantum dots, or disorder well above delta V_c. Report how often they pass.
+
+2.4 The statistical treatment of the FDR bound.
+
+(a) Clopper-Pearson intervals assume independent Bernoulli trials. ROI2s from the same disorder realization are not independent: weakly disordered devices typically have several ROI2s. Please also report the bound at the device level, counting a device as a false positive if any of its ROI2s is.
+
+(b) The experiments scan B up to 2.5 T. The text says that with B <= 2.5 T there is one false positive, in SLG-beta at n2D,int = 1.0e12/cm^2. Table II, the abstract and the introduction quote the zero-false-positive numbers, which appear to be for B <= 3 T. The relevant bound is the one that matches the experimental analysis window. Please give Table II for B <= 2.5 T, or justify using the 3 T version.
+
+(c) The manuscript quotes the result as "< 8%" in the introduction and Sec. 3, "> 90%" and "less than 10%" in Sec. 5, and "<= 8%" and "> 92%" in Appendix E. Please use one consistent statement.
+
+(d) Phrases such as "the probability that the candidate region ... is not topological is < 8% at the 95% confidence level" mix a frequentist bound on a population rate in simulation with a posterior probability for a specific experimental device. Please rephrase.
+
+2.5 The experimental denominator and analysis freedom.
+
+The paper reports four passing devices and "two of them" (E, F) among devices that did not pass. Device A "regularly passed the TGP, but also failed sometimes". To judge the result, readers need:
+- the total number of devices of each design and stack that were cooled down and run through the TGP;
+- the number of Stage 1 and Stage 2 runs per device;
+- the pass and fail outcome of each run.
+This experimental yield should be compared with the simulated yields in Table IV.
+
+The protocol also leaves many choices to the experimenter, and these differ between datasets:
+- the Vp window (30 mV in Stage 1, 5 to 15 mV in Stage 2);
+- the B window;
+- the number of cutter pairs: 3 for A1, 4 for A2 and A3, 5 for B, with different GN targets;
+- whether cutters are compensated as a function of Vp;
+- which cutter pair is shown;
+- the GN range, which is quoted as 0.01 to 0.85 e^2/h in Sec. 4.1.1 and as 0.1 to 1 e^2/h in Appendix D.
+
+Requests:
+- State whether the thresholds and these choices were fixed before the experimental data were analyzed.
+- Show how robust the pass or fail outcome is for each dataset when (ZBP%)th, (GB%)th, G_th and (C_i%)th are varied over reasonable ranges, and when the B and Vp windows are trimmed or extended.
+- Apply the same perturbations to the simulated ensemble.
+- A plot of pass or fail against threshold for experiment and simulation together would be very informative.
+
+2.6 The direct experimental evidence for a closing and reopening of the bulk gap.
+
+The central physical signature is a closing and reopening of the bulk gap seen in non-local conductance. In the figures shown, the bias window is +/-40 to +/-100 uV. The zero-field induced gap of device A is about 129 uV and is never visible in the same panels as the high-field reopening. Please show, for the Vp cut through each SOI2, non-local data over a bias range covering Delta_ind (about +/-300 uV) from B = 0 through the SOI2. A reader can then see the induced gap close and a separate gap reopen, rather than relying on the extracted black curves.
+
+The reopened gaps are 17 to 29 ueV for devices A, C and D, and the gap edge is defined by a threshold set at 0.05 of the maximum non-local signal. Please give:
+- the lock-in excitation amplitude;
+- the bias step;
+- the noise floor of A(G_RL) and A(G_LR) in absolute units for each dataset, compared with G_th.
+Antisymmetrization forces A(G) to zero at zero bias. Near zero bias the antisymmetric part is therefore small whatever the physics, which biases the procedure toward calling a region "gapped". Please show the symmetric part as well, and show that the gapped interior is not an artifact of antisymmetrization plus thresholding at a few bias pixels.
+
+2.7 The "topological gap" is a transport gap, and may overestimate the spectral gap.
+
+Appendix D.1 states that the extracted gaps are transport gaps that "can be larger than" the clean-system values. For device B, the 61 ueV maximum equals the largest gap expected for a perfectly clean, infinitely long DLG-epsilon wire. The paper itself says that sign changes in the non-local signal produce spuriously large gap values, and that the upper-quintile definition of Delta_max only partly guards against this. Headline numbers of 20 to 60 ueV in the abstract therefore risk being read as spectral gaps. Please:
+- headline the median gap rather than the upper quintile;
+- show the distribution of extracted gap values inside each SOI2;
+- state plainly that these are not measurements of the spectral gap.
+
+2.8 The size of the regions compared with drift and resolution.
+
+The SOI2s span delta Vp of about 1 to 2.5 mV and delta B of 0.2 to 0.5 T, with volumes of 0.1 to 0.5 mV.T. The paper reports drift of 2 to 3 mV over a week, features shifting when Vp moves by more than 100 mV, and an impurity that moved between runs. Please:
+- give the number of pixels in each SOI2 and its boundary;
+- give the duration of each Stage 2 acquisition;
+- characterize drift within a single Stage 2 run, for example by repeating a reference cut.
+
+Two further points on the gapless-boundary fraction:
+- For device B, the SOI2 touches the edge of the scan window at Vp = -1.1580 V. How are boundary pixels on the scan edge counted in GB%?
+- A cluster of a few dozen pixels with a 60% threshold leaves room for a sizable gapped stretch of "boundary".
+
+2.9 Correlation of the ZBPs at the two ends.
+
+Stable ZBPs are required at both ends at the same (B, Vp). This is co-occurrence, not evidence of a common origin. At high field, zero-energy states are common in class D systems, and both ends of a wire can independently show ZBPs over extended regions. Please add a simple null test: take the left and right Stage 1 ZBP maps, shift or permute one relative to the other within the lowest-sub-band window, and estimate how often joint clusters as large as ROI1 arise by chance.
+
+Two related questions:
+- The ZBP criterion (negative curvature above the noise) cannot distinguish a true zero-energy peak from a peak split by less than the thermal or lifetime broadening. How is this handled?
+- Is the cutter range large enough to move a trivial Andreev bound state? The paper estimates the local potential change as "a few meV"; please show how this was obtained. In the SLG design, the cutter gates also deplete the 2DEG next to the wire and so act partly as plungers. How is the cutter variation separated from the bulk density change?
+
+2.10 Localization length and disorder claims.
+
+The localization-length measurement (Fig. 6, Appendix C) is valuable. It is done on a different device, in the open regime, with the semiconductor driven normal by about 1 T applied perpendicular to the wire, using one normalization choice, sqrt(G_RR G_LL). Several of the segment lengths are at or below the extracted l_loc, so the exponential fit is weakly constrained. Please:
+- give uncertainties on l_loc;
+- show the fit for several Vp values;
+- discuss how directly the result transfers to devices A to D under operating conditions.
+
+The interface charge densities from Hall bars are model-dependent fits, as the authors acknowledge. The mapping to delta V comes entirely from simulation. Please propagate the uncertainty of the extracted densities into the choice of simulated disorder levels.
+
+2.11 Undisclosed design and stack parameters.
+
+Section 2.7 withholds the barrier thickness and composition, the quantum-well thickness, the dielectric, and the Al width. Withholding them is the authors' choice. It does mean that independent groups cannot test the central claim, and that the statement "any device that replicates our design and material stack will have similar effective parameters" cannot be checked. Partly to compensate, I would ask that:
+- the full raw data for every run be released, including failed runs and runs on devices that never passed;
+- the simulation inputs needed to regenerate Tables II, IV and V from the released single-band parameters (delta V, kappa, Table I) be released as well.
+
+3. Framing of the conclusions
+
+The abstract is appropriately cautious ("consistent with"). Section 4.1.3 and Section 5 go further: they say the data provide "strong evidence for the observation of a stable topological superconducting phase supporting MZMs", and the introduction says the devices "satisfy these requirements". Given the issues above, I recommend keeping to the operational statement throughout: the devices pass a predefined protocol, and the protocol has a low simulated FDR under stated assumptions.
+
+The statement that these are "the first to have passed as stringent a set of requirements as those encompassed by the TGP" is close to tautological, since the TGP is the authors' own protocol. Please rephrase.
+
+Some observations are presented as consistent with the topological interpretation without discussing whether they discriminate against alternatives. Examples are ZBPs appearing before the gap reopens, read as quasi-MZM precursors, and the qualitative resemblance between simulated and measured phase diagrams. Please say for each such observation whether it favors the topological reading over the trivial ones.
+
+The orbital-effect discussion in Sec. 5 is useful and fairly convincing. The strong Vp dependence of the gap closing argues against a half-flux-quantum explanation.
+
+4. Minor issues and corrections
+
+- Sec. 4.1.2: "The color scheme in Fig. 11(a,b) is the same as in the simulated phase diagrams in Fig. 31(a,b). The most salient feature of Fig. 31(a,b) is the presence of an SOI2". The second reference should presumably be to Fig. 11.
+- Sec. 5: device E stable ZBPs are said to be at "Vp ~ -1.13895 V, as may be seen in Fig. 19". Device E is Fig. 20, at about -1.3893 V.
+- Sec. 4.2.2: "maximum topological gaps of 17 ueV for the top and bottom regions, respectively" conflicts with the Fig. 19 caption (17 and 21 ueV).
+- The depletion point of device A is quoted as about -1.27 V (Fig. 9), -1.18 V (Sec. 4.1.1), and "between -1.2 and -1.4 V depending on the cooldown" (Sec. 4.1). Please say which cooldown Fig. 9 belongs to.
+- Appendix D.1: "we determine the induced gap as the lower of the gaps extracted from A(G_RL) and A(G_LR)" should read "transport gap".
+- Appendix F: "SOI1" should presumably be "SOI2".
+- Stage 2 stability in A1 is "2 out of 3" (67%), while (ZBP%)th = 60% is quoted. State how the threshold is applied for 3, 4 and 5 cutter pairs.
+- Calibration used alpha of about 13 meV.nm (Appendix E.2), larger than the Table I values (8.3 to 8.7 meV.nm) used for testing. Please comment on the sensitivity of the thresholds to alpha.
+- G_th was lowered from 0.05 to 0.01 for the cleanest simulated disorder level. Devices B to D have n2D,int of about 0.8 to 1.1e12/cm^2. Explain how the experimenter decides which G_th applies to a real device when the disorder level is known only approximately.
+- Typos: "getter understanding" (Sec. 2.6), "There precise shape" (Sec. 2.6), "nomerator" (Table IV caption), "forth column" (Table IV caption), "used estimate the FDR" (Sec. 3), "that that" (Secs. 4.2.2 and 5).
+- Electron temperature: please give the NIS thermometry details or a reference to the specific calibration, since the simulated temperature (40 mK) is matched to this bound.
+
+5. Recommendation
+
+Major revision. The fabrication, measurement and open-data work is of high quality and deserves publication. In its current form, the inference from "passes the TGP" to "high probability of a topological phase" is not adequately supported. The most important additions are:
+(i) a stricter ground truth for the FDR, with device-level statistics and the B <= 2.5 T window that matches the experiment;
+(ii) explicit null-device simulations that include junction-specific trivial mechanisms;
+(iii) a full experimental denominator, with robustness of each pass to the analysis choices;
+(iv) wide-bias raw data showing the induced gap closing and a separate gap reopening, with noise floors and resolution stated.
+
+If these are addressed, the paper would make a clear and well-bounded contribution. If the conclusions survive them, they would be considerably more persuasive.

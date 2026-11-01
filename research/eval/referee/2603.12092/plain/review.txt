@@ -1,0 +1,136 @@
+Referee report
+
+Manuscript: "Quantum interference in a twisted high-Tc SQUID senses emergent interfacial order" (arXiv:2603.12092v1)
+
+1. Summary of the submission
+
+The authors make c-axis dc SQUIDs from cryogenically exfoliated, twisted Bi2Sr2CaCu2O8+d (BSCCO) stacks. They do this by cutting the twisted overlap region with a fibre scalpel, which leaves two artificial Josephson junctions (AJJs) in parallel. Devices span nominal twist angles of 0, 40, 42, 44 and 45 degrees. The main claims are:
+
+(a) Following Wollman et al., they extrapolate the bias dependence of dV/dI minima to I = 0 and find an anomalous phase phi12 between the two arms. In a 45 degree device it switches between about 0 and about pi as a small in-plane field (plus or minus 20 uT) is stepped. They interpret phi12 = pi as the two arms sitting in opposite chiral (d+id and d-id) minima of the Can et al. free energy. They call this direct evidence of chiral, time-reversal-symmetry-breaking (TRSB) interfacial order that a single junction cannot reveal.
+(b) Is+(+B) and |Is-(-B)| differ at B = 0 (eta' of about 4% at 45 degrees and about 8% at 40 degrees), which they read as intrinsic TRSB.
+(c) A second harmonic appears in the switching-current modulation, with FFT ratio A2/A1 of 0.2 to 0.37, which they attribute to Cooper-pair co-tunnelling.
+(d) A Josephson inductance and "superfluid stiffness" of the interfacial junction, measured against temperature, behaves differently from bulk BSCCO.
+(e) Flux noise of about 1.5 uPhi0/sqrt(Hz) at 60 K, which they call state of the art.
+
+The device concept is attractive. A SQUID built from two junctions on the same twisted interface is the right tool to ask phase-sensitive questions that single-junction transport cannot. The fabrication, a scalpel cut through a finished twisted stack, is simple and potentially widely useful, and the SQUID oscillations in Figs. 1f, 2 and 5a are clean. If the anomalous-phase result holds up, it would be an important addition to the twisted-cuprate TRSB debate, which is currently contested: refs. 11 and 22 conflict, and ref. 50 offers an inhomogeneity explanation. In its present form, however, the central claim (a) does not yet hold up against simpler explanations. Claims (b) to (e) also carry quantitative inconsistencies that need to be resolved. Details follow.
+
+2. Major issues
+
+2.1 The pi state is in tension with the authors' own harmonic content and model.
+
+In the Can et al. picture the authors invoke, the junction free energy is F(phi) = -E1 cos(phi) + E2 cos(2 phi) with E2 > 0. The degenerate minima sit at phi0 = plus or minus arccos(E1/(4 E2)). In current-phase language they exist only when |I2|/I1 > 1/2, and the inter-arm phase for opposite chiralities is then phi12 = 2 phi0. That equals pi only when the first harmonic vanishes exactly. Yet when I1 = 0 the CPR is pi-periodic, the SQUID modulation becomes Phi0/2-periodic, and a "half Phi0-period shift" is a full period of the observable oscillation, so it cannot be detected. A detectable pi offset therefore requires a finite first harmonic, and a finite first harmonic in this model gives phi12 strictly less than pi.
+
+The data show a dominant Phi0-periodic modulation. The quoted A2/A1 of 0.20 to 0.37 (Fig. 4d) is below the 1/2 threshold, at which the model has no TRSB ground state at all. The authors need to:
+ (i) state what CPR harmonic ratio they infer for the small arm once the inductive contribution is removed (see 2.3);
+ (ii) give the phi12 that the free-energy model of SI 10 predicts for that ratio;
+ (iii) explain how a value near pi arises together with a dominant first harmonic.
+"Consistent with expectation" is not enough here. A quantitative prediction is needed.
+
+2.2 A conventional 0/pi-junction explanation is not excluded.
+
+Near 45 degrees the first-harmonic coupling scales roughly as cos(2 theta) and changes sign at 45 degrees. The quoted twist accuracy is 0.5 degrees, and local strain, wrinkles, or the cut itself can shift the effective local angle. One arm can therefore be a 0-junction and the other a pi-junction with no TRSB at all, which yields phi12 = pi. This is exactly the Wollman/Tsuei logic the authors cite. The same applies to disorder-induced sign changes of the first harmonic in the spirit of ref. 50.
+
+Separating TRSB chirality from a sign difference of I1 requires the same anomalous-phase protocol on:
+ - the 0 degree control, where phi12 should always be 0;
+ - the 40 degree device, where cos(2 theta) has a fixed sign and the Can et al. TRSB window should be absent or narrow;
+ - the 42 and 44 degree devices.
+The text says phi12 was measured "in multiple devices", but the main text and Extended Data show one device, at a single temperature (20 K), plus "another device in SI 14". The number of devices, angles, cooldowns and repetitions behind the phi12 claim should be stated explicitly.
+
+2.3 The screening parameter and inductance values appear inconsistent with the data.
+
+The text states beta = 2 pi Lgeo Ic / Phi0 ~ 1. With Ic about 50 uA that implies Lgeo of order 7 pH. Two features of the data point to an effective inductance more than an order of magnitude larger.
+
+ - Bias dependence of the minima. Digitising Fig. 3a and 3b, the minima move by about 0.052 to 0.058 Phi_period per uA of bias. By the Methods relation (shift in periods = ((nu+gamma)/2) Lgeo I / Phi0), this gives ((nu+gamma)/2) Lgeo of roughly 110 pH. For any asymmetry with (nu+gamma)/2 of 1 or less, Lgeo is at least about 110 pH. The quoted 3:1 asymmetry suggests 200 to 300 pH.
+ - Modulation depth and shape. In Fig. 2d the switching current modulates by only about 6 to 8 uA on about 50 uA, and the modulation is strongly sawtooth-skewed. For a 3:1 asymmetric SQUID with beta ~ 1, the modulation depth would approach 2 Ic1, about 25 uA. A depth of order Phi0/L with L of a few hundred pH, and the skewed shape, are what one expects for beta >> 1.
+
+If beta is in fact of order 10 to 50, three consequences follow.
+ (i) The Josephson inductance in Fig. 2f (25 to 40 pH at low T) is obtained by subtracting a simulated Lgeo of a few hundred pH from a measured total. That makes LJ a small residual, highly sensitive to the electromagnetic simulation. The error bars in Fig. 2f do not appear to include this systematic uncertainty. The simulated Lgeo1, Lgeo2 and their uncertainties should be given in the main text.
+ (ii) A beta >> 1 asymmetric SQUID produces strong higher Fourier harmonics in Is(Phi) even for a purely sinusoidal CPR. The A2/A1 values in Fig. 4d therefore cannot be read as CPR second-harmonic content without fitting a model that includes the measured inductances (claim (c)). The SI 10/11 simulations should be compared quantitatively with the data in the main text.
+ (iii) Hysteretic SQUIDs have overlapping Ic(Phi) branches belonging to different fluxoid states. Which branch is followed depends on sweep direction, bias history and switching events. The Wollman construction assumes a single branch. Fractional apparent shifts of the minima from branch selection must be ruled out (see 2.4).
+Please also reconcile the effective area being 7 to 8 times the geometric area with an Lgeo computed for the geometric loop. If the flakes act as a flux-focusing washer, the relevant inductance is that of the washer geometry.
+
+2.4 Trapped flux and flux-state switching are the leading alternative for the 0/pi switching.
+
+The effective area is 7 to 8 times the geometric loop area. The flakes therefore act as a large flux-focusing washer, and Abrikosov (pancake) vortices trapped in the washer shift the SQUID phase by amounts that depend on their position. Vortex hopping between pinning sites is the standard source of two-level phase offsets and 1/f noise in high-Tc SQUIDs. Cooling a flake tens of microns across in a residual field of about 1 uT already traps of order one flux quantum.
+
+Several features of Extended Data Fig. 2 fit this picture at least as well as controlled chirality selection.
+ - The state is not a monotonic or cleanly hysteretic function of the in-plane field. Up sweep: 0, 0, pi, 0, pi. Down sweep: pi, pi, 0, pi, 0. Both sweep directions give different states at the same field.
+ - The values cluster only loosely, at roughly 0.05 to 0.16 pi and 0.78 to 0.98 pi from my reading of the plot, with no error bars.
+ - The in-plane fields involved (10 to 20 uT) thread a negligible flux through a junction cross-section of order 10 um x 100 nm (about 0.005 Phi0). The proposed coupling of Josephson and Abrikosov vortices usually needs fields orders of magnitude larger. Switching events are more plausibly driven by the field-stepping process itself, by the plus or minus 12 uT perpendicular sweeps (about 4 periods), or by biasing repeatedly above the switching current.
+
+Needed to address this:
+ - repeated measurements at fixed in-plane field, showing that phi12 is stable within a state and how often it switches spontaneously;
+ - a histogram of phi12 over many repetitions and thermal cycles above Tc, with fit uncertainties;
+ - dependence on cooling field (field-cooled at several perpendicular fields versus nominally zero-field-cooled);
+ - the measured residual field inside the cryoperm shield, and the misalignment and cross-talk of the two-axis coil (a tilt of about 10 degrees would let 10 uT in-plane produce a half-period shift);
+ - the temperature dependence of phi12: a chiral pi state should vanish at a TRSB onset temperature, while vortex-induced offsets need not;
+ - the same protocol on the 0 degree control (see 2.2).
+Extended Data Fig. 2 plots values folded into [0, pi]. Please show the unfolded phases in [0, 2 pi) with error bars, so readers can judge whether a two-state description is warranted.
+
+2.5 Extrapolation, uncertainty and the definition of the minima in Fig. 3.
+
+ - The intercepts come from extrapolating far beyond the data. In Fig. 3a, five points spanning about one period at 41 to 59 uA are extrapolated about two periods to I = 0. In Fig. 3b, the lowest point is at 22 uA.
+ - My own linear fit to the digitised points gives intercepts of -1.96 plus or minus 0.13 periods (Fig. 3a) and -0.37 plus or minus 0.17 periods (Fig. 3b). The second corresponds to |phi12| of about 0.7 pi plus or minus 0.3 pi. That is compatible with pi but does not clearly exclude intermediate values. The authors should report fit uncertainties for every point in Extended Data Fig. 2.
+ - At the lower biases many dV/dI traces are flat between sharp peaks (e.g. 41 and 45 uA in Fig. 3a). A "minimum" there is ill-defined. Please define the feature tracked objectively (peak positions, a fitted phase of the fundamental Fourier component, or cross-correlation between traces), and show that the intercept does not depend on that choice.
+ - Several traces show doubled peaks (55 and 59 uA in Fig. 3a). This means the tracked feature may change character with bias.
+ - Justify the linearity of the minima position in I for beta >> 1 and a non-sinusoidal CPR, ideally by applying the same extraction to simulated data with the known inductances.
+ - Clarify the measurement regime. The text says dV/dI is measured "below the switching current", but the traces show periodic resistive peaks, so the device is periodically switching at these biases. Please state the switching current at 20 K, which fixes where the data sit.
+
+2.6 The zero-field TRSB evidence (claim (b)) needs control of the field zero and of hysteresis.
+
+With a period of 2.2 to 3.3 uT, an offset of a few tenths of a microtesla in the perpendicular field zero, whether residual or trapped, is enough to produce eta'(0) of a few percent. In a system that preserves time-reversal symmetry, Is+(B) = |Is-(-B)| must hold at the true field. With an offset B0, the two curves become shifted copies of each other, separated by 2 B0.
+
+In Fig. 4a the envelopes of Is+(+B) and |Is-(-B)| appear displaced along B by roughly 10 uT. In Fig. 4b eta' varies roughly linearly across the whole field range and crosses zero at roughly +10 uT. Both observations are what a field offset or sweep hysteresis would produce.
+
+Please show:
+ - both sweep directions;
+ - eta'(B) for the 0 degree control. The text reports only that it shows no diode at zero field. Please state whether that refers to eta or eta';
+ - reproducibility across thermal cycles and cooling fields;
+ - an independent calibration of the field zero, for example from the centre of the large-arm envelope or a reference device on the same chip.
+Zero-field diode effects in twisted BSCCO are known to depend on field training (refs. 11 and 12). The history of each data set should be stated.
+
+2.7 The noise performance claim (e) is not adequately supported, and the numbers are inconsistent.
+
+ - Temperature. The abstract says "close to 77 K" and Extended Data Fig. 1 lists an operating temperature of 77 K. The text and Fig. 5 say 60 K, and the junction Tc in Fig. 1d is about 75 K, below 77 K.
+ - Field noise. The listed field noise of 34 pT/sqrt(Hz) corresponds to the geometric area (81 um^2). The flux is normalised to the measured period, which corresponds to an effective area of about 630 um^2 and gives about 4.7 pT/sqrt(Hz). One convention should be used throughout.
+ - Value. The quoted value (1.41 in the table, "about 1.5" in the text) is given without a frequency. Fig. 5b shows no white-noise floor: S_Phi^(1/2) falls from about 10 uPhi0/sqrt(Hz) at low frequency to about 0.3 uPhi0/sqrt(Hz) near 10 kHz. Please quote both the white level (if reached) and the 1 Hz and 10 Hz values, which are the standard figures for high-Tc SQUIDs, and compare like with like. Several entries in the comparison table refer to devices with flux transformers and quote white noise.
+ - Readout floor. From Fig. 5a, V_Phi at the chosen bias points is of order a few hundred uV/Phi0. A room-temperature preamplifier with an input noise of a few nV/sqrt(Hz) would then correspond to several uPhi0/sqrt(Hz) by itself, above the quoted value. Please give V_Phi at each bias point and the measured noise floor of the readout chain with the SQUID unbiased or off the steep part of V(Phi), and confirm that the reported spectrum is SQUID-limited.
+ - The B = 0 bias point appears to sit near an extremum of V(B), where V_Phi is small, yet it shows the lowest flux noise. Please explain.
+ - Report the energy resolution S_Phi/(2L) with the inductance from 2.3. That, not S_Phi alone, is the figure of merit for comparing SQUIDs of very different inductance.
+The statement that the device performs "similar to state-of-the-art SQUIDs" should be revised accordingly.
+
+2.8 Josephson inductance and "superfluid stiffness" (claim (d)).
+
+ - The definition L_J,1 = Phi0 phi1 / (2 pi Is1) is a secant inductance. The Josephson inductance is the differential quantity (Phi0/2pi)(dphi/dI). For a sinusoidal CPR, and especially for the non-sinusoidal CPR the authors claim, the two differ. The slope method yields the differential inductance at the phase where switching occurs, not the zero-bias value. Please correct the definition and state the phase at which L_J is evaluated.
+ - 1/L_J of a tunnel junction is governed by its Ic(T), which is set by interlayer coupling. Comparing it with the in-plane superfluid density of bulk BSCCO, and calling it "superfluid stiffness", mixes different quantities. A comparison with the expected Ic(T) of a d-wave c-axis junction, or with Ambegaokar-Baratoff for reference, would be more meaningful.
+ - The statement that bulk BSCCO stiffness "decreases linearly as a function of T^2" rests on a single PhD thesis (ref. 48). Microwave measurements on clean BSCCO crystals are widely reported to show a linear-in-T dependence at low T, with T^2 typical of disordered films. Please cite the primary literature and qualify the statement.
+ - The green data in Fig. 2f are non-monotonic within their error bars and no fit is shown. As presented they do not establish a distinct temperature law.
+ - Kinetic inductance is dismissed as below 1 pH (SI 13). But the daughter flakes are only about 25 to 50 nm thick, lambda_ab of BSCCO is roughly 200 to 250 nm, and the sheet kinetic inductance mu0 lambda^2/d is then of order 1 to 2 pH per square at low temperature, rising steeply near Tc. A loop of tens of squares could carry a kinetic inductance comparable to the extracted L_J, with a similar temperature dependence. Please give the number of squares and the lambda(T) assumed.
+
+3. Minor issues
+
+ 3.1 The claim to have "demonstrated a first-of-its-kind c-axis SQUID" should be qualified against ref. 16 (twisted vdW interferometers) and earlier c-axis and intrinsic-junction BSCCO interferometers. A narrower formulation ("first twist-controlled BSCCO c-axis SQUID") would be safer.
+ 3.2 "Not possible using a single JJ": single-junction Fraunhofer and Shapiro-step measurements can in principle reveal inhomogeneous or chiral domains. Consider softening.
+ 3.3 The text says "Is2 >> Is1", but the stated asymmetry is 3:1. Please give the actual Is1 and Is2 values.
+ 3.4 Methods: below switching, the current division between the arms in a high-beta SQUID is set mainly by the arm inductances, not the junction areas. The identification of gamma with area asymmetry should be justified or revised.
+ 3.5 Fig. 3: the top (B) and bottom (Phi_ext/Phi_period) horizontal axes share the panel width but have different scales and offsets. In Fig. 3a, B = 0 does not line up with Phi_ext/Phi_period = 0. This is visually misleading. Please align the axes or separate the panels. Please also state the sweep direction for each trace and the measured period at 20 K, which differs from the 3.3 uT quoted at 60 K.
+ 3.6 The inset of Fig. 2d has no field scale, so the slope used to extract L_J cannot be checked. Please add the scale and state which flank (rising or falling) of the skewed modulation was used.
+ 3.7 The text says "close to half-integer value"; please give the number with its uncertainty. In Fig. 3b the fitted line appears to cross I = 0 slightly to the right of the dotted -0.5 marker.
+ 3.8 Fig. 4d: specify the field window, apodisation and frequency resolution of the FFT. Only a few periods are included, so the harmonic amplitudes are coarse. Give uncertainties on A2/A1. State whether the non-monotonic temperature dependence exceeds that uncertainty.
+ 3.9 The inference "co-tunnelling plus single-pair transport" from a non-monotonic A2/A1(T) needs a model curve. As stated it is qualitative.
+ 3.10 eta' at 40 degrees (about 8%) exceeds that at 45 degrees (about 4%). In the Can et al. picture TRSB should be strongest near 45 degrees. Please comment.
+ 3.11 Typographical errors: "twsited"; "Bperiod = Phi0/Ageo ,"; "Is2 >>Is1" spacing; "time reversal asymmetry breaking"; "a ac current".
+ 3.12 Extended Data Fig. 1: the flux-noise column lists 1.41 at 77 K, which conflicts with Fig. 5 (60 K). The "Area" column mixes SQUID-loop and pickup-coil areas. Please separate the two.
+ 3.13 Please give, for each device, the flake thicknesses (before and after cleaving), the junction areas of each arm, and Jc, in a single table in the main text or Extended Data. These parameters underpin the inductance and asymmetry arguments.
+
+4. Assessment and recommendation
+
+The experimental platform is novel and the SQUID data are of good quality. The question asked is important, and a phase-sensitive SQUID test of TRSB at twisted cuprate interfaces would be valuable to the community. The central conclusion, however, is that a pi anomalous phase demonstrates opposite chiral d+id domains in the two arms. That conclusion currently rests on one device, at one temperature, with ten folded data points without error bars, extracted by a long extrapolation in a SQUID whose screening parameter appears to be much larger than stated.
+
+Simpler explanations have not been excluded: trapped-vortex offsets, fluxoid-branch selection, field-zero offsets, and a sign change of the first harmonic across a near-45 degree interface. In addition, the claimed harmonic content is, within the authors' own model, difficult to reconcile with phi12 = pi. The zero-field TRSB and noise claims also need corrected numbers and proper controls.
+
+I recommend major revision. Publication would require, at minimum:
+ (1) statistics and uncertainties for phi12 over repetitions and thermal cycles, with the trapped-flux, cooling-field and coil-alignment controls of 2.4;
+ (2) the same phase measurement on the 0 degree and 40 degree devices;
+ (3) a consistent, quantitative inductance model (beta, Lgeo, kinetic inductance) used to deconvolve the CPR harmonics and to predict phi12;
+ (4) corrected and fully specified noise figures.
