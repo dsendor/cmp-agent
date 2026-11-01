@@ -1,0 +1,149 @@
+{
+  "overall_feedback": "The paper combines transport, spin-ARPES, STM/STS and a minimal BdG model to argue that SnS spacers turn (SnS)1.15(TaS2) into stacked, decoupled 1H-TaS2 monolayers. In this picture the 1H layers host a two-gap spectrum (Δ1 ≈ 490 µeV, Δ2 ≈ 300 µeV) that the authors attribute to singlet–triplet (s/f) mixing, and the SnS layers host an independent superconducting state. The experimental data look high quality: the spectra are uniform and clearly fully gapped, the vortex spacing is consistent with B = 0.1 T, and the in-plane Hc2 exceeds the Pauli limit. The theory gives a qualitatively appealing link between interlayer coupling and gap anisotropy.\n\nThe main weaknesses are in how firmly the conclusions follow from the evidence:\n(i) The case that the SnS gap is intrinsic rather than proximity-induced rests on arguments that mostly point the other way. The SnS and 1H layers show a nearly equal gap, identical Hc2 and a common Tc.\n(ii) The theory is not quantitatively connected to the data. The model gives a gap ratio of about 0.1 and a finite in-gap DOS, whereas the experiment shows a ratio of about 0.6 and a hard gap. Parameters for main-text Fig. 5 are not given, and the prose about on-site 'repulsion' does not match the model, which uses a reduced on-site attraction.\n(iii) Several formulas contain errors: the Gurevich two-band Hc2 expression, the Bloch–Grüneisen integrand, and the V^(s)/V^(a) assignment in Eq. (9).\n(iv) There are numerical inconsistencies: residual resistivity, coherence length, Tc, Pauli-limit factor, and STM vs transport Hc2.\n(v) The Discussion contains a key wording error ('strongly coupled' where 'decoupled' is meant) and overgeneralizes multigap behaviour to all isolated 1H layers despite the cited single-gap MBE monolayer result.\nThese issues are fixable, but some (SnS proximity, theory–experiment correspondence) bear directly on the headline claims.",
+  "comments": [
+    {
+      "title": "Discussion states the wrong limit for large f-wave admixture",
+      "quote": "In contrast, in the strongly coupled case, the f-wave component becomes comparable with the s-wave",
+      "explanation": "The previous sentence already describes the strongly coupled (2H-like) limit, where the triplet is small. The whole paper (Fig. 5e inset, Supp. Figs. 10–12) shows that the f-wave admixture is large in the decoupled limit t⊥ → 0. As written, the sentence contradicts the paper's central theoretical claim and could mislead a reader skimming the Discussion.",
+      "type": "logical",
+      "severity": "moderate",
+      "suggested_fix": "Replace 'in the strongly coupled case' with 'in the decoupled (t⊥ → 0) case'."
+    },
+    {
+      "title": "Two-band (Gurevich) Hc2 formula appears mis-transcribed",
+      "quote": "To fit the critical fit data as in Fig.2c, we make use of the following parametric equation",
+      "explanation": "The definitions (λ−, w, η, U(s) = ψ(s+1/2) − ψ(1/2), Hc2 = 2φ0Ts/D) follow Gurevich, PRB 67, 184515 (ref. 66). In that work the equation reads ln(1/t) = ½[U(s)+U(ηs)+λ0/w] − {¼[U(s)−U(ηs)−λ−/w]² + λ12λ21/w²}^{1/2}, with λ0 = (λ−² + 4λ12λ21)^{1/2}. The supplement's Eq. (3) differs in three ways:\n- the factor ½ multiplying the first bracket is missing;\n- the square-root term enters with '+' instead of '−';\n- λ0 is written without the square root.\nWith the '+' sign the equation picks the wrong root and would not reproduce Hc2 → 0 at t = 1 for the stated λ's. Either the equation is mistyped or the fitted parameters in Table I were obtained with an incorrect expression. Notation is also inconsistent: the text says 'D1 and D2 are the electron and hole diffusivity', but the formula uses De and Dh, and the table lists D1.",
+      "type": "technical",
+      "severity": "moderate",
+      "suggested_fix": "Write Eq. (3) as ln(1/t) = ½[U(s)+U(ηs)+λ0/w] − (¼[U(s)−U(ηs)−λ−/w]² + λ12λ21/w²)^{1/2} with λ0 = (λ−²+4λ12λ21)^{1/2}. Use one notation (D1, D2) throughout, and confirm Table I was produced with the corrected expression."
+    },
+    {
+      "title": "Fitted BCS coupling constants depend on field orientation",
+      "quote": "indicating the mostly decoupled nature of the bands",
+      "explanation": "Table I gives λ11 = 0.88, λ12 = 0.35 for H∥c but λ11 = 1.37, λ12 = 0.49 for H∥ab. The diffusivities also differ by a factor ~16. The intraband/interband BCS couplings are material constants and should not depend on field direction. Only the (anisotropic) diffusivities should change.\n\nIn addition:\n- λ12/λ11 ≈ 0.4 is not small, so 'mostly decoupled' bands is a stretch.\n- With λ11 = λ22, the two bands have identical pairing strength, which sits uneasily with two gaps differing by ~40%.\n- The orbital dirty-limit two-band formula ignores Pauli and Ising spin–orbit physics for H∥ab. The authors themselves invoke Ising pairing for this orientation, so the in-plane fit is not physically meaningful as a two-gap diagnostic.",
+      "type": "technical",
+      "severity": "moderate",
+      "suggested_fix": "Fit both orientations simultaneously with shared λ11, λ12, λ22 and orientation-dependent diffusivities only. For H∥ab, restrict the two-band orbital analysis to H∥c, or use a model including Ising SOC/Pauli pair breaking."
+    },
+    {
+      "title": "Resistivity-fit residual resistivity contradicts the data and RRR",
+      "quote": "shown in Fig.2a, and yields Debye temperature ΘD = 168 ± 2 K, C = 3.7 ± 5 mΩcm, residual resistivity ρi,0 = 145",
+      "explanation": "Fig. 2a and its inset show a normal-state resistivity just above Tc of ~35 µΩ cm. The text quotes RRR = ρ300/ρ10 = 12, i.e. ρ10 ≈ 33 µΩ cm for ρ300 ≈ 400 µΩ cm. A residual resistivity of 145 µΩ cm is irreconcilable with this: because ρs ≈ 23 mΩ cm ≫ ρ, the parallel-resistor correction is negligible at low T.\n\nTwo further problems:\n- C = 3.7 ± 5 mΩ cm has an uncertainty larger than the value.\n- The Bloch–Grüneisen integrand is printed with (1 − e^{-1}) instead of (1 − e^{-x}).",
+      "type": "technical",
+      "severity": "minor",
+      "suggested_fix": "Correct the integrand to x^5/[(e^x−1)(1−e^{-x})]. Re-report ρi,0, which should be ≈33–35 µΩ cm given Fig. 2a, and give a meaningful uncertainty for C."
+    },
+    {
+      "title": "Inconsistent coherence-length values from the vortex fit",
+      "quote": "A fit to the filling of the DOS in the gap has produced ξ = 45 ± 10nm",
+      "explanation": "The main text reports ξvortex ≃ 35 ± 5 nm from the same SnS vortex analysis, while the supplement reports 45 ± 10 nm. Both are said to match ξHc2 ≈ 30 nm. The 45 nm value is 1.5σ from 30 nm, so the claimed agreement depends on which number is correct.",
+      "type": "technical",
+      "severity": "minor",
+      "suggested_fix": "Report a single value of ξvortex with its uncertainty in both main text and supplement, and state which line cut or fit produced it."
+    },
+    {
+      "title": "Inconsistent Tc values and Pauli-limit factor",
+      "quote": "We find that the in-plane critical field surpasses the Pauli limit by a factor of 1.95",
+      "explanation": "Tc is variously quoted as ≃3.1 K (abstract), 3.05 K (text, inset, fixed in fits) and 'around 3.14 K' (Fig. 2a caption). With Tc = 3.05 K, the BCS Pauli limit is 1.86 T/K × 3.05 K ≈ 5.7 T. The extrapolated Hc2∥ab(0) = 10.68 T then gives a factor of ≈1.88, not 1.95. The qualitative conclusion (Pauli limit exceeded) is unaffected, but the numbers should be internally consistent.",
+      "type": "technical",
+      "severity": "minor",
+      "suggested_fix": "Use Tc = 3.05 K consistently (including the Fig. 2a caption) and quote the Pauli-limit ratio as 10.68 T / 5.67 T ≈ 1.9, stating the Pauli-limit formula used."
+    },
+    {
+      "title": "Arguments for intrinsic SnS superconductivity are weak and partly point toward proximity",
+      "quote": "the absence of a second proximity gap, and the high anisotropy of transport all argue against a proximity scenario",
+      "explanation": "Several pieces of the evidence fit a proximity-induced gap at least as naturally:\n- The SnS gap (440 µeV) is nearly equal to the 1H large gap.\n- The two layers share the same critical field (3 kG in Supp. Fig. 4).\n- They share comparable coherence lengths, a single bulk Tc, and a finite residual subgap DOS in SnS.\n- The SnS is only a double layer sandwiched between metallic TaS2 sheets on both sides, where strong proximity coupling is expected.\n- Vortices would also appear in a proximitized layer, since flux threads the whole stack. The contrast with 4Hb-TaS2 does not discriminate, because the 1T layer there is a Mott/CDW insulator, not a weakly gapped conductor.\n- The Stanescu–Das Sarma argument applies to semiconductors with Fermi-surface mismatch, yet the SnS here has finite DOS at EF, possibly from charge transfer.\n- A transport anisotropy of 19 is modest and does not preclude interlayer tunneling.\nThe 'internal pressure' explanation (bulk SnS needs >40 GPa) is likewise speculative.",
+      "type": "logical",
+      "severity": "major",
+      "suggested_fix": "Soften the conclusion to 'consistent with either an intrinsic or a strongly proximitized gap'. Alternatively, add a discriminating measurement, e.g. temperature dependence of the SnS gap vs the 1H gap near Tc, or spectra on thicker SnS regions, and drop the internal-pressure claim unless supported by structural data."
+    },
+    {
+      "title": "Theory does not quantitatively reproduce the measured two-gap spectrum",
+      "quote": "The ratio between the small and big gap on the small K and K′ pockets is of the order 0.1.",
+      "explanation": "The model is presented as 'successfully reproducing the main experimental observation', but there are clear mismatches with the data:\n- The model's small/large gap ratio on the K pockets is ~0.1; experimentally Δ2/Δ1 = 300/490 ≈ 0.6.\n- The computed t⊥ = 0 DOS (Fig. 5c, Supp. Fig. 10) has finite spectral weight down to very low energy and a weak low-energy shoulder. The measured 1H spectrum is a hard gap with zero DOS below ~0.25 meV, well fitted by two isotropic BCS gaps.\n- The absolute gap scale in the model (peak at eV/t ≈ 0.017 with t = 0.25 eV, i.e. ~4 meV) is about an order of magnitude larger than experiment.\nThe agreement is therefore only qualitative ('two features exist when t⊥ is small'), and the identification of the measured Δ2 with an f-wave-induced minimum gap is not demonstrated.",
+      "type": "logical",
+      "severity": "major",
+      "suggested_fix": "Show a model DOS with parameters tuned so that Δmin/Δmax ≈ 0.6 and a hard gap below Δmin, and compare it directly to the measured dI/dV. Otherwise, explicitly state that the correspondence is qualitative only."
+    },
+    {
+      "title": "Model uses reduced on-site attraction, not on-site repulsion",
+      "quote": "Our theoretical analysis shows that on-site Coulomb repulsion can significantly enhance the triplet component",
+      "explanation": "The supplement uses an attractive on-site term V0 = 0.25t with V1 = V2 = 0.3t, i.e. on-site attraction only ~17% weaker than the longer-range terms. No repulsive on-site term is included or scanned. Yet the main text says 'on-site Coulomb repulsion can significantly enhance the triplet component', and the Discussion describes 'weak on-site repulsion' and 'substantial Coulomb repulsion'. These descriptions are mutually inconsistent and are not supported by a parameter study. Moreover, a ~17% reduction is hardly 'substantial', so the claimed essential role of Coulomb repulsion is not demonstrated.",
+      "type": "logical",
+      "severity": "moderate",
+      "suggested_fix": "Describe the model as having a reduced on-site attraction (V0 = 0.25t < V1 = V2 = 0.3t). Add a scan of ε_A2u/ε_A1g and the DOS versus V0, including V0 ≤ 0, to support the claim about Coulomb repulsion."
+    },
+    {
+      "title": "Triplet admixture in the model is not 'comparable' to the singlet",
+      "quote": "Thus, the inset shows that the two-gap feature is correlated with a large singlet-triplet mixing.",
+      "explanation": "The text argues that a multi-gap feature arises 'when the weights εA1g and εA2u are comparable'. The Fig. 5e inset shows ε_A2u/ε_A1g ≤ 0.3 for band 2 and ≲ 0.07 for band 1, even at t⊥ = 0. This is not comparable weight. A ratio ≈ 0.3 would also give gap modulations of ±30%, not a 0.1 ratio as quoted in the supplement, unless momentum-dependent form factors dominate. The connection between the plotted ratio and the gap anisotropy needs explanation, including how ε_A2u/ε_A1g is extracted from the self-consistent gap.",
+      "type": "logical",
+      "severity": "minor",
+      "suggested_fix": "Define how ε_A2u and ε_A1g are projected from Δ^(s), Δ^(a). Replace 'comparable' with the actual ratio (≈0.3), and explain how this ratio produces the gap minima on the K/K′ pockets."
+    },
+    {
+      "title": "Antisymmetric gap defined with the symmetric interaction",
+      "quote": "and use the following BCS mean-field decoupling to the interaction term,",
+      "explanation": "Eq. (9) defines both Δ^(s) and Δ^(a) using V^(s)_{kp;jℓ}, although V^(a) was introduced just above for exactly this purpose. As written, Δ^(a) would be computed with the even kernel, which cannot generate an odd (triplet) gap from the odd pair amplitude. This is presumably a typo, but it sits at the heart of the singlet–triplet mixing calculation.\n\nIn Eqs. (11)–(12), the pair amplitudes are written on the left as functions of p but on the right in terms of k-dependent quantities. They also lack the usual factor 1/2 (⟨ψψ⟩ = −Δ/2E at T = 0) and any temperature factor tanh(E/2T).",
+      "type": "technical",
+      "severity": "moderate",
+      "suggested_fix": "In Eq. (9) use V^(a)_{kp;jℓ} for Δ^(a). In Eqs. (11)–(12) write ⟨ψ_{−p↓j}ψ_{p↑j}⟩ = −[Δ^(s)_j(p)+Δ^(a)_j(p)] tanh(E_p/2T)/(2E_p), with E_p defined accordingly."
+    },
+    {
+      "title": "Parameters for main-text Fig. 5 are not specified",
+      "quote": "In Fig. 5.(c) we plot the resulting tunneling DOS for t⊥ = 0 (blue) and t⊥/λ = 2 as a function of eV /t",
+      "explanation": "The supplement gives V0 = 0.25t, V1 = V2 = 0.3t, t = 0.25 eV, λ = 0.3 eV, Γ = 1 meV and a 40×40 grid for Supp. Figs. 10–12. In those figures the DOS coherence peak sits at eV/t ≈ 0.017. In main-text Fig. 5c the peaks are at eV/t ≈ 0.055–0.08, so Fig. 5 must use different interaction strengths or broadening. These are never stated, and neither is the temperature of the self-consistent calculation. The merging point is also inconsistent: Fig. 5e quotes t⊥ ≈ 0.8λ, while the supplement already finds no second gap at t⊥ = 0.2 eV ≈ 0.67λ. The central theoretical figure therefore cannot be reproduced.",
+      "type": "technical",
+      "severity": "moderate",
+      "suggested_fix": "List in the Fig. 5 caption the exact V0, V1, V2, t, λ, Γ, k-grid and temperature used. Reconcile its energy scale and merging point with Supp. Figs. 10–12."
+    },
+    {
+      "title": "Generalization that multigap SC is intrinsic to isolated 1H layers conflicts with cited data",
+      "quote": "The overall picture emerging from these comparisons is that multigap superconductivity is an intrinsic property of isolated 1H-TaS2 layers suppressed by inter layer coupling.",
+      "explanation": "In the same paragraph, the authors note that MBE-grown monolayer 1H-TaS2 (ref. 53), arguably the most isolated 1H layer, shows a single f-wave-like gap. Reinterpreting the residual subgap DOS in 4Hb-TaS2 as a second, impurity-destroyed gap is a hypothesis, not established evidence. The generalization therefore overstates what the comparison shows. It also overlooks other differences between systems that could control gap structure, such as charge transfer from SnS, CDW state and substrate.",
+      "type": "logical",
+      "severity": "moderate",
+      "suggested_fix": "Rephrase to: 'multigap behaviour appears in several, though not all, systems where 1H layers are decoupled', and explicitly discuss why the MBE monolayer shows a single gap."
+    },
+    {
+      "title": "Spin-ARPES does not discriminate decoupled from 2H-like layers",
+      "quote": "This is consistent with previous measured TMDCs with a 2H crystal structure",
+      "explanation": "Spin-polarized bands at K/K′ are also observed in bulk centrosymmetric 2H TMDCs, owing to local inversion breaking and surface sensitivity (refs. 39–40). Their observation here therefore does not by itself demonstrate decoupling, although it is presented as direct evidence of spin–valley locking supporting the isolated-1H picture. The decoupling argument rests mainly on the absent kz dispersion (Supp. Fig. 6). In addition, the polarization axis in Fig. 3 is labelled 'P [%]' with a range ±0.5. Read literally, this is a negligible 0.5% polarization; presumably the values are fractions.",
+      "type": "logical",
+      "severity": "minor",
+      "suggested_fix": "State that spin polarization alone is also present in 2H compounds and that decoupling is inferred from the kz-independence. Correct the polarization axis units to a fraction, or to %, with values ±50."
+    },
+    {
+      "title": "STM critical field does not agree with transport as claimed",
+      "quote": "The critical field measured is 3KG for both layers, and have excellent agreement with the critical field measured using transport at this effective temperature",
+      "explanation": "Fig. 2b (10×Hc2∥c) gives Hc2∥c ≈ 0.45–0.5 T at T/Tc ≈ 0.16 (T ≈ 0.5 K), and the extrapolated Hc2∥c(0) is 0.59 T. The STM value of 0.3 T is thus ~40% lower, not in 'excellent agreement'. The difference could reflect the 50%-resistance criterion versus gap suppression in local DOS, but it should be acknowledged. The related claim ξHc2 ≈ 30 nm also depends on which Hc2 is used.",
+      "type": "technical",
+      "severity": "minor",
+      "suggested_fix": "Quote the transport Hc2∥c at 0.5 K from Fig. 2b (~0.45–0.5 T). Either explain the discrepancy, e.g. by the different criteria, or replace 'excellent agreement' with a quantitative comparison."
+    },
+    {
+      "title": "Gap-fitting procedure underspecified",
+      "quote": "Fitting the data yields an excellent match with a two-gap model",
+      "explanation": "Eq. (5) has free weights N1, N2 and an effective temperature Teff, but none of their fitted values is reported for the 1H spectrum. The single-gap fit required Teff = 900 mK against a base temperature of 270–300 mK, so Teff matters for judging whether the two-gap fit is genuinely better or just has more parameters. The SnS fit is described as 'a single BCS gap and a residual DOS', yet the residual-DOS term does not appear in Eq. (4). No goodness-of-fit metric is given for either model.",
+      "type": "technical",
+      "severity": "minor",
+      "suggested_fix": "Report the fitted N1/N2, Teff (and any Dynes broadening) for the 1H two-gap and single-gap fits and for the SnS fit. Write the residual-DOS term explicitly in Eq. (4) and give χ² or residuals for single- vs two-gap fits."
+    },
+    {
+      "title": "Group-theory labels and footnote inconsistent",
+      "quote": "The superposition of the two is obviously an eigen-function of inversion.",
+      "explanation": "The text speaks of irreps 'of the D3 point group' but labels them A1g and A2u. D3 has no inversion, so g/u labels belong to D3d, and the relevant monolayer group is D3h. Footnote 71, read literally, says a superposition of an even singlet and an odd triplet is an inversion eigenfunction, which is false. Presumably the intended meaning is the layer-symmetric/antisymmetric combination of the two monolayer states in the 2H bilayer. A reader could easily be confused about which object is an inversion eigenstate.",
+      "type": "technical",
+      "severity": "minor",
+      "suggested_fix": "Use D3h (monolayer) / D3d (2H bilayer) labels consistently. Rewrite footnote 71 as: 'The layer-exchange-symmetric (or antisymmetric) combination of the two monolayer mixed states, related by inversion, is an eigenfunction of inversion.'"
+    },
+    {
+      "title": "Inconsistent lock-in frequency",
+      "quote": "Spectra were acquired using a standard lock-in technique at a frequency of 907 Hz.",
+      "explanation": "The Fig. 1 caption states f = 870 Hz for the high-energy spectra, while the Methods give 907 Hz. This may reflect different measurement sessions, but as written it is inconsistent.",
+      "type": "technical",
+      "severity": "minor",
+      "suggested_fix": "State the frequency used for each data set, e.g. '870 Hz for Fig. 1 spectra, 907 Hz for low-energy spectra', or correct the erroneous value."
+    }
+  ]
+}

@@ -1,0 +1,168 @@
+# Referee Report
+
+**Manuscript:** *Resolving Abrikosov vortex entry in superconducting nano-string resonators via displacement-noise spectroscopy in cavity-optomechanics* (Luschmann, Parvini, Niekamp, Marx, Gross, Huebl)
+
+---
+
+## 1. Summary of the submission
+
+The authors embed a suspended Al nanostring (30 × 0.2 × 0.11 µm³) in the loop of a dc SQUID that terminates a λ/4 CPW resonator. They extract the mechanical frequency Ωm from thermal-noise sideband spectroscopy (and VNA data) as a function of flux bias and in-plane field B_ip. Fitting the flux dependence with a Lorentz-force spring model (Eq. 3) gives an "intrinsic" frequency Ω0(B_ip). The authors report two features:
+
+1. A smooth background, Ω0² − Ω0,bare² ∝ B_ip^k with k = 1.81 ± 0.05. They interpret it as collective Campbell-regime pinning stiffness, with α_L ~ 10¹⁴ N m⁻⁴.
+2. Discrete steps of ΔΩ/2π ≈ 10–50 Hz at irregular fields, varying between cooldowns. They interpret these as single-vortex entry events and derive k_p ≈ 14–70 N m⁻², U ≈ 0.1–0.4 eV, and "force steps" of 3–17 aN.
+
+The platform is attractive and the measurements appear technically careful. Mechanical detection of flux dynamics in chip-integrated superconducting elements is a worthwhile goal, and the high field resolution (0.25 mT) is an improvement over Ref. 46. However, the central physical interpretation is not yet adequately supported, in my view. There are basic questions about:
+
+- whether Abrikosov vortices can exist in this geometry,
+- how vortex pinning couples to the measured mode,
+- whether vortex-free circuit effects can explain the background,
+- whether the steps originate in the nanostring at all.
+
+Several quantitative steps also contain errors or inappropriate metrics. I recommend **major revision**.
+
+---
+
+## 2. Major issues
+
+### 2.1 Can the nanostring host Abrikosov vortices in a parallel field?
+
+The authors' own estimates give ξ ≈ 108 nm, d = 110 nm, w = 200 nm and λ ≈ 840 nm. So d ≈ ξ, the vortex-core diameter 2ξ exceeds the film thickness, w ≈ 2ξ, and λ ≫ d, w.
+
+- Thin-film theory in a parallel field (Saint-James–de Gennes; Tinkham §4.x) predicts no stable vortex state for d ≲ 1.8ξ. In this regime the field penetrates almost uniformly, the transition at H_c∥ ~ √3Φ0/(πξd) (≈ 100 mT with the authors' numbers) is second order, and |ψ|² is suppressed smoothly ∝ 1 − (B/H_c∥)².
+- κ_GL > 1/√2 is therefore not the relevant criterion here. The relevant criterion is d/ξ, and it argues against conventional Abrikosov vortices.
+- The ξ and λ values rest on equating the grain size with the mean free path. The prefactor convention in Eq. (5) should also be checked: the factor 1.33 usually appears as ξ0/(1.33 l), not as a multiplicative α. The authors should determine l_f from measured resistivity/RRR. Ideally they should also measure T_c and B_c∥(T) on co-fabricated films, since B_c∥ directly constrains ξd.
+- Double-angle shadow evaporation often yields two Al layers separated by an oxide. Is the 110 nm string a single layer or a bilayer? If it is a bilayer, each layer is even thinner relative to ξ. Alternatively, the parallel field could enter as Josephson-type vortices in the interlayer barrier, which is quite different physics.
+
+### 2.2 The entry-field and vortex-density formulas come from a different geometry
+
+Equations (6), (7) and the "B_c1^FC = 1.65Φ0/d²" expression come from work on narrow strips in **perpendicular** fields (Likharev; Stan, Field & Martinis; Bronson et al.). These describe Pearl vortices with the strip width w as the relevant length. The manuscript substitutes d for w and applies them to a parallel-field geometry without justification.
+
+- The 1.65Φ0/w² expression in Stan et al. is the threshold field below which vortices are *expelled* during field cooling. It is not an FC-enhanced Bean–Livingston entry field.
+- The "empirical" B_c1 ≈ 5 mT is not supported by data: the lowest field in Fig. 2(d) is 6.2 mT.
+- The fitted law A0 + C·B^k has no threshold. A vortex-pinning background should be absent below B_c1 and grow as a function of (B − B_c1). The background as presented is therefore not obviously a vortex signature.
+
+### 2.3 Missing mechanism for coupling string motion to vortex–pin displacement
+
+Equation (8) adds α_L/ρ directly to Ω². That requires the vortex lattice to be held fixed (or differently displaced) while the pinning sites move with the string.
+
+- In a uniform field, a rigid translation of the superconductor together with its pinned vortices costs no energy.
+- In vibrating-reed theory (Brandt, Esquinazi et al.), the coupling arises because the sample *tilts* relative to the applied field while the flux lines tend to stay aligned with it.
+- Here B_ip appears to be in-plane and perpendicular to the string (required for the Lorentz force). The motion δx is then out of plane, and the local tilt of the bending string is a rotation about the field axis. That does not change vortex alignment to first order.
+
+The authors need to specify the geometry explicitly (directions of B_ip, string axis, and δx) and derive the coupling. Moreover, in Brandt's theory the strong-pinning frequency shift scales as Δ(ω²) ∝ B²/(μ0ρ) × geometry, and α_L enters only through the Campbell length λ_C² = B²/(μ0α_L). A near-quadratic B dependence is thus generic and does not imply α_L ∝ B^1.81. The statement that k = 1.81 is "consistent with the Campbell regime" needs a specific theoretical prediction to compare against.
+
+### 2.4 Vortex-free explanations for the background are not quantitatively excluded
+
+An exponent k ≈ 1.8 close to 2 is exactly what several circuit-level effects would produce. The authors list some of these in Sec. III but dismiss them only qualitatively.
+
+- **Junction asymmetry.** The Appendix mentions an asymmetry parameter α (default 0), but Eq. (3) does not contain it, and footnote 55 assumes symmetric junctions. With any asymmetry, L_J stays finite at Φ0/2. The Lorentz spring term then does not vanish, and Ω0² fitted with α = 0 absorbs a residual ∝ B_ip².
+- **Field dependence of I_c.** An in-plane field suppresses junction I_c (Fraunhofer) and the superfluid density (pair breaking, ∝ B²). This changes L_J and the kinetic part of L_l smoothly.
+- **Field misalignment and screening** (footnote 51 is an assumption, not a measurement).
+
+I request the following:
+
+- Fits with α free.
+- Tables or plots of all fit parameters (I_c, L_l, η, α, φ_off) versus B_ip, together with the fit residuals.
+- Raw Ωm measured directly at Φb = Φ0/2, if accessible, rather than extrapolated Ω0.
+- Clarification of whether the Ref. 46 data in Fig. 4, analysed with the older model (A1) that neglects L_l, were refitted with Eq. (3). If not, combining them with the new data in a single power-law fit is problematic.
+
+### 2.5 Identification, statistics, and localization of the steps
+
+**Identification.** The arrows in Fig. 3 appear to be placed by eye. Several marked steps (e.g., 12.0, 15.5, 18.0 mT) are comparable to the error bars. A quantitative change-point or step-detection analysis with a stated significance criterion is needed.
+
+**Stochasticity claim.** The evidence for stochasticity is weak:
+
+- Datasets 1 and 2 in Fig. 3(a) cover non-overlapping field ranges, so they cannot test reproducibility within a cooldown.
+- Comparing cooldowns, steps appear at 22.5 mT in both and at 20.0 vs 20.5 mT. That looks more like reproducibility than randomness.
+- It is unclear whether the field was returned to zero between datasets 1 and 2.
+
+**Missing controls.** Key discriminating measurements are absent:
+
+- down-sweeps (hysteresis and exit events),
+- repeated up-sweeps within one cooldown,
+- ZFC vs FC comparison,
+- temperature dependence (pinning stiffness and entry fields should depend strongly on T/T_c),
+- time traces at fixed field near a step (telegraph switching).
+
+**Localization.** A small misalignment of the in-plane magnet produces a perpendicular component; 1° at 35 mT gives ≈ 0.6 mT. That is far above the vortex-entry field of the wide CPW centre conductor, ground plane, and SQUID leads. Vortices entering those regions would shift φ_off, I_c, or the asymmetry, and therefore the *fitted* Ω0, without any vortex in the string. The authors should check whether the steps in Ω0 correlate with steps in the fitted φ_off and I_c, or with steps in the cavity frequency and linewidth.
+
+### 2.6 Internal inconsistency between smooth background and discrete counting
+
+The vortex number is integer, N = n_v·l·d. At 30 mT this gives N ≈ 48, and the authors' own estimate is ΔB ≈ 0.63–1.25 mT per vortex.
+
+- The observed step spacing (1.5–5 mT) therefore implies either 2–8 vortices per step, or that most entries are invisible.
+- In either case the smooth increase of Ω0² *between* steps cannot come from an increasing n_v, which is how Eq. (8) and the α_L ∝ n_v⟨k_p⟩ picture explain the background.
+- If steps contain several vortices, the "single-vortex" k_p and U are overestimated by that factor.
+
+A simple consistency check would help: the total shift up to 35 mT is roughly 500 Hz, spread over about 50 vortices, i.e. ~10 Hz per vortex on average. The authors should discuss how this compares with the 10–50 Hz steps.
+
+### 2.7 Quantitative errors and inappropriate metrics
+
+**Effective density.**
+- ρ_eff = 910 kg m⁻³ is computed as m_eff divided by the physical volume. For a distributed spring acting on a mode, both modal stiffness and modal mass carry the same ∫u² dV weighting.
+- The correct ratio is α_L/ρ with ρ the material density (≈ 2700 kg m⁻³ for Al).
+- With ρ_eff = 910 kg m⁻³, all derived α_L, Δα_L, k_p and U values are too small by a factor of about 3.
+- Separately, m_eff = 0.6 pg is below the ≈ 0.9 pg expected for the fundamental mode of the stated Al volume. This discrepancy should be explained.
+
+**"Attonewton forces."**
+- The quantity Δk·x_rms is not a force that is applied or measured. Comparing it with the thermal force-noise PSD integrated over 1–10 Hz does not establish resolvability.
+- The relevant criterion is frequency resolution: ΔΩ compared with the frequency uncertainty or Allan deviation of the Ωm estimator. Here Γm/2π = 20 Hz, so steps of 10–50 Hz are comparable to the linewidth.
+- The abstract's "attonewton-scale forces" framing should be revised or carefully qualified.
+
+**Pinning energy.** U = ½k_p r_p² L_line extrapolates a harmonic stiffness to r_p ~ ξ with L_line ~ w. This is an order-of-magnitude estimate and should be presented as such.
+
+**Overstated claims.** The text claims "real time" capture of spontaneous flux dynamics and in-situ determination of B_c2. No time-domain data are shown, and B_c2 is not measured. These claims should be removed or demonstrated.
+
+### 2.8 Positioning relative to prior work
+
+Bolle et al. (Ref. 56, Nature 1999) already resolved individual vortex entry mechanically in mesoscopic superconductors using micromechanical oscillators. The introduction and conclusion should state more precisely what is new here, such as the cavity readout, the chip-integrated geometry, or the parallel-field configuration. Claims such as "unprecedented sensitivity" should be calibrated against that work.
+
+---
+
+## 3. Minor issues
+
+- **Notation clashes.**
+  - α is used for the surface-scattering factor, for junction asymmetry, and as part of α_L.
+  - κ is used for both the cavity decay rate and the GL parameter.
+  - ξ∞_GL is used for what is the BCS/Pippard ξ0.
+  - "B_c1^FC" is a misnomer.
+- **Fit parameters.** Give the values of A0, C and k with uncertainties for each dataset. State whether k = 1.81 ± 0.05 (quoted identically in Figs. 2–4) comes from a joint fit or separate fits.
+- **Figure 2(c).** Overlay the fits. State whether points near Φb = ±Φ0/2 were measured or only extrapolated. Indicate which points come from sideband spectroscopy and which from VNA data.
+- **Figure 1.** Explicitly indicate the vector directions of B_ip, the current J, and the motion δx relative to the string axis.
+- **Cooperativity.** Give its numerical value.
+- **Mode temperature.** Confirm that the mode is thermalized at 85 mK (e.g., by a calibrated T-sweep of the sideband area), since x_rms enters the force estimate.
+- **Eq. (7).** State the regime of validity of the Bronson et al. result. It was derived for Pearl vortices in perpendicular fields.
+- **Rounding.** The conclusion states 0.1–0.4 eV, while the text gives 0.09–0.44 eV. Harmonize.
+- **References.**
+  - Refs. 34/70, 36/69/79 and 42/82 are duplicates.
+  - Ref. 79 is listed as Phys. Rev. B 19 but is Phys. Rev. Applied.
+  - Refs. 9, 12 and 36 lack years.
+  - "Gorodetksy" should be "Gorodetsky".
+- **Language.** Several sentences are long and hedge inconsistently. For example, the abstract asserts single-vortex detection, while the body says "suggest" and "signatures suggesting". The level of certainty should be consistent throughout and match the evidence.
+
+---
+
+## 4. Suggested additional measurements and analyses
+
+1. Ωm(B_ip) measured directly at Φb = Φ0/2, plus full fit-parameter evolution with junction asymmetry free.
+2. Up/down field sweeps and repeated sweeps within one cooldown, with the field reset to zero in between, to test hysteresis and stochasticity.
+3. Temperature dependence of the background and of the step fields (e.g., 85 mK up to about 0.8 T_c).
+4. FC vs ZFC comparison.
+5. Time-resolved Ωm at fixed fields near step positions, to look for switching events.
+6. Correlation analysis of the steps with the fitted φ_off and I_c and with the cavity parameters, to localize them.
+7. Independent film characterization (ρ, RRR, T_c, B_c∥), and ideally strings of different thickness on either side of d ≈ 2ξ.
+8. Field-angle dependence (in-plane rotation and controlled out-of-plane tilt), to separate the string response from vortex entry into the wide films.
+
+---
+
+## 5. Assessment
+
+| Criterion | Evaluation |
+|---|---|
+| Significance of topic | High: integrating mechanical sensing with superconducting circuits to probe flux dynamics is valuable |
+| Experimental quality | Good; improved field resolution; data openly available |
+| Support for central claims | Insufficient: vortex existence in this geometry, the coupling mechanism, and alternative explanations are not addressed |
+| Quantitative analysis | Contains a factor-of-~3 density error and an inappropriate force-sensitivity metric |
+| Clarity | Adequate, with notation clashes and some overstatement |
+
+**Recommendation: Major revision.** The data may well contain genuine flux-entry signatures, and the platform is promising. However, the paper should either establish that the steps originate from vortices in the nanostring and explain how they couple to the mode, or reframe the conclusions more cautiously as field-dependent mechanical anomalies. In particular, Sections 2.1–2.6 must be addressed before the single-vortex interpretation and the extracted pinning parameters can be considered reliable.

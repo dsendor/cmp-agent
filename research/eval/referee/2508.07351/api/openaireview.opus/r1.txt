@@ -1,0 +1,109 @@
+{
+  "overall_feedback": "This is a well-motivated and clearly written letter. It combines high-throughput substrate screening, DFT and STM/STS to argue that monolayer Si2Te2 on HfTe2 is strain-free and topologically nontrivial. The structural part is convincing: the 1×1 lattice, the 390 pm lattice constant and the vdW-type binding are all well supported. The case for the topological phase is weaker than the title and summary suggest, for several reasons:\n- The DFT model uses a commensurate 1×1 Si2Te2/ML-HfTe2 cell. This forces both layers to a common lattice constant, so the 'strain-free' DFT result is partly built into the setup. The HfTe2 lattice and the heterostructure band alignment in that model are not those of the experiment.\n- The heterostructure is metallic. This makes the Z2 calculation on the full heterostructure, and the meaning of a 'band gap at Γ' probed by momentum-integrated STS, delicate.\n- The Fermi-level position is not stated consistently. DFT puts EF below the Si2Te2 VBM; experiment puts the VBM at −10 meV; an unexplained 0.25 eV rigid shift is also invoked.\n- The edge-state evidence is a single peak near EF, essentially at the valence-band edge. It is probed only within ±100 mV, rather than as enhanced LDOS across the full ~300 meV gap.\n- Band bending, substrate-derived states, and setpoint/topography artifacts in the edge maps are not excluded.\n- No spin-resolved, dispersion (QPI) or transport evidence is given. 'Realization of the QSH phase' is therefore an overclaim relative to what STS can establish.\nThere are also smaller numerical and citation inconsistencies: 76 vs 65 candidates, an ambiguous sign convention for the mismatch criterion, a mismatched supplemental-material description, and a questionable Z2 reference.",
+  "comments": [
+    {
+      "title": "Commensurate 1×1 DFT cell makes the 'strain-free' result partly built in, and conflicts with the HfTe2 lattice constant",
+      "quote": "the in-plane lattice constants of ML-Si2Te2 remain at aDFT = bDFT = 389 pm, identical to those of free-standing case",
+      "explanation": "In a 1×1 Si2Te2/HfTe2 supercell, both layers must share one in-plane lattice constant. So 'ML-Si2Te2 remains at 389 pm' implies ML-HfTe2 was compressed to 389 pm.\n- Bulk HfTe2 is ~396–397 pm, i.e. a mismatch Δ ≈ −1.8% by the authors' own definition. That is why HfTe2 passed a screening window, not because the mismatch is zero.\n- The finding that Si2Te2 is unstrained in the model therefore says little about whether a real HfTe2 crystal would strain it.\n- The same artificial compression affects the HfTe2 bands, the 110 meV VBM offset, the work-function argument, and the binding energy.\n- Experimentally, a 390 pm Si2Te2 lattice on a ~397 pm substrate cannot be fully commensurate with a uniform hollow-site registry. A ~1.8% mismatch implies a moiré of order 20 nm, comparable to or larger than the islands.\nThe paper does not report the HfTe2 lattice constant measured in the same images (Fig. 3b shows both lattices), nor whether a lattice-mismatched (incommensurate) supercell was tested.",
+      "type": "technical",
+      "severity": "major",
+      "suggested_fix": "State the HfTe2 lattice constant used in the heterostructure model. Report the HfTe2 lattice measured in Fig. 3(b) alongside 390 pm for Si2Te2. Repeat the band-structure and Z2 calculations for Si2Te2 strained to the bulk HfTe2 lattice (or a large near-commensurate supercell), so the effect of the real mismatch is quantified."
+    },
+    {
+      "title": "Inconsistent Fermi-level position between DFT and STS",
+      "quote": "the Fermi level (EF) is shifted downwards below the VBM of ML-Si2Te2",
+      "explanation": "DFT states that EF lies below the Si2Te2 VBM, i.e. hole-doped. In that case the VBM should appear at positive sample bias in STS. The high-resolution STS instead places the VBM at ≈ −10 meV, with EF inside the gap just above the VBM. Separately, the authors invoke a ~0.25 eV rigid shift between the DFT and experimental DOS, attributed to 'substrate-induced doping not fully captured in DFT'. This attribution is odd, since the DFT model explicitly includes the substrate. These three statements are not reconciled. The edge-state energy (at EF) and its position relative to the bulk band edges depend directly on this alignment.",
+      "type": "logical",
+      "severity": "moderate",
+      "suggested_fix": "Give the DFT-predicted VBM and CBM positions relative to EF for the heterostructure, compare them directly with the measured −10 meV/290 meV, and state the sign of the 0.25 eV shift. Explain why the explicitly modelled substrate does not account for it, e.g. bulk vs monolayer HfTe2."
+    },
+    {
+      "title": "Edge-state signature is a single peak at the valence-band edge, probed only within ±100 mV",
+      "quote": "the edge spectrum displays a pronounced peak at EF within the same energy range",
+      "explanation": "The bulk gap is reported as −10 to 290 meV, so EF sits ≈10 meV above the VBM. The edge peak at EF (and the +7 mV map) is therefore essentially at the gap edge, not well inside the gap.\n- A helical 1D Dirac edge channel should give enhanced, roughly constant LDOS across the whole bulk gap, merging with the bulk bands at the edges.\n- Fig. 2(b) shows the calculated edge bands spanning the gap.\n- Yet the edge spectra (Fig. 5b,c) are recorded only from −100 to +100 mV, so the range 100–290 meV, where the edge state should be most clearly separated from bulk states, is never examined.\n- The explanation for why a peak, rather than a plateau, is expected is deferred entirely to the SM.\nAs it stands, the data are also consistent with a trivial edge resonance near the band edge.",
+      "type": "logical",
+      "severity": "major",
+      "suggested_fix": "Show edge vs center spectra and dI/dV maps over the full gap (−50 to +300 mV). Demonstrate enhanced edge LDOS at energies well inside the gap (e.g. 100–250 mV), and compare quantitatively with the edge LDOS from Fig. 2(b)."
+    },
+    {
+      "title": "Spatial extent does not rule out trivial edge mechanisms",
+      "quote": "rules out trivial mechanisms such as lattice defects or dangling bonds",
+      "explanation": "The argument contrasts the 2–3 nm decay with atomically localized defect states. That is fair as far as it goes, but other trivial mechanisms are not considered:\n- Band bending at the semiconductor/metal-substrate boundary, which the authors' own Ref. 30 shows tailors interface bands over nm scales.\n- Trivial (Tamm/Shockley-like) edge bands of a reconstructed edge.\n- Enhancement of the 'substrate-induced states' that already give a small peak at the same energy in the center spectra.\nAny of these can produce an extended edge feature near EF. Separately, the Fig. 5(e) map is acquired with a 0.2 V setpoint across a 7 Å step. Constant-current setpoint effects near step edges are known to generate rim-like contrast in dI/dV maps.",
+      "type": "logical",
+      "severity": "moderate",
+      "suggested_fix": "Show dI/dV maps at several in-gap energies and outside the gap, using different stabilization biases. Show that the edge contrast is absent outside the gap and is setpoint-independent. Also discuss and estimate the band-bending profile near the island edge."
+    },
+    {
+      "title": "Z2 for a metallic heterostructure and 'gap at Γ' from momentum-integrated STS",
+      "quote": "the WCCs curves for both the heterostructure and the free-standing ML-Si2Te2 cross an arbitrary horizontal reference line an odd number of times",
+      "explanation": "Fig. 2(a) shows HfTe2 bands crossing the energy window of the Si2Te2 gap, and the HfTe2 VBM lies 110 meV above the Si2Te2 VBM. The heterostructure is therefore metallic.\n- A Wannier-charge-centre Z2 calculation requires a set of bands separated from the rest by a gap throughout the Brillouin zone. It is not stated which band set was used or how the substrate bands were handled.\n- STS is momentum-integrated and cannot isolate a 'band gap at the Γ point'.\n- The measured ≈300 meV region is a Si2Te2-projected feature on top of metallic substrate states. In this setting, the edge states can hybridize with the substrate continuum, and their topological protection is not guaranteed.",
+      "type": "technical",
+      "severity": "moderate",
+      "suggested_fix": "Specify the band indices used for the heterostructure WCC calculation and show the direct gap separating them throughout the Brillouin zone. Alternatively, state that the Z2 classification applies only to the Si2Te2-projected subspace. Rephrase 'band gap at the Γ point' as a Si2Te2-projected gap in the LDOS."
+    },
+    {
+      "title": "Overclaim: 'realization of the QSH phase' from STS alone",
+      "quote": "we report the first experimental realization of the QSH phase in ML-Si2Te2",
+      "explanation": "The authors show a projected gap plus edge-localized LDOS near EF. The QSH phase is defined by helical, spin-momentum-locked edge channels and, operationally, by quantized edge conductance. Neither spin-resolved STS, quasiparticle interference/dispersion, nor transport is presented. On a metallic substrate, quantized transport is in any case not accessible. The title's 'topologically nontrivial phase' is more defensible than the claims in the introduction and summary.",
+      "type": "logical",
+      "severity": "moderate",
+      "suggested_fix": "Replace 'experimental realization of the QSH phase' with 'spectroscopic evidence for topological edge states consistent with a QSH phase' in the introduction and summary."
+    },
+    {
+      "title": "Sign convention of the mismatch window vs the strain tolerance",
+      "quote": "defined as (a0 − aTMD)/a0, yielding 76 candidates",
+      "explanation": "The tolerance is stated as an in-plane strain of −3% to 2%, conventionally ε = (a − a0)/a0, with a the strained (substrate-imposed) lattice constant. The screening parameter, however, is defined with the opposite sign, Δ = (a0 − aTMD)/a0 = −ε. Broadening −3%…2% by 0.5% should then give −2.5% < Δ < 3.5%, not −3.5% < Δ < 2.5%. PtSe2 (a ≈ 373–375 pm, Δ ≈ +3.6–4%) also appears to fall outside the stated Δ window. This suggests either the convention or the range is misstated. It is also unclear whether bulk or C2DB monolayer lattice constants were used.",
+      "type": "technical",
+      "severity": "moderate",
+      "suggested_fix": "Either define the mismatch as (aTMD − a0)/a0, consistent with the strain convention, or restate the window as −2.5% < Δ < 3.5%. List the lattice constants and Δ values of the five final candidates (IrTe2, NiTe2, FeTe, PtSe2, HfTe2)."
+    },
+    {
+      "title": "Candidate count inconsistent between text and Fig. 1(a)",
+      "quote": "yielding 76 candidates",
+      "explanation": "The text states that the lattice-mismatch filter yields 76 candidates, but the funnel in Fig. 1(a) shows 65 TMDs at that step. One of the two numbers is wrong.",
+      "type": "technical",
+      "severity": "minor",
+      "suggested_fix": "Correct either the text or Fig. 1(a) so that the count after the lattice-mismatch filter is the same (76 or 65)."
+    },
+    {
+      "title": "Inconsistent descriptions of the bulk gap/dip across figures",
+      "quote": "The center spectrum exhibits a V-shaped dip between ±50 mV",
+      "explanation": "The gap region is described differently in different places, and the energy windows are mutually incompatible:\n- Fig. 4(a), main panel: a low-intensity region from −100 to 300 meV.\n- Fig. 4(a), inset: a gap from −10 to 290 meV.\n- Fig. 5(b): a V-shaped dip between ±50 mV at the island center.\n- Fig. 5(c): a minimum between ±10 mV at the island center.\nA ±50 mV or ±10 mV dip centered on EF does not correspond to a 300 meV gap located almost entirely above EF. Readers cannot tell which feature is the bulk gap and which is a substrate- or tip-related zero-bias feature.",
+      "type": "logical",
+      "severity": "moderate",
+      "suggested_fix": "Identify explicitly that the ±10/±50 mV dip is a feature within the larger Si2Te2-projected gap (−10 to 290 meV), and state its origin. Use a single consistent gap definition, e.g. a fixed conductance threshold or log-scale band-edge fitting, across Figs. 4 and 5."
+    },
+    {
+      "title": "Edge-state width 'good agreement' with DFT is loose",
+      "quote": "we estimate the edge-state width to be ≈2 nm",
+      "explanation": "The measured ≈2 nm width (2–3 nm in the line spectra) is ~50–120% larger than the DFT value of 1.35 nm, which is described as good agreement.\n- The width definition (FWHM, decay length?) is not given.\n- The convolution with the 0.36 nm sampling, tip size, and substrate screening is not discussed.\n- A nanoribbon width that may not suppress edge–edge coupling is also not discussed.\nThe agreement is at best qualitative.",
+      "type": "technical",
+      "severity": "minor",
+      "suggested_fix": "Define the width (e.g. exponential decay length from a fit to the edge-peak intensity vs distance), report it with its uncertainty, and compute the same quantity from the DFT nanoribbon LDOS."
+    },
+    {
+      "title": "Step height vs calculated spacing",
+      "quote": "is in reasonable agreement with the calculated interlayer spacing",
+      "explanation": "The measured step is 710 pm, against 790 pm from DFT, a ~10% difference. STM step heights between dissimilar materials include electronic contributions at the chosen bias. This is acceptable, but no bias dependence or estimate of the electronic contribution is offered.",
+      "type": "technical",
+      "severity": "minor",
+      "suggested_fix": "Report the step height at several biases (e.g. ±0.5, ±1.0 V) to show the 80 pm discrepancy is electronic, or compare with the simulated STM height at 0.5 V."
+    },
+    {
+      "title": "Growth/annealing procedure underspecified",
+      "quote": "we continuously supplied both Si and Te fluxes exceeding 20 times the nominal co-evaporation rate during annealing",
+      "explanation": "The key recipe parameters are left to the SM or omitted, and the growth relies on a non-standard compensating-flux anneal. Without these values, the main text does not let readers reproduce the result. The missing parameters are:\n- the absolute flux rates and the Si:Te ratio;\n- the annealing duration and ramp rate;\n- the nominal coverage;\n- the reason for the apparent conflict between decomposition above 320 °C and crystallization at 385 °C.",
+      "type": "technical",
+      "severity": "minor",
+      "suggested_fix": "State the deposition rates (e.g. in ML/min or Å/min), the Si:Te flux ratio, the annealing time at 385 °C, and the resulting coverage in the main text or in a methods table."
+    },
+    {
+      "title": "Questionable citation for the WCC Z2 method and mismatched SM description",
+      "quote": "calculating the Z2 invariant via the evolution of Wannier charge centers (WCCs) [39]",
+      "explanation": "Ref. 39 (Giustino & Pasquarello, mixed Wannier–Bloch functions for electrons and phonons) is not the standard source for the WCC Z2 method. The usual sources are Soluyanov & Vanderbilt, PRB 83, 235401 (2011), and Yu et al., PRB 84, 075119 (2011). Separately, the description of Ref. 35 mentions 'large area scans showing the coexistence of three stripe orientations', which does not match anything in this paper.",
+      "type": "technical",
+      "severity": "minor",
+      "suggested_fix": "Cite Soluyanov & Vanderbilt PRB 83, 235401 (2011) and/or Yu et al. PRB 84, 075119 (2011) for the WCC method. Replace the Ref. 35 description with one matching the actual SM content (exfoliation energies, Z2/WCC, growth, edge-state analysis)."
+    }
+  ]
+}

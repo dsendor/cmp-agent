@@ -1,0 +1,96 @@
+Referee report
+
+Manuscript: "Flux-induced Majorana modes in full-shell nanowires"
+Authors: S. Vaitiekenas, M.-T. Deng, P. Krogstrup, C. M. Marcus (arXiv:1809.05513v1)
+
+
+1. Summary of the submission
+
+The authors study InAs nanowires fully wrapped by a 30 nm epitaxial Al shell in an axial magnetic field. They make three experimental claims.
+
+(a) The shell is in the destructive Little-Parks regime. Superconducting lobes sit near integer flux quanta through the shell and are separated by fully normal regions near half-integer flux (Fig. 1, Fig. S1). This is backed by 4-probe shell resistance versus current, field and temperature, plus estimates of the mean free path (19 nm) and the dirty-limit coherence length (180 nm).
+
+(b) Tunneling into the bare end of the core shows a hard gap (Delta about 180 ueV) in the zeroth lobe, a discrete zero-bias peak through the first lobe (winding 2 pi), and subgap states away from zero energy in the second lobe (Fig. 2, Fig. S2, Fig. S3).
+
+(c) In six full-shell Coulomb islands on one wire (210 to 970 nm), peaks are 2e-periodic in the zeroth lobe and nearly 1e-periodic with an even-odd modulation in the first lobe. The even-odd energy difference A(L) at 110 mT fits A0 exp(-L/xi) with A0 = 110 ueV and xi = 180 nm (Fig. 4F, Table S1). A second fit at 140 mT gives xi = 230 nm (Fig. S9).
+
+The authors read these results as Majorana zero modes induced by flux, following the theory of Lutchyn et al. (Ref. 24, listed as submitted). They connect the decay length to the Al coherence length and to a Caroli-de Gennes-Matricon (CdGM) estimate of about 170 nm.
+
+
+2. Overall assessment
+
+This is a significant and timely experiment. The platform is attractive: low fields, a core shielded by the shell, and a winding number fixed by fluxoid quantization. Several features of the data are clean and new. These include the reentrant lobe structure seen in transport, tunneling and Coulomb blockade alike, the hard gap at zero flux, and a zero-energy state that appears in the first lobe but not the second. The length study across six islands on one wire is a sensible way to test end-localized, hybridizing modes. I expect the paper to have impact.
+
+The main weakness is the gap between what is measured and what is claimed. The abstract says the data are "consistent with" Majorana modes. The summary says the authors "have demonstrated that threading magnetic flux ... can induce a topological phase with Majorana zero modes". The data as presented do not yet rule out trivial explanations. The interpretive section (Al coherence length, CdGM estimate, 140 mT scaling check) also contains steps I could not follow or that seem internally inconsistent. I recommend major revision. The requests below are mostly controls and analyses the authors probably already have, or could get from existing data.
+
+
+3. Major issues
+
+3.1 No control for the length dependence in a lobe where Majorana modes are not expected.
+The strongest evidence offered is the exponential length dependence of A(L) in the first lobe. But an even-odd spacing difference only needs a subgap state below the charging energy. Any discrete subgap state whose energy falls with island length would give a decreasing A(L). The supplement says the second lobe (even winding, no MZMs expected per Ref. 24) also shows "qualitatively similar even-odd spacing", and the tunneling spectrum there has a state near -5 ueV. This is the natural control. Please give A(L) for the second lobe, at least for the islands where it is resolved. If it also falls off exponentially with a similar scale, the length dependence is not specific to odd winding. If it saturates or behaves differently, that would greatly strengthen the paper. The third lobe (odd winding, seen only in the 210 nm island) deserves comment on the same grounds.
+
+3.2 Is the exponential form discriminated from alternatives?
+Six points span L = 210 to 970 nm, a factor of about 4.6 in length. A falls from 45 to 0.6 ueV, a factor of about 75. The text says "spanning over two orders of magnitude", which overstates the range; please correct it. Over this range a power law (roughly L^-2.8) or a level-spacing-limited dependence is not obviously excluded. The exponential underestimates the 210 nm point by about 30% (fit gives about 34 ueV against 45 measured). Please:
+- state how the fit was done (linear or log space, weighting by the vertical error bars, treatment of horizontal error bars);
+- give uncertainties on A0 and xi at both 110 and 140 mT, so readers can judge whether 180 and 230 nm really differ;
+- compare the exponential with at least one alternative (for example a power law) using a goodness-of-fit measure.
+Also, MZM hybridization in a finite topological wire generally oscillates with length and field, not only decays. Please say whether the averaging over gate configurations (Table S1) could hide or rectify such oscillations, and how A is defined when the sign of the even-odd difference varies.
+
+3.3 Definition of A and the factor relating it to the hybridization energy.
+The supplement says delta V_E is proportional to E_C + 2E0 and delta V_O to E_C - 2E0. Then A = eta x (delta V_E - delta V_O) would equal 4E0, not E0. The main text calls A "the length dependent hybridization energy of MZMs" and compares A0 = 110 ueV with the 130 ueV gap. Please state exactly how A relates to the splitting E0, and update the comparisons with Delta and the CdGM estimates. A related point: at 140 mT, A0 = 80 ueV is twice Delta140 = 40 ueV. If A is an energy splitting bounded by the gap, the short-length extrapolation exceeds the gap. That needs comment even if every measured point lies below it.
+
+3.4 Reproducibility of the length dependence.
+All six islands are on one nanowire, and each length is measured once (several gate settings per island, but one island per length). The text says "two device geometries, measured in three devices each, showed similar results". Please show the Coulomb island data from the other devices, at least as A at one or two lengths, so readers can see whether the decay length and prefactor repeat across wires. The lever arms also change by a factor of about 3.5 across islands (4.9 to 17 meV/V) and enter A linearly. A brief description of how eta was found (which diamond slopes, at which field) and its spread at each length would help.
+
+3.5 Trivial origins of the zero-bias peak in tunneling.
+The zero-bias peak is measured through a bare InAs segment where the shell was etched. That segment can host a quantum dot or a smooth potential, which are known to produce zero-energy Andreev states or partially separated "quasi-Majorana" states. Ref. 43, which the authors cite in support, is one of the papers making this point. Please discuss this alternative directly. Some specific points:
+- In a full-shell geometry the back gate is strongly screened from the core under the shell. Stability of the zero-bias peak against V_BG therefore mostly shows stability against barrier tuning, not against the core chemical potential. The text should say so rather than presenting gate stability as support for the Majorana picture.
+- The statement that the split peak "eventually evolves into a zero-bias dip at strong coupling, in qualitative agreement with theory supporting MZMs [43]" needs to say which prediction of Ref. 43 is meant. A splitting that grows with coupling is not an obvious Majorana signature.
+- Please give the zero-bias peak height, width (against 3.5 k_B T_e and the 5 uV excitation) and electron temperature, and the subgap-to-above-gap conductance ratio for the zeroth-lobe hard gap.
+
+3.6 Chemical potential and the size of the topological region in the theory.
+In Ref. 24, as I understand it, the topological phase in the first lobe needs the core chemical potential and the interface field to lie in certain ranges. Because the full shell screens the gates, the core chemical potential is set by the interface band bending and is not tunable. Yet device 1 and all six islands on device 2 show the same first-lobe behaviour. The authors should explain why this is expected (for example, the topological windows in Ref. 24 cover most of parameter space for realistic band bending) or at least flag it as an open point. Because Ref. 24 is unpublished, the paper should state the theory's conditions plainly enough to stand alone.
+
+3.7 Zeeman energy compared with orbital effect.
+The title and abstract stress that the mechanism is flux-induced. At 110 mT, with a bare InAs g-factor of order 10 to 15, the Zeeman energy is tens of ueV, comparable to the gap. The second-lobe result (no zero-bias peak at higher field) is good evidence against a purely Zeeman-driven mechanism, and the authors should make that argument explicitly. A short estimate of the Zeeman scale against Delta110 and the subgap spacing would help readers.
+
+3.8 The coherence-length and CdGM arguments.
+The text notes three similar numbers: the Al dirty-limit coherence length (180 nm), the fitted decay length (180 nm) and the CdGM estimate (about 170 nm). The authors add that "it remains unclear if these quantities are necessarily equal". I share that doubt, and the agreement risks reading as numerology. The MZM overlap is mediated by the semiconductor core (as the authors say), so its decay length should depend on the induced or topological gap and the core velocity, not the mean free path of the Al film. Specifically:
+- The CdGM relation is quoted as delta = Delta/(k xi), with k taken from the circumference (2 pi/k about pi D, so k = 2/D). CdGM spacing in a bulk vortex is Delta/(k_F xi). Replacing k_F with the inverse radius is a heuristic and should be labelled as one. The xi in that relation is the coherence length of the material holding the bound states, which is not obviously the Al shell value. The sentence beginning "From the CdGM relation" is also unfinished.
+- The 140 mT check uses xi140/xi110 = delta110/Delta140, about 5/4. I could not derive this ratio. If xi scales as 1/Delta (the usual expectation, and what the CdGM expression gives at fixed delta), then xi140/xi110 = Delta110/Delta140, about 3.3, which would predict xi140 of about 590 nm, far from the fitted 230 nm. If the ratio instead comes from xi = (Delta/delta)(D/2) at both fields, it needs delta140, but no subgap state is seen at 140 mT. Please derive the scaling explicitly or remove the claim. As written it reads as support for the picture but does not follow.
+- The speculation that the missing subgap states at 140 mT reflect a breakdown of the CdGM picture could be cut or shortened.
+
+3.9 Wording of the conclusion.
+Given points 3.1 to 3.8, the summary sentence "we have demonstrated that threading magnetic flux ... can induce a topological phase with Majorana zero modes" should be softened to match the abstract (for example "observations consistent with"). The claim in Section 4 that the exponential form shows the modes are "located at the ends of the wire, not bound to impurities or local potential fluctuations" is also stronger than six points on one wire support.
+
+
+4. Points needing clarification or correction
+
+4.1 Contact metal. The main text and figure legends say the ohmic contacts are Ti/Au. The Methods say "Normal Ti/Al (5/210 nm)", "Ti/Al (5/180 nm)" and "Ti/Al (5/150 nm)". Ti/Al is superconducting at the temperatures used. A superconducting probe would change the reading of every tunneling spectrum (gap features shifted by the lead gap, possible artifacts near zero bias at low field). The 180 ueV gap in Fig. 2 looks like a normal probe, so this is probably a typo, but it must be fixed.
+
+4.2 Flux axis. Please say which area converts B to flux on the top axes (core, mean shell diameter, or outer diameter). With the 160 nm mean diameter, one flux quantum is about 103 mT, close to the 110 mT lobe centre. The 130 nm core area gives quite different numbers. Please also comment on the different destructive-regime edges in supercurrent (45 to 70 mT) and tunneling (55 to 65 mT) on the same device.
+
+4.3 The sentence "The asymmetry of the subgap features around one flux quantum reflects a competition between diamagnetic flux response of the shell and the core" needs a reference or an explanation.
+
+4.4 Second-lobe state at about -5 ueV (Fig. S2). A BdG state probed by single-electron tunneling should give features at plus and minus E. Please explain the asymmetric spectrum, and how a state at -5 ueV (near the energy resolution) is told apart from the first-lobe zero-energy state.
+
+4.5 Noise floor. The Fig. 4F caption gives sigma_A < 0.1 ueV, much less than k_B T. Please give the electron temperature, not only the 20 mK base temperature.
+
+4.6 Units and typesetting. Shell resistivity "21 nm Omega" should read 21 nOhm m. The square root in the dirty-limit expression for xi_S is missing in the main text. The numbers themselves check out: R_N = 1.3 Ohm, 940 nm probe spacing and a shell cross-section of about pi x 160 nm x 30 nm give about 21 nOhm m and l of about 19 nm, and xi_S comes out near 180 nm. The table arithmetic A = eta x delta V also checks out.
+
+
+5. Minor and editorial points
+
+- Fig. 3C caption: "from the data in (A)" should be "(B)".
+- Fig. S2 caption refers to panel "(E)"; the panels are A to C.
+- Fig. 4F caption: "level arms" should be "lever arms".
+- "decreased bellow" should be "below"; "The first lobe persist" should be "persists"; "tunneling spectra into the core shows" should be "show".
+- "closer to the edge of the first node" should be "lobe".
+- Ref. 40: the author name is Schwiete. Ref. 39 (unpublished) does not seem to be cited in the text.
+- Ref. 8 page number: "Nature 531, 7593" mixes the issue number and page.
+- A schematic of the winding-number boundary condition and of which island segments are covered or bare would help non-specialists.
+
+
+6. Recommendation
+
+Major revision. The experiment is novel and the data are of high quality. The paper would be considerably stronger with: the second-lobe length dependence as a control, a quantitative fit comparison with uncertainties, a precise definition of A, data on reproducibility across wires, an explicit discussion of trivial zero-bias peak mechanisms, and either a correct derivation or removal of the coherence-length scaling argument. With these changes I would expect to support publication.

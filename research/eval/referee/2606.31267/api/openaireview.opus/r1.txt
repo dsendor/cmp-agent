@@ -1,0 +1,125 @@
+{
+  "overall_feedback": "The paper combines continuum-model calculations with transport on several WSe2/cTDBG devices to argue that the WSe2–graphene alignment angle Φ decides whether the ν = −1 correlated insulator is Chern (C = +1 at Φ ≈ 0°) or trivial (C = 0 at Φ ≈ 15°, 30°). The experimental contrast is interesting, and the multi-device comparison (D1–D7) is a real strength. The theory–experiment link, however, is weaker than the prose suggests.\n\n1. **Mechanism framing.** In the model as specified (Eqs. 12–13), Rashba SOC is constant at 0.5 meV and Ising SOC is 1.41 meV at Φ = 15°. Ising therefore still dominates by almost 3× at 15°. The repeated statement that 'enhanced Rashba' or 'Rashba-dominated' physics trivializes the bands at 15° does not match the model. The transition at Φc ≈ 9° corresponds to only an ~11% reduction of λ_I, from 2.0 to ~1.78 meV. This signals strong sensitivity to λ_I,0, the 0.35 layer factor, D and θ, and no robustness analysis is shown.\n2. **Angle assignment.** The Φ assignment relies on optical edge matching. Measuring inter-edge angles of 60° or 120° cannot distinguish zigzag from armchair edges, which differ by 30°. Using the measured Chern numbers as 'a posteriori confirmation' is circular.\n3. **Valence-band correlations.** The ν = −1 insulators in the Φ ≈ 30° device, where λ_I ≈ 0, weaken the claim that SOC-induced flattening or Berry curvature is responsible for them.\n4. **Smaller issues.** Chern numbers are computed only at D = 0.5 V/nm, whereas the measurements are at D = 0.6 V/nm and at different θ. λ_I is presented as a model output although it is an input. Layer labelling in the Hamiltonian is ambiguous. The Chern-number formula is not band-resolved. Key parameters (v3, v4) are missing. The activation-gap fit uses a narrow temperature window.",
+  "comments": [
+    {
+      "title": "Model does not support 'Rashba-dominated' trivialization at Φ ≈ 15°",
+      "quote": "At Φ ≈ 15°, enhanced Rashba SOC renders the bands topologically trivial.",
+      "explanation": "I first read this as a statement about a model in which Rashba grows with Φ. Eq. (13), however, makes Rashba Φ-independent (λ_R ≈ λ_R,0 = 0.5 meV), and Eq. (12) gives λ_I(15°) = 2.0·cos45° ≈ 1.41 meV.\n\n- At 15°, Ising still exceeds Rashba by a factor of ~2.8.\n- Ising falls below Rashba only for cos(3Φ) < 0.25, i.e. Φ ≳ 25°.\n- Nothing about Rashba is 'enhanced' at 15° in the model; the only change between Φ = 0° and 15° is a 30% reduction of λ_I.\n\nThe same framing recurs in the abstract ('Rashba coupling dominates at larger Φ'), in the Fig. 1 discussion ('a growing Rashba contribution'), and in the Discussion. The mechanism paragraph attributes the transition to Rashba-induced gap closing. Within the authors' own model, though, the transition at Φc ≈ 9° must be driven by λ_I dropping from 2.0 to ~1.78 meV, with Rashba fixed. The physical narrative therefore does not describe the calculation actually performed.",
+      "type": "logical",
+      "severity": "major",
+      "suggested_fix": "Rephrase throughout so that the trivialization is attributed to the reduction of λ_I(Φ) = λ_I,0 cos3Φ at fixed λ_R. State explicitly that λ_I/λ_R ≈ 2.8 at Φ = 15°. If Rashba mixing is believed to matter, show the Chern number versus λ_R at fixed λ_I(15°) to demonstrate it."
+    },
+    {
+      "title": "Edge-based alignment cannot distinguish Φ ≈ 0° from Φ ≈ 30°; a posteriori confirmation is circular",
+      "quote": "provides an a posteriori confirmation of the alignment assignment",
+      "explanation": "The authors identify crystal axes from straight edges and inter-edge angles of 60° or 120° 'between edges of the same family'. This constrains Φ modulo 60°, but it does not tell whether a given edge is zigzag or armchair. Exfoliated graphene and TMDC flakes commonly show both edge types, separated by 30° (mod 60°).\n\n- If one flake presents a zigzag edge and the other an armchair edge, 'aligning the edges' gives Φ ≈ 30°, not 0°.\n- This is exactly the distinction on which the paper's conclusion rests.\n- Using the measured Chern numbers to confirm the alignment assignment is circular, because the alignment is then used to explain the Chern numbers.\n\nThe ±2° uncertainty estimate addresses small misalignment only, not this discrete 30° ambiguity. A Φ ≈ 15° device is robust to the ambiguity (15° maps to 15°), but the Φ ≈ 0° versus Φ ≈ 30° assignments are not.",
+      "type": "logical",
+      "severity": "major",
+      "suggested_fix": "Provide an independent determination of edge type or lattice orientation for each flake, for example SHG polarimetry of the WSe2 and Raman D-peak polarization for graphene edges. Remove the use of Chern numbers as confirmation of Φ."
+    },
+    {
+      "title": "Topological assignment appears finely tuned to the chosen λ_I,0 and layer weighting",
+      "quote": "parameters 𝜆I = 2.0 meV and 𝜆R = 0.5 meV",
+      "explanation": "The stated phase boundary Φc ≈ 9° corresponds to λ_I = 2.0·cos27° ≈ 1.78 meV. The band topology therefore flips between λ_I = 2.0 and ~1.78 meV.\n\n- The Ising term enters as a spin-dependent potential of only ±1 meV on L4, and 0.35× that on L3.\n- This sits on a displacement potential U_d ≈ 167 meV at D = 0.5 V/nm.\n- A change of a few tenths of a meV flipping C_K from +2 to 0 implies the relevant gap is nearly closed at this D.\n\nLiterature values of proximity Ising SOC in graphene/WSe2 span roughly 0.5–2.5 meV. With λ_I,0 = 1.5 meV, for instance, the Φ = 0° bands would presumably already be trivial. The claimed 'deterministic' control and the agreement with experiment thus hinge on a parameter choice that is not robustness-tested. The DFT checks in the Supplement address Ising-versus-Rashba dominance, not the location of the band-topology transition.",
+      "type": "technical",
+      "severity": "major",
+      "suggested_fix": "Add a phase diagram of C_K for the first valence band versus (λ_I,0, D), and versus the L3 scaling factor, at the experimental twist angles θ = 0.80° and 0.93°. This would show over what parameter range Φ = 0° is nontrivial and Φ = 15° is trivial."
+    },
+    {
+      "title": "Chern numbers computed at D = 0.5 V/nm, measurements at D = 0.6 V/nm and other θ",
+      "quote": "Figure 2j–m presents K valley band structures at fixed displacement field D = 0.5 V/nm,",
+      "explanation": "The authors stress that 'the actual topology depends on details of the band structure and displacement field'. The reference structure without WSe2 is trivial at D = 0.5 V/nm even though cTDBG is said to be nontrivial at D = 0. Yet:\n\n- The only Chern-number assignments shown are at D = 0.5 V/nm and θ = 0.9°.\n- The Landau fans for D1 and D3 are taken at D = 0.6 V/nm, with θ = 0.93° and 0.83°.\n- The Φ ≈ 0° versus 30° 'controlled comparison' uses θ = 0.80°.\n\nGiven the apparent sensitivity discussed above, agreement at a nearby but different parameter point is not guaranteed.",
+      "type": "logical",
+      "severity": "moderate",
+      "suggested_fix": "Report C_K of the first valence band at D = 0.6 V/nm for θ = 0.80°, 0.83° and 0.93° at Φ = 0°, 15° and 30°, or provide a C_K(D, Φ) map covering the measured range."
+    },
+    {
+      "title": "λ_I = 2.0 meV is an input, not a result of the continuum model",
+      "quote": "incorporating this orientation-dependent SOC, yield |𝜆I| ≈ 2.0 meV",
+      "explanation": "The main text says the continuum-model calculations 'yield' |λ_I| ≈ 2.0 meV and its progressive reduction with Φ. The Methods, however, state that λ_I = 2.0 meV is adopted from first-principles results (ref. 35), and that the Φ dependence is imposed as cos(3Φ) following ref. 44. The continuum model is a Bistritzer–MacDonald-type Hamiltonian with SOC added as given terms; it cannot output λ_I. Presenting the value as a calculated result overstates the independence of the theory.",
+      "type": "logical",
+      "severity": "moderate",
+      "suggested_fix": "Replace with: 'In our continuum model we take λ_I,0 = 2.0 meV from DFT (ref. 35) and impose λ_I(Φ) = λ_I,0 cos3Φ following ref. 44.'"
+    },
+    {
+      "title": "Attribution of valence-band correlated insulator to SOC is undercut by the Φ ≈ 30° device",
+      "quote": "suggests that SOC-induced band flattening and enhanced Berry curvature",
+      "explanation": "The authors argue that the ν = −1 insulator, absent in bare cTDBG (D6, D7), arises from SOC-induced flattening and enhanced Berry curvature. However, D5 (Φ ≈ 30°) and D3 (Φ ≈ 15°) also show a ν = −1 correlated insulator with C = 0.\n\n- In the model, Φ = 30° has λ_I = 0 and only λ_R = 0.5 meV.\n- That is a perturbation too small to substantially flatten bands, and it is shown to produce trivial bands.\n\nThe presence or absence of the valence insulator therefore seems uncorrelated with the computed SOC-driven Berry curvature. Other effects of the WSe2 layer, such as dielectric screening, strain or charge transfer, or device-to-device variation, are not ruled out.",
+      "type": "logical",
+      "severity": "moderate",
+      "suggested_fix": "Either compute bandwidths at ν = −1 for Φ = 0°, 15°, 30° and no WSe2 to show that SOC flattening is relevant at all Φ, or reword to state that WSe2 proximity, not specifically Ising SOC or Berry curvature, correlates with the appearance of the ν = −1 insulator."
+    },
+    {
+      "title": "Activation gap from a narrow temperature window; definition unspecified",
+      "quote": "yields a thermal activation gap Δ = 0.78 ± 0.04 meV",
+      "explanation": "The activated regime is said to lie below T* ≈ 2.7 K. Fig. 3f shows temperatures of 1.5, 2.0, 3.0 K and higher, so the fit appears to span roughly 1.5–2.7 K, less than a factor of two in temperature. The resulting Δ ≈ 9 K is larger than the fitted window.\n\n- A ±5% uncertainty from such a narrow range seems optimistic.\n- The convention is not stated: R ∝ exp(Δ/2k_BT) and R ∝ exp(Δ/k_BT) differ by a factor of 2 in Δ.\n- The dilution-refrigerator data down to 20 mK are not used for the gap analysis.",
+      "type": "technical",
+      "severity": "moderate",
+      "suggested_fix": "State the Arrhenius convention used (e.g. R ∝ exp(Δ/2k_BT)) and the exact temperature range and number of points in the fit. Extend the fit using dilution-refrigerator temperature data to widen the window."
+    },
+    {
+      "title": "Inconsistent layer labelling in the continuum Hamiltonian and SOC placement",
+      "quote": "of the AB bilayer to the bottom layer of the BA bilayer",
+      "explanation": "The AB bilayer is stated to be on top and the BA bilayer below. The twisted interface therefore lies between the bottom layer of the AB bilayer and the top layer of the BA bilayer. The text instead says U connects 'the top layer of the AB bilayer to the bottom layer of the BA bilayer'.\n\n- SOC is applied to 'the top two graphene layers (L3 and L4)'.\n- In Eq. (1), however, the AB (top) bilayer occupies the first block, presumably L1–L2.\n- Eq. (7) assigns +U_d/2 to the last layer.\n\nWhich layers receive SOC relative to the sign of D is essential: the result depends on whether the valence-band wavefunctions are polarized toward the WSe2 side. The 0.35 weighting of L3 is also asserted as reflecting 'exponential decay' without justification.",
+      "type": "technical",
+      "severity": "moderate",
+      "suggested_fix": "Define the layer index explicitly (e.g. L4 = top layer of AB adjacent to WSe2) and correct U to couple the lower layer of AB to the upper layer of BA. State which sign of D polarizes holes toward L4, and cite or justify the 0.35 factor."
+    },
+    {
+      "title": "Chern-number formula is not band-resolved, but band and subband Chern numbers are reported",
+      "quote": "summed over occupied bands",
+      "explanation": "Eq. (14) with Ω summed over n < n_F and m > n_F gives the total Chern number of all bands below a chosen gap, including remote bands of the plane-wave continuum. The paper instead reports C_K = +2 for 'the first valence band' and C = +1 for each spin-split subband.\n\n- Obtaining these requires either a band-resolved Berry curvature or differences between totals at successive gaps.\n- Each subband must also be isolated by a gap over the whole mBZ.\n\nIt is not stated how the individual subband Chern numbers were obtained, or whether the two spin subbands are gapped from each other at D = 0.5 V/nm. Given the small Ising splitting, they may touch.",
+      "type": "technical",
+      "severity": "moderate",
+      "suggested_fix": "State that band Chern numbers were computed via a gauge-invariant lattice (Fukui–Hatsugai–Suzuki) method for each isolated band. Report the minimum direct gap between the two spin subbands and to adjacent bands over the mBZ."
+    },
+    {
+      "title": "Rashba SOC treated as Φ-independent and phase-free",
+      "quote": "In contrast, the Rashba SOC is relatively insensitive",
+      "explanation": "The cited twist-angle studies (refs. 42–44) find that, at generic Φ, the proximity Rashba term acquires a Rashba phase angle, i.e. an in-plane rotation of the spin texture. They also find its magnitude is not strictly constant. Eq. (13) keeps the Φ = 0° form with fixed λ_R. Since the paper's narrative attributes trivialization to Rashba-induced spin mixing, omitting the Φ-dependent phase and magnitude is a substantive simplification. The prose claim that Ising 'decreases almost linearly' also conflicts with the cos(3Φ) form used, which is quadratic near Φ = 0.",
+      "type": "technical",
+      "severity": "minor",
+      "suggested_fix": "Include the Rashba phase angle, H_R = (λ_R/2) e^{-iφ_R s_z/2}(τ_zσ_x s_y − σ_y s_x) e^{iφ_R s_z/2}, with φ_R(Φ) from ref. 44, or state explicitly that it is neglected and why. Replace 'almost linearly' with a description matching cos(3Φ)."
+    },
+    {
+      "title": "Key band parameters v3 and v4 not given",
+      "quote": "where 𝛾1 = 400 meV is the direct interlayer coupling",
+      "explanation": "The trigonal-warping and electron–hole-asymmetry velocities v3 and v4 are introduced, but their values are not provided. These parameters strongly affect TDBG flat-band dispersion and Berry curvature, and the particle–hole asymmetry that the authors invoke to explain why correlated states usually appear only in the conduction band. Given the apparent sensitivity of the topology to meV-scale perturbations, the calculation cannot be reproduced without them. Code availability helps but does not replace stating the parameters.",
+      "type": "technical",
+      "severity": "minor",
+      "suggested_fix": "State the numerical values used for v3 and v4 (e.g. as ratios to v_F, or γ3 and γ4 in meV), and list all continuum-model parameters in a single table."
+    },
+    {
+      "title": "'Controlled comparison' overstated",
+      "quote": "providing a direct controlled comparison that isolates the crystallographic alignment as",
+      "explanation": "Sharing a nominal twist angle (θ = 0.80°) is a useful coincidence. Separate devices, however, differ in:\n\n- disorder and twist-angle inhomogeneity;\n- heterostrain and hBN alignment;\n- contact quality and, possibly, the exact D range explored.\n\nThe zigzag/armchair ambiguity also applies to D5. Saying the comparison 'isolates' Φ as the determining variable overstates what two devices can establish.",
+      "type": "logical",
+      "severity": "minor",
+      "suggested_fix": "Reword to 'D2 and D5 have the same nominal twist angle, which reduces θ as a confounding variable,' and report twist-angle inhomogeneity (e.g. from different contact pairs) for both."
+    },
+    {
+      "title": "Relation between hole-doped ν = −1 state and subband Chern number not spelled out",
+      "quote": "The observed C = +1 is consistent with occupation of a single spin-split",
+      "explanation": "At ν = −1, measured from charge neutrality, one of the four valence flavours is emptied rather than one occupied. The Hall Chern number relative to CNP is then minus the Chern number of the emptied subband (+2 − 2 − C_emptied). Because TRS partners carry opposite Chern numbers, both C = +1 and C = −1 are allowed, with the sign set by which valley is emptied or by the field direction. The phrase 'occupation of a single subband' and 'in agreement with our theoretical prediction' could mislead readers about what fixes the sign. It is also not explained why all three Φ ≈ 0° devices show +1 rather than −1, presumably because of the B orientation.",
+      "type": "logical",
+      "severity": "minor",
+      "suggested_fix": "State that the ν = −1 state corresponds to emptying one valley-polarized subband with |C| = 1, that the sign is selected by the magnetic-field direction, and give the sign convention relating C to the slope dn/dB and to sign(R_xy)."
+    },
+    {
+      "title": "Finite-field Chern response does not establish a zero-field correlated Chern insulator",
+      "quote": "establishes that \nthe ν = −1 correlated state exhibits a C = +1 Chern insulator response under applied \nmagnetic field",
+      "explanation": "The evidence is a Streda-slope fan above ~0.3 T, with R_xy reaching 97.6% of h/e² only near 3 T. This is properly hedged ('under applied magnetic field'). The title and abstract, however, speak of correlated Chern insulators 'consistent with spontaneous isospin polarization'. Field-stabilized Chern states emanating from integer fillings can occur without a zero-field anomalous Hall state. No zero-field R_xy, hysteresis in B, or anomalous Hall signal is reported.",
+      "type": "logical",
+      "severity": "minor",
+      "suggested_fix": "Add B-sweep R_xy hysteresis loops at ν = −1 for D1, or explicitly qualify in the abstract and title that the Chern character is identified from finite-field Streda analysis."
+    },
+    {
+      "title": "Kane–Mele magnitude statement inconsistent with value used",
+      "quote": "typically an order of magnitude weaker",
+      "explanation": "The text describes the Kane–Mele term as an order of magnitude weaker than Ising. The Methods set λ_KM = 0.01 meV against λ_I = 2.0 meV, which is a factor of 200, i.e. more than two orders of magnitude. This is not consequential for the results, but the two statements are inconsistent.",
+      "type": "technical",
+      "severity": "minor",
+      "suggested_fix": "Change to 'typically one to two orders of magnitude weaker' or cite the source of λ_KM = 0.01 meV."
+    }
+  ]
+}

@@ -1,0 +1,170 @@
+**A. Must address**
+
+1. **The charge extraction is circular, and the "independent" cross-checks are not independent.**
+   - **The charge reduces to the choice of N.** Fig. 5 and Eq. 2 establish that CΔV/ΔB = νe/φ₀ for essentially all data. Hence q/e = ν/N identically. The charge from Eq. 1 carries no information beyond the integer N. N is assigned by rounding 2ΔB₂/ΔB to a nearby integer under a constant-area assumption. Assigning N = 4 at 4/3 or N = 5 at 5/3 is therefore equivalent to assuming e* = e/3. The authors' own caveat that Eq. 2 "may lead to a misinterpretation" applies to their main result.
+   - **Figs. 4b–e are algebraically linked.** Fig. 4b (N), 4c (D_AD), 4d (ΔV/ΔV_e) and 4e (q) are tied together by ν = qN and a single assumed area.
+     - With N ≡ 2ΔB₂/ΔB, Eq. 1 gives q = Cφ₀ΔV/(2ΔB₂) = (ΔV/ΔV₂)·q₂. Fig. 4e is thus Fig. 4d rescaled by the ν = 2 charge (≈1). Equivalently, ΔV_ν/ΔV₂ = (ν/2)(ΔB_ν/ΔB₂) = ν/N.
+     - Fig. 4c is circular by construction: D_AD is computed with the rounded N, so it clusters near D(ν = 2) to within rounding error.
+     - Their mutual agreement is an identity (up to capacitance calibration). It does not show that "the constant-area assumption is reasonable" or that N was "correctly estimated".
+   - **The 2D FFT does not give two independent periods.** A single peak of a stripe pattern yields (f_V, f_B), whose ratio is the slope. With ~101 points at 1 mT steps (~100 mT window), the field resolution is ~0.01 mT⁻¹. This is comparable to f_B itself for ΔB ≈ 55–65 mT (ν = 2/3, 3/5, and ν = 1 at 13.5 T, where ΔB = 62 ± 27 mT). ΔB is therefore effectively inferred from ΔV and the slope.
+   - **The pattern of results matches what a ν/N method would return.** For every ν < 1 the method gives N = 1 and q = ν (3/5 → 3/5; 2/3 → 2/3). For these states it may be measuring the bulk filling, i.e. the total charge added per flux quantum in a Coulomb-dominated region, rather than a tunnelling quasiparticle charge. The 3/5 result, which contradicts the expected e/5, should be treated as a warning about the method.
+   - **Requested changes:**
+     - State explicitly that, given Fig. 5, q/e = ν/N and Figs. 4d/4e are equivalent. Identify the one measured ratio that carries independent information, namely ΔB_ν/ΔB_ref at fixed area.
+     - Remove or reframe the circular presentation in Figs. 4c–e, e.g. present a single quantity (q/A or ΔB·ν) with the area assumption explicit.
+     - For each fractional point, report the raw 2ΔB_ref/ΔB_ν with full error propagation.
+     - Give the likelihood of competing integer N assignments (N = 2 vs 4 at 4/3; 6 vs 7 vs 8 for the small 8/3 oscillation).
+     - Quantify how large an area change would convert each claimed e/3 into 2e/3, and show that such a change is excluded.
+
+2. **The constant-area assumption is untested and likely violated across the operating points used.**
+   - **The reference and fractional data come from very different electrostatics.**
+     - The ν = 2 reference at 13.5 T (Fig. S7) was taken at V_bg = −3 V and V_tg ≈ 6.06 V; the ν = 1 reference at V_bg = −1.58 V.
+     - Most fractional data were taken at V_bg ≈ −0.08 to +0.5 V (one 2/3 point at −1.58 V), V_tg ≈ 0.6–3.8 V, and D from −0.03 to −0.46 V/nm. The statement that D is "kept close to zero" contradicts the D values listed in Sec. I.
+     - The authors state that the AD potential and side-gate trenches are "primarily controlled by the BG" (Supp. F, G). Equal areas for reference and fractional data are therefore not expected a priori.
+   - **The measured areas already vary by more than the margin needed to pin N.**
+     - In AD #1 the fitted diameter rises from ~280 to ~350–360 nm between ν = 1 and 4 (Fig. 2h), i.e. ~50–65% in area. Fig. 4c spans ~270–350 nm, and the paper says "the measured diameter increases with the filling factor".
+     - At ν = 4, N > 4 is attributed to area change. Yet area change is assumed negligible for the fractional states that carry the central claim.
+     - A 15% diameter change alters the area by ~30%. That is enough to move 2ΔB₂/ΔB between neighbouring integers (3 vs 4 at 4/3; 6–7 vs 8 for small 8/3).
+     - Distinguishing e/3 from 2e/3 requires a factor-2 area accuracy, and 3e/5 from e/5 a factor 3. With ±30% area excursions and ±20–40% period errors, this margin is uncomfortably small for some points.
+   - **Requested changes:**
+     - Measure integer references (ν = 1 or 2) at the same V_bg, D and side-gate settings, as close as possible in V_tg and at adjacent B, for each fractional dataset. Alternatively, track ΔB and ΔV continuously from an integer plateau into the adjacent fractional plateau at fixed BG.
+     - Use the constant-density area sweeps (Sec. G) to map A(V_bg, D, ν) and to quantify dA/dV_tg and dA/dV_bg.
+     - Use outer-edge or AB-regime oscillations as additional area references.
+     - Provide self-consistent electrostatic or Thomas–Fermi simulations of the AD potential and compressible-ring radius versus (V_tg, V_bg, D, ν).
+     - Most convincingly, compare ADs of different lithographic diameters: q must stay invariant while ΔV and ΔB scale as 1/A.
+     - Where feasible, add a shot-noise measurement through the same constriction in the weak-backscattering regime, e.g. at 4/3 or 5/3. This would give a charge determination independent of A.
+
+3. **The transport regime is not established for the fractional data, especially the headline states.**
+   - **The evidence for the Coulomb-dominated (CD) label is mixed.**
+     - For ν = 4/3, Sec. I/Fig. S15l reports a zero-bias peak-to-dip transition and "inverted diamonds". The authors call this "consistent with an Aharonov–Bohm-like mechanism rather than purely Coulomb-dominated".
+     - Fractional diamonds (~50 µeV) are weak and in places inverted.
+     - In AD #2, ν = 1 and 4 show no resolvable diamonds and are said to be in multilevel hopping.
+     - Sec. S-E states that the integer level spacing is explained "without the need for electron-electron interactions".
+   - **Why it matters.** Eq. 1, the meaning of N and the identification of ΔV with one quasiparticle all assume the CD regime. In an AB-dominated or intermediate regime, the field period at fixed bulk quasiparticle number is not φ₀/N. The admitted ambiguity sits exactly at the headline e/3 states (4/3, 5/3).
+   - **Requested changes.** Classify every dataset as CD, AB or intermediate, using:
+     - bias spectroscopy;
+     - side-gate (constriction-transmission) coupling dependence;
+     - stripe slope and sign versus AB expectations;
+     - B-dependence of ΔV and ΔB across the plateau;
+     - temperature dependence of the amplitude;
+     - the ratio of charging energy to level spacing, and charging-energy scaling with e*.
+
+     Restrict charge extraction to unambiguously CD data.
+
+**B. Should address**
+
+4. **There is no predictive theoretical framework for N.**
+   - **The definition of N shifts.** The manuscript alternates between "N = filling of the interacting edge" and "N = number of quasiparticles transferred per φ₀". It infers N = 4, 5, 8 post hoc for multiple encircling edges. In a CD antidot picture N = ν/e* follows naturally, but this presupposes e*.
+   - **Requested derivation.** Derive N = ν_bulk/e*, or its generalization with fully transmitted edges, within a CD antidot model. Suitable starting points are the Halperin–Stern–Neder–Rosenow K_I/K_L/K_IL framework, a Kataoka-type compressible-ring picture, or the Kou et al. analysis. The derivation should state:
+     - which compressible region defines A;
+     - the role of fully transmitted edges;
+     - which mode tunnels (e.g. the 1/3 mode atop ν = 1 at 4/3, or the counter-propagating structure of hole-conjugate 2/3, 5/3, 8/3);
+     - how bound charge redistributes between rings;
+     - how upstream neutral modes at 2/3, 5/3, 8/3 affect AD resonances.
+   - **Requested predictions.** Use the model to make a priori predictions for ΔB, ΔV, slope and charging energy for each state, including 3/5 with its multiple edge modes. Compare these against edge counting, AB-regime and bunching alternatives.
+   - **Tension with the motivation.** The introduction motivates ADs as avoiding bulk–edge complications. The CD regime is itself a manifestation of strong bulk–edge coupling, and this should be discussed.
+
+5. **The argument excluding edge counting at ν = 4/3 is numerically incorrect.**
+   - **The arithmetic.** The text says N = 2 would give a diameter "far larger" than the ~450 nm side-gate separation. With ΔB ≈ 15 mT and D = 2√(φ₀/(πNΔB)), N = 4 gives ≈296 nm and N = 2 gives ≈420–425 nm. This is below 450 nm, not far above it.
+   - **The inputs are crude.** The ~300 nm effective diameter comes from "approximately 50 nm hBN" fringing without simulation. The 450 nm separation is not a strict bound on where the relevant edge resides, especially for a smooth potential under 45 nm of hBN.
+   - **Consequence.** Exclusion of q = 2e/3 at 4/3 currently rests only on the constant-area assumption.
+   - **Requested changes.** Correct the argument, and place the interfering edge with self-consistent electrostatics or Thomas–Fermi modelling of compressible/incompressible strips.
+
+6. **The choice of fundamental frequency is ambiguous at the headline states.**
+   - **The problem.** At 4/3 and 5/3 (e.g. Figs. S15e,h; S16f,i) the FFTs show a ladder of peaks along the same diagonal. The fundamental is chosen sometimes by consulting the real-space "pijama plot". Where the FFT peak "is not objectively distinguishable", periods are picked by eye and then matched to FFT peaks.
+   - **Why it matters.** The choice sets q by integer factors and introduces selection bias. The quoted uncertainties, sometimes ±50%, do not reflect this discrete ambiguity.
+   - **Requested changes.** Show full FFTs with all peaks labelled, state an objective rule for selecting the fundamental, and use blind or automated period extraction.
+
+7. **The small-period ν = 8/3 oscillation may be a second harmonic or other artifact.**
+   - **Why it is suspect.**
+     - Its FFT peak (Fig. S18c: ΔV ≈ 1.3 mV, ΔB ≈ 7 mT) lies at almost exactly twice the main frequency (2.3 mV, 14 mT) and along the same direction in Fourier space. This is where the second harmonic of a non-sinusoidal Coulomb-blockade lineshape (sharp dips on a smooth background) appears.
+     - ΔB ≈ 7 mT is sampled with 1 mT steps in a ~100 mT window, near the stated magnet resolution limit.
+     - The feature appears "only in certain regions" that the authors chose to retain, with no selection criterion.
+   - **Alternatives to exclude:** a harmonic, a second AD-bound level or impurity, and switching or telegraph events.
+   - **Requested changes:**
+     - Perform harmonic and lineshape fitting with a Coulomb-resonance model and report harmonic content.
+     - Analyse phase relations between components and the dependence of relative amplitude on coupling and temperature.
+     - Map where the component appears in (V_tg, B, V_sg), state objective region criteria, and test whether it can be made dominant.
+     - Show it persists over extended regions with amplitude and phase inconsistent with a second harmonic.
+     - Use finer field control (sweep or trim coil in persistent mode, gate-only sweeps at closely spaced fixed B, or gate-induced flux control).
+
+8. **The same dataset appears to carry two different filling labels.**
+   - **The evidence.**
+     - Fig. S13a/c/e/g (labelled ν = 3/5) and Fig. S14b/e/h/m (labelled ν = 2/3) share V_bg = −0.08 V, D = −0.12 V/nm and V_tg = 0.656–0.667 V.
+     - The FFT values are essentially identical: ΔV = 2.5 ± 0.4 mV; ΔB = 64 ± 12 vs 65 ± 12 mT.
+     - The line-cut axes are identical: R up to 12.64 kΩ, G from 0.45 to 0.61 e²/h. The line cut shows G_xy ≈ 0.6 e²/h.
+   - **Requested changes.** Clarify which Fig. 4 points derive from this dataset, how the filling was assigned, and re-derive the 2/3 and 3/5 charges accordingly.
+
+9. **The constriction filling and transmission are not determined or tabulated.**
+   - **The problem.** For the 2/3 data, G_d ≈ 0.33–0.59 e²/h is far below 2/3. The constriction may therefore sit at a different fraction (~1/2 or 3/5). The identity of the tunnelling quasiparticle depends on which incompressible regions separate the edges from the AD.
+   - **Requested changes.** Add a master table listing, for every dataset: B, V_bg, V_tg, D, ν_bulk, ν_c, transmission, G_xy, ΔV, ΔB, N, q, D_AD, and the reference used.
+
+10. **The gate capacitance and lever arm relevant at the AD are not calibrated.**
+    - **The problem.**
+      - C is the bulk geometric top-gate capacitance from Hall data. The relevant quantity is the lever arm on the compressible ring under a hole in the gate. Fringe fields (45–56 nm hBN vs a 190 nm hole) can reduce and spatially vary it, and quantum capacitance in gapped fractional states is neglected.
+      - The ~5% overestimation (TG) and underestimation (BG) of integer charges is attributed to the lever arm only phenomenologically, and no correction is applied to the fractional data.
+      - The conductance correction factor f = 1.02 is fixed by the ν = 2 plateau without further justification.
+    - **Why it matters.** Fractional results rest on ratios precisely because the absolute calibration is uncertain, which reinforces concern 1.
+    - **Requested changes.** Model the TG/BG lever arms versus (V_tg, V_bg, D, ν), including the gate hole, or calibrate them via matched integer oscillations. Apply the correction consistently to all states.
+
+11. **The location of the resonances is not established by control experiments.**
+    - **The problem.** The side gates act asymmetrically, which is attributed to "localized impurities near one gate" at 5/3. Resonances could therefore arise from impurity-bound states in the constriction rather than the AD. These would have a different, unknown area and would invalidate the area calibration.
+    - **Requested controls:**
+      - show that oscillations disappear when the AD potential is removed (AD region filled to the bulk ν);
+      - show period invariance under asymmetric side-gate tuning;
+      - compare the two ADs scaled by area.
+
+12. **The anomalous charges are explained post hoc, leaving the framework with little discriminating power.**
+    - **The pattern.** Three routes are used depending on outcome:
+      - e/3 at 4/3, 5/3, 7/3;
+      - 2e/3 at 2/3 and the dominant 8/3, attributed to an untested even/odd tunnelling-amplitude asymmetry tied to orbital index σ;
+      - 3e/5 at 3/5 (expected e/5), attributed by analogy to low-temperature shot-noise Fano factors.
+
+      Almost any outcome can be rationalized, which undermines the "Coulombmeter" claim.
+    - **The supporting arguments are weak.**
+      - The 3/5 argument cites Ref. [17], which is the half-integer thermal Hall paper, not a 3/5 shot-noise study.
+      - The even/odd hypothesis has no model and no supporting evidence such as alternating peak amplitudes or spacings in line cuts.
+      - The σ = 0 vs σ = 1 argument is a correlation on two or three states without a mechanism, and relies on unmeasured states.
+      - N = 1 (q ≈ νe) could equally indicate electron-like or AB-type resonances, or a different area.
+    - **Requested changes:**
+      - Formulate the even/odd hypothesis quantitatively (e.g. parity-dependent tunnelling matrix elements) and explain why it should depend on σ.
+      - Test it with peak-resolved amplitude and spacing statistics.
+      - Measure temperature and dc-bias dependence at 2/3, 8/3 and 3/5. Bunching and even/odd scenarios predict a crossover from 2e/3 to e/3 (or toward e/5) as in GaAs shot-noise studies.
+      - Measure the proposed discriminating states (11/3, −2/3, −5/3), and ideally 1/3 and 2/5 via a modified contact or charge-neutrality-point scheme.
+
+13. **Resolution, statistics, error analysis and reproducibility are marginal.**
+    - **Resolution.** Fractional plateaus (~200 mT, ~50 mV) contain ≲10 periods. Field steps are 1 mT for ΔB ≈ 10–15 mT. FFT frequency resolution is ~10–15% of the peak frequency.
+    - **Error bars.** Several values carry 30–50% uncertainties (e.g. ΔV = 1.6 ± 0.7 mV at 7/3 and at 4/3 at 8 T). Others look optimistic relative to the stated resolution (±12 mT on ~65 mT from a ~100 mT window). The error bars combine FFT bin resolution with a subjective "peak-identification" term, and their statistical meaning is unclear.
+    - **Coverage.** The e/3 conclusion rests effectively on one device (AD #2) and a handful of (B, V_bg, D) points per state. The 7/3 and 3/5 results rest on one or two scans. There is no reproducibility across thermal cycles or gate configurations.
+    - **Requested changes:**
+      - Provide a transparent, reproducible error-propagation procedure.
+      - Take longer acquisitions at plateau centres with finer field control.
+      - Report statistics across cooldowns and devices.
+
+14. **The electron temperature is not reported.** Whether the device is in the CD or the multilevel-hopping regime depends on k_BT relative to the level spacing Δε. Fractional charging energies (~50 µeV) are only modestly above plausible electron temperatures. Report T_e and discuss its implications for regime identification.
+
+15. **The priority claim is overstated.** The claim of the "first measurement of e/3 fractional charge in a graphene-based device" must be reconciled with two bodies of prior work:
+    - Mills, Averin & Du, PRL 125, 227701 (2020) (Ref. 37), which localized fractional quasiparticles on graphene antidots;
+    - graphene Fabry–Pérot interferometer works (Refs. 11–13, 16; Werkmeister 2025, Samuelson 2024, Kim 2024), where e* enters period-ratio and phase-jump analyses.
+
+    The charge-extraction method itself follows the Goldman–Su and Kou et al. protocol. Given the caveats above, reword the claim to something like "first AD-based estimate of fractional tunnelling charge in a gate-defined BLG device, including ν > 1 fractions".
+
+**C. Minor**
+
+16. **The R_xx/R_t correlation statement is confusing.** The supplement states that oscillations in "R_xx and G_d are fully correlated, confirming that they originate from the AD". Oscillations in R_xx measured outside the AD would argue the opposite. This presumably means R_t, and should be clarified, since it bears on localizing the oscillations to the AD.
+
+17. **The level-spacing discussion is inconsistent.** The sign and form of "δε ∼ −1/(e*B)" are incorrect. The statement that "reduced e* increases the spacing" does not follow consistently from it. Both should be corrected.
+
+18. **Textual, figure and citation inconsistencies should be fixed:**
+    - Coulomb diamonds are cited as Fig. 2g instead of 2f.
+    - The Fig. 4a (and Fig. 2g) gate/field colour descriptions of ΔV/ΔB are swapped between text and caption.
+    - The Fig. 4d caption describes the inverse of the plotted ratio.
+    - Sec. F says "AD #1 for fractional filling factors" where the data are from AD #2.
+    - The Fig. S9/S10 device labels are inconsistent.
+    - The Fig. S7 caption says BG while the axes and text show TG.
+    - Ref. [13] is cited for the R_xx fit.
+    - Ref. [17] is miscited for 3/5 Fano factors.
+    - Mobility units are wrong ("cm⁻² V/s"; should be cm²/V·s).
+    - The SM statement that FQH states are absent at 8 T contradicts the main text and Fig. 1c.
+    - "pijama" is a typo.
+
+19. **Data availability is inadequate.** Given how analysis-sensitive the claims are, deposit raw data and analysis code (FFT windowing, peak selection) in a public repository rather than making them available "upon request".

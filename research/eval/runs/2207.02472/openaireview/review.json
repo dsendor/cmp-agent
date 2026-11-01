@@ -1,0 +1,213 @@
+{
+  "overall_feedback": "This is an ambitious and unusually transparent paper: it couples a detailed device-design rationale (stack, gate geometry, disorder budget from Hall bars and localization-length measurements) with a fully specified, simulation-calibrated decision procedure (the TGP), and it releases code and raw data. The experimental phenomenology (correlated, cutter-stable ZBPs at both ends coinciding with a Vp-dependent closing and re-opening of the non-local transport gap) is presented carefully, and the authors are candid that ZBPs alone prove nothing. The main weaknesses lie in how strongly the headline probability statement (FDR < 8% at 95% confidence) supports the conclusion that devices A-D are topological. (i) The FDR is computed per ROI2, with correlated ROI2s from the same disorder realization treated as independent binomial trials. (ii) A true positive only requires any overlap with an SI = -1 region that is a union over both junctions and five cutter settings, and Appendix A.4 itself notes that quasi-MZMs give SI = -1. (iii) One false positive appears once the field window is restricted to the experimentally relevant B <= 2.5 T. (iv) The experimental Stage 2 protocol (3-5 cutter pairs over narrow GN ranges, a DLG-delta stack never simulated, a device at an n2D,int value where the Gth choice is unspecified) differs from the simulated protocol. (v) The posterior interpretation depends on a simulated base rate and a disorder model whose validity is argued mainly from loose agreement of long-tailed summary statistics. There are also several internal numerical inconsistencies: a 3.9x ratio that should be about 5.6x, g_eff values that do not follow the stated definition, an SLG-beta coupling Gamma that implies a gap ratio below the paper's own specification, a reversed n-to-kF conversion, mismatched text and table ranges, and swapped or typo'd Vp and figure references. Finally, the reported yield-versus-disorder trends do not support the claim that devices above 3e12 cm^-2 are expected never to pass. None of this invalidates the measurements, but the quantitative confidence claims should be restated more conservatively and the protocol gaps closed.",
+  "comments": [
+    {
+      "title": "Clopper-Pearson bound treats correlated ROI2s as independent trials and conflates region-level with device-level statements",
+      "quote": "there is a < 8% probability that the ROI2 that it finds",
+      "explanation": "I first checked the numbers in Table II: with zero false positives, the two-sided 95% Clopper-Pearson upper bounds 1-(0.025)^(1/n) for n = 244, 46, 45, 125, 97, 67, 66 reproduce 1.5%, 7.7%, 7.9%, 2.9%, 3.7%, 5.4%, 5.4% exactly, so the arithmetic is right. The problem is the sampling unit. The Table II caption notes that low-disorder devices 'typically have multiple distinct ROI2s', and Table IV shows the number of passing devices is much smaller than the number of ROI2s (for SLG-beta at 2.7e12, 23 passing devices versus 46 ROI2s). ROI2s from the same disorder realization share the same junction potentials, ABS spectrum and gap map, so they are not independent Bernoulli trials, and the binomial interval overstates the effective sample size. If the unit is the passing device (which is what the Introduction and Sec. 5 claim: 'if a device passes the TGP, then the probability that the candidate region ... is not topological is < 8%'), the same zero-failure bound with about 23-26 devices gives roughly 13-15% for the SLG-beta 2.7 and 4.0 rows, above the quoted 8%. Appendix E.1 explicitly says the classification is of regions, not devices, so the device-level phrasing in the Introduction and Summary does not follow from the analysis.",
+      "type": "technical",
+      "severity": "major",
+      "suggested_fix": "Report the FDR bound using passing disorder realizations as the independent unit (or a cluster-robust/bootstrap-over-realizations interval), e.g. state an upper bound of about 14% for SLG-beta at n2D,int = 2.7e12 cm^-2 based on 23-24 passing devices, and reword the Introduction and Sec. 5 to match whichever unit is used."
+    },
+    {
+      "title": "True-positive criterion (any overlap with a union SI = -1 region) is lenient and counts quasi-MZM regions as topological",
+      "quote": "We classify ROI2 s as true positives (TP) if they contain",
+      "explanation": "A TP requires only that some subregion of the ROI2 overlaps the 'SI = -1 region', which Appendix E.1 defines as the union of SI_L = -1 and SI_R = -1 over both junctions and all five cutter pairs. This is a very permissive target: a single-junction SI = -1 pixel for a single cutter setting suffices. More importantly, Appendix A.4 states that 'we will also find SI = -1 if the second MZM is much closer than distance L but has small hybridization with the one at the junction, namely the quasi-MZM scenario'. Quasi-MZMs from smooth potentials are precisely one of the leading trivial explanations the TGP is advertised to exclude (Introduction: 'The TGP thereby distinguishes MZMs from trivial Andreev bound states'; Sec. 5 discussion of quasi-MZMs). With this labeling, an ROI2 driven by quasi-MZMs at one end would be scored as a TP, so FP = 0 does not establish discrimination against that scenario. It also means the E.1 sentence 'when a device passes the TGP, there is > 92% probability that it has a non-zero gap and SI = -1' overstates what was tested: the TP definition does not check the gap, and E.3 concedes that 'part of the ROI2s identified by the TGP do not have SI = -1'.",
+      "type": "logical",
+      "severity": "major",
+      "suggested_fix": "Re-score the simulated ROI2s with a stricter label, e.g. require SI_L = SI_R = -1 simultaneously for the same cutter pair over a minimum fraction (say 50%) of the ROI2 area, or use a bulk invariant (Pfaffian of the junction-free wire) that is insensitive to quasi-MZMs, and report the resulting FP counts and FDR bounds alongside Table II."
+    },
+    {
+      "title": "A false positive appears under the experimentally used field window B <= 2.5 T, but Table II reports FP = 0",
+      "quote": "2.5 T, we find one false positive for an SLG-β device with",
+      "explanation": "Sec. 3 says the TGP restricts the field to 'B from zero up to 2.5 T', and Table IV (the comparison set for the experiment) is computed for B <= 2.5 T. Yet Table II, which carries the headline FDR, lists FP = 0 in every row, and Appendix E.3 reveals that restricting to B <= 2.5 T produces one false positive (SLG-beta, n2D,int = 1.0e12). The FDR table therefore appears to correspond to a wider field range (presumably B <= 3 T, matching Table V) than the one applied to the experimental data. The mechanism given is also concerning: because Gth is defined as 0.05 times the maximum non-local conductance 'scanning over all B for each Vp', changing the scanned field window changes Gth, flipping a boundary from gapless to gapped and turning a failing region into a passing one. Experimental Stage 2 windows vary strongly between devices (e.g. 0.4-0.8 T for device E, 1.4-2.8 T for device B), so the outcome may depend on scan-window choices that were not part of the simulated calibration.",
+      "type": "technical",
+      "severity": "major",
+      "suggested_fix": "Add a Table II row set computed for B <= 2.5 T (including the FP = 1 entry and its Clopper-Pearson interval), state explicitly which field window the quoted < 8% refers to, and report for each experimental device whether the pass/fail outcome and SOI2 are unchanged when Gth is normalized over a fixed reference field window."
+    },
+    {
+      "title": "FDR depends on the simulated base rate and disorder model; agreement of long-tailed summary statistics does not validate it",
+      "quote": "sured values validates the model used to test the TGP,",
+      "explanation": "The FDR P(trivial | pass) is a posterior quantity. It depends on the TGP's operating characteristics and also on the prior mix of topological and trivial configurations in the simulated ensemble, i.e. on the assumed disorder model, junction electrostatics and the set of trivial mechanisms included. The authors acknowledge this ('provided that the simulated data is drawn from the same probability distribution as the data produced by real devices'), but the support offered for that proviso is weak. Agreement is claimed on Delta_max, V_SOI2 and B_SOI2, yet the primary outliers (V_SOI2 for A1 and A2 about 5x the simulated mean, Delta_max for device B about 2x) are absorbed into 'long tails of the non-Gaussian distributions'. Under that reasoning almost any measured value is consistent, so the comparison has little power to falsify the model. Mechanisms absent from the model (e.g. non-Gaussian or localized junction defects, quantum dots in the leads, inhomogeneous Al, two-level fluctuators producing the drifts the paper reports) cannot produce false positives in simulation by construction, so FP = 0 cannot bound them.",
+      "type": "logical",
+      "severity": "major",
+      "suggested_fix": "Present the FDR explicitly as conditional on the simulation model, quantify the comparison with a goodness-of-fit statistic (e.g. the empirical quantile of each measured Delta_max, V_SOI2, B_SOI2 within the simulated distribution at the matching n2D,int), and list the trivial mechanisms not represented in the simulations as limitations."
+    },
+    {
+      "title": "Repeated TGP attempts across devices and cooldowns are not counted, so selection and look-elsewhere effects are unquantified",
+      "quote": "passed the TGP, but also failed sometimes.",
+      "explanation": "The probabilistic claim is per passing ROI2, but the experimental program involves many attempts. Device A 'regularly passed the TGP, but also failed sometimes'. Only two failing devices (E, F) are reported from an unstated total, and each cooldown and week-scale drift gives what the paper itself calls a 'somewhat different disorder configuration'. If a trivial configuration has even a small chance of passing, the probability that at least one of many runs passes grows with the number of runs. Without the total number of devices measured and TGP runs attempted (and their outcomes), a reader cannot judge how much the reported passes are selected from a larger set, nor compare the empirical pass rate with the simulated TGP yield in Table IV, which would be a useful model check.",
+      "type": "logical",
+      "severity": "moderate",
+      "suggested_fix": "Add a table listing every device and every complete TGP run (cooldown, date, stack, n2D,int, gap ratio, Stage 1 and Stage 2 outcome), so the empirical yield can be compared with Table IV and the number of trials behind the reported passes is explicit."
+    },
+    {
+      "title": "Experimental Stage 2 cutter sampling is narrower and sparser than both the stated protocol and the simulated calibration",
+      "quote": "tance at each junction varies by ∼ e2 /h between the most",
+      "explanation": "Sec. 3 states that Stage 2 cutter values are chosen so that GN varies by about e^2/h between the most closed and most open configuration, and the simulations use five pairs with GN = 0.35-0.9 e^2/h, requiring ZBPs in 3/5 pairs. The experimental runs differ substantially: A1 uses 3 pairs at 0.3, 0.5, 0.7 e^2/h (span 0.4, stability threshold 2/3); device B spans 0.15-0.5 e^2/h; device C's right junction spans only 0.2-0.4 e^2/h; A3 uses four values between 0.3 and 0.8. With (Ci%)th = 50%, a 4-pair run needs overlap in only 2 pairs. Stability against junction perturbation is the main discriminator between trivial ABSs and MZMs, and the FDR was calibrated only for the 5-pair, 0.55 e^2/h-span protocol. The quoted FDR therefore does not transfer directly to runs with fewer and less diverse cutter settings, where fine-tuned ABSs are more likely to survive.",
+      "type": "technical",
+      "severity": "major",
+      "suggested_fix": "Either re-run the simulated FDR study with each experiment's actual cutter protocol (number of pairs and GN values, e.g. 3 pairs at 0.3/0.5/0.7 e^2/h for A1) and report the resulting bounds, or correct the Sec. 3 statement to give the actual GN spans used per device."
+    },
+    {
+      "title": "FDR claimed for 'all' designs and stacks, but the DLG-delta stack of devices C and D was never simulated",
+      "quote": "for all of the device designs, material stacks, and disorder",
+      "explanation": "Table II and the large-scale tests in Appendix E.3 cover only SLG-beta and DLG-epsilon. Devices C and D are DLG-delta devices, and they also operate about 1 V more negative in Vp than the simulated depletion point, which the authors attribute to dielectric differences. The paper argues that design and stack 'have no effect on the accuracy of the TGP' based on two configurations. That is a plausible extrapolation, but it remains an extrapolation, and the sentence (and Sec. 5's 'for all of the device designs, material stacks') reads as if delta had been tested. Two of the four passing devices rely on this untested case.",
+      "type": "logical",
+      "severity": "moderate",
+      "suggested_fix": "Either add DLG-delta simulations (Gamma = 0.21 meV, lever arm 79 meV/V, kappa = 115 nm) at n2D,int around 1e12 cm^-2 to Table II, or restrict the statement to 'the SLG-beta and DLG-epsilon designs simulated' and flag devices C and D as relying on extrapolation."
+    },
+    {
+      "title": "Yield-versus-disorder trends in Tables IV and V do not support the disorder specification or the claim about failing devices",
+      "quote": "More disordered devices are less likely",
+      "explanation": "The text says the yield 'depends strongly on n2D,int' and decreases with disorder, and Sec. 4.2 says devices above 3e12 cm^-2 have never passed, 'as expected from simulations'. The tables show a drop between 1.0 and 2.7e12 for SLG-beta, but between 2.7 and 4.0e12 the yield is flat or rising: SLG-beta 23/50 to 24/49 (Table IV) and 24/50 to 26/49 (Table V); DLG-epsilon 13/50 to 16/50 (Table IV) and 33/50 to 35/50 (Table V). DLG-epsilon also shows a lower yield at 0.1e12 than at 1.0e12 in Table IV. So simulations predict roughly 30-50% yield at 4e12, above the 3e12 specification (which Sec. 2.5 derives from requiring xi(0) < L), and all of those ROI2s were scored as true positives. This makes the 3e12 threshold hard to reconcile with the TGP simulations, and it means the failures of devices E and F (n2D,int = 3.1 and 3.0e12, barely at the threshold, and also with gap ratios 0.22 and 0.27 below spec) are not what the simulations predict on disorder grounds. It also raises the question of whether TPs at 4e12 occur in the critical regime xi(0) > L, which would again point to the lenient TP labeling.",
+      "type": "logical",
+      "severity": "moderate",
+      "suggested_fix": "Replace 'depends strongly on n2D,int' with a statement matching the tables (a drop between 1.0 and 2.7e12 cm^-2, no further decrease up to 4e12), remove 'as expected from simulations' from the E/F discussion or attribute their failure to the gap ratio, and report the xi(0)/L distribution inside TP ROI2s at 4e12 cm^-2."
+    },
+    {
+      "title": "Gth choice for device B (n2D,int = 0.79e12 cm^-2) falls between the two calibrated regimes and is unspecified",
+      "quote": "For charge disorder given by n2D,int ⩾ 1012 /cm2",
+      "explanation": "Appendix E.3 uses Gth = 0.05 max{G_NL} for n2D,int >= 1e12 cm^-2 and lowers it to 0.01 for 0.1e12, and Appendix D.2 says the optimal Gth should be smaller for weaker disorder because the transition sharpens. Device B, which carries the paper's largest gap (61 uV) and the 20-60 uV headline range, has n2D,int = 0.79e12 cm^-2. That is outside the >= 1e12 regime and above the 0.1e12 case, and the paper does not say which Gth was applied to it. Since Gth directly sets the extracted gap and the gapless-boundary fraction, the device B result could depend on this unstated choice.",
+      "type": "technical",
+      "severity": "moderate",
+      "suggested_fix": "State the Gth used for device B and report its TGP outcome, GB%, and Delta_max for both Gth = 0.05 and Gth = 0.01 times max{G_NL}."
+    },
+    {
+      "title": "Contradictory statements on whether the transport gap is below or above the true topological gap",
+      "quote": "gap ∆tr ≲ ∆T , which is the gap to “extended states,”",
+      "explanation": "Appendix A.3 states that the apparent transport gap satisfies Delta_tr <~ Delta_T. However, Appendix D.1 warns that measured transport gaps 'can be larger than the Delta_ind or Delta_max expected for a clean system'. Sec. 4.2.1 uses exactly this to explain why device B's 61 uV equals or exceeds the clean, infinite-wire maximum (Fig. 4 caption: about 50 uV): 'Finite-size effects can increase the gap'. Both cannot hold in general. The physically sensible reading (states above Delta_T with xi(E) < L are invisible in non-local transport) gives Delta_tr >= spectral gap. In that case the reported 'topological gaps' are upper bounds on the spectral gap that sets MZM protection. In addition, Delta_max is defined in D.1 as the upper quintile of gaps within the SOI2, not a maximum, and the 'within error bars' comparison for device B is made without any stated uncertainty on Delta_max.",
+      "type": "technical",
+      "severity": "moderate",
+      "suggested_fix": "Correct A.3 to state Delta_tr >= the bulk spectral gap when sub-gap and near-gap states are localized on scales shorter than L, describe the reported Delta_max values as transport-gap (upper-quintile) estimates that may exceed the spectral gap, and give an uncertainty for device B's 61 uV before comparing it with the clean-limit value."
+    },
+    {
+      "title": "Arithmetic error: 128 ueV is 5.6 times, not 3.9 times, the 23 ueV gap (and A2 Zeeman energy uses the wrong g)",
+      "quote": "is 3.5 times and the extent in gate voltage is 3.9 times",
+      "explanation": "The preceding sentence gives delta_B of about 500 mT corresponding to 80 ueV (consistent with |g_eff| = 5.6 and V_x = g mu_B B/2: 5.6 x 57.9 x 0.5 / 2 = 81 ueV, giving 80/23 = 3.5) and delta_Vp of about 1.5 mV corresponding to 128 ueV (85 meV/V x 1.5 mV). But 128/23 = 5.6, not 3.9. In the next sentence, A2's delta_B = 500 mT is again converted to 80 ueV although A2 has |g_eff| = 6.4, which gives about 93 ueV. These ratios are offered as a consistency check that the phase is stable over parameter ranges large compared with the gap, so they should be correct (the corrected value strengthens the authors' point).",
+      "type": "technical",
+      "severity": "moderate",
+      "suggested_fix": "Change '3.9 times' to 'about 5.6 times', and for measurement A2 replace 80 ueV with about 93 ueV (|g_eff| = 6.4, delta_B = 0.5 T)."
+    },
+    {
+      "title": "Reported |g_eff| values do not follow the stated definition, and two different definitions are given",
+      "quote": "closes is 0.7 T, corresponding to |geff | ≈ 4.4",
+      "explanation": "The main text defines |g_eff| = 2 Delta_ind/(mu_B B_min). For device A this reproduces 5.6 (2 x 129/(57.9 x 0.8)), and for device B it reproduces B_min of about 1.6 T. For device C, however, Delta_ind = 104 ueV and B_min = 0.7 T give 2 x 104/(57.9 x 0.7) = 5.1, not 4.4; 4.4 would require B_min of about 0.82 T. Similarly, A2's |g_eff| = 6.4 implies B_min of about 0.70 T, while Sec. 5 says the A2 gap closes at B of about 0.6 T, which would give about 7.4. Footnote 5 meanwhile defines g_eff as 'the average slope of the extracted induced gap vs B-field', a different quantity. Since g_eff is used to argue consistency with the design (4 < |g| < 7), to convert field extents into Zeeman energies, and in Table III, the definition actually used should be unambiguous.",
+      "type": "technical",
+      "severity": "moderate",
+      "suggested_fix": "Use one definition throughout. If 2 Delta_ind/(mu_B B_min) is retained, correct device C to |g_eff| of about 5.1 (or state the B_min actually used, about 0.82 T), and reconcile A2's 6.4 with the stated 0.6 T closing field."
+    },
+    {
+      "title": "Table I coupling for SLG-beta implies an induced-gap ratio below the paper's own specification and far below device A",
+      "quote": "gap ∆ind ∼ Γ∆Al /(Γ + ∆Al ) will be small.",
+      "explanation": "Using the paper's relation Delta_ind = Gamma Delta_Al/(Gamma + Delta_Al) with Delta_Al = 300 ueV gives good agreement for two stacks: DLG-epsilon (Gamma = 0.32 meV) gives 155 ueV (ratio 0.52, matching device B's 0.52), and DLG-delta (0.21 meV) gives 124 ueV (ratio 0.41, matching devices C and D at 0.35-0.40). For SLG-beta, Gamma = 0.13 meV gives about 91 ueV, i.e. a ratio of about 0.30. That is below the required window 0.33 < Delta_ind/Delta_Al < 0.67, below the '100 ueV < Delta_ind' expected from simulations of this very design in Sec. 2.3, and well below device A's measured 129 ueV (ratio 0.44). Either the Table I Gamma for SLG-beta is not the quantity entering this formula, or the simulated SLG-beta model underestimates the coupling in device A. That would matter because the FDR and Table IV statistics for SLG-beta are computed with these parameters.",
+      "type": "technical",
+      "severity": "moderate",
+      "suggested_fix": "Report the simulated zero-field Delta_ind for each row of Table I next to Gamma. If SLG-beta indeed gives about 90 ueV, state the discrepancy with device A's 129 ueV and comment on how it affects the applicability of the SLG-beta FDR and Table IV statistics to device A."
+    },
+    {
+      "title": "Notation clash between renormalized g-star (4 to 7) and Table I g* (about -11.5)",
+      "quote": "4 < |g ⋆ | < 7.",
+      "explanation": "Sec. 2.3 introduces g-star as the SC-renormalized g-factor, g = g_SM Delta/(Gamma + Delta), expected in the range 4-7. Table I then lists an 'effective g-factor g*' of -11.4 to -11.8, which per Appendix A.1 is the projected semiconductor g-factor before the Z renormalization. A reader comparing the two will see an apparent factor-of-two contradiction. Applying the A.1 renormalization (including the Al Zeeman term with g_SC = 2) to Table I gives about 7.6 for SLG-beta, 5.9 for DLG-delta and 4.5 for DLG-epsilon, so beta sits slightly outside the quoted window. Relatedly, Sec. 2.4 attributes the higher-field DLG-epsilon transition to 'smaller g_SM', whereas Table I shows almost identical bare g (-11.4 vs -11.8); the difference comes mainly from the larger Gamma.",
+      "type": "technical",
+      "severity": "minor",
+      "suggested_fix": "Rename the Table I column g_SM (projected, unrenormalized), add a column with the renormalized |g| (about 7.6, 5.9, 4.5), and attribute the higher-field epsilon transition to the larger Gamma rather than a smaller g_SM."
+    },
+    {
+      "title": "Density-to-kF conversion appears inverted (kF^-1 should be about 16-32 nm, not 40-80 nm)",
+      "quote": "corresponds to the range of a Fermi wavelength kF−1 ≃ 40 −",
+      "explanation": "For a single spin-degenerate 1D sub-band, n = 2kF/pi, so n = 0.02-0.04 nm^-1 gives kF = pi n/2 = 0.031-0.063 nm^-1, i.e. kF^-1 of about 32-16 nm (and even shorter, about 16-8 nm, for a single helical pair). The quoted 40-80 nm corresponds to kF = 2n/pi, i.e. the factor pi/2 has been inverted. Also, kF^-1 is not the Fermi wavelength (2 pi/kF). This matters for Appendix A.2: with kappa of about 80-120 nm, the corrected 2 kF kappa is about 5-15 rather than 2-6. That places the projected disorder well into the smooth regime, where Eq. (A15) backscattering is suppressed by about (2 kF kappa)^-1, and affects the qualitative claim about long-correlated disorder.",
+      "type": "technical",
+      "severity": "moderate",
+      "suggested_fix": "Replace with 'corresponds to kF^-1 = 2/(pi n) of about 16-32 nm' (or state the density convention used), and update the 2 kF kappa estimate used in the discussion of Eq. (A15)."
+    },
+    {
+      "title": "Text range for simulated DLG-epsilon gaps does not match Table IV",
+      "quote": "values in the range 25-29 µeV",
+      "explanation": "Sec. 5 states simulated DLG-epsilon devices have Delta_max values of 25-29 ueV, but Table IV lists 35, 29, 30, 30 ueV for the four disorder levels (range 29-35 ueV), and Table V lists 26-29. The SLG-beta range quoted (23-35) matches Table IV. Since device B's 61 ueV is argued to lie in the simulated tail, the reference range should be consistent.",
+      "type": "technical",
+      "severity": "minor",
+      "suggested_fix": "Change to 'DLG-epsilon devices have mean Delta_max values in the range 29-35 ueV (Table IV)'."
+    },
+    {
+      "title": "Device D: top/bottom gap assignment in Fig. 19 caption contradicts Table III and the text; text omits a value",
+      "quote": "The protocol assigns maximum topological gaps of 17 µeV and 21 µeV for the top and bottom clusters, respectively.",
+      "explanation": "The text says the top cluster appears at B = 1.1 T and the bottom one at B >~ 1.8 T. Table III pairs 17 ueV with B_SOI2 = 1.8 T (GB = 100%) and 21 ueV with B_SOI2 = 1.1 T (GB = 93%). Hence the top cluster should carry 21 ueV and the bottom 17 ueV, the reverse of the caption. The main-text sentence ('assigns maximum topological gaps of 17 ueV for the top and bottom regions, respectively') is also missing the second value.",
+      "type": "technical",
+      "severity": "minor",
+      "suggested_fix": "Change the caption to '21 ueV and 17 ueV for the top and bottom clusters, respectively' (with GB 93% and 100%), and the main text to '21 ueV and 17 ueV for the top and bottom regions, respectively'."
+    },
+    {
+      "title": "Wrong Vp value and figure reference for device E's trivial ZBPs",
+      "quote": "junctions for 0.5 T < B < 0.6 T and Vp ≈ −1.13895 V,",
+      "explanation": "Device E's data (Fig. 20) span Vp of about -1.3870 to -1.3900 V, with the cut at -1.3893 V. The value -1.13895 V lies outside that range, and the sentence cites Fig. 19, which is device D. This is presumably -1.38895 V and Fig. 20.",
+      "type": "technical",
+      "severity": "minor",
+      "suggested_fix": "Replace with 'Vp of about -1.38895 V, as may be seen in Fig. 20'."
+    },
+    {
+      "title": "Device B: Vp value outside the plotted range",
+      "quote": "Vp = −1.573 V",
+      "explanation": "Fig. 16 spans Vp = -1.1550 to -1.1580 V, so a region 'centered around B = 2.3 T and Vp = -1.573 V' cannot be in the figure. It is presumably -1.1573 V. Because this region is used to argue the SOI2 may be underestimated, the location should be correct.",
+      "type": "technical",
+      "severity": "minor",
+      "suggested_fix": "Replace with 'Vp = -1.1573 V'."
+    },
+    {
+      "title": "Inconsistent Stage 1 transparency range and stability fraction",
+      "quote": "tion is in the range 0.01 to 0.85e2 /h.",
+      "explanation": "Sec. 4.1.1 states the 21 Stage 1 cutter settings for device A span GN = 0.01-0.85 e^2/h, whereas Sec. 3 and Appendix D.1 state that cutters are restricted so that GN lies in 0.1-1 e^2/h as a compromise between visibility and remaining in the tunneling regime. At 0.01 e^2/h ZBP detection via the 3-omega curvature is much harder, which affects the Stage 1 cutter fraction. Additionally, 'more than 15 out of 21' (that is, at least 16/21 = 76%) is not the same as the '> 70%' threshold (15/21 = 71% already exceeds 70%).",
+      "type": "technical",
+      "severity": "minor",
+      "suggested_fix": "State the actual Stage 1 GN range used for device A, and make the count consistent with the threshold (e.g. 'at least 15 out of 21', equivalent to > 70%)."
+    },
+    {
+      "title": "Text overstates the transparency range covered in Fig. 15",
+      "quote": "tune GN on both sides to vary over the range 0.1 and",
+      "explanation": "The Fig. 15 caption gives the four left-cutter settings as GN of about 0.5, 0.6, 0.7 and 0.8 e^2/h, and the Fig. 14 caption says the four values lie between 0.3 and 0.8 e^2/h. The text, however, claims these changes tune GN 'on both sides' over 0.1-1.0 e^2/h, and Fig. 15 only varies the left cutter. The demonstrated robustness of the ZBP is therefore to a 0.3 e^2/h change at one junction, which is weaker than stated.",
+      "type": "technical",
+      "severity": "minor",
+      "suggested_fix": "Replace with 'tune GN at the left junction over approximately 0.5-0.8 e^2/h'."
+    },
+    {
+      "title": "Abstract ranges do not match the reported results",
+      "quote": "tracted maximum topological gaps in our devices are 20-60 µeV.",
+      "explanation": "Table III and Sec. 5 report Delta_max of 17-61 ueV (device D has 17 ueV and device C 19 ueV). The abstract also says the phase extends over 'several millivolts in gate voltage', while the reported SOI2 extents are about 1-2.5 mV (B: about 1 mV, C: 1.5 mV, A1: 1.5 mV), and devices B and C extend only 0.2 T in field rather than 'several hundred millitesla'. These are mild overstatements of the main quantitative result.",
+      "type": "technical",
+      "severity": "minor",
+      "suggested_fix": "Change to 'are 17-61 ueV' and 'up to about 2.5 mV in gate voltage and 0.2-0.5 T in magnetic field'."
+    },
+    {
+      "title": "Localization-length reliability cutoff exceeds the longest measured segment",
+      "quote": "because the method cannot reliably determine ℓloc values greater than L.",
+      "explanation": "The longest segment is L = 8 um, yet points up to 10 um are shown in Fig. 6(c) with the justification that values greater than L are unreliable, which would require a cutoff at 8 um. Separately, Appendix C lists five segment lengths (1, 2, 3.5, 6.5, 8 um) while Fig. 6 shows six (including 4 um), and the listed source pairs imply s2-s4 = 3 um from 2 + 1 um rather than 3.5 um. These are small, but the localization-length measurement underpins the disorder claims.",
+      "type": "technical",
+      "severity": "minor",
+      "suggested_fix": "Exclude fitted l_loc values above 8 um (the maximum L) from Fig. 6(c), and list the source pair and length of all six segments in Appendix C."
+    },
+    {
+      "title": "Uncorrected series-resistance bias errors of up to 6% bias the extracted gaps",
+      "quote": "6% of the applied bias voltages. For this reason, we do not",
+      "explanation": "Since V_sample = V_applied - R I, the sample bias is systematically smaller than the applied bias, so energies read off the applied-bias axis (Delta_ind, Delta_Al, and transport gaps) are overestimated by up to 6%. The correction is current-dependent, so it is largest where the conductance is high (above the gap) and can slightly distort gap-edge positions. This is small compared with other uncertainties, but it is a one-sided bias on all quoted gaps, including the comparison of device B with the clean-limit maximum.",
+      "type": "technical",
+      "severity": "minor",
+      "suggested_fix": "Either apply Eq. (G11) before gap extraction, or state that quoted gaps are upper estimates by up to 6% and include this in the gap uncertainties."
+    },
+    {
+      "title": "Direct comparison with Fig. 31 conflicts with the stated purpose of simulations and uses a mismatched simulated device",
+      "quote": "ulated data in Fig. 31, we note both the qualitative and",
+      "explanation": "The Introduction states that the authors 'have not attempted to establish qualitative similarities between simulated and measured conductance plots', and the simulated-figure captions say any resemblance 'does not play a role in our analysis'. Sec. 4.1.2, however, cites qualitative and quantitative similarity to Fig. 31 (and the 78% vs 71% gapless boundary) as support. Moreover, Fig. 31 is the calibration device SLG-beta-R1 with alpha of about 13 meV nm and n2D,int = 2.4e12, not the Table I SLG-beta parameters (alpha* = 8.7 meV nm) that represent device A. Using it as supporting evidence is inconsistent with the paper's own framing.",
+      "type": "logical",
+      "severity": "minor",
+      "suggested_fix": "Remove the similarity claim, or compare instead against the distribution of SOI2 properties from the Table I SLG-beta simulations at n2D,int = 2.7e12 cm^-2 and state the percentile of device A within it."
+    },
+    {
+      "title": "ZBP detection threshold ('noise level') and its mapping to Stage 2 bias data are not specified",
+      "quote": "tion that −d3 IR /dVR3 exceeds the noise level and simi-",
+      "explanation": "Everything downstream (cutter fractions, ROI1, SOI2) rests on the binary ZBP call, but the paper does not quantify the 'noise level' (absolute value, how it is estimated, whether it scales with GN), the 3-omega excitation amplitude (which sets the curvature resolution relative to peak widths of about kT), or how ZBPs are identified from the Stage 2 bias sweeps (numerical curvature at zero bias? peak finding?). A broad maximum from a nearby resonance or merging coherence peaks in a gapless region also gives negative curvature at zero bias. In simulations a threshold must also have been applied to noise-free data, and it is not stated how that threshold was matched to the experimental one. Without this, the TGP cannot be reproduced from the description, and the comparability of simulated and measured ZBP maps is unclear.",
+      "type": "technical",
+      "severity": "moderate",
+      "suggested_fix": "State the numerical ZBP criterion used in Stage 1 and Stage 2 for both experiment and simulation: excitation amplitude, how the noise level is estimated (e.g. standard deviation of d3I/dV3 at fixed parameters), the multiplier applied, and the bias window over which curvature is evaluated."
+    }
+  ]
+}

@@ -1,0 +1,94 @@
+{
+  "paper": "2608.17404",
+  "version": "v1",
+  "library_version": "0.5",
+  "checks": [
+    {"id": "zbp-dot-search", "status": "not done"},
+    {"id": "zbp-wide-ranges", "status": "partly"},
+    {"id": "zbp-both-ends", "status": "partly"},
+    {"id": "zbp-transparency", "status": "not done"},
+    {"id": "zbp-nonlocal-gap", "status": "partly"},
+    {"id": "zbp-raw-conductance", "status": "not done"},
+    {"id": "report-counts", "status": "partly"},
+    {"id": "report-ranges", "status": "partly"},
+    {"id": "report-processing", "status": "partly"}
+  ],
+  "lookalikes": [
+    {"id": "outside: ordinary SQUID diode from junction asymmetry and non-sinusoidal current-phase relations",
+     "status": "tested in part", "note": null,
+     "tests": [
+       {"test": "Measured Ic+(flux), Ic-(flux) and diode efficiency compared with a non-topological SQUID model using the device's junction asymmetry, transparency and loop inductances", "shown": "no"},
+       {"test": "Diode sign pattern followed as the junction asymmetry is tuned by gate", "shown": "part"},
+       {"test": "Same measurement on a control SQUID where no topological phase is expected", "shown": "no"}
+     ],
+     "source": "https://arxiv.org/abs/2304.00484"},
+    {"id": "diode-vortex-screening", "status": "tested in part", "note": null,
+     "tests": [
+       {"test": "Same measurement on a plain film or junction of the parent superconductor", "shown": "no"},
+       {"test": "Effect followed against field, sample width or edge quality", "shown": "all"}
+     ], "source": null},
+    {"id": "trivial-andreev-band-gap-reopening", "status": "tested in part", "note": null,
+     "tests": [
+       {"test": "Protocol tested on trivial models or devices", "shown": "no"},
+       {"test": "Parameters the protocol does not use varied (other gates, field direction)", "shown": "part"}
+     ], "source": null},
+    {"id": "abs-quantum-dot", "status": "tested in part", "note": null,
+     "tests": [
+       {"test": "Dot signatures searched for in the same device (Coulomb diamonds or resonances above the gap, peaks that split and recross)", "shown": "no"},
+       {"test": "Zero-bias state compared at both ends", "shown": "part"}
+     ], "source": null},
+    {"id": "disorder-induced-zbp", "status": "tested in part", "note": null,
+     "tests": [
+       {"test": "End-to-end correlation", "shown": "part"},
+       {"test": "Bulk gap closing and reopening", "shown": "part"},
+       {"test": "Insensitivity to gates that should not matter in a clean topological phase", "shown": "all"}
+     ], "source": null},
+    {"id": "crowded-trivial-subgap-states", "status": "tested in part", "note": null,
+     "tests": [
+       {"test": "Field and gate range of the peaks compared with the predicted topological range", "shown": "all"},
+       {"test": "Subband model of the device", "shown": "part"}
+     ], "source": null},
+    {"id": "quasi-majorana-smooth-confinement", "status": "tested in part", "note": null,
+     "tests": [
+       {"test": "Bulk gap closing and reopening in nonlocal conductance", "shown": "part"},
+       {"test": "Correlated zero modes at both ends", "shown": "part"}
+     ], "source": null},
+    {"id": "one-end-only", "status": "tested in part", "note": null,
+     "tests": [
+       {"test": "Both ends compared at the same settings", "shown": "part"},
+       {"test": "Nonlocal conductance", "shown": "part"}
+     ], "source": null},
+    {"id": "local-probe-loophole", "status": "tested in part", "note": null,
+     "tests": [
+       {"test": "Nonlocal measurement (both ends or nonlocal conductance)", "shown": "part"},
+       {"test": "Overlap estimated through a quantum dot in series", "shown": "no"}
+     ], "source": null},
+    {"id": "kondo-resonance", "status": "tested in part", "note": null,
+     "tests": [
+       {"test": "Even-odd occupancy of the dot", "shown": "no"},
+       {"test": "Temperature dependence", "shown": "no"},
+       {"test": "Zeeman splitting in field", "shown": "part"}
+     ], "source": null},
+    {"id": "weak-antilocalization", "status": "not tested", "note": "data bear on it",
+     "tests": [
+       {"test": "A distinguishing test from Pikulin et al.", "shown": "no"},
+       {"test": "Dependence on channel number or disorder", "shown": "no"}
+     ], "source": null},
+    {"id": "fine-tuning-and-selection", "status": "tested in part", "note": null,
+     "tests": [
+       {"test": "Devices and datasets measured, and how many showed the effect", "shown": "part"},
+       {"test": "How the shown data were chosen", "shown": "no"},
+       {"test": "A second device or dataset shown", "shown": "all"}
+     ], "source": null}
+  ],
+  "questions": [
+    "How many nano-SQUIDs did you fabricate and measure, and in how many did you see the global signatures (h/2e oscillations, diode reversal) and the spectral jumps? The text says \"all examined devices\" without a number.",
+    "Why were the others set aside? For example, were there improved-series devices with one working tunnel probe, or with two, beyond B and C?",
+    "Which ranges of field, field angle, back-gate voltage and temperature did you measure beyond the ones shown? A temperature series of the zero-field zero-bias peaks would be especially useful.",
+    "What does the second-best dual-probe dataset look like, for instance device B at another back-gate voltage in Fig. 3, or a fourth device if one exists?",
+    "Section C of the supplement, \"Effects of measurement circuit\", has a heading and no text in the version I read. What series and filter resistances sit in the two-terminal tunnel spectroscopy and nonlocal circuits, how were they calibrated, and did you correct for the circuit effects described by Martinez et al. (your supplementary Ref. [2])?",
+    "The Methods give tunnel resistances \"typically exceeding 100 kΩ\" (about 0.26 e^2/h), while the conductance in device A (Fig. S1) and device C (Fig. S2b) is of order 1 e^2/h. What were the TJ1 and TJ2 resistances in each device, and are A and C in the tunnelling regime?",
+    "For the end-to-end correlation in Fig. 4l and Fig. S3l: the sign of the third derivative at zero bias takes a value even where there is no peak. What smoothing, bias step and threshold separate a peak or dip from no feature, and how do the fractions change with them? This also bears on device C, where a zero-bias peak \"was mostly absent\" (Supp. p. 4) while Fig. S3l shows a strong increase of correlated peaks.",
+    "The diode efficiency of any flux-periodic SQUID vanishes at half a flux quantum (Ciaccia et al. show this in a trivial InAs SQUID). Have you compared Ic+(flux), Ic-(flux) and the diode efficiency with a non-topological SQUID model using your junction asymmetry, and which feature of the reversal (its abruptness, the Ic recovery) carries the topological reading?"
+  ]
+}

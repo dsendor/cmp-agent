@@ -1,0 +1,109 @@
+{
+  "overall_feedback": "The paper reports ARPES and DFT on the (103) facet of NdAlSi, a facet that is rarely studied. The experimental work is valuable: the facet is prepared by a pre-cut and cleave, the measurements span many photon energies and polarizations, and comparing flat, impurity-dosed and rough regions is a useful empirical tool. The central conceptual claim, however, rests on a surface Brillouin zone that appears to be incorrectly defined.\n\nFor any rational (hkl) plane, the surface reciprocal lattice is exactly the projection of the full bulk reciprocal lattice. In the SI the authors take g1 = Pb1 and g2 = Pb2 as the SBZ basis. They then find Pb3 = −g1/3, which shows that {g1, g2} does not span the projected lattice. The true primitive surface reciprocal vector for (103) is g1/3, so the true SBZ is one third the size. That is precisely the 'new SBZ' they observe experimentally and attribute to a momentum-space moiré. On this reading, the 'BBC paradox', the 'LCM criterion' and the moiré interpretation all stem from an oversized reference cell rather than new physics.\n\nSeveral supporting derivations also contain errors:\n- Pb3 = −(h/l)g1 − (k/l)g2 holds for every lattice, so coefficients cannot be irrational for non-orthogonal lattices.\n- No nonempty finite index set is invariant under a nonzero shift, so the 2Nmin argument is invalid.\n- The claim that only infinitely many BZs give exact reconstruction contradicts the finite periodicity along the normal.\n- NdAlSi is described as body-centered cubic.\n\nThe SFAL discussion goes further than the evidence. It suggests relaxing the Chern-number/chirality equality, which is a theorem, and the SI asserts topological arcs without a Chern count. Methods are underspecified in places: the Wannier/tight-binding model behind the Green's functions, the inner potential, and the slab comparison (6 vs 36 layers). The empirical SS/SBPS/BS hierarchy under disorder also needs a physical justification.",
+  "comments": [
+    {
+      "title": "SBZ basis g1=Pb1, g2=Pb2 is not primitive; the 'paradox' and 'new 1/3 SBZ' follow from this choice",
+      "quote": "We choose the surface-BZ primitive basis as",
+      "explanation": "My first reading was that the authors had found a genuine mismatch. Working through their own algebra suggests otherwise.\n\nFor a rational plane, the 2D surface reciprocal lattice equals P(Λ*), the projection of the entire bulk reciprocal lattice. A primitive basis must therefore generate Pb3 as an integer combination. The authors find Pb3 = −(1/3)g1, so g1 = Pb1 is three times a primitive surface reciprocal vector.\n\nA direct check for the tetragonal cell confirms this. The in-plane real-space vector t1 = 3a − c satisfies b1·t1 = 6π and b3·t1 = −2π. Hence Pb1 = 3g1′ and Pb3 = −g1′, with g1′ = 2πt1/|t1|².\n\nThe 'theoretical SBZ' (purple) is therefore a 3× supercell of the true SBZ. The experimentally observed green SBZ, with one third the period, is simply the correct surface BZ. In that light, Fig. 4's statement that the superposition 'reveals an emergent smaller repeating unit' is the standard result that the projected Weyl-point images live on the surface reciprocal lattice. A moiré interference among three 'nonequivalent' cells is not needed to explain it.\n\nThe Fig. 4 caption defines the theoretical SBZ via 'the (103) cross section of half a primitive unit cell'. This is not the standard construction; the surface cell area is V_prim·|G_hkl|/2π. This undermines the title claim of resolving a paradox.",
+      "type": "technical",
+      "severity": "major",
+      "suggested_fix": "Define the SBZ from the primitive 2D lattice P(Λ*) (equivalently, from real-space lattice vectors t with t·G_hkl=0; for (103) use g1′=−Pb3, g2=Pb2, accounting for body-centering). Show that this coincides with the experimental green SBZ, and reframe the result as confirming standard BBC rather than as resolving a paradox."
+    },
+    {
+      "title": "Pb3 = −(h/l)g1 − (k/l)g2 holds for any lattice; irrational coefficients are impossible",
+      "quote": "This highlights the genuine metric dependence of the commensurability problem.",
+      "explanation": "The SI presents a1 = −h/l, a2 = −k/l as a special result for orthogonal lattices. It then claims that non-orthogonal lattices can yield irrational a_i and hence Nmin = ∞.\n\nBy construction, PG = 0 with G = h b1 + k b2 + l b3. Linearity then gives h Pb1 + k Pb2 + l Pb3 = 0, so Pb3 = −(h/l)Pb1 − (k/l)Pb2 for every lattice, whatever the metric. Miller indices are integers in the reciprocal basis, so a1 and a2 are always rational.\n\nIt follows that Nmin = |l|/gcd(h,k,l), which is just |l| for coprime indices, independent of a/c or interaxial angles. The 'universal LCM criterion' therefore reduces to a trivial arithmetic statement. The extrapolation toward incommensurate behaviour, and the bridge to quasicrystals that builds on it, does not follow for crystalline facets.",
+      "type": "technical",
+      "severity": "major",
+      "suggested_fix": "Replace the orthogonal-lattice derivation with the general identity Pb3 = −(h/l)Pb1 − (k/l)Pb2 obtained from PG = 0. State Nmin = |l|/gcd(h,k,l), and remove the claim that non-orthogonal lattices can give irrational a_i or Nmin = ∞."
+    },
+    {
+      "title": "Invalid finite-cutoff argument: no nonempty finite set is shift-invariant",
+      "quote": "smallest nonempty finite set with this property is two consecutive periods",
+      "explanation": "The argument requires Ω = Ω + Nmin for a finite Ω ⊂ Z. For Nmin ≠ 0 no nonempty finite set satisfies this, because the maximum element of Ω + Nmin exceeds that of Ω.\n\nThe proposed Ωmin = {1,…,2Nmin} shifts to {Nmin+1,…,3Nmin}, which is a different set. So M_min = 2Nmin is not derived.\n\nThe later text then switches to a 'symmetric cutoff that includes both positive and negative orders up to 6'. This is a different index set from Ωmin and is also not shift-invariant. The 'typically up to 2Nmin' spectral-commensurability statement therefore lacks a basis.",
+      "type": "logical",
+      "severity": "moderate",
+      "suggested_fix": "Remove the M_min = 2Nmin claim. State instead that exact periodicity of the projected spectrum is obtained by integrating k⊥ over one full period of the bulk spectral function along the surface normal, i.e. one complete set of Nmin inequivalent images."
+    },
+    {
+      "title": "Claim that exact reconstruction requires infinitely many BZs contradicts finite closure",
+      "quote": "spectral reconstruction is achieved only in the infinite-projection limit",
+      "explanation": "The bulk spectral function is periodic under Λ*. For a rational facet, the line k∥ + t n̂ returns to an equivalent point after a finite length. That length is the k⊥ period, set by the shortest reciprocal vector along the normal (≈2π/d103).\n\nIntegrating over one such period yields a projected spectrum that is exactly periodic on the surface reciprocal lattice. This is what the semi-infinite Green's function does: it integrates over a single k⊥ period, not over 'infinitely many bulk BZs'. The paper's own Nmin = 3 result implies this finite closure.\n\nThe infinite-limit statements and the explanation of why the Green's function succeeds are therefore misattributed. Fig. S14a integrates only k⊥ = 0–0.5 Å⁻¹, which is well short of one period, so incomplete convergence there is expected rather than evidence for an infinite limit.",
+      "type": "logical",
+      "severity": "moderate",
+      "suggested_fix": "State that exact surface periodicity is recovered after integrating k⊥ over one full bulk period along [103]. Repeat the Fig. S14a integration over that full period to show exact periodicity."
+    },
+    {
+      "title": "Proposed relaxation of the Chern-number/chirality equality contradicts topology",
+      "quote": "the strict equality between the Chern number enclosed by a surface loop and the net projected chiral charge is relaxed",
+      "explanation": "The Chern number of the 2D slice of the bulk Hamiltonian along a closed loop in the SBZ is a bulk quantity. It equals the net chirality of all Weyl nodes, including all inequivalent images along k⊥, that project inside the loop.\n\nSurface-state hybridization can change arc connectivity, but it cannot change this count: the number of chiral surface modes crossing the loop is fixed by the bulk Chern number. Saying the equality is 'relaxed' is inconsistent with the paper's own claim that BBC is restored.\n\nIf arcs reconnect into closed loops, the correct statement is that such loops enclose zero net chirality. Alternatively, the count must include Weyl nodes from all k⊥ images, which the authors' own framework already provides.",
+      "type": "logical",
+      "severity": "major",
+      "suggested_fix": "Replace the 'relaxed' statement with the standard result: the signed count of surface modes crossing any closed loop equals the net chirality of all bulk Weyl nodes (all k⊥ images) projecting inside it. Report this count for loops L1–L4."
+    },
+    {
+      "title": "Topological SFA/SFAL assignment asserted without Chern counting",
+      "quote": "Cuts forming closed loops indicate nonzero Chern number and projected bulk charge, consistent with topological origin.",
+      "explanation": "The main text appropriately states that 'unambiguous demonstration remains open' for SFALs. The SI, however, concludes 'the observed arcs are topological SFAs connecting Weyl points of opposite chirality'.\n\nThe Fig. S15g–j dispersions along L1–L4 are shown without the Belopolski-type count of crossings with signed Fermi velocities. Such a count is required to infer a nonzero Chern number and is not reported. LD/CD contrast reflects orbital and matrix-element effects and is not evidence of loop topology.\n\nThe SI conclusion thus overstates what has been shown and is inconsistent with the main-text caveat.",
+      "type": "logical",
+      "severity": "moderate",
+      "suggested_fix": "For each loop L1–L4, tabulate the number of EF crossings with Fermi-velocity sign and compare to the net projected chirality enclosed. Otherwise downgrade the SI conclusion to match the main-text caveat."
+    },
+    {
+      "title": "Fixed-hν bulk cut is not expected to show SBZ periodicity; Fig. 1f is not evidence of a paradox",
+      "quote": "This provides direct experimental evidence of the intrinsic non-commensurability between the surface states and bulk state projections on the (103) surface.",
+      "explanation": "At a single photon energy, ARPES samples a near-fixed-k⊥ sheet of the bulk BZ. Such a sheet is periodic only under bulk reciprocal vectors lying in the surface plane, a sublattice of P(Λ*). Translation by a surface reciprocal vector changes k⊥.\n\nThe absence of SBZ periodicity in Fig. 1f is therefore the generic behaviour for any off-axis facet, including topologically trivial ones, and is not a projection. The authors acknowledge this is 'not unexpected for topologically trivial systems'. The same reasoning removes any special issue for Weyl nodes, whose full set of k⊥ images projects onto the SBZ lattice.",
+      "type": "logical",
+      "severity": "minor",
+      "suggested_fix": "Describe Fig. 1f as a fixed-k⊥ bulk cut whose periodicity is set by the in-plane bulk reciprocal sublattice. Separately show that the k⊥-integrated weight (e.g. the sum over the 125–205 eV data) has SBZ periodicity."
+    },
+    {
+      "title": "NdAlSi incorrectly described as body-centered cubic; wrong extinction rule cited",
+      "quote": "Since NdAlSi is body-centered cubic (bcc) in real space, its reciprocal lattice is face-centered cubic (fcc).",
+      "explanation": "NdAlSi crystallizes in the body-centered tetragonal I4_1md structure. The SI itself uses a = 4.204 Å and c = 14.519 Å, so the reciprocal lattice is body-centered tetragonal, not fcc.\n\nThe cited 'all-even/all-odd hkl' rule is the extinction condition for an fcc real-space lattice. For body-centering the condition is h+k+l even, which is what actually forbids (001) and allows (002).\n\nThe passage also refers to kz as 'the surface normal', which is incorrect for (103). The subsequent redefinitions (b1 ≡ 2b′1, b3 ≡ 2b′3, g1 ≡ 2g′1) replace primitive vectors with non-primitive ones. Together with the garbled '3 × (2/3 g′1) = 2 g1', this makes the bookkeeping that yields the '3-to-1' statement hard to verify.",
+      "type": "technical",
+      "severity": "moderate",
+      "suggested_fix": "State that NdAlSi is body-centered tetragonal (I4_1md) with the reflection condition h+k+l even. Redo the SBZ construction in the primitive bct reciprocal basis without ad hoc doubling of b1, b3, and g1."
+    },
+    {
+      "title": "Need for multiple BZs depends on Miller indices, not surface symmetry",
+      "quote": "In general, whether a single bulk BZ suffices depends on surface symmetry.",
+      "explanation": "By the authors' own criterion, Nmin is set by the denominators of −h/l and −k/l, i.e. by |l|/gcd(h,k,l) in their basis. This is an arithmetic property of the indices and the basis choice, not of the surface point group.\n\nLow-symmetry facets with |l| = 1 would have Nmin = 1. Conversely, the result depends on which bulk vector is labelled b3. This basis dependence itself signals that Nmin reflects a choice of reference cell rather than physics.",
+      "type": "logical",
+      "severity": "minor",
+      "suggested_fix": "Replace 'depends on surface symmetry' with 'depends on whether Pb1, Pb2 span the projected reciprocal lattice, i.e. on |l|/gcd(h,k,l) in the chosen basis'."
+    },
+    {
+      "title": "Slab vs Green's function comparison uses an inadequately thin slab",
+      "quote": "Finite-slab calculations (six layers in our case) truncate the bulk projections and therefore miss the SBPSs that are essential on low-symmetry facets.",
+      "explanation": "The (001) slab uses 36 atomic layers, while the (103) slab uses only six. Quantization of k⊥ and poor convergence of surface states in a six-layer slab are generic thin-slab artefacts on any facet.\n\nThe poorer agreement in Fig. S9 therefore cannot be attributed to low symmetry or incommensurability. A slab of sufficient thickness samples k⊥ densely, and its projected spectrum converges to the Green's-function result.",
+      "type": "logical",
+      "severity": "moderate",
+      "suggested_fix": "Repeat the (103) slab calculation with thickness comparable to the 36-layer (001) slab (or show convergence vs thickness) before attributing slab failure to facet orientation."
+    },
+    {
+      "title": "Green's-function and k⊥ mapping methods underspecified",
+      "quote": "we employed an iterative Green’s function method to model a semi-infinite surface and compute its surface states",
+      "explanation": "Surface Green's function calculations on top of VASP require a tight-binding model, typically Wannier-based. The paper does not specify the projections or orbitals, the energy window, the code (e.g. WannierTools), the principal-layer definition for the (103) slab, the iteration convergence, or how the SBPS-subtracted 'pure SS' spectra in Fig. S16c are computed.\n\nSimilarly, the hν→k⊥ conversion behind the comparison of 125–195 eV maps with DFT k⊥ slices (Fig. 3j–m, r–u) gives no inner potential or work function. The '125 eV to 205 eV' in the Fig. 3 caption also differs from the '125 eV to 195 eV' in the text.\n\nThe Methods say 'four possible terminations', while the SI considers four cleavage planes giving eight terminations. SOC 'as a second-order perturbation' is also unusual for VASP and needs clarification.",
+      "type": "technical",
+      "severity": "moderate",
+      "suggested_fix": "Add the Wannier projection set, code, and principal-layer construction for the (103) Green's function, plus the inner potential V0 used for hν→k⊥ mapping. Also state 'eight terminations from four cleavage planes' consistently."
+    },
+    {
+      "title": "Disorder hierarchy (SS→SBPS→BS) lacks a physical justification and the photon-energy test is weak",
+      "quote": "(iii) strongly disordered or rough surfaces suppress both SSs and SBPSs, leaving BSs dominant",
+      "explanation": "SBPSs are defined as k⊥-integrated bulk weight, while BSs are k⊥-resolved bulk states (Fig. 3e shows k⊥ modulation on strongly disordered surfaces). Increasing roughness would normally degrade k⊥ and k∥ resolution and enhance k⊥ integration, which is the opposite of the proposed hierarchy. No mechanism is given for why stronger disorder restores sharper k⊥ dispersion.\n\nThe main evidence for k⊥-independence of SBPSs is the comparison between 41 and 53 eV. With a typical inner potential, this changes k⊥ by only about 0.4 Å⁻¹, a modest fraction of the k⊥ period along [103] (≈2π/d103 ≈ 2 Å⁻¹). That makes it a weak test of k⊥ independence.",
+      "type": "logical",
+      "severity": "moderate",
+      "suggested_fix": "Show the SBPS features over a photon-energy range spanning at least one full k⊥ period along [103] (e.g. using the 85–205 eV series on an impurity-dosed surface). Provide a mechanism, or cite prior evidence, for why rough surfaces yield k⊥-resolved bulk bands."
+    },
+    {
+      "title": "Non-magnetic assumption at measurement temperatures close to the ordering temperature",
+      "quote": "Since the measurement temperature is above the Curie temperature, NdAlSi is non-magnetic",
+      "explanation": "Measurements were done at about 8 K (I05) and 18 K (Bloch). NdAlSi orders magnetically at roughly 7 K, so the 8 K data lie barely above the transition, where short-range correlations may be present.\n\nThe Weyl-node positions used in Fig. 4 come from a 4f-in-core, non-magnetic calculation. The authors' own earlier work shows that magnetism shifts or creates Weyl nodes in this material. This should at least be noted, since the projected-node comparison relies on these positions.",
+      "type": "technical",
+      "severity": "minor",
+      "suggested_fix": "State the ordering temperature of NdAlSi and specify which datasets in Figs. 1–4 were taken at 8 K versus 18 K. Note the possible influence of short-range magnetic correlations near T_N on the Weyl-node positions."
+    }
+  ]
+}

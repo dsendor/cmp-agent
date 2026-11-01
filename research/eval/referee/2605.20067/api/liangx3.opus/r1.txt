@@ -1,0 +1,219 @@
+# Merged review
+
+## A. Must address
+
+**1. Intrinsic magnon–phonon mixing is not separated from nonlinearity of the ΔLB optical readout.**
+
+The headline claim of "definitive" coherent three-wave mixing between a magnon and Ph3 depends on the nonlinearity residing in the material dynamics. As presented, the 1D and 2D data cannot tell this apart from a nonlinear readout.
+
+*Why the readout can mimic the signal.*
+- Magnetic linear birefringence in a collinear antiferromagnet is even in the Néel vector (LB ∝ L_iL_j). Expanding about the ground state gives δLB ∝ 2L₀·δL + δL².
+- Magneto-elastic/photoelastic terms add contributions ∝ δL·Q (equivalently ∂²ε/∂m∂Q) and ∝ Q².
+- From purely linear mode motion these terms generate:
+  - magnon rectification and SHG at (0, ω_Mag) and (2ω_Mag, ω_Mag);
+  - Mag–Ph3 DFG/SFG at (ω_Mag−ω_Ph3, ω_Mag), (ω_Mag−ω_Ph3, −ω_Ph3), (ω_Mag+ω_Ph3, ω_Mag) and (ω_Mag+ω_Ph3, ω_Ph3);
+  - Ph3 SHG/rectification.
+- All of these scale exactly quadratically in H_THz and would split exactly as observed at 9 T.
+- In a pump-A/pump-B experiment, a magnon coherence from A (phase ∝ e^{iω_Mag τ}) multiplied in the readout by a Ph3 coherence from B lands precisely at (ω_Mag − ω_Ph3, ω_Mag).
+
+*Why the manuscript's controls do not exclude it.*
+- The S_AB − S_A − S_B subtraction removes only terms linear in each pulse. Cross-terms such as δL_A·δL_B and δL_A·Q_B survive it.
+- The statement that "the linear response of these fundamental modes ensures that subsequent nonlinear features are intrinsic" is a non sequitur. Linear parent amplitudes are exactly what a quadratic readout needs, and a product of two linear amplitudes reproduces the quadratic scaling of Fig. 1g.
+- The paragraph excluding multiphoton absorption, impact ionization and Zener tunnelling addresses pump-side electronic artifacts, not detection mixing.
+- Temperature locking to ω_Mag − ω_Ph3, the Zeeman bifurcation, and the absence of a 0.45 THz mode in static Raman/THz spectra are predicted equally by both scenarios.
+- The simulation uses a strictly linear, magnon-only detection operator (μ_det ∝ X_a). It therefore assumes the conclusion and never tests the alternative.
+
+*Available data that are not analyzed.*
+- Ext. Data Fig. 2 (2b) shows the DFG vanishing within about 30 ps while both parents persist beyond 100 ps. This needs a quantitative comparison with γ_Mag + γ_Ph3 (product) versus a distinct rate (driven-oscillator prediction).
+- The DFG polarization pattern (Ext. Data Fig. 1c) is not compared with the product of the Mag and Ph3 patterns.
+- A pure product readout predicts comparable rectification and SHG weights for a given mode, and comparable DFG and SFG, apart from detection bandwidth and THz/probe velocity mismatch. The forced-response picture predicts ratios set by off-resonance denominators, e.g. |ω_a² − (ω_a+ω_b)²| / |ω_a² − (ω_a−ω_b)²| ≈ 2.6 in favour of DFG.
+- The observed asymmetries are not confronted with either prediction, although they may be the strongest available evidence:
+  - Ph3 SHG present but Ph3 rectification absent;
+  - SFG "markedly weaker" than DFG;
+  - no mixing with Ph1/Ph2.
+
+*Requested.*
+- Derive ΔLB to second order in δL and Q, including the L² and δL·Q magneto-optical terms. Estimate their size from the measured static LB(T), the magnon-induced ΔLB/LB, and the calibrated linearity of the balanced detector, and show that they fall short of the observed DFG/SFG amplitudes.
+- Measure the probe-wavelength dependence (across and away from the d–d/charge-transfer resonances governing LB) of the DFG/SFG-to-fundamental ratios. Do the same for probe-polarization/azimuth and analyzer configuration, and compare LB with Faraday/Kerr channels, since each has a different tensor structure for δL², δL·Q and Q².
+- Extract DFG/SFG dephasing rates from time-windowed analysis and compare them with γ_Mag + γ_Ph3.
+- Test the polarization-product relation.
+- Analyze the DFG amplitude normalized by A_Mag·A_Ph3 versus temperature across T_N. An intrinsic β(T) tied to the ordered moment predicts a characteristic deviation.
+- If feasible, detect emitted or transmitted THz radiation at 0.45 or 6.95 THz by EO sampling. A genuine macroscopic coherence radiates; a readout product does not.
+- Add a quadratic detection functional (ΔLB ∝ c₁δL + c₂δL² + c₃δL·Q, i.e. X_a², X_aX_b) to the simulation as a separate channel. Show which features survive only with intrinsic coupling.
+
+**2. The power-law scaling used to assign nonlinear orders is not quantitatively established.**
+
+- Orders are inferred from dotted H² or H³ guides on linear axes in Figs. 1g, 2d,e and Ext. Data Fig. 5h. There are no log–log plots, free-exponent fits or uncertainties.
+- In Ext. Data Fig. 5h the 2D DFG data span only 0.58–0.93 MV/cm (a factor of about 1.6) plus a forced-through-origin point. The authors concede this is "a limited amount of data." Over this range H² cannot be distinguished from H³, a saturating form, or threshold behaviour.
+- In Fig. 1g the signal is near zero up to about 0.3 normalized field and then rises steeply. This looks threshold-like or super-quadratic, or consistent with a noise floor, rather than a clean H² law.
+- The 2D DFG/SFG scaling is core evidence for the second-order assignment.
+
+The authors should provide log–log plots with free exponents and error bars for all assigned second- and third-order peaks, using more field points over the widest achievable range (at least a decade where SNR allows). They should also reconcile the low-field behaviour in Fig. 1g.
+
+**3. The strength of the 9 T DFG signals is unexplained and potentially inconsistent with a second-order process.**
+
+- The Zeeman bifurcation is the most compelling evidence for a genuine Mag–Ph3 product:
+  - DFG peaks at (0.22, 3.45)/(0.65, 3.88) and (0.22, −3.23)/(0.65, −3.23);
+  - these match ω_Mag± − ω_Ph3 from static magneto-THz data.
+- However, the in-magnet field is ≤ 0.2 MV/cm versus 1.3 MV/cm at 0 T, about six times weaker. Quadratic scaling would therefore predict a roughly 40× weaker DFG, and SFG is said to vanish for this reason.
+- Yet the Mag±–Ph3 DFG peaks in Fig. 3c appear with colour scales and prominence comparable to the 0 T maps. Possible explanations include:
+  - field-induced resonance or hybridization enhancement as Mag₋ approaches Ph3;
+  - different normalization;
+  - a different mechanism.
+
+The authors should report quantitative SNR and normalization at 9 T and compare signal levels with 0 T data at matched fields. Adding intermediate fields (0–9 T) would track the DFG branches continuously.
+
+## B. Should address
+
+**4. The symmetry argument that second-order magnonic signals require magnon–phonon coupling is incorrect as stated.**
+
+The authors argue that, without DMI, z-axis rotational symmetry of the precession forbids magnon rectification and SHG, so a symmetry-breaking magnon–phonon (cascaded X_a²X_b) mechanism must be invoked. This is not unique, for five reasons:
+- For an easy-axis antiferromagnet the longitudinal component L_z ≈ L₀(1 − L_⊥²/2), i.e. δL_z ≈ −(δL_x² + δL_y²)/2, is intrinsically second order. It contains 0 and 2ω components for any finite-amplitude precession. This is the kinematic spin-length constraint, equivalent to the Holstein–Primakoff expansion.
+- In FePS₃ the zigzag order and C2/m symmetry make the precession generally elliptical, so U(1) symmetry is not exact.
+- A linearly polarized drive of the degenerate doublet also breaks the invoked symmetry.
+- A detector quadratic in δL produces the (0, ω_Mag) and (2ω_Mag, ω_Mag) peaks trivially.
+- At zero field the degenerate Mag₊/Mag₋ pair produces a difference term at ≈0 that overlaps the "rectification" peak. The authors themselves observe Mag₊–Mag₋ DFG at 9 T.
+
+The authors should replace the U(1) argument with a correct treatment of longitudinal, elliptical-precession, doublet and readout contributions. They should also provide a magnetic-point-group (2/m) analysis of which second-order magnonic responses are allowed.
+
+**5. Agreement between the Lindblad model and experiment is only kinematic and does not robustly discriminate the coupling channel.**
+
+- Peak positions are fixed by ω_Mag and ω_Ph3, so any cubic coupling reproduces them.
+- The sole discriminator offered for X_a²X_b over X_b²X_a is the absence of Ph3 rectification. That depends on the assumed μ_det, described as "the detection dipole moment operator of the magnon components" and ambiguous between X_a and X_a². Experimentally Ph3 is clearly detected through LB, so with a magnon-only μ_det and weak Ph3 admixture the criterion is weak.
+- Ph3 SHG, which the X_b²X_a channel predicts, is observed but attributed post hoc to other phonon–phonon nonlinearities.
+- No relative or absolute amplitudes are compared with experiment:
+  - DFG/Mag and DFG/Rect ratios;
+  - SFG/DFG (DFG ≫ SFG);
+  - DFG I/DFG II;
+  - third-order/second-order ratios;
+  - absolute ΔLB.
+  Such comparisons are needed to test whether β^b_aa = 17 meV/Å suffices. Linewidths and lineshapes are also not compared.
+- Fig. 4 shows relative intensities, e.g. the strong Mag 2Q/PP structure, that differ visibly from Fig. 2a. The claim that the model "reproduces all qualitative features" should be qualified.
+
+The authors should define μ_det explicitly and include Ph3 in it consistently with the experiment. They should compare relative amplitudes, linewidths and field exponents quantitatively, and scan the β^a_bb/β^b_aa ratio to show the discrimination is robust. The conclusion that "X_a²X_b is the dominant TWM mechanism" should be tempered accordingly.
+
+**6. The model omits physically relevant ingredients whose signatures are claimed as reproduced, and third-order assignments are model-dependent.**
+
+- The magnon doublet is collapsed into a single mode on the grounds that the analysis is "insensitive to the internal structure of the degeneracy." The 9 T Mag₊–Mag₋ DFG shows intra-doublet mixing, so the doublet structure, and which branch couples to Ph3, matters. It is also needed to capture the field dependence.
+- Quartic Holstein–Primakoff/magnon Kerr terms are excluded, although the text invokes them for magnon–magnon nonlinearities.
+- NR, PP, R and 2Q signals in a two-pump scheme can arise from AAB/ABB pathways, from cascaded second-order processes, from direct quartic terms, or from detection nonlinearity. The model attributes them solely to cascaded cubic terms, so cubic field scaling says little about mechanism.
+- It is not shown that the cascaded magnitude matches the observed third-order/second-order ratio, or how cascaded and intrinsic contributions would scale differently (e.g. with sample thickness or detuning).
+
+The authors should model both magnon branches and the quartic magnon terms as separate channels, and quantify cascaded versus intrinsic third-order contributions.
+
+**7. No selection rule explains why only Ph3 participates in three-wave mixing.**
+
+Ph1 and Ph2 are also magnon-polaron partners, and Ph5 is observed, yet none shows TWM with the magnon. The absence is noted but not explained in terms of symmetry, mode-specific β, or hybridization weights. A derived selection rule would be a strong test of the claimed microscopic (exchange-striction) origin.
+
+The authors should provide a group-theoretical (irrep, 2/m) analysis of the symmetry-allowed cubic couplings. They should include Ph1 and Ph2 in the model with these couplings to explain the absence of their mixing.
+
+**8. Model parameters are dimensionally inconsistent and incompletely reported, so the simulations are not reproducible.**
+
+- Eq. (1) uses dimensionless quadratures X_b = Q/ℓ, yet β^b_aa = 17 meV/Å and β^a_bb = 0.017 meV/Å² are quoted. The conversion via the zero-point length ℓ (mode mass, frequency) and the magnon Holstein–Primakoff normalization is not given.
+- The estimate β^a_bb ≈ 0.001 β^b_aa (α_SOC × Q_b/ℓ) compares quantities with different units. It double-counts the phonon scale through the extra Q_b/ℓ factor.
+- The value of the linear coupling g used in the simulation is not stated. The Methods describe linear hybridization as SOC-suppressed, while the Conclusion calls the ~83 GHz coupling "giant."
+- The following are not reported: μ_a, μ_det, κ, γ_φ, pulse waveforms/spectra, the Fock-space truncation, and the initial (thermal) state.
+- The simulated maps differ in absolute scale by about 10⁶ (×10⁻⁵ vs ×10⁻¹¹) without explanation.
+
+The authors should rewrite Eq. (1) with couplings in frequency units, derived explicitly from the DFT exchange derivatives, and report all parameters.
+
+**9. THz field normalization is inconsistent across figures, and the in-sample driving field is not given.**
+
+- Normalizations differ: 2.5 MV/cm in Fig. 1, 1.1 MV/cm in the Fig. 2 caption, and 1.3 MV/cm in the text, Methods and Fig. 3.
+- The relevant drive is the in-sample H_THz near 3.25–3.7 THz, which depends on:
+  - Fresnel losses;
+  - strong resonant absorption over the 20 µm flake;
+  - the spectral weight of the DSTMS pulse at these frequencies.
+- Because E_THz is measured but H_THz drives the modes, the conversion must be stated. Otherwise cross-figure comparison of nonlinear orders is unreliable.
+
+The authors should report the in-sample H_THz and use a single normalization throughout.
+
+**10. Phase-resolved spectra and processing details needed to support the quadrant and pathway assignments are missing.**
+
+- Only magnitude 2D spectra are shown. The rephasing/non-rephasing assignments and statements such as "Ph3 carrying the opposite phase" rely on complex phases that are never presented.
+- The pulse-ordering convention (which of A/B arrives first; sign of τ) is ambiguous between Fig. 2c, the text and Eq. 17, which directly affects these assignments.
+- Pulse-overlap regions (τ ≈ 0, t ≈ 0) and windowing choices can generate spurious cross peaks and are not discussed.
+- Frequency resolution is not stated.
+
+The authors should show real/imaginary or phase-resolved 2D spectra, fix the time-ordering convention unambiguously, and document overlap exclusion, windowing, resolution and SNR.
+
+**11. Propagation and phase-matching effects in the 20 µm sample are not assessed, and only one sample is reported.**
+
+- The 20 µm flake is comparable to the in-medium THz wavelength and is strongly absorbing at the 3–7 THz resonances.
+- THz/800 nm-probe velocity mismatch, phase matching, magnon-polariton propagation and Fabry–Pérot echoes can redistribute amplitude between DFG and SFG and create cascaded signals. They could account for the strong DFG/SFG asymmetry attributed here to intrinsic physics.
+- Only a single sample is reported.
+
+The authors should model these effects explicitly and/or present data from additional samples, including thinner flakes.
+
+**12. The mechanism by which Raman-active Ph3 is driven is under-argued, and the artifact-exclusion logic misuses mode labels.**
+
+- Ph3 is Raman-active in centrosymmetric C2/m, yet its amplitude in Fig. 1c is comparable to the magnon's. This is attributed to hybridization with a magnon detuned by 0.45 THz with g ≈ 83 GHz. The implied admixture, of order (g/Δ)², should be quantified.
+- Alternative drives should be excluded explicitly: ionic Raman or THz-Kerr E² driving (despite the reported linear scaling) and electric-dipole channels.
+- The text states that "the linear field dependence of the infrared-active modes" rules out carrier effects. Elsewhere, all observed modes are Raman-active, with Mag and Ph3 driven magnetically.
+
+The authors should correct this wording and reformulate the exclusion argument.
+
+**13. The validity of the perturbative and truncated-basis simulation at experimental field strengths is not demonstrated.**
+
+- The model expands to third order (Eqs. 9–19) and combines |S⁽²⁾+S⁽³⁾|. At 1–2 MV/cm it should be shown that higher orders are negligible, e.g. by comparison with nonperturbative propagation.
+- The cubic potential is unbounded, which matters for truncated-basis Lindblad propagation at large displacements.
+- Convergence with Hilbert-space truncation is not shown.
+
+**14. The quantum/entanglement framing and the terminology for driven responses overstate the evidence.**
+
+- All measured signals are first moments of coherently driven modes, fully describable by classical coupled nonlinear oscillators with cubic coupling. The experiment has no access to quantum fluctuations.
+- The computed nonclassicality (Ext. Data Fig. 7) is negligible:
+  - single-mode squeezing ≲0.01 dB and collective squeezing of about 0.02 dB (−0.01 to −0.02 dB);
+  - E_N ≈ 0.005–0.006;
+  - a Duan criterion oscillating about zero.
+  These values are obtained without thermal noise and with an idealized pulse. They are likely sensitive to the unspecified initial thermal state and dephasing, and far below any measurable threshold.
+- Robustness to finite temperature, realistic decoherence, inhomogeneous broadening and the 20 µm geometry is not addressed.
+- Several phrases go well beyond what is demonstrated:
+  - "lay the groundwork for … entangle[ment]" / "entangle magnetic and vibrational excitations";
+  - "hybrid quantum technologies";
+  - the cavity-magnomechanics analogy ("cooperativity of 15").
+- "Quantum pathways," a "coherent Mag–Ph3 difference-frequency state," and a "hybrid mode evolving at the difference frequency" suggest new eigenstates. By the authors' own Hamiltonian, the 0.45 and 6.95 THz signals are off-resonant driven responses.
+
+The authors should describe these signals as driven nonlinear coherences and state that the observations are classical. They should move the squeezing/entanglement material to an outlook with realistic thermal and decoherence estimates and the required parameter regime (e.g. the narrowband drive amplitude needed for 1 dB squeezing), and tone down the abstract and conclusion.
+
+**15. The two-mode-squeezing argument is not derived and is likely incorrect as stated.**
+
+- The claim that the linearized TWM Hamiltonian "acquires the canonical form (a†b† + ab)" is asserted without derivation.
+- Linearizing X_a²X_b about a coherent magnon displacement α(t) oscillating at ω_a gives α(t)X_aX_b. This contains both beam-splitter (a†b + ab†) and squeezing (a†b†) terms. Its resonant part at the DFG condition is beam-splitter-like.
+- An a†b† term is resonant only with a pump component at ω_a + ω_b, which a magnon oscillating at ω_Mag does not supply. Which degree of freedom provides that pump is not specified.
+- In optics, DFG produces squeezing only in the parametric down-conversion configuration, which is not what is measured.
+
+The authors should derive the effective bilinear Hamiltonian, separate the beam-splitter and squeezing contributions, and specify the drive conditions. This includes explaining why "narrowband THz sources" would help.
+
+**16. Novelty relative to prior work is insufficiently delineated, and "first/definitive/direct" are not justified.**
+
+Related nonlinear magnon–phonon and 2D magnonic results exist:
+- photon-mediated and nonlinear magnon–phonon coupling in CoF₂ (refs. 34, 35; Mashkovich 2021, Metzger 2024);
+- magnon-pair DFG in YFeO₃ 2D THz spectroscopy (ref. 18; Zhang Nat. Phys. 2024; also Lu 2017);
+- THz-driven magnon-polaron control and metastable magnetization in FePS₃ (refs. 9, 46; Luo 2025, Ilyas 2024).
+
+Given concern 1, the incremental advance is the explicit assignment of magnon–phonon sum/difference cross peaks. The authors should state this advance relative to these works, especially ref. 46, and remove "definitive," "first" and "direct observation."
+
+## C. Minor
+
+**17. Part of the 2D map and the full peak assignment cannot be evaluated.**
+
+Several features, e.g. the (7.5, 4.1) peak, are attributed loosely to "photon-mediated magnon–phonon up-conversion and phonon–phonon processes" without analysis. Supplementary Notes 1–2 and Table S2, which contain the complete assignment, are referenced but unavailable. The authors should provide them and move the full assignment table into the main text or Extended Data.
+
+**18. The temperature tracking of the DFG frequency is shown only qualitatively.**
+
+The authors should add a quantitative plot of the DFG frequency versus ω_Mag − ω_Ph3 across temperature (Fig. 1d).
+
+**19. Presentation and citation errors.**
+
+- "Fig. 1(a)" is cited for the two-pulse geometry, which is Fig. 2c.
+- Ref. 33 (topological insulators) is cited as the "standard 2D configuration."
+- The Fig. 1a caption says "ellipticity," while the text uses ΔLB/polarization rotation. The terminology should be unified.
+- "Electric field" is used where the expansion is in the magnetic field.
+- The "Nonclassical effects"/entanglement Methods paragraph contains a duplicated sentence.
+- The symbol g is reused for both the linear coupling and the Duan scaling parameter.
+- Typos: "second magnetic signals"; "KV/cm."
+
+**20. Data availability.**
+
+The authors should deposit the data in a public repository rather than making them available "upon request."

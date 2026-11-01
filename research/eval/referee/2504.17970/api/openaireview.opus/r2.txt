@@ -1,0 +1,141 @@
+{
+  "overall_feedback": "The paper reports optical evidence (WS2 2s-exciton sensing and moiré trions) for correlated insulating states in Γ-valley twisted MoSe2, where the Γ-valley bands form a honeycomb moiré lattice. Several things are done carefully. The moiré density extracted from the gate capacitances and the twist-angle conversion are internally consistent (nM ≈ 4.6×10^12 cm^-2 → 3.8°, aM ≈ 5.0 nm). The electric-field independence of the states is a sensible test of Γ-valley character. The two-trion picture for distinguishing a Mott state from a CDW is an interesting idea.\n\nThe main weaknesses are in the quantitative interpretation:\n- A melting temperature that the authors themselves call a lower bound is converted, via a borrowed numerical prefactor, into U0. That U0 is then used as if it were the actual value, both to claim U0/t > Uc and to extract an effective dielectric constant of 27–30, which is hard to reconcile with hBN encapsulation.\n- The magnetic conclusions are stated more strongly than the data allow. ΘCW = +0.20 ± 0.20 K is consistent with zero. The absence of MCD at ν = −2 is read as zero susceptibility and then as antiferromagnetism, although an antiferromagnet has finite susceptibility. The conclusion asserts antiferromagnetic coupling even though the text says this cannot be distinguished experimentally.\n- There are several internal inconsistencies: the equivalent-gate-voltage definition, trion-maximum voltages that do not match the integer-filling voltages, the MCD integration window, a swapped trion label, sign conventions for low doping, and singlet/triplet terminology.\n\nNone of these invalidate the observation of incompressible states, but several affect the strength of the headline claims.",
+  "comments": [
+    {
+      "title": "Equivalent gate voltage definition appears inconsistent with the capacitance model",
+      "quote": "The carrier doping density within the sample is controlled by an equivalent gate voltage Vg, defined as Vg =",
+      "explanation": "The doping is set by Ctg·Vtg + Cbg·Vbg (Methods). Using the stated thicknesses, Cbg/Ctg ≈ 0.83, so the natural doping-equivalent voltage is ∝ Vtg + 0.83·Vbg, or ≈ (Vtg + Vbg/1.15) in the geometric approximation used for the E=0 ratio. The paper instead defines Vg = (Vtg + 1.15·Vbg)/2. On the E=0 line (Vbg = 1.15·Vtg) this gives Vg ≈ 1.16·Vtg, not Vtg. Then ν = −2 at Vtg = −3.48 V would sit near Vg ≈ −4.0 V. Fig. 2c instead places the integer fillings within roughly the same −1 to −4 V window as Vtg in Fig. 2a. This suggests either a typo (1.15 should divide Vbg) or a non-standard definition. The definition matters because it sets the horizontal axis of the phase diagram used to argue about gating dispersion.",
+      "type": "technical",
+      "severity": "moderate",
+      "suggested_fix": "If intended, redefine Vg = (Vtg + Vbg/1.15)/2, which reduces to Vtg on the E=0 line. Alternatively use Vg = (Ctg·Vtg + Cbg·Vbg)/(2Ctg), and state the definition consistently in the main text, the Fig. 2c caption, and Methods."
+    },
+    {
+      "title": "Trion label swapped in the binding-energy argument",
+      "quote": "Coulomb attraction and binding energy become smaller",
+      "explanation": "The preceding sentence identifies X1+ as the charge-transfer trion, with exciton and hole on different sites. X1+ is also the trion with the smaller binding energy (~17 meV). The text, however, says the exciton-hole distance is larger in X2+ and that its binding energy is therefore smaller. This contradicts both the assignment and the measured binding energies (X2+ ~30 meV). It is almost certainly a typo, but this sentence is the core of the Mott-versus-CDW argument and could mislead.",
+      "type": "logical",
+      "severity": "minor",
+      "suggested_fix": "Change 'Since the exciton-hole distance is larger in X2+' to 'Since the exciton-hole distance is larger in X1+'."
+    },
+    {
+      "title": "Lower bound on U0 is treated as an actual value to extract an unusually large dielectric constant",
+      "quote": "we obtain an effective dielectric constant ϵ ≈ 27 − 30",
+      "explanation": "The authors state that Tm from 2s sensing 'provides a lower bound for ∆', and they call U0 ≈ 4.75 kBTm a lower bound. They then compare this U0 directly with the model to obtain ε ≈ 27–30. A lower bound on U0 only yields an upper bound on ε, not a value. The resulting ε is also several times larger than the ε ≈ 3–5 expected for hBN-encapsulated TMDs, and inconsistent with the U0 = 100–200 meV quoted earlier from Ref. [19]. This suggests the Tm→U0 conversion substantially underestimates U0, rather than that screening is this strong.\n\nThe 4.75 prefactor is taken from finite-temperature numerics of the pure Hubbard model at some specific U/t [39]. Applying it to an extended Hubbard system with sizable U1, using an optically defined Tm (10% spectral-weight threshold), is not justified in the text. The ε value is then used to argue agreement with Hartree-Fock trends (Extended Fig. 4).",
+      "type": "logical",
+      "severity": "moderate",
+      "suggested_fix": "Report ε ≲ 27–30 as an upper bound implied by the U0 lower bound. State the U/t regime in which the 4.75 kBTm relation of Ref. [39] was derived. Discuss why the inferred bound is far below the 100–200 meV estimate of Ref. [19]."
+    },
+    {
+      "title": "U0/t > Uc argument rests on borrowed numbers and ignores the nonlocal interaction the paper emphasizes",
+      "quote": "larger than the critical value of 4 for the semimetal-insulator transition in a honeycomb lattice",
+      "explanation": "The inequality U0/t ≈ 5 > 4 is logically sound only if U0 is a genuine lower bound and t ≈ 5 meV is accurate. Here t is a continuum-model estimate, not a measurement, and the margin over Uc ≈ 3.8 (Ref. [40]) is small. More importantly, Uc from Ref. [40] is for the on-site-only Hubbard model. The paper itself stresses that U1 competes with U0 at ν = −2 (Mott vs. CDW) and that nonlocal interactions control the magnetism. In an extended Hubbard model, U1 shifts the semimetal-insulator boundary. Comparing with the pure-Hubbard Uc therefore does not establish that the system is on the insulating side for the stated reason. The experimental existence of a gap is the actual evidence; the U0/t comparison adds little and could mislead.",
+      "type": "logical",
+      "severity": "minor",
+      "suggested_fix": "Present U0/t ≈ 5 as a consistency check. Note explicitly that Uc ≈ 3.8 applies to the on-site Hubbard model, and cite or compute the critical boundary for the extended (U0, U1) model, e.g. from the Hartree-Fock phase diagram in Extended Fig. 4d."
+    },
+    {
+      "title": "Conclusion asserts antiferromagnetic coupling at half filling despite the text stating it cannot be distinguished",
+      "quote": "Rather than forming a semimetal, the half-filled honeycomb lattice in our system is a Mott insulator with antiferromagnetic coupling between carriers.",
+      "explanation": "In the magnetism section the authors present an antiferromagnetic state and a gapped spin liquid as alternatives. They then write 'Experimentally, we cannot distinguish between these scenarios or other possibilities.' The final paragraph of the conclusion says the absence of a magnetic response 'points to an unconventional magnetic ground state.' Asserting antiferromagnetic coupling in the conclusion therefore overstates the evidence and is internally inconsistent. No measurement in the paper directly probes the sign of the spin exchange at ν = −2.",
+      "type": "logical",
+      "severity": "moderate",
+      "suggested_fix": "Replace with: 'the half-filled honeycomb lattice is a Mott insulator with no detectable spin susceptibility, consistent with either antiferromagnetic correlations or a spin-gapped state.'"
+    },
+    {
+      "title": "Absence of MCD equated with zero susceptibility and then with antiferromagnetism",
+      "quote": "the absence of an MCD signal suggests a zero magnetic susceptibility, indicating that the insulating state may be an antiferromagnetic correlated state",
+      "explanation": "A Heisenberg antiferromagnet, even an ordered or strongly correlated one, has a finite uniform susceptibility of order 1/J; it is reduced, not zero. A genuinely vanishing χ would instead point to a spin gap. With U0 ≈ 25 meV and t ≈ 5 meV, J ≈ 4t²/U0 ≈ 4 meV, so χ would be suppressed by roughly J/kBT relative to free spins. That is a quantitative statement that could be tested against the ν = −1 signal.\n\nThere is also an independent concern about sensitivity. The MCD mechanism relies on the X2+ exchange interaction, which the authors note is weak. At ν = −2 the X2+ amplitude and lineshape differ from ν = −1, so the readout sensitivity may differ. Without a calibration of MCD-per-spin-polarization at ν = −2, 'no observable signal' cannot be converted into 'χ ≈ 0'.",
+      "type": "logical",
+      "severity": "moderate",
+      "suggested_fix": "State an upper bound on χ(ν=−2)/χ(ν=−1) from the noise floor at 8 T. Compare it with the expected AFM suppression factor (~kBT/J for J ≈ 4t²/U0) rather than claiming zero susceptibility."
+    },
+    {
+      "title": "Ferromagnetic Curie-Weiss temperature is consistent with zero",
+      "quote": "The small yet finite CW temperature is confirmed by measurements at another point",
+      "explanation": "The authors are right to quote uncertainties. However, ΘCW = +0.20 ± 0.20 K at P1 is a 1σ result and does not establish a finite value, let alone its sign. The fit uses only a few points between ~1.6 and 7 K, above which the authors say MCD no longer tracks spin polarization. Extracting a 0.2 K intercept from a 1.6–7 K window is a long extrapolation, and the 8 K point already deviates.\n\nP2 gives +1.1 ± 0.4 K, which is more significant but differs from P1 by about 2σ. MCD is also used as a proxy for magnetization through a trion exchange whose own temperature dependence is not characterized. The claim of 'weak ferromagnetic coupling' in the abstract and conclusion is therefore stronger than the data support. In addition, the theoretical J in the Fig. 5d inset is not converted to a predicted ΘCW for comparison; for the triangular lattice of occupied sites, ΘCW ≈ −zJS(S+1)/3kB with z = 6.",
+      "type": "logical",
+      "severity": "moderate",
+      "suggested_fix": "Phrase the result as 'ΘCW ≈ 0 to +1 K, with the sign weakly favoring ferromagnetism'. Add the predicted ΘCW = −6J·S(S+1)/(3kB) at ε ≈ 27–30 from the inset for direct comparison."
+    },
+    {
+      "title": "Trion maxima voltages do not match the integer-filling voltages, and signs are missing",
+      "quote": "reaches the maximum amplitude at Vtg ∼ 2.67 V",
+      "explanation": "The voltages lack the minus sign; from Fig. 4a they should be negative. More substantively, the text says the X1+ and X2+ maxima are 'well matched' with ν = −1 and ν = −2. Fig. 2 places ν = −1 at Vtg = −2.36 V and ν = −2 at −3.48 V, with 1.12 V per unit filling. The X1+ maximum at −2.67 V then corresponds to ν ≈ −1.28, while X2+ at −3.50 V matches ν = −2 well. The Fig. 4 data are at 1.6 K versus 7 K in Fig. 2, and may be at a different gate ratio or position. The offset is not discussed, yet the Mott-versus-CDW conclusion rests on this coincidence.",
+      "type": "technical",
+      "severity": "moderate",
+      "suggested_fix": "Report the trion maxima as Vtg ≈ −2.67 V and −3.50 V. Either re-calibrate the filling axis for the 1.6 K dataset or explicitly state the offset of the X1+ maximum from ν = −1 (≈0.3 filling) and its origin."
+    },
+    {
+      "title": "Filling calibration assumes equal spacing that the data do not show",
+      "quote": "The filling numbers are assigned by assuming a linear dependence between the gate voltage and doping density",
+      "explanation": "Charge neutrality is placed at Vtg ≈ −1 V, with ν = −1 at −2.36 V and ν = −2 at −3.48 V. The 0→−1 interval (1.36 V) is about 20% larger than the −1→−2 interval (1.12 V). Linear extrapolation from the integer fillings would put ν = 0 at ≈ −1.24 V. The authors attribute such deviations to contact resistance at low doping. However, fractional fillings like −1/6 and −1/4 are separated by only ~0.1 V. A 20% non-uniformity is therefore enough to shift these assignments to neighboring rationals, and the choice of anchor points is not specified.\n\nA similar non-uniformity appears in D2 (Extended Fig. 6a: ~2.7 V vs ~2.4 V).",
+      "type": "technical",
+      "severity": "moderate",
+      "suggested_fix": "Specify which anchor points define the ν axis (e.g., the ν = −1 and −2 voltages only). Show the fractional assignments with an error bar reflecting the 0→−1 versus −1→−2 spacing mismatch."
+    },
+    {
+      "title": "Inconsistent description of the MCD integration window",
+      "quote": "We integrate the MCD signal over a spectral window of 5 meV near the Fermi-polaron (RP) resonance.",
+      "explanation": "The main text says the ν = −1 MCD is integrated in a 5-meV window centered at 1.620 eV, i.e., the RP peak, consistent with Methods. The Fig. 5c caption instead states 'The MCD is integrated near the resonance of X2+', which lies near 1.58–1.59 eV. The two features have opposite MCD sign and possibly different exchange physics. A reader cannot tell which signal underlies χzz and the ΘCW fit.",
+      "type": "technical",
+      "severity": "minor",
+      "suggested_fix": "Change the Fig. 5c caption to 'The MCD is integrated within a 5-meV window centered at 1.620 eV (RP resonance)', or correct the main text and Methods if X2+ was used."
+    },
+    {
+      "title": "Singlet/triplet terminology contradicts the stated spin configuration",
+      "quote": "This intervalley spin-triplet trion preserves the optical selection rule in TMD monolayers",
+      "explanation": "The preceding clause says the K-valley exciton's hole 'preferentially binds with an additional hole of opposite spin in the Γ valley'. Two holes of opposite spin correspond to the singlet-like configuration. The text and Fig. 5b instead call this the spin-triplet trion. This may follow a specific convention, for example labeling by electron-hole spin combinations, but the convention is not stated. It matters because the sign of the MCD-to-polarization mapping depends on which configuration is bound.",
+      "type": "technical",
+      "severity": "minor",
+      "suggested_fix": "Define the singlet/triplet labels explicitly, e.g. 'triplet refers to the parallel spin configuration of the K-valley electron and the Γ-valley hole'. Otherwise rename the opposite-spin bound state as the singlet trion."
+    },
+    {
+      "title": "Fermi-velocity reduction overstated in the abstract",
+      "quote": "nearly two orders of magnitude",
+      "explanation": "The main text says the Fermi velocity is 'over thirty times slower' than graphene. Estimating with t ≈ 5 meV and a moiré site spacing aM/√3 ≈ 2.9 nm gives v = 3ta/2ħ ≈ 3×10^4 m/s. That is about 30× below graphene's ~10^6 m/s, i.e. about 1.5 orders of magnitude, not nearly two.",
+      "type": "technical",
+      "severity": "minor",
+      "suggested_fix": "Replace 'reduced by nearly two orders of magnitude' with 'reduced by a factor of ~30'."
+    },
+    {
+      "title": "Inequality direction for 'low doping' with negative ν",
+      "quote": "the dispersion with a negative slope is known to arise from the high contact resistance",
+      "explanation": "With hole doping labeled by negative ν, 'low doping' means |ν| small, i.e. 0 > ν ≥ −1/3. The text writes ν ≤ −1/3, which would mean higher doping. Similarly, the dispersive fractional states are said to be at ν ≤ −1/2, while the next sentence says the nonlinear effect is reduced for −3/2 < ν < −1/2. These read consistently only if the inequalities are flipped (ν ≥ −1/2).",
+      "type": "technical",
+      "severity": "minor",
+      "suggested_fix": "Rewrite as 'At low doping (−1/3 ≤ ν < 0)' and 'some of these states (−1/2 ≤ ν < 0, and ν = −2)'."
+    },
+    {
+      "title": "Hartree-Fock 'agreement' with the twist-angle dependence of Tm is only qualitative",
+      "quote": "agree with the observation that Tm of ν = −2 decreases with increasing twist angle",
+      "explanation": "Experimentally, Tm at ν = −2 nearly doubles from 3.8° to 2.9° (≈65 K → ≈105 K). In Extended Fig. 4c at ε = 25–30, the HF gap changes by only ~5–10% over the same range, and for ε = 25 it is nearly flat or slightly non-monotonic. The calculated gaps (~37–48 meV) also exceed the inferred U0 lower bound by roughly a factor of 1.5–2. Calling this agreement overstates the correspondence, given that ε was itself fitted.",
+      "type": "logical",
+      "severity": "minor",
+      "suggested_fix": "State the HF gap ratio between 2.9° and 3.8° at the fitted ε next to the measured Tm ratio (~1.6). Describe the agreement as qualitative (same sign of the trend)."
+    },
+    {
+      "title": "Chiral-symmetry characterization of Mott vs CDW is imprecise",
+      "quote": "the Mott insulator phase breaks the chiral symmetry, while the CDW phase breaks the AB sublattice symmetry",
+      "explanation": "In the honeycomb Dirac problem, both a staggered CDW mass (Gross-Neveu-Ising) and a Néel mass (Gross-Neveu-Heisenberg) gap the Dirac point and break the chiral symmetry of the low-energy theory. The distinction is that the CDW breaks sublattice/inversion symmetry, while the Néel state breaks spin SU(2) and time reversal, preserving only a combination with sublattice exchange. As written, the sentence implies the CDW does not break chiral symmetry, which is not the standard usage (cf. Refs. [5–7]).",
+      "type": "technical",
+      "severity": "minor",
+      "suggested_fix": "Rewrite as: 'Both phases gap the Dirac point by breaking chiral symmetry; the CDW additionally breaks sublattice (inversion) symmetry, whereas the Néel Mott state breaks spin-rotation symmetry.'"
+    },
+    {
+      "title": "Zero-field gate ratio uses geometric thickness while capacitances use dielectric-weighted thickness",
+      "quote": "To maintain a zero electric field condition, we set the ratio between Vbg and Vtg to be 1.15",
+      "explanation": "The E-field expression uses bare thicknesses, giving Vbg/Vtg = db/(dt+d0+ds) = 9.5/8.25 ≈ 1.15. The capacitance formulas in the same section include the WS2 dielectric (d0/εWS2). The physically balanced condition Ctg·Vtg = Cbg·Vbg gives Vbg/Vtg = Ctg/Cbg ≈ 1.21. The ~5% difference implies a small residual field along the 'E=0' line, of order a few mV/nm at |Vtg| ~ 3–4 V. This is probably harmless given the weak E dependence, but the two models should be made consistent.",
+      "type": "technical",
+      "severity": "minor",
+      "suggested_fix": "Use the displacement field D = (Ctg·Vtg − Cbg·Vbg)/2 and set Vbg/Vtg = Ctg/Cbg ≈ 1.21. Otherwise state that the 1.15 ratio neglects the WS2 dielectric correction and estimate the residual field."
+    },
+    {
+      "title": "Period-independent Tm at ν = −1 sits awkwardly with the U1-driven crystal picture",
+      "quote": "suggests that the melting process at this filling is more likely dependent on the local moiré potential rather than the moiré period",
+      "explanation": "Earlier the ν = −1 state is identified by Hartree-Fock as a sublattice-polarized crystal driven by the nearest-neighbor repulsion U1, which scales roughly as 1/aM and should increase at smaller twist angle. Finding Tm essentially independent of θ across 2.9°–4.0° is offered as evidence of local-potential-limited melting, but no estimate of the local potential's angle dependence is given. The ν = −1 Tm (~65 K) also equals the ν = −2 Mott Tm in D1, despite U1 < U0. These observations deserve reconciliation rather than a one-line attribution.",
+      "type": "logical",
+      "severity": "minor",
+      "suggested_fix": "Provide the calculated U1 and the moiré potential depth versus twist angle for 2.9°–4.0°. Show that the potential depth, not U1, is roughly constant over this range."
+    }
+  ]
+}

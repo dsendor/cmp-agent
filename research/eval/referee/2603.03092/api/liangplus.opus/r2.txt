@@ -1,0 +1,161 @@
+**Review outline:**
+
+### 1. Significance and novelty
+
+The manuscript applies FIB-defined cleaving, previously shown for normal-state Sr₂RuO₄ (Ref. 53), to a cuprate. It obtains (110) side surfaces of overdoped LSCO (x = 0.22) that are flat enough for ARPES in the superconducting state. The technical result is real and of broad interest: side surfaces of layered superconductors have been out of reach for momentum-resolved probes, and the photon-energy maps (Fig. 3, Fig. 9) show that bulk-like electronic structure is recovered.
+
+The physics result is a null observation: no resolvable gap and no zero-energy flat-band peak at the antinodal k_z. The authors attribute this mainly to bulk Anderson-type disorder, using self-consistent BdG simulations. That interpretation is plausible, but the data and calculations do not yet discriminate it from several simpler explanations.
+
+### 2. Potential reasons for acceptance
+
+- First ARPES data from a cuprate side surface in the superconducting state. The preparation is documented in detail (Fig. 2, Methods III A), and susceptibility checks show Tc is unaffected by milling (Fig. 2b).
+- High-quality bulk-like Fermi surface and dispersions from the side surface. These include the k_z = k[110] maps (Fig. 3b, Fig. 9) and the dispersion along [001] (Fig. 3c), which are useful in their own right for LSCO c-axis physics.
+- A forward-modelling framework that is useful well beyond this paper. It combines a self-consistent BdG slab, an ARPES depth weighting, and a Fourier transform including k_z broadening, and it directly predicts momentum-resolved surface-state signatures (Fig. 4a, d, e).
+- An honest report of a negative result. Such results are valuable for guiding future side-surface ARPES on topological and nodal superconductors.
+
+### 3. Concerns
+
+#### A. Must address
+
+**1. The gap magnitude used throughout is inconsistent, and the model gap is ~3× the authors' own reference measurement.**
+- *What is inconsistent.* Four different values appear:
+  - The introduction quotes 15–25 meV (Ref. 54).
+  - Sec. II D says "typically 10–20 meV … consistent with our (001)-surface reference measurement".
+  - Sec. II D later says "approximately 20 meV at our doping level".
+  - The BdG pairing strength V is tuned to a 24 meV antinodal gap (Methods III F).
+- *What the reference measurement actually shows.* Supplementary VI E reports ~7 meV, on x = 0.19 rather than 0.22, at 4–5 meV resolution.
+- *Why it matters.* This bears directly on both headline claims:
+  - "Gap suppression within resolution" is only meaningful if the expected bulk gap at this k_z, after k_z broadening, is well above 3–4 meV. For a 5–7 meV gap that is not obvious.
+  - The surface-state decay length scales as ħv_F/Δ (Supp. VI A, Fig. 7). With a 3× smaller gap, the bound state extends roughly 3× deeper. Its weight within the ~5 Å probing depth then drops substantially. The clean-limit prediction of a visible peak (Fig. 4e) may therefore be badly overestimated, and the null result might need no disorder at all.
+- *What to do.*
+  - Measure the (001) surface of the same x = 0.22 crystal, under identical resolution and analysis, as a direct control.
+  - Repeat the clean, Edge-AFM and Mixed simulations with V tuned to the measured gap.
+  - Report how the predicted topological-sector peak height and contrast scale with Δ for this probing depth.
+
+**2. k_z broadening may hide the bulk gap even with no surface pair-breaking; the "gap suppression" claim has no control for this.**
+- *Why broadening matters here.* On the (110) surface, k_z is along [110]. At fixed k[1-10], the d-wave gap varies strongly with k[110] (Eq. 11). A Lorentzian broadening of ~0.4 Å⁻¹ FWHM (Methods III D) averages over gapped and much less gapped momenta. Fig. 3e already shows heavy bulk intensity filling between the bands.
+- *What is missing.*
+  - A simulation with a uniform, non-self-consistent bulk gap (no surface suppression, edge states excluded or subtracted), processed with the same k_z broadening, depth weighting and resolution. This would show whether a gap would be detectable at all on this surface.
+  - A quantitative gap analysis of the (110) data. The (001) reference gets leading-edge-midpoint (LEM) shifts versus gold, flux extrapolation, and symmetrization. The (110) data in Fig. 4g get only EDCs normalized to total intensity and overlaid on gold.
+- *What to do.*
+  - Provide LEM shifts relative to gold and relative to a nodal (110) cut, with uncertainties, for each temperature (6, 21, 35 K; and up to 55 K in Fig. 11).
+  - Provide symmetrized or Fermi-divided EDCs.
+  - State Tc for this sample explicitly (Fig. 2b suggests ~27 K), so readers can judge whether 21 K is well below Tc.
+- *Why it matters.* Without this, "suppression of the superconducting spectral gap" in the title and abstract may simply reflect a gap made unobservable by the measurement geometry.
+
+**3. The 100 meV Gaussian on-site disorder is not justified against independent constraints, and the model had to be retuned to keep superconductivity.**
+- *Internal tension.* The introduction describes the disorder as "comparable to the superconducting gap". Yet σ = 100 meV is ~4× the model gap and ~15× the measured (001) gap.
+- *Retuned coupling.* With disorder, V had to be raised from 0.153 to 0.21555 (units appear to be wrong; see concern 21) to recover a 24 meV gap. This indicates that this disorder level strongly suppresses d-wave pairing in the model.
+- *Expected scattering rate.* A Born-limit estimate is Γ ≈ πN(0)σ², i.e. tens of meV for N(0) ~ 1 eV⁻¹ per site. That would exceed the Abrikosov–Gor'kov critical scattering rate for d-wave pairing in a Tc ≈ 27 K material, unless one invokes forward-scattering, out-of-plane dopants that this model does not represent.
+- *What to do.* Show that σ = 100 meV is compatible with independent measures:
+  - the measured nodal MDC widths on the (110) surface compared with the (001) surface and literature;
+  - the residual resistivity of x = 0.22 LSCO;
+  - the observed Tc and superfluid density.
+  - Also present a σ scan (e.g. 10, 25, 50, 100 meV) showing the threshold at which the topological-sector peak becomes undetectable, given the measured background.
+- *Why it matters.* If the required disorder is inconsistent with transport or nodal linewidths, the central interpretive claim ("disorder as the key factor") fails.
+
+**4. Atomic-scale geometric roughness is not excluded, so the abstract's statement that "measured geometric roughness … is too weak" is overstated.**
+- *The authors' own concession.* Sec. II D states that suppressing the surface states requires roughness that removes contiguous flat regions down to one unit cell. It also states that this lateral scale is beyond conventional AFM (resolution of a few nm).
+- *Circularity in the Edge-AFM simulation.* Mapping a profile with nm-scale pixels onto a lattice with a√2/2 resolution generates long clean segments by construction. The Edge-AFM result is therefore partly circular.
+- *Unexplained result.* The "Edge 0.5" probabilistic-roughness curves appear in Fig. 4b and 4e but are hardly discussed. If Edge 0.5 also removes the peak, atomic-scale roughness is an equally viable explanation.
+- *What to do.*
+  - Discuss the Edge 0.5 result explicitly.
+  - Report the AFM pixel size, scan area relative to the 40–50 µm beam spot, and whether AFM was done on the same cleave that was measured by ARPES. Also state whether it was done ex situ after air exposure.
+  - Reword the abstract so it claims only what the data support: roughness on length scales above the AFM resolution is insufficient.
+
+**5. There is no evidence that the probed near-surface layer is a pristine superconductor, and a non-superconducting or damaged surface layer would explain both null results.**
+- *What the existing checks do and do not show.*
+  - The susceptibility check (Fig. 2b) uses a bulk slab and says nothing about the top ~5 Å.
+  - The doping estimate (Supp. VI F) is acknowledged to be inaccurate. It spans p = 0.2–0.3, and the upper end would be non-superconducting.
+  - No in-situ structural or chemical characterization of the fracture surface is shown: no LEED, no core levels (e.g. O 1s, La 4d, Cu 2p satellite structure), and no check for Ga/Xe implantation or redeposition from the nearby notch.
+  - No temperature dependence across Tc is seen at all, which is equally consistent with a normal-state surface layer.
+- *What to do.*
+  - Add in-situ characterization of the fracture surface.
+  - Compare nodal quasiparticle linewidths and kink structure between (110) and (001) surfaces.
+  - State the FIB species, the distance between notch and probed area, and any surface cleanliness checks over measurement time.
+  - Discuss this scenario explicitly as an alternative to bulk Anderson disorder.
+
+#### B. Should address
+
+**6. Convert the null result into a quantitative upper bound.**
+- Fig. 4g overlays curves but gives no statistical error bars, difference spectra, or bound on near-E_F weight. Fig. 11 (second sample) shows a slight enhancement of the 6 K topological-sector EDC near E_F.
+- Provide:
+  - difference spectra (low T minus above Tc) and (topological minus trivial sector), with Poisson uncertainties;
+  - an upper bound on surface-state weight, expressed as a fraction of the clean-model prediction after realistic background is added.
+
+**7. Show raw data alongside the background-subtracted EDCs.**
+- The text says no peak is seen "in the raw spectra", but Fig. 4g uses the background subtraction of Ref. 77.
+- Show the unsubtracted EDCs.
+- Explain why the subtraction cannot remove a broad near-E_F component, and why normalizing to total intensity does not mask temperature changes.
+
+**8. Discuss the bulk antinodal van Hove singularity near E_F at x ≈ 0.22.**
+- LSCO goes through its Lifshitz transition near x ≈ 0.2 (the subject of Ref. 54). The antinodal saddle point is therefore within a few meV of E_F.
+- After k_z broadening, this bulk high-DOS feature populates the very momentum window (between the bands at hν = 95 eV) used to search for the flat band. It could mask a weak surface signal or mimic one.
+- Discuss this, and include it explicitly in the background model of the simulations.
+
+**9. Use the full photon-energy (k_z) dependence instead of a single k_z.**
+- Fig. 4a predicts a characteristic k_z-dependent A(k, E_F) pattern for the surface state, and Supp. VI B explains how its weight evolves with k_z.
+- A direct comparison of the measured E_F-intensity map (hν = 40–200 eV) within the topological sector against Fig. 4a would be a much stronger test than one cut.
+- Also give the inner potential and its uncertainty, since the node/antinode assignment of 79/95 eV depends on it.
+
+**10. Treat alternative surface ground states that would move, rather than remove, zero-energy weight.**
+- The introduction emphasizes predicted time-reversal-breaking (d + is), phase-crystal and edge-magnetic states. These split the flat band to ±δ.
+- State whether the self-consistent solution allowed complex or subdominant pairing (the nearest-neighbour V permits extended s) and spin polarization.
+- Discuss whether a split peak a few meV below E_F, broadened by 3–4 meV resolution, would be distinguishable from the data.
+
+**11. Report disorder averaging and finite-size controls for the simulations.**
+- State the number of disorder realizations and the variance between them.
+- Show sensitivity to slab size: 200 sites along the edge is ~50 nm, compared with the AFM profile used and the coherence length.
+- Clarify the difference between using a Lorentzian η = 3 meV and a Gaussian instrumental resolution.
+
+**12. Resolve internal inconsistencies in the k_z-broadening treatment.**
+- Methods III D gives Δk_z ≈ 2/λ ≈ 0.4 Å⁻¹. The Fig. 3 caption states that the calculations used Δk[110] = 0.2 Å⁻¹, which corresponds to 1/λ.
+- The text says the simulations overestimate the broadening, and Methods III E attributes extra broadening to aliasing and windowing.
+- TPP-2M's E_g parameter is an electronic band gap. Inserting the 20 meV superconducting gap is not physically meaningful, though numerically irrelevant; LSCO is a metal.
+- Clarify which broadening enters Fig. 4, and how its overestimate affects the predicted surface/bulk contrast.
+
+**13. Tone down the Discussion's explanations of STM and tunnel-junction ZBCPs, or support them.**
+- Ref. 76 concerns sputtered Bi₂Se₃. Its relevance to dilute disorder pushing cuprate Andreev states below the surface is not demonstrated.
+- The argument that STM selects low-disorder regions would be stronger with a simulation of the spatial distribution of zero-energy LDOS under the Mixed disorder. The authors already have this from the calculation in Fig. 4c and Fig. 12.
+
+**14. Revisit the claim that "disorder [is] the key factor".**
+- No experimental variation of disorder is presented: no irradiation series, no second doping, no cleaner cuprate.
+- Either add such a test or present the conclusion as a model-based hypothesis, consistent with concerns 1, 4 and 5.
+
+#### C. Minor
+
+15. Supp. VI E says "prepared under the same conditions". Specify whether this means FIB-notched and cleaved, or only gold-annealed and naturally cleaved.
+
+16. Sr content was determined only from Tc. On the overdoped side this is unambiguous only if the branch is known. Give an independent determination (EPMA/ICP) or state how the branch was fixed.
+
+17. Naming conventions:
+- The "mass term" v_i σ_z in Nambu space is on-site potential (chemical-potential) disorder. Calling it a mass term may confuse readers.
+- Disorder labels are inconsistent: C/GEAFM/GE0.5/BA in the Fig. 4 caption, Clean/Edge AFM/Edge 0.5/Mixed in the legends, and GE+BA in Fig. 12. Unify them.
+
+18. Figure and caption errors:
+- Fig. 4b x-axis is labelled "r[11] (Å⁻¹)"; it should be Å.
+- The text refers to "Fig. 4c, top panel", but Fig. 4c has one panel.
+- Fig. 1 caption: "δ = a√(2)".
+- Supp. VI A writes d_k: S¹ → ℝ∖{0}; this should be ℝ²∖{0}.
+
+19. Section references: "Supplementary Fig. VI J" should be Supplementary Section VI J / Fig. 13.
+
+20. Typos and units:
+- "2 amt" should be atm.
+- "hν = 40˘200 eV".
+- k_F = −0.4605 Å should be Å⁻¹.
+
+21. V = 0.153 meV cannot produce a 24 meV gap; the units are presumably eV.
+
+22. The Data Availability section is empty.
+
+23. Fig. 2b uses different fields (5 Oe vs 2 Oe) and an unnormalized χ. Show normalized susceptibility and state the onset Tc values.
+
+24. Verify the priority claim ("first momentum-resolved") against any prior ARPES or nano-ARPES on cuprate edges or vicinal surfaces.
+
+### 4. Suggestions for improvement
+
+1. **Run the decisive controls.** Measure a naturally cleaved (001) surface of the same x = 0.22 crystal under identical conditions. Run a bulk-only, k_z-broadened simulation. Together these establish whether any gap or surface-state contrast is detectable in this geometry before disorder is invoked.
+2. **Re-anchor the model to measured quantities.** Use the measured gap and the nodal MDC-derived scattering rate rather than a tuned 24 meV gap and an assumed 100 meV σ. Present the predicted topological-sector signal as a function of Δ, σ and probing depth, overlaid with the experimental upper bound. This turns the null result into a quantitative constraint on parameter space.
+3. **Exploit the k_z dependence.** Compare the full hν-dependent E_F map in the topological and trivial sectors with Fig. 4a. Include the bulk van Hove contribution in the background.
+4. **Characterize the fracture surface in situ.** Use LEED, core levels, and nodal linewidth comparison with (001), and correlate the AFM map with the ARPES spot. Then explicitly weigh three scenarios against the data: bulk disorder, atomic-scale roughness, and a degraded near-surface layer.

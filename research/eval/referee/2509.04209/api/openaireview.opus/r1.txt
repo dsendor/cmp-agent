@@ -1,0 +1,127 @@
+```json
+{
+  "overall_feedback": "The paper presents a well-engineered, fully gate-defined bilayer graphene antidot. It reports a broad dataset of oscillations in both integer and fractional quantum Hall states across two devices and several fields. The integer-regime characterization is careful: periods, Coulomb diamonds, and diameter estimates are internally reasonable. The supplementary material is unusually complete. My main concern is the logic of the fractional-charge extraction.\n\n- **Charge estimates are not independent.** The authors themselves show that the oscillation slope ΔV/ΔB equals ν (Eq. 2). Given that, both the 'charge equation' (Eq. 1) and the 'cross-check' ΔV/ΔV_e reduce algebraically to ν/N, where N comes from field-period ratios to ν=2.\n- **The reference and fractional data were taken at very different bottom-gate voltages.** The supplement says the bottom gate mainly controls the AD potential, so the constant-area assumption underlying N and ΔV/ΔV_e cannot be taken for granted.\n- **The argument against N=2 at ν=4/3 does not hold numerically.** N=2 would give an inferred diameter (≈420–430 nm) that is still below the quoted ≈450 nm side-gate separation, so this argument does not exclude it.\n- **The 8/3 evidence for e/3 is not distinguished from a harmonic.** The small-period oscillation sits at exactly twice the frequency of the dominant one along the same slope, which is also what a second harmonic would look like.\n- **ν=4/3 may not be Coulomb-dominated.** The supplement suggests the bias dependence at ν=4/3 looks Aharonov–Bohm-like, undercutting the Coulomb-dominated framework used for that key state.\n- **The 'first e/3 in graphene' claim is questionable.** Prior graphene antidot work, cited here as [37], also localized fractional quasiparticles.\n- **Internal inconsistencies.** These include a claim that bottom-gate data give charges ~5% below e, while Fig. S10b shows values above 1. There is also an apparent mismatch between Fig. 2g and Fig. S6 gate periods, and several figure/color cross-reference errors.\n\nThe experimental platform is valuable. However, the fractional-charge conclusions need either independent constraints on N and area (e.g., reference integer data at the same bottom-gate voltage, a harmonic analysis, or shot noise) or more cautious wording.",
+  "comments": [
+    {
+      "title": "Eq. 1 and the ΔV/ΔV_e 'cross-check' are algebraically the same quantity, both fixed by ν/N",
+      "quote": "This is why it is essential to compare the value obtained from the charge equation with the ratio ∆V /∆Ve, which provides a cross-check for the correct charge determination.",
+      "explanation": "I appreciate that the authors recognize Eq. 2: once the slope satisfies CΦ0ΔV/(eΔB)=ν, Eq. 1 returns ν/N regardless of any tunneling physics. However, the proposed cross-check is not independent. With ΔV_e taken at ν=2 (N=2), the slope relation gives ΔV_e = 2eΔB_2/(CΦ0) and ΔV = νeΔB/(CΦ0). Hence ΔV/ΔV_e = νΔB/(2ΔB_2) = ν/N, with N defined exactly as in Fig. 4b (N = 2ΔB_2/ΔB). So whenever Fig. 5 holds, Figs. 4d and 4e must agree identically. Their agreement therefore says nothing about whether the charge is correct. The only real information is the field-period ratio, i.e., the assignment of N. Every reported charge (3/5 at ν=3/5, 2/3 at ν=2/3, 1/3 at ν=4/3, 5/3, small 8/3) is equivalent to the statement N≈ν/q. The paper's central claim therefore rests entirely on how N is determined, which is the weakest link (see following comments).",
+      "type": "logical",
+      "severity": "major",
+      "suggested_fix": "State explicitly that, given the slope relation of Fig. 5, Figs. 4d and 4e are equivalent to ν/N with N=2ΔB_2/ΔB. Present the charge as hinging on the N assignment, and add an N-independent constraint such as integer reference oscillations taken at the same V_bg and Vtg window as each fractional state."
+    },
+    {
+      "title": "Constant-area assumption across filling factors conflicts with large bottom-gate voltage differences",
+      "quote": "Assuming a constant area across different filling factors, the relation ∆Vν/∆Vν′ = qν/qν′ holds",
+      "explanation": "Both N (from 2ΔB_2/ΔB) and ΔV/ΔV_e rely on the AD area being the same for the ν=2 reference and for each fractional state. In Supp. Sec. G the authors state that 'the AD potential is mainly controlled by the BG.' Yet the ν=2 reference at 13.5 T was taken at V_bg = −3 V (Fig. S7), while ν=4/3 and ν=5/3 were taken at V_bg ≈ 0.39–0.5 V, and ν=2/3 at V_bg = −0.08 V. The authors also note the side-gate pinching depends strongly on V_bg (Fig. S5). The slope test of Fig. 5 only probes area changes *within* one scan as Vtg is swept. It cannot detect a different area between scans at different V_bg. The ν=4 discrepancy, which the authors attribute to area variation, shows this effect is not negligible. A ~15–20% area difference would shift N and q by the same amount, enough to blur 1/3 versus 2/5 or similar assignments.",
+      "type": "logical",
+      "severity": "major",
+      "suggested_fix": "Measure an integer reference oscillation (e.g., ν=1 or 2) at the same V_bg used for each fractional state, adjusting only Vtg. Alternatively, report how ΔB at fixed ν varies with V_bg, and propagate that area uncertainty into N and q."
+    },
+    {
+      "title": "Clustering of D_AD ≈ 300 nm is not an independent validation of N",
+      "quote": "All diameters are found to cluster around the same value DAD ≃ 300 nm, consistent with the correctly estimation of N.",
+      "explanation": "N is defined as 2ΔB_2/ΔB, i.e., by forcing ΔB·N to equal ΔB·N at ν=2. The diameter D = 2√(Φ0/(πΔBN)) is then guaranteed to equal the ν=2 diameter up to rounding N to an integer. The clustering of Fig. 4c is therefore a restatement of the rounding residuals of Fig. 4b, not a consistency check. This is circular reasoning presented as confirmation.",
+      "type": "logical",
+      "severity": "moderate",
+      "suggested_fix": "Describe Fig. 4c as showing the residual from integer rounding of N, and test the area using a quantity independent of the ν=2 reference, e.g., the ν=1 field period taken at the same V_bg as each fractional state."
+    },
+    {
+      "title": "Diameter argument against N=2 at ν=4/3 does not hold numerically",
+      "quote": "imply 2 edges for ν = 4/3, leading to an estimated AD diameter far larger than lithographic size between the two side gates (∼ 450 nm).",
+      "explanation": "This is the key argument for choosing N=4, which sets q=e/3, over N=2, which would give q=2e/3. Using the reported ΔB ≈ 14–15 mT at 13.5 T (Figs. S15e,f) and N=2, D = 2√(Φ0/(πΔBN)) gives ≈420–435 nm. With the 8 T values (ΔB ≈ 18–21 mT) it gives ≈350–380 nm. These values are below, not 'far larger' than, the ~450 nm side-gate separation. They are also comparable to the D≈340 nm found for ν=−2 and ν=4 in Fig. 4c. The exclusion of N=2 is therefore not established by this argument. A microscopic rationale for N=4 is also not given. Since N=ν/(q/e) by construction, asserting N=4 is equivalent to asserting q=e/3.",
+      "type": "technical",
+      "severity": "major",
+      "suggested_fix": "Report the explicit D values for N=2 and N=4 at ν=4/3 and 5/3 with uncertainties. Either add an independent argument, e.g., a predicted N for the Coulomb-dominated regime from Halperin–Stern–Rosenow-type theory for higher-LL fractions, or weaken the e/3 conclusion accordingly."
+    },
+    {
+      "title": "Small-period ν=8/3 oscillation is not distinguished from a second harmonic",
+      "quote": "We interpret this as evidence that at ν = 8/3 the fundamental quasiparticles carry charge e/3, and that this charge should, in principle, be observable.",
+      "explanation": "In Fig. S18c the secondary FFT peak (ΔV≈1.3 mV, ΔB≈7 mT) lies at almost exactly twice the frequency of the main peak (ΔV≈2.3 mV, ΔB≈14 mT), along the same direction in (f_tg, f_B) space. This is precisely the signature of a second harmonic of a non-sinusoidal periodic signal, such as sharp resonance dips. Harmonics are generic in Coulomb-blockade lineshapes. The authors' even/odd-amplitude scenario and a simple harmonic make the same FFT prediction. Only the former implies e/3, and no analysis distinguishing them is provided, e.g., lineshape, temperature or bias dependence of the relative amplitude, or real-space alternation of dip depths. The period is also near the stated field-resolution limit.",
+      "type": "logical",
+      "severity": "moderate",
+      "suggested_fix": "Fit the real-space traces in the regions with the small period to a model with alternating peak amplitudes versus a single-period non-sinusoidal lineshape, and compare the harmonic amplitude ratio with that seen at ν=2/3 and ν=5/3. Present e/3 at 8/3 as tentative unless the harmonic explanation is excluded."
+    },
+    {
+      "title": "ν=4/3 bias dependence suggests a non-Coulomb-dominated mechanism, undermining the charge formula there",
+      "quote": "This behavior suggests a phase shift in the oscillation pattern, which is consistent with an Aharonov–Bohm–like mechanism rather than a purely Coulomb-dominated regime.",
+      "explanation": "The gate-period relation ΔV = q/(CA) and its interpretation as a tunneling charge assume Coulomb-dominated charging of the AD, as stated in the abstract and main text. In the supplement, however, the authors report that the oscillation at ν=4/3 is more consistent with an AB-like mechanism. ν=4/3 is one of the headline e/3 states. In an AB-dominated regime the gate period reflects the gate-induced area/phase change rather than one quasiparticle charge per period, so Eq. 1 would not apply in the same way. The main text presents ν=4/3 (and Fig. 3g) without this caveat.",
+      "type": "logical",
+      "severity": "moderate",
+      "suggested_fix": "Move this caveat into the main text next to the ν=4/3 result. State that the e/3 assignment at ν=4/3 holds only if the Coulomb-dominated interpretation applies, and give the regime classification (Coulomb diamond vs. inverted) for each fractional dataset."
+    },
+    {
+      "title": "'First measurement of e/3 in graphene' overstates novelty",
+      "quote": "Moreover, we report the first measurement of the e/3 fractional charge in a graphene-based device.",
+      "explanation": "The paper itself cites Mills, Averin & Du, PRL 125, 227701 (2020) [37], which used graphene quantum Hall antidots to localize fractional quasiparticles and extracted their charge from period analysis. There are also shot-noise studies of fractional edges in graphene. The present work may be the first in a gate-defined bilayer antidot or in higher-LL bilayer states. A blanket 'first in a graphene-based device' claim is not supported, especially given the dependence on the N assignment discussed above.",
+      "type": "logical",
+      "severity": "moderate",
+      "suggested_fix": "Narrow the claim to e.g. 'the first antidot-based measurement of e/3 charge in fractional states of bilayer graphene above ν=1', and explicitly contrast with Ref. [37]."
+    },
+    {
+      "title": "Bottom-gate charge 'about 5% less than e' contradicts Fig. S10b",
+      "quote": "To confirm this theory, we performed oscillations using only BG (section F) that show an estimate of the tunneling charge of about 5% less than the electron charge.",
+      "explanation": "Fig. S10b shows the BG-extracted charges for ν=1, 2, 3 at ≈1.05, ≈1.05 and ≈1.15, all above 1. Recomputing from Fig. S9e for ν=2 (C_bg=605 µF/m², ΔV=4 mV, ΔB=30 mT, N=2) gives q/e ≈ 1.04. The BG data therefore do not show the claimed deficit. They reproduce the same ~5% excess as the TG data, so they do not confirm the proposed TG-specific explanation of the excess.",
+      "type": "technical",
+      "severity": "moderate",
+      "suggested_fix": "Correct the statement to reflect Fig. S10b (BG charges ≈5% above e). Revise the explanation of the excess, e.g., attribute it to a common systematic such as capacitance calibration or area–density coupling affecting both gates."
+    },
+    {
+      "title": "'Nine times larger period' does not imply a 5% correction",
+      "quote": "This suggests that the energy levels of the AD-bound states shift up by at least one level every nine electron jumps, which is consistent with a 5% overestimation of the electron charge using only the TG voltage.",
+      "explanation": "If the TG also produces one additional level shift every ~9 density periods, the naive correction would be ~1/9 ≈ 11%, not 5%. The step from the area-oscillation period (39 mV, taken along a combined TG/BG constant-density line) to a correction for pure-TG sweeps is not derived. It also depends on the lever arms of both gates on the AD potential, which are not given.",
+      "type": "technical",
+      "severity": "minor",
+      "suggested_fix": "Derive the correction explicitly: write ΔV_TG^{-1} = (C_tg A/q) + (∂N_AD/∂V_tg)|_area, estimate the second term from the 39 mV area period scaled by the TG lever arm, and show it yields ≈5%."
+    },
+    {
+      "title": "Gate periods in Fig. 2g seem inconsistent with FFT values in Fig. S6 and with the stated trend",
+      "quote": "Figure 2g reports the periods for each filling factor. Notably, ∆V slightly decreases with increasing filling factor due to the increasing number of edge states encircling it [33].",
+      "explanation": "The ΔB values in Fig. 2g match the Fig. S6e–h annotations (≈59, 28, 18, 10 mT). The ΔV values do not appear to match: Fig. 2g shows roughly 5.7, 4.9, 5.4, 4.0 mV for ν=1–4, whereas Fig. S6 annotates ≈5, 5.3, 5, 3.6 mV. Using the S6 numbers with C=451 µF/m² gives q/e ≈ 0.99, 1.10, 1.08, 1.05, which differ from Fig. 2h for ν=1 and ν=2. In addition, ΔV in Fig. 2g is non-monotonic (ν=3 > ν=2), so 'slightly decreases with increasing filling factor' is not what the plotted data show.",
+      "type": "technical",
+      "severity": "moderate",
+      "suggested_fix": "Reconcile the ΔV values between Fig. 2g and Fig. S6, e.g., by stating which scan each comes from. Recompute Fig. 2h accordingly and replace the monotonic-trend statement with a description matching the data."
+    },
+    {
+      "title": "Single-particle level-spacing explanation contradicts 'Coulomb-dominated' framing; fractional scaling argument is questionable",
+      "quote": "This estimated energy gap aligns well with experimental observations without the need for electron-electron interactions.",
+      "explanation": "The paper frames the device as operating in the Coulomb-dominated regime, and the h/(Ne) field periodicity at ν=2 is conventionally explained by Coulomb charging of compressible rings (Kataoka et al.). Yet the supplement says the measured excitation energies are explained by bare single-particle spacing 2ħv/D with an assumed v=10^5 m/s. If interactions are unnecessary, the basis for the Coulomb-dominated classification, and thus for ΔV=q/(CA), needs restating. Relatedly, Supp. Sec. I claims the spacing scales as δϵ∼−1/(e*B), so that smaller e* increases it. A charging energy scales as e*²/C and would decrease for smaller e*. The negative sign is also unexplained. The main text uses δϵ∼ħv/D_AD while the supplement uses 2ħv/D_AD, a factor-of-2 inconsistency.",
+      "type": "technical",
+      "severity": "moderate",
+      "suggested_fix": "Separate the single-particle spacing (2ħv/D, used consistently) from the charging energy e*²/C_AD, and state which dominates and how the regime was established. Remove or justify the δϵ∼−1/(e*B) scaling."
+    },
+    {
+      "title": "Mis-attributed citation for ν=3/5 Fano factor",
+      "quote": "However, shot noise measurements have similarly shown that at low temperatures the measured Fano factor is closer to 3/5, while at higher temperatures it approaches the expected value of e/5 [17].",
+      "explanation": "Ref. [17] is Banerjee et al., 'Observation of half-integer thermal Hall conductance' (Nature 2018), a thermal-conductance measurement at ν=5/2. It does not report temperature-dependent shot-noise Fano factors at ν=3/5. This claim supports the interpretation of the anomalous q=3/5 result, so the correct source matters.",
+      "type": "technical",
+      "severity": "minor",
+      "suggested_fix": "Replace [17] with the shot-noise work that reports this temperature dependence at ν=3/5 (e.g., Chung, Heiblum et al., PRL 91, 216804 (2003), or Ref. [48]), and verify the stated temperature trends."
+    },
+    {
+      "title": "Fig. 5b ±10% criterion is weak given the error bars",
+      "quote": "Most of the data points (in particular the points taken for AD #2 at B = 13.5 T used for the fractional oscillations) lie inside the ±10% interval",
+      "explanation": "Many error bars in Fig. 5b span roughly ±30–50%. Falling inside a ±10% band is then not strong evidence that area changes are small, because the data are also consistent with deviations several times larger. As noted above, the test is also intrinsically within-scan and cannot address area differences between scans.",
+      "type": "logical",
+      "severity": "minor",
+      "suggested_fix": "Report the weighted mean deviation and its uncertainty (or χ²) for the fractional points. State the resulting upper bound on δA/A per gate period rather than relying on visual inclusion in the ±10% band."
+    },
+    {
+      "title": "Effective AD diameter estimate is underspecified",
+      "quote": "Using a top hBN thickness of approximately 50 nm, we estimate the effective AD diameter to be around ∼ 300 nm.",
+      "explanation": "The ~300 nm figure later appears as a consistency target in Fig. 4c, but no method is given (electrostatic simulation, fringe-field rule of thumb, etc.). The two devices also have different top hBN thicknesses (56 nm vs 45 nm per Methods). A 190 nm hole becoming ~300 nm is plausible, but the estimate cannot be reproduced as stated.",
+      "type": "technical",
+      "severity": "minor",
+      "suggested_fix": "State the procedure, e.g., D_eff ≈ D_litho + 2·k·t_hBN with the chosen k, or a COMSOL/Thomas–Fermi simulation including both gate voltages. Give separate values for AD #1 (56 nm) and AD #2 (45 nm)."
+    },
+    {
+      "title": "Figure cross-reference and color/device mislabels",
+      "quote": "Figure 2g shows the diagonal conductance oscillations as a function of the TG voltage and the dc bias for the inner mode of ν = 2.",
+      "explanation": "Several cross-references could mislead readers:\n- The Coulomb-diamond panel is Fig. 2f, not 2g.\n- The main text says 'gate periods (red) and field periods (blue)' for Fig. 4a, but the caption and axis colors indicate ΔV in blue and ΔB in red.\n- The Fig. 4d caption describes ΔV_e/ΔV, while the axis and text use ΔV/ΔV_e.\n- Supp. Sec. F says the fractional BG oscillations were measured on AD #1, but the Fig. S9 caption says AD #2.\n- The Fig. S7 caption says 'BG voltage' while the axes and text use the TG voltage.",
+      "type": "technical",
+      "severity": "minor",
+      "suggested_fix": "Change 'Figure 2g' to 'Figure 2f'. Swap the colors in the Fig. 4a text to 'gate periods (blue) and field periods (red)'. Make the Fig. 4d caption read 'ratio of the gate period at each filling factor to ΔV_e'. Correct 'AD #1' to 'AD #2' in Sec. F and 'BG' to 'TG' in the Fig. S7 caption."
+    }
+  ]
+}
+```

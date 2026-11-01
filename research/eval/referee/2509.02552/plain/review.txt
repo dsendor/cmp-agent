@@ -1,0 +1,109 @@
+Referee report
+
+Manuscript: "Interaction-limited conductivity of twisted bilayer graphene revealed by giant terahertz photoresistance" (arXiv:2509.02552v1)
+
+1. Summary of the submission
+
+The authors illuminate hBN-encapsulated twisted bilayer graphene (TBG) Hall bars with a CW 0.14 THz source at a lattice temperature T_L = 2 K and measure the change in longitudinal resistivity, Delta rho_THz, with a double-modulation lock-in scheme. They report:
+
+(a) Positive Delta rho_THz at all fillings away from the CNP, nu = +-4 and (in magic-angle devices) nu ~ 2, where it is negative. The relative change reaches 70% in magic-angle devices, including at fillings where the equilibrium rho(T) is linear in T (e.g. nu = 1.7 in MATBG1, d rho/dT = 92 Ohm/K).
+(b) A monolayer graphene (MLG) control device shows negligible Delta rho_THz at B = 0, which they take as evidence that hot-electron phonon emission is negligible.
+(c) From (a) and (b) they conclude that electron-electron (e-e) interactions, not electron-phonon (e-ph) scattering, dominate the temperature-dependent resistivity of TBG, including the linear-in-T regime near the magic angle.
+(d) In a 1.58 deg device, rho - rho_0 scales as T^2 between roughly 10 K and 100 K at nu = +-0.1 and +-3.8, fillings they argue lie outside the kinematic window for moire umklapp and where electron-hole scattering is suppressed.
+(e) They propose that the T^2 term comes from momentum-conserving "interpocket" e-e collisions in a non-Galilean-invariant, trigonally warped Dirac spectrum, following Sharma, Principi and Maslov. Eq. (1) gives a prefactor A ~ 0.005 to 0.5 Ohm/K^2 for Lambda = 0.01 to 1, against a measured value of order 0.1 Ohm/K^2.
+
+The question matters. Whether the linear-in-T and T^2 resistivity of TBG comes from phonons or from electrons is one of the main open problems in moire transport. A probe that heats the electrons while leaving the lattice cold is a natural and attractive way to attack it. The devices look clean (metallic down to about 1e11 cm^-2), the photoresistance signals are large and reproducible across several twist angles, and the double-modulation scheme is a sensible way to isolate a resistive response. I think the experiment could become an important paper. As written, though, the central inferences go beyond what the data show. The most important gap is that the paper never compares the photoresistance quantitatively with an independently measured electron temperature, so it cannot actually separate e-e from e-ph contributions, which is the claim in the abstract. I recommend major revision.
+
+2. Major issues
+
+2.1 The key step, "rho rises with T_e at fixed T_L, therefore e-e scattering limits the conductivity", is not established quantitatively, and the T_e calibration appears partly circular.
+
+The abstract promises "a direct separation of electron-electron and electron-phonon contributions to resistivity". What the paper shows is that Delta rho_THz is positive and grows with power. For a separation, the authors would need to measure, at each filling, how much of the equilibrium d rho/dT is reproduced when only T_e is raised. That means comparing Delta rho_THz(nu, P) with rho_eq(T = T_e(nu, P)) - rho_eq(T_L), using an independently determined T_e. If the full T dependence were electronic, the ratio would be 1. If it were entirely phononic, it would be 0.
+
+The text says T_e is estimated "from the comparison of Delta rho_THz with standard transport rho(T) measurements and the analysis of the THz-induced damping of SdHO". The first of these assumes the very conclusion being tested, namely that rho depends on T_e the same way it depends on T in equilibrium. Only the SdHO analysis is an independent thermometer. The authors should:
+- report T_e(P) for each TBG device from an independent method (SdHO damping in that same device and at comparable density, or better, Johnson noise thermometry, which is standard for hot-electron graphene work and works at B = 0 and at the densities of interest);
+- show how T_e depends on filling, since absorption (set by Re sigma), electronic heat capacity (large in the flat bands) and cooling power all vary strongly with nu;
+- plot Delta rho_THz against T_e rather than against P (Fig. 2d). The saturation in Fig. 2d may just reflect sublinear T_e(P) from strongly T_e-dependent cooling, not anything about the scattering;
+- give the ratio f(nu) = Delta rho_THz / [rho_eq(T_e) - rho_eq(T_L)] with error bars, for the magic-angle devices at the linear-in-T fillings and for the 1.58 deg device at nu = +-0.1 and +-3.8.
+
+Without f(nu), "electronic interactions dominate" is not supported. A positive Delta rho_THz only shows that some T_e-dependent contribution exists.
+
+2.2 A consistency check on the magic-angle numbers.
+
+My reading of Figs. 2b and 2c may be off, but they seem to be in tension with the stated T_e. For MATBG1 at nu = 1.7, Fig. 2c gives rho ~ 6 kOhm near 2 K and d rho/dT = 92 Ohm/K. If T_e rises by at most 15 K and the whole T dependence is electronic, Delta rho_THz at that filling cannot be much larger than about 1.4 kOhm. Fig. 2b seems to show Delta rho_THz of roughly 2.5 kOhm near nu ~ 1.7 at P_max. A 70% change on a 6 kOhm background would need an equivalent temperature rise of about 45 K. If the 70% figure comes from a different filling or device, please say which, and give the matching rho(T). If Delta rho_THz really exceeds rho_eq(T_L + Delta T_e) - rho_eq(T_L), then something besides a thermal electron distribution is contributing. Candidates include lattice or substrate heating, a non-thermal distribution, field-driven nonlinearity, or suppression of superconducting or correlated fluctuations (see 2.5). In that case the core argument has to be revisited. Either way, the paper needs a table of Delta rho_THz, rho(2 K), d rho/dT and T_e at the specific fillings used for the headline claims.
+
+2.3 Other T_e-dependent mechanisms that are not current relaxation by e-e collisions.
+
+A resistivity that depends on T_e alone is not automatically "interaction-limited conductivity". In TBG at low density, the Fermi temperature is tens to a few hundred K and the density of states changes sharply (van Hove singularities, flat bands). Under those conditions the following all produce a T_e dependence at fixed T_L:
+- Thermal smearing combined with an energy-dependent elastic (disorder) scattering time and velocity. The authors themselves attribute the negative Delta rho_THz at the CNP and at nu = +-4 to smearing of the distribution. The same smearing, acting on an energy-dependent tau(epsilon) in a band with strong DOS structure, can give positive Delta rho_THz at finite doping without any e-e current relaxation.
+- Temperature-dependent screening of charged impurities. This gives a resistivity linear in T at T ~ T_F in 2D and is well documented in low-density 2D systems.
+- Quantum corrections (weak localization, interaction corrections). These are probably small compared with kOhm changes, but they should be estimated.
+The MLG control does not rule out these effects for TBG, because MLG at the densities used has a much larger Fermi temperature and featureless bands. The authors should estimate each mechanism for their parameters, or show data that separates them, for example the density dependence of the ratio in 2.1, or a comparison of Delta rho_THz(nu) with d rho/dT(nu) across the whole filling range. The abstract, title and conclusion should be worded to match what the data can distinguish.
+
+2.4 The MLG control does not demonstrate that hot-electron e-ph contributions are negligible in TBG.
+
+The argument is that MLG, whose resistivity is phonon-limited, shows vanishingly small Delta rho_THz, so phonon emission by hot electrons is negligible. I see three problems.
+(i) At T_L = 2 K and T_e up to ~17 K, doped MLG is deep in the Bloch-Gruneisen regime, where the phonon-limited resistivity is tiny whatever happens. In equilibrium, its rho(T) barely changes between 2 and 20 K. So a null Delta rho_THz in MLG is expected under every hypothesis and does not discriminate.
+(ii) The e-ph coupling relevant to transport is strongly enhanced in small-angle TBG. That enhancement is the basis of the phonon explanations of linear-in-T (refs. 17 to 25), and it is also why the authors cite enhanced e-ph cooling in TBG (ref. 34). Whatever holds for MLG cannot simply be carried over.
+(iii) T_e in the MLG device is not reported. MLG cools more slowly, so it should heat more, but its absorption and coupling geometry may differ.
+To make this argument, the authors should calculate the hot-electron, cold-phonon e-ph resistivity for TBG, using the same e-ph models that produce the reported linear-in-T slopes, at the relevant T_BG, which is about 20 K at nu = 0.1 in the 1.58 deg device and tens of K at nu ~ 1.7 near the magic angle. They should compare that with the measured Delta rho_THz. They should also report T_e in the MLG device from the SdHO data they already show in Fig. 2f.
+
+2.5 Lattice heating and proximity to correlated and superconducting phases in the magic-angle devices.
+
+The power modulation is at 44.4 Hz, slow enough that bolometric heating of the hBN, substrate and sample stage would follow it. A small rise in T_L would directly produce a positive Delta rho wherever d rho/dT > 0, so it would mimic the claimed signal exactly. Please quantify lattice heating independently. Possible approaches: the dependence on modulation frequency up to the kHz range, a resistive thermometer on the chip, or a filling or field where rho depends on T_L but is insensitive to T_e.
+
+Separately, at T_L = 2 K, MATBG near nu ~ +-2 +- delta sits close to its superconducting and correlated phases. Electron heating that suppresses superconducting fluctuations (paraconductivity) would give a large positive Delta rho that has nothing to do with normal-state e-e scattering. Please show rho(T) down to base temperature at the fillings where Delta rho_THz is largest, and comment on fluctuation contributions.
+
+2.6 The THz probe and the T^2 analysis cover different temperature windows.
+
+The anomalous T^2 in the 1.58 deg device (Figs. 3b, 3c) is fitted between about 10 K and 100 K. The THz experiment explores T_e between 2 K and about 17 K. So the photoresistance says nothing directly about whether the 10 to 100 K T^2 term is electronic. This matters because:
+- Electron-phonon scattering through the Bloch-Gruneisen crossover (T^4 below T_BG, T above it) can look like an apparent T^2 over about a decade. My estimate is T_BG ~ 20 K at nu = 0.1, using n ~ 1.5e11 cm^-2 and the LA sound velocity, which falls right inside the fitting window. The authors should exclude this explicitly, for example with a two-component fit including a BG e-ph term computed with the TBG coupling, or with the density dependence of the exponent.
+- The upper end of the window reaches T_F/2, as marked on Fig. 3b, where Eq. (1), a low-temperature (T << T_F) result, is not expected to hold. Thermally excited holes are also no longer negligible there (at T = T_F/2, roughly exp(-2) of the electron density), which brings back electron-hole friction and drag. The statement that the system "remains unipolar at all measured T" needs a number.
+- The fitted exponent depends on the choice of rho_0. Please give free-exponent fits, or d ln(rho - rho_0)/d ln T against T, with uncertainties, and show how the exponent and the prefactor A vary continuously with nu across the claimed umklapp thresholds, not only at four selected fillings.
+Most importantly, please show Delta rho_THz for the 1.58 deg device (and the other 1.6 to 3 deg devices) at exactly nu = +-0.1 and +-3.8, together with the ratio defined in 2.1.
+
+2.7 Kinematic thresholds and the distinction from Baber scattering.
+
+- The umklapp windows are given as -3.5 < nu < 0.5 (hole-side band) and 0.45 < nu < 3.45 (electron-side band). The hole-side window crossing into positive nu looks like a sign error (it should presumably be -3.5 < nu < -0.5). Please correct this and give the derivation of the thresholds k_F > g/(4 sqrt3) and k_F > g/4 for the actual, trigonally warped, possibly multiply connected Fermi contours, not for circles. Near the thresholds, warping can shift the onset considerably, and at finite T umklapp switches on gradually rather than sharply.
+- The abstract says Baber inter-band scattering is kinematically forbidden. The proposed mechanism is momentum-conserving scattering between non-equivalent pockets with different velocity-momentum relations, which is essentially a Baber-type (multi-pocket, non-Galilean) mechanism. Please state precisely what is ruled out and what is proposed, so that a reader does not see a contradiction. Please also say which pockets are involved: valley K vs K', or the two layer cones at kappa and kappa'. The abstract says "inter-valley", the text says "interpocket", and the caption of Fig. 3e refers to K and K'.
+- Please cite and discuss the known result that in 2D, normal e-e collisions on a single convex Fermi contour give only a T^4 ln T (not T^2) current relaxation rate. This is the reason multiple pockets are needed, and it would make the argument clearer.
+
+2.8 The theoretical estimate does not yet constrain the mechanism.
+
+- Lambda spans two orders of magnitude between the two screening models, and the "best correspondence" Lambda ~ 0.2 to 0.3 is chosen after the fact. Agreement with a single measured number inside a range of 100 is weak evidence. Eq. (1) makes a falsifiable prediction for how A depends on density and twist angle. With (k_F a)^2 proportional to n a^2 and alpha_e^2 proportional to 1/v_F^2, A is roughly proportional to a^2 Lambda(n) / v_F^4. The authors have devices from 1.58 to 3 deg and continuous density sweeps, so they should compare A(nu, theta) with this scaling. That would be far more convincing than a single order-of-magnitude match.
+- The two interaction models are not treated consistently. The Thomas-Fermi model uses alpha_e with the vacuum permittivity epsilon_0, while the gate-screened model includes the hBN dielectric constants. With epsilon_0, alpha_e ~ 5 to 6 at v_F ~ 3.5 to 4.5e5 m/s. That is a strong-coupling value, and a calculation that is effectively perturbative in the interaction (Born-level collision integral, Thomas-Fermi screening) becomes questionable there. Please include the hBN screening in both models and comment on the validity at alpha_e of order 1.
+- With degeneracy g = 4, I find k_TF = e^2 D(E_F)/(2 epsilon_0) = 4 alpha_e k_F, not 8 alpha_e k_F. Please check this factor of 2.
+- The warping scale is taken to be the moire period, with Delta v ~ v_F k_F a and a coefficient of order 1. At nu = 0.1 in the 1.58 deg device, I estimate k_F a ~ 0.6, so the expansion parameter is not small. Please extract the warping coefficient from a continuum-model band structure at 1.58 deg and give the values of v_F, n, k_F a and alpha_e used to obtain A = 0.005 to 0.5 Ohm/K^2. My rough evaluation of Eq. (1) at nu = 0.1 gives a prefactor a few to ten times larger than quoted, depending on v_F. Because A scales as v_F^-4, the parameter choice is important.
+- In Eq. (2), x runs from 0 to 2 and is called a "normalized momentum" k/k_F. It looks like a momentum transfer q/k_F. Please clarify, and give enough of the derivation (in the SI if necessary) for the dc limit to be checked.
+
+2.9 Overstated conclusions.
+
+The conclusion says the findings "unify the anomalous transport of magic-angle devices with the quadratic scaling of higher-angle systems". The proposed mechanism produces T^2. It does not explain the linear-in-T resistivity of MATBG. Even if 2.1 to 2.5 are resolved, the magic-angle result would show that the linear-in-T slope is electronic in origin, not that it shares a mechanism with the higher-angle T^2. Similarly, "often misattributed to e-ph scattering" should be softened until the fraction f(nu) has been measured. The abstract's "possible origin" phrasing is appropriate, and the conclusion should match it.
+
+3. Minor issues
+
+- Figure references are off in several places. "Figure 1a shows exemplary transport data" should be Fig. 1c. "rho exhibits a pronounced increase ... (Fig. 1b)" should be Fig. 1d. Please check all panel references.
+- The symbol d is used both for the channel width in the Delta rho_THz formula and for the hBN thickness in Eq. (6). Please derive or justify the prefactor pi in Delta rho_THz = pi (V_dm/I)(d/l), stating the waveforms of the current and power modulation (sinusoidal or square) and how the lock-in reference was set.
+- State the THz power actually incident on and absorbed by each device, the beam spot size, and the antenna geometry ("broadband triangular" what, a bow-tie antenna?). Also estimate how uniform the heating is along the channel. Given the antenna coupling, T_e may be strongly nonuniform, and the measured Delta rho is an average over that.
+- Estimate omega tau at 0.14 THz to confirm the quasi-static (Drude heating) regime.
+- The claim that TBG has a "relatively small electronic specific heat" needs qualifying for the flat bands, where the density of states, and so C_e, is large. This bears directly on the size of T_e in the magic-angle devices compared with the 2 deg devices.
+- Fig. 2e: the explanation that the signal vanishes at higher T_L "due to more efficient electron cooling" should be supported with T_e(T_L). A decreasing T_e-sensitive fraction of rho would also explain it. The colour scale (1.5 to -6 kOhm) is very asymmetric. Please state the power used.
+- Fig. 2c: state the density and effective-mass inputs behind "consistent with the Planckian bound".
+- Provide a device table: twist angle (and how it was determined), mobility or mean free path, contact geometry, which figures each device appears in, and which devices show the T^2 regime below the umklapp threshold. "All our high-angle devices" should state the number of devices.
+- Twist-angle inhomogeneity in the magic-angle devices should be characterised and its effect on Delta rho_THz(nu) discussed.
+- The statement that the T^2 prefactor is "clearly enhanced" inside the umklapp windows (SI) is important for the argument and should be shown in the main text, as A(nu).
+- Language: "previosuly", "relative weak T-dependence", "lattice remains intact" (presumably "cold"), and "which they attributed" (missing subject, ref. 28). "Dirac-Fermi liquid" and "Dirac-type dispersion" should be used consistently.
+- Ref. 45 and Eq. (1): please state whether Sato and Ishizuka's effective interaction, invoked as confirming the spread in Lambda, was computed for 1.58 deg TBG or for a different system.
+
+4. Requested additions, in order of importance
+
+1. Independent T_e thermometry (Johnson noise or in-situ SdHO) for each TBG device, as a function of P and nu, and the fraction f(nu) = Delta rho_THz / [rho_eq(T_e) - rho_eq(T_L)].
+2. A resolution of the apparent excess of Delta rho_THz over d rho/dT times Delta T_e in MATBG1 (Section 2.2).
+3. Controls for lattice heating (dependence on modulation frequency) and for fluctuation superconductivity near nu ~ 2 in MATBG.
+4. A hot-electron, cold-phonon e-ph calculation for TBG with the relevant coupling and T_BG, replacing the MLG argument or supplementing it.
+5. Photoresistance at the umklapp-free T^2 fillings of the higher-angle devices, and a Bloch-Gruneisen e-ph analysis of the 10 to 100 K data.
+6. A(nu, theta) compared with the scaling predicted by Eq. (1), with the parameter values stated, the k_TF factor checked, and the dielectric screening treated consistently.
+
+5. Recommendation
+
+Major revision. The experiment is creative and the data look high quality. Hot-electron transport is a promising way to address the phonon versus electron debate in TBG. The main claims, however, are that e-e scattering dominates, including in the linear-in-T regime, and that a specific interpocket e-e mechanism produces the umklapp-free T^2. These need the quantitative separation that the method promises but the paper does not yet deliver, together with the controls and consistency checks above. If an independent T_e calibration shows f(nu) close to 1 at the linear-in-T and low-density T^2 fillings, the paper would make a strong and important case.

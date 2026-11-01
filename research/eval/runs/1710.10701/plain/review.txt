@@ -1,0 +1,108 @@
+Referee report: "Quantized Majorana Conductance" (Zhang, Liu, Gazibegovic et al., arXiv:1710.10701)
+
+Context note (outside the review proper)
+I recognize this manuscript. As I recall it, the paper appeared in Nature in 2018 and was retracted in 2021 after an independent investigation found that the published data did not support the claimed quantized plateau. My recollection is that the problems were selective presentation of gate ranges, plus corrections to the raw conductance (series resistance and charge-jump handling) that were not disclosed. Please check the retraction notice for the exact wording. The review below judges the manuscript on what it says. Several of the concerns raised from the text alone turn out to be the ones that mattered.
+
+1. Summary of claims
+
+The authors measure tunnelling conductance in InSb nanowires with a two-facet epitaxial Al shell. In device A they report a zero-bias peak (ZBP) whose height stays near 2e^2/h:
+- across a magnetic field window of 0.75 to 0.92 T (Fig. 1);
+- across a range of tunnel-gate voltage over which the above-gap conductance changes by more than 50% (Fig. 2);
+- across a range of super-gate voltage, ending in splitting, plus an oscillatory splitting regime where the peak height returns to 2e^2/h without overshooting it (Fig. 3).
+
+A second device (B) reproduces a plateau, and its temperature dependence is consistent with thermal averaging of a base-temperature Lorentzian (Fig. 4). A third device (C) shows trivial Andreev bound state (ABS) ZBPs. These are stable against back-gate voltage, unstable against tunnel-gate voltage, and not quantized (Fig. 5). The authors argue that a 2e^2/h plateau that is robust to tunnel coupling, gates and field identifies a Majorana zero mode "uniquely" as far as tunnelling spectroscopy is concerned. They say this "strongly supports" non-Abelian Majorana modes.
+
+The topic matters a great deal. A robust quantized plateau would be the long-sought signature, and the materials progress (hard gap, ballistic Andreev transport in ED Fig. 4) is impressive in its own right. But the central claim is quantitative: a conductance value and its flatness. The manuscript does not yet give the information a reader needs to check that value, or to judge how representative the plateau is. As submitted, I cannot recommend publication. My main concerns follow, roughly in order of importance.
+
+2. Major concerns
+
+2.1 How the conductance is calibrated and what corrections were applied
+This is a two-terminal measurement. The absolute value of dI/dV depends on subtracting series resistance: fridge lines, filters, ohmic contacts, and the lead segment in the nanowire. At 2e^2/h (about 12.9 kOhm), a few kOhm of series resistance moves the zero-bias conductance by tens of percent. Any error in it rescales the plateau value directly. The manuscript never says:
+- whether the plotted conductance is raw or corrected;
+- what series resistance was subtracted for each device and each cooldown, and how it was determined (e.g. from a pinch-off or above-gap fit, or from an independent contact measurement);
+- whether the same value was used across all panels and gate settings;
+- whether the applied bias was corrected for the voltage dropped across the series resistance (this matters for peak widths and for the ~0.2 mV "above-gap" reference point).
+
+Since the headline number is 2e^2/h, this information is essential. The authors should show raw and corrected data side by side for every quantized panel. They should also show how the plateau value depends on the assumed series resistance. If one value of series resistance cannot simultaneously give a 2e^2/h plateau and physically sensible behaviour elsewhere (e.g. the ED Fig. 4 Beenakker relation in device A, and the pinched-off limit), that is an important check.
+
+The text also mentions "minor conductance switches" from charge jumps (Fig. 2a-c, Fig. 3). The authors should state whether any data were shifted, stitched or removed to correct for these.
+
+2.2 Data selection and representativeness
+ED Fig. 7 states that more than 60 devices were made, 11 were measured extensively, and only 2 showed a quantized plateau, while most showed trivial ZBPs like device C. That disclosure is welcome. But it raises the question that decides whether the main claim holds: within devices A and B, how much of parameter space shows the plateau, and how were the plotted gate and field windows chosen?
+
+- Fig. 2a and 2b show a tunnel-gate window that ends in splitting on one side. What happens on the other side, toward more open barriers, and further toward pinch-off? A plateau defined over a chosen window, with the edges of the scan near where the conductance would leave the plateau, is much weaker than one shown over the full accessible range. The authors should show the full tunnel-gate sweep, including the regions where the ZBP is absent or not quantized. They should also state explicitly whether any plotted range is a subset of a larger measured scan.
+- The same applies to the super-gate sweeps in Fig. 3, the field sweep in Fig. 1b, and the device B plateau in Fig. 4b (bounded by hand-drawn dashed lines).
+- In Fig. 3a the tunnel-gate voltage was adjusted while sweeping the super-gate "to keep the transmission roughly constant". This is a compensated, operator-chosen path in two-dimensional gate space. The rule for choosing the compensation must be stated, and the uncompensated two-dimensional map should be shown. Otherwise one cannot exclude that the path itself produces the flatness.
+- Please report how many cooldowns and how many distinct gate configurations of devices A and B were explored, and in what fraction of them a plateau appeared.
+
+A plateau that appears only in narrow, selected windows of 2 out of 11 devices is not, on its face, the "robust against variations in all gate voltages and magnetic field strength" behaviour that the concluding paragraph itself names as the identifying criterion.
+
+2.3 Quantifying "quantized"
+The text uses "close to 2e^2/h", "nearly-quantized" and "remains quantized" without numbers. Please give, for each plateau:
+- the mean zero-bias conductance and its spread over the plateau range;
+- the uncertainty budget: series-resistance uncertainty, lock-in calibration, the reduction of peak height from lock-in excitation and electron temperature, and noise;
+- the plateau width in each control parameter, expressed against a physically meaningful scale (e.g. the change in GN or transmission).
+
+Without this, "quantized" cannot be falsified. A plateau at 0.95 x 2e^2/h with 5% fluctuations means something different from one at 1.00 +/- 0.01.
+
+2.4 Alternative explanations: partially separated ABS / smooth-potential states
+The main argument for a Majorana origin is that the ZBP stays at 2e^2/h while the tunnel barrier changes, unlike device C. But the discriminating test is only as strong as the set of trivial alternatives it rules out. Ref. 31 (Kells et al.) and related work show that a smooth confinement potential can create near-zero-energy trivial states. Such a state is built from two spatially separated Majorana components, and the tunnel probe couples mostly to one of them. For such a state the tunnel probe effectively sees a single Majorana. This can produce:
+- a ZBP that is stable over a wide field range;
+- a height close to 2e^2/h;
+- considerable robustness to the tunnel barrier.
+
+None of this needs a topological bulk. Device C and ED Fig. 5 show only the most local, barrier-bound ABS case, which is the easiest to exclude. The manuscript should:
+- discuss this class of states explicitly;
+- explain which of the observations, if any, rule it out (the absence of visible gap re-opening, acknowledged in the text, means bulk topology is not demonstrated);
+- tone down "uniquely identify". Correlation measurements from both wire ends, or nonlocal conductance showing gap closing and re-opening, would directly address this. At a minimum, the paper should state that local tunnelling alone cannot separate these cases.
+
+2.5 The temperature dependence is not an independent test
+The simulated temperature dependence in Fig. 4e,f and ED Fig. 3 is obtained by convolving the measured 20 mK trace with the derivative of the Fermi function. Agreement with the higher-temperature data shows that the peak broadens thermally, with a fixed intrinsic line shape and no other temperature-dependent physics (e.g. no change in the induced gap or quasiparticle poisoning up to 600 mK). This is useful. But calling it a "simulation with no fitting parameters" and "perfect agreement" overstates what it tests. It says nothing about whether the zero-temperature height is 2e^2/h, because that height is put in by hand. The text itself notes (Fig. 5f) that temperature dependence does not separate Majorana from ABS. Please frame Fig. 4c-f accordingly.
+
+Related points:
+- The electron temperature is assumed to be 20 mK throughout. It should be measured or bounded independently, since the thermal-width argument (FWHM much larger than 3.5 kT) relies on it.
+- The lock-in excitation is given as 8 uV in the Fig. 1 caption and 5 uV in ED Fig. 2. Please state the excitation used for each dataset, and whether the excitation-induced reduction of peak height was accounted for.
+
+2.6 Simulations: parameters vary between figures, and the comparison is qualitative
+The theory parameters change from figure to figure:
+- chemical potential 0.3 meV (Fig. 1d) vs 0.6 meV (Fig. 2f); Zeeman 0.8 meV (Fig. 2f) vs 1 meV (Fig. 3c);
+- barrier parameters 10 nm / 8 meV (Fig. 1d) vs a barrier varying from 175 to 0 nm and from 2.1 meV to 0 (Fig. 2f);
+- wire length 1.0 um (Methods) vs the stated ~1.2 um proximitized length of device A.
+
+The authors acknowledge that gate-to-potential conversion is unknown. Given that, the simulations show that a clean Majorana model can produce similar plots. They do not show that the data require that model. The paper would be stronger with a simulation of the trivial smooth-potential scenario from 2.4 using comparable parameters, showing which features of the data it fails to reproduce.
+
+Please also check the Zeeman conversion. With g = 20, the conventional Zeeman term in the Lutchyn/Oreg Hamiltonian is VZ = g muB B / 2, about 0.58 meV/T. The stated VZ [meV] = 1.2 B [T] corresponds to the full Zeeman splitting g muB B. Please state the convention. It affects whether the simulated topological condition VZ > sqrt(mu^2 + Delta^2) matches the experimental field range.
+
+2.7 Device B: conductance above 2e^2/h and background subtraction
+In Fig. 4b the zero-bias conductance exceeds 2e^2/h once the above-gap conductance exceeds e^2/h. The authors attribute this to a second channel and state that "a rough estimate" of the background shows that the net peak height never exceeds 2e^2/h. This estimate carries much of the weight of the reproducibility claim. It must be described quantitatively: what background model was used, over which bias range, with what uncertainty. Please also show the net height vs tunnel-gate voltage. With a second channel open, the Majorana resonance and the background do not simply add (Ref. 9). A justification for subtracting them is needed.
+
+3. Minor points
+
+- Fig. 2e defines width as the bias where dI/dV = e^2/h, while Fig. 4 uses FWHM. These differ for a Lorentzian on a background. Please use one definition, or give both.
+- Fig. 4c gives Gamma = 13.7 ueV, so FWHM = 2 Gamma, about 27 ueV. That is fine for device B, but the text should say plainly that device A's widths (50 to 100 ueV) and device B's differ by a factor of 2 to 4, and discuss why.
+- The Methods says Gamma was "taken to be roughly equal to half of the FWHM" and then convolved. Please report fitted Gamma with uncertainties instead of a value set by hand.
+- "Above-gap conductance measured at |V| = 0.2 meV": the unit should be mV. More importantly, with an induced gap of about 0.2 meV at zero field, shrinking in field, a reference point at 0.2 mV sits near the coherence peak rather than safely above the gap. Please justify this as a measure of normal-state transmission at 0.8 T, or use a larger bias.
+- The B = 0 "soft gap" in device A is attributed to Andreev reflection at high transmission. ED Fig. 4 tests this nicely for device C via GS = 2 GN^2/(2 - GN)^2. Please show the same quantitative check for device A, since that is the device carrying the main claim.
+- Fig. 3b: "does not cross through it" (the peak height never overshoots 2e^2/h) is an interesting claim. Please quantify it, given the noise and the calibration uncertainty from 2.1.
+- The text gives no gap re-opening signature. It attributes this to weak coupling to bulk states. This is plausible, but it means the topological phase transition is inferred, not observed. Please state this in the abstract-level claims.
+- Typos and wording: "University of California Santa Materials" (affiliation 6); "Schrodinger-Poison"; "Telsa"; "allows to transmit". The Al shell covering "two out of six facets" should also be stated in the Methods with growth details or a reference.
+- Ref. 13 is "under review". Please give an arXiv number.
+
+4. Tone and claims
+
+Several statements go beyond the evidence and should be moderated:
+- "We have recently solved all these dissipation and disorder issues" (p. 3). ED Fig. 7 shows 9 of 11 working devices without a plateau, and the authors suggest a potential dip near the barrier may be device-dependent. "Substantially reduced" is defensible. "Solved all" is not.
+- "Only a stable quantized tunnel-conductance plateau ... can uniquely identify a topological Majorana zero-mode": this is a theoretical position, and see 2.4 against it. Even if it were correct, the data shown do not demonstrate robustness against "all gate voltages".
+- "Strongly supports the existence of non-Abelian Majorana zero-modes ... paving the way for future braiding": non-Abelian statistics are not tested here. "Consistent with" would be accurate.
+
+5. What would change my assessment
+
+1. Full raw datasets for every quantized panel: the entire measured gate and field ranges, uncorrected conductance, and the series-resistance values and method, with plateau values shown as a function of the assumed series resistance.
+2. A quantitative definition of the plateau (mean, spread, uncertainty budget) and a statement of how often it appears across gate space and cooldowns in devices A and B.
+3. The uncompensated two-dimensional super-gate / tunnel-gate map behind Fig. 3a.
+4. An explicit treatment of smooth-potential, partially separated ABS, with either data that exclude them or claims reduced to match.
+5. A quantitative version of the device B background subtraction.
+
+6. Recommendation
+
+Major revision; not acceptable in present form. The materials and device quality are impressive, and the observations of field- and barrier-robust ZBPs near 2e^2/h are interesting. But the claim of a quantized plateau rests on undisclosed calibration choices and on data windows whose selection is not described. The alternative trivial explanations considered are the weakest ones. Until the full data and correction procedures are shown, a reader cannot tell whether the plateau is a property of the device or of the analysis.

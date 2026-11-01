@@ -1,0 +1,70 @@
+Review of arXiv:2607.00683, "Facet-selective ballistic supercurrent in a weak topological insulator" (Rout, Khola et al.)
+
+SUMMARY OF CLAIMS
+
+The authors make planar Josephson junctions on exfoliated ZrTe5 flakes, with Al and NbN leads (both on a 4 nm Pd sticking layer). They report:
+(i) SQUID-like Ic(B) oscillations with Phi0 periodicity for field along b (out of plane). Dynes-Fulton style reconstruction puts the supercurrent in two peaks at the junction edges.
+(ii) A different pattern, with a strong central lobe, for in-plane field along a in the NbN device.
+(iii) An exponential Ic(T), which they read as long-junction ballistic transport.
+(iv) Sharp, triangular lobes, which they read as a sawtooth current-phase relation.
+Transport (Lifshitz peak, SdH) and STM (a 70 meV gap on the a-c cleavage plane, extra LDOS at a step edge) are offered as evidence that the crystal is in the WTI phase. The conclusion is that bulk WTI topology decides which facets carry supercurrent.
+
+The question is good and timely, and three devices with two superconductors and two orientations is more than many papers in this area offer. As written, though, the evidence supports "edge-concentrated supercurrent in ZrTe5 junctions." It does not yet support "facet-selective supercurrent set by WTI topology," and it does not support "ballistic." I give details below, starting with a numerical inconsistency that has to be fixed.
+
+1. NUMERICAL INCONSISTENCY: THE STM CHANNEL WIDTH (must fix)
+
+Page 5 says the step-edge states "extend into the terrace over a spatial width of ≈ 6 µm." This cannot be right:
+- The scale bar of the Fig. 2g map, the measurement this sentence describes, is 5 nm. A feature 6 µm wide could not be seen as a localized edge enhancement in a nanometre-scale STM frame.
+- On page 7 the authors write that the Gaussian half-widths of 0.7 to 1.5 µm from the Js(x) reconstruction "are substantially larger than the conducting channel width observed by STM (Fig. 2g)." With 6 µm for the STM width, the reconstructed peaks would be four to eight times narrower than the STM channel, not "substantially larger." The broadening discussion that follows (bulk penetration, skin effects, Fourier resolution limits) assumes the STM channel is the narrower of the two.
+- Earlier STM work on ZrTe5 step edges (refs. 22, 23) finds edge states that decay over a few nanometres.
+
+The value is almost certainly ≈ 6 nm. Please correct it and check the same number in Supplementary Note 4. The comparison on page 7 is between a nanometre-scale STM width and a micrometre-scale transport width. That is a gap of two to three orders of magnitude, and it should be stated as such. A gap that large also makes "upper bound from finite field range" a heavy explanation to rest on (see point 4).
+
+2. THE BULK IS METALLIC, AND THE PAPER NEEDS TO FACE THAT DIRECTLY
+
+The SdH data (Fig. 2b-d) show a single bulk electron pocket. The Fermi level of these flakes therefore sits in the conduction band, and the bulk conducts. The STM gap was measured on a cleaved crystal in UHV, not on the exfoliated, resist-encapsulated, Pd-contacted flakes used for the junctions. So the 70 meV gap says little about where EF is in the devices.
+
+The argument against bulk supercurrent rests entirely on "the estimated mean free path is too short" (Supplementary Note 2). That number carries the whole argument and belongs in the main text: the SdH frequency, carrier density, mobility, mean free path, and junction lengths L (Table S1), side by side. If the bulk is diffusive but present, a uniform diffusive bulk supercurrent should add a Fraunhofer-like background. The reconstruction should then show a non-zero floor between the peaks. Please quantify the ratio of edge to bulk supercurrent (peak versus inter-peak Js), not only where the peaks sit.
+
+3. THE TEMPERATURE DEPENDENCE DOES NOT ESTABLISH BALLISTIC TRANSPORT
+
+Ic ∝ exp(-2π² kB T/δE) is the long ballistic result. But a long diffusive SNS junction also decays roughly exponentially for kB T well above E_Th, as Ic ∝ (L/L_T)^3 exp(-L/L_T) with L_T = sqrt(ħD/2πkBT) (Dubos et al., PRB 63, 064502 (2001)). Over the narrow window fitted in Fig. 3d ("the high-temperature regime"), the two forms are hard to tell apart. To make the ballistic case:
+- Report the fitted δE for each device and check it against δE ≈ πħv_F/L, using v_F from the SdH-derived kF and the measured L. Also check that δE scales as 1/L across devices.
+- Fit the diffusive form to the same data and compare.
+- Report Ic*Rn and its ratio to Δ and to δE.
+Until then, the third argument in the trivial-channel paragraph ("incompatible with a trivial diffusive transport scenario") and signature (iii) in the Discussion are overstated.
+
+4. INTERPRETING THE INTERFERENCE PATTERN
+
+a) Edge-concentrated supercurrent is not specific to topology. Refs. 39 to 42, which the authors cite, show broad edge supercurrents and edge conduction in Cd3As2 and graphene with no topological origin. Band bending at etched edges is especially likely in ZrTe5, whose EF is very sensitive to strain and processing. The arguments against trivial edges are reproducibility (which trivial edges would also have), field-orientation contrast (see b), and ballistic Ic(T) (see point 3). None of them excludes trivial edges.
+
+b) The field-orientation contrast cuts both ways. For By the authors expected a homogeneous b-c facet, and found two partly merged edge channels, which they call "puzzling." So both field directions show edge-concentrated current. A trivial edge mechanism, or plain geometry (top contacts proximitize the top of the flake most strongly), would predict exactly that. The Bz/By difference may come mostly from different effective areas and aspect ratios (the flake is thin along b) rather than from facet topology. Please give the expected period for each orientation from device dimensions, including London penetration and flux focusing, and compare it with the measured periods.
+
+c) The contact geometry needs explaining. The leads sit on the a-c surface, which the paper says is gapped. How do Cooper pairs reach the conducting a-b (or b-c) side facets? Through the bulk, through lead material wrapping over the flake sidewalls, or through hinges? If the leads cover the sidewalls, edge-enhanced coupling is built in by geometry. SEM or cross-section images of the lead edges would settle this.
+
+d) Pd interlayer. Pd reacts with tellurides. PdTe and PdTe2 are superconductors, and Pd-Te interdiffusion is known to form superconducting phases under contacts on Bi2Te3. Lateral diffusion along the etched flake edges would make the edges, not the topology, the strongly coupled region. Please address this, ideally with a control junction without Pd or with TEM/EDX of the interface.
+
+e) Reconstruction. The Dynes-Fulton method assumes a symmetric (or minimally asymmetric) Js(x), no self-field effects, and a sinusoidal CPR. Point 5 argues the CPR is strongly non-sinusoidal, and a sawtooth CPR changes the Fourier relation between Ic(B) and Js(x). Please state how the reconstruction handles that, or show that the peak positions survive under a sawtooth CPR. Also, ref. 43 (Hui et al., a theory paper on QSH proximity) seems an odd citation for the claim that widths are upper bounds set by finite field range. Supplementary Fig. S7 is the real support; cite the appropriate method reference.
+
+5. SHARP LOBES AND THE CPR
+
+Triangular lobes are suggestive, but they can also come from phase diffusion or premature switching at small Ic (which rounds minima and sharpens maxima in switching-current data), from asymmetric edge channels, or from kinetic inductance of thin NbN leads. A direct CPR measurement (asymmetric SQUID) or Shapiro steps would make this far stronger. At a minimum, show the simulated pattern with the actual reconstructed Js(x) for both CPRs and overlay it on the data, rather than comparing qualitatively with parametrized W.
+
+6. PRIORITY AND FRAMING
+
+"For the first time" and "Josephson coupling in a WTI has not been realized" should be softened or backed up. Earlier proximity and Josephson work on ZrTe5, HfTe5 and Bi4X4 should be discussed explicitly, along with hinge-supercurrent work in WTe2 and Cd3As2 (refs. 28 to 30). In the Discussion, "we demonstrate that bulk topology can be read out directly from the spatial distribution of proximity-induced supercurrent" claims more than points 2 to 4 support.
+
+7. SMALLER ITEMS
+
+- Fig. 1 caption: the panel b text says conducting states lie on "y-z and z-x" facets, but the panel d text says "only y-z surfaces are conducting." Make them consistent.
+- Page 3: "crossover from a hole-type insulating state to an electron-type metallic state upon cooling." The Lifshitz-transition picture in ref. 19 is a temperature-driven band shift (hole-dominated above Tp, electron-dominated below), not an insulator-to-metal transition. Please reword.
+- The −31 meV map energy is said to lie "inside the bulk gap." Give the gap edges relative to EF (not only the 70 meV magnitude) so readers can check this.
+- Main text: give W, L and flake thickness for each device (not only in Table S1), the measured oscillation periods, and the effective areas they imply.
+- Fig. 3d: show the fit range and residuals.
+- Data availability statement is missing.
+
+ASSESSMENT
+
+The experiment is interesting and the data look clean, but the central interpretation is not yet secured. Required: fix the 6 µm STM width (almost certainly 6 nm) and the comparison that depends on it; a quantitative bulk-versus-edge analysis given the metallic bulk; a δE versus v_F/L consistency check together with a diffusive-model comparison; controls or analysis for the contact geometry and the Pd interlayer; and a reconstruction consistent with the non-sinusoidal CPR the paper itself claims. With those, a narrower claim (edge-localized, possibly topological supercurrent in ZrTe5) would be well supported. Major revision.
+
+TL;DR: The paper reports SQUID-like, edge-concentrated supercurrent in ZrTe5 junctions. The clearest error is the STM step-edge width of "≈ 6 µm" (page 5). The Fig. 2g map is in nanometres, and the page 7 claim that the 0.7 to 1.5 µm transport peaks are "substantially larger" than the STM channel only holds if the value is about 6 nm. Beyond that, the bulk is metallic (SdH electron pocket), the exponential Ic(T) does not rule out diffusive transport, and trivial edges, contact geometry and Pd-Te interdiffusion are not excluded. Major revision.

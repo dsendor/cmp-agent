@@ -1,0 +1,157 @@
+{
+  "overall_feedback": "This is an interesting experimental study. The authors make clean FeTe0.55Se0.45 vdW junctions by low-temperature micro-cleaving and restacking, and they collect a rich set of nonreciprocal and dynamical signatures: asymmetric switching currents, hysteretic Fraunhofer patterns, a field-direction-independent voltage feature near 170 uV, and asymmetric half-integer Shapiro steps. The fabrication and STEM characterization are convincing, the arithmetic checks out (eta = 6.3/64.1 = 9.8%, 170 uV corresponds to 82 GHz), and the authors take care to exclude Fiske resonances using two field orientations. The central mechanistic claim is that the JDE originates from coupling between interfacial magnetization and the Josephson current. It is less secure than the abstract ('confirming') suggests. (i) The 'zero-field' diode effect is the field-dependent effect evaluated 8 G away from the symmetry point (eta is antisymmetric about Bx = -8 G), and the authors' own antiferromagnetically coupled model predicts eta = 0 at zero effective field. (ii) An ideal aligned restack of a P4/nmm crystal is centrosymmetric, so the required in-plane polar axis is assumed rather than identified. (iii) Non-magnetic alternatives are not excluded: flux trapping for the hysteresis, the parallel channel behind the 11 G oscillation (a known source of SQUID-type diode effects and effective second harmonics), interference rescaling near the Fraunhofer node, and circuit resonances for the 170 uV feature. (iv) The coupled RCSJ+LLG simulations use parameters re-tuned for each figure, including a change in the direction of the SOC vector alpha. They rely on a theory 'in preparation', and the stated B_M = 2000 G appears inconsistent with an 82 GHz resonance. The data are valuable. The mechanism would be much better supported by a magnet-remanence calibration, a global parameter fit, explicit model equations, and control analyses of the alternatives.",
+  "comments": [
+    {
+      "title": "The 'zero-field' diode effect is the finite-field effect measured 8 G from the symmetry point",
+      "quote": "Consistently, 𝜂𝜂 shows an antisymmetric dependence about 𝐵𝐵x = −8 G",
+      "explanation": "The headline result is a zero-field JDE with eta = 9.8% (Fig. 2a,b). My first reading was that this indicates spontaneous time-reversal breaking. But Fig. 2c,d show <|Ic+|> and <|Ic-|> mirroring each other about Bx = -8 G, with eta antisymmetric about that point. That is the behavior expected from the symmetry Ic+(B0 + d) = Ic-(B0 - d), so eta(Bx = 0) is just eta(B) evaluated at d = +8 G from the true symmetry point. The magnitude of the offset is typical of remanent fields in superconducting vector magnets after field excursions, and of flux trapped in type-II electrodes. Fig. 3a shows that the main-lobe position moves from -6 G to +22 G with sweep direction, so the eta value at nominal Bx = 0 depends on field history. Fig. 2a is stated to follow zero-field cooling, but Fig. 2b (square wave) and Fig. 2c (whose sweep direction is not given) do not specify their history. The authors' own static model (Supplementary Note 3B, m+ = h eta + alpha Gamma eta sin(phi_c)) gives equal and opposite Fraunhofer shifts for the two bias polarities, centered on h_ext = 0, so it predicts eta = 0 at zero total field. A nonzero eta at nominal zero therefore requires an offset field, which could be the magnet remanence, a trapped vortex, or an uncompensated spontaneous moment. The paper does not distinguish between these. The square-wave stability test (Supp. Fig. 1a) shows reproducibility at a fixed state but says nothing about the origin.",
+      "type": "logical",
+      "severity": "major",
+      "suggested_fix": "Calibrate the remanent field at the sample position after the same field history (with a Hall probe, or from the Fraunhofer center of a non-magnetic reference junction), state the field history preceding Figs. 2a-c, and report eta at the corrected zero of total field. Call the effect 'zero-field' only if eta remains finite there."
+    },
+    {
+      "title": "The antiferromagnetically coupled model has m+ = 0 at zero field and cannot produce a zero-field JDE",
+      "quote": "our experimental data are consistent with an antiferromagnetic exchange coupling between the",
+      "explanation": "The main text attributes the zero-field JDE to a finite m+ combined with I2 (Fig. 2e). In the Supplementary model (Eq. S1) with J_ex > 0, the ground state at zero external field has m_t = -m_b, so m+ = 0. More generally, at h_ext = 0 the energy S1 is invariant under (m_t, m_b, phi) -> (-m_t, -m_b, -phi): the anisotropy terms are even, the exchange term is bilinear, and cos(phi - alpha.m+) is even under the combined operation. This operation maps the positive critical state onto the negative one, so Ic+ = Ic- unless the system spontaneously selects a net m+. The current-induced response does not help. Substituting m+ = alpha Gamma eta sin(phi) into Eq. (1) gives I1 sin(phi - Gamma eta |alpha|^2 sin phi), which is approximately I1 sin phi - (I1 Gamma eta |alpha|^2 / 2) sin 2phi and remains odd in phi. The model as written therefore predicts no zero-field diode effect. This contradicts the main-text explanation and sits in tension with the Discussion's conclusion of antiferromagnetic interlayer alignment. One of the two needs an uncompensated moment that is not in the model.",
+      "type": "logical",
+      "severity": "major",
+      "suggested_fix": "Add an explicit uncompensated component m+^(0) to Eq. (S1), for example from unequal top and bottom moments or canting, and show that with the S5 parameters it reproduces eta(Bx = 0) = 9.8% and the -8 G symmetry point. Otherwise, attribute the nominal zero-field eta to the offset field identified in the previous comment."
+    },
+    {
+      "title": "An aligned, native-spacing restack is centrosymmetric, so the claimed interfacial inversion breaking is not established",
+      "quote": "Instead, this effect arises from inversion-symmetry-breaking",
+      "explanation": "The STEM data show that the two flakes are crystallographically aligned, with no rotation, and that the 2.8 Angstrom gap equals the native spacing. In P4/nmm with one layer per c-axis period, the midpoint of the vdW gap is an inversion center. A lateral in-plane translation t of the top flake keeps an inversion center, at the gap midpoint shifted by t/2, because each half-crystal is itself centrosymmetric. An ideal interface of this kind is therefore not inversion-broken, and the main text's statement is asserted rather than shown. In addition, for supercurrent along z and a Rashba polar axis along the interface normal z, the Buzdin-type phi0 coupling, proportional to (n x j).m, vanishes. This is why Supplementary Note 1 has to assume an in-plane polar axis along x. That axis is attributed to chemical-potential mismatch, strain, or device geometry, none of which is characterized. The intuitive main-text explanation, that 'at an interface with Rashba SOC, Cooper pairs acquire an additional geometric phase', therefore glosses over the essential and untested assumption behind Eq. (1).",
+      "type": "logical",
+      "severity": "major",
+      "suggested_fix": "State in the main text that an ideal aligned restack is centrosymmetric and that the model requires an in-plane polar axis along x of unidentified origin. Specify the orientation of x relative to the flake-overlap edges and contacts, and test it, for example by comparing eta in devices whose overlap or contact geometry is mirrored."
+    },
+    {
+      "title": "The hysteretic Fraunhofer pattern does not uniquely indicate interfacial magnetism",
+      "quote": "absent in conventional non-magnetic Josephson junctions",
+      "explanation": "I agree that hysteresis is consistent with a field-history-dependent magnetic state. However, sweep-direction-dependent Fraunhofer shifts of tens of gauss are common in non-magnetic junctions with type-II electrodes because of vortex trapping and pinning in the leads and electrodes. FTS has a low Hc1 and strong pinning, and the field excursions used here (at least to the first node, near 75 G, and possibly beyond) are not specified. Flux trapped in the FTS flakes or near the junction produces exactly this kind of lobe displacement (here from -6 G to +22 G). The statement that hysteresis is 'absent in conventional non-magnetic Josephson junctions' is therefore too strong. Ref. 19 also reports hysteresis, but that does not separate the two mechanisms.",
+      "type": "logical",
+      "severity": "moderate",
+      "suggested_fix": "Report the main-lobe offset as a function of maximum sweep excursion, including minor loops restricted to fields below the estimated vortex-entry field of the flakes, and replace 'absent in conventional non-magnetic Josephson junctions' with 'not expected in the absence of trapped flux'."
+    },
+    {
+      "title": "The parallel channel behind the 11 G oscillation is dismissed but is a known source of JDE and effective second harmonics",
+      "quote": "As its microscopic origin is not directly relevant to the JDE that is the focus of",
+      "explanation": "The authors acknowledge a fast oscillation (period about 11 G, absent for By) that may come from a parallel Josephson channel, and they remove it by FFT filtering (Supp. Note 3A). A two-path, SQUID-like geometry with unequal harmonic content is a standard mechanism for both the Josephson diode effect and effective phase-shifted second harmonics. The paper cites this mechanism itself (ref. 9, Fominov and Mikhailov). The parallel channel's relative weight is largest near the main Fraunhofer node, which is exactly where the Shapiro analysis is done (Bx = 75 G). It can therefore contribute to both the field-dependent eta and the asymmetric half-integer steps without any magnetization. Removing the 10-15 G spectral window from Ic(B) is a cosmetic separation and does not remove the channel's contribution to the CPR.",
+      "type": "logical",
+      "severity": "major",
+      "suggested_fix": "Add a parallel branch I_p sin(phi + 2 pi Phi_x/Phi_p), with Phi_p fixed by the 11 G period, to the phase-only RCSJ CPR. Show whether it alone, without alpha.m+, reproduces eta(Bx) and the +/-1/2 step asymmetry at 75 G, and report the I_p/I1 needed."
+    },
+    {
+      "title": "Comparing I2/I1 = 0.7 at the Fraunhofer node with zero-field transparency bounds is not valid",
+      "quote": "This value exceeds the second harmonic typically expected from",
+      "explanation": "The bound I2/I1 < 0.4 refers to the intrinsic CPR of a transparent junction at zero field. The Shapiro data, however, are taken near Phi_x of about Phi0. By the authors' own Eq. (S3), both interference factors vanish there: sin(pi f)/(pi f) is about delta and sin(2 pi f)/(2 pi f) is about -delta for f = 1 - delta. The effective ratio therefore depends on how the two harmonics' current distributions differ. For any non-uniform current density, the first harmonic can be suppressed much more strongly than the second near the node, so a large effective I2/I1 can arise without magnetization dynamics. The Supplement itself invokes 'interference-rescaling of parameters' at this field. The absence of a 0-pi transition is then not the relevant alternative to exclude, and the inference that 'the observed half-integer steps involve an additional contribution beyond the intrinsic I2' does not follow.",
+      "type": "logical",
+      "severity": "moderate",
+      "suggested_fix": "Compare the fitted 0.7 with the effective ratio predicted by Eq. (S3) at the experimental Phi_x/Phi0 for a realistic non-uniform current density, or repeat the Shapiro analysis at a lobe maximum (for example the second lobe), where interference rescaling is small."
+    },
+    {
+      "title": "Bin counts in a 1/4-wide voltage bin measure inverse slope, not only plateaus",
+      "quote": "This quantity was used as the color-scale value in the bin-count map.",
+      "explanation": "The bin-count method is a reasonable visualization. But for a bin of width 1/4 (in units of hf/2e), any smooth, non-plateau part of the I-V contributes Counts x dI of about (Delta V_bin)/(dV/dI). Near the Fraunhofer node, Ic is small (on the order of 1 uA by the S10 parameters), so the I-V is strongly rounded. Because the junction is itself a diode, the slopes at V = +hf/4e and V = -hf/4e differ. Unequal counts at n = +1/2 and n = -1/2 can therefore come from asymmetric background slopes even without true half-integer plateaus. The experimental maps use the coarser 1/4 bin while the simulations use 1/8, which makes the comparison in Fig. 4c versus 4f,i not like-for-like.",
+      "type": "technical",
+      "severity": "moderate",
+      "suggested_fix": "Subtract the slope contribution expected from a smooth fit to the I-V around V = +/- hf/4e (excluding the plateau) from the n = +/-1/2 bin counts, and present the experimental maps with the same 1/8 bin width used for the simulations."
+    },
+    {
+      "title": "Simulation parameters are re-tuned for each figure, including the direction of the SOC vector",
+      "quote": "have been adjusted to account for interference effects",
+      "explanation": "The SOC vector changes from alpha = (-15, 75) in S5, to (-6, 30) in S7 ('suppressed by dynamic screening'), to (40, 20) in S10. In the last set both the sign of alpha_x and the dominant component change. This contradicts the stated assumption of a 'primarily y-aligned alpha' arising from inversion breaking along x, and alpha is a property of the interface that should not depend on field. The intrinsic i2 also varies (-0.2, -0.1, +0.1). The sign change near the node is plausibly the interference factor sin(2 pi f) turning negative, but -0.2 versus -0.1 at similar fields is unexplained. Gamma becomes anisotropic only in S10. One consistency check does work: omega_M/omega_J going from 0.87 to 22.6 together with omega_RF/omega_J = 1.6 at 5.776 GHz gives f_M of about 82 GHz, matching V_MR, which is encouraging. Even so, with about five adjustable parameters per figure, reproducing qualitative features is weak support for the 'unified mechanism' claimed.",
+      "type": "logical",
+      "severity": "moderate",
+      "suggested_fix": "Perform one global fit in which alpha, i2 and Gamma are held fixed across Fig. 3d, Fig. 4g-i and Supp. Fig. 3c-d, with only the interference factors of Eq. (S3) evaluated at each experimental Phi_x allowed to vary, and report how well each dataset is reproduced."
+    },
+    {
+      "title": "The model equations needed to reproduce the simulations are not given",
+      "quote": "The full derivation and microscopic details are provided in a separate",
+      "explanation": "The LLG equations themselves are never written down. The paper does not specify how the Zeeman and Josephson torques enter, the units and normalization of alpha, the definitions of Gamma_x and Gamma_y, the 'feedback of the magnetization on the superconducting phase gradient', 'dynamic screening', or the 'anisotropic interference-rescaling' rule used near the node. All of these are deferred to ref. 7, which is 'in preparation'. Because every quantitative mechanistic claim (the enhanced second harmonic, the phase shift, the 170 uV feature) rests on these simulations, a reader cannot reproduce or check them.",
+      "type": "technical",
+      "severity": "moderate",
+      "suggested_fix": "Write in Supplementary Note 1 the explicit LLG equations for m_t and m_b, with the effective field -dE/dm from Eq. (S1) including the Josephson term, the normalizations of time, alpha and Gamma_x,y, and the formula used to rescale parameters near Phi_x of about Phi0."
+    },
+    {
+      "title": "The claimed equivalence between feedback-enhanced I2 and the phase-only fit is asserted, not shown, and the sign is unclear",
+      "quote": "In coupled RCSJ + LLG simulations, this feedback generates a significantly",
+      "explanation": "The phase-only fit requires i2eff = +0.7 and phi0eff of about -0.29, while the coupled model uses an intrinsic i2 = +0.1. A simple static estimate with m+ = alpha Gamma eta sin(phi) (Supp. Note 3B) gives an induced second harmonic of -Gamma eta |alpha|^2 / 2. With the S10 values, 0.3 x (40^2 x 2e-3 + 20^2 x 0.2e-3) is about 0.98, so the induced term is about -0.5. That would make the effective i2 about -0.4, opposite in sign to the +0.7 of the phase-only fit. Dynamical lag may change this, and the static m+ induced by 75 G (h eta of about 0.011, alpha.m+ of about 0.45 rad) is reassuringly of the same order as phi0eff. But the paper never extracts an effective CPR from the coupled simulation, so the reader cannot verify that 'the same framework' yields both the magnitude and the sign required.",
+      "type": "technical",
+      "severity": "moderate",
+      "suggested_fix": "Extract and tabulate the effective CPR Fourier components (I1eff, I2eff with sign, phi0eff) from the RCSJ+LLG solution at the S10 parameters, side by side with the phase-only fit values i2eff = 0.7 and phi0eff = -0.29."
+    },
+    {
+      "title": "B_M = 2000 G appears inconsistent with an 82 GHz magnetic resonance",
+      "quote": "𝐵𝐵𝑀𝑀 = 2000 G",
+      "explanation": "From the definitions in Supplementary Note 1, B_M = sqrt((J_ex + K2) K1)/M_S and omega_M = (gamma/(mu0 M_S)) sqrt((J_ex + K2) K1), so omega_M = gamma B_M (up to the mu0 placement, which also looks dimensionally inconsistent between the two expressions). For an electron-like gamma/2pi of 2.8 MHz/G, B_M = 2000 G gives f_M of about 5.6 GHz. That is roughly fifteen times below the 82 GHz inferred from V_MR, which would need B_M of about 2.9 T. Unless gamma is strongly renormalized, the fixed parameter set S4 is inconsistent with the resonance frequency the model is invoked to explain. This weakens the claim that the intermediate frequency is 'naturally explained'.",
+      "type": "technical",
+      "severity": "moderate",
+      "suggested_fix": "Either set B_M to omega_M/gamma, about 2.9 T for g = 2, and rerun the field normalization h_ext = B_ext/B_M, or state the gamma used and fix the mu0 placement so that omega_M = gamma B_M holds dimensionally in the stated unit system."
+    },
+    {
+      "title": "Inferring antiferromagnetic interlayer coupling from the resonance frequency alone is weak",
+      "quote": "This value is higher than typical ferromagnetic resonance frequencies (~10 GHz)34, 35, but lower than",
+      "explanation": "The '~10 GHz' FMR and '>100 GHz' AFMR benchmarks are not general bounds. Ferromagnets with anisotropy fields of a few tesla resonate near 100 GHz, and many layered antiferromagnets (for example CrCl3 or CrSBr) have AFMR modes in the 10-40 GHz range. A resonance at 82 GHz is therefore compatible with either ordering. omega_M = gamma sqrt((J_ex + K2) K1)/(mu0 M_S) contains unconstrained parameters and can match any frequency. The field independence of V_MR does not discriminate either: an FMR mode would shift by only about 0.1 GHz over the tens of gauss used. The Discussion's conclusion of antiferromagnetic alignment between the interfacial layers rests on this argument alone, and it also conflicts with the need for a net m+ at zero field.",
+      "type": "logical",
+      "severity": "moderate",
+      "suggested_fix": "Report V_MR as a function of in-plane field up to several kG, where FMR and AFMR modes disperse differently, or soften the Discussion to state that the frequency is compatible with, but does not establish, antiferromagnetic interlayer coupling."
+    },
+    {
+      "title": "The 170 uV feature could also be a circuit or environmental resonance",
+      "quote": "This result suggests that the feature is difficult to explain solely",
+      "explanation": "The two-orientation argument against Fiske modes is well constructed. Also, Fiske steps vanish at zero field and peak near the nodes, the opposite of what is observed. However, both properties used to support magnetic resonance, independence of field orientation and a step amplitude that follows (sinc)^2 (that is, Ic^2), also hold for any external linear resonance driven by the ac Josephson current. Examples are an LC mode formed by the overlap capacitance and the lead inductance, or a substrate or wiring mode. The step width of such a resonance scales as Ic^2 as well. These alternatives are not discussed. A magnetic mode should soften as the temperature approaches the ordering temperature, while a circuit mode should be temperature independent.",
+      "type": "logical",
+      "severity": "moderate",
+      "suggested_fix": "Report V_MR versus temperature up to Tc,JJ (Supp. Fig. 1b already has data at 0-5 K) and in a second device of different overlap area. A temperature-dependent V_MR that does not scale with the device's capacitance would support the magnetic origin."
+    },
+    {
+      "title": "The abstract overstates the strength of the simulation evidence",
+      "quote": "magnetization dynamics and Josephson phase dynamics reproduce these features, confirming that the",
+      "explanation": "The main text is appropriately hedged ('suggest', 'consistent with'), but the abstract says the simulations 'confirm' the origin. Given the per-figure parameter tuning, the unexcluded alternatives (offset field, parallel channel, flux trapping, node rescaling) and the unpublished theory, the simulations show consistency, not confirmation.",
+      "type": "logical",
+      "severity": "minor",
+      "suggested_fix": "Replace 'confirming that the JDE originates from' with 'consistent with the JDE originating from'."
+    },
+    {
+      "title": "The symbols eta and omega_J are used with conflicting meanings",
+      "quote": "is the Josephson characteristic frequency",
+      "explanation": "In the main text, omega_J = 2eV/hbar is the voltage-dependent Josephson frequency, and the resonance condition is omega_J of about omega_M. In the Supplement, omega_J = (2e/hbar) I1 R is the fixed characteristic frequency, and ratios such as omega_M/omega_J of about 0.87 or 22.6 are quoted. A reader can easily take 0.87 as a near-resonance condition. Similarly, eta is the diode efficiency in the main text but sqrt(K1/(J_ex + K2)) in the Supplement, where it also appears in the MR bandwidth.",
+      "type": "technical",
+      "severity": "minor",
+      "suggested_fix": "Rename the Supplementary quantities omega_c = (2e/hbar) I1 R and eta_M = sqrt(K1/(J_ex + K2)), and update Eqs. (S2), (S5), (S7) and (S10) accordingly."
+    },
+    {
+      "title": "The overdamped assumption at 75 G is not quantitatively justified",
+      "quote": "the experimental data were taken in the overdamped regime.",
+      "explanation": "Absence of I-V hysteresis implies beta_J is at most about 1, not beta_J of about 0. Since beta_J = omega_J R C scales with I1, the S7 value beta_J = 7.5 at zero field, combined with the drop in omega_J implied by omega_M/omega_J going from 0.87 to 22.6, gives beta_J of about 0.3 at 75 G. With Omega = 1.6, finite inertia produces half-integer steps of its own (as Supplementary Note 5 notes). That would reduce the second-harmonic content that must be attributed to magnetization.",
+      "type": "technical",
+      "severity": "minor",
+      "suggested_fix": "Repeat the control simulations of Supp. Fig. 8 with beta_J of about 0.3 and Omega = 1.6, and report the half-integer step width that arises from inertia alone."
+    },
+    {
+      "title": "The main text and Methods give the fabrication steps in opposite orders",
+      "quote": "Finally, Cr/Au electrodes are patterned and evaporated, followed by the deposition of a thin",
+      "explanation": "The main text says the electrodes are made first and the Al2O3 capping layer is deposited afterwards. The Methods say the stack is capped with 2.5 nm Al2O3 immediately after stacking, and that the electrodes are then defined by e-beam lithography with Ar milling of the contact regions. The order matters for the paper's central fabrication claim, because it determines whether the junction region is exposed to resist baking and lithography before it is capped.",
+      "type": "technical",
+      "severity": "minor",
+      "suggested_fix": "Change the main-text sentence to match the Methods: 'The stack is immediately capped with 2.5 nm Al2O3 under inert atmosphere, after which Cr/Au electrodes are defined by electron-beam lithography with Ar milling of the contact areas.'"
+    },
+    {
+      "title": "Key device parameters needed to check the Fraunhofer, Fiske and RCSJ analyses are missing",
+      "quote": "For 𝐵𝐵x sweep, the effective length is",
+      "explanation": "Flake thicknesses, overlap area, normal-state resistance R_N and the IcR_N product are not reported. They can partly be inferred. With L of about 17 um and the first node about 83 G from the -8 G center, d_eff = Phi0/(Delta B L) is about 15 nm. For FTS, whose penetration depth is several hundred nm, that implies very thin flakes. From omega_M/omega_J = 0.87 and f_M = 82 GHz, I1R is about 195 uV, so R is about 6 Ohm. Without the measured values the reader cannot check d_eff, estimate the Swihart velocity (and hence the absolute Fiske voltage, not just the ratio), or validate beta_J = 7.5.",
+      "type": "technical",
+      "severity": "minor",
+      "suggested_fix": "Add a table giving the top and bottom flake thicknesses, overlap dimensions, R_N, IcR_N, the measured Fraunhofer period with the d_eff it implies, and the C used for beta_J."
+    },
+    {
+      "title": "Cross-references in the Supplementary captions point to the wrong figures",
+      "quote": "same dataset as Fig. 3c using the raw power scale",
+      "explanation": "The caption of Supp. Fig. 7 says the 5.776 GHz data are replotted from 'Fig. 3c' and cuts the bin-count map of 'Fig. 3d'. In the main text these are Fig. 4a and Fig. 4b, while Fig. 3c is the MR schematic and Fig. 3d a simulation. The caption of Supp. Fig. 4 refers to 'the same FTS vdW Josephson junction shown in Fig. 4', whereas the Bx comparison is with Fig. 3. The caption of Fig. 3d points to Supplementary Note 3 for the model, while the text points to Note 4. A reader following these references could compare the wrong datasets.",
+      "type": "technical",
+      "severity": "minor",
+      "suggested_fix": "In Supp. Fig. 7, change 'Fig. 3c' to 'Fig. 4a' and 'Fig. 3d' to 'Fig. 4b'. In Supp. Fig. 4, change 'shown in Fig. 4' to 'shown in Fig. 3'. In the Fig. 3d caption, change 'Supplementary Note 3' to 'Supplementary Note 4'."
+    }
+  ]
+}

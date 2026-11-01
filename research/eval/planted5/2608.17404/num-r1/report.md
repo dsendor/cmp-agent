@@ -1,0 +1,59 @@
+# Lookalike check: Flux-tunable superconductivity in a TI nano-SQUID (arXiv 2608.17404v1)
+
+*AI only. Written by the lookalike assistant on 2026-10-24 from arXiv version v1, with
+lookalike library version 0.5. A person hasn't checked it.*
+
+**What this is.** I read your paper against a library of 28 known lookalikes in topological transport: ordinary effects that can produce the same signal as the one you report. For each one that could apply, I note what the paper already shows, quote it, and suggest a check where one could help. This doesn't judge whether your result is right. It lists the simple explanations a careful reader will ask about, so you can answer them first. Your paper has two kinds of signal. One is global: Josephson critical current and a diode effect. The library's diode entry covers that, and I added one entry from outside the library. The other is local and nonlocal tunnelling spectroscopy, where the zero-bias peak entries apply.
+
+**The claim, as I read it.** You report two global signatures in BiSbTeSe2 nano-SQUIDs (devices A, B, C): h/2e-periodic Ic oscillations and a diode effect whose sign reverses at half-integer flux (Fig. 1e, 3a, S2a, S4). You read them as a flux-driven transition into a topological phase, and you show spectral jumps in local and nonlocal conductance at matching fields (Fig. 1f-g, 3b-e, S2). You also report that zero-bias peaks appear at both ends in expected topological and trivial windows alike, including at zero field (Fig. 4, S3), and you conclude that "at least some of these ZBPs are driven by disorder effects" (p. 5).
+
+## Checks a careful reader will look for
+
+1. Unintended dot search (zbp-dot-search) : Not done. No Coulomb diamonds, resonances that split and recross, or even-odd patterns are discussed. Your gate maps in Fig. 4a-h already have the data.
+2. Wide ranges (zbp-wide-ranges) : Partly. "we do not see a significant difference between the VG dependence of ZBPs in the expected topological or trivial regimes (Fig. 4d-e & g-h) even over a region of VG that includes the Dirac point (Fig. 4j-k)" (p. 5). You didn't vary the field angle and don't report peak heights.
+3. Both ends (zbp-both-ends) : Partly. "In Fig. 3b and c we show the differential conductance simultaneously detected at both ends of the TINW as Bx is tuned" (p. 4). This covers B and C. Device A has one probe.
+4. Transparency (zbp-transparency) : Not done. The tunnel barriers are fixed oxide, and the only gate is the global back gate.
+5. Nonlocal gap (zbp-nonlocal-gap) : Partly. "the nonlocal conductance reveals features that align with the Ic oscillations, such as jumps at the boundaries where the phase transition is supposed to occur (see Fig. 3d-e)" (p. 4). You show jumps in B and C. A gap that closes and reopens isn't shown as such.
+6. Raw conductance (zbp-raw-conductance) : Partly. "a two-terminal configuration was employed and the known filter resistance was subtracted from the recorded data" (p. 6). For the nonlocal data, "The line resistances required were determined from two-terminal resistance measurements of the cryostat lines" (Supp. p. 2). You don't give the values, which datasets were treated this way, or the raw data. A related point: the colour scales in Fig. S1 and S2 reach about 1 to 2 e^2/h, roughly 13 to 26 kOhm. That sits below the "resistances exceeding 100 kΩ" you give for typical tunnel contacts (p. 5).
+7. Device counts (report-counts) : Partly. "the yield of functional tunnel junctions fabricated on top remains below 50%, making devices with two decent tunnel probes to be comparatively rare" (p. 5). The paper doesn't give totals.
+8. Full ranges (report-ranges) : Partly. "in this device A, the gating range was limited due to a leaky gate dielectric" (Supp. p. 3). You don't say which ranges you measured in all, or why you chose the ones shown.
+9. Processing (report-processing) : Partly. Your data are "available at the online depository zenodo with the identifier 10.5281/zenodo.21988906" (p. 7), and you describe the processing steps. The paper doesn't mention code for the correlation analysis.
+
+## Lookalikes
+
+| Lookalike | Status | Tests shown | What the paper shows (quote, page or figure) | Suggested check |
+|---|---|---|---|---|
+| Fine-tuning and selection | Tested in part | Counts: part; how chosen: no; second device: all | "We were able to fabricate an additional device C with two functional tunnel probes similar to the devices presented in the main text." (Supp. p. 3) | State devices fabricated, measured and kept, and how the VG and field cuts in Fig. 1, 3, 4 were picked |
+| Andreev states in an unintended dot | Tested in part | Dot search: no; both ends: part (B, C) | "We find that both regimes contain ZBPs on either end (see Fig. 4c,f,i,l) the majority of the time." (p. 5) | Look in the Fig. 4a-h gate maps at wider bias for diamonds and recrossing peaks |
+| Quasi-Majorana (smooth confinement) | Tested in part | Nonlocal closing and reopening: part; both ends: part | "there are also nonlocal conductance jumps at Bx values that do not correspond to the Ic features" (p. 5) | Plot nonlocal gap size against flux next to end-peak onset, device by device |
+| Disorder-induced peaks | Tested in part | End-to-end: part; bulk gap: part; gate sensitivity: all | "suggests that at least some of these ZBPs are driven by disorder effects, rather than a potential topological superconducting phase." (p. 5) | Report peak heights and how often peaks appear and vanish across VG steps in each flux window |
+| Crowded trivial subgap states | Tested in part | Range vs prediction: all; subband model: part (clean model only) | "there are zero-bias peaks visible in both theoretically topological regimes and trivial regimes" (Fig. 3 caption, p. 3) | Add disorder or a junction dot to the Kwant model and compare peak density with Fig. 4l |
+| Peak at one end only | Tested in part | Both ends: part (B, C); nonlocal: part | "If these ZBPs originated from Majorana bound states, we would expect a positive correlation i.e. a ZBP on either end of the nanowire" (p. 5) | Show the device A peak's fate with any second-end data, or say none exist |
+| Local-probe loophole | Tested in part | Nonlocal: part; dot in series: no | "we estimate the experimental localisation length of the MBSs to be a few 100 nm, which is shorter than the 1.3 − 2.5µm length of our devices" (p. 5) | Give the gap and velocity behind the estimate and compare with the measured gap per device |
+| Trivial Andreev band (nonlocal) | Tested in part | Trivial model: no; other parameters varied: part (VG only) | "In both devices, the low-bias nonlocal conductance exhibits frequent sign changes as the gate voltage is varied." (Supp. p. 6) | Run the Kwant model with no π jump and check whether nonlocal jumps still appear; vary field angle |
+| Vortex and screening diode | Tested in part | Plain-film control: no; field and width: all | "An important property of this SDE is that its polarity reverses at half-integer flux quanta" (p. 2) | Measure a plain Nb junction or wide strip from the same run |
+| Kondo resonance | Not tested (data bear on it) | Even-odd: no; temperature: no; Zeeman: no (field also tunes phase) | "the zero field ZBPs largely have a strong dependence on VG (Fig. 4a-b)" (p. 5) | Check whether zero-field peaks sit in alternating gate valleys; take a short temperature series |
+| Weak antilocalization | Not tested (data bear on it) | Pikulin test: no; channel or disorder dependence: no | "even over a region of VG that includes the Dirac point (Fig. 4j-k)" (p. 5) | Compare peak shape and height across VG on both sides of the Dirac point |
+| Flux-tunable Andreev levels in a junction dot | Not tested (not mentioned) | Short vs long junction: no | Not discussed. | Compare tunnel junctions of different geometry, or gate-scan the junction region for dot levels |
+| Asymmetric higher-harmonic SQUID diode (not in library) | Not tested (data bear on it) | Junction asymmetry and harmonics: no; trivial SQUID model: no | "all fit the expected theoretical global signatures of a ground-state phase experiencing a phase jump across the junction, which theoretically corresponds to the transition from trivial to topological superconductivity" (p. 2) | Fit Fig. S4 with a trivial two-junction model whose asymmetry varies with VG, and show where it fails |
+
+## Questions about devices and data
+
+1. How many devices did you fabricate and measure, counting both the Josephson junctions and the tunnel probes, and how many showed the global signatures and the zero-bias peaks? You name devices A, B and C and give a tunnel-junction yield below 50%, and the totals would help a reader.
+2. Why were the other devices set aside: only for failed tunnel probes, or for other reasons too?
+3. Which ranges of VG, Bx, field angle and temperature did you measure beyond the ones shown? For example, Fig. 4 shows cuts at Bx = 0, 1 and 2 T; what field step and how many gate points sit behind Fig. 4l and Fig. S3l?
+4. What does the second-best device or dataset look like? Supplementary Note S1.E answers this in part with device C. Were there other devices with one working probe, like device A, and what do their spectra show?
+5. Your text says device B has "an approximately 35% larger cross-section than the device in Fig. 1", while Table S1 gives d x W = 21 x 70 nm for A and 36 x 70 nm for B, about 70% larger (and the Methods give d ~ 20 nm). Which is right, and what effective areas do the measured Ic periods give for each device?
+6. For device C, Supplementary Note S1.E says "All key features are reproduced" and also that "a zero-bias conductance peak was mostly absent in this device" in Figs. S2b and c, while Fig. S3 shows "a strong increase of correlated zero-bias conductance peaks". At which VG were Figs. S2b and c taken, and how do the two sets of data fit together?
+7. The end-to-end classification in Fig. 4l and Fig. S3l uses only the signs of the third derivative at zero bias. What noise floor or threshold separates a peak from no feature, what smoothing goes into the derivative, and how do the fractions change if you vary those choices?
+8. For the zero-field ZBPs that depend strongly on VG (Fig. 4a-b), do wider-bias gate maps show Coulomb diamonds, resonances that split and recross, or an even-odd pattern, and do you have a temperature series for any of these peaks?
+
+## Related work
+
+- Fominov and Mikhailov 2022, "Asymmetric higher-harmonic SQUID as a Josephson diode", https://arxiv.org/abs/2208.10856. A trivial two-junction SQUID with a second harmonic in one junction gives a flux-tunable diode effect that vanishes at integer and half-integer flux.
+- Souto, Leijnse and Schrade 2022, "The Josephson diode effect in supercurrent interferometers", https://arxiv.org/abs/2205.04469. Interferometers of non-sinusoidal junctions become diodes with only flux breaking time reversal, reaching efficiencies up to about 40%.
+- Valentini et al. 2020, "Nontopological zero-bias peaks in full-shell nanowires induced by flux tunable Andreev states", https://arxiv.org/abs/2008.02348. Junction-region dots give flux-dependent Andreev levels and robust zero-bias peaks in flux-threaded hybrid wires.
+- Hess, Legg, Loss and Klinovaja 2022, "Trivial Andreev band mimicking topological bulk gap reopening in the non-local conductance of long Rashba nanowires", https://arxiv.org/abs/2210.03507. A trivial Andreev band produces nonlocal reopening signatures alongside trivial end peaks.
+- Chen et al. 2019, "Ubiquitous non-Majorana Zero-Bias Conductance Peaks in Nanowire Devices", https://arxiv.org/abs/1902.02773. At finite field, zero-bias peaks with pinning become common, and the authors trace them to crowded trivial subgap states.
+
+Happy to rerun this if you share the figure data or the correlation-analysis code.

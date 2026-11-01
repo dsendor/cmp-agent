@@ -1,0 +1,193 @@
+# Review of "Multiple nodal superconducting phases and order-parameter evolution in pressurized UTe₂"
+
+## Summary of the submission
+
+The authors report point-contact spectroscopy (PCS) on the (001) surface of molten-salt-flux-grown UTe₂ (RRR ≈ 410), at ambient pressure and under hydrostatic pressure up to 1.4 GPa.
+
+**Ambient-pressure results.** They observe a zero-bias conductance peak (ZBCP) in three samples. They interpret it as a zero-energy Andreev bound state (ZABS), which requires a p_z (sign-changing under k_z → −k_z) component of the gap.
+
+**Pressure results (one sample, S1).**
+- Above ~0.3 GPa the ZBCP grows and develops symmetric side dips.
+- At ≥1.0 GPa a "double-dip" structure appears.
+
+**Analysis.**
+- The authors use an extended BTK model for unitary triplet states with a spherical Fermi surface.
+- They argue that B₂u/B₃u best reproduce the spectra, while A_u and B₁u are disfavoured.
+- They propose the ratio ⟨Δ_z⟩/⟨Δ_x(y)⟩ as a single parameter distinguishing SC1 (~0.6) from SC3 (~1.0–1.3).
+- At fixed pressure the ratio has a minimum in temperature that tracks the literature SC2–SC3 boundary.
+- Combining this with ¹²⁵Te NMR [31], they suggest SC2 = B₂u and SC3 = B₃u.
+
+## Overall assessment
+
+Symmetry-sensitive spectroscopy inside the pressure-induced multiphase region of UTe₂ is genuinely missing from the literature, and the data set is valuable. Particular strengths:
+- The low-temperature spectra are clean.
+- The ambient-pressure ZBCP is reproduced in three samples.
+- The pressure-induced change in spectral line shape is striking.
+- The theoretical framework is laid out in reasonable detail in the SI.
+
+However, the step from line shapes to order-parameter symmetry, and especially to the quantitative ratio ⟨Δ_z⟩/⟨Δ_x(y)⟩, rests on a highly simplified model and a multi-parameter fit whose uniqueness is not demonstrated. Several well-known extrinsic PCS mechanisms are not adequately excluded, and there are internal inconsistencies. In my view the central claims are currently stronger than the evidence supports. **I would recommend major revision.**
+
+---
+
+## Major concerns
+
+### 1. Side dips are a classic signature of critical-current/thermal-regime artefacts
+
+The paper's key pressure-dependent feature is the pair of side dips. However, symmetric conductance dips flanking a central peak are the textbook signature of contacts outside the ballistic (Sharvin) regime, where the local current density exceeds the critical current (Sheet et al., PRB 69, 134507, ref. [42] in the manuscript itself).
+
+The 1.4 GPa spectrum (Fig. 3d) looks especially suspicious: a broad flat-topped peak with sharp dips at ±2 mV. The authors' exclusion of heating effects is directed only at the ambient-pressure ZBCP, not at the side dips. It is also weak in its own right:
+- The argument that "a small field (<2 T) only weakly affects its width" is not discriminating. With H ∥ a, H_c2 is several times larger, so 2 T barely suppresses the critical current.
+- No contact resistances, estimated contact diameters, or comparison with the mean free path (Wexler formula) are given anywhere. These are essential to establish the transport regime.
+
+The authors should:
+- report R_N for every junction and pressure;
+- show whether the dip bias scales with R_N or with an I_c(T)-like temperature dependence (a dip at fixed current rather than fixed voltage);
+- ideally show spectra from contacts of different resistance under pressure.
+
+Without this, the side dips cannot be assigned to ABS-induced depletion of the bulk continuum.
+
+### 2. The junction itself is likely changing with pressure
+
+All pressure data come from a single contact on a single sample. The fitted junction parameters change substantially:
+
+| Condition | Z | Γ (meV) |
+|---|---|---|
+| Ambient | ≈ 1.67 | ≈ 0.39 |
+| 0.8 GPa | ≈ 1.20 | ≈ 0.10 |
+
+A four-fold reduction in Dynes broadening is hard to attribute to the bulk superconductor. It more plausibly reflects mechanical reconfiguration of the Au-epoxy contact under pressure. Fig. S6d shows that the side dips themselves appear or disappear largely as a function of Γ. It is therefore possible that the "emergence" of side dips above 0.3 GPa is driven by the junction getting cleaner, rather than by an increase in Δ_z/Δ_x.
+
+Related points:
+- The thermal-expansion and compressibility mismatch between cured Au epoxy and UTe₂ will create local non-hydrostatic stress at the contact. UTe₂ is known to be highly sensitive to uniaxial stress.
+- The authors themselves invoke "pressure inhomogeneity" to explain the double dips, which concedes this point.
+
+I would ask for:
+- a second sample/contact measured under pressure;
+- a decompression run showing recovery of the ambient spectrum;
+- a description of how pressure was calibrated (manometer, low-temperature value).
+
+### 3. Uniqueness and robustness of the fits
+
+The extracted ratio is the paper's central quantitative result. Yet each spectrum is fitted with Δ_x, Δ_z, Z and Γ, and with several channels plus weights wᵢ at ≥1.0 GPa. Strong correlations between Δ_z/Δ_x, Z and Γ are expected; ZBCP height and side-dip depth are both controlled by all of them.
+
+The quoted uncertainties, typically ±0.01 meV in Fig. S8, look like statistical errors from the minimiser and almost certainly underestimate the true uncertainty. Please provide:
+- χ² maps or confidence regions in the (Δ_z/Δ_x, Γ) and (Δ_z/Δ_x, Z) planes;
+- fits at fixed Γ and Z across pressures, to test whether the pressure evolution survives;
+- a statement of how many channels are used at each pressure, and how the number was chosen (e.g. an information criterion).
+
+The averaged ratio defined in Eq. (3) is ad hoc. If the double dips arise from distinct domains, a weight-averaged ratio is not obviously a physical order-parameter property.
+
+### 4. Implausibly large gap magnitudes
+
+The fitted gaps imply very large coupling ratios:
+
+| Condition | Gap | Coupling ratio |
+|---|---|---|
+| Ambient | Δ_x(y) ≈ 1.18 meV, T_c = 2.1 K | 2Δ/k_BT_c ≈ 13 |
+| 1.2 GPa | Δ_z ≈ 1.6 meV | similarly large |
+
+Fig. S2c makes the scale explicit: the BCS reference curve starts at ~0.32 meV, a factor ~3.7 below the fitted value. This is far beyond what specific heat implies for UTe₂. It also disagrees by roughly a factor of 3–5 with STM gap scales (~0.25–0.4 meV). In addition, the gaps fall almost linearly from 0.3 K.
+
+At 0.8 GPa (Fig. S8), Δ_x(y) is non-monotonic in temperature, rising from 0.87 meV at 0.5 K to 1.00 meV at 1.1 K. This is unusual within a single phase and deserves comment.
+
+Together these suggest that the fitted "Δ" may be absorbing contact-related broadening or spreading-resistance effects rather than measuring the bulk gap. This must be reconciled with thermodynamic and STM data before the extracted parameters can be regarded as physical.
+
+### 5. Model simplifications undermine the quantitative Δ_z/Δ_x extraction
+
+**Fermi surface.** The BTK calculation assumes a spherical Fermi surface (k_z² + k_∥² ≈ k_F²). UTe₂ has quasi-2D, cylinder-like Fermi sheets extended along k_z, as shown by ref. [39], whose author is on this paper. For (001) tunnelling:
+- the distribution of k_z, of Fermi velocities normal to the interface, and of the nodal geometry on the actual Fermi surface differ qualitatively from the sphere;
+- the c-axis velocity is small;
+- the ZABS weight relative to the continuum will depend strongly on Fermi-surface geometry.
+
+Since the paper's main parameter is a relative weight of k_z- vs k_x(y)-linear components, the absence of a realistic Fermi surface is a serious limitation. At minimum, the authors should show that the qualitative trends survive a cylindrical or tight-binding Fermi surface.
+
+**Other model limitations.**
+- Only linear-in-k basis functions are kept. Higher harmonics can change nodal structure and therefore ABS spectra.
+- Spin–orbit coupling and multiband effects are absent.
+- Fermi-velocity mismatch between Au and heavy-fermion UTe₂, expected to be enormous, is absorbed into Z without discussion.
+
+### 6. The "peak height < 2 ⇒ p_x(y)-dominant" inference is not robust
+
+Reduced ZBCP amplitudes in PCS are ubiquitous. Typical causes include:
+- spreading resistance;
+- parallel non-superconducting channels;
+- inelastic broadening;
+- finite temperature.
+
+The fit attributes the low ambient peak height (~1.15) primarily to Δ_z < Δ_x, but large Γ (Γ/Δ ~ 0.3–0.6) plays an equally important role. The reproducibility of Δ_z/Δ_x across S1–S3 is encouraging, but the same model degeneracies apply to all three.
+
+### 7. Phase assignment: the side dips do not cleanly separate SC2 from SC3
+
+According to the authors, side dips and a large ⟨Δ_z⟩/⟨Δ_x⟩ characterise SC3. However, the data show otherwise:
+- At 0.8 and 1.0 GPa, side dips persist up to ~2.9 K (Figs. 3c, S3b, S8), well within SC2.
+- The fitted ratio in SC2 is ≥1 and rises toward T_c, reaching ~1.9 at 0.6 GPa (Fig. S9e). This makes SC2 at least as p_z-weighted as SC3.
+
+The claimed "minimum" in the ratio rests on modest variations. At 0.8 GPa, computing from Fig. S8, the ratio goes 1.26 → 1.18 → 1.08 → 0.98 → 1.03 → 1.14. The upturn near T_c occurs where both gaps are small and the ratio is poorly constrained, as the large error bars in Fig. S9e–f show.
+
+Agreement of the minimum with the literature SC2–SC3 line is suggestive but not compelling. I recommend that the authors:
+- tone down the statement that this "is more likely indicative of an underlying phase transition"; or
+- provide an independent signature at the same contact, such as a kink in the individual Δ_α(T) or a change in the field response.
+
+### 8. The B₂u → B₃u scenario needs theoretical justification
+
+The authors acknowledge that B₂u and B₃u are indistinguishable on (001). The SC2 = B₂u / SC3 = B₃u assignment therefore comes entirely from the NMR results of ref. [31], not from PCS.
+
+More importantly, a lower-temperature transition below a single-IR phase generically yields a mixed state (e.g. B₂u + iB₃u or B₂u + B₃u) rather than a switch from one pure IR to another. This multicomponent picture is advocated in ref. [30]. The authors should discuss mixed-IR states and whether their model could distinguish them; for example, B₂u + iB₃u breaks time-reversal symmetry and modifies the ABS spectrum.
+
+### 9. Alternative origins of the ZBCP are only partially addressed
+
+**Magnetic scattering.** This is dismissed because UTe₂ does not order at ambient pressure. However, Kondo/Appelbaum-type zero-bias anomalies arise from local moments or magnetic impurities without long-range order. This explanation also becomes more relevant near the MO phases under pressure.
+
+The strongest argument against an extrinsic origin is that the ZBCP onset coincides with superconductivity. Even this has a caveat: at ambient pressure the hump appears at 2.5 K, above the bulk zero-resistance T_c⁰ = 2.1 K and close to the unusually high T_c^on = 2.6 K.
+
+**Unusual resistive transition.** A 2.1–2.6 K transition width is unusual for ultraclean molten-salt-flux crystals, which typically show sharp transitions near 2.1 K. Two possibilities should be discussed:
+- a strained or modified surface layer from fine polishing, or from epoxy curing at 423 K;
+- filamentary superconductivity.
+
+**Other mechanisms.** Proximity-induced reflectionless tunnelling and intergranular Josephson effects in multi-particle Au-epoxy contacts should also be mentioned and excluded.
+
+### 10. A missed opportunity: field-orientation dependence
+
+ABS in triplet superconductors respond to a Zeeman field in a way that depends on the orientation of **d**. In principle this is exactly what could separate B₂u (d ⊥ ŷ) from B₃u (d ⊥ x̂) on a (001) contact.
+
+Only H ∥ a is measured, and only at ambient pressure (Fig. S2a). A quantitative analysis of the ZBCP evolution in field, ideally along a and b and under pressure, would be far more symmetry-discriminating than the zero-field line shape.
+
+---
+
+## Internal inconsistencies and errors
+
+1. **Table S1 column labels appear swapped.**
+   - The table lists S1 with Δ_z = 1.18 meV and Δ_x(y) = 0.72 meV.
+   - Fig. S7a, Fig. S2c, Fig. S9a and the main-text conclusion (Δ_z/Δ_x ≈ 0.57, p_x(y)-dominant) all require the opposite assignment.
+   - The same swap applies to S2 and S3.
+2. **Fig. 1b vs Fig. 1c.** The nodal gap drawn in Fig. 1b, with nodes at the poles connected by a vertical q_N, does not obviously correspond to a p_z gap, which has an equatorial line node. The relation between I, q_N and the ZABS condition should be clarified.
+3. **Table I, "Spin component" column.** The column lists the axis missing from **d** (e.g. x̂ for B₃u, whose d = Δ_z k_z ŷ + Δ_y k_y ẑ). This should be labelled explicitly, e.g. "d ⊥" or "spin polarisation of equal-spin pairs", because the NMR argument in remark (2) depends on it.
+4. **Heating argument.** The sentence "G_NS decreases by forming a peak centering about V = 0" is confusing and should be rephrased.
+5. **Overstated wording.** "Unambiguously suggesting the presence of p_z component" is both internally contradictory and too strong given the concerns above.
+6. **Ref. [24].** The year should be 2020, not 2002.
+7. **Ref. [1].** "Pep. Rrog. Phys." should be "Rep. Prog. Phys."
+8. **Typos.**
+   - "Supplementray"
+   - "spits into two peaks"
+   - "Albeit of"
+   - "constraints on" (should be "constrains")
+   - "differentiate conductance" (Fig. 1 caption)
+   - "presentation" → "representation" (SI V)
+9. **Lost punctuation.** Dashes are missing in "point-contact spectroscopy (PCS) a technique well-suited…".
+10. **Eq. (S10).** Parentheses are missing in the exponent of the Fermi function.
+11. **Data availability.** "All source data … available within the paper" is inadequate for fitted spectra. Please deposit raw G(V,T,p) data and fitting code.
+
+---
+
+## Suggestions to strengthen the work
+
+- Report R_N, contact size and transport regime for all contacts. Add at least one more contact under pressure, plus a decompression check.
+- Demonstrate fit uniqueness with confidence maps. Test whether the pressure trend in Δ_z/Δ_x survives with Z and Γ held fixed.
+- Repeat key simulations with a realistic quasi-2D Fermi surface. Include Fermi-velocity mismatch and a mixed B₂u + iB₃u state.
+- Reconcile gap magnitudes with STM and specific-heat data, or reinterpret the fitted energy scale.
+- Add field-dependent spectra (H ∥ a, b, c) under pressure, as a direct d-vector probe.
+- Moderate the conclusions about SC1–SC3 being "mutually independent" and about a B₂u → B₃u switch. Present these as hypotheses consistent with, but not established by, the PCS data.
+
+## Recommendation
+
+**Major revision.** The experimental observation of a pressure-tuned evolution of the (001) PCS spectrum in UTe₂ is interesting and potentially important. In its current form, however, the paper does not exclude extrinsic origins of the side-dip features or junction changes under pressure. Nor does it establish that the extracted ⟨Δ_z⟩/⟨Δ_x(y)⟩ is a robust, model-independent quantity. Addressing points 1–5 in particular is necessary before the symmetry conclusions can be considered supported.

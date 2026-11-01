@@ -1,0 +1,152 @@
+# Review outline
+
+## 1. Significance and novelty
+
+- **Scientific context**
+  - Large-gap QSH insulators that can be synthesized are still scarce. Experimentally confirmed cases are limited to HgTe/CdTe and InAs/GaSb quantum wells (meV gaps), 1T′-WTe₂, Bi₄Br₄, ZrTe₅, and a few elemental honeycomb systems (germanene, stanene, bismuthene).
+  - Many of the elemental systems need strong, chemically bonded substrates to stabilize them.
+  - ML-Si₂Te₂ is a theoretically proposed, vdW-type, artificial-lattice QSH candidate with a predicted nontrivial gap of about 220 meV (PBE/HSE level). It has no bulk parent, so it cannot be exfoliated.
+  - The authors' earlier work on Sb₂Te₃ produced a strained, trivial semiconducting phase. A substrate that preserves the nontrivial phase would therefore be a meaningful advance.
+- **Claimed novelty**
+  - Computational screening of the C2DB (4056 → 767 → 401 → 76/65 → 5 → 1) selects HfTe₂ as a near-lattice-matched, cleavable, vdW substrate.
+  - MBE growth of ML-Si₂Te₂ islands, with a measured lattice constant of 390 pm (DFT: 389 pm).
+  - STS shows a spectroscopic gap of about 300 meV (HSE06 "effective" gap: 319 meV).
+  - An in-gap dI/dV enhancement appears at island edges. It extends over about 2–3 nm and forms a ring in a dI/dV map at +7 mV.
+  - The authors present this as the "first experimental realization of the QSH phase in ML-Si₂Te₂."
+- **Assessment of significance**
+  - If substantiated, this would add a new, compound (non-elemental), vdW-bonded member to the short list of large-gap 2D TIs. It would also showcase a materials-by-design workflow, which is of broad interest.
+  - However, the evidence for the topological phase is mainly a near-EF dI/dV peak at the edges of small islands on a metallic substrate. Key consistency issues (strain/epitaxy, energy position of the edge feature relative to the gap, chemical identity, controls) are unresolved.
+  - As written, the novelty claim ("first realization") outruns the data. The work currently reads as a promising growth and screening study with suggestive spectroscopic signatures.
+
+## 2. Potential reasons for acceptance
+
+- **Clear, rational materials-design strategy**
+  - The substrate screening is logical and reproducible: symmetry, mismatch window tied to a previously computed topological strain window (−3% to +2%), synthesizability, phase stability at low temperature, and exfoliation energy.
+  - The workflow can be transferred to other artificial 2D TIs.
+- **Successful synthesis of a new heterostructure**
+  - Epitaxial ML-Si₂Te₂ islands with atomic resolution are achieved on cleaved HfTe₂ in UHV.
+  - The growth protocol (co-deposition at 200 °C, plus annealing at 385 °C under ~20× excess flux to offset decomposition) is non-trivial and potentially useful to the community.
+- **Multi-pronged theoretical support**
+  - The calculations include phonons, AIMD at 300 K, binding energy (about 23 meV/Å², typical vdW), HSE06+SOC projected bands showing band inversion at Γ, Wannier-charge-center Z₂ evaluation, and edge spectral functions.
+  - Theory and experiment are compared quantitatively: lattice constant, two-peak structure separated by about 1.25 eV, gap of about 300 vs 319 meV, and edge-state width of about 2 nm vs 1.35 nm.
+- **Spectroscopic observations consistent with expectations for a QSH edge**
+  - The edge feature is reproducible across many islands (20 islands for the gap; Fig. S11 for edges) and appears around the full island perimeter.
+  - Its spatial extent of 2–3 nm is broader than typical dangling-bond states.
+  - Its line-cut evolution (absent in the interior, present at the edge, vanishing on the substrate) is qualitatively in line with prior STM work on Bi bilayers, bismuthene, and WTe₂.
+- **Timeliness and readership**
+  - The topic, large-gap QSH by design, fits a broad-audience letter journal if the central claim can be made robust.
+
+## 3. Potential reasons for rejection
+
+### Reason 1: Internal inconsistency between "strain-free" and "(1×1) epitaxial/hollow-site" registry, and an unrealistic DFT substrate model
+- **The two structural claims are hard to reconcile.**
+  - Bulk/ML HfTe₂ has a ≈ 3.95–4.00 Å, i.e., roughly 1.5–2.5% larger than the 3.89–3.90 Å reported for ML-Si₂Te₂.
+  - If ML-Si₂Te₂ sits commensurately (1×1) in hollow sites on a rigid bulk HfTe₂ crystal (Fig. S7/S8), it must adopt the substrate lattice constant. It would then be under tensile strain near the upper edge (+2%) of the stated topological window.
+  - If it is truly unstrained at 390 pm, the overlayer is incommensurate. One would then expect a moiré pattern with period ≈ a²/Δa ≈ 15–25 nm, comparable to or larger than the islands, plus a spatially varying stacking registry instead of a uniform hollow-site configuration.
+  - The manuscript does not quantify the HfTe₂ lattice constant measured in the same image (Fig. 3b shows both lattices). It also gives no FFT or lattice-overlay analysis and no discussion of moiré or registry variations.
+- **The 1×1 ML-Si₂Te₂/ML-HfTe₂ DFT cell forces an artificial strain partitioning.**
+  - In a commensurate 1×1 cell, both layers share one in-plane lattice constant. Reporting that Si₂Te₂ "remains at 389 pm" implies the HfTe₂ monolayer was compressed by about 2% (or the cell was fixed at the Si₂Te₂ value). This is the opposite of the experimental situation, where a thick, rigid HfTe₂ crystal is the substrate.
+  - Band alignment, work-function difference, charge transfer (EF falling below the Si₂Te₂ VBM), the 110 meV HfTe₂-VBM offset used to derive the 319 meV gap, and edge-state hybridization all depend on this choice.
+  - A monolayer of HfTe₂ also differs electronically from the semimetallic bulk crystal.
+  - Since the authors themselves stress that the topology is "highly sensitive to lattice strain," the key calculations must be repeated at the substrate-imposed lattice constant and with a multilayer/bulk-like HfTe₂ slab, or with an incommensurate supercell.
+- **Step height vs. calculated spacing.**
+  - The measured 710 pm differs from the computed 790 pm by about 10%. This is called "reasonable agreement" without discussing bias dependence of apparent height or which distances are actually being compared (Si₂Te₂ thickness plus vdW gap vs. top-Te to top-Te).
+  - The comparison therefore does not discriminate between alternative structures (see Reason 4).
+
+### Reason 2: The energy position and lineshape of the "edge state" are not consistent with a QSH edge spanning the bulk gap
+- **The edge feature sits at the band edge, not across the gap.**
+  - From the inset of Fig. 4a, the bulk gap spans roughly −10 mV (VBM) to +290 mV (CBM). EF thus sits essentially at the valence-band edge.
+  - The edge enhancement in Fig. 5b,c is a sharp peak confined to about ±50 mV around EF, and the map (Fig. 5e) is taken at +7 mV. This energy window overlaps the VBM and the region where "substrate-induced states" and a V-shaped zero-bias dip are already present in the interior.
+  - A helical 1D Dirac edge should give a roughly constant (or smoothly varying) LDOS enhancement throughout the gap, including mid-gap (~100–250 meV), as seen in Bi(111) bilayers, bismuthene/SiC and 1T′-WTe₂.
+  - No edge-vs-center spectra or maps are shown at mid-gap energies. A peak at EF is more naturally explained by trivial alternatives:
+    - an edge-localized van Hove singularity;
+    - band bending or a band-edge state pulled down at the boundary;
+    - a zero-bias anomaly (Coulomb or Luttinger-liquid-type suppression in the interior versus edge);
+    - confinement in about 10-nm islands.
+  - The statement that "As discussed in Ref. 35, 1D topological edge states … are expected to manifest as a dI/dV peak near the edge" is relegated to the SM. It also appears at odds with the DFT edge spectral function in Fig. 2b, which shows linearly dispersing states spanning a wide energy range.
+- **The spectroscopic gap determination is weak.**
+  - On a metallic substrate the dI/dV never vanishes (Fig. 4a and inset). The "gray dashed lines" marking VBM/CBM are placed by eye.
+  - No log-scale spectra, normalized conductance, tip-height-dependent spectroscopy, or explicit fitting procedure is given. Without one, the ±50–100 meV uncertainty in band-edge positions is comparable to the claimed agreement with DFT (300 vs 319 meV).
+  - The DFT DOS must be rigidly shifted by about 0.25 eV to match the two main peaks (Fig. 4). Yet the gap edges are compared without this shift, and the DFT Fermi level lies below the VBM while experiment places EF in the gap. These inconsistencies need to be reconciled before the gap agreement can be used as evidence.
+- **Several different spectral features are blurred together.**
+  - The text describes a V-shaped dip within ±50 mV (Fig. 5b), a minimum within ±10 mV containing a small peak attributed to substrate states (Fig. 5c), and an edge "peak at EF."
+  - The relation between these features, and their dependence on setpoint and modulation (2 mV modulation at 5.8 K), is not established. It is therefore unclear what is bulk gap, what is substrate, and what is edge.
+
+### Reason 3: Evidence for topological (vs. trivial) origin of the edge feature is indirect and lacks essential controls
+- **The spatial-extent argument is not decisive.**
+  - The claim that a 2–3 nm extent "rules out trivial mechanisms … confined to one or two atomic rows" is too strong. Trivial edge states, band-bending regions, and image-potential or setpoint artifacts can easily extend 1–3 nm.
+  - The line cut uses 0.36 nm spacing, i.e., only about 6–8 spectra define the "width," which is comparable to the tip-convolution length.
+  - The expected decay length ξ ≈ ħv_edge/Δ should be estimated from the computed edge velocity and the gap and compared quantitatively. The quoted agreement of 2 nm (exp.) vs 1.35 nm (nanoribbon DFT) is about 50%, not "good."
+  - The DFT nanoribbon is free-standing, so it ignores hybridization with the metallic substrate. That hybridization can both broaden and shift edge states.
+- **The dI/dV map is susceptible to setpoint artifacts and is low quality.**
+  - The map in Fig. 5e was taken with a constant-current setpoint (V_stab = 0.2 V, I = 100 pA). At island boundaries the tip height changes abruptly, so a ring of enhanced dI/dV can arise purely from the setpoint effect.
+  - Simultaneous topography, constant-height maps, normalized maps ((dI/dV)/(I/V)), or maps at several energies (in-gap, in-band) are needed to exclude this.
+  - The map is coarse (≈ 25×25 pixels). It shows a weakened segment that is attributed, without proof, to "residual tip effects."
+- **There are no control experiments.**
+  - The authors have access to an ideal negative control: ML-Si₂Te₂ on Sb₂Te₃, which their own work identifies as trivial. Showing the absence of the edge feature there, under identical measurement conditions, would greatly strengthen the claim.
+  - Other controls are also missing:
+    - HfTe₂ step edges, or edges of other overlayers on HfTe₂;
+    - different edge terminations or orientations (zigzag, armchair, Si- vs Te-terminated), with corresponding ribbon calculations;
+    - island-size dependence, to separate confinement from edge physics;
+    - magnetic-field dependence or spin-polarized STM;
+    - quasiparticle interference along edges, to test the absence of backscattering.
+  - "Independent of step geometry" is asserted, but the islands shown are compact and roughly hexagonal or round. No systematic edge-orientation analysis is presented.
+- **The topological characterization in theory needs clarification.**
+  - The heterostructure contains metallic/semimetallic HfTe₂ with bands crossing the Si₂Te₂ gap region (VBM of HfTe₂ lies 110 meV above that of Si₂Te₂). A global Z₂ invariant via WCC is therefore ill-defined unless a band-selection or curved-chemical-potential procedure is specified.
+  - Ref. [39] (Giustino & Pasquarello, mixed Wannier–Bloch functions) is not the standard reference for WCC-based Z₂ (Soluyanov & Vanderbilt; Yu et al., PRB 2011). This raises concerns about how the calculation was done.
+  - The edge spectral function in Fig. 2b is not specified: which termination, with or without substrate, which Hamiltonian (HSE-Wannier?).
+  - The physical survival of helical edge modes coupled to a gapless substrate is not discussed. Hybridization with a semimetal undermines protection and the "room-temperature QSH" framing.
+
+### Reason 4: Insufficient structural/chemical identification and limited sample quality; over-claiming
+- **The chemical identity of the islands is not independently established.**
+  - Identification rests on the in-plane lattice constant and apparent height alone.
+  - Growth involves strong decomposition above 320 °C and a 20× excess of Si and Te flux during annealing at 385 °C. Under these conditions, alternatives are plausible:
+    - Te adlayers or tellurene-like phases;
+    - SiTe_x or Si₂Te₃ fragments;
+    - Si intercalation or substitution in the HfTe₂ surface;
+    - Hf–Si–Te alloying.
+  - No XPS, AES, LEED/RHEED, Raman, or bias-dependent atomic imaging (e.g., Si vs Te sublattice contrast) is reported in the main text. Thermodynamic stability of the islands relative to competing phases at the growth temperature is also not discussed.
+- **The islands are small and the material is dilute.**
+  - Islands are about 5–15 nm in diameter (Figs. 3a, 3b, 5), at low coverage.
+  - With a 2–3 nm edge-state width, a large fraction of each island is "edge." Quantum confinement and edge-to-edge overlap may then distort both the "bulk gap" and the "edge" spectra.
+  - The small size also precludes ARPES verification of the band structure and the predicted inversion. The SOC-induced inversion, the actual hallmark of the nontrivial phase, is therefore not experimentally tested at all.
+- **The claims are stronger than the evidence.**
+  - The title and abstract claim "experimental realization of the topologically nontrivial phase," "preserving its topological phase," and "room-temperature QSH." Yet all measurements are at 5.8 K, on a substrate that shunts any edge transport, and with no transport, spin-resolved, or momentum-resolved evidence.
+  - Wording such as "evidence for/signatures of topological edge states" would be more appropriate unless the issues above are resolved.
+- **Presentation errors reduce confidence.**
+  - Candidate counts conflict: 76 in the text vs 65 in Fig. 1a.
+  - Ref. [35] (Supplemental Material) is described as containing "large area scans showing the coexistence of three stripe orientations," apparently copied from another manuscript.
+  - The author footnotes are inconsistent: the † mark is assigned to different people.
+  - There are typos: "deriving" → "driving," "remains challenge," "valance," "conductivity" → "conductance."
+  - The date stamp (Sept 2025) postdates the arXiv posting (Aug 2025).
+
+## 4. Suggestions for improvement
+
+1. **Resolve the structural and strain picture and make the theory match the experiment.**
+   - Quantify the Si₂Te₂ and HfTe₂ lattice constants from the same atomically resolved image or FFT, with drift and piezo calibration. State explicitly whether the overlayer is commensurate (strained to about 3.96 Å) or incommensurate (moiré expected), and look for long-period moiré contrast on the largest islands.
+   - Redo the key DFT calculations (bands, Z₂, edge spectra, band alignment) with a multilayer or bulk-like HfTe₂ slab. Use either the experimentally relevant common lattice constant or a large incommensurate supercell, and report the topological phase diagram versus strain around the substrate value.
+   - Discuss bias-dependent apparent step heights relative to the calculated 790 pm.
+   - Specify how Z₂ is defined when the substrate is gapless, and replace or augment Ref. [39] with the appropriate WCC/Z₂ references.
+
+2. **Make the spectroscopic evidence quantitative and energy-complete.**
+   - Determine the band edges with log-scale or normalized dI/dV, tip-height-dependent (constant-height or variable-z) spectroscopy, and a stated fitting criterion, with statistics over the 20 islands.
+   - Reconcile the 0.25 eV DFT shift with the direct comparison of gap edges and EF position.
+   - Show edge-vs-interior spectra and dI/dV maps at several energies across the whole gap (e.g., +50, +100, +150, +200, +250 mV), plus maps inside the valence and conduction bands for contrast.
+   - Acquire maps in constant-height mode or normalized to remove setpoint artifacts, with higher pixel density and simultaneous topography.
+   - Explain, with a calculation that includes the substrate, why a QSH edge should appear as a sharp peak at EF/VBM rather than a gap-spanning enhancement. Address alternatives: zero-bias anomaly, band bending, van Hove singularity, confinement.
+
+3. **Add decisive controls and complementary probes for topological origin.**
+   - Measure edges of ML-Si₂Te₂ on Sb₂Te₃ (trivial phase) with identical tip and settings, as well as HfTe₂ step edges and any other overlayer edges.
+   - Systematically vary edge orientation and termination, and island size (grow larger islands if possible), with matching nanoribbon calculations including the substrate.
+   - Extract the decay length and compare it quantitatively with ħv/Δ from theory.
+   - Where feasible, add:
+     - QPI along edges, to demonstrate suppressed backscattering;
+     - magnetic-field-dependent STS;
+     - spin-polarized STM;
+     - ARPES or nano-ARPES on higher-coverage samples, to test the predicted band inversion and dispersion.
+
+4. **Strengthen chemical identification, temper claims, and fix presentation.**
+   - Provide XPS/AES (Si 2p, Te 3d, Hf 4f), LEED/RHEED, and/or Raman data confirming Si₂Te₂ stoichiometry and the absence of intercalation or alloying. Discuss competing phases formed under excess-flux annealing.
+   - Moderate the title and abstract language (e.g., "Signatures of topological edge states in strain-free ML-Si₂Te₂"). Remove or qualify "room-temperature QSH," given 5.8 K data and a metallic substrate, and discuss prospects for transfer onto insulating substrates for transport.
+   - Correct the inconsistencies: candidate count (76 vs 65), the Ref. [35] description, author footnotes, the Fig. 2b specification, and the typos.
+   - Move the essential evidence (Figs. S7–S11, gap statistics, edge-state width analysis) into the main text or summarize it quantitatively there.

@@ -1,0 +1,159 @@
+```json
+{
+  "overall_feedback": "The paper reports reproducible, history-dependent critical currents in bulk UTe2 crystals in a field window below the SC2 phase. The current can be written by sharp pulses and erased by slow ramps. The experimental mapping is extensive: amplitude, duration and relaxation-rate tuning, temperature, field and angle. The angular cutoff near θ≈20°, which tracks the angular extent of SC2, is the most compelling piece of evidence connecting the effect to the multiphase physics. However, the interpretive claims run well ahead of the evidence. First, the phenomenology closely matches well-known metastable disordered vortex states in conventional type-II superconductors, notably the peak-effect regime of NbSe2 and related systems, where fast current/field changes quench a high-Jc disordered state that slow driving anneals. This literature is never discussed, yet the work is presented as 'novel' and 'intrinsic'. Second, the arguments against heating and conventional pinning rest on questionable premises. Third, the effect appears from ~7 T and peaks at ~10 T, well below the 15–20 T SC1/SC2 coexistence window cited from prior work. The 'SC1.5' label is effectively redefined as the memory region and then used to argue that coexistence is necessary. Fourth, the RSJ model is underspecified and partly internally inconsistent: g is not given, the γ values in the text and figure disagree, and γ is described as a 'proxy' for J. It is also largely constructed to reproduce a binary outcome, so 'confirming' the phenomenology is overstated. Finally, the measurement protocol needs clarification, since pulse-delta mode itself involves abrupt current switching. Technological claims (non-volatility, power comparison with silicon) also omit the requirements of 50 mK and 7–20 T.",
+  "comments": [
+    {
+      "title": "Conventional metastable disordered vortex states (peak-effect physics) not considered",
+      "quote": "this memory functionality appears to be an intrinsic property of UTe2 rooted in the superconducting order itself",
+      "explanation": "The observed phenomenology closely matches what is long established in conventional type-II superconductors near the peak effect, e.g. 2H-NbSe2 and CeRu2 (Henderson, Andrei, Higgins, Bhattacharya and co-workers; Banerjee, Grover et al.). That phenomenology is:\n- a sharp current change quenches a metastable, disordered vortex configuration with enhanced Jc;\n- a slow ramp or sufficiently large drive anneals it back to the ordered, low-Jc state;\n- the metastable state is long-lived at low T;\n- there is strong dependence on pulse amplitude, duration and turn-off rate.\nThe authors' own proposed mechanism (quench into a glassy, higher-disorder vortex state; anneal by slow ramp) is essentially this scenario. It does not, by itself, require two order parameters or anything 'rooted in the superconducting order'. The angular correlation with SC2 is suggestive. However, it could equally reflect an order–disorder or peak-effect-like crossover of a single vortex species near an anomalous low-Jc regime. The paper itself notes such a regime (anomalously low Jc between SC1 and SC2). Without engaging this literature, the 'novel' and 'intrinsic' claims are not established.",
+      "type": "logical",
+      "severity": "major",
+      "suggested_fix": "Discuss the peak-effect/metastable vortex-lattice literature on NbSe2 and similar systems explicitly. Identify a measurable distinction from it, for example:\n- equilibrium Jc(B) showing or not showing a peak;\n- field-cooled versus zero-field-cooled Jc;\n- dependence on sample edge or geometry.\nTemper 'intrinsic' and 'novel' unless such a distinction is demonstrated."
+    },
+    {
+      "title": "Argument that conventional pinning would depend only on total energy is incorrect",
+      "quote": "this should be insensitive to how the current is turned off, depending only on the total energy imparted",
+      "explanation": "Neither Bean–Livingston barriers nor the Bean critical-state model depend on 'total energy imparted'.\n- The Bean critical state is set by the full current/field history (its extrema), not by energy.\n- Flux creep and dynamic vortex reorganisation are intrinsically rate-dependent, so sensitivity to ramp rate is generic for driven vortex matter.\n- Turn-off-rate dependence is precisely the hallmark of quench versus anneal in conventional disordered vortex systems.\nThe premise that conventional mechanisms would be rate-insensitive is therefore incorrect. The relaxation-rate dependence does not discriminate an exotic mechanism from standard vortex dynamics.",
+      "type": "logical",
+      "severity": "moderate",
+      "suggested_fix": "Replace this argument with the correct statement: rate dependence implies dynamic vortex reorganisation, which is generic. Do not present it as evidence against conventional pinning physics."
+    },
+    {
+      "title": "Fast turn-off is also consistent with a heating-then-rapid-cooling quench",
+      "quote": "providing perhaps the strongest argument against any heating-induced artifacts",
+      "explanation": "I first found the temperature and relaxation-rate arguments persuasive, but they do not exclude a thermal origin of the quench.\n- During the pump (up to 20 A cm⁻² in flux flow) local dissipation can transiently raise the vortex temperature.\n- A faster current turn-off then produces a faster cooling rate, which is exactly how disordered vortex states are quenched in field-cooling protocols.\n- Hence 'faster α gives a stronger effect' is consistent with heating followed by rapid quenching, even though faster α deposits slightly less energy.\nLikewise, a memory effect that is strongest at low T is expected for any metastable vortex state, because thermal creep that would anneal it is suppressed. Neither observation rules out a thermally assisted quench. The Supplementary bath-thermometry data cannot resolve sub-ms local heating of the vortex system.",
+      "type": "logical",
+      "severity": "moderate",
+      "suggested_fix": "Estimate the dissipated power and the thermal relaxation time of the sample during the pump. State explicitly that a transient-heating-plus-fast-cooling quench is not excluded by the α-dependence. Alternatively, compare against a protocol with equal dissipation but slow cool-down."
+    },
+    {
+      "title": "Low temperature scale does not imply a phenomenon 'distinct from the superconductivity'",
+      "quote": "This points to some intrinsic low energy phenomenon, distinct from the superconductivity itself",
+      "explanation": "The memory vanishes by ~0.6 K, compared with Tc ≈ 2.1 K. A small activation scale for annealing a metastable vortex configuration (pinning and creep energies) is entirely ordinary. Vortex-glass metastability routinely disappears well below Tc. The analogy to intrinsic versus extrinsic superconducting diode effects is also strained. The diode effect concerns nonreciprocity, whereas the memory here is symmetric in polarity (Extended Data Fig. 4), and the model explicitly assumes unbroken inversion symmetry.",
+      "type": "logical",
+      "severity": "minor",
+      "suggested_fix": "Reframe the low temperature scale as the activation energy for annealing the metastable vortex state. Either remove the diode-effect temperature analogy or justify why it applies to a reciprocal effect."
+    },
+    {
+      "title": "Memory region extends far below the cited SC1/SC2 coexistence window; reasoning is circular",
+      "quote": "hysteretic signatures of the memory effect start to appear at around 7 T, which persist up to higher",
+      "explanation": "SC1.5 is introduced via ref. 46 and ref. 10 as a coexistence region at ~15–20 T. Yet the memory effect starts at ~7 T and ΔJ peaks at ~10 T (Fig. 4e). Extended Data Fig. 8 shows it largely gone by ~16–17 T in S2. Bulk specific heat (ref. 9) places the SC1/SC2 boundary at ~20 T, so there is no independent evidence that SC2 coexists with SC1 at 7–12 T.\n\nFigure 4a nevertheless labels the whole 7–20 T band as the 'memory region' and the text equates it with SC1.5. The argument then reads: coexistence is required, because the memory appears only where SC1 and SC2 coexist, which is defined as where memory appears. The angular cutoff near 20° is supportive, but it does not establish coexistence at 7–10 T.",
+      "type": "logical",
+      "severity": "major",
+      "suggested_fix": "Distinguish clearly between the thermodynamically established coexistence window (15–20 T) and the memory region (7–~17 T in S2). Provide independent evidence of SC2 or two vortex species at 7–12 T, such as susceptibility or specific-heat anomalies. Otherwise, state that the link between the memory region and coexistence is a hypothesis."
+    },
+    {
+      "title": "Upper field limit for S2 inconsistent with the presented data",
+      "quote": "whereas for S2 it is just below 20T",
+      "explanation": "Extended Data Fig. 8 (S2, B ∥ b) shows the hysteresis collapsing by ~16–17 T, with no discernible splitting at 18–20 T. Fig. 4e (S2, 0°) similarly shows ΔJ returning to zero around 17–18 T. Saying the memory persists until 'just below 20 T' and that it terminates at the SC1/SC2 boundary therefore overstates the coincidence. It also implies the memory region ends several tesla before the transition in S2.",
+      "type": "technical",
+      "severity": "minor",
+      "suggested_fix": "State the actual upper field at which ΔJ vanishes in S2 (≈16–17 T from Extended Data Fig. 8 and Fig. 4e). Discuss why it lies below the expected SC1/SC2 boundary."
+    },
+    {
+      "title": "Pulse-delta measurement mode itself involves abrupt current switching",
+      "quote": "The reset protocol prior to performing a perturbative excitation was achieved by sweeping the current from 40 mA to 0 mA smoothly with a 2 mA step over a 20 second time interval with the pulse-delta sweep mode.",
+      "explanation": "The Keithley 6221/2182A pulse-delta mode applies short current pulses with a low level (typically zero) between them. Each 'step' of a 'smooth' sweep therefore consists of an abrupt rise to the set current and an abrupt return to the low level, on µs–ms timescales. According to the authors' mechanism, abrupt turn-off from above Jc should quench the memory state. Yet the erase sweep, which starts at 40 mA and is far above Jc, supposedly anneals it.\n\nThis raises several questions:\n- what pulse width and low level were used;\n- why these repeated abrupt turn-offs do not act as pumps;\n- whether 'smooth' versus 'abrupt' really refers to the sequence of set points rather than the instantaneous current.\nThe distinction is central to the paper's interpretation.",
+      "type": "technical",
+      "severity": "major",
+      "suggested_fix": "Report the pulse-delta parameters: pulse width, low current level, inter-pulse interval and whether the low level was zero. Explain why the per-step switching does not act as a pump, or show that the effect is reproduced with a true dc ramp."
+    },
+    {
+      "title": "Sample dimensions missing; sample quality relevant to the 'intrinsic' claim",
+      "quote": "The RRR values for the three samples are S1: 105; S2: 44; S3: 395.",
+      "explanation": "Two problems here.\n- Currents are quoted in mA in Methods (e.g. a 40 mA reset) but as current densities in all figures, and no sample cross-sections are given. The conversion, the read-power estimate (~1 nW) and the comparison with the 20 A cm⁻² pump cannot be reproduced.\n- The memory is demonstrated only on S1 and S2, which have RRRs of 105 and 44. The cleanest sample, S3 (RRR 395), is used only for the ac measurement in Fig. 4h. The text calls these 'high quality salt flux-grown crystals', but RRR 44 is modest for that growth method.\nBecause the proposed mechanism is pinning- and disorder-dependent, it matters whether the effect survives, grows or vanishes in cleaner crystals. This bears directly on whether it is intrinsic.",
+      "type": "technical",
+      "severity": "moderate",
+      "suggested_fix": "List the length, width and thickness of each sample and the voltage-contact separation. Report whether the memory protocol was attempted on S3 and the result, and comment on how ΔJ scales with RRR."
+    },
+    {
+      "title": "Damping values in text and Extended Data Fig. 2 disagree",
+      "quote": "(both chosen to be 1 in simulations)",
+      "explanation": "With γ(φ) = γ0 + γπ[(1−cosφ)/2]^δ and γ0 = γπ = 1, γ ranges from 1 at φ = 0 to 2 at φ = π. However, the colour bar in Extended Data Fig. 2a, which is stated to illustrate γ, spans 0.3 to 0.6. Either different parameters were used for the figure or the stated values are wrong. Since γ determines which minimum the phase 'sticks' in, this matters for reproducibility.",
+      "type": "technical",
+      "severity": "moderate",
+      "suggested_fix": "State the γ0 and γπ values actually used, consistent with the Extended Data Fig. 2a colour bar (e.g. γ0 = 0.3, γπ = 0.3 if the range is 0.3–0.6). Otherwise correct the colour-bar scale."
+    },
+    {
+      "title": "Model parameters g, noise amplitude and drive protocol unspecified",
+      "quote": "The potential that describes the model is given by",
+      "explanation": "Eq. (1) contains g, which is never given a value. The barrier height in Extended Data Fig. 2a (~3.1) implies g + 1/(4g) ≈ 2.1, i.e. g ≈ 2. Moreover, φ = π is a local minimum of the first factor only if g > 1/2, so the existence of the metastable minimum depends on this unstated parameter. Also unspecified are:\n- the noise strength ⟨J_n J_n⟩;\n- the pulse amplitudes, widths and ramp rates used for 'quench' and 'anneal';\n- the integration scheme and time step.\nThe simulations cannot be reproduced from the text.",
+      "type": "technical",
+      "severity": "moderate",
+      "suggested_fix": "State g (apparently ≈2), the noise variance, and the pump/erase waveforms in model units. Also note the condition g > 1/2 required for the φ = π minimum."
+    },
+    {
+      "title": "'γ as a proxy to the injected current J' is unclear or erroneous",
+      "quote": "and treat 𝛾 as a proxy to the injected current 𝐽",
+      "explanation": "In Eq. (2), J is the external drive and γ is the phase-dependent damping; they play entirely different roles. Treating γ as a proxy for J is not meaningful as stated. Most likely the intended meaning is that the x-axis of the simulated J–V curve is the drive J and the y-axis is ⟨φ̇⟩ ∝ V, but as written a reader cannot tell how Fig. 3c and Extended Data Fig. 2b were generated.",
+      "type": "technical",
+      "severity": "moderate",
+      "suggested_fix": "Replace the sentence with an explicit description, e.g. 'V is taken as ⟨φ̇⟩ averaged over long times at fixed drive J, which is ramped quasi-statically starting from the φ = 0 or φ = π minimum.' Also state the relevant J step and dwell time."
+    },
+    {
+      "title": "Inversion symmetry does not force the second minimum to φ = π",
+      "quote": "As inversion symmetry appears unbroken in the metastable state, this second minimum has to occur at",
+      "explanation": "Inversion maps φ → −φ, so U(φ) = U(−φ). This permits a symmetric pair of minima at ±φ0 for any φ0, not only φ = π. Restricting to π requires the additional assumption of a single, self-conjugate metastable minimum. In addition, a single plane wave Δ ∼ e^{iπr/L} is not itself inversion symmetric, so linking φ = π to an inversion-symmetric inhomogeneous state needs further argument. The current reasoning is incomplete.",
+      "type": "logical",
+      "severity": "minor",
+      "suggested_fix": "State that φ = π is chosen as the unique inversion-invariant point other than 0 (mod 2π), assuming a single non-degenerate metastable minimum. Acknowledge that ±φ0 pairs would also respect inversion."
+    },
+    {
+      "title": "Damping does not set Jc in the RSJ model; pinning language is conflated",
+      "quote": "this naturally accounts for the higher value of",
+      "explanation": "In the overdamped RSJ model, the critical current of each minimum is fixed by max U'(φ) near that minimum. Methods states that β controls it, and it is independent of γ. Larger γ only lowers the flux-flow voltage above Jc. Attributing the higher Jc to larger damping and 'enhanced pinning at domain boundaries' therefore mixes the model's two independent ingredients.\n\nThe experiment also seems to contradict this picture. In Fig. 1c and Fig. 2 the memory-state curves rejoin the equilibrium curves at high J, i.e. they show similar flux-flow slopes rather than the lower resistance that larger γ would imply.",
+      "type": "technical",
+      "severity": "moderate",
+      "suggested_fix": "State that the higher Jc in the memory state is put in through β (the shape of U near φ = π), and that γ(φ) only governs trapping dynamics. Remove the claim that larger damping accounts for higher Jc, or show data where the flux-flow slope differs between states."
+    },
+    {
+      "title": "Model 'confirmation' overstated; binary outcome vs continuous experimental tuning",
+      "quote": "indeed captures the phenomenology of the memory effect",
+      "explanation": "The potential, the location of the metastable minimum, its higher Jc (via β) and the localised viscosity at π (via δ) are all chosen so that a quench lands in π and an anneal lands in 0. Reproducing this is a consistency check, not a confirmation.\n\nMoreover, the model yields an essentially binary outcome ('regardless of its initial condition'). The experiments instead show ΔJ growing continuously with J_ex, Δt and α and then saturating (Extended Data Fig. 1), including a threshold in J_ex. Stronger effects for longer pulses also sit awkwardly with a model in which a short pulse is what produces trapping. The model, as presented, does not address these trends.",
+      "type": "logical",
+      "severity": "moderate",
+      "suggested_fix": "Describe the RSJ model as a phenomenological illustration constructed to have a quenchable metastable minimum. Either show simulated ΔJ versus pulse amplitude, duration and rate, or state explicitly that the continuous tuning and saturation are not captured."
+    },
+    {
+      "title": "Quoted ΔJ magnitudes inconsistent across figures for the same sample and conditions",
+      "quote": "peaks just above 0.2 A cm",
+      "explanation": "The text states that ΔJ peaks just above 0.2 A cm⁻² at ~10 T (S2, 0°, 50 mK). The figures do not match this:\n- Extended Data Fig. 1a (S2, 14 T, 50 mK, amplitude tuning) shows ΔJ saturating at ~0.55 A cm⁻² at V = 1 µV.\n- Fig. 3b (S2, 14 T, 50 mK, J_ex up to 20 A cm⁻²) shows a maximum of only ~0.25 A cm⁻².\nFor the same sample, field and temperature, amplitude-tuned ΔJ differs by a factor of ~2. A value of 0.55 at 14 T is also inconsistent with a peak of ~0.2 at 10 T. Differences in the reference V or in the J_ex used for Fig. 4e may explain this, but neither is stated.",
+      "type": "technical",
+      "severity": "moderate",
+      "suggested_fix": "Specify the J_ex, Δt, α and voltage criterion used for each ΔJ value in Fig. 4e, Fig. 3b and Extended Data Fig. 1. Reconcile the ~0.55 versus ~0.25 A cm⁻² discrepancy at 14 T."
+    },
+    {
+      "title": "Persistence and non-volatility claims unsupported and internally inconsistent",
+      "quote": "it does not appear to be transiently metastable in character, giving promise for future development of non-volatile memory functionalities.",
+      "explanation": "The persistence over 'at least several hours' is asserted, but no time-dependent data (ΔJ versus waiting time) are shown. The abstract and Methods themselves describe the state as 'metastable' and a 'long-lived transient (metastable) state', which contradicts 'not transiently metastable'.\n\n'Non-volatile' also normally means retention without power. Here the state requires a continuously applied 7–20 T field and T < 0.6 K, and presumably would not survive field removal. The retention characterisation needed to support this claim is missing.",
+      "type": "logical",
+      "severity": "moderate",
+      "suggested_fix": "Add a plot of ΔJ versus waiting time over the hours-long interval, with the protocol used. Describe the state consistently as long-lived metastable. Qualify 'non-volatile' by noting the required continuous field and millikelvin temperature."
+    },
+    {
+      "title": "Power comparison with silicon is unsupported and omits system overhead",
+      "quote": "orders of magnitude less than for nanometre-sized silicon elements",
+      "explanation": "The ~1 nW read power is plausible from V ~ 1 µV and mA-level currents, and the scaling estimate is reasonable in isolation. However, there are two problems.\n- The cited reference (Green 1990, on intrinsic carrier concentration and effective masses in silicon) does not provide power figures for silicon memory elements.\n- The comparison ignores the energy cost of keeping the device at ≤0.4 K in a 7–20 T field, and the write energy of ms-long 20 A cm⁻² flux-flow pulses.\nAs stated, the 'ultralow-power' framing overstates the technological advantage.",
+      "type": "logical",
+      "severity": "minor",
+      "suggested_fix": "Cite an appropriate source for silicon memory-cell read/write energies and estimate the write energy per pulse. Explicitly note the cryogenic and high-field overhead in the comparison."
+    },
+    {
+      "title": "Pinning described as acting 'between vortices'; equilibrium described as minimising entropy",
+      "quote": "Higher disorder implies stronger pinning forces between vortices",
+      "explanation": "Pinning refers to vortex–defect interactions. A disordered vortex configuration has higher Jc because it can accommodate the pinning landscape better (Larkin–Ovchinnikov collective pinning), not because of stronger forces between vortices. Relatedly, the preceding sentence says that vortices order 'to minimise entropy', but ordering lowers entropy; equilibrium minimises free energy. These slips could confuse readers about the proposed mechanism.",
+      "type": "technical",
+      "severity": "minor",
+      "suggested_fix": "Rephrase as 'a disordered vortex configuration is pinned more effectively by the defect landscape', and replace 'minimise entropy' with 'minimise free energy'."
+    },
+    {
+      "title": "Field value missing for the rotation study",
+      "quote": "Rotation study of the superconducting memory effect.",
+      "explanation": "Extended Data Fig. 7 is cited as the raw data behind the angle dependence (Fig. 4f, presumably 15 T), but neither the caption nor the panels state the magnetic field. Since the memory region depends strongly on B, the field value is needed to interpret the ~19° cutoff.",
+      "type": "technical",
+      "severity": "minor",
+      "suggested_fix": "Add the applied field (e.g. 'B = 15 T') to the Extended Data Fig. 7 caption."
+    }
+  ]
+}
+```

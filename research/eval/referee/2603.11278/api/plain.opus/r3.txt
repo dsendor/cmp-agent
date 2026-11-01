@@ -1,0 +1,117 @@
+# Referee Report
+
+**Manuscript:** "Pseudo Point Nodal Superconducting Gap in Spin-Triplet UTe₂" (Hosoi et al., arXiv:2603.11278)
+
+## Summary
+
+The authors report b-axis thermal conductivity κ_b on two molten-salt-grown UTe₂ crystals (RRR ≈ 410 and 350) down to ~50 mK, in zero field and in fields along a, b, and c. Previous κ_a studies could not settle whether point nodes exist along b, and κ_b is the configuration that directly samples those nodes, so the measurement fills a real gap.
+
+The main findings are:
+
+1. **Zero field.** κ_b/T has no resolvable residual term (κ₀/T < 0.0017 W/K²m) and follows a roughly T² dependence. It shows no low-temperature peak, which the authors' calculation predicts for true point nodes along j_Q in the clean, non-unitary-scattering regime.
+2. **Field dependence.** The extrapolated κ₀_b/T rises weakly with field. For H ∥ a there is a kink at H*/H_c2^a ≈ 0.015. Below it, H ∥ a and H ∥ b give similar responses; above it, the response is strongly anisotropic.
+3. **Interpretation.** In a semiclassical Doppler-shift model with series-resistor transport across the vortex lattice (Kübert–Hirschfeld), a finite gap minimum creates an "insulating" fully gapped ring in each vortex unit cell below H* = Hc2(Δ_min/aΔ₀)². This yields a threshold. The authors infer Δ_min/Δ₀ ~ 0.1 along b and argue for an Au- or B1u-like state, excluding non-unitary mixing.
+
+The data look carefully obtained and the b-axis geometry is valuable. The threshold-field idea is physically appealing and, if robust, a useful new diagnostic. However, the conclusion that the gap structure is "definitively resolved" rests on several model-dependent steps and on features near the resolution limit. These need considerably more support. I recommend **major revision**.
+
+---
+
+## Major Concerns
+
+### 1. The quasiparticle vs. phonon decomposition at the lowest temperatures is not established
+
+The entire zero-field argument concerns the shape of κ_b/T below ~0.3 K. Yet the observed κ_b/T ∝ T² is exactly the form expected for boundary-limited phonon conduction (κ_ph ∝ T³).
+
+The evidence offered for quasiparticle dominance is the field suppression at 0.3 K and the a/c anisotropy. This establishes quasiparticle dominance at ~0.3 K. It does not establish it at 50–100 mK, where the discriminating physics (a nodal peak, or activated behavior) would appear.
+
+The authors should provide:
+- an explicit estimate of κ_ph using the sample dimensions, sound velocities, and specular/diffuse boundary scattering;
+- or a fit of the form κ/T = a + bT² + (quasiparticle term).
+
+They should then show that the quasiparticle term remains dominant down to the lowest measured T. Without this, "no peak" and "no residual" could both partly reflect a phonon background swamping a small electronic signal.
+
+### 2. The zero-field "absence of a peak" argument depends strongly on unknown impurity parameters
+
+The calculated nodal curve in Fig. 2c uses Γ/Δ₀ = 0.002 and c = 0.15. Its peak sits at T/Tc ≈ 0.01 (≈ 20 mK), below the base temperature (T/Tc ≈ 0.024). Within the measured window, the nodal model predicts only a shallow decrease of κ/T toward a minimum near T/Tc ≈ 0.05. Several points follow.
+
+- **Parameter dependence.** The position and visibility of the peak depend on Γ and c. The authors acknowledge that the unitary limit with extreme purity gives no peak. A more systematic map of where the peak lands, and whether it falls inside the 50–300 mK window, across plausible (Γ, c) values is needed. The Supplementary "generic behavior" statement should be made quantitative.
+- **Independent constraint on Γ.** Γ/Δ₀ = 0.002 corresponds to Γ ≈ 8 mK. Can this be cross-checked against ρ₀ ≈ 1.7–2.1 µΩcm, or against quantum oscillation Dingle temperatures?
+- **Absolute comparison.** Fig. 2c is given in model units (κΔ₀/N₀v_F²T). The predicted magnitude of the nodal signal should be converted to the units of Fig. 2b, for example by normalizing to the normal state. Readers need to see whether the predicted feature would exceed the experimental noise and the phonon background.
+
+### 3. The zero-field data are not tested against the pseudo-node hypothesis itself
+
+With Δ_min ≈ 0.1Δ₀ ≈ 0.4 K (Δ₀ ≈ 4 K) or, from H*, Δ_min/Δ₀ = 0.72√0.015 ≈ 0.09, the quasiparticle κ/T should be exponentially suppressed. Rough values are exp(−4) at 100 mK and exp(−8) at 50 mK. The pseudo-node curve in Fig. 2c indeed vanishes below T/Tc ≈ 0.05.
+
+The text says the T dependence is "consistent with a small gap," but no fit is presented. An activated or anisotropic-gap fit to the zero-field data should be attempted, with Δ_min as a free parameter. Its result should be compared with Δ_min extracted from H*. Agreement would substantially strengthen the case; disagreement would be informative too. At present the reported ~T² behavior arguably sits more naturally with nodes plus phonons than with an activated gap.
+
+### 4. The threshold field and its robustness
+
+The central new result, the kink at H*_a, rests on a change of slope in κ₀_b/T at the 0.3% level of the normal-state value (Fig. 4b). Several issues need attention.
+
+- **Error bars.** κ₀/T comes from polynomial extrapolation from 50 mK. No uncertainties are shown in Figs. 4a–c. The extrapolation error may be comparable to the values themselves, so error bars and the sensitivity to the fit form (polynomial order, fit range) are essential.
+- **Field protocol.** μ₀H* ≈ 0.18 T for H ∥ a. Please state the field protocol (field-cooled vs. field-changed at low T) and discuss whether pinning, vortex-lattice structural transitions, or proximity to H_c1 could produce a slope change at this field.
+- **Cross-sample comparison.** In Figs. 4a and 4c, H ∥ a data come from #A (and #B), H ∥ b from #B only, and H ∥ c from #A only. The anisotropy argument therefore partly compares different crystals with different RRR. This is risky given the authors' own statement that low-energy excitations are disorder-sensitive. Please clarify whether the same crystal was measured in all orientations; if not, add the missing orientations.
+- **The H ∥ c case.** Fields along c should also Doppler-shift b-axis quasiparticles, since p_s lies in the ab-plane. Is a threshold seen for H ∥ c? If so, does H*_c/H_c2^c agree with the same Δ_min once coherence-length anisotropy is included? If not, why? This is a natural internal consistency test that is currently missing.
+- **The guide line in Fig. 4c.** The dashed "guide to the eye" presupposes the kink. A statistical comparison of a single smooth function against a two-regime fit would be more convincing.
+
+### 5. Field normalization by H_c2
+
+The Doppler energy scale E_H = aΔ₀√(H/H_c2) and the vortex spacing are set by the orbital upper critical field and the coherence-length anisotropy. They are not set by the measured H_c2, which in UTe₂ is strongly affected by field-reinforced pairing, especially for H ∥ b (the 23 T value).
+
+Two consequences follow:
+- Comparing H ∥ a and H ∥ b at equal H/H_c2 compares very different absolute vortex densities.
+- The claimed "isotropy below H*" may partly be an artifact of normalization.
+
+The authors should show the data against absolute field and against H/H_c2^orb, estimated from the initial slopes. They should also discuss how ξ_b, ξ_c anisotropy enters E_H for H ∥ a. The extracted Δ_min depends directly on this choice and on a.
+
+### 6. Limitations of the theoretical model
+
+- **Missing prediction for H ∥ b.** The model in Fig. 4d treats only heat current normal to the field. The key experimental statement, isotropy below H* versus anisotropy above it, requires a prediction for H ∥ b (j_Q ∥ H) as well.
+- **Qualitative mismatch below H*.** The model gives κ = 0 below H*, yet the data rise. The authors attribute this to the breakdown of the local Doppler approach when the mean free path exceeds the width of the "forbidden" ring. Please estimate both: ℓ from ρ₀, and the ring width R − R* at the relevant fields. If ℓ ≫ R − R*, the series-resistor picture, and hence the sharpness of the threshold, is questionable for these ultraclean samples. In that case the kink may not be the expected signature at all.
+- **Sensitivity of Δ_min to a.** The extracted Δ_min scales linearly with a, which is borrowed from Ref. [30]. There is also a small internal inconsistency: H*/H_c2 = a⁻²(Δ_min/Δ₀)² with a = 0.72 and Δ_min = 0.1Δ₀ gives 0.019, not 0.015. Please reconcile this, and quote Δ_min with an uncertainty range reflecting the spread in a.
+- **Choice of transport model.** The Kübert–Hirschfeld series approach is known to be crude. Some discussion of how alternative treatments (e.g., Vekhter–Houghton, or quasiclassical Eilenberger approaches as in Ref. [36]) would modify the threshold behavior would help.
+
+### 7. The symmetry discussion needs tightening
+
+- **"Highly improbable accidental minimum."** Within Au with strong spin-orbit coupling, a d-vector such as d = (c₁k_a, c₂k_b, c₃k_c) on a quasi-2D Fermi surface gives a gap minimum along b with Δ_min/Δ₀ ≈ c₂/c₁ whenever c₂ ≪ c₁. This needs no Fermi-surface corrugation or fine-tuning, only anisotropic pairing amplitudes. It seems the most economical explanation, and it undercuts the claim that the pseudo-node is "anomalous from the perspective of conventional pairing mechanisms." Please address it.
+- **Unitary B2u + αAu.** Mixing two different irreducible representations with a real relative phase lowers the crystal symmetry. It generically requires two transitions. This conflicts with the single-component evidence (Refs. [24–27]) that the authors themselves invoke to restrict to one-dimensional irreps.
+- **Scope of the "excluding non-unitary mixing" claim.** This appears in the abstract, but it is argued only for the specific example B2u + iαAu. It should either be demonstrated more generally (e.g., by considering the gap branches |d|² ± |d × d*| for other combinations) or softened.
+- **The NMR argument.** Cubic terms such as k_ak_bk_c can indeed give a symmetry-allowed d_b component in B2u. However, their weight would generically be small. Reconciling them with a large Knight-shift reduction along all axes requires more than a statement that they are allowed.
+
+### 8. Engagement with conflicting κ_a results
+
+Hayes et al. [30] reached a nodal conclusion from κ_a in comparable crystals, while Suetsugu et al. [29] reached a nodeless one. Since this paper adopts parameters from [30], it should explain explicitly why the two κ_a datasets differed and how the present κ_b data resolve that disagreement. Possible factors include sample quality, the temperature range, and the interpretation of field dependence.
+
+---
+
+## Additional Comments
+
+1. **Sample geometry.** The crystals are ~360 µm (∥ b) × 370 µm (∥ a) × 110 µm (∥ c). An aspect ratio near one along the heat-flow direction, with spot-welded contacts on the surface, raises concerns about uniform heat flow and about admixture of other tensor components in this strongly anisotropic material. The Wiedemann–Franz check fixes the geometric factor but not the non-uniformity. Please give contact dimensions and spacing and discuss this point.
+2. **Residual-term bound.** State how the upper bound κ₀/T = 0.0017 W/K²m was determined, and how it changes with fit form and fit range.
+3. **Wiedemann–Franz test.** Was it checked only at T > Tc in zero field, or also in the field-induced normal state at low T?
+4. **Vortex-core conduction.** The argument that vortex cores are negligible for H ∥ b (level spacing ~0.13 K) is reasonable. Quasiparticle scattering off vortices also suppresses κ for j_Q ∥ H, and should be mentioned as a competing effect.
+5. **Specific heat.** The claim that pseudo-nodes reproduce C ∝ T³ and the anisotropic field response of Ref. [47] is relegated to the Supplement. A brief quantitative statement in the main text would help.
+6. **Topology discussion.** The paragraph on topological crystalline superconductivity and Majorana modes is tangential to the measured result and could be condensed.
+7. **Tone.** Phrases such as "definitively resolve" in the abstract are not justified given the model dependence. "Strongly suggest" (used later in the abstract) is more appropriate throughout.
+
+## Typographical and Presentation Issues
+
+- **Fig. 1 caption.** It states that d and e show H "perpendicular and parallel to point nodes, respectively," but the panels and the following sentences have d = H ∥ nodes and e = H ⊥ nodes. Please correct the order.
+- **Fig. 1e.** The panel describes j_Q ∥ nodes versus j_Q ⊥ nodes; clearer labeling of the arrows would help.
+- **Typos:** "Moreover, The Fermi surface…"; "quasipartcles"; "less sensitive to the the excitations"; "temperature dependence of κb/T at very low temperatures for both sample#A" (missing space).
+- **Notation.** κ₀_b vs. κ_b⁰ is used inconsistently between text and figure captions.
+- **Fig. 3.** Please state the polynomial order used for the dashed extrapolations and show the fit range.
+- **Fig. 4.** Error bars should be added to panels a–c. The y-axis of 4d is in model units; a normalized version would allow direct comparison with 4b.
+
+---
+
+## Assessment
+
+The b-axis measurement is valuable, and the proposed threshold-field signature of a small but finite gap minimum is an interesting idea worth publishing. At present, however, the conclusions rest on:
+
+- an unquantified phonon background;
+- a zero-field argument whose discriminating feature lies largely below the base temperature and depends on assumed impurity parameters;
+- a kink of small amplitude without error bars, partly built on cross-sample comparisons;
+- a semiclassical model whose sharp threshold may not survive in the long-mean-free-path regime of these samples.
+
+Addressing points 1–5 would substantially strengthen the paper: the phonon estimate, an activated fit with a consistent Δ_min, error analysis of κ₀/T, the H ∥ c threshold, and the normalization issue. The symmetry discussion (point 7) should also be revised.

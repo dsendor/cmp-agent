@@ -1,0 +1,148 @@
+Referee report
+
+arXiv:2608.12897, "Observation of Time-Domain Braiding of Non-Abelian Anyons at nu = 5/2 State"
+T. Alkalay, J. Park, M. Oh, et al. (Weizmann / Konkuk / KAIST)
+
+Note on scope: I reviewed the extracted text of the main paper, Methods and Supplementary Notes. The figure panels came through only as axis fragments, so my comments on the data are based on the captions, the quoted numbers and the text.
+
+
+1. Summary of the claims
+
+The authors extend their nu = 1/3 "time-domain braiding" (TDB) experiment (Lee et al., Nature 2023) to nu = 5/2. They use two etched-and-gated QPCs 1.4 um apart and run two configurations in the same device:
+
+(a) Charged-anyon configuration. QPC2 injects a dilute e/4 beam, and its downstream charged component is partitioned at QPC1. The charge Fano factor (normalized to e* = e/4) is about 1.54 at e*V/2kT = 4.6. The PH-Pfaffian prediction is 1.49, the anti-Pfaffian prediction is 0.94, and trivial partitioning gives 1.
+
+(b) Neutral-anyon configuration. QPC1 injects, and the upstream neutral (Ising) component is partitioned at QPC2. The neutral Fano factor, normalized by a separately measured differential reflection R^diff_QPC2, is about 2.37 at e*V/2kT = 5.0. The PH-Pf prediction is 2.33 and the A-Pf prediction is 2.0. Both predictions use the non-Abelian monodromy M_n = 0.
+
+The authors conclude that (i) they observe non-Abelian braiding of the neutral Ising anyons, (ii) they observe Abelian braiding of the charged e/4 sector, and (iii) the edge is PH-Pf rather than A-Pf. They argue there are no fitting parameters. Four data sets from three devices are shown in the Supplement. An incoherent-heating model (Supp. Note 3) is said to underestimate the neutral signal by about a factor of two.
+
+
+2. Overall assessment
+
+The experiment is well motivated, and the two-configuration geometry is the paper's main conceptual advance. Probing the charged and neutral sectors separately in one device is not possible in a standard interferometer. The theory is worked out in considerable detail. I checked the zero-temperature Poisson-limit Fano factors in Table 1 against the closed-form expressions in Methods: 1.50 and 1.33 (charge), 2.54 and 2.0 (neutral). They reproduce.
+
+As written, though, the evidence supports a weaker statement than the title and Outlook make. In brief:
+
+- The neutral-configuration data agree with M_n = 0. But the paper never shows that the measurement excludes alternatives that would produce the same or a similar neutral Fano factor: complete dephasing of the neutral braiding phase, Abelian upstream modes, and heating under less restrictive assumptions.
+- The PH-Pf vs A-Pf discrimination comes essentially from the charge configuration alone. There it depends on subdominant processes and on fixed-point scaling dimensions, which are the least universal and least independently checked ingredients.
+- There are no error bars or quantitative goodness-of-fit measures. The main-text figures are taken from different data sets, and one Supplement statement contradicts the main text.
+
+I recommend major revision. The specific items below are ordered by importance.
+
+
+3. Major issues
+
+3.1 M_n = 0 cannot be distinguished from full dephasing of the neutral braiding phase.
+
+In the TDB framework, the observable depends on the average monodromy <M_n^k> over enclosed anyons. Any mechanism that randomizes the phase picked up per enclosed neutral excitation sends <M_n> to 0 and produces the same Delta_TDB factor. Such mechanisms include coupling of the upstream neutral mode to other neutral or reconstructed edge excitations, or fluctuations along the 1.4 um path. As far as I can tell from Eqs. (S16) and (S38)-(S42), the predicted F_neutral would then be identical to the non-Abelian prediction. It would also give zero net DC current at the detection QPC, which is what is observed.
+
+The charged configuration shows that the charge sector stays coherent over L. That is not evidence that the upstream neutral sector does: it propagates in the opposite direction with a different, presumably much smaller, velocity and couples to different degrees of freedom.
+
+The authors need either a concrete argument or a measurement that breaks this degeneracy. Examples:
+- a process in the neutral configuration whose contribution is sensitive to the fusion channel rather than only to |<M_n>|;
+- a coherence test of the neutral sector that does not rely on assuming the result;
+- at minimum, a frank statement that M_n = 0 is the non-Abelian expectation but is also the fully dephased limit.
+
+3.2 No Abelian or null model is evaluated in the neutral configuration.
+
+Both curves in Fig. 3b assume M_n = 0, so Fig. 3b cannot by itself demonstrate non-Abelian statistics. The paper's own Poisson-limit formula suggests the measurement could discriminate strongly. F_neutral^limit is proportional to Re[(1-M_n)^(2delta-1)] / Re[(1-M_n)^(2delta-2)]. For delta = 1/4 and the same prefactor:
+- M_n = 0 gives 2.54;
+- M_n = -1 gives about 5.1;
+- M_n = exp(i pi/4) gives a negative value (about -8).
+
+If this sensitivity survives at the experimental parameters, it is the strongest argument the authors have, and they should make it explicit. I request:
+
+(a) F_neutral^th as a function of M_n (modulus and phase) at the experimental R_iQPC(V_S) and T. Ideally also a fit of M_n as a free parameter, with a confidence interval.
+
+(b) Predictions for at least one concrete Abelian candidate that has an upstream neutral mode (for example the 113 state). Note also that the Pfaffian has no upstream mode, which gives a natural null expectation for configuration (b).
+
+(c) A quantitative bound on Im(M_n) from the measured absence of DC current at QPC2. By Eq. (S38), a complex M_n would produce a net tunneling current from a neutral beam. The authors use the zero-current observation only to impose the A-Pf symmetry conditions (S49). It is equally useful as a constraint on Abelian alternatives.
+
+3.3 Incoherent heating is not convincingly excluded.
+
+The neutral configuration is essentially the classic upstream-neutral-mode detection geometry (Bid et al., Nature 2010, the authors' Ref. 19). In that work, noise at a QPC downstream of a hot spot was interpreted as upstream energy transport. The new interpretation therefore has to beat heating clearly. Supp. Note 3 finds heating underestimates S_D1 by "roughly a factor of two". I do not think a factor of two is decisive, for four reasons.
+
+(a) The linear expansion in Delta T/T behind Eq. (S64) is outside its range of validity. My rough estimate from Eqs. (S60)-(S61): for R_iQPC around 0.1 and e*V/2kT = 5, Pheat is about G0 R(1-R) V^2 / 2, which gives T_ex of roughly 4T. That is not a small perturbation. Please evaluate S_D1 with the full Green function (S63) at T_ex, not its linearization.
+
+(b) Eq. (S61) splits the dissipated power among modes in proportion to central charge, and assumes all modes reach T_ex. If the power goes preferentially into the upstream neutral sector, the neutral temperature rises. That is plausible because the voltage drop and hot spot sit on the upstream side of the QPC. For PH-Pf, putting all of Pheat into the |c_n| = 1/2 Majorana instead of |c_c| + |c_n| = 3/2 increases T_ex^2 - T^2 threefold and Delta T by up to about sqrt(3). That alone nearly closes the gap. The authors should present the heating estimate as a band over reasonable partitions, not a single curve.
+
+(c) At large bias both heating and TDB give S_D1 roughly linear in V_S, so the bias dependence by itself does not discriminate. Dependences that should discriminate include: on R_iQPC (dilution), on temperature (scaling collapse in e*V/kT), and on R_dQPC. TDB predicts F_neutral independent of R_dQPC, and the heating model gives its own explicit form. Please show at least one of these.
+
+(d) A heating analysis is given only for the neutral configuration. In the charged configuration, if charge equilibration happens over less than L, the dilute beam relaxes into a hot downstream charge mode. That produces delta-T noise at QPC1, which also pushes F_charge above 1. This alternative to the charge-sector TDB signal should be evaluated as well.
+
+3.4 The PH-Pf vs A-Pf discrimination depends on subdominant processes.
+
+In the pure TDB Poisson limit, the two orders give 1.50 vs 1.33. At the experimental parameters the predictions separate to 1.49 vs 0.94. The difference comes mainly from the trivial and "intermediate" contributions, which matter much more at delta = 1/2. Notably, the A-Pf value falls below the trivial value of 1. Several aspects of these subdominant terms concern me:
+
+- The saddle-point treatment of trivial partitioning is corrected by ad hoc reduction factors determined numerically: C_rd = 0.47 (charge, PH-Pf), 0.09 (charge, A-Pf), 0.44 and 0.59 (neutral). A factor of 0.09 means the approximation overestimates by more than a factor of ten for A-Pf. If the full integral can be computed numerically, why not use it directly?
+- The intermediate process is new here ("not included in the analysis of Ref. [24]"). For A-Pf at delta = 1/2 it involves cancelling a long-time divergence against a short-time cutoff term (around Eq. S50). This is delicate.
+- The authors state that the conclusions are "robust against slight variations in the reduction factor or the details of the integration" but show no evidence.
+
+Requests:
+(a) Give F_charge^{A-Pf, TDB only} at e*V/2kT = 4.6. The PH-Pf value (1.57) is given, but the A-Pf value is not.
+(b) Show the decomposition of F_charge^th into TDB, trivial and intermediate parts for both orders, as a function of bias.
+(c) Add sensitivity bands for the approximations.
+(d) Reanalyze the nu = 1/3 data of Ref. 24 with the intermediate process included, to confirm that the earlier agreement survives the updated theory.
+
+3.5 Fixed-point scaling dimensions are assumed, not checked.
+
+The discrimination relies on delta = 1/4 (PH-Pf) vs 1/2 (A-Pf). Tunneling exponents extracted from QPC measurements at 5/2 have historically not matched simple fixed-point values, for example in Radu et al. 2008 (Ref. 17) as I recall. The measured bias dependence of R_QPC(V_S) (Figs. S1a-S4a) carries information about delta. Please show that it is consistent with delta = 1/4 and not with 1/2. If it is not consistent with either, explain why the Fano factors should still be governed by the fixed-point values.
+
+There is also a conceptual tension. The theory assumes L is much shorter than all inter-mode equilibration lengths. But the universal A-Pf neutral dimension (delta_n = 3/8) is a property of the disorder-dominated fixed point, which is reached through inter-mode tunneling. The authors should explain which length or energy scale controls arrival at the fixed point at the QPC, and why that is compatible with the no-equilibration assumption. The same question applies to PH-Pf: Supp. Note 3 itself invokes additional charge degrees of freedom on the PH-Pf edge at finite temperature.
+
+3.6 Uncertainties, data selection and consistency.
+
+- No error bars are shown on S_D or on the Fano factors, and "within experimental uncertainty" is never quantified. Please give statistical and systematic uncertainties, including those of the gain calibration, of R^diff, and of the electron temperature. The temperature sets both the x-axis and the predictions, and the paper does not say how 10 mK was determined.
+- The main-text figures come from different data sets: Figs. 1b and 2b from data set 4 (the second cooldown, with 0.3 V bias cooling), and Fig. 3b from data set 3. The neutral data of set 4 appear only in Fig. S9. Please explain the choice, or use one data set throughout.
+- Supp. Note 1 says that for data set 1 in the neutral configuration "the A-Pf prediction lies closer to the measured values". This contradicts the main-text statements that the neutral data are "slightly closer to the PH-Pf prediction" and that "measurements on the other devices show the same behavior".
+- I request a table that gives, for each of the four data sets and both configurations: the measured Fano factor at a fixed e*V/2kT with its uncertainty, the R values, and the PH-Pf and A-Pf predictions. A simple goodness-of-fit measure over the high-bias range would help.
+
+3.7 Charge identity at the detection QPC.
+
+F_charge is normalized to e/4. Weak-backscattering, low-energy tunneling at 5/2 has been reported to show bunching toward e/2 (I believe by the same group, Dolev et al., PRB 2010). In the TDB regime the detection QPC has no DC bias across it, and the relevant tunneling energy is about kT. The e/4 charge measured at QPC1 under direct bias (Fig. S1f and so on) is at energy e*V, so it does not settle this. Any e/2 component would raise the apparent F_charge above 1 without braiding. Please address whether e/2 tunneling at the detection QPC can be excluded in the regime of Fig. 2b.
+
+3.8 Controls on the neutral signal.
+
+The neutral signal is small, a few times 10^-30 A^2/Hz. Please show controls that rule out spurious contributions, such as cross-talk from the partitioned charge current of QPC1, heating of the ground or drain contacts, or partial reflection of the integer channels:
+- S_D1 with QPC2 fully open, and with QPC2 pinched, where the TDB signal should vanish;
+- S_D1 vs R^diff_QPC2 at fixed injection;
+- QPC characterization showing that the two integer channels are fully transmitted, that only the inner 1/2 channel is partitioned, and that the local filling in the constriction is 5/2.
+
+Since the first cooldowns were done "without an applied gate voltage", please also state how far the R values could be tuned. This bears directly on the dilution-dependence test requested in 3.3(c).
+
+3.9 Claims relative to the evidence.
+
+The abstract's "evidence for the presence of non-Abelian anyons" is appropriately hedged. Several other statements are not:
+- the title's "Observation";
+- "demonstrates ... non-Abelian braiding of neutral Ising anyons";
+- "contradicting the A-Pf order";
+- "our work establishes that dilute anyons undergo partitioning through an entirely different mechanism";
+- separate detection being "unattainable in spatial interferometers".
+
+The thermal-Hall support for PH-Pf (Refs. 20, 21) is also presented as settled. The PH-Pf vs A-Pf interpretation of those measurements remains debated: alternatives invoke incomplete thermal equilibration of an A-Pf edge, and numerics generally favor A-Pf in the clean limit. That context should be given.
+
+The statement that L is shorter than the coherence and equilibration lengths is inferred from the agreement with theory, which is circular. The supporting citation (Ref. 42) studied, as I recall, hole-conjugate states such as 2/3, not 5/2. Please give independent support or present this as an assumption.
+
+
+4. Minor issues
+
+- Notation drifts between C_crd, C_rd, C^c_rd and C_nrd, between R^diff_dQPC and R^diff_QPC2, and between "Table 1" and "Table I". Please unify.
+- Supp. Note 2E3, last paragraph: it says "the contribution of the trivial partitioning process", but it sits in the intermediate-process section and refers to Eq. (S25). It should read "intermediate process".
+- The reference amplitude e*V_ref/2kT of about 0.3 is not very small. Please show that R^diff is linear at this amplitude.
+- Please explain the negative excess noise at low bias in panels (c) and (g), presumably from the cross-correlation term in Eq. (6).
+- Data availability: "available upon reasonable request". Please deposit the raw data and the code that evaluates F^th (Eqs. S35, S37 with S38-S51). The expressions are long enough that independent reproduction is otherwise impractical.
+- References: Ref. 4 title should be "Nonabelions in the fractional quantum Hall effect". In Ref. 30, "anyonc" should be "anyonic". In Refs. 14 and 28, "Particlehole" should be "Particle-hole". Ref. 21 (Science 375, 193) appeared in 2022, I believe, not 2021.
+- Typos: "Deajeon", "Vladmir" (Supplement author list), "legnth", "diagamma", "the the", "does not contributes", "a QP excitations".
+
+
+5. What would most strengthen the paper
+
+(1) F_neutral^th vs M_n at the experimental parameters, with M_n fitted and a confidence interval, plus an Abelian-candidate prediction.
+(2) An argument or measurement separating M_n = 0 from dephasing.
+(3) The dependence on dilution (R_iQPC) and on temperature, compared against both TDB and a heating band computed without the linear expansion, for both configurations.
+(4) Robustness of the A-Pf charge prediction: the TDB-only value, the decomposition, and direct numerical integration instead of reduction factors.
+(5) An uncertainty table across all four data sets, with the Supplement and main text made consistent.
+
+With these additions the paper could support "evidence consistent with non-Abelian time-domain braiding and with PH-Pf edge structure". In its present form, I do not think it establishes an observation of non-Abelian braiding or excludes A-Pf.
+
+Recommendation: major revision.

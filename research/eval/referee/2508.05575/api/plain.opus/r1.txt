@@ -1,0 +1,141 @@
+# Referee report: "Negative differential conductance in triangular molecular assemblies" (Li, Pokorný, Hapala et al., arXiv:2508.05575)
+
+## Summary
+
+The authors use STM lateral manipulation to assemble C₃-symmetric trimers (and a hexamer) of the radical molecule TBTAP on Pb(111). STS at 2.6 K shows several features:
+
+- discharging peaks at ~0.52–0.59 V;
+- satellite features and genuine NDC (current decreasing with voltage) at ~0.7–0.9 V;
+- dI/dV maps with overlapping "Coulomb rings" and a chiral NDC region at the trimer centre.
+
+A three-impurity Anderson model treated with a Pauli master equation (PME), plus a tip-electrostatics model, reproduces the ring evolution. The proposed NDC mechanism has three steps:
+
+1. The intersite capacitive coupling (W ≈ 50 meV) makes the two-electron state the ground state.
+2. In the central region, the tip drives the cluster into a non-equilibrium mixture of singly-occupied configurations, which cannot interconvert directly because intersite hopping vanishes.
+3. This "wastes" occupation probability on configurations whose empty site is far from the tip.
+
+NRG calculations of YSR states and data on a hexamer complete the paper.
+
+## Overall assessment
+
+The experiment is attractive and carefully executed. The NDC is genuine (visible in I(V), Fig. 1D, not only in lock-in data). The experiment–simulation comparison of the ring evolution (Figs. 2, S7, S8) is visually convincing. The insight that many dI/dV ring crossings correspond to charge *redistribution* at fixed total charge, rather than charging events, is valuable for the community. Releasing the simulation code is commendable.
+
+However, the central mechanistic claim rests on a weak-coupling, no-coherence PME treatment that the authors themselves concede is far from the physical regime. Several parameter choices appear internally inconsistent. The hexamer section and the framing ("device", "molecular Gunn diode", "first observation") are overstated. I consider the work potentially suitable for publication after substantial revision.
+
+---
+
+## Major issues
+
+**1. Validity of the NDC mechanism outside the sequential-tunneling limit.**
+
+The PME uses Γ_s ≈ 0.01 meV, whereas the authors' own YSR fits give Γ_s = 10–20 meV, three orders of magnitude larger and ≫ k_BT. The justification offered is that ring size and shape depend on electrostatics rather than Γ. That holds for ring *positions*, but the NDC is explicitly a population effect: it requires the three singly-occupied configurations |100⟩, |010⟩, |001⟩ to be mutually blocked so that tip-driven cycling produces a ~uniform mixture.
+
+With Γ_s ~ 10 meV, substrate-mediated second-order processes become fast. Examples are inelastic cotunneling |100⟩ → |010⟩ via virtual |000⟩ or |110⟩. Their rate is ~Γ_s²/ΔE, with ΔE of order tens of meV, which is many orders of magnitude faster than the tip rate (I ≈ 400 pA corresponds to ħΓ_t ~ μeV). Such processes would relax the cluster to the lowest singly-occupied configuration and could destroy the mixed state on which the NDC explanation depends.
+
+The authors should do at least one of the following:
+- include cotunneling, e.g. via the higher-order approaches available in QmeQ;
+- show that the mechanism survives for Γ_s/Γ_t ratios representative of experiment;
+- explain why such relaxation is suppressed.
+
+**2. Neglect of coherences and nonlocal hybridization.**
+
+The model contains degenerate states (E₀₁₀ = E₀₀₁ along the path in Fig. 3). In the NRG part the substrate hybridization is fully nonlocal (Γ_sij = ζΓ_s with ζ = 1). In that situation the Pauli ME is known to fail: coherences between degenerate states coupled to a common lead produce interference and dark states, which are themselves a known NDC mechanism in triangular dots (the authors' Refs. 11, 12).
+
+- Please state what ζ was used in the PME.
+- Please compare against a 1vN/Redfield calculation.
+- The YSR analysis (ζ = 1) and the transport analysis (implicitly ζ = 0) should be reconciled. Otherwise the "independent check" provided by the YSR calculation is weaker than claimed.
+
+**3. Self-consistency of the level position ε_id = −90 meV.**
+
+ε_id is read off the −90 mV resonance in Fig. S2, which was measured *on the trimer*. Within the authors' own model, however, the removal energy from the two-electron ground state is E(N=2) − E(N=1) = ε + W, not ε. Taking the peak at face value would give ε ≈ −140 meV. For this value the PME criterion W > −ε/2 fails, and the ground state would be triply occupied.
+
+The two-electron ground state is already marginal with the stated parameters: 2ε+W = −130 meV versus 3ε+3W = −120 meV, a 10 meV margin. The NRG calculation additionally uses ε = −104 or −106 meV (Figs. S10G, S11C); in the Γ → 0 limit this would also give N = 3.
+
+Please:
+- clarify how ε_id was determined;
+- reconcile the different ε values;
+- provide a sensitivity analysis showing over which (ε, W) range the two-electron ground state and the NDC persist.
+
+**4. Fit uniqueness and the claim of an "almost perfect match".**
+
+The electrostatic/transport model has many adjustable parameters: r_tip, z_tip, z_C, z_S, Q_xx, β, W and ε. Some fitted values are acknowledged as unphysical (z_S = −0.09 nm versus a ~0.3 nm molecule–surface distance). The molecular overlay in Fig. S5 also had to be rescaled to match the rings.
+
+- Please describe the fitting procedure and provide a quantitative goodness-of-fit metric.
+- Please give parameter uncertainties or correlations; it is unclear whether W = 50 meV is uniquely determined.
+- The agreement at the highest voltages is qualitative at best. At 0.87 V (Fig. 2H vs. H′) the experiment shows scattered spots, whereas theory shows a sharp continuous NDC triangle. The large outer rings in the simulation are barely visible experimentally.
+- A strong independent test would be the tip-height dependence (Fig. S4 shows the P4 dip deepening on approach). Can the model reproduce it with fixed parameters?
+
+**5. Ring widths versus Γ_s.**
+
+The authors state that ring width is set by Γ_s and Γ_t, while in the simulation it is set only by k_BT. With the lever arm extractable from Fig. S4, the experimental peak widths (~10–20 mV in V_s) could be converted into energy broadening and compared with Γ_s = 10–20 meV. If the implied broadening is much smaller than 10 meV, this would point to reduced hybridization at the relevant states, which bears directly on issue 1. Please carry out and report this consistency check.
+
+**6. The hexamer section does not support the stated conclusions.**
+
+- The hexamer NDC is attributed to a different mechanism: barrier increase upon charging, following the TCNQ work in Ref. 18. Yet the Conclusions say the hexamer "further confirms the robustness of these effects." The two phenomena should not be conflated.
+- No modelling is performed, so the barrier-increase interpretation remains speculative.
+- The section heading refers to NDC. Yet the text emphasises a chiral pattern of *positive* dI/dV and states that "no new patterns emerge at the center." The NDC regions in Fig. 4 should be identified explicitly.
+- There are sign inconsistencies: the rings are said to "intersect at V_s = 0.45 V", whereas the figure shows −0.45 V.
+- The inner molecules are described as neutral, with LUMO resonances at +170 and +330 mV (Fig. S12B). Please explain how a level at +170 mV relates to charging at −450 mV, i.e. what lever arm is implied.
+
+**7. Superconductivity claim not tested experimentally.**
+
+The statement that NDC is "independent of the underlying superconductivity" rests only on the model, which neglects superconductivity. This is very plausible at ~0.8 V. Still, a measurement above the Pb critical field (and with a normal-metal tip, or with the Pb tip quenched) would make the claim experimental rather than assumed.
+
+**8. Reproducibility and statistics.**
+
+Please report:
+- how many trimers were built and measured;
+- how many tips were used;
+- the spread of the NDC voltage and peak-to-valley ratio.
+
+The assembly is chiral, so both enantiomers should form. Observing mirror-image NDC patterns for opposite-handed trimers would be a compelling, nearly parameter-free test of the orbital-symmetry explanation for the chiral pattern.
+
+---
+
+## Framing and claims
+
+- **"First observation of NDC in a molecular system engineered using lateral manipulation"**: please soften this or support it with a more careful literature comparison.
+- **"Device", "molecular Gunn diode", applications to oscillators and logic**:
+  - The STM tip acts simultaneously as electrode and gate, so this is a spectroscopic phenomenon of a tip–molecule junction rather than a device.
+  - The Gunn effect is a bulk transferred-electron instability with a physically unrelated mechanism; the analogy is misleading.
+  - Peak-to-valley ratios are ~1.2 at pA currents.
+  
+  I recommend substantially toning down the introduction and outlook.
+- **"Gate-controlled" (abstract)**: there is no independent gate, so this should read "tip-gated".
+
+---
+
+## Minor issues and clarifications
+
+1. **dI/dV units.** Fig. 1C reports dI/dV of 0–50 pS (Pb reference ~1–2 pS), while Fig. 1D shows ~450 pA at 1 V on Pb (I/V ≈ 450 pS). These cannot both be in pS; presumably the lock-in signal is uncalibrated. The same issue affects Figs. 2, 4, S7 and S10.
+2. **Acquisition parameters.** The Methods say modulation amplitudes are "indicated in the figure captions", but they are absent for Figs. 1, 2 and 4. Please give lock-in amplitude, setpoints, and whether maps are constant-height. In constant-current mode, apparent NDC in maps can be a feedback artefact.
+3. **Image-charge position.** The image of a charge at z = 0 across a plane at z_S < 0 lies at z = 2z_S, not −2z_S.
+4. **Eq. (S7).** For a transition from a (N−1 electrons) to b (N electrons), the lead occupation should be evaluated at E_b − E_a − μ_α. The definition x = (E_a − E_b − μ_α)/k_BT appears to have the sign reversed. Also, "P_α" should read "P_a", and V_αi should be t_αi for consistent notation.
+5. **"Doubly-occupied ground state."** In Anderson-model language this means a site with two electrons, which is excluded by U. Use "two-electron (N = 2) state" throughout. Please also clarify the spin structure of the N = 2 ground state and the labelling of the phase transitions in Fig. S11A against ⟨N⟩ in Fig. S11B. As written, "singlet–doublet" and "doublet–triplet" transitions are hard to map onto the N ≈ 1, 2, 3 plateaus.
+6. **YSR splitting.** The ~0.1 meV splitting is attributed to a tip-induced change of Γ₁ by 0.5 meV, which looks fine-tuned. If this is correct, the splitting should depend on tip position and height; is this observed? Static asymmetry (quadrupole, adsorption site) is an alternative explanation.
+7. **DFT setup.** The DFT treats the trimer charged by three electrons, while the model ground state has two. Please also justify:
+   - how the excess charge localises on molecules rather than the Pb cluster;
+   - whether the calculation is periodic or a finite cluster;
+   - the treatment of Pb (ECPs, spin–orbit).
+8. **Inconsistent YSR voltages.** The YSR map is given as ±1.8 mV in the text, 1.9 mV in the caption, and "1.9 V" in the panel. The main text also omits "±" for the 1.95 mV peak.
+9. **Model description in main text.** Please state explicitly in the main text that the PME assumes U → ∞, Γ_s ~ 0.01 meV and t = 0, together with the fitted electrostatic parameters.
+10. **Data availability.** Please provide the Zenodo DOI.
+
+## Typos and presentation
+
+- "an molecular system" → "a molecular system"
+- "V_s = 790 meV" → "790 mV"
+- "NDR" (Fig. 2 caption) → NDC, for consistency
+- "Current cmponent" (Fig. 3B axis)
+- "occupancy must determined" → "must be determined"
+- "Fig 3A"; double period in the Fig. S5 caption
+- "red hashed arrow" → "dashed"
+- The Fig. 3 panel labels and caption should be checked: panel A shows occupations as both line thickness and stacked areas, which is hard to read.
+
+## Recommendation
+
+**Major revision.** The experimental observations are interesting and worth publishing. The mechanistic interpretation needs to be shown robust to:
+- realistic substrate coupling, including cotunneling and coherences;
+- a self-consistent choice of ε and W.
+
+The hexamer discussion and the device-oriented framing should be brought in line with what the data actually demonstrate.

@@ -1,0 +1,125 @@
+{
+  "overall_feedback": "The paper reports ARPES and DFT on Co1/4TaSe2, a type-A antiferromagnet with TN = 178 K, and argues that it is a layered g-wave altermagnet. The symmetry argument is reasonable and parallels the related Co1/4NbSe2 work. The bulk characterization (susceptibility, resistivity, heat capacity) is consistent with prior neutron work, and the near-EF electronic structure broadly agrees with DFT. The central experimental claim, however, is much less secure than the text suggests.\n\n- **Size of the splitting.** DFT predicts a splitting of only ~0.01 Å⁻¹ at the dog-bone Fermi crossings. The MDC fit gives two peaks ~0.09 Å⁻¹ apart, a separation comparable to the quoted instrumental width. That stated width is itself an order of magnitude larger than the stated 0.1° angular resolution implies.\n- **kz assignment.** The assignments 55 eV → π/2c, 51 eV → π/4c and 48 eV → 0 are given without an inner potential or a photon-energy scan. A standard free-electron final-state estimate suggests a 7 eV change moves kz by close to a full Γ–A distance, not Γ–Γ′. This matters because the splitting must vanish at kz = 0 and π/c.\n- **Interpretation of spin texture.** Several statements describe spin polarization, 'complete spin-polarization' and g-wave alternation as observed, although the ARPES is spin-integrated and these features come from the DFT overlay.\n- **Temperature dependence.** The evidence rests on a single temperature above TN and is described in stronger terms in the abstract and conclusion ('closing of energy gaps', 'closing of the small Γ′ pocket') than in the results section.\n- **Smaller issues.** There are internal inconsistencies: electron- vs hole-like Γ′ pocket, DFT-induced Ta/Se moment vs 'no magnetization on other atoms', c = 12.47 vs 12.4535 Å, a wrong figure reference, and the 'unique layered' claim despite the cited Co1/4NbSe2. The DFT setup omits U, SOC and the computed moment.\n\nThe work is potentially valuable, but the splitting evidence needs a consistent resolution analysis, a justified kz calibration and more careful wording.",
+  "comments": [
+    {
+      "title": "Measured splitting (~0.09 Å⁻¹) is ~9× larger than the DFT prediction (~0.01 Å⁻¹)",
+      "quote": "The momentum separation between these Fermi crossings is about 0.01",
+      "explanation": "The authors identify the dog-bone pocket near M′ as the place where the DFT spin splitting is largest along Γ′–M′, and quote a DFT separation of ~0.01 Å⁻¹. In Fig. 2(h), the two-Voigt fit of the 55 eV MDC gives peaks separated by ~0.09 Å⁻¹. I first wondered whether the two numbers refer to different features. Both, however, are described as the spin-split Fermi crossings of the same dog-bone band along Γ′–M′. The text calls the result 'consistent with our DFT results', yet a factor of ~9 discrepancy is not consistency. Two readings are possible:\n- The DFT number is wrong or refers to a different quantity.\n- The two-peak structure in the MDC has a different origin, such as kz broadening, a second non-spin-split band, or surface/bulk doubling.\n\nAs written, the quantitative comparison does not support the identification of the hump as the altermagnetic splitting.",
+      "type": "technical",
+      "severity": "major",
+      "suggested_fix": "Report the DFT splitting at the exact momentum and energy where the MDC is taken (k ≈ 0.4 Å⁻¹ along Γ′–M′ at EF) and compare it directly to the fitted 0.09 Å⁻¹. If they disagree, state this and discuss alternative origins of the second MDC peak."
+    },
+    {
+      "title": "Quoted instrumental momentum width (~0.08 Å⁻¹) is inconsistent with the stated 0.1° angular resolution",
+      "quote": "close to the instrumental (Gaussian) peak width of ∼ 0.08",
+      "explanation": "The Methods give an angular resolution of 0.1°. At hν = 55 eV (E_kin ≈ 50 eV), the momentum resolution is Δk ≈ 0.512·√E_kin·Δθ ≈ 0.512 × 7.1 × 1.75×10⁻³ ≈ 0.006 Å⁻¹. That is more than an order of magnitude smaller than the 0.08 Å⁻¹ called 'instrumental (Gaussian)'. The 0.08 Å⁻¹ width may in fact be dominated by intrinsic lifetime broadening, kz broadening, or sample inhomogeneity. Those are not instrumental, and they change how the two-peak fit should be judged. The claim that the separation is 'close to the momentum resolution limit' therefore rests on an unexplained number. Moreover, the DFT splitting (~0.01 Å⁻¹) would be far below this width.",
+      "type": "technical",
+      "severity": "moderate",
+      "suggested_fix": "State how the 0.08 Å⁻¹ Gaussian width was determined (e.g., from the 48 eV single-peak fit, or from intrinsic width), distinguish it from the ~0.006 Å⁻¹ angular-resolution limit, and constrain it independently in the two-peak fit."
+    },
+    {
+      "title": "kz assignment of 48/51/55 eV is unjustified and appears inconsistent with a free-electron final state",
+      "quote": "hν = 55 eV (kz ≈ π/2c) to 51 eV (kz ≈ π/4c)",
+      "explanation": "The argument that the splitting appears at kz ≈ π/2c and vanishes at kz ≈ 0 depends entirely on this mapping. No inner potential V0 and no photon-energy (kz) map are shown.\n- With c = 12.45 Å, π/c ≈ 0.25 Å⁻¹ and π/2c ≈ 0.126 Å⁻¹.\n- In the free-electron final-state model, kz = 0.512√(E_kin + V0). With a typical V0 ≈ 10–15 eV, going from 48 to 55 eV shifts kz by roughly 0.23–0.25 Å⁻¹, i.e. nearly Γ→A rather than Γ→Γ′.\n- Producing only a π/2c shift over 7 eV would require E_kin + V0 of order 200 eV.\n\nIf 55 eV actually lies near the A/H/L plane (kz = π/c), the splitting must vanish there by symmetry, as the authors note. That would undermine the interpretation. The Introduction also mentions photon-energy-dependent measurements showing kz dispersion, but they are not presented.",
+      "type": "technical",
+      "severity": "major",
+      "suggested_fix": "Show the hν-dependent normal-emission (or Γ′–M′) map used for kz calibration, state the inner potential V0 extracted from its periodicity, and give the resulting kz values for 48, 51 and 55 eV."
+    },
+    {
+      "title": "kz-dependence conclusion compares different photon energies, where matrix elements also change",
+      "quote": "This is to be contrasted with the MDC obtained along the Γ − M using hν = 48 eV, which shows a single-peak",
+      "explanation": "The vanishing of the second peak at 48 eV is offered as evidence that the splitting is suppressed toward kz = 0. Changing photon energy also changes photoemission cross-sections and matrix elements, which can suppress one of two nearby bands. Changing hν also changes kz broadening. The 48 eV fit alone cannot separate these effects from a genuine reduction of the splitting. In addition, no fit-quality comparison (one peak vs two peaks) is given for either MDC. With a hump whose separation roughly equals the peak width, a two-peak fit is almost guaranteed to improve χ².",
+      "type": "logical",
+      "severity": "moderate",
+      "suggested_fix": "Report χ²/BIC (or an F-test) for one- vs two-peak fits at 55 and 48 eV, and add an MDC at the same hν (55 eV) along a symmetry-forced nodal direction (Γ′–K′) as a same-matrix-element control showing a single peak."
+    },
+    {
+      "title": "Spin polarization and g-wave alternation presented as observed, but ARPES is spin-integrated",
+      "quote": "The spin-splitting of the Fermi surface shows clear g-wave symmetry with a six-fold alternation of the opposite-spin Fermi surfaces.",
+      "explanation": "Fig. 2(a,c,d) show spin-integrated ARPES with DFT spin-resolved contours overlaid. The sign alternation, and statements such as 'highly spin-polarized constant energy contour' and 'complete spin-polarization', are properties of the DFT overlay. They are not measured. Experimentally, the only splitting evidence is a resolution-limited hump in one MDC plus qualitative broadening. No spin-resolved ARPES or circular dichroism is presented to establish the sign structure, which is the defining g-wave feature. A reader could easily take the paragraph as describing measured spin textures.",
+      "type": "logical",
+      "severity": "major",
+      "suggested_fix": "Reword so that the g-wave spin texture and 'complete spin-polarization' are attributed to the DFT calculation, and restrict experimental claims to the observed band doubling and broadening along Γ′–M′ (or add spin-resolved ARPES)."
+    },
+    {
+      "title": "Susceptibility cannot by itself confirm type-A order",
+      "quote": "Magnetic susceptibility measurements confirm type-A antiferromagnetic ordering",
+      "explanation": "The main text correctly says the susceptibility drop 'indicat[es] antiferromagnetic ordering' and attributes the type-A structure to neutron scattering [41]. Bulk χ(T) with B ∥ c shows easy-axis AFM-like behavior but cannot determine the stacking of the moments. Type-A order is the essential input for the altermagnet symmetry classification, so the abstract overstates what the authors' own measurement shows. The pronounced FC/ZFC bifurcation in Fig. 1(d) is also not discussed, though it could indicate domain effects or a weak net moment.",
+      "type": "logical",
+      "severity": "minor",
+      "suggested_fix": "Change to 'Magnetic susceptibility measurements show antiferromagnetic ordering at TN = 178 K, consistent with the type-A structure reported by neutron diffraction [41]', and comment on the FC/ZFC splitting."
+    },
+    {
+      "title": "Γ′ pocket described as both electron-like and hole-like",
+      "quote": "The red box in Fig. 3(c) shows the band forming the small hole-like pocket around the Γ′ point.",
+      "explanation": "In the Fig. 2 discussion, the Fermi surface is described as having 'a small electron-like pocket surrounding the Γ′ point'. In the Fig. 3 discussion the same pocket is called 'hole-like'. The distinction matters for the temperature-dependence argument. A downward band shift away from EF would close a hole pocket but enlarge an electron pocket. The proposed interpretation of the suppressed intensity, and the later claim of the pocket 'closing', depend on which is correct.",
+      "type": "technical",
+      "severity": "moderate",
+      "suggested_fix": "Determine the carrier character from the dispersion in Fig. 3(c) and use a single consistent term in both sections, adjusting the 'downward shift' interpretation accordingly."
+    },
+    {
+      "title": "Conclusion and abstract overstate tentative temperature-dependent findings",
+      "quote": "including the closing of the small Γ′ pocket",
+      "explanation": "In the results section the authors are appropriately cautious. The Γ′ intensity suppression is 'potentially indicating a downward shift', and the remaining EDC changes are 'likely due to a combination of thermal broadening, suppression of altermagnetic splitting, and magnetic gaps closing'. No gap is identified or quantified in either temperature data set. Yet the abstract asserts 'the closing of energy gaps' and the conclusion asserts 'the closing of the small Γ′ pocket' as established results. The data comprise a single temperature (200 K) only 22 K above TN. At that temperature thermal broadening (~4k_BT ≈ 70 meV) is substantial and not separated from intrinsic changes.",
+      "type": "logical",
+      "severity": "moderate",
+      "suggested_fix": "Replace 'closing of energy gaps' and 'closing of the small Γ′ pocket' with 'suppression of spectral weight near EF at Γ′ and redistribution of spectral weight near M′', unless a gap is extracted (e.g., from symmetrized, Fermi-function-divided EDCs) at multiple temperatures."
+    },
+    {
+      "title": "High-temperature band 'narrower' despite larger thermal broadening; merging of split bands not quantified",
+      "quote": "while the high-temperature spectrum shows a narrower band crossing the Fermi energy",
+      "explanation": "Disappearance of the splitting above TN would be the strongest evidence that the doubling is magnetic. The comparison is made only qualitatively, using diamonds on images. At 200 K, thermal and phonon broadening should widen MDC peaks. A narrower feature would therefore be meaningful, but only if shown with an MDC fit comparable to Fig. 2(h). The authors also attribute the reduced spectral intensity to possible matrix-element changes. That complicates any intensity-based comparison.",
+      "type": "logical",
+      "severity": "moderate",
+      "suggested_fix": "Add the 200 K MDC at EF along Γ′–M′ (55 eV) fitted with the same Voigt model as Fig. 2(h), reporting the peak width and whether a second peak is statistically required."
+    },
+    {
+      "title": "DFT induced TaSe2 moment presented as agreeing with neutron result of no moment on other atoms",
+      "quote": "with only about 10% of the opposite-sign magnetization generated in the TaSe2 layers",
+      "explanation": "The authors' DFT finds ~10% opposite-sign magnetization on the TaSe2 layers. They follow this with 'Indeed, recent neutron scattering studies ... report a reduced magnetic moment on the Co sites, but no magnetization on other atoms.' The neutron result partly contradicts the DFT result rather than confirming it, unless 10% is below the neutron sensitivity. The DFT Co moment itself is never quoted, so the reader cannot compare it with the 1.35 μB neutron value. That comparison is central to the localized/itinerant discussion.",
+      "type": "logical",
+      "severity": "minor",
+      "suggested_fix": "Quote the DFT Co moment and the induced Ta/Se moments in μB, compare them with 1.35 μB, and state whether the induced moment is below the neutron detection limit."
+    },
+    {
+      "title": "DFT setup underspecified (U, SOC, magnetic configuration); lattice constant mismatch",
+      "quote": "keeping the lattice parameters fixed at experimentally determined values",
+      "explanation": "The Methods do not state the following:\n- whether a Hubbard U was applied to Co 3d;\n- whether spin–orbit coupling was included, which is relevant for Ta 5d and for whether the bands are pure spin-up/down as plotted;\n- the magnetic configuration and moment direction used;\n- how Fermi surfaces were obtained from a 9×9×4 mesh (Wannier interpolation? denser mesh?).\n\nThese choices strongly affect a splitting as small as 0.01 Å⁻¹. Separately, the 'experimentally determined' c = 12.47 Å used in DFT differs from the experimental c = 12.4535(3) Å quoted in Results.",
+      "type": "technical",
+      "severity": "moderate",
+      "suggested_fix": "State U (or U = 0), whether SOC was included, the type-A collinear configuration used, and the Fermi-surface interpolation method; use c = 12.4535 Å or explain the 12.47 Å value."
+    },
+    {
+      "title": "Claim of uniqueness as a layered vdW altermagnet contradicts the cited Co1/4NbSe2 work",
+      "quote": "Co1/4TaSe2 is unique among the discussed altermagnetic materials",
+      "explanation": "In the Introduction the authors themselves discuss Co1/4NbSe2. It is an isostructural intercalated vdW TMD, for which DFT and ARPES (refs. [38, 40]) already revealed altermagnetic splitting along Γ′–M′ in the kz = π/2c plane. Calling Co1/4TaSe2 'unique among the discussed altermagnetic materials' for its layered structure is therefore inconsistent with the paper's own background section.",
+      "type": "logical",
+      "severity": "minor",
+      "suggested_fix": "Rephrase as 'Like Co1/4NbSe2, Co1/4TaSe2 differs from MnTe and CrSb in having a layered van der Waals structure...'."
+    },
+    {
+      "title": "Absence of precursor fluctuations inferred from a single temperature above TN",
+      "quote": "The absence of strong precursor fluctuations above TN suggests",
+      "explanation": "Only one temperature above TN (200 K) is measured. Ruling out precursor fluctuations, and inferring a 'cooperative mechanism in which static order locks in the reconstruction', would require a temperature series approaching TN from above. The RKKY and 'band hybridization features appearing below TN' discussion is likewise not tied to any specific measured feature.",
+      "type": "logical",
+      "severity": "minor",
+      "suggested_fix": "Either remove the precursor-fluctuation statement or support it with ARPES at several temperatures between ~150 K and ~250 K."
+    },
+    {
+      "title": "Wrong figure reference for high-temperature diamonds",
+      "quote": "(gray diamonds in Fig. 2(d))",
+      "explanation": "The gray diamonds marking the high-temperature band are in the 200 K dispersion of Fig. 3(d). Fig. 2(d) is a constant-energy contour at −150 meV. A reader following the reference would look at the wrong panel.",
+      "type": "technical",
+      "severity": "minor",
+      "suggested_fix": "Change to '(gray diamonds in Fig. 3(d))'."
+    },
+    {
+      "title": "Sample stoichiometry and Co superlattice order not verified",
+      "quote": "This process yielded multiple well-faceted, flat, plate-like single crystals of",
+      "explanation": "The altermagnetic symmetry argument requires Co ordered on the 2a site with the 2×2 superlattice. Partial occupancy or Co disorder would break this and could also broaden ARPES features, affecting the splitting interpretation. The paper reports no composition (EDS/WDS) or diffraction characterization of the measured crystals. It relies on consistency of TN and transport with [41]. No LEED or ARPES evidence of the 2×2 folding is discussed either.",
+      "type": "technical",
+      "severity": "minor",
+      "suggested_fix": "Report the measured Co content (e.g., EDS) and single-crystal XRD or LEED evidence of the 2×2 superstructure for the crystals used in ARPES."
+    }
+  ]
+}

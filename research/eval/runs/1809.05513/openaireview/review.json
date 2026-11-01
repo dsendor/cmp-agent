@@ -1,0 +1,109 @@
+{
+  "overall_feedback": "This is a striking experimental paper. It combines four-probe Little-Parks measurements of a full Al shell, tunneling spectroscopy into the InAs core, and length-dependent Coulomb blockade spectroscopy on six islands cut from one wire. The basic materials numbers hold together well. Rs = 1.3 Ω over about 940 nm with a 160 nm mean diameter and 30 nm shell gives ρ ≈ 21 nΩ m and l ≈ 19 nm. The dirty-limit formula (with its square root) gives ξS ≈ 178 nm. Φ0 = 2.07 mT µm² over a mean radius of 80 nm puts one flux quantum near 103 mT. Every entry in Table S1 satisfies A = η × ΔδV. The zeroth-lobe hard gap and the 2e to even-odd to 1e progression in the Coulomb data are convincing. The main weaknesses are in interpretation. (i) The concluding claim of having 'demonstrated' a topological phase goes beyond what zero-bias peaks and even-odd Coulomb spacing can establish, since trivial Andreev states can produce both. The exponential fit is not compared with alternatives and has no quoted uncertainty. (ii) The CdGM-based 'check' (ξ ≈ (Δ/δ)D/2 ≈ 170 nm, and the scaling ξ140/ξ110 = δ110/Δ140) uses an ad hoc wavevector. The scaling ratio does not follow from the relation the authors state. (iii) The conversion from peak-spacing difference to an energy carries an unstated factor: under the paper's own formulas A = 4E0, not E0. The stated 2e/even-odd criterion is also inconsistent with those formulas by a factor of 2 in the EC convention. (iv) Several smaller inconsistencies appear: the destructive-regime boundaries differ between shell transport and core tunneling on the same device, 'two orders of magnitude' is claimed for a range of about 75, and an almost-zero-energy state (about −5 µeV) appears in the second lobe, where no MZM is expected. None of these undermine the experimental observations, but the Majorana interpretation should be stated as consistent with the data rather than demonstrated, and the quantitative cross-checks need a firmer derivation.",
+  "comments": [
+    {
+      "title": "Coherence-length scaling ratio does not follow from the stated CdGM relation",
+      "quote": "ξ140 /ξ110 = δ110 /∆140 ∼ 5/4",
+      "explanation": "This is presented as the key 'check of this interpretation', so I tried to derive it from the relation the authors give, δ = Δ/(kξ), i.e. ξ = (Δ/δ)/k with k fixed by the circumference. That gives ξ140/ξ110 = (Δ140/δ140)/(Δ110/δ110). At 140 mT the authors say no subgap states exist, so δ140 is undefined. If one takes the lowest excitation at 140 mT to be the gap edge (δ140 = Δ140), the ratio becomes δ110/Δ110 ≈ 0.38, not 5/4. If one instead uses the BCS-like scaling ξ ∝ 1/Δ, the ratio is Δ110/Δ140 ≈ 3.3, which predicts ξ140 ≈ 590 nm. The ratio actually written, δ110/Δ140, divides a subgap energy at one field by a gap at another field. It follows only if ξ ∝ 1/E_min with the numerator Δ held fixed, which contradicts the CdGM relation just used. The match of 180 × 5/4 = 225 nm to the fitted 230 nm therefore looks numerical rather than derived. No uncertainty on the 230 nm fit is given either, so 'good agreement' cannot be assessed.",
+      "type": "logical",
+      "severity": "major",
+      "suggested_fix": "Write out the assumed functional form ξ(Δ, δ) and apply it consistently at both fields. If ξ = (Δ/δ)D/2 is the model, state what plays the role of δ at 140 mT and give the resulting predicted ratio with uncertainties, together with the fitted ξ140 ± σ."
+    },
+    {
+      "title": "CdGM estimate rests on an ad hoc choice of wavevector",
+      "quote": "ξ ∼ (∆110 /δ110 ) D/2 ∼ 170 nm",
+      "explanation": "The arithmetic is right: 130/50 × 65 nm ≈ 169 nm. In the standard CdGM result the minigap is about Δ²/E_F ~ Δ/(k_F ξ), with k_F the Fermi wavevector of the material hosting the vortex core. Here k is replaced by the inverse circumference (2π/k ~ πD). That changes the result by orders of magnitude compared with k_F of either Al or the InAs core. The authors also use the core diameter D = 130 nm, while the flux and the Little-Parks analysis use the mean shell diameter of about 160 nm. That choice alone shifts the estimate by about 20%. Since the agreement of this estimate with ξS = 180 nm and the fitted ξ = 180 nm is used as supporting evidence, the order-unity choices (which diameter, whether the wavelength or k equals the circumference) decide whether the 'match' exists at all.",
+      "type": "technical",
+      "severity": "moderate",
+      "suggested_fix": "State explicitly that k = 2/D is an assumption (lowest angular-momentum mode on a ring of radius D/2 at the interface), justify the use of the core rather than the mean shell diameter, and quote the range of ξ obtained with D between 130 and 160 nm."
+    },
+    {
+      "title": "Peak-spacing difference A equals 4E0 under the stated formulas, not the hybridization energy",
+      "quote": "scale A(L) reflects the length dependent hybridization",
+      "explanation": "The supplement states that δV is proportional to EC + 2E0 for even valleys and EC − 2E0 for odd valleys. With a lever arm that converts gate voltage to island energy, A = η(δVE − δVO) = 4E0. The main text and Table S1 instead treat A as 'the hybridization energy'. This matters for quantitative comparisons. The extrapolated A0 = 110 µeV is close to the gap Δ110 = 130 µeV, which looks natural if A is E0 but implies E0(L→0) ≈ 28 µeV if A = 4E0. The decay length ξ does not depend on this prefactor. Statements about energy scales, and comparisons with kBT and the noise floor, do.",
+      "type": "technical",
+      "severity": "moderate",
+      "suggested_fix": "Define A explicitly as η(δVE − δVO) = 4E0 (or whatever factor follows from the chosen EC convention) and quote E0(L) = A/4 alongside A in Table S1 and Fig. 4F."
+    },
+    {
+      "title": "2e-periodicity criterion inconsistent with the stated even/odd spacing formulas",
+      "quote": "Coulomb blockade is 2e periodic for E0 > EC ; It becomes",
+      "explanation": "If even and odd spacings are proportional to EC + 2E0 and EC − 2E0, as written in the next paragraph, the odd valley closes at E0 = EC/2, not at E0 = EC. The criterion 'E0 > EC' is the standard one for EC = e²/2C, where the spacings scale as 2EC ± 2E0. The two statements use different charging-energy conventions. A reader comparing the measured gap with the charging energy (for example the 2e to even-odd crossover near 40 mT) could be off by a factor of 2.",
+      "type": "technical",
+      "severity": "minor",
+      "suggested_fix": "Adopt EC = e²/2C and write the spacings as ∝ 2EC + 2E0 (even) and 2EC − 2E0 (odd), so that 2e periodicity holds for E0 > EC; or keep EC + 2E0 / EC − 2E0 and change the criterion to E0 > EC/2."
+    },
+    {
+      "title": "Measured range of A is less than two orders of magnitude",
+      "quote": "the middle of the first lobe, spanning over two orders of",
+      "explanation": "Table S1 gives A from 45 µeV (210 nm) down to 0.6 µeV (970 nm), a ratio of about 75. That falls short of two orders of magnitude. The range is still impressive, but 'over two orders' overstates it. The point matters because the strength of the exponential claim depends on how many decades are covered.",
+      "type": "logical",
+      "severity": "minor",
+      "suggested_fix": "Replace with 'spanning nearly two orders of magnitude (45 µeV to 0.6 µeV)'."
+    },
+    {
+      "title": "Exponential length dependence is not compared with alternatives and the fit has no uncertainty",
+      "quote": "exponential length dependence, implying that the low-",
+      "explanation": "The exponential fit A0 e^{-L/180 nm} reproduces Table S1 reasonably well (34, 21, 11, 3.5, 1.2 and 0.50 µeV against 45, 15, 10, 3, 1.3 and 0.6 µeV). However, it has only six points, two free parameters, and no quoted uncertainty on ξ. A power law A ∝ L^-2.8 fixed by the endpoints gives 6.4, 2.1 and 1.0 µeV at 420, 620 and 810 nm, which is somewhat worse but not dramatically so given the error bars. More importantly, exponential suppression of an even-odd splitting is generic for any pair of states localized at the two ends. It does not by itself distinguish MZMs from trivial end-localized Andreev states, for example states created by the barrier region where the shell is etched. Simple Majorana models also predict oscillations of the splitting with L at fixed field, which are not discussed. The sentence that this 'implies' end-localized modes 'as expected for overlapping Majorana modes' therefore claims more than the fit shows.",
+      "type": "logical",
+      "severity": "major",
+      "suggested_fix": "Report ξ = 180 ± σ nm and A0 ± σ from the fit, show the competing power-law fit with its χ² on the same plot, and rephrase as 'consistent with modes localized at the island ends, as expected for overlapping MZMs'."
+    },
+    {
+      "title": "Concluding claim of a demonstrated topological phase overstates the evidence",
+      "quote": "surrounding epitaxial Al shell can induce a topological",
+      "explanation": "The authors are careful in places ('consistent with the Majorana picture', 'tentatively identify'). The summary, however, says they 'have demonstrated' a topological phase. The evidence is a zero-bias peak that splits and becomes a dip with stronger coupling (also typical of trivial Andreev states), even-odd Coulomb spacing (generic for any subgap state with E0 < EC), and its length dependence (see the previous comment). In addition, the ZBP is reported throughout the entire first lobe and across the whole tunneling gate range, with no gap closing and reopening inside the lobe. In the cited theory [24] the topological phase depends on the core chemical potential and need not cover the whole lobe. The absence of any transition inside the lobe deserves comment rather than support. The claim of 'protection of the semiconductor core from surface defects' is also not tested here.",
+      "type": "logical",
+      "severity": "major",
+      "suggested_fix": "Replace 'we have demonstrated that ... can induce a topological phase' with 'we have observed signatures consistent with a flux-induced topological phase', and add a sentence on why the ZBP persists over the full lobe and full gate range in light of the chemical-potential dependence predicted in Ref. [24]."
+    },
+    {
+      "title": "Near-zero-energy state in the even-winding second lobe weakens the odd/even contrast",
+      "quote": "gap state centered around ∼ −5 µeV, see Fig. S2. Note",
+      "explanation": "The authors contrast the first lobe (odd winding, ZBP) with the second lobe (even winding, 'subgap states away from zero energy'). The supplement, however, reports the lowest second-lobe state at about −5 µeV. That is comparable to the 5 µV ac excitation and within a few kBT of zero. It is therefore hard to tell apart from a zero-bias peak with the stated resolution. Particle-hole symmetry also requires a partner at +5 µeV, so describing it as 'centered around −5 µeV' with an 'asymmetric' density of states needs explanation. As written, the second-lobe data do not clearly show the absence of a near-zero mode expected for even winding.",
+      "type": "logical",
+      "severity": "moderate",
+      "suggested_fix": "Report the energy of the lowest second-lobe state with its uncertainty relative to the energy resolution (set by Vac = 5 µV and the electron temperature), show the ±E pair explicitly, and compare its width and height with the first-lobe ZBP."
+    },
+    {
+      "title": "Destructive-regime boundaries differ between shell transport and core tunneling on the same device",
+      "quote": "core closed at |B| = 55 mT and reopened at 65 mT,",
+      "explanation": "On device 1 the shell supercurrent vanishes at 45 mT and returns at 70 mT. The text says the core gap behaves 'similar to the supercurrent measurements' but closes at 55 mT and reopens at 65 mT. Fig. 1D's caption states that Rs equals the normal-state resistance throughout the destructive regimes. Taken literally, the core has a hard induced gap between 45 and 55 mT while the shell is normal. Possible explanations include a diameter difference between the 4-probe segment and the tunnel end, a supercurrent below detection while the gap is still finite, or field misalignment. None is discussed, and the discrepancy bears on how the lobes are assigned.",
+      "type": "technical",
+      "severity": "minor",
+      "suggested_fix": "State whether the 4-probe and tunneling measurements probe different wire segments, and explain the 45 to 55 mT window, for example by giving the switching-current resolution or the local diameter at the tunnel end."
+    },
+    {
+      "title": "Area used to convert field to flux is ambiguous",
+      "quote": "times shell cross-sectional area) is close to an odd half-",
+      "explanation": "Taken literally, the 'shell cross-sectional area' is the annulus (about π × 160 nm × 30 nm ≈ 0.015 µm²). That would put Φ0 near 137 mT, inconsistent with the first lobe centered at 110 mT. The data instead agree with the area enclosed by the mean shell radius (π × 80² nm² ≈ 0.020 µm², giving Φ0 ≈ 103 mT). Fig. 1C's top axis uses an undefined A_wire. Because the flux axis is how the lobes are assigned winding numbers, the area should be stated unambiguously, including how the hexagonal cross-section is treated.",
+      "type": "technical",
+      "severity": "minor",
+      "suggested_fix": "Define A_wire as the area enclosed by the mean shell radius (≈ π(80 nm)² ≈ 0.020 µm², or the corresponding hexagonal area) and state whether the flux axis was computed from this geometry or calibrated from the measured lobe centers."
+    },
+    {
+      "title": "Match between fitted ξ and shell ξS is asserted without uncertainties or a mechanism",
+      "quote": "We note that ξ from the fit in Fig. 4F matches the",
+      "explanation": "The authors rightly add that it 'remains unclear if these quantities are necessarily equal'. Still, three separately estimated 180 nm scales (dirty-limit ξS, the exponential fit, and the CdGM estimate) are juxtaposed as mutually supporting. ξS depends on l via the square root and on the Drude estimate with the free-electron vF of Al. The fit ξ has no error bar. In Lutchyn-Oreg-type models the Majorana decay length is set by the core's induced gap, spin-orbit velocity and Fermi velocity, not by the Al dirty-limit coherence length. Without uncertainties on each number, a reader may take this agreement as quantitative confirmation it does not provide.",
+      "type": "logical",
+      "severity": "minor",
+      "suggested_fix": "Quote uncertainties for ξS (propagated from Rs, geometry and TC) and for the fitted ξ, and state that no model in the paper predicts the Majorana decay length to equal ξS."
+    },
+    {
+      "title": "Figure captions point to the wrong panels for the peak-spacing data",
+      "quote": "Coulomb valleys, δV , from the data in (A) as a function of",
+      "explanation": "In Fig. 3, panel A is the micrograph and the Coulomb data are in panel B. The same mismatch ('from the measurements shown in (A)') appears in Figs. S4 to S8, and Fig. S2 refers to a panel (E) that does not exist. Readers trying to work out which dataset the averaged spacings come from could be misled.",
+      "type": "technical",
+      "severity": "minor",
+      "suggested_fix": "Change 'from the data in (A)' to 'from the data in (B)' in Fig. 3C and Figs. S4 to S8, and change '(E) Line-cut' to '(C) Line-cut' in Fig. S2."
+    },
+    {
+      "title": "Reproducibility across devices is asserted but not shown",
+      "quote": "sured in three devices each, showed similar results. Data",
+      "explanation": "Six devices are said to show similar results, but data from only two appear, and all six Coulomb islands come from a single nanowire. The length-dependence conclusion therefore rests on one wire. Wire-to-wire variation in diameter, shell thickness or interface would shift both the lobe positions and ξ.",
+      "type": "logical",
+      "severity": "minor",
+      "suggested_fix": "Add a supplementary table listing, for each of the six devices, the lobe centers, the presence or absence of a first-lobe ZBP, and (for island devices) the even-odd amplitude at the first-lobe center."
+    }
+  ]
+}

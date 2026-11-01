@@ -1,0 +1,300 @@
+# Review of "Heavy fermions, mass renormalization and local moments in magic-angle twisted bilayer graphene via planar tunneling spectroscopy"
+
+## Summary of the submission
+
+The authors use a graphite/thin-hBN planar tunnel junction to MATBG (θ ≈ 1.06–1.08°). They combine dI/dV_b and dI/dV_g measurements to extract the inverse compressibility dμ/dn, and from it they derive:
+
+- the chemical potential,
+- a correlated gap at ν = +2,
+- a filling-dependent "effective mass" via m* = 2πħ²/(g′ dμ/dn),
+- the electronic entropy via the Maxwell relation.
+
+They report heavy-to-light mass swings across positive integer fillings and two entropy "plateaus" near 10 K and 20 K. They interpret these plateaus as 4-fold and 8-fold degenerate isospin local moments, split by heterostrain, within the topological heavy-fermion (THF) model.
+
+The device concept is attractive, and the simultaneous dI/dV_g measurement is a useful idea. However, the central claims rest on a chain of approximations that is not validated:
+
+- the tunneling model,
+- the transmission background,
+- the filling calibration,
+- the absolute chemical-potential reference,
+- the numerical T-derivative.
+
+In addition, the mass and entropy analyses add interpretive layers whose agreement with theory is mostly qualitative and partly contradicted by the paper's own figures. Detailed concerns follow.
+
+---
+
+## A. Tunneling model and extraction of dμ/dn
+
+1. **Hidden approximation in Eq. 3.** Methods Eq. 7 contains ρ(μ(n)+eV_b) − ρ(μ(n)), yet main-text Eq. 3 has no ρ(E_F) term. Eq. 3 therefore implicitly assumes ρ(E_F) ≪ ρ(E_F+eV_b). This must be stated explicitly. It is especially questionable in a partially filled flat band, where the DOS at E_F is expected to be maximal away from integer fillings.
+
+2. **ρ(E_F) is not measurable here.** ρ(E_F) corresponds to V_b ≈ 0, which lies inside the phonon gap. The approximation in item 1 therefore cannot be checked from the data. The resulting error is filling-dependent and could generate or suppress the dip–peak structure.
+
+3. **Elastic model applied to inelastic tunneling.** Eq. 1 is an elastic tunneling model, but the authors state that tunneling is phonon-assisted (inelastic). The energy argument should be shifted by ±ħω_ph and weighted by the phonon matrix element and phonon occupation. None of this enters Eqs. 1–7, yet Fig. 1f uses an axis "eV_b ± ħω_ph".
+
+4. **Conflation of E_F, μ(n) and the phonon threshold.** The statement "E_F = μ(n) ~ ±22 mV" mixes three distinct quantities. The phonon onset is filling-independent (as stated in the Fig. 1c caption), whereas μ(n) varies by ~26 meV across the flat bands. They cannot be identical. This confusion propagates into Eq. 2 and the Methods derivation.
+
+5. **Rigid-spectrum assumption.** Eqs. 2 and 5 assume that ρ(ε) is independent of n, so that the only n-dependence of I enters through μ(n). In MATBG the spectral function reconstructs strongly with filling; the authors themselves report a ~15 mV splitting appearing upon crossing E_F. The neglected ∂ρ/∂n terms enter dI/dV_g directly and would contaminate dμ/dn precisely where the cascade occurs.
+
+6. **Momentum-selective tunneling.** With a graphite probe and a specific momentum mismatch bridged by a specific phonon, tunneling is momentum-selective and does not measure a momentum-integrated DOS. In the THF picture, f- and c-orbitals have very different momentum-space structure; c-states are concentrated near Γ_M. Orbital-selective matrix elements could therefore bias exactly the f/c asymmetry being claimed.
+
+7. **Constant probe DOS is unjustified.** Graphite is a semimetal with low, energy-dependent DOS. With C_b ≈ 1.3 µF/cm², a 42 mV bias induces ~3×10¹¹ cm⁻² in the graphite surface, shifting its Fermi level. The probe's quantum capacitance should also modify the effective C_b.
+
+8. **Ad hoc transmission background.** The form T(n) ∝ exp(0.258 n/n₀) is empirical. The proposed mechanism, a barrier-height change Δ(n), should produce only a tiny change: μ varies by tens of meV against a barrier of order eV. The authors should justify the magnitude physically and show the fit, including the range over which it was fitted.
+
+9. **Sensitivity to the background derivative.** dI/dV_g contains a term I_n·dT/dV_g that is removed only through the fitted background. The authors should quantify how errors in the exponent propagate into dμ/dn. In particular, are the negative dμ/dn values robust against plausible variations of T(n)?
+
+10. **Bias dependence not tested.** As a thermodynamic quantity, dμ/dn should be independent of the probing bias apart from the bias-induced doping. Results are shown only at V_b = ±42 mV. Extractions at several biases, for example ±30, ±42, ±55 mV, are needed to demonstrate robustness.
+
+11. **Stitching of electron and hole sides.** The two sides appear to be measured at opposite biases (Fig. 2a "V_b = ±42 mV"; Ext. Fig. 1b, electron side at −42 mV). The two halves of dμ/dn are thus obtained under different electrostatic conditions. Explain how they are stitched and whether this affects electron–hole asymmetry claims.
+
+12. **Large bias-induced doping and displacement field.** A 42 mV bias across 2 nm hBN induces ≈0.5 n₀ of doping and a non-negligible perpendicular displacement field. The field has opposite sign for the electron- and hole-side measurements. Its effect on the flat bands and on the cascade should be discussed.
+
+13. **AC gate modulation pickup.** With AC gate modulation, the oscillating gate charge couples capacitively to the probe and contacts and produces a displacement current at the lock-in frequency. Describe how this pickup and any phase offsets were removed from dI/dV_g.
+
+14. **Non-simultaneous measurements.** dI/dV_b and dI/dV_g are measured separately, with different modulations. Any drift or V_g hysteresis between the two datasets enters Eq. 3 directly. Quantify the junction stability, since "ultra-stable" is asserted but not demonstrated.
+
+15. **Series resistance in insulating states.** At ν = 0, ±2 and ±4 the sample becomes resistive at low T. A fraction of V_b (and of the AC excitation) could then drop across the sample/contacts rather than the junction, producing artificial dark lines and dμ/dn peaks. Contact and sheet resistances versus filling should be reported.
+
+16. **Quantum-capacitance filling correction.** The ±0.2 filling shift at ν = ±4 is large, and the correction is deferred to the SI.
+    - It should be done self-consistently over the whole filling range, including C_b.
+    - The claim that the correction is "negligible away from band edges" is doubtful near ν = 0 and ν = 2, where gaps also exist.
+
+17. **Filling calibration is critical to the main claims.** The "heavy below / light above integer filling" asymmetry depends on locating the integer fillings to much better than 0.1. A filling uncertainty for each integer should be given.
+
+18. **No uncertainties on dμ/dn.** None of the dμ/dn curves (Figs. 2a, 3a, 4a) carries uncertainties, yet the mass and entropy analyses depend on small values and on differences between them.
+
+19. **Quantitative comparison with SET.** The extracted dμ/dn magnitudes, negative-compressibility depths and total chemical-potential swing should be compared with published SET data (Zondiner, Rozen, Saito). The 26 meV integrated bandwidth should also be reconciled with the 16 mV band separation seen spectroscopically in Fig. 1b.
+
+20. **Energy resolution claim.** The phonon-assisted channel sums over a range of phonon momenta, given the moiré-scale spread of final states and the steep ZA dispersion. This implies a broadening of several meV, which undercuts the claimed "high energy resolution". Provide an estimate.
+
+21. **Phonon assignment.** At Δk ≈ 0.53 Å⁻¹, in-plane TA/LA phonons in graphite lie at roughly 50–70 meV, so the 20 meV ZA assignment needs explicit justification. Specify:
+    - which material's phonon (graphite, hBN or TBG) is involved;
+    - why other branches do not contribute;
+    - why the threshold is 22 mV while the phonon energy quoted is 20 meV.
+
+22. **Probe–sample misalignment angle.** It is unclear how AFM determines the lattice orientation. If it is inferred from flake edges, the zigzag/armchair ambiguity allows 12° as well as 18°. A 12° misalignment would imply Δk ≈ 0.35 Å⁻¹ and a different phonon, which is a direct test of the model.
+
+23. **Temperature dependence of the tunneling channel.** At elevated T, phonon absorption and the T-dependence of the background modify the tunneling. Was T(n) re-fitted at each temperature? Any T-dependent artifact in dμ/dn feeds directly into ∂μ/∂T and hence into the entropy.
+
+## B. Effective mass analysis
+
+24. **The mass is not independent evidence.** Because m* ∝ (dμ/dn)⁻¹, the "heavy-to-light transitions" in Fig. 3 are a re-plotting of the dip–peak structure of dμ/dn. The manuscript should not present them as an independent observation.
+
+25. **Heavy values are noise-dominated.** Where dμ/dn → 0 or becomes negative, Eq. 4 diverges or becomes meaningless. The quoted heavy values ("0.6 m_e or higher") come precisely from this regime, where small offsets in dμ/dn (see items 1, 8 and 9) dominate. Negative regions are silently omitted from the plots.
+
+26. **Degeneracy assumption.** g′ = 4 is assumed throughout, but the cascade picture involves changes in flavor degeneracy. A degeneracy change from 4 to 1–2 across an integer filling changes the inferred m* by a factor of 2–4 and could mimic part of the asymmetry.
+
+27. **Not a cyclotron mass.** dμ/dn includes Hartree and exchange-correlation contributions (hence its negative values). The quantity from Eq. 4 is therefore not the cyclotron mass defined by m* = (ħ²/2π)∂A/∂E. Calling it a "cyclotron effective mass" is misleading.
+
+28. **Gap peaks plotted as masses.** Fig. 3d shows m* ≈ 0.01 m_e near ν = 4. This reflects the dμ/dn peak of the band gap, not a quasiparticle mass. Gap regions should be excluded from mass plots.
+
+29. **Plausibility of the light mass.** The claimed light mass (~0.06 m_e) above integer fillings is:
+    - lighter than the LL-derived CNP flat-band mass (0.174 m_e);
+    - comparable to the remote-band mass (0.047 m_e).
+
+    This should be checked quantitatively against the THF c-electron velocity, rather than compared with bilayer graphene.
+
+30. **Negative fillings not analyzed.** Fig. 3a shows swings near ν = −1, −2, −3, where THF predicts a mirrored asymmetry. These are not analyzed, although they would be a valuable consistency test.
+
+31. **Alternative explanations not ruled out.** The data are said to be consistent with both symmetric and symmetry-broken phases, and the dip–peak structure was previously explained by reset/Dirac-revival pictures. No discriminating test is offered. A Lifshitz–Kosevich analysis of oscillation amplitudes, or a direct cyclotron-mass measurement, would add real value.
+
+32. **Temperature ranges are inconsistent.** The text says the renormalization persists to "~50 K" citing Fig. 3b, but Fig. 3b shows only 0.3 K and 4 K. Fig. 3d and its caption say ~77 K, and elsewhere the text says ~70 K.
+
+33. **Undefined terms in Fig. 3.** "A factor of 10 is determined in the m* renormalization" (Fig. 3d caption) is unclear. The "n/n₀ + δ" in the Fig. 3a caption is undefined.
+
+34. **Theory–data comparison in Fig. 3c.**
+    - The theory is computed at T = 20 K but compared with data at 0.3 K and 4 K.
+    - The theory shows structure at ν = 2 at 20 K, whereas experimentally the ν = 2 gap disappears by 4 K.
+    - The units differ (dμ/dν in meV versus 10⁻¹² meV·cm²).
+    - "Good agreement" is asserted without any quantitative comparison.
+
+35. **IKS comparison at 20 K.** The IKS state is invoked as a low-temperature ordered phase, so its relevance to a 20 K calculation needs explanation.
+
+## C. ν = +2 gap, Landau levels and Chern insulators
+
+36. **Gap versus temperature.** A 1.3 meV gap (≈15 K) should not be washed out at 4 K, where k_BT ≈ 0.34 meV. Yet the sharp ν = 2 peak appears only at 0.3 K, and the Fig. 2a caption says the gap opens "below 4 K". This inconsistency needs explanation.
+
+37. **Gap includes band dispersion.** Estimating Δ from the μ change over ν = 1.9–2.1 includes the ordinary band dispersion over a 0.2 filling window, so it overestimates the gap. The background slope should be subtracted.
+
+38. **Interpretation of g = 5.4.**
+    - A linear decrease of the gap with B indicates Zeeman-lowered excitations.
+    - g ≠ 2 implies orbital or valley contributions.
+    - The constant gap below 1.5 T is unexplained.
+
+    The conclusion of a "spin-unpolarized ... intervalley coherent spin singlet" therefore does not follow uniquely. The extrapolated Δ₀ = 1.75 meV is also inconsistent with the measured 1.3 meV zero-field gap.
+
+39. **Field at which degeneracy is lifted.** The main text states that the 4-fold LL degeneracy is lifted above 3.5 T. Methods states that all 0th-LL degeneracies are lifted above 1.5 T.
+
+40. **Chern-number assignments.** Show the Streda fits, slopes and uncertainties. Justify the restrictive convention s·ν > 0.
+
+41. **Graphite probe Landau quantization.** The graphite probe develops its own LLs up to 8 T. This modulates the probe DOS and could produce features in the field-dependent dI/dV_b maps. A control or discussion is required.
+
+42. **LL energy scale.** In the LL mass fits, V_b is treated as energy, but V_b also dopes the sample (the tilted lines in Fig. 1b).
+    - For the remote-band LLs at n/n₀ = −2.5, measured up to ~140 mV, the bias-induced doping is ~1.7 n₀, so the filling is not constant along the spectrum.
+    - The lever arm and doping must be included before quoting m* = 0.047 and 0.174 m_e.
+
+43. **LL formula inconsistencies.**
+    - Methods text uses √(N(N+1))B, while Ext. Fig. 2e uses √(N(N−1))B.
+    - "Massive Dirac fermion" is used for what is the chiral (bilayer-like) LL spectrum.
+    - The indexing implies E₁ = E₀, which needs clarification.
+
+44. **Ext. Fig. 2a caption.** "High compressibility of gaps between LLs" should read low compressibility (high dμ/dn).
+
+45. **Ambiguous notation in Ext. Fig. 2c.** "Fixed ν~1 near the CNP" does not say whether ν is the moiré filling or the Landau filling.
+
+46. **Origin of the 10 meV CNP gap.** Is the TBG aligned to either hBN? State how alignment was checked, since hBN alignment is the usual cause of a sizeable CNP gap.
+
+## D. Entropy analysis
+
+47. **Chemical-potential reference.** μ is obtained by integrating dμ/dn from the CNP and fixing μ(CNP) = 0 at every temperature. Any true temperature dependence c(T) of μ(CNP) adds an error −(ν−4)c′(T) to S(ν), linear in filling.
+    - SET measures μ against an independent reference; here no such reference exists.
+    - This is a potentially dominant systematic error and must be addressed.
+
+48. **Boundary condition S(ν = 4) = 0.**
+    - The authors' own model (Ext. Fig. 3b) gives S(4) > 0 at 20–30 K.
+    - The ν = 4 point is where the filling correction is largest.
+
+    Show the sensitivity of S to this boundary condition.
+
+49. **Entropy decreases with temperature.** In Fig. 4c and Ext. Fig. 4c:
+    - S at ν = 2 falls from ≈4.2 k_B at ~18 K to ≈3.6 k_B at ~22 K;
+    - S at ν = 3 dips near 24 K.
+
+    dS/dT < 0 violates thermodynamic stability (C > 0). This indicates systematic errors of the same size as the claimed plateau features.
+
+50. **Negative entropy.** Fig. 4b shows negative entropies at 5 K, with error bars of order ±1 k_B. This is unphysical and again indicates large systematics.
+
+51. **Statistical significance of the plateaus.**
+    - The 3-point derivative is taken over sparse temperature points, and the plateaus consist of only a few points.
+    - The error bars are comparable to the differences being interpreted.
+    - The measured temperatures and the significance of each plateau should be stated.
+    - The shaded regions in Fig. 4c appear to be chosen by eye.
+
+52. **Abrupt rise at low temperature.** At ν = 1, 2, 3, S jumps from ≈0 to ≈1.5 k_B between 4.2 K and ~6 K. This implies an enormous heat-capacity peak, and it is unclear whether it is physical or an artifact of the endpoint derivative. The "GND state" region is defined by one or two points.
+
+53. **Quantitative mismatch with the counting model.** The predicted values do not match the data:
+
+    | Filling | Model | Predicted | Measured (approx.) |
+    |---|---|---|---|
+    | ν = 3, ~20 K | 8-fold | ln 8 ≈ 2.08 k_B | ~3 k_B |
+    | ν = 0, ~20 K | 8-fold | ln 70 ≈ 4.25 k_B | ~4 k_B |
+    | ν = 2, ~10 K | 4-fold | ln 6 ≈ 1.79 k_B | appears lower, by the authors' own remark |
+
+    Provide a table of predicted versus measured values with uncertainties.
+
+54. **Notation in the counting formulas.** The formulas are printed as k_B ln(8/(n/n₀+4)) and k_B ln(4/|n/n₀|). They are presumably binomial coefficients and must be written as such. The dashed interpolations between integer fillings in Fig. 4b have no physical meaning and should not be compared with non-integer data.
+
+55. **Magnitude versus prior SET work.** The entropy values (~4 k_B per moiré cell at 20 K) are several times larger than those reported by Rozen et al. and Saito et al. at comparable fillings and temperatures. This discrepancy must be discussed, not omitted.
+
+56. **Validity of the zero-hybridization limit.** In the THF model the f–c hybridization is ~20–25 meV, and inter-site exchange is of order meV. Treating f-electrons as decoupled local moments at 10–20 K (1–2 meV) is not obviously justified. The claim that this regime corresponds to "relatively high temperatures" needs support, for example from the authors' own finite-hybridization calculations.
+
+57. **Theory curves lack a second plateau.** In Fig. 4d the calculated entropy rises monotonically above ~15 K. The caption's claim that "below and above 15 K the entropy shows two plateaus" is therefore not supported by the plotted curves. The theoretical ν = 0 curve also does not match the measured ν = 0 values at 20 K.
+
+58. **Fitted parameters.** U₁ = 23 meV and ε = 0.001 are "set to match the experimental data".
+    - Give the number of tuned parameters relative to the number of features reproduced.
+    - Provide a sensitivity analysis.
+    - Give an independent estimate of the device's heterostrain (STM, Raman, or band-structure fits to the spectroscopy).
+
+59. **Inconsistent mechanism for the 4→8 crossover.** The main text attributes it to the degeneracy of isospin local moments. Ext. Fig. 3b attributes it to non-interacting conduction and valence flat bands split by heterostrain, with "charge transfer" between them. Clarify which mechanism is meant. A strain-split multiplet produces a smooth Schottky-like crossover, not two flat plateaus.
+
+60. **Strain splitting energy.** The 4→8 crossover at ~15 K requires a splitting of ~1–2 meV. Show explicitly that ε = 0.001 in the THF model produces this splitting.
+
+61. **Contradiction with the CNP gap.** At ν = 0, a 10 meV thermodynamic gap (≈116 K) was measured. Yet the entropy at ν = 0 rises from ~0 to ~4 k_B between 12 and 20 K. Explain how this is reconciled.
+
+62. **Missing c-electron and phonon entropy.** The c-electron (itinerant, roughly T-linear) and phonon contributions are not separated from the "local-moment" entropy in the data. A T-linear background alone would prevent a true plateau.
+
+63. **"Plateau" is an overstatement.** Each plateau spans only a factor of ~1.5 in temperature (8–12 K, 16–26 K). This is insufficient to establish "solid-like, temperature-independent" local-moment behavior.
+
+64. **Field dependence of local moments not shown.** The introduction claims local moments "emerging at finite fields". No field-dependent entropy, ∂μ/∂B (∂S/∂B Maxwell relation), or in-plane-field suppression of entropy is shown. These are the standard tests for local moments (cf. Saito et al.) and should be added, or the claim removed.
+
+65. **Hole side omitted.** Hole-side entropy is not presented, even though the counting model makes explicit predictions for ν < 0.
+
+66. **Pomeranchuk-like claim in Fig. 4e.**
+    - The "Pomeranchuk-like effect" is not discussed in the text.
+    - The plotted fillings (0.53 and 1.16) are not ν = 1.
+    - The HFL/LM shading is not justified.
+
+67. **Thermometry and stability.** Describe how the sample temperature was measured and stabilized up to ~40–77 K in a ³He system. Also address whether junction properties drift with T, since this directly affects ∂μ/∂T.
+
+68. **Missing citation for CNP entropy.** "Entropy at the CNP saturates to zero below 12 K, as also observed in SET measurements" has no citation, and it is unclear which SET result is meant.
+
+## E. Novelty, interpretation and framing
+
+69. **Novelty overstated.** The introduction says local moments have "thus far eluded experimental confirmation". However, Rozen et al. and Saito et al. reported entropic evidence for isospin moments, and Ref. 51 and others reported heavy/light asymmetry. The new contribution relative to these works should be stated precisely.
+
+70. **Negative compressibility misinterpreted.** Negative dμ/dn signals dominant exchange/correlation energy. It does not by itself indicate "the emergence of a more stable lower energy state".
+
+71. **Misapplied analogy.** The analogy to Mott-insulator compressibility (Ref. 44) is not appropriate for a peak that is displaced from integer filling.
+
+72. **STM claim overstated.** STM shows LDOS concentrated at AA sites. Stating that f-electrons are "experimentally observed via STM/STS" overstates what those works show.
+
+73. **Strain not measured.** The abstract states that properties "under strain need experimental verification", but no strain is measured. Strain enters only as a fitting parameter.
+
+## F. Device characterization and reproducibility
+
+74. **Single device.** Only one device is reported. Reproducibility of the ν = 2 gap, the mass asymmetry and especially the entropy plateaus across devices and cooldowns is essential for claims of this kind.
+
+75. **Inconsistent twist angle and incorrect formula.**
+    - The twist angle is quoted as 1.06° ± 0.02° (main text), 1.08° (Fig. 1b caption) and 1.07° (Methods).
+    - The formula θ = a(2/(√3 n₀))^{1/2} is dimensionally incorrect; it should be θ = a(√3 n₀/2)^{1/2}.
+
+76. **Inconsistent capacitance and layer thicknesses.**
+    - n = 0.30×10¹² V_g cm⁻² implies C_g ≈ 0.048 µF/cm².
+    - A 30 nm hBN dielectric gives ≈0.10 µF/cm².
+    - The Methods give thickness ranges (2–6 layers, 30–50 nm) rather than the actual values for this device.
+
+77. **Inconsistent band-edge gate voltage.** Bands are said to be full or empty beyond |V_g| ≈ 8 V. With the stated calibration, 4n₀ corresponds to ≈8.9 V.
+
+78. **Homogeneity within the probe area.** Twist-angle and strain homogeneity within the ~1 µm² probe area is not characterized, for example by local transport or by the sharpness of the LL fan. Inhomogeneity broadens features and affects the entropy at integer fillings.
+
+79. **Key analysis relegated to the SI.** Essential steps are deferred to the SI, including:
+    - the T(n) fit,
+    - the filling correction,
+    - the theoretical parameters,
+    - the hole-side data.
+
+    Combined with "data available upon reasonable request", the analysis cannot currently be evaluated or reproduced. A public data and code deposit is recommended.
+
+## G. Presentation, equations and references
+
+80. **Equation numbering.** Methods numbering is inconsistent: "by solving equations (4) and (5)" should refer to (1) and (5), and numbering jumps from (7) to (11). The prefactors and notation (ρ versus ρ_s) also differ between Eq. 2 and Methods Eq. 1.
+
+81. **Duplicate references.** Refs. 1 and 30 are the same paper, as are Refs. 28 and 60, and Refs. 23 and 57.
+
+82. **Inappropriate citations.**
+    - Refs. 27 (a Kondo-lattice theory paper) and 37 (x-ray phonon dispersion) are cited for the tunneling-model assumptions.
+    - Ref. 4 has garbled author names ("M. Haule, E.Y.A., K. Haule").
+
+83. **Caption errors.**
+    - Ext. Fig. 1c says "data in a" but should say b.
+    - The Fig. 2a caption ("below 4 K") conflicts with the text.
+    - Fig. 3d has a truncated log axis that hides the heavy values.
+
+84. **Typos.**
+    - "Wanatabe" → Watanabe (author list)
+    - "Seeback" → Seebeck
+    - "valance" → valence
+    - "filings" → fillings
+    - "Kekul\'e" (LaTeX residue in references)
+
+---
+
+## Overall assessment
+
+The planar-tunneling platform and the dI/dV_g approach to compressibility are promising. In its current form, however, the manuscript does not establish its headline claims.
+
+- **dμ/dn extraction.** This relies on several unverified and, in places, internally inconsistent assumptions: the neglected ρ(E_F), an elastic model for inelastic tunneling, a rigid spectrum, an empirical T(n), and the filling calibration.
+- **Mass renormalization.** This is a re-expression of dμ/dn and is not an independent measurement.
+- **Entropy plateaus.**
+  - They depend on an untested chemical-potential reference.
+  - They show thermodynamically forbidden features (dS/dT < 0, S < 0) of the same magnitude as the plateaus.
+  - They are compared with a decoupled-moment model whose regime of validity is doubtful and whose calculated curves do not themselves display the second plateau.
+
+Substantial additional validation is needed before the conclusions can be supported:
+
+- bias-independence checks,
+- sensitivity analyses for T(n), the boundary conditions and the μ reference,
+- quantitative comparison with SET data,
+- field-dependent entropy measurements,
+- hole-side data,
+- a second device.

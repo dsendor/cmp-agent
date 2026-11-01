@@ -1,0 +1,125 @@
+{
+  "overall_feedback": "The paper reports a striking result: magnetic exchange force microscopy with a Co-functionalized LER tip distinguishes Ho↑ and Ho↓ on MgO/Ag(001), and approaching the tip below point contact switches the Ho spin. The read-out data are fairly convincing. The Δf contrast has the expected sign in the different distance regimes (Figs. 2, 3, 4a, S9), the right-hand atom in Fig. 5 acts as an internal control, and the force data are internally consistent: F↑ − F↓ gives −0.05 nN at z = 0 and +0.10 nN at z = −0.10 nm, matching the inset. The supplementary spin-Hamiltonian numbers (normalization, ⟨Jz⟩ ≈ ±6.6, orthogonality, 3.47 meV Zeeman splitting) also check out against Table 5. The weaker part is the writing mechanism and the claims built on it.\n\n- **Detailed balance.** The proposed mechanisms (spin–phonon scattering via a 4.7 meV mode, or electron spin–spin scattering at k_BT ≈ 0.39 meV) must account for roughly equal dwell times in both states. Yet Ho↑ is the ground state, lying 3–3.5 meV below Ho↓ at 3 T and 4.5 K, which is not addressed.\n- **Exchange mechanism dismissed too quickly.** An exchange or tip-induced perturbation is ruled out by an argument that is too strong.\n- **Partial-displacement hypothesis.** The idea that the atom moves part-way toward the bridge site rests on an ad hoc linear interpolation between point-charge Hamiltonians. Fig. S13 does not \"confirm\" it.\n- **Spatial-localization claim.** This is inferred from vertical decay constants fitted to a handful of points from different tips and biases.\n- **Writing reliability.** Writing is stochastic and bidirectional, and close in distance to irreversible relocation to the bridge site. No success statistics are given.\n- **Methodological details.** Several details are inconsistent or underspecified: the bias for Fig. 4, the z = 0 definition relative to G0, the point-charge geometry and the choice Q_M = +3e, the S13 axis units, and how the Fig. 5 spin was switched.",
+  "comments": [
+    {
+      "title": "Equal-population telegraph noise is inconsistent with the proposed thermal mechanisms given the 3–3.5 meV Zeeman splitting",
+      "quote": "The thermal energy of conduction electrons is estimated as kBT ≈ 0.388 meV at 4.5 K. Thus, the relaxation from Hotop to Hobridge allows spin switching, which can be induced by electron spin-spin scattering.",
+      "explanation": "I first read this as a standard argument that symmetry reduction opens a Δm = 0 channel, which is reasonable as far as matrix elements go.\n\nThe energetics, however, are not addressed. Table 5 gives the Ho↑/Ho↓ splitting as 3.47 meV (top) and 3.00 meV (bridge) at 3 T, with Ho↑ the ground state. At 4.5 K, detailed balance for any equilibrium bath (phonons or conduction electrons) requires a dwell-time ratio of about exp(−3.0/0.388) ≈ 4×10⁻⁴.\n\nFigs. 4a,b show something very different. The system spends seconds in Ho↓, comparable to the time in Ho↑, and Fig. S9 shows tip-induced writing against the Zeeman energy (Ho↑→Ho↓). Neither cited mechanism provides the missing ~3 meV:\n- the 4.7 meV phonon mode has a thermal occupation of about e⁻¹² at 4.5 K;\n- k_BT = 0.39 meV is far below the gap;\n- the bias of 0.2–1 mV is also below it.\n\nThe statement that k_BT ≈ 0.388 meV implies switching is a non sequitur. Something must be bringing the two states close to degeneracy at contact, or driving the system out of equilibrium. Candidates include the tip exchange field (the measured exchange forces of ~0.1 nN over ~10 pm correspond to meV-scale energies), hybridization, or mechanical energy from the 1 MHz oscillation. The proposed mechanism does not explain the central observation.",
+      "type": "logical",
+      "severity": "major",
+      "suggested_fix": "Report the dwell-time ratio τ↑/τ↓ from Figs. 4a,b and compare it with exp(ΔE/k_BT) for ΔE = 3.0–3.5 meV. Extend the model to include an effective tip exchange term J_tip·Jz in H. Then state which energy source (exchange-compensated Zeeman splitting, oscillation-driven excitation, etc.) accounts for the near-equal populations."
+    },
+    {
+      "title": "Bidirectional switching does not rule out an exchange-mediated mechanism",
+      "quote": "Moreover, the observation of the bidirectional spin switching rules out exchange forces as the driving mechanism for spin switching [25].",
+      "explanation": "The authors' reasoning appears to be this: a parallel-aligned tip exchange field would favour one orientation, so switching would only go one way. That holds only if exchange is the sole driver and has a fixed sign.\n\nTheir own Fig. 3 shows the opposite situation. The exchange coupling changes sign from FM to AFM over exactly the z range where switching occurs (z ≈ 0 to −0.13 nm). An AFM tip exchange can partially or fully cancel the 3 T Zeeman splitting, making the states nearly degenerate. Combined with any finite mixing, this would naturally give bidirectional telegraph noise with comparable dwell times. It is arguably more consistent with Figs. 4a,b than the symmetry-only picture (see the previous comment).\n\nExchange with the metallic tip at contact could also itself provide the transverse terms and scattering channel. Bidirectionality is compatible with exchange playing a key role, so the statement is an overclaim.",
+      "type": "logical",
+      "severity": "moderate",
+      "suggested_fix": "Replace 'rules out exchange forces as the driving mechanism' with a statement that a purely unidirectional exchange-torque mechanism is excluded. Add a calculation of the spin Hamiltonian including a tip exchange term of the magnitude implied by Fig. 3b, to assess whether it brings Ho↑ and Ho↓ to near-degeneracy at the switching distances."
+    },
+    {
+      "title": "'Antiferromagnetic coupling' at z = −0.10 nm conflated with structural relaxation and possible switching during spectroscopy",
+      "quote": "indicating antiferromagnetic coupling at this distance",
+      "explanation": "The arithmetic is consistent: F↑ − F↓ = −1.40 − (−1.50) = +0.10 nN.\n\nThe interpretation is less secure. Sec. S8 argues that in this same range (z ≲ −0.05 nm) the Ho adatom moves laterally and interacts with Co atoms other than the apex atom. In that regime F↑ − F↓ may reflect different relaxed geometries for the two states, not a sign change of exchange with the apex atom.\n\nThe switching data compound the problem. For several tips the spin switches at or near this distance (Fig. 4: −6 to −16 pm; S9: −0.03 nm; S12: −0.11 nm), yet the paper does not say how the Ho state was verified before and after each Fig. 3 curve. Sader–Jarvis inversion also assumes a single-valued conservative force. A state flip, or a different relaxation path within the 65 pm oscillation, would corrupt the extracted F(z), particularly at the smallest z.",
+      "type": "technical",
+      "severity": "moderate",
+      "suggested_fix": "State explicitly how the spin state was confirmed before and after each Fig. 3 approach curve (e.g., the SP-STM telegraph state at 200 mV). Restrict the FM/AFM language to the regime z > −0.05 nm, before the lateral relaxation identified in Fig. S8, or label the z < −0.05 nm difference as 'state-dependent force including structural relaxation'."
+    },
+    {
+      "title": "Spatial-localization claim not supported by vertical decay fits to few points",
+      "quote": "These results suggest that force-based spin switching enables a more spatially localized control of the spin orientation in the Ho adatom.",
+      "explanation": "Fig. 4c compares two sets of data:\n- current-induced switching: tip 3, V = 150 mV, z ≈ 160–290 pm, ~25 points;\n- force-induced switching: tips 4 and 5, V = 1 mV, ~3–4 points each over ≲15 pm.\n\nThe force-induced exponential fits are nearly vertical and constrained by very few points spanning only a few pm. Their decay constants are therefore poorly determined. Fig. S13 also shows that the switching distance varies by ~140 pm between tips.\n\nMore fundamentally, a steeper dependence on vertical distance does not establish lateral localization, which is what 'spatially localized control' of bits in an array means. No lateral dependence of the switching rate is shown.",
+      "type": "logical",
+      "severity": "moderate",
+      "suggested_fix": "Report fitted decay lengths with uncertainties for each tip. Add a measurement of the force-induced switching rate versus lateral tip offset from the Ho centre, or else restrict the claim to 'a steeper dependence on tip height'."
+    },
+    {
+      "title": "Fig. S13 does not 'confirm' the partial lateral displacement hypothesis",
+      "quote": "This is further confirmed as in Fig. S13, which shows that the spin switching distance varies depending on the tip shape",
+      "explanation": "Fig. S13 shows that switching occurs at z < 0 and that the onset distance is tip-dependent. Both are equally expected for other contact-mediated mechanisms, including tip exchange or hybridization, or a strain-induced ligand-field change without lateral motion.\n\nThe actual evidence for lateral motion (Fig. S8, S11) concerns larger approach, or full relocation to the bridge site. No observable links the switching onset specifically to a partial displacement, such as a lateral offset in Δf images or a correlation between switching distance and the relocation distance for the same tip.\n\nThe α-interpolation in Sec. 3 is a heuristic. It is a linear mix of two point-charge Hamiltonians with no mapping of α to a physical displacement, so it cannot by itself confirm the hypothesis.",
+      "type": "logical",
+      "severity": "moderate",
+      "suggested_fix": "Change 'further confirmed' to 'consistent with'. For the same tips, report the distance at which Ho_top→Ho_bridge relocation occurs and show that the switching onset is systematically a fixed offset above it."
+    },
+    {
+      "title": "Inconsistent bias voltage for force-induced telegraph measurements",
+      "quote": "Firstly, the tip was brought to the center of Hotop, and the bias voltage was set to V = 200 µV to avoid spin switching induced by the tunneling current.",
+      "explanation": "The text describing Figs. 4a,b states V = 200 µV. The Fig. 4 caption instead gives 'constant-height mode, V = 1.0 mV' for both the telegraph traces and the force-induced rates in Fig. 4c.\n\nThis matters because the conductance at z ≈ −6 to −16 pm is ~5×10⁻³ G0 (Fig. S7d). The current is therefore ~0.4 nA at 1 mV versus ~0.08 nA at 200 µV, a fivefold difference. Readers assessing whether tunneling electrons contribute to the 'force-induced' switching need the correct value.",
+      "type": "technical",
+      "severity": "minor",
+      "suggested_fix": "Make the main text and Fig. 4 caption consistent (state the actual bias used for Figs. 4a–c). Report the corresponding time-averaged current at the switching heights."
+    },
+    {
+      "title": "Definition of z = 0 via 'point conductance G0' conflicts with measured conductance",
+      "quote": "z = 0 is defined as the tip–atom distance, measured from the point conductance of Ho adatom [7, 8]. When a Co tip was used, the point of conductance of Ho↓ was taken as the reference. We used point conductance G0 = 7.748 × 10−5 S.",
+      "explanation": "Taken literally, this implies z = 0 is where G = G0. Fig. S7d, however, shows G ≈ 5×10⁻³–10⁻² G0 at z = 0. That is plausible for an adatom decoupled from Ag by 3 ML MgO, but it means G0 is not the criterion actually used.\n\nAll key distances depend on this reference: switching heights, the −0.13 nm writing distance, the '20 pm above point contact' imaging height, and the z < 0 statement in S13. It is unclear whether z = 0 is set by a conductance jump or plateau, a threshold fraction of G0, or the force minimum. It is also unclear whether z refers to the lower turnaround point of the 65 pm oscillation.",
+      "type": "technical",
+      "severity": "moderate",
+      "suggested_fix": "State the operational criterion explicitly, e.g. 'z = 0 is the lower turnaround height at which the deconvolved conductance shows the contact jump/plateau (≈6×10⁻³ G0 in Fig. S7d)'. Remove the implication that G = G0 is reached."
+    },
+    {
+      "title": "Writing is stochastic and close to irreversible relocation; no success statistics reported",
+      "quote": "once an appropriate tip is prepared, the spin orientation and switching rate can be controlled by adjusting the tip–sample distance",
+      "explanation": "At the writing height the switching is bidirectional telegraph noise (Fig. 4), so holding the tip there does not deterministically produce a chosen state. In Fig. 2 and Fig. S9 the authors appear to hold for 10 s and retract after observing a jump. A reliable write therefore requires read-verify-retract feedback, which is not described.\n\nAll of the following affect the claim of 'controlled writing':\n- only one example per direction is shown;\n- the probability of ending in the target state is not reported;\n- no rate asymmetry versus z (which would allow biased writing) is given;\n- how often an approach ends in irreversible Ho_top→Ho_bridge relocation (S11, 'rarely returns') is not quantified.",
+      "type": "logical",
+      "severity": "moderate",
+      "suggested_fix": "Report the number of write attempts in each direction, the fraction ending in the target state, and the fraction ending in Ho_bridge relocation. Describe the write protocol explicitly, including whether retraction is triggered by detection of the Δf jump."
+    },
+    {
+      "title": "'Current-free' operation overstated: initialization uses current-induced switching and contact currents are non-negligible",
+      "quote": "its spin state was stabilized in the desired configuration (in this case, Ho↓) by lowering the bias voltage from V = 120 mV to V = 200 µV",
+      "explanation": "The abstract and introduction frame the method as current-free reading and writing with low heat generation.\n\nIn practice, the initial state is prepared with current-driven switching at 120 mV, freezing whichever state is present when the bias is ramped down. It is not stated how the 'desired' state is selected. During force writing near contact, the tunneling current is also of order 0.1–0.4 nA (Fig. S7d conductance at 0.2–1 mV).\n\nThe power is tiny and the electron energies are below the switching threshold, so the physics conclusion is likely unaffected. Still, 'current-free' and 'nondissipative' overstate the demonstration.",
+      "type": "logical",
+      "severity": "minor",
+      "suggested_fix": "Describe initialization as current-based. Report the tunneling current during force writing. Rephrase 'current-free' as 'with electron energies below the current-induced switching threshold'."
+    },
+    {
+      "title": "Point-charge crystal-field input underspecified and Q_M = +3e physically questionable",
+      "quote": "where QM is the total charge of a Ho adatom",
+      "explanation": "In the standard Stevens point-charge expression, the prefactor is the charge of the 4f electron interacting with the ligand potential, with the Stevens factor θ_n supplying the J-multiplet projection. Using a 'total charge' of +3e for an adatom whose 4f¹⁰ configuration coexists with 5d/6s valence electrons rescales all B_n^k by a factor of 3, and possibly flips their sign relative to −e. The sign of B_2^0 determines easy-axis versus easy-plane anisotropy.\n\nTables 2–3 also list only one entry per ion type. They do not give:\n- the number of ions of each type;\n- their azimuthal angles;\n- whether the vertical offsets (e.g., the O underneath at 213 pm versus surface Mg/O at ~275 pm) come from DFT relaxation.\n\nThe B_n^k in Table 4, and hence Fig. S3c, cannot be reproduced from what is given.",
+      "type": "technical",
+      "severity": "moderate",
+      "suggested_fix": "Justify the use of Q_M = +3e or replace it with the electron charge −e. List all ligand positions (number, R_l, θ_l, φ_l) used in Eq. (S4) for both sites, and state the source of the relaxed geometry."
+    },
+    {
+      "title": "Fig. S3c contradicts 'approximately exponential' description",
+      "quote": "Furthermore, Fig. S3c shows that the relative transition probability changes approximately exponentially with respect to α.",
+      "explanation": "Fig. S3c is not monotonic. The probability first decreases from ~10⁻¹⁷ at α = 0 to a minimum (~10⁻¹⁹) near α ≈ 0.1, and there is a visible kink or discontinuity near α ≈ 0.3. Only above that does it follow a roughly straight line on the log scale.\n\nThe minimum and kink suggest level crossings or changes in which eigenstates are labelled |ψ0⟩/|ψ1⟩. This affects the interpretation that small displacements smoothly raise the transition probability. Moreover, α has no stated mapping to a physical displacement.",
+      "type": "technical",
+      "severity": "minor",
+      "suggested_fix": "Describe the curve accurately: non-monotonic below α ≈ 0.3 and roughly exponential above. Explain the dip and kink (e.g., a state-assignment change), and specify how |ψ0⟩/|ψ1⟩ are tracked as α varies."
+    },
+    {
+      "title": "Inconsistent statement of ground-state Jz and arrow convention",
+      "quote": "In this study, we consider the ground state with Jz = 8 and geff = 1.25 [12].",
+      "explanation": "With H_Z = +g_eff Jz B μB, the ground state is Jz = −8, as Table 5 (|ψ0⟩ ≈ |−8⟩, E = 0) and Fig. 1b (red Ho↑ arrow at ⟨Jz⟩ = −8) both show. The arrows must therefore denote the magnetic moment, antiparallel to J.\n\nThe sentence 'ground state with Jz = 8' contradicts this. A reader may then wonder whether Ho↑ (parallel to tip and field) is the ground or metastable state, which matters for interpreting the switching energetics.",
+      "type": "technical",
+      "severity": "minor",
+      "suggested_fix": "Change to 'the lowest multiplet with J = 8' (or 'ground state Jz = −8'). State explicitly that ↑/↓ denote the magnetic moment direction, with Ho↑ ≡ ⟨Jz⟩ = −8 being the Zeeman ground state."
+    },
+    {
+      "title": "Fig. S13 distance axis in nm instead of pm; switching criterion unclear",
+      "quote": "Histogram of tip–sample distance of spin switching using different tip shapes.",
+      "explanation": "The axis of Fig. S13 runs from −140 to 0 and is labelled 'Z [nm]'. The switching distances in the main text are −0.13 nm, −0.11 nm, −0.03 nm and −6 to −16 pm, so the label should be pm; as printed it overstates distances by a factor of 1000.\n\nThe text also says the distances correspond to a 'fixed switching rate (here, 0.1 Hz)'. It does not say how this rate was determined for each of the ten tips, i.e. whether by interpolating rate-versus-z fits or from a single dwell-time measurement.",
+      "type": "technical",
+      "severity": "minor",
+      "suggested_fix": "Relabel the axis 'Z [pm]'. State how the 0.1 Hz-rate distance was obtained for each tip (e.g., interpolation of an exponential fit to R(z) from N dwell times)."
+    },
+    {
+      "title": "Method of switching the left atom in Fig. 5 not specified",
+      "quote": "we switched the spin state of the left Ho adatom from Ho↑ to Ho↓ and imaged the same area again.",
+      "explanation": "Fig. 5 is presented as imaging of both states, but the procedure used to switch the left atom (current pulse at ~120 mV, or tip approach) is not given. Nor is it said how the initial Ho↑ states in Fig. 5a were independently established.\n\nIf force-based writing was used, this is another writing example and should be described. If current pulses were used, readers should know that this figure tests only the readout. The ~0.6 Hz contrast on the left atom is meaningful only relative to the ~0.1 Hz variation on the right atom, and stating the drift and noise level would help.",
+      "type": "technical",
+      "severity": "minor",
+      "suggested_fix": "State the switching protocol (bias, height, duration) used between Fig. 5a and 5b, and how the initial states were verified, e.g. by SP-STM telegraph state at 200 mV."
+    },
+    {
+      "title": "Argument dismissing tip-induced symmetry lowering is too qualitative",
+      "quote": "the reduction of symmetry of Hotop due to the crystal field is expected to be larger than that caused by the asymmetric tip.",
+      "explanation": "The authors acknowledge that the asymmetric Co tip in contact could itself break the C4v symmetry. They dismiss this because the tip is 'metallic and electrically neutral'.\n\nAt contact, under forces of ~1.5 nN and conductances of ~10⁻² G0, the dominant perturbation from a metal tip is hybridization and covalent bonding with Ho 5d/6s (and indirectly 4f) orbitals, plus exchange. None of these is captured by an electrostatic point-charge argument. In ligand-field theory, covalency often dominates over point-charge contributions.\n\nThis alternative directly competes with the lateral-displacement hypothesis and is dismissed without quantitative support.",
+      "type": "logical",
+      "severity": "minor",
+      "suggested_fix": "Present the tip-induced perturbation (hybridization/exchange at contact) as an equally viable mechanism, rather than asserting that the substrate crystal field dominates. Alternatively, add a DFT estimate of the transverse anisotropy induced by a Co trimer apex at the switching height."
+    }
+  ]
+}

@@ -1,0 +1,160 @@
+# Referee Report
+
+**Manuscript:** *Interaction-limited conductivity of twisted bilayer graphene revealed by giant terahertz photoresistance* (Shilov, Kravtsov et al., arXiv:2509.02552v1)
+
+---
+
+## 1. Summary of claims
+
+The authors illuminate TBG devices (θ ≈ 1.04°–3°) with 0.14 THz CW radiation at a bath temperature of T_L = 2 K. They measure the photoresistance Δρ_THz with a dual-modulation lock-in scheme. Their main claims are:
+
+1. **Positive photoresistance.** Δρ_THz is large and positive at all metallic fillings, reaching up to 70% in magic-angle devices. It is negative at the CNP, at ν = ±4, and at ν ≈ 2. Because THz selectively heats electrons, the authors conclude that electron–electron interactions dominate the T-dependent resistivity, including in the linear-in-T regime of MATBG.
+2. **Phonons are negligible.** A monolayer graphene (MLG) control shows almost no zero-field photoresistance, which the authors take as evidence that e-ph contributions to Δρ_THz are negligible.
+3. **Anomalous T².** In a 1.58° device, ρ ∝ T² persists at fillings (|ν| ≈ 0.1, ν ≈ 3.8) below the kinematic threshold for umklapp scattering.
+4. **Proposed mechanism.** They attribute this to momentum-conserving "interpocket" e-e scattering, made current-relaxing by trigonal warping and broken Galilean invariance (following Sharma, Principi & Maslov). The estimated prefactor (0.005–0.5 Ω/K²) brackets the measured ~0.1 Ω/K².
+
+The question is important. Disentangling e-e from e-ph contributions to ρ(T) in moiré systems is a genuine open problem, and using hot-electron transport as a diagnostic is an appealing idea. The data appear to be of high quality, and the observation of T² resistivity below the umklapp threshold in a low-disorder 1.58° device is interesting in its own right.
+
+However, I believe the central inferential step, "positive Δρ_THz ⇒ e-e scattering dominates ρ(T)", is not established at the level the title, abstract and conclusions claim. In addition, the experimental and theoretical halves of the paper are only loosely connected. My concerns are detailed below.
+
+---
+
+## 2. Major concerns
+
+### 2.1 Positive photoresistance does not uniquely identify e-e momentum relaxation
+
+The experiment shows, at best, that ρ depends on the electronic temperature T_e at fixed T_L. Several mechanisms other than current-relaxing e-e collisions produce ∂ρ/∂T_e > 0:
+
+- **Temperature-dependent screening of charged impurities.** In 2D Dirac and low-density systems this is a well-known source of linear-in-T resistivity (Das Sarma, Hwang and co-workers). It is a T_e effect but represents disorder scattering, not e-e scattering.
+- **Thermal smearing in flat bands.** At T_e ~ 15 K, smearing over a strongly energy-dependent DOS and velocity changes the Drude weight and the energy-averaged scattering rate. This is particularly relevant in MATBG, where bandwidths are only a few meV to tens of meV.
+- **Correlation-driven T_e effects.** These include the isospin Pomeranchuk effect, entropy-driven reconstruction near ν ≈ ±1, and partial melting of correlated order. These are electronic, but they are not "e-e scattering limiting conductivity" in the sense of Eq. (1).
+- **Hot-electron e-ph processes.** These contribute in the Bloch–Grüneisen regime through spontaneous phonon emission. T_BG is low in TBG at low density; I estimate ~20 K at ν = 0.1 for θ = 1.58°.
+
+Without discriminating among these, the strongest conclusion the data support is that "the resistivity has a substantial T_e-dependent component." That is still valuable, but it is weaker than the claim that electronic interactions "dominate transport." The authors should either discuss and exclude these alternatives, or temper the claims accordingly.
+
+### 2.2 The MLG control is not discriminating
+
+The argument that e-ph contributions are negligible rests on the MLG device showing vanishing Δρ_THz at B = 0. But phonon-limited resistivity in doped MLG at 2–15 K is itself extremely small: it scales as ~T⁴ below T_BG, and dρ/dT is tiny even above it.
+
+MLG would therefore show negligible Δρ_THz even if both T_e and T_L were raised by 15 K. The control does not distinguish "only electrons are heated" from "electrons and lattice are both heated." In addition:
+
+- the absorbed THz power in MLG differs from that in TBG, because of different conductivity, impedance matching and ωτ;
+- e-ph coupling in small-angle TBG is enhanced and umklapp-assisted (Ref. 34).
+
+A meaningful control would be a system with large, known phonon-dominated dρ/dT in the relevant temperature range, measured under comparable absorbed power.
+
+### 2.3 Lattice heating and the T_e calibration
+
+The manuscript states that T_L = 2 K is "held constant," but this is the bath temperature. The local lattice temperature under CW illumination is not measured. Bolometric heating of the hBN/TBG stack, the graphite gate and the antenna would give Δρ ≈ (dρ/dT)·ΔT_L irrespective of the scattering mechanism. The authors should:
+
+- (a) report the absolute incident and estimated absorbed power, and the beam spot size relative to the device;
+- (b) estimate the steady-state ΔT_L from the thermal conductance to the substrate;
+- (c) ideally, measure T_L independently, for example with an on-chip resistive thermometer or a nearby non-illuminated reference.
+
+More seriously, the T_e estimate appears partly circular. The text says T_e (up to 15 K above T_L) was obtained "from the comparison of Δρ_THz with standard transport ρ(T) measurements." This step already assumes that ρ depends only on T_e, which is the very conclusion being tested.
+
+The SdHO-based estimate is independent in principle, but it is obtained in finite B, where absorption, cyclotron resonance and Bernstein modes alter the heating. It is also not clear from the main text whether it was done on the TBG devices or only on MLG. An independent T_e measurement in the B = 0 configuration, such as Johnson-noise thermometry, would greatly strengthen the paper.
+
+### 2.4 The quantitative comparison that would make the argument decisive is missing
+
+The natural test is the following. With T_e(P) calibrated independently, plot Δρ_THz versus T_e − T_L at fixed n and overlay ρ(T) − ρ(2 K) from equilibrium transport.
+
+- If the two curves coincide, the T-dependence is purely electronic.
+- If Δρ_THz lies below, the ratio quantifies the e-e fraction versus the e-ph (T_L) fraction.
+
+This is the only way to support the word "dominate." At present the argument is purely qualitative: the sign is positive and the magnitude is large.
+
+A rough consistency check also raises questions:
+
+- For MATBG1 at ν = 1.7, dρ/dT = 92 Ω/K. With ΔT_e ≲ 15 K, a purely electronic mechanism gives Δρ ≲ 1.4 kΩ, while Fig. 2b shows Δρ_THz of order 2 kΩ or more near this filling.
+- A 70% photoresistance on a ~6 kΩ baseline (Fig. 2c) would require ΔT_e of roughly 40 K.
+
+These numbers involve different devices and possibly different fillings, but they need to be reconciled explicitly. Either T_e is higher than stated, or Δρ_THz contains contributions beyond ρ(T_e).
+
+Relatedly, Δρ_THz(n) is the product of three density-dependent factors: absorbed power, the inverse cooling rate, and ∂ρ/∂T_e. Each depends on n through the conductivity, ωτ, plasmonic and antenna resonances, and e-ph cooling. The shape of Δρ_THz(n) therefore cannot be read directly as ∂ρ/∂T_e(n). The saturation of Δρ_THz with P (Fig. 2d) also deserves explanation: is it saturation of T_e, a change in cooling channel, or sublinear ρ(T_e)?
+
+### 2.5 The photoresistance and T² parts of the paper are not directly connected
+
+The key interpretive link is that the anomalous T² at |ν| ≈ 0.1 and 3.8 in the 1.58° device is T_e-driven. However, the photoresistance data shown are for the 2° device and the MATBG devices, not the 1.58° device at the relevant fillings.
+
+Notably, the inset of Fig. 2a shows that Δρ_THz is negative within roughly |n| ≲ 10¹¹ cm⁻² of the CNP in the 2° device. This is comparable to the density at ν = 0.1 for θ = 1.58° (≈1.4×10¹¹ cm⁻²).
+
+The authors should show Δρ_THz for the 1.58° device at exactly the fillings where they claim umklapp-free T² resistivity, and demonstrate that it is positive and quantitatively consistent with A·(T_e² − T_L²).
+
+Conversely, the theoretical mechanism (Eq. 1) addresses only the FL T² regime. Nothing in the paper explains the linear-in-T resistivity in MATBG. The concluding claim that the findings "unify the anomalous transport of magic-angle devices with the quadratic scaling of higher-angle systems" is not supported.
+
+### 2.6 Robustness of the T² identification at low filling
+
+Several points need attention:
+
+- **Fitting procedure.** On log–log plots of ρ − ρ₀, the apparent exponent is sensitive to the choice of ρ₀. Please show ρ versus T² on linear axes and report fitted exponents with uncertainties and the fitting ranges.
+- **Degeneracy and the e-ph crossover.** Fig. 3b extends to ~100 K at ν = 0.1, where E_F ≈ 20 meV (T_F ≈ 230 K). Thus T/T_F reaches ~0.4, which is outside the degenerate low-T limit in which Eq. (1) is derived. With T_BG ~ 20 K, the e-ph crossover from T⁴ to T could also mimic an intermediate T² over roughly a decade. This alternative should be explicitly modelled and excluded.
+- **Thermally excited carriers near CNP.** At T/T_F ~ 0.4, thermally excited holes are not negligible, so "unipolar at all measured T" needs justification and quantitative support.
+- **Thermally excited carriers near ν = 3.8.** Here the relevant scale is the single-particle superlattice gap at 1.58°. If that gap is tens of meV, thermal activation at 50–100 K gives electron–hole coexistence and makes the electron–hole friction and drag mechanisms (Refs. 41, 42) relevant. Please state the gap, for example from activation at ν = 4, and estimate the minority carrier density.
+- **Umklapp thresholds.** These depend on the degeneracy assigned to each pocket. A naïve estimate with 8 Dirac cones versus 4-fold pockets places the hole-side threshold anywhere between ν ≈ 0.3 and 0.6. Please give the derivation, including band-structure-calculated Fermi contours rather than circles, so that readers can judge the margin between ν = 0.1 and the threshold.
+- **Reproducibility.** "Consistently reproduced in all our high-angle (θ = 1.6–3°) devices" should be supported with data in the SI, including the number of devices.
+
+### 2.7 Theoretical model
+
+**Role of disorder.** In a non-Galilean-invariant system, normal e-e collisions relax only the component of the current orthogonal to the conserved momentum. A finite dc resistivity still requires momentum relaxation by disorder or phonons. The additive T² form of Eq. (1) holds only when τ_imp ≪ τ_ee. Otherwise the contribution saturates, which is the saturation mentioned in passing. Since the 1.58° device is emphasised as very clean, the authors should:
+
+- state the validity conditions explicitly;
+- report τ_imp from the residual resistivity;
+- show that the condition τ_imp ≪ τ_ee holds over the fitted temperature range.
+
+**Small parameter.** At ν = 0.1 and θ = 1.58° I estimate k_F·a ≈ 0.6, so the trigonal-warping expansion in k_F·a is not obviously controlled. It is also unclear whether a Dirac-plus-warping model with strength set by the moiré period is quantitatively appropriate for the TBG minibands. A comparison with continuum-model Fermi contours would help.
+
+**Coupling constant.** α_e is defined without the hBN dielectric constant. With v_F ≈ 4.5×10⁵ m/s this gives α_e ≈ 5 in vacuum units, and ~1 even with ε ≈ 4.5. In contrast, Eq. (6) does include √(ε⊥ε∥). Please make the treatment of dielectric screening consistent and comment on the validity of a perturbative (Born) treatment at α ~ 1.
+
+**Predictive power.** Λ spans two orders of magnitude between the two screening limits. Finding the measured A within this range, with a "best" Λ ≈ 0.2–0.3 chosen to match, is a weak test. Eq. (1) makes concrete predictions that would be far more convincing:
+
+- A should be nearly independent of n within the umklapp-free window, since (k_F a)²/n is constant and the warping factor cancels in Λ;
+- A should scale strongly with v_F, roughly as v_F⁻⁴, and hence with θ across the 1.6–3° devices.
+
+Please test these dependencies.
+
+**Terminology.** The mechanism is described as "intervalley e-e collisions." As I understand the Sharma–Principi–Maslov mechanism, it involves small-momentum-transfer collisions between electrons residing in different, mutually inequivalent pockets, with each electron remaining in its own pocket. It does not involve K↔K′ transfer, which would require atomic-scale momentum transfer. Please clarify the wording to avoid confusion with intervalley scattering in the usual sense. Please also clarify which pockets (layer-derived κ/κ′ versus valley K/K′) are inequivalent, given time-reversal symmetry E_K(k) = E_K′(−k).
+
+### 2.8 Overstatement
+
+The phrase "often misattributed to e-ph scattering" and the abstract's "demonstrating that electronic interactions dominate transport … including the linear-in-T resistivity near the magic angle" go beyond what is shown, for the reasons in 2.1–2.4.
+
+The 70% headline figure appears only in the SI. It should be shown in the main text together with the dark resistivity, filling and power at which it occurs.
+
+---
+
+## 3. Minor comments
+
+1. **Figure references are inconsistent.** Examples:
+   - "Figure 1a shows exemplary transport data" should refer to Fig. 1c.
+   - "measured the induced change of resistance (Fig. 1b)" and "ρ exhibits a pronounced increase … (Fig. 1b)" should refer to Fig. 1d.
+   - "Δρ_THz remains positive even at carrier densities where ρ ∼ T (Fig. 2c)": Fig. 2c shows only ρ(T), not Δρ_THz. The corresponding Δρ_THz at ν = 1.7 should be indicated explicitly.
+2. **Fig. 2e.** The caption is truncated ("plotted against ν at T_L"), and the colour-bar units and scale (1.5, 0, −6) should be clarified.
+3. **Measurement linearity.** Please demonstrate that Δρ_THz is linear in the probe current I, i.e. that there is no cross-heating with Joule power. Please also confirm that photovoltaic and photogalvanic signals are rejected by the f_mod − f_I detection, and derive the factor π in the SI.
+4. **Specific-heat argument.** The claim that TBG "exhibits a relatively small electronic specific heat" needs qualification. Near the magic angle the flat-band DOS makes the specific heat per carrier large, and the small total heat capacity in Ref. 35 arises from device geometry and low density. Relatedly, umklapp-assisted e-ph cooling in MATBG (Ref. 34) should be discussed quantitatively as it limits T_e − T_L.
+5. **Photon energy versus gaps.** The statement that 0.6 meV photons "cannot induce interband transitions … even at the magic angle" should be qualified near correlated states, where gaps can be sub-meV to a few meV.
+6. **Hydrodynamic effects.** In clean devices, Gurzhi/viscous effects give a negative T_e-dependent contribution (cf. Ref. 50). Please comment on whether this competes with the positive Δρ_THz in the cleanest (1.58°) device.
+7. **The |ν| > 4 comparison.** The statement that the first moiré band shows steep T-dependence "even though the effective mass and Fermi surface size are comparable" above |ν| = 4 needs quantitative support, such as effective masses from quantum oscillations or Hall data.
+8. **Device data.** A table of twist angles, mobilities, residual resistivities, hBN thicknesses, and fitted A for all devices would help readers assess reproducibility.
+9. **Typos and wording.** Examples include "previosuly", "relative weak T-dependence", "broadband triangular [antenna] coupling", "Shubnikov", and inconsistent use of "e–e" versus "e-e".
+10. **Missing references.** The discussion would benefit from citing prior hot-electron and bolometric work in MATBG (e.g. nanocalorimetry and bolometry studies), Johnson-noise thermometry in graphene, and temperature-dependent-screening theories of linear-in-T resistivity.
+
+---
+
+## 4. Assessment
+
+The experimental approach is creative and potentially powerful, and the data on umklapp-free T² resistivity in a clean 1.58° device are interesting. In its current form, however, the manuscript does not establish its central claims.
+
+- The photoresistance shows a T_e-dependent resistivity, but not necessarily current-relaxing e-e scattering.
+- The lattice temperature is not independently controlled, and the T_e calibration is partly circular.
+- No quantitative comparison of Δρ_THz(T_e) with ρ(T) is presented.
+- The THz data and the T² analysis are not shown on the same device and fillings.
+- The theoretical estimate has too much freedom (Λ spanning 0.01–1) to serve as a test, and its validity conditions (τ_imp ≪ τ_ee, the k_F·a expansion, α_e ~ 1) are not checked.
+
+**Recommendation: major revision.** The essential additions are:
+
+1. an independent T_e (and T_L) calibration at B = 0;
+2. a direct overlay of Δρ_THz(T_e) and ρ(T) − ρ₀ at fixed fillings, including the linear-in-T MATBG regime and the umklapp-free fillings of the 1.58° device;
+3. explicit exclusion of temperature-dependent screening, Bloch–Grüneisen crossover, and thermally activated two-carrier effects;
+4. tests of the n- and θ-dependence predicted by Eq. (1);
+5. corresponding moderation of the abstract and conclusions.

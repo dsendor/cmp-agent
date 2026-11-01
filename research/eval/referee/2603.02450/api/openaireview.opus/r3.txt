@@ -1,0 +1,149 @@
+{
+  "overall_feedback": "The paper reports a striking, reproducible-looking phenomenology in bulk UTe2 under field along b. Abrupt current pulses raise the critical current, and smooth ramps reset it. This history dependence is mapped against pulse amplitude, duration, relaxation rate, temperature, field and angle. The angular coincidence of the effect with the extent of SC2 (≈20°) and the systematic pump/erase control are the strongest parts of the work, and the extended data are rich. However, several central interpretive claims are weaker than presented.\n\n(i) The arguments against heating are not decisive. Pump-induced heating followed by rapid turn-off is itself a thermal quench, so it would naturally produce the observed α-dependence and the low-T enhancement.\n\n(ii) The link to SC1/SC2 coexistence is in tension with the field dependence. In S2 the effect peaks near 10 T and vanishes around 17 T, well below the SC1→SC2 boundary and outside the 15–20 T coexistence window cited from ref. 46.\n\n(iii) The RSJ model as specified appears internally inconsistent. An overdamped first-order equation cannot produce the ringing shown in Extended Data Fig. 2c. A 1D noisy Langevin system in a periodic potential has a unique stationary V(J), so two asymptotic branches are not possible. Deterministic overdamped dynamics would trap the phase in the higher-Jc π well during slow ramps, the opposite of what is claimed. Key parameters (g, noise strength, pulse shapes, time units) are also missing.\n\n(iv) Device-level claims overstate the case. These include non-volatility for hours (no data shown), purely superconducting read/write (the write pulse drives flux flow), 'solely electrical' control (a 7–20 T field and ~50 mK are required), and the power comparison to silicon (supported by an irrelevant citation).\n\nWith a stronger heating control, a reconciled phase-diagram narrative, a corrected and fully specified model, and toned-down application claims, the experimental discovery would be considerably more convincing.",
+  "comments": [
+    {
+      "title": "Relaxation-rate argument does not exclude heating: a heat pulse with fast turn-off is itself a quench",
+      "quote": "which anticorrelates with the total energy transferred into the system",
+      "explanation": "I agree that faster α deposits less total energy than slower α, so a simple 'more energy → more effect' heating picture is disfavoured. But the authors' own mechanism is quench vs anneal of vortex configurations. Joule heating during the 20 A cm⁻² pump would naturally act as the agent of that quench. The local vortex/electron temperature rises during flux flow; rapid turn-off then cools the vortex system quickly, freezing in disorder. A slow ramp lets it cool and anneal. This is exactly the field-cooled versus slow-cooled phenomenology known from conventional vortex glasses. In this scenario a faster α gives a stronger effect despite less total energy, which is what is observed. The α-dependence therefore distinguishes 'total deposited energy' models but not 'heating-assisted quench' models. The latter would also be confined to wherever a metastable vortex arrangement exists, so the B–θ specificity does not exclude it either. A thermometer on the mixing-chamber/probe stage cannot resolve millisecond-scale local heating at the sample.",
+      "type": "logical",
+      "severity": "major",
+      "suggested_fix": "Estimate the local temperature excursion during the pump: dissipated power V·I over the pulse divided by the sample heat capacity and thermal link at 50 mK. Alternatively, perform a control in which the sample is heated by a separate heater pulse at sub-Jc probe current and then cooled at varying rates, to test whether a thermal quench alone reproduces the high-Jc state."
+    },
+    {
+      "title": "Bean/critical-state pinning is not 'insensitive to how the current is turned off'",
+      "quote": "this should be insensitive to how the current is turned off, depending only on the total energy imparted",
+      "explanation": "The Bean critical-state model is a current/field-history model, not an energy model, so 'depending only on the total energy imparted' is not a property of it. Conventional pinned vortex matter in real superconductors is also strongly rate-dependent. Flux creep, the dynamic ordering/disordering transition of driven vortex lattices, and the well-known peak-effect metastability (disordered states quenched by fast changes, ordered states recovered by 'shaking') all depend on sweep rate. Peak-effect history dependence in NbSe2 and Nb, for instance, produces high-Jc metastable disordered states via abrupt changes, annealed by slow cycling. The observed turn-off-speed sensitivity is therefore not evidence for intrinsic UTe2-specific physics over conventional pinning-driven metastability.",
+      "type": "logical",
+      "severity": "moderate",
+      "suggested_fix": "Replace the statement with a comparison to known rate-dependent vortex metastability (e.g. peak-effect metastable disordered phases), and state explicitly which observation distinguishes the UTe2 effect from that established phenomenology."
+    },
+    {
+      "title": "Strong low-temperature enhancement does not argue against heating artifacts",
+      "quote": "providing perhaps the strongest argument against any heating-induced artifacts",
+      "explanation": "At dilution-fridge temperatures, sample heat capacity and thermal conductance to the bath both fall steeply as T decreases. A given pump pulse therefore produces a larger relative temperature excursion, and a sharper subsequent quench, at 50 mK than at 600 mK. Heating-driven effects can thus be maximal at the lowest temperatures. In addition, thermally activated vortex creep generically erases metastable pinned configurations well below Tc(B). Disappearance near 0.6 K is therefore expected for conventional pinning metastability too. Labelling this the 'strongest' argument against heating seems unjustified.",
+      "type": "logical",
+      "severity": "moderate",
+      "suggested_fix": "Remove the claim that the T-dependence is the strongest argument against heating. Instead, report the estimated relative temperature excursion ΔT/T during the pump at 50 mK and at 0.6 K."
+    },
+    {
+      "title": "Comparing the memory onset with zero-field Tc overstates the separation of energy scales",
+      "quote": "Such a low temperature scale of the memory effect in UTe2 is somewhat surprising",
+      "explanation": "The temperature dependence (Fig. 3b) was measured at 14 T, and the effect is said to live near the SC1/SC2 region. There Tc(B) is substantially suppressed relative to the 2.1 K zero-field value, as Fig. 1a itself shows. The relevant comparison is with Tc(B=14 T) and with the irreversibility/creep scale at that field, not with 2.1 K. The analogy to intrinsic versus extrinsic diode effects is also only suggestive: memory effects from vortex pinning metastability typically vanish well below Tc for conventional reasons. So the inference of 'some intrinsic low energy phenomenon, distinct from the superconductivity itself' is not supported by this comparison alone.",
+      "type": "logical",
+      "severity": "moderate",
+      "suggested_fix": "Compare the 0.6 K closing temperature with Tc(B) at 14 T (and 20 T for S1), extracted from the resistive transitions on the same samples, and drop the inference based on the zero-field Tc = 2.1 K."
+    },
+    {
+      "title": "Field range of the memory effect does not match the claimed SC1/SC2 coexistence region",
+      "quote": "for S2 it is just below 20T (see Fig. 4e and Extended Data Figs. 8 & 9)",
+      "explanation": "The narrative identifies the memory region with the SC1.5 coexistence regime, introduced via ref. 46 as lying 'at around 15-20 T'. The text also says the effect persists until the SC1→SC2 boundary is crossed. However, for S2 at 0° the effect starts at ~7 T, peaks at ~10 T (Fig. 4e), and in Fig. 4e/Extended Data Fig. 8 has essentially disappeared by ~17 T. That is below the SC2 boundary and precisely where the cited coexistence window begins. At 15° (Fig. 4e lower panel) ΔJ appears to drop to zero above ~11–12 T. Extended Data Fig. 9, cited for S2, actually shows S1. Meanwhile S1 shows the effect at 20 T. The strongest effect in S2 thus sits deep in what bulk calorimetry identifies as pure SC1. The angular cutoff near 20° is suggestive, but the field dependence undermines the claim that the memory region is the SC1/SC2 coexistence region.",
+      "type": "logical",
+      "severity": "major",
+      "suggested_fix": "State the actual field window for each sample (e.g. S2: ~7–17 T at 0°, peak ~10 T; S1: around 20 T). Correct the reference to Extended Data Fig. 9, which shows S1. Then explain explicitly why a regime peaking at 10 T in S2 should be regarded as SC1/SC2 coexistence, e.g. with a field-dependent susceptibility or specific-heat signature on S2 itself."
+    },
+    {
+      "title": "A 1D noisy Langevin model cannot have two distinct asymptotic V(J) branches; deterministic dynamics trap in the π well",
+      "quote": "To plot the 𝐽 − 𝑉 curves we find the asymptotic behaviour of",
+      "explanation": "For overdamped dynamics γ(φ)φ̇ = J − U′(φ) − J_n with white noise and a 2π-periodic U, the long-time stationary state at fixed J is unique, as in the Ambegaokar–Halperin result cited as ref. 52. The asymptotic V(J) therefore cannot depend on whether the system started at 0 or π. With noise, 'asymptotic' equilibrium and out-of-equilibrium branches (Fig. 3c, Extended Data Fig. 2b) can only arise if the large-time limit is not actually reached, i.e. the curves depend on an unspecified observation time.\n\nConversely, without noise the deterministic dynamics seem to contradict the stated protocol outcomes. Because the π well is designed to have the higher critical current (Jcπ > Jc0), an upward sweep through Jc0 < J < Jcπ releases the phase from the 0 well into the still-stable π well, so V should stay zero until Jcπ. The finite-V 'equilibrium' branch would then never appear. Likewise, a slow ramp-down from the running state reaches Jcπ first and traps the phase at π, which is the memory state, not the global minimum. The claimed behaviour (pump → π, slow erase → 0) therefore requires carefully tuned noise and time scales that are not reported.",
+      "type": "technical",
+      "severity": "major",
+      "suggested_fix": "Report the noise strength, sweep rates and integration time used for each curve. Show φ(t) traces for the equilibrium up-sweep between Jc0 and Jcπ to demonstrate that the phase is not trapped at π. Replace 'asymptotic' with the actual finite observation window over which V is averaged."
+    },
+    {
+      "title": "Ringing in the simulated φ(t) is incompatible with the stated overdamped (no-capacitance) equation",
+      "quote": "We neglected capacitive effects as no hysteresis",
+      "explanation": "Without capacitance, Eq. (2) is first-order in time. After a rectangular pump is switched off, J is constant (zero), and the 1D autonomous dynamics must approach a fixed point monotonically; it cannot overshoot or oscillate around it. Yet Extended Data Fig. 2c shows φ(t) overshooting π and undergoing damped oscillations before settling. Extended Data Fig. 2d likewise shows symmetric oscillations with a growing and then decaying envelope around φ = 0. These features imply an inertial (second-order, capacitive/mass) term or an oscillating drive, contradicting the model as written. Readers cannot tell which equation was actually integrated.",
+      "type": "technical",
+      "severity": "moderate",
+      "suggested_fix": "Either write the equation actually simulated, e.g. Cφ̈ + γ(φ)φ̇ + U′(φ) = J(t) + J_n with the value of C, or regenerate Extended Data Fig. 2c,d from the first-order Eq. (2). Also state whether the plotted φ is wrapped modulo 2π."
+    },
+    {
+      "title": "'γ as a proxy to the injected current J' conflicts with γ's definition as damping",
+      "quote": "and treat 𝛾 as a proxy to the injected current 𝐽,",
+      "explanation": "Throughout the main text and Methods, γ is the damping/viscosity (γ ∼ 1/R, with γ(φ) = γ0 + γπ[(1−cosφ)/2]^δ, γ0 = γπ = 1). J is the drive. Saying γ is a proxy for J in constructing the J–V curves is either a typo or suggests the horizontal axis of Fig. 3c/Extended Data Fig. 2b is something other than the drive current. Under the latter reading, the 'good qualitative agreement' with experiment is hard to interpret.",
+      "type": "technical",
+      "severity": "moderate",
+      "suggested_fix": "Replace with the intended statement, e.g. 'and use the time-averaged ⟨φ̇⟩ as a proxy for V at each value of the drive J', and state explicitly that J is the swept variable on the horizontal axis of Fig. 3c."
+    },
+    {
+      "title": "Damping does not set the critical current in the overdamped model",
+      "quote": "this naturally accounts for the higher value of 𝐽𝑐 in the memory state",
+      "explanation": "In the overdamped RSJ picture the static critical current out of a well is fixed by the maximum slope of U(φ). Here that is set by β (Methods: 'Parameter β controls the critical current of the local minimum'), not by γ. Larger damping changes the flux-flow slope and dynamics but not the depinning threshold. The text nevertheless argues that higher domain-wall density gives larger γ and lower R, and that this 'naturally accounts' for higher Jc. This conflates two independent model ingredients.\n\nThe predicted lower flux-flow resistance in the memory state is also not evident in the data. In Fig. 1b,c and Extended Data Fig. 1 the out-of-equilibrium curves rejoin the equilibrium ones at higher J with similar or steeper slope. The model is also built to give a binary outcome. The graded, saturating dependence of ΔJ on amplitude, duration and α (Extended Data Fig. 1) is not simulated, so 'captures the phenomenology' is limited.",
+      "type": "logical",
+      "severity": "moderate",
+      "suggested_fix": "State that the higher Jc of the memory state is imposed through β in U(φ) and that γ(φ) controls only which minimum is selected dynamically. Either show that the measured flux-flow slope dV/dJ is lower in the memory state, or remove the claim that it is."
+    },
+    {
+      "title": "Model is not reproducible: missing parameters and a notational slip",
+      "quote": "In our calculations we chose 𝛽 = 40",
+      "explanation": "Eq. (1) contains g, whose value is never given. The noise amplitude (essential, per the ergodicity concern above) is not given either. Also missing are the pulse amplitudes, durations and ramp rates in model time units, the integration scheme/time step, and the averaging window. With only β = 40, δ = 20, γ0 = γπ = 1 and N = 60 specified, Fig. 3c and Extended Data Fig. 2 cannot be reproduced. Separately, 'The global minimum at 𝜋 = 0' should read 𝜙 = 0. The text also says the minimum at π 'has a higher critical current' without stating the resulting Jc0 and Jcπ values that define the hysteresis in Extended Data Fig. 2b.",
+      "type": "technical",
+      "severity": "moderate",
+      "suggested_fix": "Add a parameter table listing g, the noise strength, time step, pump amplitude/duration, erase ramp rate, averaging window, and the resulting Jc0 and Jcπ. Correct '𝜋 = 0' to '𝜙 = 0'."
+    },
+    {
+      "title": "Non-volatility over 'several hours' is asserted without data, and the terminology is inconsistent",
+      "quote": "in the memory state persists over a timescale of at least",
+      "explanation": "Retention time is central to the memory claim and the non-volatile outlook, but no V(J) curves or V(t) traces versus waiting time are shown. The text also states the state 'does not appear to be transiently metastable in character'. The abstract calls it 'a metastable state', and Methods calls it 'a long-lived transient (metastable) state'. Readers cannot judge whether there is slow relaxation (e.g. logarithmic creep of ΔJ) over hours, or whether the probe sweeps themselves partially erase the state.",
+      "type": "logical",
+      "severity": "moderate",
+      "suggested_fix": "Add a retention plot of ΔJ (at a fixed V criterion) versus waiting time after a pump, at fixed field and 50 mK, including the probe protocol used. Use one consistent term ('long-lived metastable state') throughout."
+    },
+    {
+      "title": "Application claims overstate: write is dissipative, and a large static field and mK temperatures are required",
+      "quote": "read and write operations can be performed while superconducting",
+      "explanation": "The write (pump) step drives J up to ~20 A cm⁻², far above Jc, into the flux-flow state. Tens to hundreds of µV appear (Fig. 1b), so writing is dissipative. Reading the low-Jc state also gives finite V (Fig. 1d). The ~1 nW figure refers only to reading.\n\nThe introduction contrasts the work with schemes that 'rely on external magnetic field modulations', and the paper calls the effect 'controlled solely by electrical stimuli'. But operation requires a static 7–20 T field along b within ~20° and temperatures below ~0.4 K. The comparison with 'nanometre-sized silicon elements' cites ref. 59, a 1990 paper on intrinsic carrier concentration in silicon, which does not address memory-element power consumption.",
+      "type": "logical",
+      "severity": "moderate",
+      "suggested_fix": "State that writing proceeds through a resistive flux-flow state, and give the energy per write: the integral of I·V over the pump pulse. State the field and temperature requirements alongside the power estimate. Replace ref. 59 with a source on the energy per operation of CMOS memory cells."
+    },
+    {
+      "title": "Erase protocol in Fig. 1d,e differs from the stated smooth-ramp erasure and is underspecified",
+      "quote": "The time sequence is defined by entering the current amplitude and number of steps.",
+      "explanation": "The main text and Methods describe erasure as smoothly sweeping from a large current to zero: 'from 40 mA to 0 mA smoothly with a 2 mA step over a 20 second time interval'. The Fig. 1 caption describes it as 'from a large negative value to zero'. In Fig. 1d,e, however, the erase appears as a rectangular block of intermediate amplitude (~4 A cm⁻²). This suggests a modest above-Jc step also resets the state, consistent with the amplitude threshold in Extended Data Fig. 1a, but not with the narrative that erasure requires slow annealing. The polarity of the erase also differs between caption and Methods. The Methods description of the Fig. 1d sequence is too vague to reproduce, and the sample cross-sections needed to convert mA to A cm⁻² are not given.",
+      "type": "technical",
+      "severity": "minor",
+      "suggested_fix": "Specify for Fig. 1d the exact amplitudes (A cm⁻²), durations and ramp shapes of the pump, erase and probe steps, and state the erase polarity used in Fig. 1b and in Methods. List each sample's cross-sectional area and voltage-contact spacing."
+    },
+    {
+      "title": "ΔJ magnitudes are inconsistent across figures because the V criterion varies",
+      "quote": "peaks just above 0.2 A cm−2at around 10 T",
+      "explanation": "ΔJ is defined 'as the change in J at fixed values of V'. Extended Data Fig. 1 uses V = 1 µV, while Fig. 4e,f do not state the criterion. At 14 T, Jex = 10 A cm⁻², Extended Data Fig. 1a gives ΔJ ≈ 0.55 A cm⁻². Fig. 4e quotes a peak of 'just above 0.2' at ~10 T, Fig. 3b at 14 T saturates near 0.25, and the 9 T heatmaps in Fig. 2 extend to ~0.8. Without a uniform V criterion (and Jex/Δt/α) it is unclear whether the field dependence in Fig. 4e is a real trend or an artifact of the chosen V. This matters because the location of the peak is used to argue about the phase diagram.",
+      "type": "technical",
+      "severity": "minor",
+      "suggested_fix": "State the V criterion and pump parameters used for each ΔJ plot (Figs. 2–4, Extended Data Figs. 1, 5), and recompute Fig. 4e,f at the same V = 1 µV criterion as Extended Data Fig. 1."
+    },
+    {
+      "title": "Role of disorder untested: the cleanest sample was not checked for memory",
+      "quote": "S1: 105; S2: 44; S3: 395",
+      "explanation": "Most memory data come from S2, which has the lowest RRR (44) and so is not representative of 'high quality salt flux-grown crystals'. The authors attribute sample-to-sample shifts of the memory window to 'crystalline quality (and hence vortex pinning forces)'. This implicitly concedes a role for extrinsic pinning. S3 (RRR 395) appears only in the ac data of Fig. 4h, with no pump/erase tests. Whether the effect grows, shrinks or vanishes with disorder is the most direct way to separate an intrinsic order-parameter mechanism from disorder-driven vortex-glass metastability, yet it is not tested.",
+      "type": "logical",
+      "severity": "moderate",
+      "suggested_fix": "Report pump/erase ΔJ measurements on S3 (RRR 395) under the same protocol as S2. Alternatively, state explicitly that the disorder dependence is untested and temper the 'intrinsic property' claim accordingly."
+    },
+    {
+      "title": "Microsecond pulse fidelity is not demonstrated",
+      "quote": "excitation pulse was defined by 100 points and generated with the arbitrary waveform feature",
+      "explanation": "Duration tuning extends to Δt = 10 µs, and relaxation rates reach 500 A cm⁻² ms⁻¹ (a ~40 µs ramp from 20 A cm⁻²). Defining a 10 µs pulse with 100 points requires ~10 MS/s, at or beyond the arbitrary-waveform limits of a Keithley 6221. The delivered current is also shaped by the source's output bandwidth and by lead/sample inductance in a dilution fridge. Since the logarithmic Δt dependence (Extended Data Fig. 1b) and the α dependence are key evidence, the actual waveforms at the sample should be verified.",
+      "type": "technical",
+      "severity": "minor",
+      "suggested_fix": "Show oscilloscope traces of the current (e.g. via a series sense resistor at room temperature) for the shortest Δt and largest α pulses. Quote the 6221 ARB sample rate and the resulting effective rise time."
+    },
+    {
+      "title": "Inversion-symmetry argument for φ = π is stronger than stated",
+      "quote": "this second minimum has to occur at 𝜙 = 𝜋",
+      "explanation": "Inversion maps φ → −φ, so an inversion-symmetric U(φ) may have a pair of metastable minima at ±φ0 rather than a single one at π. Only the stronger assumption that the metastable state itself is inversion-invariant forces φ0 = π (mod 2π). The supporting evidence is the absence of a diode-like polarity asymmetry (Extended Data Fig. 4), but that is not cited. Since φ is also identified with a Cooper-pair momentum, a state at φ = π with Δ ∼ e^{iπr/L} is a zone-boundary (period-2L) modulation. This should be stated rather than left implicit.",
+      "type": "logical",
+      "severity": "minor",
+      "suggested_fix": "Rewrite as 'if the metastable state is itself inversion symmetric, as suggested by the polarity-independent hysteresis in Extended Data Fig. 4, the second minimum must lie at φ = π (mod 2π)'."
+    },
+    {
+      "title": "Thermodynamic wording: equilibrium does not minimise entropy; pinning is not 'between vortices'",
+      "quote": "arrange themselves in a highly ordered configuration to minimise entropy and energetic costs",
+      "explanation": "Equilibrium minimises free energy F = E − TS. An ordered lattice has low entropy, which costs free energy, and is favoured only because the energy gain dominates at low T. Similarly, 'stronger pinning forces between vortices' conflates vortex–vortex elastic interactions with vortex–defect pinning. In collective-pinning theory, it is the reduced correlation volume of a disordered vortex glass that raises Jc. These are wording issues, but they occur in the core physical argument.",
+      "type": "technical",
+      "severity": "minor",
+      "suggested_fix": "Replace with 'to minimise their free energy' and 'stronger effective pinning (smaller Larkin correlation volume) of the disordered vortex configuration'."
+    }
+  ]
+}

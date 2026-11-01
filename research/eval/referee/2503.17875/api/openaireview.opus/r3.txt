@@ -1,0 +1,149 @@
+{
+  "overall_feedback": "This is an interesting experimental paper. It uses the large probe–sample capacitance of a planar graphite/hBN/MATBG tunnel junction to extract the inverse compressibility dμ/dn. From that it derives an effective mass and an entropy, and interprets both within the topological heavy-fermion picture. Several things are done carefully: the momentum-mismatch and phonon-gap argument, the Cg/Cb ≈ 1/27 capacitance ratio (consistent with n = 0.30×10^12 Vg cm⁻² and Cb ≈ 1.3 μF/cm² for 2 nm hBN), the Streda analysis, and the binomial microstate counting for the entropy model. My main concerns are with the quantitative chain from tunneling data to thermodynamics.\n\n(i) Eq. (3) only follows from Eqs. (6)–(7) if ρ(E_F) is neglected, and this is not stated.\n(ii) The derivation treats ∂n/∂V_b = −C_b/e and ∂n/∂V_g = C_g/e as fixed. This ignores the self-consistent quantum-capacitance feedback. Because C_b is large, (C_g+C_b)(dμ/dn)/e² approaches ~0.8 at the dμ/dn peaks, so the extracted quantity is closer to D/(1+(C_g+C_b)D/e²) than to D. This affects gap sizes, the light-mass values and the integrated μ.\n(iii) The phonon-assisted energy offset is folded into an ill-defined statement that 'E_F = μ(n) ≈ ±22 mV'.\n(iv) The entropy relies on pinning μ_CNP(T)=0 while integrating only from ν=4. The S(T) curves show non-monotonic (dS/dT<0) and slightly negative regions, which are thermodynamically forbidden and make the claimed 'plateaus' fragile.\n(v) The theory comparisons are tuned (U1, ε) and taken at mismatched temperatures.\n\nThere are also several internal inconsistencies: twist angle (1.06°/1.07°/1.08°), the position of dμ/dn peaks relative to integer fillings, the temperatures up to which the mass cascade persists, the LL degeneracy-lifting field, and an inverted twist-angle formula.\n\nThe qualitative observations (asymmetric dμ/dn sawtooth, ν=2 gap, temperature evolution) are plausible and valuable. The quantitative claims (m* values, degeneracy-4/8 plateaus) need stronger justification.",
+  "comments": [
+    {
+      "title": "Eq. (3) requires an unstated approximation ρ(E_F) ≈ 0",
+      "quote": "Based on these two measurements we developed a method to extract dμ/dn from the tunneling data",
+      "explanation": "I checked whether Eq. (3) follows from Methods Eqs. (6)–(7). Eq. (6), ρ(μ+eV_b) = (dI_n/dV_b + (C_b/C_g) dI_n/dV_g)/eI_0, is exact within the model. Eq. (7), however, contains Δρ = ρ(μ+eV_b) − ρ(μ) in the denominator, and ρ(μ) is not measured. Eq. (3) results only if one sets Δρ ≈ ρ(μ+eV_b), i.e. ρ(E_F) ≈ 0. This is never stated. It is not obviously justified inside a flat band, where the DOS at E_F is large. One might argue that the phonon gap suppresses the elastic contribution at E_F, but then the ρ terms in Eqs. (1)–(2) should be phonon-shifted, not evaluated at E_F. The size of the neglected term also depends on the chosen V_b = ±42 mV. That makes the extracted dμ/dn V_b-dependent, whereas a thermodynamic quantity should not be.",
+      "type": "technical",
+      "severity": "moderate",
+      "suggested_fix": "State explicitly that Eq. (3) assumes ρ(E_F) ≪ ρ(E_F+eV_b) and justify it. For example, show dμ/dn extracted at several V_b values (e.g. ±35, ±42, ±50 mV) collapsing onto one curve, or keep the ρ(E_F) term using dI_n/dV_b measured at the onset bias."
+    },
+    {
+      "title": "Neglect of self-consistent electrostatic (quantum-capacitance) feedback in the dμ/dn extraction",
+      "quote": "in our planar tunneling device makes it possible to gain access to dμ/dn from the measured tunneling differential conductance.",
+      "explanation": "The derivation uses ∂n/∂V_b = −C_b/e and ∂n/∂V_g = C_g/e, i.e. it uses ne = C_gV_g − C_bV_b without the chemical-potential term. Including μ, the electrostatics give ne ≈ C_g(V_g − μ/e) − C_b(V_b + μ/e). Both derivatives then acquire a factor 1/κ, with κ = 1 + (C_g+C_b)D/e² and D = dμ/dn.\n\nRepeating the derivation, Eq. (6) is unchanged, but Eq. (3) actually returns D/κ rather than D. The size of this effect: with C_b ≈ 1.3 μF/cm², D = 100×10⁻¹² meV cm² corresponds to e²/D ≈ 1.6 μF/cm². So (C_g+C_b)D/e² ≈ 0.8 at the dμ/dn peaks and ~0.1 at typical flat-band values.\n\nThe large C_b that the paper advertises as its key advantage therefore makes this correction order unity exactly where gaps and 'light' masses are extracted. The ν=2 gap (1.3 meV), the CNP gap (10 meV), m* ≈ 0.06 m_e, and the integrated μ(T) used for the entropy could all be significantly affected.",
+      "type": "technical",
+      "severity": "major",
+      "suggested_fix": "Include the μ-dependence in the charge balance and invert. If X denotes the right-hand side of Eq. (3), the true value is D = X/(1 − (C_g+C_b)X/e²). Recompute dμ/dn, μ(n), the gaps, m* and S with this correction, or show that it is small."
+    },
+    {
+      "title": "Quantum-capacitance filling correction written with C_g only cannot explain a 0.2 n0 shift",
+      "quote": "the effect of the quantum capacitance becomes stronger, and the filling calculation must be adjusted",
+      "explanation": "The text attributes the ~0.2 shift of the ν=±4 peaks to C = (1/C_g + 1/C_q)⁻¹. Taking C_g ≈ 0.048 μF/cm² (from n = 0.30×10^12 V_g), a μ jump of ~20 meV across the band gap shifts n by only C_gΔμ/e² ≈ 6×10⁹ cm⁻², i.e. ~0.01 n0. A shift of ~0.2 n0 (≈1.3×10¹¹ cm⁻²) is obtained only if the large bias-electrode capacitance is included: (C_g+C_b)Δμ/e ≈ 1.7×10¹¹ cm⁻². So the correction actually needed involves C_b. Since the procedure is deferred to the SI, a reader cannot tell which correction was applied or whether it is self-consistent.",
+      "type": "technical",
+      "severity": "moderate",
+      "suggested_fix": "Replace the series-capacitance formula by the full relation ne = C_gV_g − C_bV_b − (C_g+C_b)μ(n)/e, with μ(n) obtained self-consistently from the integrated dμ/dn. State this explicitly in the main text."
+    },
+    {
+      "title": "Conflation of phonon-induced bias offset with the chemical potential E_F = μ(n)",
+      "quote": "In the presence of a phonon gap the Fermi level, EF, is pushed from zero energy to the energy at which inelastic tunneling sets in.",
+      "explanation": "Phonon-assisted tunneling shifts the bias at which states near E_F become accessible by ħω_ph/e. It does not move the sample's Fermi level. The text then identifies E_F = μ(n) ≈ ±22 mV, with μ measured from the CNP. This cannot hold: Fig. 2b shows μ(n) varying by ~±20 meV across the flat bands, while the 22 mV onset is stated to be V_g-independent.\n\nMoreover, Eqs. (1)–(2) integrate ρ from μ to μ+eV_b with no phonon offset. Yet Fig. 1f is plotted versus eV_b ± ħω_ph, implying the probed energy at V_b = −42 mV is ~−20 meV relative to E_F, not −42 meV. The tunneling model and the energy axis are therefore inconsistent.",
+      "type": "logical",
+      "severity": "moderate",
+      "suggested_fix": "Rewrite the statement as: the inelastic onset shifts the probed energy, E = μ(n) + eV_b ∓ ħω_ph. Modify Eq. (1) to integrate over the phonon-assisted window, e.g. ∫ from μ(n) to μ(n)+eV_b−ħω_ph sgn(V_b), so that ρ in Eqs. (2)–(7) is evaluated at the correct shifted energies."
+    },
+    {
+      "title": "Contradictory description of where dμ/dn peaks relative to integer fillings",
+      "quote": "Upon crossing an integer filling, dμ/dn increases until it peaks just below the next integer filling.",
+      "explanation": "The preceding sentence says dμ/dn is low or negative on the lower-doping side of each integer and shows high peaks on the higher-doping side. Fig. 3 states that m* reaches its minimum (i.e. dμ/dn its maximum) at n/n0 + δ, just above the integer. Extended Fig. 1c and Fig. 2a likewise show the bumps near ν ≈ 1.2, 2.2, 3.2, followed by dips just below the next integer. The quoted sentence places the peak just below the next integer, which contradicts both the data and the heavy-below/light-above narrative.",
+      "type": "logical",
+      "severity": "minor",
+      "suggested_fix": "Change to: 'Upon crossing an integer filling, dμ/dn rises sharply, peaks just above the integer filling (ν+δ), and then decreases, turning negative as the next integer filling is approached.'"
+    },
+    {
+      "title": "Twist-angle formula is inverted",
+      "quote": "and the twist angle in radians",
+      "explanation": "The printed formula is θ = a(2/(√3 n0))^{1/2}, which has units of length² and is a times the moiré period. With n0 = 1/A_moiré and A_moiré = √3λ²/2, one has λ = (2/(√3 n0))^{1/2} and θ ≈ a/λ = a(√3 n0/2)^{1/2}. Evaluating the correct expression with n0 = 0.67×10^12 cm⁻² gives θ ≈ 0.0187 rad ≈ 1.07°, matching the stated value. So the number is right but the printed formula is not.",
+      "type": "technical",
+      "severity": "minor",
+      "suggested_fix": "Replace with θ = a(√3 n0/2)^{1/2} (equivalently θ = a/λ, with λ = (2/(√3 n0))^{1/2})."
+    },
+    {
+      "title": "Inconsistent twist-angle values across the paper",
+      "quote": "is determined by calibrating the carrier density n using high magnetic field",
+      "explanation": "The main text gives 1.06° ± 0.02°, the Fig. 1b caption describes '1.08° MATBG', and Methods computes 1.07° from n0. Each lies within the quoted error bar of the main-text value, but it is unclear whether these refer to the same device or region. The comparisons with theory, which depends sensitively on θ near the magic angle, should use one value.",
+      "type": "technical",
+      "severity": "minor",
+      "suggested_fix": "Use a single value (1.07° ± 0.02°, from n0 = 0.67×10^12 cm⁻²) consistently in the main text, figure captions and Methods."
+    },
+    {
+      "title": "Entropy reference assumes T-independent μ at the CNP",
+      "quote": "we fix the chemical potential at the CNP to 0 and assume that the entropy at filling of 4 is 0",
+      "explanation": "S(ν) = −∫₄^ν (∂μ/∂T) dν requires the absolute μ(ν,T). The measured μ is referenced to the CNP at each temperature: μ(ν,T) = μ_CNP(T) + μ_rel(ν,T). Fixing μ_CNP(T) = 0 drops a term (4−ν) dμ_CNP/dT from S. Particle–hole symmetry would justify this, but the paper itself stresses strong electron–hole asymmetry ('more pronounced on the electron side').\n\nThe size of the error can be large: dμ_CNP/dT = 0.05 meV/K ≈ 0.6 k_B already shifts S(ν=0) by ≈2.3 k_B, which is comparable to the difference between the 4-fold and 8-fold plateaus. Only electron-side entropy data are shown, so the second boundary condition (S=0 at ν=−4) is not used to constrain this term.",
+      "type": "technical",
+      "severity": "major",
+      "suggested_fix": "Integrate across the full range −4 ≤ ν ≤ 4 and impose S(−4) = S(+4) = 0. This determines dμ_CNP/dT from the data. Alternatively, report the entropy with an explicit systematic uncertainty band of (4−ν)|dμ_CNP/dT|."
+    },
+    {
+      "title": "Claimed entropy plateaus coexist with thermodynamically forbidden dS/dT < 0 and S < 0",
+      "quote": "is the appearance of two plateaus: one near 10 K and another near 20 K,",
+      "explanation": "In Fig. 4c and Extended Fig. 4c, S at ν=2 and ν=3 rises to a maximum near 17–18 K and then decreases noticeably up to ~24 K. There is also a bump near 6–7 K at ν=3 followed by a decrease. Fig. 4b shows the low-temperature curve near ν≈2 extending below zero.\n\nThermodynamic stability requires C = T dS/dT ≥ 0 and S ≥ 0. These features therefore indicate systematic errors of the same size as the structure being interpreted. The 'plateaus' are exactly the regions between such non-monotonic excursions. They come from three-point numerical derivatives of a slowly varying integral (Extended Fig. 4b), so they are vulnerable to small drifts in calibration or T(n) normalization with temperature.",
+      "type": "logical",
+      "severity": "major",
+      "suggested_fix": "Report S(T) obtained from a global smooth fit of ∫μdν versus T constrained to be convex (dS/dT ≥ 0). State the systematic error from calibration/normalization drift. Present the plateaus only if they survive this analysis, and comment explicitly on the dS/dT < 0 regions."
+    },
+    {
+      "title": "Agreement with the atomic-limit calculation is overstated and partly tuned",
+      "quote": "This calculation agrees well with the two observed entropy plateaus.",
+      "explanation": "U1 = 23 meV and ε = 0.001 are 'set to match the experimental data', so the agreement is partly a fit rather than a test. In Fig. 4d, the low-T values at ν=1,2,3 sit near ln4 and ln6 as expected. Above ~10 K, however, the curves rise nearly linearly up to 40 K without a clear second plateau at ln C(8,ν+4), e.g. 3.33 at ν=2 or 2.08 at ν=3.\n\nThe measured values at 20 K (≈4 at ν=2, ≈2.8 at ν=3 in Fig. 4c) also deviate from the 8-fold counting. The text attributes the continued rise to phonons or charge excitations, which further weakens a specific 8-fold identification. In addition, the f–c hybridization in the THF model (~tens of meV) far exceeds k_BT at 10–20 K, so the validity of the zero-hybridization limit in this range needs justification.",
+      "type": "logical",
+      "severity": "moderate",
+      "suggested_fix": "Tabulate measured S at ~10 K and ~20 K against ln C(4,|ν|) and ln C(8,ν+4) for each ν = 0–3, with error bars. Replace 'agrees well' with a quantitative statement of the deviations, noting that U1 and ε were fitted."
+    },
+    {
+      "title": "Theory–experiment mass comparison at mismatched temperatures",
+      "quote": "Moreover, the effective masses of electron and hole excitations show good agreement with our experimental findings at the lowest temperatures around this filling (Fig.3b,3c).",
+      "explanation": "Fig. 3c is computed at T = 20 K, whereas Fig. 3b shows data at 0.3 K and 4 K. The text says the agreement holds 'at the lowest temperatures', where an IKS gap is invoked. A 20 K calculation does not describe the low-temperature gapped state. Conversely, the 20 K experimental m* curve (Fig. 3d) is the appropriate one to compare.",
+      "type": "logical",
+      "severity": "moderate",
+      "suggested_fix": "Compare the 20 K calculation with the 20 K curve of Fig. 3d. Alternatively, compute m* at T ≈ 0.3–4 K in the IKS state and overlay it on Fig. 3b."
+    },
+    {
+      "title": "Inconsistent temperature up to which mass renormalization survives",
+      "quote": "reveals that the strong mass renormalization in the flat band around integer fillings persists up to ~ 50K",
+      "explanation": "There are three different statements, and the cited figure does not show the claimed temperature range. The text says ~50 K and cites Fig. 3b, but Fig. 3b only shows 0.3 K and 4 K. The Fig. 3d caption says the cascades 'survive until ~77 K'. The introduction and the Fig. 4a discussion say ~70 K.",
+      "type": "logical",
+      "severity": "minor",
+      "suggested_fix": "Cite Fig. 3d and give one value, e.g. 'persists up to ~77 K (Fig. 3d)', consistent with the ~70 K statement for dμ/dn."
+    },
+    {
+      "title": "Fixed degeneracy g′ = 4 conflicts with the cascade/flavor-reset picture used elsewhere",
+      "quote": "assuming a doping-independent band degeneracy",
+      "explanation": "The authors acknowledge that Eq. (4) is qualitative. However, the paper interprets the dμ/dn sawtooth in terms of cascades and flavor resets, where just above integer ν the effective degeneracy of the light carriers is reduced (e.g. to 4−ν in the reset picture). Using g′ = 4 there underestimates m* by a factor of up to 4/(4−ν), i.e. 4× near ν=3.\n\nIn addition, thermodynamic dμ/dn contains exchange contributions (including the negative values reported), so (dμ/dn)⁻¹ is not a cyclotron mass. The quantitative statements 'as low as ~0.06 m_e … comparable to bilayer graphene' and 'a factor of 10' renormalization are therefore model-dependent by a comparable factor.",
+      "type": "logical",
+      "severity": "moderate",
+      "suggested_fix": "Show m* computed with g′ = 4 and with g′ = 4−⌊ν⌋ above each integer, and present the range as the uncertainty. Refer to the quantity as a 'compressibility mass' rather than the cyclotron mass."
+    },
+    {
+      "title": "Normalization by T(n) is not propagated into dI_n/dV_b",
+      "quote": "In order to access d𝜇/d𝑛 , we divide 𝐼 by the transmission coefficient background",
+      "explanation": "T(n) depends on n, and n depends on V_b through C_b. Hence d(I/T)/dV_b = (dI/dV_b)/T + (I/T)(0.258/n0)(C_b/e), where the second term carries a positive sign because ∂n/∂V_b = −C_b/e and ln T increases with n. Over a 42 mV bias, C_bV_b/e ≈ 3.4×10¹¹ cm⁻² ≈ 0.5 n0, so T changes by ~14% and the correction term is not negligible. The text does not say whether the lock-in dI/dV_b and dI/dV_g signals were corrected for the derivative of T(n), and the origin of the coefficient 0.258 is deferred to the SI.",
+      "type": "technical",
+      "severity": "moderate",
+      "suggested_fix": "State the explicit conversion: dI_n/dV_b = (dI/dV_b)/T + (I/T)(0.258/n0)(C_b/e) and dI_n/dV_g = (dI/dV_g)/T − (I/T)(0.258/n0)(C_g/e). Confirm these were used, and give the fitting range used to obtain 0.258."
+    },
+    {
+      "title": "Interpretation of g = 5.4 as indicating a spin-unpolarized (spin-singlet) state",
+      "quote": "suggesting a spin-unpolarized ground state, consistent with the intervalley coherent spin singlet observed in transport measurements [13]",
+      "explanation": "A linear decrease of a charge gap Δ = Δ0 − gμ_B B with g = 5.4 is about 2.7 times the pure spin-Zeeman rate for spin-½ excitations (g = 2). Such an enhancement usually signals multi-spin (skyrmion-like) charged excitations or an orbital/valley moment contribution, as discussed in Ref. [20]. A decreasing gap is consistent with a spin-unpolarized ground state, but the large g is the key quantitative result and is not discussed.",
+      "type": "logical",
+      "severity": "minor",
+      "suggested_fix": "Add that g ≈ 5.4 ≈ 2×2.7 implies charged excitations carrying ~2.7 flipped spins or an orbital moment contribution. Compare explicitly with the spin-skyrmion gaps of Ref. [20]."
+    },
+    {
+      "title": "Inconsistent field for lifting of 0th LL degeneracy",
+      "quote": "Above 1.5 T, all the degeneracies of the 0th LL are lifted",
+      "explanation": "The main text states that the CNP LLs' '4-fold degeneracy is lifted above 3.5 T'. Methods states the degeneracies are lifted above 1.5 T. The Fig. 2d caption only says 'under high magnetic fields'. These cannot both be correct for the same data.",
+      "type": "logical",
+      "severity": "minor",
+      "suggested_fix": "Reconcile to one field value, for example by stating 1.5 T for the 0th LL (Extended Fig. 2) and 3.5 T for the higher LLs, if that is what the data show."
+    },
+    {
+      "title": "LL energy formula: notation and terminology inconsistencies",
+      "quote": "The energy difference between LLs follows a linear relation with the magnetic field, characteristic of massive Dirac fermions",
+      "explanation": "There are three notation and terminology problems in the LL analysis:\n- E_N − E0 = ħω_c√(N(N−1)), linear in B, is the spectrum of massive chiral (bilayer-graphene-like) fermions. Gapped 'massive Dirac' fermions have E_N = √(Δ² + 2eħv²BN), which is not linear in B; the term 'massive chiral' is used later in the same paragraph.\n- The text says the peaks are plotted versus √(N(N+1))B, while the formula and the Extended Fig. 2 caption use √(N(N−1))B.\n- Methods says 'By solving equations (4) and (5)', but the V_b equation in Methods is numbered (1), and main-text Eq. (4) is the mass formula.",
+      "type": "technical",
+      "severity": "minor",
+      "suggested_fix": "Use 'massive chiral fermions' throughout, use √(N(N−1))B consistently, and correct 'equations (4) and (5)' to the actual labels of the dI_n/dV_b and dI_n/dV_g equations."
+    },
+    {
+      "title": "Gate capacitance implied by the calibration does not match the stated 30 nm hBN",
+      "quote": "a top gate separated from the MATBG sample by a thicker (30 nm) hBN layer",
+      "explanation": "Methods gives n = 0.30×10^12 V_g cm⁻² per volt, i.e. C_g ≈ 0.048 μF/cm². This is consistent with C_g/C_b ≈ 1/27 and C_b ≈ 1.3 μF/cm². However, a 30 nm hBN layer with ε_⊥ ≈ 3–4 gives C_g ≈ 0.09–0.12 μF/cm², about twice as large. The calibration instead corresponds to ~55–65 nm of hBN. Methods quotes 30–50 nm for the top hBN, which still does not fully reconcile the difference. The value of C_g matters directly in Eq. (3).",
+      "type": "technical",
+      "severity": "minor",
+      "suggested_fix": "Report the measured top-hBN thickness of this device (e.g. from AFM) and reconcile it with C_g = 0.048 μF/cm². Otherwise state that C_g is taken from the LL calibration rather than from geometry."
+    }
+  ]
+}

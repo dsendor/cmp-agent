@@ -1,0 +1,133 @@
+{
+  "overall_feedback": "The paper applies operando Bragg XPCS to VO2 switching devices and introduces a synchronized cycling protocol. This is a creative way to probe whether filament formation is reproducible at the nanoscale. The qualitative observations are interesting: a sub-threshold current erases the pre-existing configuration with a ~1000 s lag, a 4 mA current replaces it immediately, and cycle-to-cycle correlation grows over hundreds of cycles. However, the quantitative analysis on which the headline claims rest is fragile.\n\n- **Fitting.** Relaxation times of 35,000–160,000 s are extracted from windows of only a few thousand seconds, with g2 decaying by a fraction of a percent. A single τ is forced across all aging times, so any change in decay rate is pushed into β. The claimed β = 1 → 1.5 'jamming transition', and its current dependence, may therefore partly be a fitting artifact.\n- **Arrhenius analysis.** The activation energy uses a room-temperature point that the authors themselves describe as the experimental stability limit. The value quoted for that point (8000 s in the text) also disagrees with the figure (81,000 s).\n- **Joule-heating interpretation.** The 4 mA relaxation time is slower than even the no-current room-temperature value, which is hard to reconcile with Joule-heating-driven dynamics.\n- **Learning, determinism and reset claims.** These are inferred solely from adjacent-cycle X-ray correlations. They are not tested against a fixed reference cycle, not backed by electrical switching statistics, and not checked for drift or beam effects. The claimed reset by sub-threshold current, which would restore stochastic switching, is never demonstrated.\n- **Internal inconsistencies.** Several numbers and descriptions conflict: 0.26 vs 0.27 mA, 150,000 vs 160,000 s, local vs global irradiation, and the cycle-timing description.\n- **Methods.** The correlation definitions are internally inconsistent with g2 = 1 + A|F|², and the region of interest, normalization and fitting details are underspecified.\n\nThe work would be considerably strengthened by free-τ fits with uncertainty analysis, reference-cycle correlations, electrical stochasticity metrics, and an explicit erase-then-recycle experiment.",
+  "comments": [
+    {
+      "title": "Room-temperature timescale: text (8000 s) contradicts figure (81,000 s), and a stability-limit point is used in the Arrhenius fit",
+      "quote": "which corresponds to decay rates of 8000±3000 s",
+      "explanation": "The text gives the 298 K decay time as 8000±3000 s, while Fig. 2c reports τ = 81000 ± 3000 s. These differ by an order of magnitude, so one is presumably a typo, but it matters.\n\nMore importantly, the same sentence says this 298 K point represents 'the slowest observable dynamics in our material or the experimental stability limit'. If it is the instrumental stability limit, it does not reflect intrinsic thermally activated dynamics and should not anchor an Arrhenius fit.\n\nUsing only the two quoted τ values (81,000 s at 298 K and 24,000 s at 340 K), I get Ea/kB ≈ ln(3.4)/(1/298−1/340) ≈ 2900 K. This is close to the reported 2700 K, so the activation energy appears to be driven largely by this possibly instrument-limited point. The number of temperatures in the inset of Fig. 2d is also not stated.",
+      "type": "technical",
+      "severity": "major",
+      "suggested_fix": "Correct the 298 K value to match Fig. 2c, and state how many temperatures enter the Arrhenius fit. Either exclude points at the instrumental stability limit or show that the activation energy is unchanged when they are excluded."
+    },
+    {
+      "title": "Relaxation times far exceed the measurement window, and fixing a single τ forces dynamical changes into β",
+      "quote": "Note that in this work, a single τ",
+      "explanation": "I first assumed τ and β were fitted freely for each aging time. The Methods instead say a single τ is fixed across all t_age, and β is then reported versus t_age (Fig. 4).\n\nThe fitted τ values (35,000 s, 160,000 s, 81,000 s) are 10–50× longer than the delay range actually sampled (up to ~3000–10,000 s). Over that range g2 drops by only ~0.1–0.5% on a contrast of ~2%.\n\nIn the regime t ≪ τ, exp(−(t/τ)^β) ≈ 1 − (t/τ)^β, so τ and β are strongly degenerate. With τ held fixed, any change in decay rate with aging (for example the system simply speeding up or slowing down) must be absorbed by β. The reported 'jamming transition' from β = 1 to β = 1.5 could therefore partly reflect this fitting constraint rather than a change in the functional form of the dynamics. No uncertainty or covariance on β, and no comparison with free-τ fits, is shown.",
+      "type": "technical",
+      "severity": "major",
+      "suggested_fix": "Refit each g2^{t_age}(t) with τ and β both free and report their joint confidence intervals. Show whether β(t_age) still rises from 1 to 1.5 when τ is allowed to vary, and state explicitly that τ is extrapolated beyond the measured delay range."
+    },
+    {
+      "title": "Definitions in Eqs. (1)–(2) are inconsistent with the g2 = 1 + A|F|² baseline and the plotted values",
+      "quote": "denotes the average of the squared intensity over the total acquisition period",
+      "explanation": "Eq. (1) normalizes I(t1)I(t2) by ⟨I²⟩. With that normalization the diagonal would be ≈1 and fully decorrelated values would fall below 1. Yet the plotted G and g2 values lie between 1.01 and 1.03, and the analysis uses g2 = 1 + A|F|². That baseline corresponds to the standard XPCS normalization ⟨I(t1)I(t2)⟩_q / (⟨I(t1)⟩_q ⟨I(t2)⟩_q).\n\nThe equations also omit which average (over pixels/q within an ROI, or over time) is taken in the numerator. Eq. (2) further reuses τ as the dummy time variable, which clashes with τ as the relaxation time in Eq. (3).",
+      "type": "technical",
+      "severity": "moderate",
+      "suggested_fix": "Write G(t1,t2) = ⟨I_p(t1)I_p(t2)⟩_ROI / (⟨I_p(t1)⟩_ROI ⟨I_p(t2)⟩_ROI) with an explicit pixel-ROI average, and use a different dummy variable (e.g. t′) in Eq. (2)."
+    },
+    {
+      "title": "Detector ROI and phase selectivity are unspecified",
+      "quote": "The two-time intensity-intensity correlation G(t1, t2) correlates the diffraction at t1 and t2",
+      "explanation": "The paper says the diffraction 'stems from specific phases', namely 200_M1 and 011_R, at 2θ ≈ 50°. These reflections are only ~0.01 Å apart in d-spacing and both lie on the detector. It is not stated whether correlations are computed over the M1 peak, the R peak, or both together, or what pixel ROI and q-range are used. It is also not stated whether a single rocking angle was used, which would affect sensitivity to strain versus phase changes.\n\nWithout this, a reader cannot tell whether decorrelation reflects metallic/insulating domain rearrangement, strain or lattice-parameter shifts, or simple peak motion due to sample heating.",
+      "type": "technical",
+      "severity": "moderate",
+      "suggested_fix": "Specify the detector ROI (pixel or q-range) used for the correlations and which Bragg reflection(s) it covers. Also state whether the peak position or centroid was tracked and corrected for drift during current application."
+    },
+    {
+      "title": "Slow dynamics at 4 mA are hard to reconcile with Joule heating",
+      "quote": "suggesting that the dynamics may be induced by Joule heating",
+      "explanation": "Under the authors' own Arrhenius law (Ea ≈ 2700 K, τ ≈ 81,000 s at 298 K), the no-current τ at the 313 K stage temperature would be ≈ 52,000 s. Joule heating should raise the local temperature and shorten τ.\n\nThe 0.26 mA result (τ ≈ 35,000 s) fits that picture. The 4 mA result (τ ≈ 150,000–160,000 s), however, is slower than even the 298 K no-current value, which the authors describe as the stability limit. This runs opposite to the heating interpretation.\n\nThe Discussion argues that larger currents give 'larger phase-space' and slower jamming. This is speculative and does not address the slower τ.",
+      "type": "logical",
+      "severity": "moderate",
+      "suggested_fix": "Explicitly compare the measured τ under current with the Arrhenius prediction at 313 K. Discuss why τ at 4 mA exceeds the no-current room-temperature value, for example a metallic filament pinning domains or sensitivity limits. Alternatively, drop the Joule-heating explanation for the long-time dynamics."
+    },
+    {
+      "title": "Current dependence of t_jam is not statistically supported, and 4 mA never reaches β = 1.5",
+      "quote": "Notably, the larger the current, the slower the transition, reminiscent of shear-thickening in non-Newtonian fluids and glasses.",
+      "explanation": "The three transition times are 1100 ± 600 s (0.26 mA), 1200 ± 500 s (1.7 mA) and 4000 ± 3000 s (4 mA). The first two are indistinguishable. The third has 75% uncertainty, and in Fig. 4 its black data still rise linearly at the end of the window without reaching a plateau at 1.5. The sigmoid fit for 4 mA is therefore essentially unconstrained.\n\nThis also contradicts the statement 'For all currents a transition from β = 1 to β = 1.5 is observed'. A monotonic current dependence, and the analogy to shear thickening, cannot be inferred from these numbers. The Discussion repeats the claim ('t_jam is lower for lower switching currents').",
+      "type": "logical",
+      "severity": "moderate",
+      "suggested_fix": "State that t_jam at 0.26 and 1.7 mA are indistinguishable and that 4 mA does not reach the jammed plateau within the measurement window. Remove or heavily qualify the shear-thickening analogy unless additional currents or longer measurements establish a trend."
+    },
+    {
+      "title": "Interpretation of β = 1.5 as 'glassy/jammed' and the 'stretching exponent' naming",
+      "quote": "β = 1.5 describes a non-diffusive, constrained, and glassy/jammed dynamics",
+      "explanation": "In XPCS, β > 1 is a compressed (not stretched) exponential. It is commonly associated with ballistic, stress-relaxation-driven motion in aging soft glasses and gels. Supercooled-liquid glassy dynamics usually show stretched exponentials (β < 1).\n\nInterpreting β = 1.5 as jamming is therefore one possible reading, not a direct signature of it. A compressed exponential could equally reflect drift-like collective motion, for example domains moving toward the filament, which the authors themselves mention as an option.\n\nThe Methods also call Eq. (3) 'a single exponential decay function', although it includes β.",
+      "type": "logical",
+      "severity": "minor",
+      "suggested_fix": "Refer to β > 1 as a compressed exponential and to Eq. (3) as a stretched/compressed (KWW) exponential. State that compressed exponentials indicate ballistic, stress-driven relaxation consistent with, but not uniquely diagnostic of, jamming."
+    },
+    {
+      "title": "'Deterministic switching' inferred only from adjacent-cycle X-ray correlation, without controls",
+      "quote": "After ≈ 200 cycles the correlation gradually increases and stabilizes for ≈ 1000 cycles (Fig. 3i), marking a plastic transition to deterministic filament formation.",
+      "explanation": "ΔG(n, n+1) compares only consecutive cycles. A rise in this quantity is also expected if the overall configuration simply evolves more slowly with time. Plausible causes include thermal settling of the stage after current cycling starts, cumulative heating, or beam- or current-induced irreversible changes. None of these requires the same filament to re-form each cycle.\n\nDeterminism would be better shown by correlating each cycle with a fixed reference cycle late in the sequence, or via the full G(n, n+k) matrix. It would also help to show reduced variance in electrical switching parameters such as threshold voltage or switching delay; no such electrical stochasticity data are presented.\n\nThe normalization used to scale ΔG to [0,1] is also unspecified. Finally, the coincidence of the 'learning' timescale with t_jam is asserted, but jamming was measured under DC current, not cycling.",
+      "type": "logical",
+      "severity": "major",
+      "suggested_fix": "Add G(n, n+k) for a range of k, or the correlation of all cycles against a late reference cycle, and define the normalization of ΔG. Report cycle-resolved electrical metrics (e.g. threshold voltage and its standard deviation versus cycle number) to show that switching stochasticity actually decreases."
+    },
+    {
+      "title": "Reset via sub-threshold current ('recovering stochastic switching') is not demonstrated",
+      "quote": "recovering stochastic switching",
+      "explanation": "The abstract and conclusion claim that sub-threshold currents erase the learned state and restore stochastic switching, enabling a train/reset scheme. The experiments show two separate things: a sub-threshold current decorrelates an initial (pre-switching) configuration (Fig. 3a), and cycling increases cycle-to-cycle correlation (Fig. 3c,i).\n\nNo experiment applies a sub-threshold current after training and then shows that cycle-to-cycle correlation drops back to the stochastic level. The 'reset' half of the train/reset claim is therefore an extrapolation.",
+      "type": "logical",
+      "severity": "major",
+      "suggested_fix": "Either add an experiment that trains, applies 0.26 mA for ~1000+ s, and re-cycles while showing low ΔG(n, n+1) again, or rephrase the abstract and conclusion to say that sub-threshold erasure is expected (not shown) to restore stochasticity."
+    },
+    {
+      "title": "Inconsistent current and timescale values across text and figures",
+      "quote": "three switching currents, 0.27, 1.7, and 4 mA",
+      "explanation": "There are three mismatches:\n- The sub-threshold current is 0.26 mA everywhere else, including the Fig. 4 legend, but 0.27 mA here.\n- The 4 mA On-state τ is given as '≈ 150000 ± 50000 s' in the text but 160,000 ± 50,000 s in Fig. 3h.\n- The 1.7 mA measurement appears only in Fig. 4. It is never described (two-time map, whether it is above threshold, protocol), even though Fig. 5b suggests switching events in this current range.\n\nAlso, calling the 0.26 mA data 'after electrical switching' is inconsistent with it being sub-threshold, with no switching.",
+      "type": "technical",
+      "severity": "minor",
+      "suggested_fix": "Use 0.26 mA consistently, report τ = 160,000 ± 50,000 s in the text, state whether 1.7 mA is above I1 in Fig. 5b, and show its two-time correlation in the SI."
+    },
+    {
+      "title": "Cycling timing is ambiguous and inconsistent with the cycle-number axis",
+      "quote": "t < 1000 s and cycle number < 200",
+      "explanation": "The Fig. 3c top axis maps ~1800 cycles to ~5400 s, i.e. about 3 s per full cycle. The text says the device is 'turned on and off for 3 s', which could mean 3 s on plus 3 s off. With 3 s per cycle, 200 cycles is ~600 s, not 1000 s; at 1000 s the device would be at ~330 cycles.\n\nThe duty cycle, the On duration, and where the 1 s detector window sits within the On period (relative to filament formation and transients) are unclear. The text also refers to an 'inset (orange data)', but Fig. 3i is a separate panel.",
+      "type": "technical",
+      "severity": "minor",
+      "suggested_fix": "State the On time, Off time, full period, and the detector delay relative to current onset explicitly. Make the time and cycle-number correspondence consistent (e.g. 'cycle number < 200, t < 600 s'), and refer to Fig. 3i rather than an inset."
+    },
+    {
+      "title": "Comparison of activation energy with the melting temperature is physically loose",
+      "quote": "consistent with the view that melting occurs when all",
+      "explanation": "The numerical conversion is correct (230 meV ≈ 2670 K). However, an Arrhenius barrier for solid-state domain-wall or phase-boundary motion is a microscopic energy barrier. The melting temperature is a thermodynamic transition point at which k_B·T_m ≈ 0.19 eV. A numerical coincidence between Ea/k_B and T_m does not show that the mechanisms are related.\n\nThe statement that 'melting occurs when all domains become freely mobile' conflates mobility of M1/R structural domains with liquefaction. Given the ±800 K uncertainty and the questionable 298 K point, this comparison should not be presented as confirmation that the method is sensitive to domain dynamics.",
+      "type": "logical",
+      "severity": "minor",
+      "suggested_fix": "Remove the melting-point argument, or replace it with a comparison to literature activation energies for domain-wall or phase-boundary motion in VO2 or similar oxides."
+    },
+    {
+      "title": "Beam footprint exceeds the device; contribution from VO2 outside the channel is not addressed",
+      "quote": "In this experiment, the Xray beam is kept as large as the measured devices to capture the global phase distribution.",
+      "explanation": "The Methods give a 7.4 × 14.8 µm² focal spot, which the 25° incidence will elongate further along the beam on the sample, while the device channel is 5 × 5 µm². The illuminated area therefore includes VO2 under and beyond the electrodes and outside the current path. That material contributes to the speckle without participating in filament formation.\n\nThis dilutes and possibly biases the measured correlations. Thermal expansion of the electrodes under current could also move the illuminated region. The beam is also ~4–9× larger than the 1.7 µm coherence length, consistent with the very low (~2%) contrast. This lowers signal-to-noise for the sub-percent decays being fitted.",
+      "type": "technical",
+      "severity": "moderate",
+      "suggested_fix": "Report the beam footprint on the sample at the incidence angle and estimate the fraction of diffracting VO2 that lies within the current-carrying channel. Also state whether sample position was monitored for current-induced drift."
+    },
+    {
+      "title": "Inconsistent description of the irradiated region",
+      "quote": "devices were globally irradiated using a 30 keV focused Ga+ ion beam",
+      "explanation": "The main text says one device has 'a central 5×5 µm region irradiated', and that the other device is pristine. The Methods say devices were 'globally irradiated', which would also contradict the existence of a pristine device. The dose conversion (0.1 pC/µm² = 6.24×10¹³ ions/cm²) is correct.",
+      "type": "technical",
+      "severity": "minor",
+      "suggested_fix": "Change the Methods to state that only the 5×5 µm channel of one device was irradiated, and that the second device was left unirradiated."
+    },
+    {
+      "title": "Domain size from Bragg peak width conflates crystallite size with phase-domain size",
+      "quote": "The average domain size Rd is obtained from the measured Bragg peak's full-width at half-maximum",
+      "explanation": "R_d = 2π/Q_FWHM gives a structural coherence length for the reflection. In a 45 nm film this is affected by thickness, grain size and strain broadening, so it is not specifically the size of metallic versus insulating domains.\n\nThe text does not specify which peak (M1 or R), which direction (in-plane or out-of-plane), or which temperature the width was measured at. The 20 nm value is therefore of uncertain relevance to the 'nano-domains' whose dynamics are discussed.",
+      "type": "technical",
+      "severity": "minor",
+      "suggested_fix": "Specify the reflection, direction and temperature for Q_FWHM. Note that R_d is a structural coherence length that may be limited by film thickness or grains rather than by M1/R phase-domain size."
+    },
+    {
+      "title": "'Fully switched' overstates what the I–V curve shows",
+      "quote": "the measured device region is fully switched to the On state",
+      "explanation": "Fig. 5b shows two discrete switching events (I1, I2), consistent with one or more filaments forming. Filamentary switching leaves most of the channel insulating. This is in fact the premise of the paper's picture of a filament embedded in an insulating matrix. Calling the region 'fully switched' contradicts that picture.",
+      "type": "logical",
+      "severity": "minor",
+      "suggested_fix": "Replace with 'at 4 mA the device is in the low-resistance On state after both switching events I1 and I2'."
+    }
+  ]
+}

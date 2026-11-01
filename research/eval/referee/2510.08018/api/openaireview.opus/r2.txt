@@ -1,0 +1,117 @@
+{
+  "overall_feedback": "The paper reports a clear experimental result. A ~3° artificially stacked CrSBr bilayer shows pronounced easy-axis hysteresis in the A-exciton energy, while a natural bilayer does not. The authors interpret this with a two-sublattice macrospin model that has an effective, spatially averaged interlayer exchange. The analytic part of the Supplement is correct as far as I can check. Eq. (S4) follows from (S1) and (S3). The characteristic fields in Table S1 (h_AP+ = √(h_x(2h_E+h_x)), h_P− = 2h_E−h_x, h_C = √(h_x h_P−), h_P = h_E, h_C−) follow from the Hessian conditions. All entries of Table S2 can be reproduced from the stated measured fields. The main weaknesses are in how theory and experiment are connected.\n\n(i) The model predicts nearly identical hysteresis widths (h_AP+ − h_P−) for the pristine bilayer (≈0.39 T) and twisted spot 1 (≈0.41 T). It therefore does not explain the central observation: hysteresis in the twisted sample but not the pristine one. That contrast rests entirely on the measured h_AP+, which the authors themselves discard as anomalous.\n(ii) Parameter extraction uses three measured fields for three unknowns. There is no independent test, and the one overdetermined check fails by up to a factor of three. The choice to trust h_P− as a coherent-instability field while dismissing h_AP+ is not justified. Nucleation-limited reversal (Brown's paradox) would affect both.\n(iii) Several headline claims are assumptions of the model rather than demonstrated results: coherent moiré averaging, monodomain switching, and twist (rather than interface quality) as the origin of the reduced exchange.\n(iv) The twist angle is not independently verified. The control sample differs in encapsulation and fabrication route.\n(v) Some data features are not captured but go undiscussed: the abrupt a-axis transition in the twisted bilayer, and the unsaturated c-axis response.\nThere are also description errors in the text (the sign of the shift at ~0 T, 3 mT vs 0 T) and a sign ambiguity in ΔE_X ∝ cos²(θ/2). With a matched 0° artificial-stack control and a more cautious framing of the model's role, the work would be considerably stronger.",
+  "comments": [
+    {
+      "title": "Model predicts essentially the same hysteresis for pristine and twisted bilayers, so it does not explain the key contrast",
+      "quote": "the twist-tuned lowering of the interlayer antiferromagnetic exchange makes the parallel magnetisation configuration an energetically stable state for a broader applied field range resulting in magnetic hysteresis (Fig. 1d)",
+      "explanation": "I recomputed the model's hysteresis window h_AP+ − h_P− from Table S2.\n- Pristine bilayer: 0.569 − 0.180 = 0.389 T.\n- Twisted spot 1: 0.407 − 0 = 0.407 T.\n- Twisted spots 2 and 3: 0.16 T and 0.20 T, i.e. smaller than the pristine value.\n\nLowering h_E does extend P stability (h_P− decreases). It also shrinks the AP stability limit h_AP+, so in this model the window is not systematically widened by twisting. The Supplement acknowledges that the model predicts hysteresis for the pristine sample too ('our theoretical two-sublattice model predicts hysteresis for both pristine and twisted bilayers').\n\nThe observed difference therefore comes entirely from the measured h_AP+ collapsing onto h_P− in the pristine sample. This is exactly the quantity the authors say the model cannot describe. The abstract's mechanistic attribution ('attributing it to the twist-induced reduction of interlayer exchange that stabilizes both parallel and antiparallel spin configurations') is not supported by the model as it stands.",
+      "type": "logical",
+      "severity": "major",
+      "suggested_fix": "State explicitly that the macrospin model predicts comparable hysteresis windows for both samples (0.39 T vs 0.41 T from Table S2). Reframe the explanation so that only the lowering of h_P− (persistence of P toward zero field) is attributed to the reduced h_E. Remove the claim that the model explains why the pristine bilayer is non-hysteretic."
+    },
+    {
+      "title": "Selective trust in h_P− versus h_AP+ is unjustified; nucleation-limited switching would bias both",
+      "quote": "by acknowledging this unreliability of the measured hAP + and thus disregarding this value, we are still able to extract all material parameters",
+      "explanation": "The measured h_AP+ is always smaller than the coherent-instability value: 0.237 vs 0.407, 0.21 vs 0.30, 0.25 vs 0.36, and 0.18 vs 0.57 T. This is the textbook signature of Brown's paradox. Real reversal proceeds by nucleation and domain-wall motion at fields below the Stoner–Wohlfarth-type instability.\n\nThe same physics applies to leaving the P state. Nucleation would make P→AP switching occur above the coherent limit 2h_E − h_x. The measured h_P− would then overestimate 2h_E − h_x, biasing both h_E and h_x.\n\nFor the pristine sample, where both switchings coincide at 0.18 T, the natural alternative reading is near-equilibrium switching at h_P = h_E. That would give h_E ≈ 0.18 T rather than 0.27 T, together with a different h_x. The paper gives no reason why one metastability limit should be reliable and the other not. The 'unphysical' values obtained when h_AP+ is used are asserted but not shown. Since the claimed 'quantitative extraction of the effective exchange strength' rests on this choice, the extracted h_E values carry an unquantified systematic uncertainty.",
+      "type": "logical",
+      "severity": "major",
+      "suggested_fix": "Report the parameter sets obtained under alternative identifications: (a) using h_AP+ with h_⊥x and h_⊥y, and (b) identifying the pristine switching with the equilibrium field h_P = h_E. Quote the spread in h_E as a systematic uncertainty. Discuss nucleation-limited reversal (Brown's paradox) as a likely origin of the h_AP+ discrepancy."
+    },
+    {
+      "title": "Parameter extraction is exactly determined, so 'good agreement' is not a test of the model",
+      "quote": "Comparison with experiment enables quantitative extraction of the effective exchange strength.",
+      "explanation": "Three unknowns (h_E, h_x, h_y) are solved from exactly three measured fields (Eqs. S8–S10). Any set of three positive fields yields a solution, so the extraction itself cannot validate the model. The only redundant datum, h_AP+, disagrees strongly and is discarded.\n\nPhrases such as 'very good consistence between our theory and experiments' and 'theory and experiment agree very well' therefore overstate what has been shown. The agreement holds only for the qualitative features: hysteresis only along b, and continuous canting along a and c. The internal tension in the SI reinforces this. It first states the model 'has been successful at describing the pristine bilayer well' and later that it 'seems to describe our twisted samples better than the pristine ones'.",
+      "type": "logical",
+      "severity": "moderate",
+      "suggested_fix": "Add an independent check that is not used in the fit, e.g. the field dependence of the exciton shift in the canted regime along a (ΔE ∝ (h/h_⊥x)²) or the intermediate energies in the canted state at spots 2/3. Rephrase 'quantitative extraction' as 'model-dependent estimate'."
+    },
+    {
+      "title": "Text misdescribes the transitions in Fig. 2c (blueshift vs redshift at ~0 T)",
+      "quote": "During the forward sweep, the A-exciton energy redshifts from 1.336 eV to 1.320 eV with a switching field of just 3 mT. In the reverse sweep, a comparable redshift occurs at an even lower switching field of 0 mT",
+      "explanation": "In Fig. 2c the forward (red) sweep starts in the P state at 1.320 eV for B < 0. Near B ≈ 0 it jumps up to 1.336 eV, which is a blueshift (P→AP). It only redshifts back to 1.320 eV near +0.2 T (AP→P). The same structure holds for the reverse sweep.\n\nThe text instead says the 1.336→1.320 eV redshift happens at 3 mT and 0 mT. This conflates the two switching events and could mislead readers about which state is metastable near zero field.\n\nThe main text also gives 3 mT for h_P− at spot 1, while Table S2 lists 0. This is within the ±15 mT error but should be consistent.",
+      "type": "technical",
+      "severity": "moderate",
+      "suggested_fix": "Rewrite as: 'In the forward sweep, the remanent P state persists up to ≈0 T (h_P− ≈ 0), where the exciton blueshifts from 1.320 to 1.336 eV (P→AP). The system then redshifts back to 1.320 eV at h_AP+ ≈ 0.2 T; the reverse sweep mirrors this.' Use a single value for h_P− (spot 1) in both the main text and Table S2."
+    },
+    {
+      "title": "Coherent moiré averaging and monodomain switching are model assumptions, not demonstrated results",
+      "quote": "Remarkably, the system exhibits coherent averaging across the moiré supercell, yielding an effective monodomain response characterized by switching into the antiferromagnetic state, rather than forming spin textures or fragmented domains.",
+      "explanation": "The averaging regime is justified only qualitatively ('large intralayer ferromagnetic exchange and a small moiré wavelength'). No moiré period is given for the rectangular CrSBr lattice at 3°; estimated from the lattice constants it is roughly 7–9 nm. No comparison is made with the relevant magnetic length, e.g. √(J_intra/J_inter) times the lattice constant. Without this, the regime is assumed rather than established.\n\nThe experiment probes a ~1 µm optical spot. A sharp step in exciton energy is compatible with fast domain-wall propagation across the spot as well as with coherent macrospin reversal. The gradual, multi-step transitions at spots 2 and 3, attributed to a canted state, could equally reflect several domains within the spot. Fig. S2 and the SI discussion even describe the P→AP/C choice as stochastic.\n\nThe data are consistent with the averaged picture but do not discriminate it from domain-based alternatives.",
+      "type": "logical",
+      "severity": "moderate",
+      "suggested_fix": "Give an estimate of the moiré period and compare it with the exchange length √(J_intra/J_inter)·a, or with the domain-wall width of CrSBr. Change 'exhibits coherent averaging' and 'rather than forming spin textures or fragmented domains' to 'is consistent with an effective averaged-exchange description'."
+    },
+    {
+      "title": "Twist angle not verified, and the control sample differs in fabrication and encapsulation",
+      "quote": "The pickup of the second CrSBr flake was performed with a rotational misalignment of 3◦, controlled via a precision rotator mounted on the optical microscope stage.",
+      "explanation": "The only evidence for θ ≈ 3° is the rotator setting. It is not stated whether the two monolayers come from the same flake (tear-and-stack) or from separate flakes. With separate flakes, the b-axis alignment would have to be identified optically, which is far less precise than 3°. No post-fabrication measurement of the relative orientation is reported, e.g. from polarization-resolved PL or Raman of regions where only one layer is present. Fig. 1a is labeled as the 'expected' configuration.\n\nThe pristine reference appears to be a natural exfoliated bilayer. The Methods describe hBN encapsulation only for the twisted stack. It therefore differs in dielectric environment (A exciton at 1.332 vs 1.336 eV), possible strain, and interface quality.\n\nArtificially stacked interfaces commonly have increased interlayer spacing or residues. These alone could reduce interlayer exchange without any moiré physics. The attribution of the reduced h_E to the twist ('twist-tuned exchange') is therefore not isolated from these confounds.",
+      "type": "logical",
+      "severity": "major",
+      "suggested_fix": "Measure and report the actual relative orientation of the two layers, e.g. by polarization-resolved Raman/PL on single-layer regions of each flake. Compare against a 0° artificially stacked, hBN-encapsulated bilayer fabricated by the same dry-transfer process."
+    },
+    {
+      "title": "Extracted anisotropies vary as much as the exchange, at odds with 'twist primarily tunes interlayer exchange'",
+      "quote": "it is reasonable to assume that the bilayer twisting by small angles primarily tunes the interlayer antiferromagnetic exchange interaction, although our model allows the anisotropies to vary as well.",
+      "explanation": "Table S2 shows h_y rising from 1.06 T (pristine) to 1.42–1.61 T (twisted), an increase of about 35–50%. h_x varies from 0.18 to 0.29 T across three spots of the same twisted sample, about 60%. These are larger relative variations than for h_E (0.144–0.19 T across spots).\n\nAnisotropies are intralayer properties and should be insensitive to a small twist. Changes of this size point to strain, dielectric, or extraction-systematic effects. Such effects would also undermine attributing the spot-to-spot variation in h_P− to 'position-dependent modulation of the average exchange interaction ... driven by the stacking configuration'.",
+      "type": "logical",
+      "severity": "moderate",
+      "suggested_fix": "Discuss explicitly why h_x and h_y change by 35–60% between samples and spots. Either propose a physical origin (e.g. strain) or treat the spread as a systematic error of the extraction. Qualify the attribution of spatial variation to stacking registry accordingly."
+    },
+    {
+      "title": "Abrupt a-axis transition in the twisted bilayer contradicts the model's continuous canting",
+      "quote": "In the twisted bilayer, applying the field along the a-axis produces a shift from 1.336 eV (AFM) to 1.320 eV (FM) at a switching field of ∼0.575 T, with no hysteresis.",
+      "explanation": "For a field along the intermediate axis, the model gives continuous canting with sin β = h/h_⊥x (Eq. S7). The exciton shift should then follow a parabola, ∝ (h/h_⊥x)², reaching the full FM shift continuously at h_⊥x. This is what the pristine bilayer shows in Fig. 2b.\n\nIn Fig. 2d (hollow symbols), the twisted bilayer drifts only from ~1.336 to ~1.330 eV up to ~0.5 T. It then drops abruptly to ~1.322 eV near ±0.55–0.6 T, which looks like a first-order transition. This qualitative mismatch is not discussed. Yet h_⊥x = 0.575 T taken from this jump is one of the three inputs to the parameter extraction.\n\nThe 3° misalignment of the two layers' easy axes, which the model ignores, could plausibly cause such behavior.",
+      "type": "technical",
+      "severity": "moderate",
+      "suggested_fix": "Plot the predicted ΔE_a(h) = ΔE_max (h/h_⊥x)² against the twisted-bilayer a-axis data. Discuss the discontinuity, including whether including the 3° misalignment of the two layers' anisotropy axes in Eq. (S1) reproduces it."
+    },
+    {
+      "title": "c-axis saturation in the twisted bilayer is not reached within the sweep range, so h_⊥y is unreliable",
+      "quote": "Along the c-axis, the exciton shifts from 1.336 eV to 1.323 eV at ∼1.9 T in both directions",
+      "explanation": "The c-axis sweep extends only to ±2 T. In the twisted sample the exciton reaches 1.323 eV at 1.9 T, short of the FM value of 1.320 eV seen along b and a. In Fig. 2d the curve is still decreasing near the edge.\n\nThe value h_⊥y = 1.9 T used in Eq. (S10) is thus at best a lower bound. The extracted h_y (1.61, 1.48, 1.42 T) would then be underestimates. This matters because the large twisted-vs-pristine difference in h_y is itself an anomaly (see previous comment).",
+      "type": "technical",
+      "severity": "minor",
+      "suggested_fix": "Report h_⊥y for the twisted spots as a lower bound (> 1.9 T). Alternatively, fit the c-axis parabola ΔE ∝ (h/h_⊥y)² to the unsaturated data to extrapolate h_⊥y with an error bar, and propagate it to h_y."
+    },
+    {
+      "title": "Sign of the exciton-energy relation is inconsistent with the plotted curves",
+      "quote": "The corresponding exciton energy shift ∆EX evaluated using the relation ∆EX ∝ cos2(θ/2) with θ being the angle between the two sublattice magnetisations",
+      "explanation": "With θ the angle between the sublattice magnetisations, cos²(θ/2) is 0 for AP (θ = π) and 1 for P (θ = 0). A positive proportionality would make the P state highest in energy. Both Fig. 3c and the data show AP highest (1.336 eV) and P lowest (1.320 eV).\n\nThe intended relation is presumably a redshift E_X = E_AP − ΔE_max cos²(θ/2), as in Wilson et al. The current statement could mislead readers reproducing Fig. 3c.",
+      "type": "technical",
+      "severity": "minor",
+      "suggested_fix": "Write E_X(θ) = E_X^AP − ΔE_max cos²(θ/2), with ΔE_max ≈ 16 meV (twisted) and 12 meV (pristine) along b."
+    },
+    {
+      "title": "Comparison with bulk parameters ignores interlayer coordination",
+      "quote": "in order to validate our procedure for extracting the field values characterizing the material, we compare our results with the previous results on bulk CrSBr [42]. These are also reported and discussed in the table below and we find a good agreement.",
+      "explanation": "In the bulk, each layer couples to two neighboring layers, whereas in a bilayer each layer has only one. The same interlayer J therefore gives a bulk exchange field roughly twice the bilayer one. The expected bilayer h_E would be ~0.2 T rather than the bulk 0.395 T.\n\nThe pristine value of 0.27 T is thus neither a direct match to the bulk nor obviously consistent with the halved expectation. Calling the comparison 'good agreement' without this factor does not validate the extraction. The anisotropy comparison (h_y 1.06 vs 1.30 T) is reasonable, but it is also not tight.",
+      "type": "technical",
+      "severity": "minor",
+      "suggested_fix": "Rescale the bulk h_E by the coordination factor (h_E,bilayer ≈ h_E,bulk/2 ≈ 0.20 T). Compare this rescaled value with the extracted 0.27 T, and state the discrepancy explicitly."
+    },
+    {
+      "title": "Claim that bilayer CrI3 shows no hysteresis appears inaccurate and is mis-cited",
+      "quote": "This issue is also pertinent for the pristine bilayer, including for related materials such as CrI3, for which our theoretical analysis and established parameters predict a hysteresis that is, however, not observed in experiments[8, 32, 40]",
+      "explanation": "Refs. 8, 32 and 40 are CrSBr studies, not CrI3 studies. Moreover, hysteretic spin-flip transitions in natural bilayer CrI3 have been reported, e.g. in the MOKE data of Huang et al. (Ref. 15). These are consistent with the strong-anisotropy metamagnetic limit of the same macrospin model.\n\nThe assertion that the anomaly is general across van der Waals magnets is therefore not supported as written. It also undercuts the argument that the h_AP+ discrepancy is a generic open question.",
+      "type": "technical",
+      "severity": "minor",
+      "suggested_fix": "Cite the specific CrI3 bilayer data intended and check it against reported hysteretic spin-flip data (e.g. Ref. 15). Otherwise restrict the statement to CrSBr bilayers."
+    },
+    {
+      "title": "'Deterministic control' overstates a single-angle, single-sample result with large spatial variation",
+      "quote": "In summary, we show that introducing a small twist in bilayer CrSBr enables deterministic control of interlayer exchange, leading to controllable magnetic hysteresis that is absent in pristine bilayers.",
+      "explanation": "Only one twist angle and apparently one twisted sample are studied. Within that sample, h_P− varies from ~0 to 0.16 T and the extracted h_E from 0.144 to 0.19 T across positions a few µm apart.\n\nNo dependence on twist angle is shown. The variation is attributed to uncontrolled local stacking or heterogeneity. This demonstrates that the exchange is modified, not that twist angle deterministically sets it.\n\nRelated claims about 'programmable magnetic memories' and 'robust design … principles' likewise extrapolate beyond the data. The same applies to the statement that Supplementary Note 5 shows the loop 'gradually widens': the B_max = 0, 0.1 and 0.2 T loops in Fig. S10 have similar widths.",
+      "type": "logical",
+      "severity": "minor",
+      "suggested_fix": "Replace 'deterministic control' with 'modification' (or 'reduction') of the effective interlayer exchange. State that the twist-angle dependence and sample-to-sample reproducibility remain to be established."
+    },
+    {
+      "title": "Measurement conditions relevant to switching fields are unspecified",
+      "quote": "Excitation powers were varied from 600 nW to 240 µW.",
+      "explanation": "Switching fields in metastable magnetic systems depend on temperature and on sweep rate or dwell time. The Methods give a 400-fold range of excitation powers but do not say which power was used for the hysteresis loops in Figs. 2, 4 and S10. Local laser heating at the upper end could shift h_AP+ and h_P− and could contribute to the spot-to-spot differences.\n\nThe dwell time per 10 mT field step, and whether each spot was measured at the same power, are also not given. The text likewise does not say whether the loops were reproduced over several cycles at each spot.",
+      "type": "technical",
+      "severity": "minor",
+      "suggested_fix": "State the excitation power, integration time per field step, and total sweep duration for each hysteresis dataset. Add a control showing that h_AP+ and h_P− do not change between the lowest and the used excitation power."
+    }
+  ]
+}

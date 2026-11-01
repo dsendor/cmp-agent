@@ -1,0 +1,140 @@
+# Review of "Interlayer coupling enhanced superconductivity near 100 K in La₃₋ₓNdₓNi₂O₇" (Qiu et al., arXiv:2510.12359)
+
+## Summary of the submission
+
+The authors synthesize polycrystalline La₃₋ₓNdₓNi₂O₇ (0 ≤ x ≤ 2.4) by a sol-gel route and report the following:
+
+1. Nd substitution contracts *a* and *c* (mostly *c*) while leaving *b* roughly unchanged.
+2. The resistive density-wave kink rises from 138 K to 161 K.
+3. The Amam→I4/mmm transition pressure rises from ~13 GPa (x = 0.9) to ~26 GPa (x = 2.1).
+4. Pressurized transport gives onset Tc up to 93 K (x = 2.1) and 92 K (x = 2.4).
+5. RF transmission in a DAC shows anomalies at 97–98 ± 2 K, presented as signatures of superconductivity near 100 K.
+6. Compiling bulk and thin-film data, Tc correlates linearly with the *c* lattice parameter (≈ −28 K/Å). The authors take this as evidence that interlayer magnetic exchange is "the dominant mechanism" for pairing.
+
+The systematic, heavily substituted series is a useful contribution. Extending chemical pressure this far is valuable for the bilayer nickelate field. However, the three headline claims all go beyond what the data presently support:
+
+- the "record" Tc;
+- the ~100 K RF signature;
+- the mechanistic conclusion from the Tc–*c* correlation.
+
+There are also several internal inconsistencies. I would recommend **major revision**.
+
+---
+
+## Major concerns
+
+### 1. Sample characterization is insufficient for the "high-quality, pure bilayer phase" claim
+
+- **Phase purity.** Phase purity is asserted from laboratory Cu-Kα XRD alone. Polycrystalline La₃Ni₂O₇ is well known to host 1313/2222 polymorphism and RP intergrowths (La₄Ni₃O₁₀, La₂NiO₄). These are hard to distinguish by lab XRD. The authors themselves attribute the low-temperature anomaly in Fig. 2d to "other intergrowth RP phases," which contradicts the phase-purity claim. STEM/HAADF or high-resolution synchrotron data are needed.
+- **Composition.** Nd content is nominal only; no EDS/ICP analysis is reported. Later (Fig. 4 discussion) the authors invoke "inhomogeneity of the Nd doping levels" to explain the RF/transport discrepancy. If that is the explanation, it must be demonstrated, for example by EDS mapping. It also undercuts the "high-quality" framing.
+- **Oxygen stoichiometry.** Oxygen content is not measured (TGA, iodometric titration). Tc and the density-wave behavior in this family are known to be sensitive to δ. Without this, doping effects cannot be separated from oxygen effects across the series.
+- **Rietveld quality.** No Rietveld agreement factors (R_wp, χ²) are given in Extended Data Fig. 1.
+- **Apical-oxygen claim.** The statement that Nd "enhance[s] the interapical oxygen distortion" is not supported by any reported oxygen positions or Ni–O–Ni angles. Lab XRD on a heavy-cation oxide cannot reliably determine these.
+- **Solubility limit.** *c* barely changes between x = 2.1 (20.148 Å) and x = 2.4 (20.132 Å), whereas earlier steps are ~0.05 Å per 0.3 Nd. This suggests the solubility limit was reached and the nominal x = 2.4 composition may not be the actual one. The authors hint at this, but it should be confronted directly.
+
+### 2. Magnetism: the evidence for enhanced interlayer exchange is indirect and partly confounded
+
+- **Susceptibility.** The "systematically enhanced" susceptibility (Extended Data Fig. 2b) is almost certainly dominated by the Curie–Weiss paramagnetism of Nd³⁺ 4f moments. It says little about Ni–Ni exchange. This should be stated, ideally with Curie–Weiss fits.
+- **Density-wave identification.** T_SDW is identified only from kinks in dρ/dT. By x ≥ 1.2 the samples are strongly insulating (several Ω·cm) polycrystals. The main text calls the feature an SDW, while Extended Data Fig. 3 calls it "T_DW." Assigning it to the SDW, rather than a CDW or another feature, needs justification. μSR, NMR, or neutron data would make the argument much stronger.
+- **Conflicting prior work.** Ref. 34 (Feng et al.) reported an *unaltered* density-wave transition in Nd-doped La₃Ni₂O₇. This direct contradiction must be discussed.
+- **Phase mismatch.** T_SDW is measured at ambient pressure in the orthorhombic phase, while superconductivity appears in the high-pressure tetragonal phase. Linking the ambient-pressure T_SDW to the pairing interaction under pressure requires an argument that is not given.
+
+### 3. Transport results and the "record Tc" claim
+
+- **Significance of the record.** The 93 K value is claimed as "the highest among all nickelate superconductors," but the prior record cited is 92 K. A 1 K difference is not meaningful given:
+  - the unstated onset criterion (deviation point? tangent intersection?);
+  - polycrystalline broadening;
+  - a stated 5–10% discrepancy between ruby and diamond-Raman pressure calibration.
+
+  The onset definition must be specified. The claim should be softened, and the most recent literature on Sm/Pr-substituted bilayers should be checked.
+- **Superconducting fraction.** Resistance drops are small (R/R₁₅₀K falls from ~1.05 to ~0.8 for x = 2.1), there is no zero resistance, and the x = 2.4 curves show low-temperature upturns. This suggests a small, possibly filamentary superconducting fraction. Some estimate of superconducting volume, or at least a frank discussion, is needed.
+- **Monotonicity.** "Tc rises continuously" with Nd is not accurate: x = 2.4 (92 K) is not above x = 2.1 (93 K). The trend saturates.
+- **Upper critical field.**
+  - The fits extrapolate from ≤14 T, over a window of only a few kelvin below Tc, to ~100 T. Such Hc2(0) values are highly unreliable and should be presented with heavy caveats, or as initial slopes dHc2/dT instead.
+  - The text says "μ₀Hc2(0) is lowered by doping although the Tc is enhanced." The numbers contradict this: 98.5 T for x = 2.1 versus 111.4 T for x = 2.4, while the x = 2.4 sample at 40.3 GPa has the lower Tc (85 K). No undoped reference value is given either.
+- **Reproducibility.** It is unclear how many samples or runs per composition were measured.
+
+### 4. The RF "98 ± 2 K" signature needs substantially more validation
+
+This is the most prominent claim in the title and abstract, and the least secure.
+
+- **Missing field-dependence test.** No dependence of the anomaly on an applied DC field is shown. That is the standard discriminator between a superconducting transition and an instrumental or other anomaly.
+- **Ambient-pressure-only calibration.** The method was validated only on BSCCO at ambient pressure. There is no high-pressure control, such as the same cell with a non-superconducting sample, or the same sample below the superconducting pressure threshold. The Lenz-lens/gasket/PTM assembly could produce temperature-dependent artifacts.
+- **Inconsistent signal shapes.** Across runs, the anomalies appear as steps (both directions), dips, and peaks, and they differ between cooling and warming. Attributing this to "intrinsic properties of the RF method" (citing the authors' own preprint, Ref. 63) is not sufficient. A physical model of the expected signature is needed.
+- **The discrepancy runs the wrong way.** In inhomogeneous granular samples, resistive onset usually gives the *highest* Tc, because a single percolating filament suffices. Magnetic or inductive probes usually give equal or lower values. An inductive probe reporting a Tc ~5 K *above* the resistive onset is unusual. The explanations offered (current trajectories in granules; Nd inhomogeneity) are qualitative and untested. More mundane explanations should be ruled out:
+  - different pressures (36 ± 4 and 41 GPa versus transport pressures);
+  - a different, more hydrostatic PTM;
+  - thermometry offsets in the RF cell.
+- **Pressure insensitivity.** x = 2.1 (36 GPa) and x = 2.4 (41 GPa) show nearly identical RF anomalies (~97–98 K), even though their transport Tc and pressure dependence differ.
+- **Pressure medium chemistry.** Ammonia borane releases hydrogen and is chemically reducing. Its compatibility with a nickelate oxide under pressure, and the possibility of hydrogenation or reduction, should be addressed, for instance by post-decompression XRD or Raman.
+- **Cell metrology.** Thermometer placement, thermal lag (relevant to the cooling/warming hysteresis), and the pressure calibration method in the RF cell (±4 GPa) should be described.
+
+Until these points are addressed, "signatures" near 98 K should not be framed as "pushing the Tc frontier."
+
+### 5. The Tc–*c* "universal linear relationship" and the mechanistic conclusion
+
+- **Selection dependence.** The authors state they "selected the Tc measured near the onset pressure and at the maximum transition temperatures." Pressurized La₃Ni₂O₇ is known to show Tc *decreasing* with further compression (e.g., Ref. 13, up to 100 GPa), where *c* continues to shrink. Including those points would violate the claimed negative slope. The relation is therefore at best an envelope over selected points, not a universal law. All points should be shown, and the selection rule stated explicitly.
+- **Excluded outlier.** The NdGaO₃-film outlier is excluded as "overstretched" without an a priori criterion.
+- **No fit statistics.** No R², slope uncertainty, or residuals are given. The gray band is wide.
+- **Undocumented lattice parameters.** High-pressure XRD was done only for x = 0.9 and 2.1, yet Fig. 5 includes x = 1.5 under pressure. How were its *c* values obtained? x = 2.4, the composition with the highest claimed Tc, is absent.
+- **Condition mismatch.** Lattice parameters are from room-temperature XRD with Ne as the PTM. Tc comes from low-temperature transport with KBr. Thermal contraction and the different hydrostaticity are ignored. The same issue affects the claim that the structural transition and the onset of superconductivity "coincide" (Fig. 4). Moreover, structural transition pressures for x = 1.5 and 2.4 were not measured but are implicitly placed on the x = 2.1 boundary.
+- **Collinearity.** Under hydrostatic pressure, *a_p* and *c* shrink together. The claim that *c*, rather than *a_p*, is the controlling variable cannot be established from these data alone.
+- ***c* is a poor proxy for J⊥.** Interlayer exchange depends mainly on the intra-bilayer Ni–O(apical)–Ni distance and angle. *c* is dominated by the rock-salt (La/Nd)–O spacing, and Nd site preference between the perovskite and rock-salt sites would matter. The relevant bond lengths would need to be refined.
+- **Correlation is not mechanism.** "Demonstrating that enhanced interlayer magnetic exchange coupling is the dominant mechanism" is an overstatement. A Tc–*c* correlation is equally consistent with:
+  - changes in interlayer hopping t⊥ and the bonding–antibonding d_z² splitting;
+  - changes in γ-pocket filling;
+  - crystal-field effects.
+
+  Several cited theories (Refs. 49–58) attribute pairing to t⊥ or J⊥ in different ways. The language should be moderated to "consistent with."
+- **Mixing films and bulk.** Thin-film Tc is limited by many extrinsic factors (oxygen content, interfaces, ozone annealing), so placing films on the same line is heuristic.
+
+---
+
+## Minor issues and inconsistencies
+
+1. **Fig. 2a caption.** It assigns the dark-orange arrow to x = 2.4, but that arrow is labeled 93 K, which the text attributes to x = 2.1 (x = 2.4 maximum is 92 K).
+2. **Fig. 3e caption versus Extended Data Fig. 5f.**
+   - The caption says S1 was measured warming at 25 MHz; Extended Data Fig. 5f and the panel label say 20 MHz.
+   - The caption says "real component," yet imaginary and real channels appear to be mixed across panels.
+   - Fig. 3d is described as "real (20 MHz) and imaginary (25 and 60 MHz)." Extended Data Fig. 5c, however, shows the sharp 25 MHz feature in Re U.
+3. **Stray caption text.** A fragment of a caption ("e Real component … at 40 GPa, measured at 25 MHz. f,g …") appears after the reference list (pp. 15–16). It conflicts with Extended Data Fig. 5, which gives 36 GPa, and suggests a missing or renumbered figure.
+4. **Unpublished key data.** The Sm-doped data central to the comparison (Fig. 1a,b; Fig. 5) come from Ref. 42, "in preparation," and so cannot be verified. Include the data or the essential details.
+5. **Fig. 1d / Extended Data Fig. 4.**
+   - Define *a\** (presumably √2·*a* of I4/mmm).
+   - Show the (020)/(200) splitting versus pressure quantitatively, to justify the transition pressures.
+   - The x = 0.9 data have very coarse pressure steps below the transition.
+6. **Missing doping levels.** The abstract says superconductivity is observed "across all doping levels," but Fig. 2a omits x = 0.3 and 0.6.
+7. **Extended Data Fig. 2a.** The caption notes non-monotonic resistivity (rising to x = 1.8, then falling). This deserves comment, since it may indicate microstructural or phase differences at the highest doping.
+8. **Fig. 5 legend versus caption.** The caption says solid symbols are x = 0.9, 1.5, 2.1 from this work. The legend lists La₂.₁Nd₀.₉, La₁.₅Nd₁.₅, La₀.₉Nd₂.₁ but also includes La₁.₅Sm₁.₅ in the bulk set with matching styling. Clarify which data are new.
+9. **Typos and wording.**
+   - "Rigabu" → Rigaku.
+   - "adoped" → adopted.
+   - "Identical XRD patterns" (Extended Data Fig. 4c) → "Synchrotron XRD patterns."
+   - "the scale of Nd doping."
+   - The acknowledgement "V. V. S." versus the author list "V.S."
+   - Page 2 is blank.
+10. **Pressure-medium differences.** Ne is used for XRD, KBr for transport, and NH₃BH₃ for RF. Discuss explicitly how these differences affect cross-comparisons of pressure.
+
+---
+
+## Suggested additional work
+
+- STEM and/or synchrotron XRD to establish phase purity (1313 vs 2222, intergrowths); EDS/ICP for composition; TGA for oxygen content.
+- Field-dependent RF measurements, a high-pressure null control, and ideally a second magnetic probe (AC susceptibility or NV magnetometry) on the same composition.
+- Report all Tc(P) points in the Tc–*c* plot with a stated selection rule and fit statistics. Test the trend against the over-pressurized branch.
+- Refine intra-bilayer Ni–O(apical) distances (e.g., from synchrotron or neutron data) and correlate Tc with those rather than with *c*.
+- Curie–Weiss analysis of χ(T) to separate the Nd 4f contribution; a microscopic probe of the density-wave transition if possible.
+
+---
+
+## Overall assessment
+
+The work extends chemical-pressure tuning of bilayer nickelates further than before. The Nd series, the doping dependence of the structural transition pressure, and the transport onset Tc of ~92–93 K are useful results.
+
+The paper's framing, however, is considerably stronger than its evidence:
+
+- the 93 K "record" is within experimental and definitional uncertainty of prior work;
+- the ~98 K RF signature lacks the standard controls;
+- the "universal" Tc–*c* law depends on data selection and cannot by itself establish a pairing mechanism.
+
+With better sample characterization, RF validation, a transparent treatment of the structure–Tc correlation, and moderated conclusions, this could become a solid contribution. **Recommendation: major revision.**

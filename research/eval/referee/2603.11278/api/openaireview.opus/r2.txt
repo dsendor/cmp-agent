@@ -1,0 +1,125 @@
+{
+  "overall_feedback": "This is a valuable experiment. It is the first b-axis thermal conductivity study on ultraclean molten-salt UTe2, which directly targets the controversial b-axis point nodes. The combination of zero-field T-dependence, field-orientation dependence and a semiclassical Doppler-shift model is well conceived, and the authors are candid about some model limitations. The central conclusion, a pseudo-point-nodal gap with Δmin/Δ0 ≈ 0.1, rests on two pillars, and both need firmer support.\n\n(i) **Zero-field argument.** It relies on the absence of a low-T peak in κb/T. In the authors' own calculation (Fig. 2c) that peak lies at T/Tc ≲ 0.01, i.e. below the ~50 mK base temperature. It also depends on the chosen Γ and c. Separately, the observed κ/T ∝ T² is not quantitatively compared with the pseudo-node model, and the phonon contribution is not separated.\n\n(ii) **Field argument.** It relies on a kink at H*/Hc2^a ≈ 0.015. This kink sits at a few ×10⁻³ of the normal-state value, close to the stated extrapolation uncertainty. The claimed isotropy below H* depends on normalizing by the very different measured Hc2 values. Alternative origins of a slope change, such as an impurity-band crossover, are not excluded. The model itself predicts H*/Hc2 ≈ 0.019 rather than 0.015 for the stated parameters.\n\nAdditional concerns:\n- The near-square sample geometry (360 µm × 370 µm) raises questions about heat-current uniformity and a–b mixing.\n- The discussion section's arguments that the gap structure requires fine-tuning, or unitary mixing of two irreps, sit uneasily with symmetry considerations and with the single-component evidence the paper itself cites.\n- Several statements in the abstract (\"definitively resolve\", \"excluding non-unitary mixing\") are stronger than the evidence warrants.",
+  "comments": [
+    {
+      "title": "Predicted nodal peak lies below the measured temperature window",
+      "quote": "However, no indication of a peak is observed in either κb/T or κa/T [29, 30], strongly suggesting a nodeless superconducting gap structure in the ab-plane.",
+      "explanation": "The authors' key zero-field discriminant is the non-monotonic low-T peak expected for heat flow along true point nodes (Fig. 2c). Reading Fig. 2c, the Δmin = 0 curve peaks at T/Tc ≈ 0.005–0.01, which is roughly 10–20 mK for Tc = 2.1 K. Its minimum is near T/Tc ≈ 0.03 (~60 mK).\n\nThe data begin at ~50 mK (T/Tc ≈ 0.024). Over the measured range the nodal curve is essentially monotonic, as are the data. The absence of a peak in the data therefore cannot discriminate between the two scenarios.\n\nThe peak position and height also depend on the chosen Γ/Δ0 = 0.002 and c = 0.15. These are not tied to sample-specific quantities such as ρ0 or mean free path. The text itself concedes the unitary limit as an alternative. What would actually discriminate is the low-T magnitude or extrapolation, and that is not quantitatively compared.",
+      "type": "logical",
+      "severity": "major",
+      "suggested_fix": "Overlay the measured κb/T on the Δmin = 0 and Δmin = 0.1Δ0 calculations on a common T/Tc axis within 0.024 < T/Tc < 0.15, using Γ/Δ0 and c values constrained by ρ0. Report which parameter ranges for true nodes are excluded by the data within the accessible window."
+    },
+    {
+      "title": "Near-square sample geometry for a directional transport measurement",
+      "quote": "typically with length ∼ 360 µm (∥ b), width",
+      "explanation": "The paper's novelty is the b-axis (jQ ∥ b) measurement. It notes that earlier attempts were blocked by insufficient b-axis sample size.\n\nHowever, the samples are ~360 µm along b and ~370 µm along a. The length between thermometer contacts must therefore be shorter than the width. With spot-welded contacts on a square plate, the heat current is unlikely to be uniform or purely along b. The measured κ could mix in κa, and the geometric factor carries a large uncertainty.\n\nThe WF check fixes the overall geometric factor, since the same contacts are used for ρ and κ. It does not rule out admixture of the a-axis response, which matters because the conclusions hinge on distinguishing b-directed quasiparticles.",
+      "type": "technical",
+      "severity": "moderate",
+      "suggested_fix": "Report the actual contact spacing and contact widths, and estimate the a-axis admixture using the known κa/κb and ρa/ρb anisotropy, for example with a finite-element or Montgomery-type analysis of the heat-flow distribution. Alternatively, show consistency of ρb with literature b-axis values measured on bar-shaped samples."
+    },
+    {
+      "title": "T² dependence and phonon contribution not quantitatively addressed",
+      "quote": "this pronounced suppression confirms the dominant quasiparticle contribution to the total thermal conductivity in the low temperature regime",
+      "explanation": "The text reports κb/T ∝ T² at low T, i.e. κ ∝ T³. This is also the canonical boundary-limited phonon form.\n\nThe argument for quasiparticle dominance is that a 1 T field suppresses κb/T, on the grounds that phonons are field-insensitive. In a superconductor, however, κph can be field dependent: field-induced quasiparticles and vortices scatter phonons.\n\nMore importantly, the abstract claim that the T-dependence is 'consistent with a small superconducting gap' is never tested quantitatively. For Δmin ≈ 0.1Δ0 ≈ 0.4 K one would expect activated behaviour below ~0.1 K. A plain T² law down to 50 mK is not obviously that, and no fit or overlay with the pseudo-node calculation is shown.",
+      "type": "logical",
+      "severity": "moderate",
+      "suggested_fix": "Fit κb/T(T) in zero field to a + bT² + (pseudo-node quasiparticle term) and quote the phonon coefficient b, comparing it with a boundary-limited phonon estimate from the sound velocity and sample dimensions. Show explicitly that the remaining quasiparticle term is consistent with Δmin ≈ 0.1Δ0."
+    },
+    {
+      "title": "Low-field isotropy depends on normalizing by very different measured Hc2 values",
+      "quote": "The magnetic fields are normalized by their respective upper critical fields to account for the strong Hc2 anisotropy",
+      "explanation": "The abstract states that below H* the response is isotropic, while above it strong anisotropy develops. Fig. 4b, however, plots H∥a against H/Hc2^a with Hc2^a = 11.7 T, and H∥b against H/Hc2^b with Hc2^b = 23 T. At equal normalized field, the absolute H∥b field is twice the H∥a field.\n\nIn the Doppler-shift picture the relevant scale is the orbital field (coherence length normal to H). In UTe2 the measured Hc2, particularly along b, is strongly affected by non-orbital physics such as field-reinforcement and anisotropic paramagnetic effects. Whether the curves look 'isotropic' below H* therefore depends on this normalization choice.\n\nFig. 4a additionally compares H∥a and H∥c (sample #A) with H∥b (sample #B), so part of the anisotropy is a cross-sample comparison.",
+      "type": "logical",
+      "severity": "moderate",
+      "suggested_fix": "Add a version of Fig. 4b plotted against absolute field (and/or against H normalized by the orbital fields Φ0/2πξiξj from the initial Hc2 slopes). Measure H∥a and H∥b on the same sample, so that the isotropy below H* can be shown to be independent of normalization and sample."
+    },
+    {
+      "title": "Kink amplitude comparable to extrapolation uncertainty; extrapolation procedure unspecified",
+      "quote": "is obtained by polynomial extrapolation to T → 0",
+      "explanation": "The threshold is identified from κ0b/T values of order 0.002–0.004 in normalized units (Fig. 4b), with only a handful of points below H*. The stated zero-field upper bound is 0.0017 W/K²m, i.e. ~0.001 normalized.\n\nThe low-field curves in Fig. 3 drop steeply at the lowest temperatures, so the T→0 intercept is sensitive to the polynomial order and fitting range. Neither is specified, and no error bars are shown in Fig. 4b,c. The 'kink' could thus be within the systematic uncertainty of the extrapolation.",
+      "type": "technical",
+      "severity": "moderate",
+      "suggested_fix": "State the polynomial order and temperature range used. Add error bars to Fig. 4b,c obtained by varying the order and range, and show that the change of slope at H* survives these variations."
+    },
+    {
+      "title": "Alternative origins of the low-field slope change not excluded",
+      "quote": "These results demonstrate that quasiparticle excitations undergo a qualitative change at this threshold field.",
+      "explanation": "A change of slope in κ0(H) at low field is also expected for genuinely nodal superconductors with impurities. It occurs at the crossover where the Doppler energy EH exceeds the impurity-band energy γ, giving H/Hc2 ~ (γ/aΔ0)². This is qualitatively similar to the claimed H*.\n\nThe authors' own model gives a sharp onset only in the semiclassical series-resistor approximation. They acknowledge that the data rise below H*, contrary to the model.\n\nIt is therefore not shown that the kink uniquely signals a finite Δmin rather than an impurity-band crossover, or field-dependent quasiparticle/vortex scattering, in a nodal state.",
+      "type": "logical",
+      "severity": "moderate",
+      "suggested_fix": "Compute κ0b(H) for true point nodes with the same Γ/Δ0 and c including the impurity-band crossover, and show that it does not produce a comparable slope change at H/Hc2 ≈ 0.015."
+    },
+    {
+      "title": "Stated model threshold inconsistent with the formula and parameters",
+      "quote": "The threshold field is clearly seen at H/Hc2 ∼ 0.015",
+      "explanation": "The paper derives H*/Hc2 = a⁻²(Δmin/Δ0)² and uses a = 0.72 with Δmin = 0.1Δ0. This gives H*/Hc2 = 0.01/0.518 ≈ 0.019, not 0.015. Inverting from the experimental H*/Hc2^a ≈ 0.015 instead gives Δmin/Δ0 ≈ 0.72 × √0.015 ≈ 0.09.\n\nThe difference is small, but the text presents the agreement at 0.015 as a match between model and data.",
+      "type": "technical",
+      "severity": "minor",
+      "suggested_fix": "Either quote the model threshold as H*/Hc2 ≈ 0.019 for a = 0.72, Δmin = 0.1Δ0, or state that the experimental H* corresponds to Δmin/Δ0 ≈ a√(H*/Hc2) ≈ 0.09."
+    },
+    {
+      "title": "Fine-tuning argument overlooks natural anisotropy within the Au representation",
+      "quote": "would necessitate precise fine-tuning of both the pairing interaction strength and the degree of Fermi surface corrugation",
+      "explanation": "Within a single Au state, the d-vector d = (c1 kx, c2 ky, c3 kz) on a quasi-2D Fermi surface has |d| ≈ c2 kF along ky. A b-axis gap minimum with Δmin/Δ0 ≈ c2/c1 ~ 0.1 then arises simply from anisotropic pairing coefficients. Such anisotropy is plausible given the strongly anisotropic magnetic fluctuations and susceptibility of UTe2.\n\nThis requires no fine-tuning of Fermi-surface corrugation. The claim that the gap structure is 'highly improbable' and 'anomalous from the perspective of conventional pairing mechanisms' therefore seems overstated.",
+      "type": "logical",
+      "severity": "moderate",
+      "suggested_fix": "Discuss the anisotropic Au d-vector (c1 kx, c2 ky, c3 kz) with c2/c1 ≈ 0.1 as a natural route to b-axis pseudo-nodes, and revise the 'fine-tuning' statement accordingly."
+    },
+    {
+      "title": "Proposed unitary mixing of two irreps conflicts with cited single-component evidence",
+      "quote": "To completely lift the point nodes, it is necessary to consider unitary mixing states where two order parameter components, such as B2u+αAu, possess real relative phases.",
+      "explanation": "A real superposition of B2u and Au is not invariant under D2h, since their product transforms as B2g. It would break crystal symmetry and generically require a second transition, unless it is accidentally degenerate.\n\nYet the introduction cites ultrasound and strain experiments [24, 25] as evidence for single-component superconductivity at ambient pressure. Invoking B2u+αAu as a route to pseudo-nodes is therefore in tension with the paper's own framework, and the symmetry-breaking consequence is not mentioned.",
+      "type": "logical",
+      "severity": "moderate",
+      "suggested_fix": "State explicitly that B2u+αAu breaks D2h (to a lower orthorhombic/monoclinic subgroup) and is constrained by the single-component evidence of Refs. [24, 25]. Give priority to the single-irrep anisotropic-Au interpretation."
+    },
+    {
+      "title": "Abstract claims exclusion of non-unitary mixing beyond what is shown",
+      "quote": "excluding non-unitary mixing of pairing symmetries",
+      "explanation": "The only argument offered is a qualitative statement, without calculation, that B2u + iαAu 'merely shifts the node positions'. Shifted nodes may lie away from the b-axis, where κb and the H∥a Doppler response are less sensitive.\n\nOther non-unitary combinations, or non-unitary states with a gapped and a nodal branch, are not analysed. The data constrain the gap near the b-axis; they do not exclude all non-unitary mixtures.",
+      "type": "logical",
+      "severity": "minor",
+      "suggested_fix": "Replace with 'disfavouring a B2u+iαAu non-unitary state with nodes near the b-axis', and give the gap magnitudes Δ±² = |d|² ± |d×d*| to show where its nodes move."
+    },
+    {
+      "title": "Threshold for H ∥ c not analysed despite claim of isotropy for all orientations",
+      "quote": "Below the threshold, κb/T remains isotropic for all field orientations",
+      "explanation": "In the pseudo-node model, H∥c is also perpendicular to the b-axis minima and to jQ. It should therefore display its own threshold, at H*/Hc2^c ≈ the same normalized value.\n\nFig. 4b and 4c show only H∥a and H∥b. The H∥c low-field data in Fig. 4a are too sparse to assess either isotropy or a kink. The abstract's 'all field orientations' is therefore not supported for c.",
+      "type": "logical",
+      "severity": "minor",
+      "suggested_fix": "Add the H∥c low-field data to Fig. 4b and report whether a threshold appears at H/Hc2^c ≈ 0.015–0.02; otherwise restrict the abstract statement to H∥a and H∥b."
+    },
+    {
+      "title": "Core-level-spacing argument does not hold across the measured temperature range",
+      "quote": "One possible explanation for this is that the discreteness of Caroli–de Gennes–Matricon vortex core states reduces the contribution of the cores to the heat transport.",
+      "explanation": "The estimated level spacing is Δ0²/εF ≈ 0.13 K. The data in Fig. 3 extend up to 0.3 K, where T exceeds the spacing, and level broadening from impurities further weakens discreteness.\n\nThe argument can at best apply to the T→0 extrapolation. It does not explain why vortex-core conduction for H∥b is small over the whole measured window.",
+      "type": "logical",
+      "severity": "minor",
+      "suggested_fix": "Restrict the argument to T ≪ Δ0²/εF ≈ 0.13 K and compare the level spacing with the impurity broadening ħ/τ estimated from ρ0."
+    },
+    {
+      "title": "Inconsistent labeling and notation in Fig. 1 caption",
+      "quote": "perpendicular and parallel to point nodes, respectively",
+      "explanation": "The caption first says panels d and e correspond to H perpendicular and parallel to the nodes respectively. It then describes 'd: For H ∥ nodes' and 'e: For H ⊥ nodes', which is the reverse order.\n\nIn addition, the Doppler energy is written 'vs · ps', whereas the text and figure use vF·ps. vs·ps is not the Doppler shift.",
+      "type": "technical",
+      "severity": "minor",
+      "suggested_fix": "Change to 'applied parallel and perpendicular to point nodes, respectively' and replace 'vs · ps' with 'vF · ps' in the panel e description."
+    },
+    {
+      "title": "Normal-state normalization (κb/T)N not defined",
+      "quote": "normalized by the normal-state value (κb/T)N for three field orientations",
+      "explanation": "All field-dependent conclusions are expressed in units of (κb/T)N. It is not stated whether this is L0/ρ0 in zero field, the measured value above Hc2, or a field-dependent normal-state value. Since magnetoresistance differs for the three orientations, this matters for comparing orientations.\n\nComparing Fig. 2b and Fig. 3a suggests (κb/T)N ≈ L0/ρ0 ≈ 1.4 W/K²m, but this should be stated explicitly.",
+      "type": "technical",
+      "severity": "minor",
+      "suggested_fix": "State that (κb/T)N ≡ L0/ρ0b, with ρ0b = 1.72 (#A) and 2.12 (#B) µΩcm, or specify the field-dependent normal-state value used for each orientation."
+    },
+    {
+      "title": "'Definitively resolve' overstates given the acknowledged model–data discrepancy",
+      "quote": "definitively resolve the gap anisotropy through bulk directional transport",
+      "explanation": "The authors acknowledge several limitations:\n- κ/T rises below H*, contrary to the model.\n- Δmin depends on the unknown parameter a.\n- The model uses a square Fermi-surface cross-section that produces artificial features for true nodes.\n- The zero-field discriminant lies largely below the base temperature.\n\nWith these caveats, the evidence is suggestive rather than definitive.",
+      "type": "logical",
+      "severity": "minor",
+      "suggested_fix": "Replace 'definitively resolve' with 'provide strong constraints on', and note in the abstract that Δmin/Δ0 ≈ 0.1 is model-dependent (∝ a)."
+    }
+  ]
+}

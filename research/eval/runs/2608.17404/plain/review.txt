@@ -1,0 +1,125 @@
+Referee report
+
+"Flux-tunable global and local superconductivity in a topological insulator nano-SQUID"
+Nikodem, Schluck, Papaj, Geier, Bagchi, Fu, Legg, Ando (arXiv:2608.17404v1)
+
+
+1. Summary of the submission
+
+The authors study columnar nano-SQUIDs. In these devices a BiSbTeSe2 (BSTS) nanowire, about 16 to 36 nm thick and 70 to 80 nm wide, sits between two Nb electrodes, so the top and bottom TI surfaces form two parallel line junctions. An axial field Bx threads flux through the wire cross-section. That flux sets the phase difference between the two surface junctions, and theory (Ref. 21) predicts a topological phase centred on odd multiples of Phi0 = h/2e. The new element relative to Refs. 21 and 28 is the use of normal-metal tunnel probes at the wire ends, in a single-probe device (A) and two dual-probe devices (B, C). The probes give local and nonlocal conductance measured at the same time as the critical current.
+
+The main findings:
+(i) Ic oscillates with period Phi0 and revives almost fully at integer flux. The superconducting diode efficiency (|eta| up to about 0.1 to 0.2) changes sign at half-integer flux. This is reproduced in all three devices and over gate voltage.
+(ii) Local and nonlocal spectra show jumps at fields close to the Ic minima and the eta reversals. Some jumps also appear at fields that do not match, especially at high field.
+(iii) Zero-bias peaks appear in both the predicted topological and the predicted trivial windows, including at Bx = 0. A sign-based end-to-end correlation measure gives similar results in both windows.
+
+The authors conclude that global signatures of a phase transition do not guarantee clean local Majorana signatures, and that combined global and local probes, plus more advanced probes, will be needed.
+
+The paper is clearly motivated and the platform is interesting. The willingness to report that local ZBPs do not track the predicted phase diagram is valuable, and the field needs this kind of result. My main concerns are about how strongly the global data are read as evidence of a topological phase, and about the statistics behind the end-to-end correlation result, which carries the paper's central claim.
+
+
+2. Major issues
+
+2.1 What the global signatures establish, and what they do not
+
+The paper treats Ic(Phi) oscillations, the eta sign reversal at half-integer flux and the ground-state pi phase jump as "global signatures of the topological phase transition". The conclusion goes further: "even when global signatures strongly suggest a robust bulk topological state is successfully realised, as is the case in the topological nano-SQUID investigated here". I do not think the data support that last clause as written. Here is why.
+
+(a) Ic oscillating with period Phi0, minima at half-integer flux and near-full revival at integer flux is the standard response of a nearly symmetric two-junction interferometer. It shows that the supercurrent is carried by the two surfaces, with negligible bulk supercurrent. It does not, by itself, show topology.
+
+(b) The pi jump of the ground-state phase at half-integer flux is also generic. For two junctions with E(phi) = -E1 cos(phi - pi f) - E2 cos(phi + pi f), with f = Phi/Phi0, the minimum jumps from 0 to pi at f = 1/2 when E1 = E2. Asymmetry smooths the jump. Skewed or non-sinusoidal current-phase relations change the details but not this structure.
+
+(c) The zero crossings of eta at Phi = n Phi0/2 follow from symmetry. Time reversal gives Ic+(Phi) = |Ic-(-Phi)|, so eta(-Phi) = -eta(Phi). Together with Phi0 periodicity, this forces eta to be odd about every integer and every half-integer flux. A zero of eta at half-integer flux is therefore expected for any Phi0-periodic interferometer, topological or not. The text says the reversal happens "exactly at half-integer flux quanta", and the flux axis appears to be calibrated from the same Ic data. That makes the statement partly true by construction.
+
+What would carry information is the shape of eta and Ic near the half-integer points: an abrupt jump rather than a smooth crossing, the Ic value at the minimum, and any kinks. Even then, a nearly symmetric trivial SQUID with skewed CPRs can show a rapid change. The step from "the phase across each surface junction is driven to the predicted configuration" to "the surfaces are topological" rests on the Fu-Kane physics of the TI surface. That physics needs the chemical potential in the right range, a well-formed induced gap, and disorder small compared with the topological gap. The global probes do not test those conditions directly.
+
+Requested:
+- Run the same Kwant model in a trivial configuration, for example M > 0, or the chemical potential in a bulk band, or a conventional parabolic-band 2DEG in the junction region. Show Ic(Phi) and eta(Phi) next to Fig. 2b. If some global feature is specific to the topological case, it should be identified and compared quantitatively with the data. If none is, the paper should say plainly that the global data establish the phase configuration needed for the topological phase, not the phase itself.
+- If Ref. 21 or 28 already contains such a discriminating argument, summarise it here, because a reader of this paper cannot reconstruct it.
+- Soften the conclusion sentence quoted above, and the phrase "apparently clear bulk topological transition", to match.
+
+2.2 Flux calibration and period scaling across devices
+
+The interpretation depends on assigning each field to a "topological" or "trivial" window. That assignment depends on the Phi0 period of each device. The main text says only that the period corresponds to "the effective cross-sectional area". Please report, for each device, the measured period in Bx and the geometric expectation Phi0/(d W).
+
+From Table S1 the geometric periods are about 1.41 T (A), 0.82 T (B) and 1.62 T (C). As far as I can read the figure axes, device B is close to 1 T per Phi0. For device C, the supplement places 2.5 T inside the first topological window and 4 T inside the second trivial window, which needs a period of roughly 2.5 to 2.7 T. That is much longer than the geometric 1.62 T, and the C/B period ratio (about 2.6) does not match the inverse area ratio (about 2.0).
+
+One natural explanation is an effective thickness reduced by a few nm per surface. Possible causes are a surface oxide or damaged layer, or the depth of the surface-state wavefunction. A single offset of about 3 nm per surface appears to bring B and C into line. If that holds for all three devices, it is a useful consistency check that supports the surface-state picture, and it should be shown. If it does not hold, the window assignments in Figs. 3, 4, S2 and S3 need justification.
+
+Please also give the flux value, and its distance from the nearest predicted boundary, for each field used in the gate-resolved analysis (Bx = 0, 1, 2 T for B; 0, 2.5, 4 T for C). At 4 T, device C appears to sit close to the 3/2 boundary, and vortex effects are already said to dominate there.
+
+2.3 The end-to-end correlation measure does not yet test correlation
+
+The central negative result rests on Fig. 4l and Fig. S3l. The measure is C_LR proportional to sgn(d3IL/dVL3) x sgn(d3IR/dVR3) at zero bias, binned into "correlated peaks", "correlated dips" and "no correlation". I have three concerns.
+
+(a) No null model. If ZBPs are common at each end independently, with probabilities pL and pR, the fraction of "correlated peaks" is pL x pR with no correlation at all. With pL = pR = 0.8 that is already 64%. "ZBPs on either end the majority of the time" measures how common ZBPs are, not whether the two ends are correlated. Please report the marginal fractions at each end and compare the joint fraction with the product, or use a permutation test that shuffles VG between the two ends. A proper correlation coefficient of the zero-bias curvature across VG would also serve.
+
+(b) No threshold. The sign of the second derivative of G at zero bias is defined for any trace, including a flat, noisy one or the floor of a soft gap. A minimum curvature or peak prominence set by the noise level is needed. Without one, "no correlation" and "correlated" may partly reflect noise. Please also give the smoothing and differentiation procedure, the bias window, and the number of VG points per field.
+
+(c) Common-mode gating. Both ends share the global back gate, so trivial states at the two ends can respond together to the same chemical potential shift. Even a positive correlation would therefore not be specific to Majorana modes. This works against the authors' negative conclusion less than against any positive reading, but it should be discussed.
+
+There is also a tension between the main text and the supplement. The main text says the measurements "consistently show that there is no clear distinction" between regimes. For device C, the supplement reports "a strong increase of correlated zero-bias conductance peaks upon entering the first expected topological regime", with no drop on re-entering the trivial regime. That is a distinction at the first boundary. Combined with the sweep-direction dependence reported at high field, it raises the possibility of hysteresis or trapped flux. Please (i) describe this result accurately in the main text, and (ii) show whether the correlation statistics at a given Bx depend on the field history.
+
+Also, the supplement says a ZBP "was mostly absent" in device C (Figs. S2b,c), yet the gate-resolved analysis finds correlated ZBPs often. Presumably the two use different gate voltages. Please make this explicit.
+
+2.4 Localisation length versus device length
+
+The text estimates an MBS localisation length of "a few 100 nm" from the induced gap and the BSTS Fermi velocity, and concludes the end modes should not overlap in 1.3 to 2.5 um wires. Please show this number. With hbar vF of about 0.3 eV nm (vF of about 4.5e5 m/s), xi = hbar vF / E_gap is 300 nm only if E_gap is about 1 meV, close to the Nb gap. The relevant gap in the phase-driven topological regime is the topological minigap of the line junctions near phase pi. That is generally well below the induced gap at zero phase, and it is further reduced at high field by the suppressed Nb gap, which the authors themselves note. For E_gap of about 0.1 to 0.2 meV, xi is 1.5 to 3 um, comparable to the device lengths, and device B (1.3 um) is the shortest.
+
+If the modes overlap, the expected end-to-end signature changes: split peaks and correlated splitting rather than two clean ZBPs. This has to be settled before the correlation result can be read as evidence about disorder.
+
+Relatedly, the simulation uses Delta0 = 25 meV, about 17 times the Nb gap, in an 18 x 18 nm cross-section with L = 150 nm. That is a sensible choice to make a clean finite-size calculation tractable. But it means the localisation length relative to L in Fig. 2c says nothing about the real devices. Please state this explicitly.
+
+2.5 The disorder explanation is asserted, not shown
+
+The paper attributes ZBPs in trivial windows and at zero field to "disorder effects". This is plausible, but the clean simulation cannot address it. Fig. 2c also plots "all eigenvalues irrespective of the associated wavefunctions and their spatial localisation", so it is not a prediction for the tunnelling LDOS at the wire ends.
+
+Two things would strengthen the paper considerably:
+(a) Compute the end-projected LDOS, which is what the tunnel probes measure.
+(b) Add a disorder potential, or an end-localised potential under or near the tunnel contact, and show that zero-energy trivial states arise in the trivial windows and at Bx = 0 at about the observed frequency.
+
+Other mechanisms for a zero-field zero-bias anomaly at an N-I-(proximitised TI) contact should at least be discussed: reflectionless tunnelling or other coherent Andreev enhancement, a Kondo-like anomaly from the barrier, and a soft-gap floor. The temperature and bias-excitation dependence of the zero-field ZBPs would help separate them.
+
+2.6 Asymmetric use of gate robustness as evidence
+
+For device A, the stability of the ZBP onset across VG = -10, 0, 20 V (Fig. S1) is presented as robustness consistent with topology. For device B, ZBPs that are similarly gate-insensitive in both regimes are taken as evidence against a topological origin. The same observable cannot support both readings without further argument.
+
+Device A's gate range was also limited by a leaky dielectric. Please apply the same gate-resolved, statistical analysis used for B and C to device A, at least over its available range. Otherwise, frame the device A observations explicitly as anecdotal. The narrative ordering ("Encouraged that both the local and global features predicted by theory are observed in this first generation device") currently gives device A more weight than one probe at a handful of gate voltages can carry.
+
+2.7 Nonlocal conductance and circuit correction
+
+The nonlocal signals are small: GLR is of order 0.003 to 0.01 e2/h against local G of order 0.1 to 1 e2/h. They are corrected for line impedance using the Martinez et al. formalism. Please show raw and corrected matrices for at least one data set. This would confirm that the jumps attributed to phase boundaries are present before correction, and that the correction does not mix local features into the nonlocal channel.
+
+Please also check the antisymmetric and symmetric components of the nonlocal conductance in bias, or compare GLR with GRL. Under the Nb electrodes the wire is grounded along its full length, and since the dominant below-gap process (CAR versus elastic cotunnelling, Ref. 36) matters for interpreting the frequent VG-driven sign changes in Fig. S5, a short discussion would help.
+
+A related fabrication question: the tunnel electrodes appear to cross the Nb, separated from it only by "a few nanometers" of ALD Al2O3. Please give the leakage resistance from tunnel electrode to Nb, or show that direct tunnelling into Nb does not contribute to G. A parallel Au/Al2O3/Nb path would add field-dependent Nb gap features.
+
+
+3. Minor issues
+
+- eta is defined as (Ic+ - Ic-)/(Ic+ + Ic-) in the main text and as (Ic+ - |Ic-|)/(Ic+ + |Ic-|) in Eq. (8). Use one convention.
+- Coordinates are inconsistent. The experiment uses Bx for the axial field. The Methods take x across the junction, y along the wire, and B = By y-hat. Please unify, or state the mapping.
+- "Highly efficient SDE": |eta| of about 0.1 to 0.2 is moderate. Please also say whether eta vanishes, or changes sign, at some VG. The model attributes the inversion asymmetry to a top-bottom potential difference V_GT, so its dependence on the global back gate is a direct test of that mechanism. The text calls the effect "largely robust against gate voltage". Please also give the experimental estimate of V_GT relative to the 25 meV used in the simulation.
+- Other routes to a diode effect in Nb-based devices should be mentioned and, where possible, excluded: self-field or kinetic-inductance effects in the thin Nb, and Bz misalignment. Please state whether eta is checked for the expected antisymmetry under Bx -> -Bx in each data set.
+- High-field jumps are attributed to vortex dynamics and flux trapping because they depend on sweep direction. Please show the two sweep directions for at least one data set, in the main text or the SI.
+- Give the induced gap, its field dependence, and the electron temperature. Give ZBP widths compared with kT and with the lock-in excitation.
+- Please give the number of cooldowns, the number of gate sweeps per field, and whether the Bx = 0 ZBPs survive thermal cycling.
+- The text says "a positive correlation i.e. a ZBP on either end". This should read "on both ends".
+- "the the third derivative" appears in the Fig. 4 and Fig. S3 captions.
+- The Data availability statement repeats its first sentence and is missing a full stop.
+- "Phi = Phi0(n + 1/2)" appears garbled in the high-field paragraph. This may be an extraction artefact.
+- "making devices with two decent tunnel probes to be comparatively rare" should read "making devices with two working tunnel probes comparatively rare".
+- Fig. 1b is a schematic, but it is cited as support for the h/2e periodicity alongside S1.A. Cite the data panel instead.
+- Please state how many devices with two working probes were measured in total, beyond B and C, and whether any were excluded.
+
+
+4. Assessment and recommendation
+
+The experiment is technically demanding. Simultaneous Ic, local and nonlocal spectroscopy on a bulk-insulating TI nanowire is a real advance, and the central cautionary message is important: local ZBPs do not follow the predicted global phase diagram. The supporting analysis, however, needs to be tightened in three ways:
+(1) Separate what the global data show (phase configuration, surface-dominated supercurrent) from what they do not (topology), ideally with a trivial-model comparison.
+(2) Replace or supplement the sign-based correlation measure with one that has a null model and a noise threshold, and report the device C result accurately.
+(3) Show the localisation-length estimate, and the flux calibration for each device.
+
+With these changes the paper would make a clear and well-supported case. I recommend major revision.
+
+
+TL;DR: A strong, honest experiment whose headline negative result (ZBPs do not track the predicted topological windows) is valuable. But the paper overstates what the global Ic and diode data prove: the zero crossing of eta at half-integer flux is forced by symmetry, and the phase jump is generic SQUID physics. The end-to-end correlation measure has no null model or noise threshold, the localisation-length and flux-calibration numbers need to be shown, and the supplement's device C result contradicts the main text's "no clear distinction". Major revision.
