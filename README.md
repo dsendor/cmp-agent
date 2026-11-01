@@ -75,11 +75,20 @@ works through each item you marked *Will fix*, using your note on it as the inst
 
 | | |
 |---|---|
-| `skills/review/`, `skills/apply/` | the two commands |
+| `skills/review/`, `skills/apply/`, `skills/contribute/` | the three commands |
 | `agents/` | subagents: three science reviewers in parallel, the merger, the structurer, presentation and copy |
 | `engine/` | the prompts. `science.md` and `merge.md` are the measured reviewer (`VERSION`); the others are newer and not yet measured |
-| `scripts/` | `paper_text.py`, `assemble.py`, `check_evidence.py` (is each quote really in the paper), `build_dashboard.py` |
+| `scripts/` | `paper_text.py`, `assemble.py`, `check_evidence.py` (is each quote really in the paper), `build_dashboard.py`, `contribute.py` (redact, scrub, send) |
+| `feedback-endpoint/` | the serverless function that files contributions in a private repository |
 | `dashboard/template.html` | the dashboard: one self-contained file that works offline |
+
+## Sharing your feedback
+
+After a review, `/referee-preview:contribute` can share your decisions to improve the plugin.
+You choose how much: labels only, generalized text, the item text, or everything for a paper that
+is already public. A scrub step blocks anything that identifies your paper, you see the exact
+file before it is sent, and nothing is sent without your yes. Contributions go to a private
+inbox and are reviewed by the maintainer before they are used (`feedback-endpoint/`).
 
 ## Research
 
