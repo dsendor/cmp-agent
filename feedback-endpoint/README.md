@@ -18,6 +18,11 @@ It stores no IP address or request headers, only the contribution, a random id a
    (`owner/cmp-agent-feedback`). Deploy.
 4. Set `ENDPOINT` in `scripts/contribute.py` to `https://<project>.vercel.app/api/contribute`,
    or have users set `REFEREE_PREVIEW_FEEDBACK_URL`.
+5. In the project's Deployment Protection settings, limit Vercel Authentication to preview
+   deployments; the default also blocks production, which would stop contributions.
+
+The live instance is `https://cmp-agent-feedback-dsendor-gmailcoms-projects.vercel.app/api/contribute`,
+filing into `dsendor/cmp-agent-feedback`.
 
 ## Limits
 
