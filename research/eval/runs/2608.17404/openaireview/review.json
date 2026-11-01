@@ -1,0 +1,117 @@
+{
+  "overall_feedback": "This is a careful and refreshingly self-critical experimental paper. It combines global supercurrent probes (Ic oscillations, superconducting diode effect) with dual-end local and nonlocal tunnelling spectroscopy in a TI nano-SQUID, and it reports honestly that zero-bias peaks do not track the predicted topological windows. That negative result is valuable. The main weaknesses are on the global side and in the quantitative analysis. (i) The global signatures used as evidence of a topological transition are not specific to topology. Phi0-periodic Ic with revival at integer flux and a pi jump of the ground-state phase at half-integer flux are generic to a symmetric two-junction SQUID. A zero crossing of eta at half-integer flux follows from Onsager symmetry plus flux periodicity. Yet the conclusions state that the topological state is 'successfully realised'. (ii) The conversion from Bx to flux, which decides which field values count as topological or trivial, is never stated. The geometric areas in Table S1 do not obviously match the flux axes in the figures. (iii) The end-to-end correlation metric as written (a product of signs) cannot tell correlated peaks from correlated dips. It has no noise threshold and no null baseline. The main text and Supplement also describe the correlation result differently. (iv) Several numbers need support or a cross-check: the 'few 100 nm' Majorana localisation length, the Ic*RN product of device C, and the flux normalisation and current prefactor in the simulations. Most of these are fixable with added analysis and clearer statements. Fixing them would sharpen the paper's central message: global and local probes disagree, and which side to trust is still open.",
+  "comments": [
+    {
+      "title": "Diode sign reversal at half-integer flux is symmetry-enforced, not a topological signature",
+      "quote": "the reversal of the SDE exactly at half-integer flux quanta",
+      "explanation": "The authors list the reversal of the SDE 'exactly' at half-integer flux among the global signatures that fit a trivial-to-topological transition. I first read this as an independent, nontrivial check. But consider any device whose critical currents are Phi0-periodic in flux. Onsager/time-reversal symmetry gives Ic+(Phi) = |Ic-(-Phi)|, so eta(Phi) = -eta(-Phi). Periodicity then gives eta(Phi0/2 + delta) = -eta(-Phi0/2 - delta) = -eta(Phi0/2 - delta). So eta must vanish and generically change sign at every integer and every half-integer multiple of Phi0/2, topological or not. The flux axis is itself calibrated from the Ic oscillation period, so 'exactly at half-integer flux' also amounts to 'at the Ic minima', which is close to circular. What could discriminate is the form of the reversal: in the theory of Fig. 2b it is an abrupt jump at half-integer flux and a smooth zero crossing at integer flux. The paper does not quantify abruptness or compare the two kinds of zero crossing in the data.",
+      "type": "logical",
+      "severity": "major",
+      "suggested_fix": "State that a zero of eta at Phi = n Phi0/2 is required by Phi -> -Phi symmetry plus Phi0 periodicity. Then base the topological argument on a measurable difference: for example, the slope d(eta)/dBx (or the width of the transition region) at half-integer flux versus integer flux, extracted from Fig. 1e, Fig. 3a and Fig. S2a and compared with the model in Fig. 2b."
+    },
+    {
+      "title": "Conclusion asserts the topological state is realised, though the global probes are not specific to topology",
+      "quote": "topological state is successfully realised, as is the case in the",
+      "explanation": "The abstract is appropriately cautious ('appear to show ... consistent with'). The conclusion goes further and says the topological state is successfully realised in this device. The evidence offered is Phi0-periodic Ic with near-full revival at integer flux, a pi jump of the ground-state phase near half-integer flux, eta sign changes, and spectral jumps at the same fields. A symmetric two-junction SQUID with sinusoidal junctions already has E(phi) proportional to -cos(pi Phi/Phi0) cos(phi). That gives a pi jump of the minimum-energy phase at Phi = Phi0/2, Ic minima there, and full revival at integer flux, with no topology involved. Ground-state phase jumps also make the whole Andreev spectrum jump, trivial bound states included, so local spectral jumps at those fields are expected either way. These observations are therefore necessary conditions for the theory, not evidence that singles it out. The local data, which the authors themselves find ambiguous, are the only probe here that bears specifically on Majorana physics. 'Consistency across a number of devices' rests on three devices.",
+      "type": "logical",
+      "severity": "major",
+      "suggested_fix": "Replace 'as is the case in the topological nano-SQUID investigated here' with wording such as 'as theory predicts for the nano-SQUID investigated here, whose global signatures are consistent with, but not specific to, a topological transition'. Add one sentence noting that Phi0-periodic Ic and a pi jump at half-integer flux also occur in a trivial symmetric SQUID."
+    },
+    {
+      "title": "Bx-to-flux conversion (effective area) is never given, yet it decides which regimes count as topological or trivial",
+      "quote": "threading the effective cross-sectional area of the nanowire",
+      "explanation": "The main text points to Supplementary Note S1.A for the effective area. S1.A lists only geometric d, W and L. With those values, Phi0 corresponds to about 1.41 T (A: 21 x 70 nm^2), 0.82 T (B: 36 x 70 nm^2) and 1.62 T (C: 16 x 80 nm^2). The ratio B/A = 1.71 matches the stated '70% larger cross-section', so the geometric area seems to be the reference. As far as I can read the dual axes, though, Fig. 3a puts about 4 Phi0 near 4 T for device B (period about 1 T), and Fig. S2a/d puts 3/2 Phi0 near 4 T for device C (period about 2.6 T). That would mean effective areas smaller than the geometric ones, by different factors in different devices. The choice matters for the key classification. For device B with the geometric area, Bx = 2 T is 2.4 Phi0, next to the 2.5 Phi0 boundary, not in the middle of the trivial lobe. For device C, Bx = 4 T is about 1.5 Phi0 (a phase boundary) on the figure axis, or about 2.5 Phi0 (also a boundary) on the geometric area. Yet it is called 'the second expected trivial regime', and Bx = 2.5 T is called 'within the expected first topological regime'. If the field points chosen for Fig. 4 and Fig. S3 sit near boundaries, the claim that ZBPs are equally common in trivial and topological lobes loses force.",
+      "type": "technical",
+      "severity": "moderate",
+      "suggested_fix": "Add a row to Table S1 giving, for each device, the measured Ic oscillation period Delta Bx, the resulting effective area A_eff = Phi0/Delta Bx, and its ratio to d*W. For every field value used in Fig. 4, Fig. S3 and Fig. 4l, state the corresponding Phi/Phi0, so readers can check that each lies well inside a lobe."
+    },
+    {
+      "title": "Correlation metric as written cannot separate correlated peaks from correlated dips, and lacks a threshold and null baseline",
+      "quote": "CLR ∝ sgn(∂ 3 IL /∂VL3 )×sgn(∂ 3 IR /∂VR3 )",
+      "explanation": "Using the sign of d^3I/dV^3 = d^2G/dV^2 at zero bias is a sensible, cheap way to call a local maximum or minimum. But the product of the two signs is +1 both when both ends show peaks (negative curvature) and when both show dips (positive curvature). Fig. 4l and Fig. S3l, however, sort results into 'correlated peaks', 'correlated dips' and 'no correlation', so the actual classification must be quadrant-based (as the scatter plots in Fig. 4c,f,i suggest), not the formula given. Two further points are unspecified. First, no threshold: inside a hard gap G is nearly flat, so the curvature sign is set by noise or by numerical differentiation, whose smoothing and bias window are not stated. Second, no null expectation: if the two ends were independent, each with probability p of a local maximum, chance alone gives p^2 correlated peaks. With p > 0.7 (ZBPs are common at both ends, even at zero field), most gate voltages would show 'correlated peaks' with no end-to-end coupling at all. Without that baseline, 'the majority of the time' cannot be read as correlation.",
+      "type": "technical",
+      "severity": "moderate",
+      "suggested_fix": "Define the classifier explicitly: correlated peak if d2G_LL/dV2 < -c and d2G_RR/dV2 < -c; correlated dip if both > +c; otherwise none. State c, the smoothing kernel and the bias window. Plot alongside Fig. 4l the chance expectation p_L*p_R (from the single-end peak fractions at each Bx) to show whether the correlated fraction exceeds independence."
+    },
+    {
+      "title": "Main text and Supplement describe the field dependence of correlated ZBPs differently",
+      "quote": "to device B, we observe a strong increase of correlated zero-bias conductance peaks upon entering",
+      "explanation": "The main text says the measurements 'consistently show that there is no clear distinction between expected topological regions and trivial regions'. The Supplement, describing device C and saying the behaviour is 'similar to device B', reports a strong increase of correlated ZBPs on entering the first topological regime, with no drop on re-entering the trivial regime. The two statements are compatible only if 'no clear distinction' refers to the higher lobes, as the conclusion's phrase 'within the higher lobes' suggests. Read on its own, the main-text sentence denies a field dependence that the Supplement reports for both devices. The rise from zero field into the first lobe is a real distinction. It deserves to be stated and weighed (for example, whether it simply reflects the gap softening with field).",
+      "type": "logical",
+      "severity": "moderate",
+      "suggested_fix": "Revise the main-text sentence to: 'the fraction of correlated ZBPs rises on entering the first expected topological lobe but does not fall on entering the subsequent trivial lobe (Fig. 4l, Fig. S3l)', and give the numerical fractions at each Bx for devices B and C."
+    },
+    {
+      "title": "Device C described as mostly lacking ZBPs yet showing a strong increase in correlated ZBPs",
+      "quote": "TJ2, although a zero-bias conductance peak was mostly absent in this device, as shown in Figs.",
+      "explanation": "In S1.E, device C is said to show 'mostly absent' ZBPs (Figs. S2b,c). A page later, the gate-dependent analysis of the same device reports a strong increase of correlated ZBPs in the first topological regime, which does not drop in the trivial regime. These could both hold if Fig. S2 was taken at a gate voltage where ZBPs happen to be absent, but that gate voltage is not stated for Fig. S2. As written, a reader cannot tell whether ZBPs are rare or common in device C. That matters because device C is offered as reproducing 'all key features'.",
+      "type": "logical",
+      "severity": "minor",
+      "suggested_fix": "State the VG of Fig. S2b-e. Change 'mostly absent in this device' to 'mostly absent at this gate voltage', and give the fraction of gate voltages with a ZBP at each end for the fields in Fig. S3."
+    },
+    {
+      "title": "Localisation-length estimate is unquantified and sits uneasily with the observed nonlocal signal",
+      "quote": "a few 100 nm, which is shorter than the 1.3 − 2.5µm length",
+      "explanation": "The no-overlap argument is central to reading uncorrelated ZBPs as evidence against MBSs, but the numbers behind it are not given. With xi = hbar v_F / Delta and v_F of about 4-5 x 10^5 m/s for BSTS (hbar v_F about 0.3 eV nm), xi of about 300 nm needs Delta of about 1 meV, close to the bare Nb gap. The spectra in Figs. 1g, 3 and 4 show induced features on a scale of a few hundred microvolts, which gives xi of 1 to 3 um, comparable to L = 1.3 um in device B. In a phase-driven line-junction scheme the relevant scale is also the topological minigap along the wire, which shrinks near the transitions and at high field, not the induced gap. Separately, a clear nonlocal conductance appears over 1.3 to 2.5 um (Figs. 3d,e, S2d,e, S5), with jumps at the phase boundaries. That itself implies subgap states coupling the two ends, which argues against the 'no significant overlap' premise. If the ends are coupled, ZBP correlation statistics have a different expected pattern.",
+      "type": "technical",
+      "severity": "moderate",
+      "suggested_fix": "Give the values of v_F and of the gap used, quote the resulting xi with its uncertainty, and use the measured minigap (from the local spectra at the chosen fields) instead of the parent gap. Then compare L/xi for each device and discuss whether the observed subgap nonlocal signal is consistent with that ratio."
+    },
+    {
+      "title": "Device C Ic*RN product appears unphysically large, suggesting RN includes series resistance",
+      "quote": "j, Gate-voltage dependence of the critical current (black), and the normal state resistance (gray).",
+      "explanation": "Fig. S3j (device C) shows Ic of about 3 to 4.5 uA and RN of about 4.8 to 4.9 kOhm, assuming the axis units read correctly as uA and kOhm. That gives Ic*RN of about 15 to 20 mV, roughly an order of magnitude above the Nb gap limit (pi Delta/2e of about 2 mV). RN also barely changes (about 2%) while Ic changes by 50% over the same VG range. Both suggest RN is dominated by a series or line resistance, consistent with the Methods remark that a two-terminal configuration was sometimes used. If so, the RN curve says little about the device's chemical potential, so it should not support claims about where the Dirac point lies. Device C's Ic is also about ten times device B's despite a smaller cross-section, which deserves a comment.",
+      "type": "technical",
+      "severity": "moderate",
+      "suggested_fix": "State whether RN in Fig. 4j and Fig. S3j is four-terminal or two-terminal, and the series resistance subtracted. Report the resulting Ic*RN per device next to the Nb gap, and correct the axis units if they are mislabelled."
+    },
+    {
+      "title": "Simulation flux normalisation and full-penetration assumption are underspecified",
+      "quote": "the magnetic field fully penetrates the whole device (including",
+      "explanation": "The simulations use A = By z x-hat in all regions and a uniform pairing phase of -phi/2 or +phi/2 in each lead. Because A also enters the 6 nm leads, the phase gained crossing the device depends on whether the flux is counted through the TI only (W_TI*H = 18 x 18 nm^2) or through the TI plus the leads ((W_TI + 2 W_SC)*H). The paper does not say which area defines Phi in Fig. 2. The choice changes where the transitions fall on the Phi axis by up to a factor of about 1.7. The justification ('electrodes thin compared to the London penetration depth') fits the 6 nm model leads. It is less clear for the 45 nm sputtered Nb in the experiment, which is comparable to lambda_L of Nb. Partial screening there would change the experimental effective area (see the effective-area comment).",
+      "type": "technical",
+      "severity": "minor",
+      "suggested_fix": "State explicitly that Phi = By * W_TI * H (or the alternative) in Fig. 2, and add one sentence comparing the 45 nm Nb thickness to its estimated lambda_L, stating how screening would rescale the experimental flux axis."
+    },
+    {
+      "title": "Current-phase relation missing the 2e/hbar prefactor, and units of the SC Hamiltonian",
+      "quote": "Itot (By , ϕ) =",
+      "explanation": "Eq. (6) defines I_tot = dE_tot/dphi. The Josephson current is I = (2e/hbar) dF/dphi. For a BdG spectrum summed over negative eigenvalues there is also a conventional factor of 1/2 (double counting) and a ky-integration measure (L/2pi). Fig. 2b is normalised and eta is a ratio, so the conclusions are unaffected, but the formula as written gives the wrong units. Relatedly, Eq. (2) writes t(k^2 - mu_SC), so mu_SC must carry units of nm^-2 while the text says all energies are in eV. Numerically harmless with t = 1, but inconsistent.",
+      "type": "technical",
+      "severity": "minor",
+      "suggested_fix": "Write I_tot(By, phi) = (2e/hbar) dE_tot/dphi with E_tot = (1/2) sum_{E_i<0} E_i (L/2pi) integrated over ky, and write the lead kinetic term as (t k^2 - mu_SC) tau_z."
+    },
+    {
+      "title": "Axis labelling in the simulations conflicts with the experimental convention",
+      "quote": "description below, x is the direction across the junction, while",
+      "explanation": "In the experiment, x is the nanowire axis and the axial field is Bx (Fig. 1, Table S1). In the Methods, x is across the junction, y is along the wire, and the field is By. The Methods do flag the switch, but Eqs. (4)-(7) and Fig. 2 then use By while the data figures use Bx for the same physical field. A reader comparing Fig. 2 with Figs. 1e and 3a may misidentify which component is meant, especially since Bz misalignment is discussed as a separate artefact.",
+      "type": "technical",
+      "severity": "minor",
+      "suggested_fix": "Relabel the simulation coordinates to match the experiment (x along the wire, y across the junction, A = -Bx z y-hat), or label Fig. 2 and Eqs. (4)-(7) with B_parallel and state By(sim) = Bx(exp)."
+    },
+    {
+      "title": "Sentence mixes up where the SDE sign changes and where Ic recovers",
+      "quote": "of the SDE and a recovery of the Ic for integer values of flux",
+      "explanation": "The preceding clause correctly places the pi phase jump at half-integer flux. This sentence can be parsed as saying that the SDE sign change happens at integer flux. Elsewhere the paper (and Fig. 1e) puts the sign reversal at half-integer flux and the Ic recovery at integer flux. A careful reader could come away thinking the theory predicts sign changes at integer flux.",
+      "type": "logical",
+      "severity": "minor",
+      "suggested_fix": "Rewrite as: 'theory predicts an abrupt sign change of the SDE at half-integer flux quanta and a recovery of Ic at integer flux quanta (Fig. 2b)'."
+    },
+    {
+      "title": "Inversion breaking attributed to gating, yet the SDE is largely gate-independent",
+      "quote": "achieved through gating. The applied VGT and resulting elec-",
+      "explanation": "The model gets the diode effect from a top-bottom potential difference V_GT, and the Methods say this asymmetry comes from gating in the experiment. The main text and Fig. S4, however, describe the SDE and its reversals as 'largely robust against gate voltage' over a range of roughly 100 V, with no clear zero of |eta| at a symmetric gate point. That suggests the asymmetry is mostly built in (SiO2 substrate below, Al2O3 above, a back gate acting mainly on the bottom surface) rather than set by VG. How V_GT = 25 meV maps onto experimental conditions is also not stated.",
+      "type": "logical",
+      "severity": "minor",
+      "suggested_fix": "Change 'achieved through gating' to 'present intrinsically because of the asymmetric dielectric environment (SiO2 substrate below, Al2O3 above) and tunable by the back gate', and state that V_GT = 25 meV is a phenomenological value not fitted to a specific VG."
+    },
+    {
+      "title": "Magnetic field of the nonlocal gate maps not stated",
+      "quote": "FIG. S5: Gate-voltage dependence of the nonlocal conductance in devices B and C.",
+      "explanation": "Fig. S5 is used to argue that nonlocal transport depends strongly on chemical potential (frequent sign changes with VG). Neither the caption nor the text gives the Bx, so the reader cannot tell whether these maps are in an expected trivial or topological lobe. That is exactly the comparison the paper's argument depends on.",
+      "type": "technical",
+      "severity": "minor",
+      "suggested_fix": "Add the Bx value (and the corresponding Phi/Phi0) for each panel of Fig. S5 to the caption."
+    }
+  ]
+}

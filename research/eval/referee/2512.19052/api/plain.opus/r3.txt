@@ -1,0 +1,209 @@
+# Referee Report
+
+**Manuscript:** "Gate-imprinted memory and light-induced erasure of superconductivity at KTaO₃-based interfaces"
+
+## Summary
+
+The authors study a superconducting 2DEG at a (111) AlOₓ/KTaO₃ interface made by Al-induced surface reduction. They report four main findings:
+
+1. **Gate memory.** Back-gate cycling (±50 V) at cryogenic temperature progressively raises both T_c (~1.02 → ~1.09 K at V_g = 0) and R_s. The changes saturate into reproducible hysteresis loops after about four cycles.
+2. **Optical erasure.** Red illumination (630 nm) at 10 K produces persistent photoconductivity (PPC). It lowers R_s to a reproducible baseline and progressively reduces T_c, which the authors describe as erasing the gate-imprinted memory.
+3. **Dielectric loss peaks.** Back-gate dielectric loss shows two thermally activated peaks, with E_a ≈ 76 meV (~30 K) and ≈ 236 meV (~100 K). These are attributed to polar-nanoregion (PNR) reorientation and oxygen-vacancy (OV) charge-state switching.
+4. **Temperature correlations.** The R_s hysteresis amplitude Δ_L scales linearly with ε between 95 and 35 K and rises more steeply below 35 K. Dark relaxation after illumination shows anomalies near 35 K and 95 K.
+
+From these, the authors build a picture in which gate cycling aligns PNRs and sets OV charge states, light randomizes both, and PNR alignment strengthens pairing.
+
+The phenomenology is interesting and potentially useful. Optical resetting of a gate-programmed T_c in a KTO interface superconductor has, to my knowledge, not been reported, and the combined transport/dielectric dataset is a reasonable starting point.
+
+However, the microscopic interpretation rests mainly on coincidences of characteristic temperatures, without direct probes of the proposed PNR or OV configurations. Several key controls are missing, and some statements are internally inconsistent or overstated. I recommend **major revision**.
+
+---
+
+## Major comments
+
+### 1. A simpler explanation for T_c should be tested first: does T_c simply track mobility/disorder?
+
+The manuscript calls the T_c reduction under illumination "counterintuitive" because n and μ both increase. Yet across all the data presented, T_c appears to correlate inversely with μ (or positively with R_s):
+
+- Gate cycling lowers μ and raises T_c (Supp. Fig. 1).
+- Illumination raises μ and lowers T_c (Fig. 2).
+- The T_c and R_s trajectories in Fig. 1e,f are nearly identical in shape.
+
+An inverse T_c–μ correlation under gating was a central result of earlier LAO/KTO(111) work (ref. 17), which the authors cite only for the weak density dependence. I ask the authors to:
+
+- Plot T_c against μ, R_s and n for *all* states: virgin, gate-cycled (both sweep directions, all cycles), and L₀–L₄ after illumination.
+- Report whether these points collapse onto a single curve.
+
+If they collapse, the data do not require PNR-mediated pairing. Gate and light would simply be two knobs acting on the same disorder/scattering parameter. That would still be interesting, but it would substantially change the conclusions. If they do *not* collapse, that would be the strongest evidence for an additional (e.g., polar) ingredient, and it should be shown explicitly.
+
+### 2. No direct evidence for PNR alignment or randomization
+
+The PNR picture of Fig. 3e is inferred entirely from transport and from equilibrium dielectric spectra taken without gate or illumination history. Several directly testable consequences have not been examined:
+
+- **Dielectric response versus history.** If gate cycling aligns PNRs and light randomizes them, ε and tan δ (especially near Peak 1) should differ between the "cycled" and "illuminated" states. This test is natural and uses the authors' existing setup.
+- **Remanent polarization.** A quasi-static P–E or Sawyer–Tower-type measurement at 10 K could detect the remnant polarization invoked at V_g = 0. Integrating the gate current with leakage properly separated would also serve.
+- **Optical or structural probes.** If feasible, SHG or similar probes would strengthen the case.
+
+Without such evidence, "PNR reorientation" is a hypothesis consistent with the data, not a demonstrated mechanism. The abstract ("These phenomena arise from…") and the Discussion should be toned down accordingly.
+
+### 3. The temperature "coincidences" ignore the very different timescales involved
+
+The central argument links 35 K and 95 K across three measurements with very different characteristic times:
+
+| Measurement | Probing frequency / timescale |
+|---|---|
+| Dielectric loss peaks | 0.1–4000 Hz |
+| Gate sweeps | ~10⁻²–10⁻³ Hz |
+| Dark relaxation | τ ~ 10³ s |
+
+For thermally activated processes, the peak temperature depends on the probing frequency. The authors' own Arrhenius parameters should therefore be used to predict where each process becomes "sluggish" on the transport timescales. A rough estimate from my reading of Fig. 3c:
+
+- **Peak 1:** E_a/k_B ≈ 880 K and an attempt frequency of order 10¹³ Hz. The relaxation time reaches ~10³ s at roughly **20–25 K**, not 35 K.
+- **Peak 2:** the same exercise gives roughly **75–80 K**, not 95 K.
+
+These estimates may be off given the reading precision, but the authors should carry out this analysis quantitatively and show that the coincidences survive it. Otherwise the agreement between dielectric peaks, the kink in Δ_L(ε), and the dark-relaxation anomalies may be fortuitous.
+
+Relatedly, the 35 K boundary is described inconsistently:
+
+- as the PNR freezing temperature (Results),
+- as "the boundary below which significant TO phonon softening arises" (Fig. 3 caption), although TO softening in KTO is continuous from room temperature,
+- and alongside Peak 1, which the text locates "near 30 K" and which is frequency dependent.
+
+### 4. The dark-relaxation anomalies rest on single data points and conflict with the text
+
+- In Fig. 4b, each ΔR/R₁ "maximum" (35 K and 95 K) is defined by essentially one point. The 95 K trace in Fig. 4a is visibly much noisier than its neighbours.
+- In Fig. 4c, τ does **not** show a minimum at 95 K. It shows a minimum near ~90 K followed by a sharp *maximum* (~1.38 × 10³ s) at 95 K. This contradicts the text ("two minima in τ"), and the proposed mechanism has to be reconsidered for this region.
+- Finer temperature steps around 30–40 K and 85–100 K, and repeated runs, are needed to establish that these features are intrinsic rather than due to temperature instability or illumination artefacts.
+
+Point 5 is also directly relevant to this series.
+
+### 5. Illumination conditions are not controlled across temperature, and heating is not excluded
+
+**Uncontrolled photon flux.** The Methods state that the LED I–V characteristic is "non-monotonically temperature-dependent" and that a fixed V_L was used. The photon flux, and possibly the emission spectrum, therefore varies with temperature. This directly confounds ΔR/R₁(T) in Fig. 4 and Supp. Fig. 5. The argument that the sample was "fully illuminated" (saturated) needs to be demonstrated at each temperature, for example with a fluence series showing saturation.
+
+**Possible heating.**
+- Heating is visible at 2 K (Fig. 2b).
+- The authors should report the actual sample temperature during illumination at 10 K, using an on-chip or nearby thermometer.
+- A thermal control is essential: does warming the sample in the dark to, say, 40 K or 100 K and returning to 10 K also reduce T_c or R_s? If so, the "optical erasure" could be partly thermal annealing of a thermally fragile state.
+
+**Thermally assisted, not purely optical.** The absence of PPC at 2 K argues against the statement that the relevant processes "can be activated by red light illumination even at extremely low temperatures." Comparing thermal barrier heights (76 and 236 meV) with the photon energy (1.97 eV) is not a meaningful criterion. Light must be absorbed via an optical transition with finite cross section, and optical and thermal ionization energies of defects generally differ (Franck–Condon shift). The authors should:
+
+- Explain why erasure is ineffective at 2 K.
+- State whether T_c erasure can be achieved at base temperature, which is important for the claimed device relevance.
+- Ideally, provide wavelength and intensity dependence to identify the optically active transition and the "deep donor" states, whose identity is currently unspecified.
+
+### 6. The gate-current data appear inconsistent with a purely displacement-current interpretation
+
+Two estimates suggest the measured currents are far larger than a simple capacitor would give:
+
+- **Linear displacement current.** With A = 6.25 mm², d = 0.5 mm and ε ~ 1500, C ≈ 170 pF. At a sweep rate of order 0.5 V/s this gives ~0.1 nA.
+- **Integrated charge.** The ~10 nA currents in Supp. Fig. 3a, sustained over a substantial part of a 10-minute hold, integrate to a charge density of order 10¹³–10¹⁴ cm⁻². This is comparable to the total 2DEG density (~1.05 × 10¹⁴ cm⁻²) and far exceeds the measured Δn (a few 10¹² cm⁻²).
+
+The authors should:
+
+- Integrate I_g and report the transferred charge per unit area.
+- Separate true leakage through the substrate from trapping or polarization currents.
+- Reconcile the transferred charge with the Hall Δn.
+
+If a large charge flows through the substrate or into deep bulk traps, the interfacial-OV picture must be revised.
+
+### 7. Hall analysis and sign of the gating effect
+
+**Anomalous sign.** In Supp. Fig. 1c the Hall density is *higher* at −50 V than at +50 V, which is opposite to simple electrostatic gating. The authors' model (OVs releasing electrons under negative bias) could explain this, but only if OV donation exceeds the electrostatic depletion. The electrostatic depletion is ~10¹² cm⁻² at ε ~ 1500–4000. This needs a quantitative account, including the field dependence of ε at 1 kV/cm, which is non-negligible in KTO at low temperature.
+
+**Single-band extraction.** KTO(111) 2DEGs are generically multiband (Ta 5d t₂g manifold). The authors should:
+
+- Show full Hall traces R_xy(B).
+- Comment on nonlinearity.
+- Justify the single-band extraction of n and μ at ±6 T. Small changes in n_H (1–4%) are especially vulnerable to changes in band occupancy or relative mobilities.
+
+**Field as a perturbation.** n and μ are taken from separate runs at 0 and ±6 T under nominally identical protocols. Evidence of run-to-run reproducibility is needed, as is evidence that a 6 T field does not itself affect the OV/PNR states.
+
+**Apparent contradiction to clarify.** Gate cycling *increases* n starting from the virgin state (Results, Supp. Note 1) but *decreases* n starting from the illuminated state (Fig. 2g). This should be addressed explicitly.
+
+### 8. The Δ_L ∝ ε correlation is largely expected from electrostatics
+
+Gate-induced charge scales as ε ε₀ V/d, so almost any gate-driven effect, reversible or hysteretic, will scale with ε. A linear Δ_L(ε) therefore does not specifically point to OV-mediated charge exchange.
+
+The steeper rise below 35 K could also arise from:
+
+- the field dependence of ε at the 50 V dc bias, compared with ε measured using a 5 V ac excitation around V_g = 0, or
+- the low-temperature maximum in ε visible in Fig. 3a. Pure KTO shows a monotonic plateau, so this maximum may reflect a dead layer or depletion layer, or dipolar freezing.
+
+Additional points:
+
+- The dielectric measurement uses a large 5 V excitation in a field-tunable dielectric. Linearity should be checked (e.g., 0.5, 1, 5 V).
+- The high-temperature limit "ε_∞" in Δ_L ∝ ε − ε_∞ is not defined. ε does not saturate at high temperature.
+- The assignment of Peak 2 to OV ionization should be weighed against Maxwell–Wagner relaxation (interfacial or depletion-layer polarization with thermally activated conductivity). This is a well-known source of Arrhenius-like tan δ peaks in such geometries, with apparent activation energies of a few hundred meV.
+- Fitting uncertainties on E_a1 and E_a2 should be given.
+
+### 9. "Complete erasure" is not demonstrated
+
+- Fig. 2h,i shows a stepwise T_c decrease from L₀ to L₄, but no comparison with the **pristine, never-gated** transition. The R_s baseline after illumination (795 Ω, at 10 K) is not compared with the virgin R_s at the same temperature (Fig. 1f is at 1.4 K).
+- Please show T_c and R_s of the virgin state, the cycled state and the fully illuminated state on the same plot, with numerical T_c values and uncertainties.
+- Since T_c changes are only tens of mK, the authors should report:
+  - the thermometry reproducibility across thermal cycles,
+  - the transition widths,
+  - the effect of the T_c criterion (10/50/90% R_n).
+
+### 10. Reproducibility, novelty and framing
+
+- **Sample count.** All data appear to come from a single device. Results from at least one more sample, ideally from a different growth run, are needed. The paper should state explicitly how many devices were measured and whether all showed the effects.
+- **Novelty relative to ref. 30.** Ref. 30 already reports gate-cycling enhancement of T_c at cryogenic temperatures, recoverable at room temperature, at oxide interfaces, with coexisting ferroelectricity. The phrases "unexpectedly" and "previously unrecognized interplay" therefore need tempering. The new contributions (optical erasure and the dielectric correlation) should be stated clearly relative to that work and to refs. 31–32.
+- **Device-relevance claims.** The neuromorphic and "quantum memristor" framing is not supported at present. The demonstrated effects are:
+  - ~5–7% T_c changes near 1 K,
+  - programming and erasure times of 10²–10⁴ s,
+  - writing and erasing performed at 10 K rather than in the superconducting state,
+  - partial dark relaxation above 15 K.
+
+  This contrasts with the claim of "robustness of non-volatility in a wide operating temperature range." Retention measurements over long times at the operating temperature, and an assessment of switching energy and speed, would be needed to support such claims. Otherwise the framing should be moderated.
+
+- **Unexplained ratchet.** The model accounts for the steady-state hysteresis (OV charge state set by the last sweep direction). It does not explain the initial monotonic ratchet, in which R_s and T_c increase regardless of sweep direction (both Type A and Type B raise R_s from the baseline). An explicit account of what is irreversibly changed in the first cycles is needed, presumably electrons trapped into deep states beyond −17 V.
+
+---
+
+## Minor comments
+
+1. **LED description.** "Red laser emitting diode (LED)": an LED is a light-emitting diode. Please specify optical power or flux at the sample, spot size, and spectral width.
+2. **Supp. Note 4 notation.** Item 2 writes "R_s^b = 856 Ω·sq⁻¹" where R_s^a is meant. The notation also changes between the main text (R_s^0, R_s^A, R_s^B) and the Supplement (R_s^b, R_s^a).
+3. **Units.** "Ω·sq⁻¹" should be Ω/□ or Ω sq⁻¹ consistently. The baseline 795 Ω is given without per-square units.
+4. **Repeated sentence.** The Discussion (p. 5) states the same sentence twice: "The interactions are further reinforced by the dielectric loss…" and "Dielectric loss signatures further reinforce this picture…".
+5. **Figure labelling.** Supplementary Fig. 5 is labelled "Extended Figure 5."
+6. **Fig. 1g / Supp. Fig. 2.** The hysteresis is said to be "discernible up to ~100 K," but the loops above ~70 K appear closed at the plotted scale. Please quantify Δ_L with error bars versus temperature.
+7. **Fig. 3a.** ε shows a maximum and slight decrease below ~10 K for some frequencies. Please comment, since this is atypical for KTO.
+8. **Fig. 3d caption.** "Deviates above this dependence" is unclear; state the direction explicitly.
+9. **Methods (transport).** Explain why FEM is needed on top of the van der Pauw method (contact size and position?). State whether Hall data were antisymmetrized in B and whether reciprocal configurations were used.
+10. **Methods (dielectric).** Specify the fringe-field correction for d/L = 0.2. State whether the AlOₓ layer, the interfacial depletion layer, or the back-contact interface contributes a series capacitance.
+11. **Sweep parameters.** Give sweep rates and hold times for all gate protocols in the main text. These are needed for the timescale analysis in comment 3.
+12. **Coherence-length parenthesis.** The parenthetical defining l₀ = v_TO/ω_TO interrupts the sentence and is not used quantitatively. Either use it (e.g., estimate the PNR size) or remove it.
+13. **Language** (a careful edit is recommended):
+    - "would facilitates" → "would facilitate"
+    - "memrisitive" → "memristive"
+    - "the it is" → "it is"
+    - "illlumination" → "illumination"
+    - "Suppelementary" → "Supplementary"
+    - "not plausible" → "not feasible"
+    - "in consistence with" → "consistent with"
+    - "It is worth to note" → "It is worth noting"
+    - "variance" is used throughout where "variation" is meant
+
+---
+
+## Overall assessment
+
+The experimental observations, particularly the reversible optical resetting of a gate-programmed T_c and R_s, are novel and of interest to the oxide-interface and quantum-paraelectric communities.
+
+The mechanistic claims (PNR alignment and OV charge states governing both normal-state memory and pairing) are not yet supported by direct evidence. They depend on temperature coincidences that do not account for the differing measurement timescales. Several essential controls are missing:
+
+- thermal versus optical erasure,
+- flux control across temperature,
+- leakage versus displacement current,
+- comparison with the pristine state,
+- reproducibility across samples.
+
+I would be glad to see a revised version that:
+
+- tests whether T_c is simply set by μ/disorder,
+- directly probes the dielectric state as a function of gate and illumination history,
+- quantifies the timescale-corrected correlations,
+- moderates the device-oriented claims accordingly.

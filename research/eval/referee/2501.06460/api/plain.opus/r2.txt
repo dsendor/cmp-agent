@@ -1,0 +1,161 @@
+# Referee Report
+
+**Manuscript:** "Probing electric field tunable multiband superconductivity in alternating twisted quadralayer graphene" (Liu et al.)
+
+## Summary
+
+The authors report transport on a single dual-gated alternating-twist quadrilayer graphene (ATQG) device with θ = 1.58°. The main results are:
+
+1. Robust superconductivity for 2 ≲ |ν_tot| ≲ 4 and |D| ≲ 0.5 V/nm, with T_BKT up to 1.6 K and in-plane critical fields about twice the Pauli limit.
+2. A Landau-fan "Dirac spectroscopy" analysis that separates the Dirac-band and flat-band carrier densities. It shows a chemical-potential plateau for 1.64 < ν_tot < 2.36 and places ν_flat = 2 at ν_tot ≈ 2.36.
+3. A doping- and D-dependent ξ_GL·k_F, which the authors interpret as tuning from BCS-like toward BEC-like pairing near half filling of the flat band.
+4. Two critical-current boundaries. The higher one is used to extract a flat-band velocity v_n ≈ 1700 m/s. The lower one yields a superfluid stiffness D_s about 10 times larger than the "conventional" estimate, which is attributed to quantum-metric contributions.
+
+**Strengths.** The device appears to be of good quality. The data set is broad, combining Landau fans, Hall data, R(T), V–I, dV/dI versus I_dc, B_⊥, B_∥ and D. The Dirac-spectroscopy analysis of the conduction-band side is informative. The topic is timely.
+
+**Main weakness.** The central quantitative claims rest on chains of estimates whose assumptions are not justified, are partly circular, or are mutually inconsistent. These claims are BCS–BEC crossover, "vanishing Fermi velocity," D_s greatly exceeding the conventional value, and quantum-metric enhancement. I detail these below.
+
+I recommend **major revision**.
+
+---
+
+## Major comments
+
+### 1. The ξ·k_F minimum near half filling is largely fixed by the definition of n*
+
+The pairing density is defined as n* ∝ ν* = |ν_flat − 2|, so k_F → 0 and ξk_F → 0 by construction as ν_flat → 2. The dip in Fig. 3c at ν_tot ≈ 2.36, and the choice of ν_tot = 2.31 for all D-dependent studies, therefore sit exactly where this quantity is forced to be small.
+
+Back-calculating from ξ = 30 nm and ξk_F = 2 at D = 0.26 V/nm gives:
+- k_F ≈ 0.067 nm⁻¹
+- n* ≈ 7×10¹⁰ cm⁻², i.e. ν* ≈ 0.05
+
+This is consistent with the stated ν_flat ≈ 1.96 at ν_tot ≈ 2.3. However, an uncertainty of only ~0.05 in ν_flat (≈0.07×10¹² cm⁻² in n_Dirac, well within the scatter in Fig. 2e) changes n* by ~100%. Error bars propagated from the Landau-fan extraction are essential.
+
+The approach also has conceptual problems:
+- **Dirac carriers are excluded.** n_Dirac ≈ 0.4×10¹² cm⁻² at ν_tot ≈ 2.3, which is several times larger than n*. Yet the paper's own thesis is multiband involvement. Please show ξk_F with alternative definitions (total density, Dirac density, flat-band density counted from charge neutrality) and discuss which is appropriate.
+- **ξ_GL is not the pair size.** The ξ_GL obtained from B_c2 is the GL (phase-healing) length. In the BEC regime it does not track the pair size, and in the dirty limit ξ_GL ~ √(ξ₀ℓ) is reduced by disorder independently of the coupling strength. The mean free path ℓ should be estimated from the normal-state resistivity and the Dirac/flat-band parameters.
+- **The D dependence comes from ξ alone.** Fig. 4d shows n_H constant for |D| < 0.3 V/nm. Please state explicitly how n* is determined at finite D. If n* is taken as constant, the D dependence of ξk_F simply reflects that of B_c2. B_c2 depends on many factors besides coupling, including orbital effects of D on Fermi velocity and disorder.
+
+### 2. Δ/k_BT_c ≈ 0.2 contradicts the strong-coupling interpretation
+
+Using Δ ≈ ħv_n/ξ with v_n = 1700 m/s and ξ = 30 nm gives Δ ≈ 37 μeV and Δ/k_BT_c ≈ 0.2 (I reproduce this number). Three problems follow:
+- **The gap is unphysically small.** A gap five times smaller than k_BT_c cannot sustain the condensate at T_c. Strong coupling and BEC-like pairing should give Δ/k_BT_c *larger* than the BCS value, not an order of magnitude smaller. This directly contradicts Sections C–D and the T*/T_BKT argument.
+- **The formula is the wrong one to use.** The BCS expression is ξ₀ = ħv_F/(πΔ), so the stated relation also misses a factor of π. More fundamentally, using a BCS relation to argue that the system is non-BCS is circular.
+- **A more consistent reading exists.** The result signals that ξ is not set by ħv_F/Δ, as expected for flat-band superconductors where the coherence length is controlled by the quantum-metric length (Ref. 45, co-authored by K.T. Law).
+
+I suggest reframing this result in that way and dropping the Δ estimate, unless Δ can be obtained independently (e.g., from tunneling).
+
+### 3. Interpreting the higher critical current j_n as Zener–Klein breakdown of a correlated gap is not established
+
+**The normal state is not insulating.** At ν_tot ≈ 2.3, the Dirac bands provide a metallic parallel channel. R_xx ≈ 0.5–1 kΩ, and zero-bias R(T) above T_c is metallic (Fig. 1f). It is unclear how breakdown of a flat-band gap produces a sharp dV/dI peak when the gap is shunted by Dirac carriers with v_F ~ 6×10⁵ m/s.
+
+**Alternative explanations must be excluded:**
+- inhomogeneous superconductivity or multiple domains with different I_c;
+- residual superconductivity at B_⊥ = 0.2 T (a faint feature remains in Fig. 5a, bottom);
+- Joule heating (I²R ~ 1 nW at 600 nA and ~2 kΩ).
+
+Also report whether the peaks are hysteretic in sweep direction.
+
+**The relation v_n = (1/e)dj_n/dn needs justification.** The fitted lines in Fig. 5b give j_n → 0 near ν_tot ≈ 2.1 and growing toward ν_tot ≈ 2.36. This is not obviously j_n = e·n·v_d with n counted from the gap at ν_flat = 2. Please specify:
+- the reference density;
+- the device width (needed to convert I to j; from the numbers I infer W ≈ 0.5 μm);
+- the number of points in the fit.
+
+**The extracted "Fermi velocity" conflicts with the authors' own spectroscopy.** A ~50 meV flat-band bandwidth from Fig. 2d, spread over k_θ ≈ 0.47 nm⁻¹, implies band velocities ~10⁵ m/s. Even the 10 meV continuum-model width implies ~10⁴ m/s. A velocity of 1700 m/s therefore requires explanation, e.g. a strongly renormalized band edge at the correlated gap. Calling it the "flatband Fermi velocity" and concluding a "vanishing Fermi velocity" (abstract, conclusions) is an overstatement.
+
+### 4. The superfluid stiffness comparison depends on excluding the Dirac bands
+
+**Prefactor.** The GL depairing current gives D_s = 3√3π j_c ξ/Φ₀, about 2.6 times the 2π used here. Please justify the prefactor.
+
+**The switching current is only a lower bound.** In a Hall bar, the switching current is generally below the depairing current because of vortex entry, inhomogeneity and heating. D_s is then a lower bound, which would actually strengthen the comparison.
+
+**The conventional baseline is the critical problem.** It uses only n* (~7×10¹⁰ cm⁻²) and m* = ħk_F/v_n, with v_n from the contested analysis in point 3. I reproduce the red line (~4×10⁶ H⁻¹). However, the conventional (Drude) weight of the Dirac carriers is much larger:
+- with n_D ≈ 4×10¹¹ cm⁻², v_F ≈ 6×10⁵ m/s and g = 8, e²n_D v_F/(ħk_F,D) ~ 10⁹–10¹⁰ H⁻¹;
+- this is more than two orders of magnitude above the measured D_s.
+
+So either the Dirac carriers are essentially not part of the condensate, which conflicts with the "multiband superconductivity" narrative, or the measured I_c is far below depairing and D_s is not reliably extracted.
+
+The statement "one order larger than conventional" is therefore not meaningful without a proper multiband treatment. A direct kinetic-inductance measurement (cf. Refs. 48–49) would be far more convincing.
+
+### 5. The quantum-metric attribution is qualitative
+
+The paper attributes enhanced coupling and stiffness to "quantum metric driven by D when the Dirac bands touch the flat band," but provides no calculation. Given a theory co-author, I would expect:
+- continuum-model band structures vs U showing where flat–Dirac touchings occur, mapped onto the experimental D (does it coincide with D ≈ 0.25 V/nm?);
+- the integrated quantum metric of the flat band(s) vs U;
+- an estimate of the geometric D_s to compare with the measured ~4×10⁷ H⁻¹. A rough estimate, (e²Δ/ħ²) × O(1) geometric factor, does fall in the 10⁷ H⁻¹ range for Δ of tens of μeV, so a quantitative check is feasible and would be valuable.
+
+Two further points need addressing:
+- **D asymmetry.** T_c, ξ and D_s are clearly asymmetric in D (T_c ≈ 1.5 K at −0.2 vs 2 K at +0.25 V/nm; D_s peaks of ~3.3 vs 4.7×10⁷ H⁻¹). Ideal ATQG is symmetric under D → −D. This suggests unequal interfacial twist angles, heterostrain or hBN alignment, and the band-touching picture must accommodate it.
+- **"Inconsistent with BCS" near the VHS.** The argument that T_c decreasing while n_H diverges near the VHS contradicts BCS is weak. D simultaneously changes hybridization, band topology and competing orders, so DOS is not the only variable.
+
+### 6. Separation of Dirac and flat-band carriers
+
+**Hall density in a multiband system.** n_H is mobility-weighted, n_H = (Σn_iμ_i)²/Σn_iμ_i². If Dirac mobility greatly exceeds flat-band mobility, n_H ≈ n_Dirac is expected regardless of the flat-band density. Thus n_H ≈ n_Dirac at ν_tot ≈ 2.3 does not demonstrate that flat-band carriers are negligible.
+
+**Nature of the dispersive bands.** In ATQG the dispersive sector is not graphene-like, as it is in ATTG. In the Khalaf et al. decomposition it is a TBG-like sector at effective angle θ/(2cos(2π/5)) ≈ 2.6°. Please justify:
+- the use of a linear-Dirac Landau-level formula with v_F = 6.1×10⁵ m/s up to μ ≈ 50 meV;
+- whether this sector's own band curvature or VHS lies in the relevant energy range.
+
+The description "two Dirac bands" in the Introduction and Fig. 1 should be made precise.
+
+**Internal inconsistency at ν_tot = 4.** n_Dirac ≈ 0.96×10¹² cm⁻² at ν_tot = 4 (Fig. 2e) implies ν_flat ≈ 3.3 there, i.e. the flat band is not full. Yet the text states that carriers for ν_tot > 4 come exclusively from the Dirac bands. The red line in Fig. 2f also appears to extrapolate to zero near ν_tot ≈ 4. Please define ν₀ and reconcile these statements, including the definition of n₀ "at U ≠ 0."
+
+### 7. B_c2 and ξ consistency
+
+ξ = 30 nm at D = 0.26 V/nm implies B_c0 = Φ₀/(2πξ²) ≈ 0.37 T. Yet Supp. Fig. 7c (T = 100 mK, B = 0.2 T, ν = 2.31) shows superconductivity fully suppressed over the whole D range, and Fig. 5a likewise shows near-complete suppression at 0.2 T. Please reconcile.
+
+Please also show B_c(T) for several D values (not only ν = 2.87, D = 0) and state the resistance criterion used for B_c.
+
+### 8. "Pseudogap" and T*
+
+**Fig. 4f does not establish insulating behavior.** It shows dV/dI at fixed I_dc above I_c. Because I_c and the dV/dI peak shift with T, and heating is relevant, a decreasing dV/dI(T) at fixed bias does not imply insulating normal-state behavior. It also contrasts with the metallic zero-bias R(T) in Fig. 1f at the same D. The non-monotonic jump at ~4 K reinforces this concern.
+
+**T* is not unambiguously a pairing temperature.** It is defined as the onset of nonlinear I–V. Nonlinearity can also come from fluctuations, heating or nonlinear normal-state transport. The T*/T_BKT ratio should not be presented as validating quantum-geometric strong coupling without further support.
+
+### 9. 2D superconductivity, homogeneity, and reproducibility
+
+- **BKT analysis.** Show the full exponent α(T) from V ∝ I^α and the crossing α = 3, rather than a single fitted curve.
+- **The "interference pattern."** In the Fig. 1e inset this is cited as evidence of phase coherence. Fraunhofer-like modulation in a nominally uniform film usually signals inhomogeneity or junction-like regions, which bears directly on the critical-current analysis.
+- **Device homogeneity.** Supp. Fig. 1b shows normal-state resistances differing by a factor of 2–3 between segments. Please give n₀ (twist angle) for each segment, specify which contacts are used for each figure, and show D-dependent data from at least one other segment.
+- **Single device.** Data from a second device would substantially strengthen the claims.
+
+### 10. Novelty and context
+
+Superconductivity in ATQG, its D tunability and Pauli-limit violation have been reported (Park et al., Nat. Mater. 2022; Zhang et al., Science 2022; with correlations in Burg et al., 2022). The Dirac-spectroscopy approach follows Shen et al. (ATTG) and Park et al. (MATTG). The critical-current/stiffness methodology follows Tian et al. (TBG). The manuscript should state clearly what is new relative to these works, and compare T_c, B_c∥ and the phase diagram with prior ATQG data.
+
+---
+
+## Minor comments
+
+1. **Typos and terminology:**
+   - "quadralayer/quatralayer" (standard: quadrilayer)
+   - "AQTG" (Sec. C)
+   - "valance"
+   - "coherent length"
+   - "verus", "vesus"
+   - "LLs spectrums"
+   - "11834017,)"
+2. **Formula rendering.** Formulas for v_n and D_s are garbled in the PDF; please typeset them properly in the main text.
+3. **Methods placement.** "Methods" is referenced in the main text but appears as Supplementary Note 1. Two Supplementary Notes are numbered 6.
+4. **Author contributions.** These list "K.L."; presumably K.T.L.
+5. **Fig. 1g vs Supp. Fig. 5a.** The Fig. 1g caption says D = 0, whereas Supp. Fig. 5a gives T_BKT = 1.1 K at D = −0.03 V/nm. Please harmonize.
+6. **T_c criterion.** The 40% criterion is unconventional; show that conclusions are insensitive to it (e.g., 50%, or T_BKT).
+7. **Pauli limit.** State which T_c enters B_p. Using T_BKT = 1.6 K, B_p ≈ 3 T. Also discuss in-plane field alignment, and the orbital coupling expected at finite D in ATMG, which is relevant to interpreting B_c∥.
+8. **Odd LL indices.** Indices such as ν_LL = −5 on the hole side are hard to reconcile with any degeneracy scheme. Either explain them or state that the assignment is tentative.
+9. **"Slightly away" from the magic angle.** θ = 1.58° vs ~1.75° is ~10% away; comment on how this affects the flat-band picture.
+10. **ν = 10/3 CDW.** The claim is inferred only from LLs emanating from ν_tot ≈ 3.3; it should be stated more cautiously.
+11. **Fig. 4d.** Clarify how n_Dirac (blue dashed line) is obtained at finite D.
+12. **Low-field Hall data.** Supp. Fig. 3c shows nonlinear R_xy at low B; specify the field range used to extract n_H.
+13. **Excitation and heating.** Give the AC excitation for the dV/dI maps relative to the small critical currents near ν ≈ 2, and discuss electron heating at large I_dc.
+
+---
+
+## Recommendation
+
+**Major revision.** The experimental data are rich and potentially valuable. However, the headline interpretive claims (BEC-like pairing, vanishing Fermi velocity, D_s ≫ conventional, quantum-metric origin) currently rely on:
+- (i) a pairing density defined to vanish at the point of interest;
+- (ii) BCS formulas whose output contradicts the strong-coupling narrative;
+- (iii) an unestablished interpretation of the higher critical current;
+- (iv) a "conventional" baseline that omits the Dirac carriers, whose contribution would exceed the measured stiffness by orders of magnitude.
+
+Addressing points 1–5 with error analysis, alternative definitions, quantitative theory and, ideally, an independent stiffness measurement or a second device would be needed before the conclusions can be considered supported.

@@ -1,0 +1,127 @@
+# Referee report
+
+**"Resolving Abrikosov vortex entry in superconducting nano-string resonators via displacement-noise spectroscopy in cavity-optomechanics"** (Luschmann, Parvini, Niekamp, Marx, Gross, Huebl)
+
+## Summary
+
+The authors embed a suspended Al nanostring (30 × 0.2 × 0.11 µm³) in the loop of a dc SQUID that terminates a λ/4 CPW resonator. For each in-plane field B_ip (resolution 0.25 mT), they sweep the out-of-plane flux bias. They fit the dome-shaped Ω_m(Φ_b) with a Lorentz-force spring model (Eq. 3) to extract a "bare" frequency Ω₀(B_ip).
+
+They report two findings:
+
+1. **A smooth background.** Ω₀² rises as B_ip^k with k = 1.81 ± 0.05. They interpret this as Campbell-regime pinning stiffness and extract α_L ~ 10¹⁴ N m⁻⁴.
+2. **Discrete steps.** Steps of ΔΩ/2π ≈ 10–50 Hz are interpreted as single-vortex entry events. From these they derive pinning stiffnesses k_p ≈ 14–70 N m⁻², pinning energies of 0.09–0.44 eV, and "attonewton-scale" force steps.
+
+**Strengths**
+- Using an integrated, low-backaction electromechanical readout to probe vortex physics in a chip-relevant mesoscopic geometry is attractive and timely.
+- The frequency resolution is impressive, the data are openly available, and the estimates in the text are arithmetically reproducible.
+
+**Main weakness.** In its present form, the vortex interpretation is not adequately supported. Several parts of the physical framework appear internally inconsistent or inconsistent with the cited vibrating-reed literature. Key control experiments are also missing.
+
+## Major concerns
+
+### 1. Can this cross-section host Abrikosov vortices in a parallel field?
+
+Using the authors' own estimates (ξ ≈ 108 nm, λ ≈ 0.84 µm):
+
+- **Thickness relative to ξ.** The thickness d = 110 nm ≈ ξ, and the width w = 200 nm ≈ 2ξ. In Ginzburg–Landau theory, films in a parallel field with d ≲ ~1.8–2ξ do not form vortices. Instead, the order parameter is suppressed homogeneously and the film undergoes a second-order transition at H_c∥.
+- **Field range relative to H_c2.** The bulk-like upper critical field is B_c2 = Φ₀/(2πξ²) ≈ 28 mT, essentially equal to the quoted ZFC entry field Φ₀/(2πξd) = 27.7 mT, since d ≈ ξ. The measurements extend to 35 mT, above this value. Superconductivity survives there only because of the thin-film confinement, and that is precisely the regime in which vortices are not expected.
+- **Parallel critical field.** The thin-film parallel critical field is H_c∥ ≈ √3 Φ₀/(πξd) ≈ 95 mT. The whole measured range therefore lies in the regime of quadratic, vortex-free pair-breaking.
+- **Mis-applied formulas.** The entry-field and vortex-density formulas used (Likharev; Stan et al.; Bronson et al., Eqs. 6–7) were derived for thin strips in a *perpendicular* field, with the Pearl length ≫ w. Their transfer to a parallel-field geometry with d ≈ ξ needs justification.
+
+The authors should address this directly, ideally with a GL simulation of the actual cross-section (d × w with B_ip along w). Without it, "Abrikosov vortex" in the title is not established.
+
+### 2. The physical model for pinning-induced stiffening (Eq. 8) is questionable
+
+Eq. 8 adds α_L/ρ directly to Ω², treating pinning wells as springs anchored to the laboratory frame. However, pinning centers are attached to the lattice and move with the string. A rigid translation of the string, with its vortices pinned, in a uniform applied field costs no pinning energy.
+
+In the vibrating-reed theory the authors cite (Brandt, Esquinazi, Neckel 1986; Esquinazi 1991), the restoring force comes from the *tilt* of the flux-line lattice relative to the fixed external field, i.e., a magnetic line-tension term ∝ B²/μ₀. α_L enters only through the Campbell length relative to sample dimensions. In the strong-pinning limit, the shift saturates at a value that is independent of α_L and scales as ≈ B².
+
+Consequences:
+- An exponent k ≈ 2 is therefore not specific evidence for a Campbell-regime α_L ∝ B^1.81.
+- The extracted α_L values, and everything derived from them (⟨k_p⟩, U), depend on a model the cited literature does not support.
+
+The authors should derive the frequency shift for their geometry: a string mode with out-of-plane displacement, B_ip in-plane and perpendicular to the string, and λ ≫ d, w so that the internal field barely differs from the applied field. They should then show whether α_L is even recoverable from Δω².
+
+### 3. Simpler explanations for the smooth background are not ruled out
+
+The near-quadratic background is dismissed on the basis of the jumps. But the jumps say nothing about the origin of the background. At least three B²-type mechanisms need to be excluded quantitatively:
+
+- **(a) Junction asymmetry.** For any asymmetry α ≠ 0, the Josephson inductance stays finite at Φ_b = Φ₀/2. A residual Lorentz-spring term ∝ B_ip² then survives in "Ω₀". The fits fix α = 0 by default.
+- **(b) Field-dependent kinetic inductance.** Parallel-field pair-breaking gives |ψ|² ∝ 1 − (B/B_c∥)². This changes the string's (and loop's) kinetic inductance, and hence L_l in Eq. 3, roughly ∝ B². If L_l is held fixed in the fits, this aliases into Ω₀.
+- **(c) Other effects.** Field-dependent stress or tension changes and magnetomotive effects.
+
+Please state which parameters (I_c, L_l, η, α, φ_off) are free in each fit. Plot their fitted values versus B_ip. Show fits with α free.
+
+### 4. The steps: assignment and internal consistency
+
+- **Extraction artefacts.** Ω₀ is not measured directly but obtained from a multi-parameter fit of a full flux sweep. Vortices entering *other* parts of the circuit (wide CPW, SQUID arms, junction leads) would shift φ_off, I_c, or the effective loop inductance. Such shifts could appear as steps in fitted Ω₀. Please show:
+  - the raw Ω_m at Φ_b = Φ₀/2, which the authors themselves note directly gives Ω₀;
+  - the raw Ω_m at Φ_b = 0;
+  - the fitted I_c(B_ip) and φ_off(B_ip), checking whether the steps coincide with changes in those parameters.
+- **Smooth rise between steps.** If the steps are vortex entries, the vortex number is constant between them. Yet Ω₀² keeps rising smoothly between steps at roughly the background slope. What mechanism produces α_L growth at fixed N_v? The background and step interpretations appear mutually inconsistent.
+- **Counting.** Eq. 7 predicts ΔB ≈ 0.6–1.25 mT per vortex, i.e., roughly 15–30 entries between 12 and 30 mT. Only 4–5 steps are observed, with spacings of 1.5–5 mT. The authors invoke "one or a few flux quanta" per step, but then assume exactly one vortex per step when extracting k_p and U. If steps contain several vortices, the single-vortex values are overestimates.
+- **Magnitude check.** With ~56 vortices at 35 mT, each contributing k_p ≈ 14–70 N m⁻², the total would be α_L ≈ 0.2–1.2 × 10¹⁵ N m⁻⁴. This exceeds the extracted 2 × 10¹⁴ N m⁻⁴. Moreover, the steps alone account for a large fraction of the total shift, which suggests double counting between "background" and "jumps".
+- **Mode shape.** The fundamental string mode is sinusoidal, not uniform. A vortex entering near a clamp contributes much less than one at the antinode. The single-vortex analysis should include the mode-shape weighting, or at least discuss the resulting spread.
+
+### 5. Stochasticity and history dependence are asserted rather than demonstrated
+
+- In Fig. 3(a), datasets 1 and 2 cover non-overlapping field ranges (~12–17 mT and ~19–30 mT). They therefore cannot show that step positions vary between runs.
+- It is unclear how dataset 2 is referenced to Ω₀(20 mT) when it does not reach 20 mT. An arbitrary offset could create or hide the step at 20 mT.
+- Comparing Fig. 3(a) with 3(b), steps appear at 22.5 mT in both and at 20.0 vs. 20.5 mT. This hints at reproducible rather than stochastic features.
+
+The following controls are, in my view, essential for the claim:
+- repeated up-sweeps within one cooldown over identical ranges;
+- down-sweeps, to test hysteresis and vortex exit;
+- reversed B_ip polarity;
+- field-cooled vs. zero-field-cooled comparison;
+- temperature dependence toward T_c.
+
+### 6. The force-sensitivity argument is conceptually loose
+
+ΔF = Δk·x_rms is not a force that the measurement detects. What is detected is a frequency shift, whose resolution is set by frequency noise or Allan deviation and by the fit uncertainty of Ω₀. Comparing ΔF with S_FF^th integrated over "1–10 Hz" does not correspond to the actual measurement protocol, which is a quasi-static sweep with a full flux scan and fit per point.
+
+- The meaningful figures of merit are the uncertainty of Ω₀ per field point and the step amplitude relative to it. Steps of 10–50 Hz correspond to 0.5–2.5 Γ_m.
+- The mode temperature is assumed to equal 85 mK; this should be verified.
+- The claims of "attonewton-scale forces" and "real-time" capture of spontaneous flux dynamics (Sec. V) are therefore overstated.
+- The claim of in-situ determination of B_c2 is not demonstrated.
+
+### 7. Effective density in Eq. 8
+
+ρ_eff = m_eff/V_geom ≈ 910 kg m⁻³, whereas Al has 2700 kg m⁻³. For a spatially uniform α_L, the modal projection gives Δω² = α_L/ρ, with the *physical* density: the mode-shape factors cancel between modal stiffness and modal mass. Using m_eff/V_geom mixes modal and geometric quantities and appears to bias α_L by a factor of ~2–3. This is secondary to point 2 but should be corrected.
+
+### 8. Empirical B_c1 and the functional form
+
+B_c1 ≈ 5 mT is taken from where "the trend sets in". However:
+- Fig. 2(d) has no data below ~6 mT.
+- The fitted function A₀ + C·B^k has no threshold.
+
+If stiffening starts at B_c1, a form such as (B − B_c1)^k, or Eq. 7 inserted into α_L, should be fitted and compared. Please also state whether k = 1.81 ± 0.05 comes from independent fits to each dataset or from a joint fit, and whether the jumps were excluded.
+
+## Minor issues
+
+- **Mixed analysis models.** Fig. 4 combines older data analyzed with Eq. A1 (neglecting L_l) with new data analyzed with Eq. 3. Please reanalyze the old data with Eq. 3, or show that the difference is negligible.
+- **VNA protocol.** Explain how Ω_m is obtained by VNA near the flux points where the sideband signal vanishes (e.g., OMIT?), and whether this introduces systematic offsets relative to the noise spectroscopy.
+- **Magnetoelastic estimate.** Give a short derivation of ΔΩ₀/Ω₀ ~ 10⁻⁸ for the tensile string.
+- **Figure captions.**
+  - Fig. 2(d) caption says "Ω₀(B_ip)", but Ω₀² − Ω₀²(35 mT) is plotted.
+  - Fig. 4 caption refers to "blue circles" (they are green) and "black squares", while the text says "black filled circles".
+  - Fig. 1(a) caption mentions κ_ext and κ_in labels that are hard to identify.
+- **Symbol overloading.** α denotes surface scattering (1.33), junction asymmetry, and α_L. κ denotes cavity decay and κ_GL. Please disambiguate.
+- **Terminology.** "Cavity optomechanics, also known as nano-electromechanics" is imprecise; electromechanics is a microwave implementation of cavity optomechanics.
+- **Hedging.** Wording is inconsistent: "suggest" in the introduction and conclusion vs. "attributable"/"directly quantify" in the abstract and Sec. V. The abstract should reflect the level of evidence.
+- **References.**
+  - Duplicates: 34/70, 42/82, and 36/69/79. Ref. 79 is listed as Phys. Rev. B 19, 044073, which should be Phys. Rev. Applied.
+  - Refs. 9 and 12 lack years.
+  - "Gorodetksy" in Ref. 86 should be "Gorodetsky".
+- **Unexplained fit parameter.** Define S₀(Φ_b) in Eq. A1.
+
+## Recommendation
+
+**Major revision.** The platform and data are interesting and potentially valuable. However, the central claim, resolving single Abrikosov vortex entry and extracting single-vortex pinning energies, currently rests on:
+- a vortex picture that is doubtful for a d ≈ ξ cross-section in a parallel field;
+- a stiffening model (Eq. 8) at odds with established vibrating-reed theory;
+- step features that have not been separated from fit-parameter artefacts or shown to be stochastic and hysteretic.
+
+The manuscript should either:
+- **(i)** add the controls and modelling requested above (raw Φ₀/2 data, fit-parameter traces, up/down and FC/ZFC sweeps, temperature dependence, a GL treatment of the actual geometry); or
+- **(ii)** substantially soften the claims, presenting the steps as discrete flux-related events of undetermined microscopic origin and the background as phenomenological.

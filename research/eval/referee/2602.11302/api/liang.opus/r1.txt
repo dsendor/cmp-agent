@@ -1,0 +1,168 @@
+**Review outline:**
+
+**1. Significance and novelty**
+
+- **Scientific question.** The manuscript asks how the nanoscale distribution of metallic (R) and insulating (M1) domains in VO₂ two-terminal devices evolves during and after electrical switching over hours. It also asks whether that distribution controls cycle-to-cycle stochasticity of filament formation. This is timely: device-to-device and cycle-to-cycle variability is a central obstacle for Mott/phase-change neuromorphic hardware, and electrical transport only gives ensemble averages.
+- **Methodological novelty.**
+  - Operando Bragg XPCS on a functioning micron-scale device, with diffraction acquisition synchronized to current pulses.
+  - This allows one coherent-scattering measurement to compare the domain configuration of successive On states over ~1800 cycles.
+  - To my knowledge this stroboscopic, cycle-resolved correlation approach has not been applied to VO₂ switching. It could become a useful general tool for resistive-switching oxides.
+- **Claimed physical findings.**
+  - (i) A sub-threshold current slowly (~10³ s) erases a pre-existing domain configuration ("erasable short-term memory").
+  - (ii) An above-threshold current erases it within <1 s, after which the new configuration is very stable.
+  - (iii) Under constant current, the KWW exponent β evolves from ~1 to ~1.5, interpreted as a "jamming transition" of nano-domains.
+  - (iv) Repetitive switching drives cycle-to-cycle correlation from low to high, interpreted as a transition from stochastic to deterministic filament formation ("learning by plasticity").
+- **Overall assessment of significance.**
+  - The experimental concept is novel and potentially high-impact.
+  - However, the headline claims (jamming, learning, jamming-*controlled* stochasticity) are interpretive leaps from rather weak speckle-contrast signals.
+  - The decorrelation times extracted are often far longer than the measurement windows, and controls for thermal/mechanical artifacts are missing.
+  - In its current form, the novelty is mainly methodological; the physical conclusions are not yet established at the level expected for a top-tier journal.
+
+**2. Potential reasons for acceptance**
+
+- **First-of-its-kind measurement.**
+  - Coherent Bragg diffraction tracks the domain configuration of a working VO₂ device in situ over hours and thousands of switching cycles.
+  - The synchronized "On-state-only" correlation protocol (Fig. 1c–e, Fig. 3c) is elegant and generalizable to other filamentary/Mott switching systems (V₂O₃, NbO₂, cobaltites, memristive oxides).
+- **Relevant and potentially important observations.**
+  - Erasure is current-dependent: slow (~10³ s) for sub-threshold currents and <1 s above threshold.
+  - The newly formed On-state configuration is long-lived.
+  - Both connect naturally to known phenomena: persistent metallic domains, ramp-reversal memory, and sub-threshold firing (Refs. 9–11, 45, 46).
+  - If substantiated, they offer a microscopic handle on why switching is stochastic and how it might be engineered.
+- **Breadth of interest.**
+  - The paper bridges correlated-electron physics, soft-matter concepts (glass/jamming, aging, compressed-exponential relaxation), and device engineering.
+  - This cross-disciplinary angle could appeal to a broad readership.
+- **Practical device message.**
+  - The proposed operational scheme is "train by repetitive above-threshold pulses, reset by sub-threshold current."
+  - It is a concrete, testable prediction for neuromorphic device operation.
+  - The authors report the stochastic→deterministic trend in both irradiated and pristine devices (SI), which suggests some generality.
+
+**3. Potential reasons for rejection**
+
+**Reason 1: Extracted timescales and exponents are poorly constrained, and the analysis has internal inconsistencies.**
+
+- **Timescales exceed the observation windows and the stated stability limit.**
+  - The fitted τ values are 24,000 s (340 K), 35,000 s (0.26 mA), 81,000 s (298 K, Fig. 2c), and 150,000–160,000 s (4 mA).
+  - These are 5–50× longer than the windows (~3,000–10,000 s) over which each g₂ is measured.
+  - In this regime g₂ decays by only a small fraction of its already tiny contrast (baseline-to-plateau ~1.01–1.026). τ and β are therefore strongly covariant, and the decay shape cannot be determined independently of the amplitude A and the baseline.
+  - The text states the experimental stability limit corresponds to "8000 ± 3000 s," yet Fig. 2c reports τ = 81,000 ± 3,000 s at 298 K. Either this is a typo or the stability limit lies *below* most τ values reported for driven states.
+  - If the latter, the current-driven "slow dynamics" are indistinguishable from instrumental drift. The quoted uncertainties (e.g., ±100 s on 24,000 s) are implausibly small given the extrapolation involved.
+- **The fitting procedure biases β.**
+  - A single τ is fitted for all t_age within a measurement, while β is allowed to vary with t_age (Fig. 4).
+  - If the true dynamics age (τ increasing with t_age, as is typical for glassy/aging systems), forcing a common τ pushes the change into β. A rising β could then simply be the fit's way of absorbing a slowing τ.
+  - The β ≈ 1 → 1.5 "transition" may thus be a parametrization artifact. A free-τ, free-β analysis with covariance estimates, or a model-independent shape analysis, is required.
+- **Normalization issues in the correlation functions.**
+  - Eq. (1) normalizes G(t₁,t₂) by ⟨I²⟩ over the whole acquisition, rather than by the standard ⟨I_p(t₁)⟩⟨I_p(t₂)⟩ with pixel averaging.
+  - With this normalization, any change in total diffracted intensity appears as "decorrelation" or as variations along the diagonal (acknowledged for Fig. 2b). Such changes include changing M1/R phase fraction, Bragg peak shift from heating, or beam/sample drift.
+  - The authors do not specify which pixels or ROI are used, whether the M1 and R peaks are captured simultaneously, or how the speckle contrast A is determined.
+- **The Arrhenius analysis is weak.**
+  - The inset of Fig. 2d appears to contain only two temperatures, one of which (340 K) lies inside the transition and is explicitly non-stationary.
+  - An activation energy from two points with ~30% error is not robust.
+  - The comparison of E_a/k_B ≈ 2700 K to the melting point (2240 K) "consistent with melting when domains become freely mobile" is not physically justified. Activation barriers for domain-wall motion and the thermodynamic melting temperature are not commensurate quantities, and the argument should be removed or properly grounded.
+
+**Reason 2: The "jamming transition" interpretation is not supported by sufficient evidence.**
+
+- **A compressed exponent is not diagnostic of jamming.**
+  - β > 1 in XPCS is generic. It arises in stress-relaxation-driven ballistic motion in gels and glasses, but also from:
+    - uniform drift or convective motion, which gives a Gaussian-like decay with β → 2;
+    - thermal expansion and Bragg-peak walking under Joule heating;
+    - heterodyne mixing with static scatterers, such as unirradiated or non-switching regions and the substrate;
+    - non-stationary dynamics fitted with stationary forms.
+  - Under a 4 mA bias (~8 mW dissipated in a 5×5 µm² region, Fig. 5b), slow thermal drift of the lattice parameter and sample position is expected. It would naturally produce β > 1 that grows as heat accumulates.
+  - No control (e.g., β under pure thermal heating to the estimated Joule temperature, or monitoring peak position/width vs time) rules this out.
+- **No independent signatures of jamming or glassiness are presented.** The paper lacks:
+  - dynamic heterogeneity (variance of two-time correlations, χ₄-like quantities);
+  - ballistic scaling of τ with momentum transfer, τ ∝ 1/q, which is the usual evidence for compressed-exponential dynamics;
+  - yielding behavior, packing-fraction proxies, or an order parameter.
+- **Mechanistic arguments are speculative.**
+  - "More metallic domains reduce available space" or "domains move toward the filament" are offered without real-space or phase-fraction data, even though the R/M1 integrated intensities could at least test the first hypothesis.
+- **The shear-thickening analogy is unsupported, and the β data are statistically weak.**
+  - The analogy ("larger current → slower transition") rests on t_jam = 1100 ± 600, 1200 ± 500, and 4000 ± 3000 s, which are statistically indistinguishable.
+  - At 4 mA the sigmoid does not clearly plateau (Fig. 4).
+  - Individual β points have large error bars and scatter between ~0.8 and ~1.7.
+  - Calling this a "transition" for "hard matter" granular-like dynamics overstates what the data show.
+- **The currents in Fig. 4 do not match the switching regimes.**
+  - 0.26/0.27 mA is described as sub-threshold with "no percolating filament," yet it shows the same β → 1.5 behavior as 4 mA.
+  - 1.7 mA lies below I₁ in Fig. 5b.
+  - If a sub-threshold, non-switching current produces the same "jamming," the link between jamming and filament formation or switching determinism, which is central to the title, is undermined rather than supported.
+
+**Reason 3: The "learning/deterministic switching" claim (Fig. 3c, 3i) lacks essential controls and admits trivial explanations.**
+
+- **Incomplete relaxation between pulses can mimic learning.**
+  - The device is cycled with ~3 s period (1,800 cycles in ~5,000 s). The authors themselves note that relaxation to the insulating state can take hours after large currents, and that persistent metallic patches survive (Refs. 22, 45, 46).
+  - Rising correlation between consecutive On states may therefore reflect cumulative heating of device and substrate toward a thermal steady state, plus incomplete Off-state relaxation. The Off state then never resets, so successive On states are trivially similar.
+  - That is a thermal-memory effect, not plastic "learning." The ~200–1000-cycle timescale (~600–3000 s) is comparable to typical thermal and mechanical settling of a heated stage and sample mount.
+- **Missing controls.**
+  - Off-state images are not recorded or analysed to show whether the device returns to a distinct insulating configuration each cycle.
+  - There is no pulsed sub-threshold control (same duty cycle, no filament) to separate heating/drift from switching-induced reconfiguration.
+  - There is no correlation matrix vs lag k (ΔG(n, n+k)) showing that late cycles converge to a common attractor rather than merely evolving slowly.
+  - There is no beam/sample-drift monitoring (Bragg peak centroid, total intensity, sample position) across the 5,000 s run.
+- **Absence of electrical corroboration.** "Deterministic switching" is a statement about electrical behavior, yet no cycle-resolved electrical data are shown, such as:
+  - switching voltage or time distributions;
+  - On-state resistance vs cycle;
+  - variance before vs after "training."
+
+  Without these, the inference that XPCS correlation equals switching reproducibility is unverified. The 1 s exposure also integrates over the entire On state, so it does not probe the filament-nucleation event that determines stochasticity.
+- **Normalization and the train/reset scheme are not demonstrated.**
+  - ΔG(n,n+1) is "normalized" to 0–1 without the normalization being defined. The text refers to an "inset (orange data)" that does not exist.
+  - The proposed train/reset scheme is never actually shown in one protocol: training, then sub-threshold erasure, then restored stochasticity.
+  - Retention after training (stop cycling, wait, resume) is also not tested.
+  - Without these, "train and reset VO₂ neuromorphic devices" remains a conjecture.
+
+**Reason 4: Experimental geometry, sample definition, and reproducibility leave key ambiguities.**
+
+- **Beam and coherence geometry versus the device.**
+  - The beam (7.4 × 14.8 µm²) is larger than the 5×5 µm² device and therefore illuminates electrodes, unpatterned or unirradiated film, and possibly non-active VO₂ regions.
+  - Non-switching regions contribute static speckle, producing heterodyne-like mixing. This lowers contrast and can distort β.
+  - The transverse coherence length (1.7 µm) is much smaller than the device, so the speckle is averaged over many partially coherent patches. This explains the ~1–2% contrast but also limits sensitivity to filament-scale changes.
+  - The fraction of the scattering volume actually occupied by the filament is not estimated. It is unclear whether XPCS is sensitive to the filament or mainly to the surrounding matrix.
+- **Sample description inconsistencies and the role of Ga.**
+  - The main text says a central 5×5 µm region was irradiated with 0.1 pC/µm²; Methods say devices were "globally irradiated."
+  - The role of Ga-induced defects, which are claimed to guide filament formation and could themselves explain deterministic switching, is not disentangled from the claimed plasticity.
+  - The pristine-device results are relegated to the SI and not quantitatively compared.
+- **Reproducibility and statistics.**
+  - Each main-text result appears to come from a single run on a single device.
+  - The authors do not show repeat runs, the dependence of the cycling result on current amplitude or duty cycle, or whether X-ray exposure (2×10¹⁰ ph/s focused, for hours) itself induces changes. Beam damage or beam-induced reduction is known for vanadium oxides.
+  - A dose-dependent control (beam on/off intervals, or the same measurement on a fresh spot) is needed.
+- **Unknown local temperature.**
+  - The domain size R_d = 2π/Q_FWHM ≈ 20 nm ignores finite-thickness (45 nm) and strain broadening.
+  - The actual local temperature under 4 mA is never estimated (e.g., from Bragg peak shift), although the discussion relies heavily on Joule heating to interpret τ and t_jam.
+
+**4. Suggestions for improvement**
+
+1. **Make the XPCS analysis quantitative and robust.**
+   - Use standard pixel-averaged two-time normalization and specify the ROI and Bragg reflections.
+   - Report contrast A from static references.
+   - Fit τ and β freely for each t_age with full covariance and confidence intervals. Show that the β trend survives when τ is free, or present model-independent shape metrics.
+   - Restrict claims to τ values comparable to or shorter than the acquisition window, and establish the instrumental stability floor with a static reference measured under identical heating.
+   - Resolve the 8,000 vs 81,000 s discrepancy.
+   - Measure the Arrhenius dependence at ≥4–5 temperatures below the transition, and drop the melting-point comparison.
+
+2. **Rule out thermal, mechanical, and beam-induced artifacts with explicit controls.**
+   - Track the Bragg peak centroid, width, and integrated M1 and R intensities vs time for every measurement. Peak shift gives the local Joule temperature and phase fraction.
+   - Perform a heating-only control at the estimated Joule temperature with no current.
+   - Run a pulsed sub-threshold control with identical duty cycle.
+   - Acquire Off-state images during cycling, and vary the Off-time to test whether correlation growth depends on incomplete relaxation.
+   - Include beam-exposure controls, such as a fresh spot or interrupted exposure.
+   - If possible, measure q-dependence of τ to test ballistic (τ ∝ 1/q) vs diffusive behavior. This is the standard way to substantiate a compressed-exponential "jammed" interpretation.
+
+3. **Substantiate the learning/erasure claims with electrical data and full protocols.**
+   - Record cycle-resolved switching voltage/current, delay time, and On/Off resistance simultaneously with XPCS, and show that their variance decreases where ΔG(n,n+1) rises.
+   - Present the full ΔG(n, n+k) matrix to demonstrate convergence to a learned configuration.
+   - Demonstrate the full train → retain (wait) → sub-threshold reset → retrain sequence in one experiment, ideally on several devices and on the pristine device in the main text.
+   - Compare irradiated vs pristine quantitatively to separate defect-guided filament pinning from plastic learning.
+   - Define the normalization of ΔG.
+
+4. **Temper the interpretation, and correct inconsistencies in the presentation.**
+   - Consider reframing "jamming transition" as "crossover to compressed-exponential (constrained) dynamics" unless dynamic-heterogeneity or q-scaling evidence is added. Remove or support the shear-thickening analogy.
+   - Explicitly discuss the tension that sub-threshold (non-switching) currents produce the same β evolution. Also discuss that t_jam is measured under constant current while learning occurs under cycling, so their causal link in the title is not yet established.
+   - Discuss the gap between the 10³-s timescales and practical neuromorphic operating speeds.
+   - Fix the textual errors:
+     - 0.26 vs 0.27 mA;
+     - τ ≈ 150,000 vs 160,000 s;
+     - the nonexistent "inset (orange data)";
+     - "single exponential" for a stretched/compressed form;
+     - t₁ + t₂ = t_age (should be 2t_age, or the axes redefined);
+     - Fig. 1 caption panel labels (c–e);
+     - local vs global irradiation;
+     - "Mott insulator" terminology for VO₂, given the debated Peierls/Mott character.
+   - Add a schematic or estimate of the filament's fraction of the coherent scattering volume, so readers can judge what the speckle actually reports.

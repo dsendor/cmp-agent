@@ -1,0 +1,133 @@
+{
+  "overall_feedback": "The paper combines high-pressure/low-temperature single-crystal XRD, high-temperature PXRD, PBE-DFT relaxations and polarized Raman scattering. Its aim is to settle the structural phase diagram of La4Ni3O10: a direct I4/mmm→P21/c transition with no Bmab intermediate, plus a third, symmetry-lowered DW phase. The experimental work is substantial and useful. The P–T boundary of the monoclinic distortion, the care with non-standard settings, and the detailed Raman mode tracking are clear contributions. However, several central claims are stated more strongly than the evidence supports.\n\n(i) Bmab is excluded at the transition onset mainly by a better refinement fit and a β deviation the authors themselves call negligible at 300 K. The centering-violating spots attributed to twinning would also appear for twinned Bmab.\n(ii) The DFT result is presented as unequivocal. Yet the methods admit that the relaxed phase depended on the starting structure and convergence threshold. No enthalpy comparison between relaxed candidate phases is given, the magnetic state is unspecified, and Pc comes from three-point extrapolations on a ~1 GPa grid.\n(iii) The transition is called both 'weak first-order' and 'continuous'.\n(iv) The Raman inference of point-symmetry breaking below 2/m does not exclude zone folding from cell multiplication. The polarization selection rules are compromised by the stated arbitrary in-plane polarization orientation and by twinning. The margin over the P-1 limit (51 vs 48 modes) is thin.\n(v) The XRD non-detection of DW satellites is not quantified. The 'down to 20 K at ambient pressure' statement is not matched by the described ambient-pressure data sets.\n\nAddressing these points would make the conclusions much more robust. The main fixes are a statistical model comparison, DFT enthalpy differences, a group-theoretical (Landau) analysis of the I4/mmm→P21/c path, Raman crystal orientation and twin-fraction information, and an upper bound on satellite intensities.",
+  "comments": [
+    {
+      "title": "Exclusion of Bmab near the transition onset rests on a fit-quality comparison and a β deviation called 'negligible'",
+      "quote": "the fit to the data employing monoclinic symmetry B21/a compared to orthorhombic Bmab is much better as shown in Table S4 in the SI [39]",
+      "explanation": "The headline claim is that XRD 'unequivocally' shows a direct 4/mmm→2/m transition with no Bmab window. The authors themselves say the monoclinic distortion at 300 K is 'negligible' (p. 8), and β is 'close to 90°' at the 10.5 GPa onset. So the deciding evidence near the boundary is a better refinement in B21/a than in Bmab.\n\nThe B21/a model has more free parameters: extra positional degrees of freedom and, with four pseudo-merohedral twin domains, more twin fractions. A lower R-value is therefore expected even if the true symmetry were Bmab. Without a statistical test, the comparison does not discriminate. The thin intermediate Bmab region that Li et al. propose is exactly the region where β−90° is at or below DAC resolution. The exclusion of Bmab there leans largely on the 0 K DFT result, not on the 300 K data.",
+      "type": "logical",
+      "severity": "major",
+      "suggested_fix": "Report, for the 10.5–11.3 GPa data sets, the number of refined parameters and the wR/GoF for both models. Add a Hamilton R-ratio (or equivalent) significance test. Also give the refined β with its esd and the instrumental angular resolution at those pressures, so readers can judge whether β−90° is significantly non-zero."
+    },
+    {
+      "title": "Centering-violating spots attributed to twinning do not discriminate B21/a from twinned Bmab",
+      "quote": "indicates the presence of new reflections that appear to violate centerings at lower pressure points. However, it manifests from the microscopic domains of the single crystal induced by the phase transition, similar to the more recent work by Li, et al., [22].",
+      "explanation": "Fig. 2(c) and this text present the weak spots that violate B-centering in hk-1 as a signature of the 2/m phase, explained by twinning. Loss of the 4-fold axis produces 90°-rotated domains whether the low-symmetry phase is Bmab or B21/a. Superposed domain reciprocal lattices give spots that violate the B-centering of a single domain in both cases.\n\nThe authors note that Li et al. observed the same features and interpreted them as Bmab. So these spots show that symmetry is broken below 4/mmm, but they carry no information on monoclinic versus orthorhombic. As presented, Fig. 2(c) could be read as supporting the absence of Bmab.",
+      "type": "logical",
+      "severity": "moderate",
+      "suggested_fix": "State explicitly that the twin-induced centering-violating reflections are expected for both Bmab and B21/a. Restrict the evidence against Bmab to the measured β (with esd) and the refinement statistics. Alternatively, identify reflections or splittings that are allowed in B21/a but extinct in all twin components of Bmab (e.g., violations of the a-glide/mirror conditions of Bmab), if any were observed."
+    },
+    {
+      "title": "Transition described as both weak first-order and continuous; no group-theoretical support for a direct continuous I4/mmm→P21/c path",
+      "quote": "as the transition from 4/mmm to 2/m is continuous bypassing the orthorhombic phase due to the lack of orthogonality of β",
+      "explanation": "On the same page the authors report 'a jump in the value of β at the onset of the 2/m phase, which could be attributed to a weak first-order phase transition'. A few lines later they call the transition 'continuous', and the DFT analysis fits mean-field (Pc−P)^1/2 laws. These two statements are inconsistent.\n\nThe distinction also matters physically. In RP structures, Bmab/Cmce follows from a single tilt irrep at the X point with a special order-parameter direction. A monoclinic P21/c (P21/a) phase generally needs either a general direction of a multi-component order parameter or coupling of two distinct irreps. A direct continuous transition into such a phase is non-generic in Landau theory. It is typically first-order or proceeds through intermediate phases.\n\nThe absence of Bmab is thus not just an empirical detail but a statement about which irreps condense. It needs a symmetry-mode argument.",
+      "type": "logical",
+      "severity": "moderate",
+      "suggested_fix": "Decide between 'weak first-order' and 'continuous' and use one term consistently. Add a symmetry-mode decomposition (e.g., ISODISTORT) of the refined and DFT P21/c structures relative to I4/mmm. Identify the irreps (and order-parameter directions) involved and state whether Landau theory allows a direct continuous transition."
+    },
+    {
+      "title": "DFT 'unequivocal' conclusion undermined by admitted dependence on starting structure; no enthalpy comparison",
+      "quote": "the relaxation could have stopped in the tetragonal (or even in one of the orthorhombic) at low pressure, when the minimum of the total energy was on the P21/c, and viceversa at highest pressure, depending on the starting crystal structure.",
+      "explanation": "I appreciate the candor here. However, this sentence shows that the relaxed symmetry at a given pressure depended on the starting structure and on a very tight stopping threshold. The text says the energy landscape between candidate structures is extremely flat. In that situation, a single relaxation path in the P21/c cell is not proof that Bmab is never the ground state.\n\nThe standard approach is to relax each candidate phase (I4/mmm, Fmmm, Bmab, P21/c) independently at each pressure and compare enthalpies H = E + PV. The total energy is converged only to 1 mHa (~27 meV per cell), which is likely larger than the tilt-related energy differences near Pc. The starting structures used at each pressure are also not stated.\n\nGiven this, describing the DFT result as showing 'unequivocally' that there is 'no room for intermediate structures' overstates the case.",
+      "type": "technical",
+      "severity": "major",
+      "suggested_fix": "For each pressure, report the enthalpy differences ΔH(P21/c − Bmab), ΔH(Bmab − I4/mmm), etc. Use independently relaxed structures with symmetry constraints, and give an energy convergence of the relative energies well below these differences. Also state the starting structure(s) used in the unconstrained P21/c relaxations."
+    },
+    {
+      "title": "Magnetic state and other key DFT settings unspecified",
+      "quote": "The density-functional theory (DFT) crystal relaxation has been performed using the ABINIT code in the the PBE [47] generalized-gradient approximation (GGA) with pseudopotentials from the PsuedoDojo table.",
+      "explanation": "La4Ni3O10 hosts an SDW at ambient pressure, and octahedral tilts in nickelates are known to couple to magnetism and correlation (+U). The methods do not say whether the calculations are non-spin-polarized or spin-polarized, which magnetic configuration was used, or whether any +U was applied. The stopping criterion is quoted in Ha/Bohr for both 'forces and stresses', but stresses have different units, so the stress threshold is undefined. These choices can shift Pc and possibly the relative stability of tilt patterns, so the calculation is not reproducible as described.",
+      "type": "technical",
+      "severity": "moderate",
+      "suggested_fix": "State explicitly: spin polarization and magnetic order (or non-magnetic), use of +U (and its value) or none, smearing scheme/width, and the stress convergence threshold in Ha/Bohr^3 (or GPa)."
+    },
+    {
+      "title": "Pc = 16.47 ± 0.04 GPa from three-point extrapolations on a ~1 GPa grid overstates the precision of 'simultaneous' vanishing",
+      "quote": "Indeed, the three order parameters all nullify at the same critical pressure found to be Pc = 16.47 ± 0.04 GPa.",
+      "explanation": "The text says each order parameter was fitted using only 'the three last points closest to the critical pressure', with a fixed exponent (1/2, or linear for b−a). Fig. 5 shows pressure points spaced ~1 GPa apart, with the last P21/c point at ~16 GPa and the first I4/mmm point at ~17 GPa.\n\nA two-parameter fit to three points, with the exponent fixed, gives an extrapolated zero whose spread across order parameters says little about the true uncertainty. It cannot exclude an intermediate phase narrower than the ~1 GPa sampling. The ±0.04 GPa is also sensitive to the assumed exponent; the authors report α=0.4 when it is freed.\n\nThe qualitative conclusion may well be right. However, the stated precision and the 'no room for intermediate structures' wording go beyond what the sampling supports.",
+      "type": "technical",
+      "severity": "moderate",
+      "suggested_fix": "Add relaxations at finer pressure steps (e.g., 0.1–0.2 GPa) between 15 and 17 GPa. Report the fit uncertainty of each Pc (including variation of α), not only the spread between the three values."
+    },
+    {
+      "title": "ΔP ≈ 3 GPa for a 1% change of b appears inconsistent with the measured compressibility",
+      "quote": "If we estimate the error on pressure as the value here required to shrink the b parameter by 1%, we will get ∆P = 3 GPa.",
+      "explanation": "The estimate is not derived, so I tried to check it against the paper's own data. In Fig. 4(a), the in-plane parameters decrease by only ~2% between 0 and ~16 GPa, i.e., roughly 1% per 6–8 GPa. The fitted bulk moduli K0 ≈ 155–185 GPa also imply ~5 GPa for a 1% isotropic linear strain.\n\nA 3 GPa shift for 1% in b therefore corresponds to a much more compressible b axis than observed. It may come from the DFT equation of state, but that is not shown. Since this estimate underpins the claim that the PBE Pc agrees with experiment within error, it should be justified.",
+      "type": "technical",
+      "severity": "minor",
+      "suggested_fix": "Give the DFT b(P) curve (or the DFT linear modulus along b) used to obtain ΔP. Reconcile it with the experimental b(P) slope from Fig. 4(a); the experimental slope suggests ΔP ≈ 5–8 GPa for 1%."
+    },
+    {
+      "title": "Excess Raman modes do not by themselves imply point-symmetry lowering below 2/m; zone folding from cell multiplication is not excluded",
+      "quote": "The emergence of these extra Raman-active modes signifies that DW-driven lattice distortions induce a breaking of monoclinic P21/c symmetry.",
+      "explanation": "The mode-counting argument compares the 51 observed modes with the Γ-point counts of P21/c and of its translationengleiche subgroups (P-1, Pc, P21, P1) in the same cell. However, a DW, commensurate or incommensurate, multiplies the cell or breaks translational symmetry. The authors themselves invoke this when they say new modes 'backfold' from finite Q.\n\nA supercell that keeps P21/c (or another 2/m) space-group type, i.e., a klassengleiche subgroup, also allows many more Raman-active Ag/Bg modes. So exceeding 48 modes rules out P21/c only in the original cell, not 2/m point symmetry. The authors acknowledge that 'familiar Raman selection rules' break down for modulated structures. Even so, the abstract and conclusion still state a reduction 'below 2/m symmetry' and propose specific non-centrosymmetric groups (Pc/P21).",
+      "type": "logical",
+      "severity": "major",
+      "suggested_fix": "Reword the conclusion to say the extra modes indicate either a loss of translational symmetry (cell multiplication or modulation, folding zone-boundary phonons to Γ) or a lowering of point symmetry. Include klassengleiche (cell-multiplied) subgroups of P21/c in the symmetry discussion, e.g. with the mode counts for a 2× supercell in P21/c."
+    },
+    {
+      "title": "Polarization selection rules in Table I do not hold for in-plane polarizations 'not aligned with a particular axis', especially in a twinned crystal",
+      "quote": "while the polarization Y and Z are in the (bc) plane but not aligned with a particular axis",
+      "explanation": "For 2/m with unique axis b, the Ag tensor has (xx, yy, zz, xz) components and the Bg tensor (xy, yz). Take polarization e = cosφ b̂ + sinφ ĉ⊥ in the bc plane. Then the parallel geometry picks up Bg intensity ∝ (2R_yz sinφ cosφ)². The crossed geometry picks up Ag intensity ∝ [(R_zz − R_yy) sinφ cosφ]². Clean Ag(yy)/Bg(yz) separation therefore holds only if Y is along b (or c).\n\nThe caption explicitly says Y and Z are not aligned with any axis. In addition, the four pseudo-merohedral twin domains within the laser spot have different in-plane axis orientations. Both effects allow modes to leak between yy and yz. This weakens the separate per-polarization counts (e.g., '31 modes in parallel' exceeding 24 Ag) and the statement that each mode 'clearly follows the Raman selection rules'.\n\nSeparately, the caption says 'The Poynting vector is perpendicular to X', while the Porto notation X(YY)X̄ and the main text place it along X, i.e., perpendicular to the (bc) plane.",
+      "type": "technical",
+      "severity": "moderate",
+      "suggested_fix": "Report the angle between Y and the crystallographic b axis (and the twin-domain fractions under the laser spot, if known). Account for Ag/Bg leakage in the mode counts, or base the argument only on the total count of distinct frequencies. Correct the caption to 'The Poynting vector is parallel to X (perpendicular to the (bc) plane)'."
+    },
+    {
+      "title": "Margin for excluding P-1 is thin and depends on counting distinct modes across both geometries",
+      "quote": "Since we measure a total of 51 phonon modes at low temperature, we can certainly rule out P¯1 as the low temperature space group.",
+      "explanation": "In P-1 all 48 Ag modes are allowed in both yy and yz. The relevant number is therefore the count of distinct frequencies, not 31 + 20. The 51 is only 3 above the limit. It relies on modes in the two geometries being distinct, and on no two-phonon, defect-activated or impurity features being counted, so 'certainly' is too strong given leakage (previous comment) and the conservative-counting caveat in the SI.\n\nA related minor point: the 51 A + 51 B quoted for Pc/P21 include the three acoustic modes. Only 49 A + 50 B (P21) or 49 A′ + 50 A″ (Pc) are optical.",
+      "type": "technical",
+      "severity": "minor",
+      "suggested_fix": "List the 51 frequencies and state which appear in both geometries, so readers can verify that ≥49 are distinct. Replace 'certainly' with a statement conditioned on this. Quote the optical-mode counts for Pc/P21 (49 A + 50 B / 49 A′ + 50 A″)."
+    },
+    {
+      "title": "Superlattice description with q1, q2 and their combinations is ambiguous with respect to a 2-fold superstructure",
+      "quote": "along with mixed-order satellite reflections corresponding to linear combinations",
+      "explanation": "A 2-fold superstructure of the primitive tetragonal cell requires only one superlattice wavevector per domain. In the B21/a cell, a single domain allows superlattice spots of type (0,1,0)_F ≡ (½,−½,0)_I and (½,½,odd l)_I, but not (½,½,0)_I.\n\nSimultaneous q1 = (½,½,0) and q2 = (½,−½,0) reflections, plus 'mixed-order' combinations, would in a single domain indicate a 2-k structure with a larger (4-fold) cell. That contradicts the stated 2-fold superstructure unless q1 and q2 come from different twin domains. The text does not say this, and a reader could conclude that the structure is 2-k.",
+      "type": "technical",
+      "severity": "minor",
+      "suggested_fix": "State explicitly that q1 and q2 belong to different twin domains, and that each single domain shows only one of them (with the corresponding l-parity condition). Drop or explain the 'mixed-order satellite' wording."
+    },
+    {
+      "title": "Non-detection of DW satellites is not quantified, and the '20 K at ambient pressure' statement does not match the methods",
+      "quote": "No discernible structural distortions associated with DW ordering are detected down to 20 K at ambient pressure.",
+      "explanation": "The paper argues that the DW modulation is too weak for synchrotron XRD and contrasts this with Zhang et al. However, no detection limit is given, for example an upper bound on satellite intensity relative to main reflections at the expected q. Without it, a reader cannot tell whether the result contradicts Zhang et al. or is merely less sensitive.\n\nThe ambient-pressure low-temperature data were collected at P24 with an open-flow He cryostat. The methods mention refinements only at 230 and 80 K and never state that 20 K was reached at ambient pressure. The 20 K data described elsewhere are DAC data at finite pressure, where the DW is reported to collapse within a few GPa.",
+      "type": "technical",
+      "severity": "moderate",
+      "suggested_fix": "State the lowest temperature actually measured at ambient pressure at P24. Give a quantitative upper bound on satellite intensity (e.g., I_sat/I_main < X at the DW wavevector reported by Zhang et al.) together with the counting statistics/exposure used."
+    },
+    {
+      "title": "Superconductivity conclusion is stated more strongly than the data allow",
+      "quote": "This affirms that superconductivity emerges only once the system is restored to the tetragonal phase under pressure.",
+      "explanation": "No transport or magnetic measurements were done on these crystals under pressure. The introduction notes that reported critical pressures span 5–40 GPa depending on medium and criterion. The structural boundary found here (~14–15 GPa at low T) is compatible with some reports. However, 'affirms' and 'only once' imply a causal link established by this work. What is shown is a structural phase boundary to compare with literature Tc onsets.",
+      "type": "logical",
+      "severity": "minor",
+      "suggested_fix": "Rephrase to: 'Our structural boundary (~14–15 GPa at low temperature) is consistent with reports that superconductivity appears in the tetragonal phase [19,20,22].'"
+    },
+    {
+      "title": "Oxygen stoichiometry and secondary phases not reported despite their likely influence on DW/Raman discrepancies",
+      "quote": "Both techniques confirm the La:Ni 4:3 atomic ratio.",
+      "explanation": "EPMA used an oxygen standard, yet only the La:Ni ratio is reported. The oxygen content δ is known to affect RP nickelates strongly, and the cited works use La4Ni3O10−δ. The authors attribute discrepancies with Zhang et al. (satellites) and with Gim/Suthar (Raman) to sample quality and composition, so δ is directly relevant.\n\nThe powder pattern also shows NiO and La2NiO4 side phases. RP intergrowths in flux-grown crystals are common, and La2NiO4 has its own low-temperature structural transition. Its possible contribution to Raman features emerging at low temperature is not addressed.",
+      "type": "technical",
+      "severity": "minor",
+      "suggested_fix": "Report the measured O content (or δ with uncertainty) from EPMA. Add a check (e.g., absence of La2NiO4 / other-n RP reflections in the single-crystal data, or Raman reference spectra of La2NiO4) excluding intergrowth contributions to the new low-temperature modes."
+    },
+    {
+      "title": "Inconsistent DW transition temperature and the term 'primitive cell in the B21/a setting'",
+      "quote": "β is the angle between the a and c vectors of the primitive cell in the B21/a setting",
+      "explanation": "B21/a is by definition a B-centered (non-primitive) cell, so 'primitive cell in the B21/a setting' is self-contradictory. Readers may wonder whether β refers to the centered 5.4×5.4×27 Å cell (as in Fig. 4) or to a reduced cell. Relatedly, T_DW is given as ≈135 K (abstract), ≈130 K (introduction, Fig. 6), and ~120 K or 120–150 K (Raman text). These minor inconsistencies make cross-comparison harder.",
+      "type": "technical",
+      "severity": "minor",
+      "suggested_fix": "Replace with 'the angle between a and c of the B-centered B21/a cell (a ≈ 5.4, b ≈ 5.4, c ≈ 27.9 Å)'. Use a single T_DW value (with range) throughout."
+    },
+    {
+      "title": "Single EOS fitted across the structural transition; large temperature variation of K0 not discussed",
+      "quote": "V0 = 818(1) Å3 and K0 = 182(4) GPa at 80 K",
+      "explanation": "The Birch–Murnaghan fits span both the 2/m and 4/mmm regions. The bulk modulus changes from 155(4) GPa at 300 K to 182–185 GPa at 80/20 K, a ~17% stiffening, which is unusually large for an oxide over this temperature range. It is likely affected by the K0–K′ trade-off and by including points across the transition. The main text does not state whether K′ was fixed, so the comparison with [19] and between temperatures is hard to assess.",
+      "type": "technical",
+      "severity": "minor",
+      "suggested_fix": "State whether K′ was fixed (and to what value). Report fits restricted to the monoclinic range with a common fixed K′ at all temperatures, so the K0(T) trend can be compared meaningfully."
+    }
+  ]
+}

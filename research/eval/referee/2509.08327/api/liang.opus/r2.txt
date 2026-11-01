@@ -1,0 +1,223 @@
+# Review outline
+
+**Submission:** "Trans-scale spin Seebeck effect in nanostructured bulk composites based on magnetic insulator" (Park et al.)
+
+---
+
+## 1. Significance and novelty
+
+**Topic.**
+- The manuscript tackles a long-standing bottleneck for spin-Seebeck-effect (SSE) thermoelectrics: the active volume is confined to the near-interface region set by the spin diffusion length λs (Pt, a few nm) and the magnon diffusion length λm (YIG, ~μm).
+- This confinement leaves conventional bilayer devices with very high internal resistance and low output.
+
+**Proposed solution.**
+- The authors use a three-dimensional composite: Pt-coated YIG powders made by dynamic (rotating/vibrating) powder sputtering, then compacted at 300 °C or room temperature under 350–500 MPa.
+- The goal is to distribute FMI/NM interfaces throughout a macroscopic volume ("trans-scaling").
+
+**Claimed advances.**
+- A precursor-free, uniform, continuous Pt coating on oxide powders (≥5 nm). This avoids the poor interface quality reported for ALD Pt on YIG.
+- Low-temperature consolidation enabled by the ductile Pt shell. This circumvents the >900 °C sintering of YIG, which dewets thin Pt and gave >MΩ samples at 800 °C.
+- An effective conductivity σeff of ~(5–50)×10² S/m, which the authors state is 2–3 orders of magnitude above thin-film-on-bulk FMI/Pt devices normalized to total device thickness.
+- Field-odd transverse signals with S_SSE = 7.5–17.3 nV/K, and an "isotropic" response in two orthogonal magnetothermal configurations (H_z–∇xT and H_x–∇zT).
+
+**Novelty assessment.**
+- The concept of bulk SSE/ANE nanocomposites is not new. Boona et al. (Nat. Commun. 2016) reported Ni–Pt and MnBi–Au composites, and SSE has also been shown in sintered polycrystalline ferrites and FM/NM multilayers.
+- The genuinely new elements are:
+  - extension to a magnetic *insulator* host, which removes ANE and shunting from a metallic FM;
+  - the powder-sputtering plus cold/warm-pressing route.
+- The conceptual step is therefore incremental-to-moderate. The processing route is of practical interest to the spin-caloritronics and transverse-thermoelectrics communities.
+- The headline claim of a "scalable platform for bulk SSE thermoelectrics" is not yet backed by a demonstrated performance advantage (see Section 3).
+
+---
+
+## 2. Potential reasons for acceptance
+
+**Clear, well-motivated problem.**
+- The λs/λm-limited active volume and the resulting device-level resistance problem are real and important for SSE applications.
+- The paper articulates them clearly (Fig. 1).
+
+**Credible materials-processing contribution.**
+- TEM shows a continuous ~5 nm Pt shell at 1 h deposition and island growth at 2.5 nm (Fig. S2). This is a useful calibration of the coating threshold.
+- The demonstration that Pt enables mechanically robust compaction at RT/300 °C, where uncoated YIG cracks, is practically relevant. It is also transferable to other oxide/metal spin-caloritronic composites.
+
+**Basic transport signatures consistent with SSE.**
+- The signal is field-odd after symmetrization, linear in ∇T for all four samples (Fig. 3c), and vanishes at ∇T = 0.
+- The field dependence saturates, rather than being linear as an ordinary Nernst contribution from Pt would be.
+- A similar coefficient appears in the rotated configuration (14.4 vs 14.8 nV/K for 30-RT).
+
+**Some effort toward artifact exclusion.**
+- XRD, saturation magnetization, Hall measurements and literature on the negligible Pt/YIG proximity effect are invoked.
+- A magnetic-insulator host does make the ANE background intrinsically much smaller than in previous FMM-based composites.
+
+**Useful device-level metric and supporting data.**
+- The device-normalized conductivity σeff (Note S3) highlights that the NM-only σ used in many SSE "power factor" reports overstates device performance. This is a point worth making to the community.
+- Full thermal property data (diffusivity, cp, density, κ) are reported, and κ is low (1.5–1.9 W/mK). This is favorable for a transverse figure of merit.
+
+---
+
+## 3. Potential reasons for rejection
+
+### 3.1 The central performance claim (advantage of trans-scaling) is not substantiated; the σeff comparison is misleading
+
+**σeff is not a figure of merit for an SSE device in isolation.**
+- σeff can be raised arbitrarily in a thin-film device by thickening the Pt, at the cost of a reduced ISHE field.
+- The relevant comparison is therefore the power factor σeff·S², or the maximum power density at matched load, normalized to the same total device volume.
+- Table S1 lists σeff for reference devices but omits their S_SSE and PF. This makes the "2–3 orders of magnitude" statement uninformative about energy-harvesting capability.
+
+**A rough benchmark suggests no PF gain, possibly a loss.**
+- Using the authors' own Table S1 value for Pt(10 nm)/single-crystal YIG (σeff ≈ 53 S/m) and a typical room-temperature LSSE coefficient for such devices (roughly of order 0.1 μV/K or larger) gives PF ≈ 5×10⁻¹³ W/mK² or more.
+- This is comparable to, or exceeding, the best composite here (5.1×10⁻¹³ W/mK², 30-RT).
+- The composites' S_SSE (7.5–17 nV/K) is roughly an order of magnitude below standard YIG/Pt LSSE values. The conductivity gain is thus largely offset.
+- The manuscript must show, ideally with a reference bilayer measured in the same setup, that trans-scaling yields a net gain.
+
+**Absolute performance is far from application relevance, yet the abstract and conclusion imply a "scalable platform".**
+- PF ~10⁻¹³ W/mK² is roughly 7–8 orders below good bulk ANE materials (e.g., Fe–Ga, Co₂MnGa with S ~ μV/K, σ ~ 10⁶ S/m). It is even further below conventional Seebeck materials.
+- No output power, load-matching or thermopile demonstration is provided.
+- The language "bridging nanoscale spin caloritronics with macroscopic device integration" should be tempered or supported.
+
+**The σeff values are low relative to the Pt content, which is not discussed.**
+- For μm-scale grains with 15–30 nm shells, the Pt volume fraction is likely a few percent. The exact value depends on the grain size distribution, which is not quantified.
+- A connected Pt network would then be expected to give σeff of order 10⁴–10⁵ S/m. The measured 5×10²–5×10³ S/m points to poor shell connectivity, cracked shells or high contact resistance from pressing.
+- This directly limits PF, but is neither analyzed nor characterized.
+
+### 3.2 The "trans-scale"/volumetric mechanism is asserted but not demonstrated; key trends are unexplained or inconsistent with simple expectations
+
+**No model connects interfacial SSE to the composite coefficient.**
+- An effective-medium or circuit model would treat each grain/shell as an ISHE current source shunted by the Pt network and the other shells. It would predict how S_SSE should scale with Pt thickness t, grain size d, Pt volume fraction and shell connectivity.
+- Without such a model, the claim that "the volume contributes" (Fig. 1d) is pictorial only.
+- No grain-size series is presented, so the length-scale argument (d vs λm) is untested.
+
+**The Pt-thickness dependence is suspicious.**
+- Both 15 nm and 30 nm are ≫ λs. In the simplest picture, doubling t at fixed interfacial spin current roughly halves the ISHE field, and also increases network conductance (here σeff rose by 4–6×).
+- Yet S_SSE decreases only by ~15–20% (17.3→14.8 and 9.2→7.5 nV/K).
+- Calling this "qualitatively consistent with the typical Pt thickness dependence" is not justified. The weak dependence may indicate incomplete coverage, a different current-shunting geometry, or additional contributions.
+
+**The sintering-condition dependence is unexplained.**
+- RT-pressed samples give ~2× larger S_SSE than 300 °C samples, despite similar density.
+- For 30 nm, the 300 °C sample nevertheless has 2× higher σeff.
+- Possible causes, none of which is investigated:
+  - interfacial oxidation or interdiffusion during 300 °C pressing in air;
+  - Pt recrystallization;
+  - changes in spin-mixing conductance;
+  - different porosity distribution affecting the true ∇T.
+
+**The isotropy claim rests on a single sample in two configurations measured with different thermal setups.**
+- The H_z–∇xT configuration used sapphire heat baths with grease. The H_x–∇zT configuration used Cu blocks with insulating thermal tape.
+- The two ∇T estimates therefore carry different, unquantified interfacial-drop errors, and the 14.4 vs 14.8 nV/K agreement may be partly fortuitous.
+- Isotropy for a random composite is expected from orientation averaging, since the average of n_i n_j over orientations is δ_ij/3 and E ∝ ∇T×M. It is therefore not a strong discriminator of mechanism.
+- Uniaxial pressing could produce anisotropic Pt connectivity. The relation of x, y, z to the pressing axis is not given, and σ and κ are not reported along both directions.
+- A typo states that the rotated configuration agrees with "the H_x–∇zT configuration"; it should read H_z–∇xT.
+
+### 3.3 Exclusion of parasitic and alternative contributions is qualitative and partly flawed
+
+**The magnetization argument is not valid at the level needed.**
+- Signals of ~10 nV/K require only a minute fraction of a metallic ferromagnet with ANE ~μV/K (e.g., Fe, FePt, Pt–Fe alloyed interface layers), provided it is percolating along Pt paths.
+- Such trace amounts (≪1 vol%) would not measurably raise Ms, especially given the simultaneous dilution by Pt. "Ms decreases, hence no FMM" is therefore not a bound.
+- XRD sensitivity (~1–5 wt%, with broad, low-crystallinity Pt peaks) is similarly insufficient. An interfacial Pt–Fe alloy formed during sputtering or 300 °C pressing would be essentially invisible.
+- The text also concedes that α-Fe₂O₃/YFeO₃ "could not be distinguished" by XRD.
+
+**The magnetization data raise questions of their own.**
+- The y-axis in Fig. 3f/S6 is ±0.04 emu/g, whereas YIG at 300 K has Ms ≈ 27 emu/g. The 37.9 emu/g quoted is closer to a low-temperature value. This apparent ~10³ unit or normalization error must be resolved.
+- The composites show a ~20–25% Ms reduction relative to the crystal, nearly independent of Pt thickness (15 vs 30 nm).
+- Simple mass dilution by Pt should depend on t, and for plausible grain sizes would scale with t. A reduction that is large and t-independent hints at:
+  - a magnetically degraded YIG surface layer (from crushing or sputtering);
+  - weighing/normalization errors;
+  - or other changes, all relevant to interfacial SSE.
+
+**The Hall test is weak as an exclusion tool.**
+- A linear V_Hall(H) at 100 mA only shows that the ordinary Hall effect of the dominant Pt network dominates. It cannot bound a minority ferromagnetic phase whose ANE (thermal) contribution could exceed its AHE (electrical) visibility.
+- 100 mA through a porous, partially percolating Pt network can cause local Joule heating and thermal gradients. Possible thermal artifacts in this measurement are not addressed.
+- The known small, nonlinear AHE-like signal in Pt/YIG (SMR-related) is not discussed.
+
+**Decisive controls are missing.**
+- No Pt-coated nonmagnetic garnet composite (GGG/YAG powder): this would rule out Pt-only or geometric/thermal artifacts.
+- No low-SOC coating (Cu, Al): the signal should vanish.
+- No negative-θSH coating (W, Ta): the signal should reverse sign. This is the classic ISHE fingerprint.
+- No H∥∇T measurement or field-angle rotation scan verifying E ∝ ∇T×M.
+- No temperature dependence (e.g., the characteristic YIG SSE T-dependence) and no comparison of sign with a reference YIG/Pt bilayer.
+
+**The field dependence is not compared with M(H) in the same geometry.**
+- Ey saturates at >2.5 kOe (H_z) and at several kOe (H_x), with visibly different shapes (Fig. 3b vs 3e). M(H) in Fig. 3f appears to saturate at lower fields, and its measurement orientation and demagnetization correction are not specified.
+- Sample dimensions are not given anywhere, so demagnetization effects cannot be evaluated.
+- Overlaying Ey(H)/Ey^sat with M(H)/Ms, measured on the same piece in the same orientation, is needed to tie the signal to bulk YIG magnetization.
+
+### 3.4 Insufficient microstructural characterization, metrology and reproducibility; numerous inconsistencies
+
+**The Pt shell in the actual composites is not characterized.**
+- TEM is shown only for 5 nm (and 2.5 nm) as-coated powders. No cross-sectional TEM/STEM-EDS of the sintered 15/30 nm composites is presented.
+- The claim of "continuous Pt channels" after 350–500 MPa compaction (which can crack, smear or delaminate shells) is therefore unverified. SEM-EDX maps at μm resolution cannot establish nanometer-scale continuity.
+- The 15 and 30 nm thicknesses are inferred from deposition time assuming a linear rate. They are not measured (e.g., by TEM, ICP-MS Pt mass fraction, or XRF).
+- The grain size distribution of the crushed crystals is not quantified, although it controls Pt volume fraction, interface area and the λm argument.
+
+**Density, thermal conductivity and its interpretation are questionable.**
+- Relative density is computed against the YIG single-crystal density (5.11 g/cm³), but the composites contain much denser Pt. The true relative density is therefore lower than 67–75%.
+- RT "sintering" is really cold compaction. Inter-grain contact resistance and 25–35% porosity can plausibly account for κ ≈ 30–38% of polycrystalline YIG, for example via porosity and effective-medium models with contact resistance.
+- Attributing the reduction to "enhanced phonon scattering at the YIG/Pt interface" is speculative without such modelling.
+- Laser-flash diffusivity on porous, metal-networked samples also needs justification (e.g., transparency or coating, and radiation corrections).
+
+**Temperature-gradient metrology is under-specified.**
+- ∇T is derived from the total ΔT across the sample plus interfaces, as acknowledged. The error is argued to be smaller for low-κ samples but is never quantified.
+- Two different contact schemes are used for the two configurations.
+- Heat-flux normalization, or direct on-sample thermocouples/IR thermography, would make S_SSE comparisons between samples and configurations meaningful.
+- Lx, Ly, Lz, electrode spacing and contact sizes are not reported.
+
+**Statistics and reproducibility are weak.**
+- All samples come from "a single batch", with one specimen per condition. There are no repeated measurements on independent pellets and no uncertainty on S_SSE or PF.
+- The error bars in Fig. 3c grow considerably at high ∇T.
+
+**There are numerous inconsistencies that reduce confidence.**
+- FePt and Y₂O₃ share the same PDF number (#43-0661).
+- The Cu-Kα wavelength is given as 0.15406 nm (Methods) vs 0.15418 nm (Note S2).
+- Note S2 refers to "Fig. S2" when it means Fig. S3.
+- The "630% higher" PF comparison is ambiguous (5.1/0.7 ≈ 7.3×).
+- Other errors:
+  - units/normalization in the magnetization panels (see 3.3);
+  - the Author Contributions statement mentions VSM while Methods describes SQUID;
+  - the author name order "Hirata Keisuke";
+  - "worth nothing".
+
+---
+
+## 4. Suggestions for improvement
+
+**1. Benchmark properly against conventional devices and report device-level output.**
+- Fabricate and measure a reference Pt(5–10 nm)/YIG bilayer, on a single-crystal slab and on a polycrystalline YIG slab, in the same setup with the same ∇T metrology.
+- Report S_SSE, σeff, PF and maximum power density P_max = (EL)²/4R per unit volume and per unit heat flux, for both the references and the composites.
+- Extend Table S1 with S_SSE and PF for all literature entries.
+- Include a comparison with prior bulk SSE/ANE composites (Boona et al.) and representative bulk ANE materials.
+- Revise the abstract and conclusions to reflect where the composites actually stand, including a quantitative roadmap of how much improvement is needed and from which parameters.
+
+**2. Add decisive control experiments to establish the ISHE/SSE origin.**
+- Pt-coated nonmagnetic garnet (GGG or YAG) powders processed identically; the signal should be absent.
+- Cu- or Al-coated YIG; the signal should be strongly suppressed.
+- W- or Ta-coated YIG; the signal should reverse sign.
+- Field-angle rotation scans (including H∥∇T) verifying E ∝ ∇T×M, plus Ey(H) overlaid on M(H) measured in the same orientation with demagnetization correction.
+- Temperature dependence of S_SSE compared with known YIG/Pt LSSE behavior.
+- A quantitative upper bound on minority ferromagnetic phases using more sensitive probes: Mössbauer spectroscopy, STEM-EELS/EDS line scans across Pt/YIG interfaces for Fe in Pt, and low-temperature M(H)/ZFC–FC for small FM inclusions.
+- Correct the magnetization units and explain the t-independent ~20–25% Ms reduction.
+
+**3. Provide a quantitative mechanism and systematic parameter series.**
+- Develop an effective-medium or equivalent-circuit model linking interfacial spin-mixing conductance, θSH, λs and λm of polycrystalline YIG, grain size, Pt thickness and Pt network connectivity to the composite S_SSE and σeff.
+- Use the model to explain the weak t dependence and the RT vs 300 °C difference.
+- Test the model against series in:
+  - Pt thickness (including 5–10 nm near the continuity threshold);
+  - grain size (sieved fractions spanning below and above λm);
+  - Pt volume fraction.
+- This would turn "trans-scaling" from a concept into a demonstrated, predictive design rule, and identify the optimum (e.g., the trade-off between σeff and S).
+- Investigate the interface after 300 °C pressing in air (oxidation, interdiffusion) and consider pressing in vacuum or inert gas.
+
+**4. Strengthen characterization, metrology and reproducibility, and fix inconsistencies.**
+- *Microstructure:*
+  - cross-sectional TEM/STEM-EDS of the sintered 15/30 nm composites showing shell continuity and interface quality after compaction;
+  - direct Pt-content measurement (ICP-MS/XRF) to verify nominal thicknesses;
+  - quantitative grain-size and porosity analysis.
+- *Density and anisotropy:*
+  - relative density computed against the composite's theoretical density;
+  - anisotropic σeff and κ measured along and perpendicular to the pressing axis, with the pressing axis specified relative to x, y, z.
+- *Thermal metrology:*
+  - heat-flux-based normalization or on-sample temperature sensing for both configurations;
+  - an estimate of the interfacial ΔT fraction;
+  - full sample dimensions and electrode geometry.
+- *Statistics:* measurements on multiple pellets per condition, ideally from independent batches, with uncertainties on S_SSE and PF.
+- *Corrections:* fix the PDF numbering, Cu-Kα wavelength, figure cross-references, configuration typo, PF percentage, SQUID/VSM inconsistency and magnetization units.
+- *Interpretation:* moderate the interpretation of the low κ, given porosity and contact resistance, unless supported by modelling.

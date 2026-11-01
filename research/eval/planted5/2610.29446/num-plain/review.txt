@@ -1,0 +1,75 @@
+Review of "Suppressing Majorana Hybridization in Atomically Assembled Cr Chains on beta-Bi2Pd" (arXiv:2610.29446v1)
+
+SUMMARY
+
+The authors assemble Cr chains (Cr4, Cr5, Cr8, Cr12) atom by atom on Bi-terminated beta-Bi2Pd with a 30 mK STM, and follow the in-gap spectrum with length. They report a closing of the low-energy gap near Cr5, a reopened gap of 204 +/- 50 ueV at the center of Cr12, and zero-bias resonances at the Cr12 ends. Green-function (BdG) calculations reproduce the trend, show spin textures they read as an electron-hole character exchange, and give a residual end-mode splitting of 16.8 ueV for Cr12 at reduced Dynes broadening. Inverting the standard hybridization formula, they obtain a Majorana localization length of about 10.5 A ("three sites") and argue that Cr/beta-Bi2Pd is a short-localization-length platform in which finite-size hybridization is suppressed. Microwave-assisted tunnelling at 44 GHz is offered as supporting evidence.
+
+The system is interesting and the data on Cr12 look clean. The central claim, however, rests on a number that is computed rather than measured, and one of the key numbers in the main text is internally inconsistent. I would not support publication in its current form.
+
+1. NUMERICAL INCONSISTENCY IN THE CHAIN LENGTH (must fix)
+
+Main text, below Eq. (1): "L = 12 x 4.75 = 114 A". The product is 57 A, and the Supplement (S5, below Eq. S.2) gives "L = 12 x 4.75 = 57 A". The main-text value is wrong by a factor of two.
+
+This is not cosmetic, because L enters the exponent. Taking hbar^2/m = 7.62 eV A^2 and kF = 0.18 a0^-1 = 0.34 A^-1, with cos(kF L) = 1 as the authors assume:
+ - L = 57 A: delta_eps = 16.8 ueV gives xi_M of about 11 A, consistent with the quoted 10.5 A (10.5 A gives about 9.5 ueV, within the logarithmic sensitivity of the inversion).
+ - L = 114 A: the same splitting requires xi_M of about 24 A, and xi_M = 10.5 A would give a splitting of order 10^-3 ueV.
+So the headline 10.5 A follows only from L = 57 A, and a reader checking the main text will not reproduce it. Please correct the main text.
+
+Related points on the same step:
+ - A 12-atom chain spans 11 spacings (52 A) between end-atom centres. Using 52 A instead of 57 A moves xi_M to about 10 A, a small change, but the choice should be stated.
+ - 10.5 A divided by the 4.75 A spacing is 2.2 lattice spacings, not three. "About two to three sites" would be accurate.
+ - cos(kF L) is set to 1 because no moire pattern is seen. For L = 57 A, kF L is about 19.4 rad and cos(kF L) is about 0.86, so the assumption happens to be harmless here, but it should be justified by computing it, not by the absence of a moire pattern, which is a statement about the substrate-chain registry rather than about the phase of the oscillation.
+
+2. THE LOCALIZATION LENGTH IS A THEORY OUTPUT, NOT A MEASUREMENT
+
+The abstract says "From the residual splitting we extract a localization length of about three atomic sites". The splitting of 16.8 ueV exists only in the calculation, after the Dynes broadening is lowered from 50 ueV to 5 ueV. It is below the 30 ueV lock-in modulation and well below the experimental linewidths, so it was not measured. The abstract and summary should say plainly that xi_M is a model estimate for an ideal chain. Further:
+ - Eq. (1) uses the bare free-electron prefactor hbar^2 kF / m, while the following paragraph argues that the relevant velocity is strongly renormalized. With vF = 0.15 a.u. (S2), hbar vF / Delta_topo is about 1 um, so a renormalization by roughly three orders of magnitude is needed to reach 10 A. If the band is that strongly renormalized, the free-electron prefactor in Eq. (1) is not the right one either. The extraction is therefore at best an order-of-magnitude argument, and the "very good agreement" language is too strong.
+ - Please show that the 16.8 ueV splitting is converged as Gamma_D goes to 0 (a plot of splitting versus Gamma_D).
+ - The claim of "very good agreement with the edge-mode extension shown in Fig. 4(b)" should be backed by fitting an exponential decay to the measured zero-bias profile and quoting the fitted length with uncertainty. That would be an actual experimental localization length.
+
+3. THE TITLE CLAIM IS NOT TESTED BY THE DATA
+
+"Suppressing hybridization" is a statement about how the end-mode energy depends on chain length. The comparison case (Schneider et al., Refs. 10, 11, 33) is defined by oscillations of the end-state energy as a function of length. Here only one long chain (Cr12) shows zero-bias end modes, and there are no data for neighbouring lengths (Cr10, Cr11, Cr13, ...). Without such a series, the absence of oscillatory splitting is not demonstrated experimentally. S6 argues that strain limits the achievable length, which may explain the gap but does not remove it. At minimum the claim should be softened; ideally, add zero-mode energy versus length for several lengths above 8.
+
+4. "LENGTH-DRIVEN GAP CLOSING AND REOPENING" IS UNDERSAMPLED AND CONCEPTUALLY LOOSE
+
+ - Four lengths (4, 5, 8, 12) are thin evidence for a closing and reopening. Cr4 already has weight near zero bias with no resolvable mini-gap, and the Cr8 spectrum is described only as "evolves further".
+ - In a finite chain, subgap levels move and cross zero as atoms are added simply because the level spacing changes. A topological transition is a bulk property controlled by a bulk parameter. The theory supports a bulk-like transition as a function of alpha_R (Fig. S2), not as a function of length. The text should separate these two notions, and explain why the length dependence is not just finite-size level motion.
+ - The supporting calculation (Ref. 23) predicted reopening above about eight atoms; here it reopens somewhere between 5 and 12. The intermediate lengths would sharpen this test.
+
+5. TRIVIAL ALTERNATIVES ARE NOT RULED OUT
+
+The paper cites Refs. 14 to 18 on trivial zero-energy end states but does not address them experimentally.
+ - Magnetic order of the chains is assumed ferromagnetic. Ref. 22 shows that inter-adatom magnetic coupling of Cr on this surface depends on spacing, and Ref. 18 shows antiferromagnetic chains give trivial end states. Is there experimental evidence (spin-polarized STM, field dependence) for the order at 4.75 A spacing?
+ - The spin texture and electron-hole character arguments (Fig. 3, S4) come only from the calculation. No spin-polarized measurement is presented, so they test the model, not the sample.
+ - Field-dependence of the zero-bias peaks, or end-to-end correlations, would help.
+
+6. THEORY PARAMETERS ARE INCONSISTENT OR UNCLEAR
+
+ - S2 states alpha_R about 1.8 eV A from DFT. S4 states "we have increased the coupling to a region where the gap closes again, alpha_R = 3.6 eV A". Which alpha_R is used for Figs. 2, 3 and 4? If 3.6 eV A, why, and is it in a closed-gap regime as the sentence suggests?
+ - S7 reports calculated gaps of 84 ueV (alpha_R = 1.8) and 146 ueV (alpha_R = 2.5), both well below the measured 204 +/- 50 ueV. The main text calls the agreement good; the discrepancy should be acknowledged and discussed, since the localization-length argument leans on the gap size.
+ - "Electron-hole balance" at zero energy is asserted, but S2 defines the LDOS from the electron block G_ee only. How was the hole component or Majorana polarization computed? Please show it directly rather than inferring it from <Sz>.
+ - The normal-state DOS N = 0.037/eV "chosen to reflect the five valence electrons of Bi" needs a sentence of justification.
+
+7. THE EDGE ASYMMETRY FIT IS A DEMONSTRATION, NOT A TEST
+
+A 6% linear decrease in J over half the chain (S3: 2.5 to 2.35 eV, 1% per atom) is introduced to reproduce the asymmetric zero-bias profile. The main text says "To test this possibility"; it is a one-parameter fit chosen to match, which shows plausibility only. Two simpler explanations should be checked: (i) the chains were grown by adding atoms at one end, so does the weaker or stronger end correlate with the last-added atom? (ii) setpoint effects in spatial maps, if spectra were taken with feedback stabilized at each point, can produce apparent amplitude asymmetries. Please state the stabilization conditions for Fig. 2(a) and Fig. 4(b).
+
+8. GAP EXTRACTION AND MICROWAVE DATA
+
+ - Delta_topo = 204 +/- 50 ueV: how was the uncertainty determined? The subtraction of a pristine-surface spectrum (S7, Fig. S3) is said to emphasize in-gap structure "without perturbing it", but subtracting a spectrum with coherence peaks can shift apparent gap edges. Show the raw extraction alongside.
+ - At 44 GHz the photon energy hf is about 182 ueV, comparable to Delta_topo. Photon-assisted replicas at +/- hf will fill the gap at the chain center at modest V_RF regardless of the end-mode physics, so "RF supports compact zero-energy modes" needs a more careful argument. The data are also noted (S8) to have lower signal-to-noise than prior work. I would present the RF data as consistent with, not supporting, the picture.
+
+9. MINOR
+
+ - Main text: "Cr * 12" and "V * RF" appear to be stray asterisks.
+ - S6 refers to "Fig. 3" for the edge asymmetry; it is Fig. 4.
+ - S8: "does not appear in the microwave study of Fig. 4"; the microwave profiles are in Fig. S5.
+ - Fig. S4 caption: "see Suppl. Information for details" inside the Supplement.
+ - S6: the free Cr2 bond length is usually quoted as about 1.68 A; please check 1.58 A and give a source.
+ - Tc = 5.2 K here versus 5.4 K in the title of Ref. 21; fine for a specific crystal, but say so.
+ - Typos: "bais", "an reopening", "were the gap", "attaints", "monotonous" (non-monotonic), "Atustaka", "Heinricha".
+
+RECOMMENDATION
+
+Major revision. Required: correct L in the main text (57 A, not 114 A) and recheck every number downstream; reword the abstract and summary so xi_M is clearly a model estimate; either add zero-mode energy versus length for several long chains or soften the title and headline claim; clarify which alpha_R produces the figures and address the theory-experiment gap mismatch; address magnetic order and trivial end states. With those changes this could be a useful report of a promising platform.

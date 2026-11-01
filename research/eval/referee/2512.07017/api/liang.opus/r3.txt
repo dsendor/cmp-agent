@@ -1,0 +1,212 @@
+# Review outline
+
+## 1. Significance and novelty
+
+**Topic and claim.**
+- The manuscript addresses a timely question: what role do boundary modes (chiral edges, hinge-like "in-band boundary states") play in second-harmonic transport of magnetic topological insulators?
+- Most of this field interprets nonlinear signals through bulk quantum geometry: Berry curvature dipole and quantum-metric dipole.
+
+**Experimental results.**
+- The experiments use MBE-grown V-BST/BST/Cr-BST sandwiches, gated through SrTiO₃, measured at 25 mK and 1.7 K.
+- The headline result is that the second-harmonic longitudinal voltages on the two edges have opposite signs.
+- Their antisymmetric part, V^2ω_xx,A, dominates the symmetric part, V^2ω_xx,S.
+- V^2ω_yx nearly coincides with V^2ω_xx,R.
+- The signals:
+  - vanish at the charge-neutral point Vg⁰ and in the well-quantized QAH plateau;
+  - peak slightly away from quantization;
+  - reverse sign with Néel or ferromagnetic order and with carrier type.
+
+**Conceptual contribution.**
+- The authors replace the bulk second-order conductivity σ^(2)_αβγ with a multi-terminal second-order conductance G^(2)_ijk.
+- Applying Neumann's principle with a C2z permutation of the electrodes, they derive V^2ω_xx,L = −V^2ω_xx,R = −V^2ω_yx.
+- They support this with nonlinear Landauer–Büttiker (Christen–Büttiker) simulations of a two-surface Dirac model.
+- Emphasising that electrodes matter in nonlinear transport, in a way they do not in nonlinear optics, is a useful message for the community.
+
+**Novelty relative to prior work.** Novelty is moderate and should be stated more carefully.
+- Nonreciprocal transport mediated by QAH edge states (Yasuda et al., Nat. Nanotechnol. 2020) is already established.
+- So are nonlinear responses from quantum Hall states in TIs (Li et al., Nat. Mater. 2024) and edge-controlled nonreciprocity in MnBi₂Te₄ (Zhang et al., Nat. Commun. 2022).
+- The gauge-invariant nonlinear LB formalism is textbook (Christen & Büttiker 1996).
+- The genuinely new elements are:
+  - the axion-insulator (antiparallel) regime with Néel-order-dependent sign;
+  - the electrode-permutation symmetry argument;
+  - the proposal that the L/R decomposition discriminates boundary from bulk.
+- Whether that last proposal holds is the crux of the paper (see Section 3).
+
+## 2. Potential reasons for acceptance
+
+**Material platform and data quality.**
+- The samples show textbook QAH (|σ_xy| ≈ 1.001 e²/h, σ_xx ≈ 4×10⁻⁴ e²/h) and well-defined Axion-I/II states.
+- This gives a controllable platform in which parallel versus antiparallel alignment, and Néel orientation, can be switched by field history.
+- Such control is not available in exfoliated MnBi₂Te₄.
+
+**Breadth of the experimental data set.** The authors report:
+- full gate maps spanning n- and p-type;
+- two temperatures (25 mK and 1.7 K) and temperature dependence up to above T_C;
+- frequency independence (6–107 Hz) and I² scaling;
+- a ground-electrode swap test;
+- reproducibility in a second sample (S2), with S3 and S4 in the SI.
+
+**Internal consistency of the main phenomenology.**
+- The sign reversal between edges, the near-equality of V^2ω_yx and V^2ω_xx,R, and the nulls at Vg⁰ and in the QAH plateau are reproduced qualitatively across samples and temperatures.
+- The same features appear in the theoretical simulations.
+
+**Conceptual value of a geometry-aware symmetry analysis.**
+- Formulating Neumann's principle on terminal space, through the permutation matrix 𝒞^2z acting on I and V, is clean and general.
+- It is independent of the ballistic versus diffusive regime.
+- It could become a standard sanity check for multi-terminal nonlinear measurements.
+
+**Potential applied relevance.**
+- An electrically readable, sign-switchable signal of antiferromagnetic (Néel) order in a layered magnetic TI is attractive.
+- So is a large nonreciprocal coefficient for rectification concepts.
+
+## 3. Potential reasons for rejection
+
+### Reason 1: The "universal relation" does not discriminate boundary transport from bulk or extrinsic nonlinearities, and the symmetry premise is only approximate.
+
+**The relation is generic to any C2z-symmetric nonlinear conductor.**
+- The Methods derivation uses only three ingredients: G^(1) and G^(2) are 𝒞^2z-invariant, I^ω is 𝒞^2z-odd, and the right-hand side of Eq. (1) is quadratic in V^ω.
+- Any microscopic nonlinearity respecting C2z therefore yields V_1 = V_4, V_2 = V_5, V_3 = V_6.
+- This includes:
+  - a spatially varying local conductivity that depends on the local potential, such as self-gating;
+  - Joule-heating-driven thermoelectric voltages;
+  - nonlinear current contacts;
+  - bulk carriers in an inhomogeneous potential.
+- The relation therefore tests the symmetry of the setup, not the boundary origin of the signal.
+- The abstract's claim that it "allows us to distinguish nonlinear boundary transport from bulk contributions" is overstated.
+- What C2z actually forbids is a uniform in-plane bulk σ^(2), which would give V_xx,L = +V_xx,R. A non-uniform nonlinear response, from the interior or from extrinsic sources, can still produce V_xx,A.
+
+**C2z is not a symmetry of the real system.**
+- The (Bi,Sb)₂Te₃ surface has C3v (trigonal/hexagonal warping) symmetry, and the V/Cr asymmetric sandwich breaks inversion.
+- C3v allows σ_xxx = −σ_xyy = −σ_yxy ≠ 0.
+- This is exactly the warping-driven nonlinear magnetoresistance of TI surfaces documented in Ref. 58, which the authors cite as a suppression mechanism.
+- The assertion that bulk nonlinearity is "suppressed by C2z" is thus a property of the chosen k·p model (Eq. 5), not of the material.
+- The Hall bar itself is hand-scratched, with pressed indium dots, at the millimetre scale, so geometric C2z is also approximate.
+
+**The magnitude of V^2ω_xx,S directly measures C2z breaking, and it is not small.**
+- In Extended Data Fig. 7b (QAH, p-side), V_xx,S reaches roughly +7 µV against V_xx,A of roughly −17 µV.
+- In Fig. 2b and 2d, V_xx,S reaches about 30% of V_xx,A near the axion extrema.
+- Without a quantitative model of how much V_xx,S the device asymmetry should produce, the "dominance" claim is qualitative.
+
+**The interpretation of V_xx,S is internally inconsistent.**
+- V_xx,S is attributed to a quantum-metric bulk response "consistent with MnBi₂Te₄".
+- Yet the paper's own framework says such in-plane bulk responses vanish under C2z.
+- In addition, the V/Cr sandwich lacks the PT symmetry that underlies the quantum-metric dipole mechanism in even-layer MnBi₂Te₄.
+- Either the C2z premise or this attribution must be revised.
+
+### Reason 2: Extrinsic mechanisms that naturally obey the same symmetry and sign rules are not adequately excluded.
+
+**Electrostatic self-gating through the high-ε SrTiO₃ back gate.**
+- In the axion regime ρ_xx ≈ 4.5 h/e² (~115 kΩ/□), so 2 µA produces in-plane potentials of order 0.2–0.4 V.
+- In the QAH regime, the two edges differ by ≈ h/e² × 2 µA ≈ 52 mV.
+- Because STO has a huge low-T permittivity, these local potentials act as local gate shifts δVg(r) = −φ(r).
+- The features of σ(Vg) near Vg⁰ evolve over only ~5–10 V of gate.
+- A rough estimate gives δρ/ρ of a few percent, hence V^2ω of order 10⁻²·V^ω. This is comparable to or larger than the observed ~100 µV.
+- This mechanism has the properties the paper attributes to boundary physics:
+  - it is odd under C2z in φ, so it obeys the universal relation;
+  - it tracks dρ/dVg, so it changes sign across Vg⁰ and with carrier type;
+  - it is strongest just outside the quantized regime;
+  - it is odd in magnetization through the Hall-driven edge potentials.
+- Extended Data Fig. 3 swaps the grounded electrode, but this tests only the uniform common-mode term. The C2z-odd part of φ(r) relative to the device midpoint is identical in both configurations.
+- Notably, the ∂_eVk T_ij term in Eq. (8) is precisely such an electrostatic effect. The paper should clarify whether the "boundary" response is distinguishable from gate-coupled electrostatics at all.
+
+**Joule heating and thermoelectric voltages at 2ω.**
+- At 25 mK, the dissipated power (~0.4–0.8 µW in the axion regime) is far from negligible for electron temperature.
+- In Hall-dominated regimes, dissipation concentrates at the two diagonally opposite corners of the current contacts. These hot spots are C2z-related and set by chirality.
+- Seebeck/anomalous-Nernst voltages driven by them scale as I², are frequency-independent at tens of Hz, flip with M, and disappear near T_C.
+- These are all features presented as evidence for intrinsic physics.
+- Neither the lock-in phase (X versus Y channel; heating appears in a definite quadrature) nor 3ω data are reported.
+
+**Nonlinear contacts relayed by chiral or hinge channels.**
+- Pressed indium contacts can be non-ohmic at mK temperatures.
+- In the Hall regime, a rectified voltage at current lead 1 or 4 propagates along the chiral edge to the adjacent probe on one side only, set by chirality.
+- This produces a C2z-related, M-odd pattern with opposite signs on the two edges.
+- Two-terminal 2ω voltages across the current leads and the contact I–V characteristics should be shown.
+
+**Field (anti)symmetrization may impose part of the result.**
+- The Methods state that all magnetotransport data are symmetrized or antisymmetrized in field.
+- For hysteretic second-harmonic data, antisymmetrizing (H, sweep up) against (−H, sweep down) enforces V(Axion-I) = −V(Axion-II) by construction.
+- Raw, unprocessed sweeps are needed to show that the Néel-order sign reversal is measured rather than imposed.
+
+### Reason 3: The theoretical modelling is qualitatively suggestive but cannot establish the claimed microscopic origin.
+
+**Regime mismatch between simulation and experiment.**
+- The simulation is a phase-coherent, disorder-free 100×20 tight-binding strip with arbitrary units.
+- The experiment uses 1 mm × 0.5 mm diffusive films with σ_xx ≈ 0.22 e²/h in the axion state.
+- In Extended Data Fig. 8b, the simulated axion resistance diverges in the gap, whereas the measured axion state is a finite-resistance, nearly insulating diffusive state, likely involving disorder and percolation.
+- There is no quantitative comparison of magnitudes, and no inclusion of dephasing (e.g., Büttiker probes) or disorder averaging.
+
+**The self-consistent electrostatics are under-specified.**
+- The ∂_eVk T_ij term requires characteristic potentials or a screening model (Thomas–Fermi, capacitance to the gate).
+- How these are computed is not described in the main text or Methods.
+- Since this term may dominate, and since it overlaps with the extrinsic gating concern above, its relative weight against the ∂_E T_ij term should be shown explicitly.
+
+**The model builds in the conclusions it is used to support.**
+- The model imposes exact C2z and omits warping, so it cannot address the size of V_xx,S.
+- Electron–hole asymmetry is added ad hoc through parabolic valence bands, shown only in the SI.
+- Parameters such as M_t = ±1.2, M_b = ±0.6 and m₀ = 0.1 are not connected to the experimental gaps.
+- The key microscopic claims rest on SI material and are not visualised in the main text:
+  - "hinge current due to in-band boundary states plays a substantial role";
+  - "evolution of in-band boundary contributions into nonchiral top and bottom surface contributions".
+- No spatially resolved nonlinear current density is shown to demonstrate that the nonlinearity is localised at boundaries.
+
+**Some "boundary" evidence is nearly tautological.**
+- The null of V^2ω_xx in the QAH plateau follows simply from R_xx = 0 with dissipationless chiral transport. It does not demonstrate that the off-plateau signal is boundary-generated.
+- Sign reversal with magnetization is generic for any T-odd dissipative second-order response, i.e. magnetochiral anisotropy. It is not specific to boundary modes.
+
+### Reason 4: Quantification, figures of merit, and experimental scope do not support the strength of the claims.
+
+**The nonreciprocal coefficient is ill-defined for a boundary effect, and the comparisons are misleading.**
+- γ = √2·V_A/(R₀ i²) uses a bulk current density. For a ~10 nm film versus 0.5 mm width, it is unclear how i is defined (sheet or volume, which cross-section).
+- A boundary-localised response does not scale with uniform current density.
+- γ is also trivially enhanced near an insulating state, where R₀ is large and carrier density small.
+- Comparisons with WTe₂, MnBi₂Te₄ flakes and heavy-metal/ferromagnet bilayers are therefore not like-for-like.
+- The "order of magnitude" and "four orders of magnitude" claims should be removed or reframed.
+
+**No experiment directly tests the boundary origin.**
+- Boundary and bulk contributions scale differently with device width and length, but only one geometry is studied.
+- No device-size dependence, no Corbino (edge-free) reference, and no alternative current or voltage configurations are reported.
+- Such configurations would include current injected along the other axis, nonlocal probes, or permuted electrode roles.
+- These are the experiments that would actually discriminate boundary from bulk.
+
+**Limited sample statistics and incomplete controls.**
+- The main text relies on one sample (S1), with S2 in Extended Data.
+- I² scaling and frequency independence are shown only at 1.7 K and (Vg − Vg⁰) = −5 V. At 25 mK only 2 µA is used.
+- QAH breakdown and the electron-temperature rise at mK make the linear-response regime at 25 mK unverified.
+- The STO gate's hysteresis and history dependence are not addressed for the dense gate maps in Fig. 3.
+
+**Several descriptive statements are imprecise or unsupported.**
+- The spikes near the coercive field are attributed to "additional dissipation from the surface states", by analogy to quantum Hall plateau transitions, without supporting analysis.
+- "Assisted by bulk carriers" is used repeatedly without a model of how bulk carriers enable the boundary nonlinearity.
+- The statement that random domains "would induce a zero net nonreciprocal transport" is asserted rather than demonstrated.
+
+## 4. Suggestions for improvement
+
+**1. Add geometry-discriminating experiments.**
+- Fabricate lithographically defined Hall bars with evaporated contacts and well-controlled C2z symmetry, in several widths and lengths. Show how V_xx,A, V_xx,S and V_yx scale with W and L; boundary versus bulk origins predict distinct scaling.
+- Measure a Corbino or edge-free geometry as a null reference.
+- Use permuted electrode configurations (current 2→5 or 3→6, nonlocal probes) to test the predicted terminal-permutation relations beyond the single 1→4 configuration.
+- Deliberately break C2z, for example with an asymmetric contact layout, and show that V_xx,S grows as predicted.
+
+**2. Systematically exclude extrinsic mechanisms.**
+- Report both lock-in quadratures of the 2ω signal, plus 3ω data and an electron-temperature estimate at 25 mK.
+- Provide a quantitative self-gating estimate from the measured dσ/dVg and the STO capacitance, and compare it with V^2ω.
+- Repeat key measurements with:
+  - a floating back gate;
+  - a balanced or differential current source (midpoint grounded);
+  - ideally a top gate with a low-ε dielectric, or a sample on a different substrate.
+- Measure two-terminal 2ω voltages and I–V characteristics of the current contacts.
+- Show raw, unsymmetrized field sweeps alongside processed data, and describe the (anti)symmetrization protocol for hysteretic 2ω signals explicitly.
+
+**3. Strengthen and quantify the theory.**
+- Include disorder and dephasing, and a realistic electrostatic model (gate capacitance and screening) in the nonlinear LB calculation.
+- Separate the ∂_E T and ∂_V T contributions explicitly.
+- Add C2z-breaking warping terms consistent with C3v to predict V_xx,S and compare it with experiment.
+- Present spatial maps of the second-order current or potential, showing where the nonlinearity is generated (edges, hinges or interior).
+- Calibrate model parameters to the measured exchange gaps, and give magnitudes in physical units for a semi-quantitative comparison.
+
+**4. Reframe claims, metrics and context.**
+- Present the C2z relation as a consistency test for C2z-symmetric devices rather than a boundary-versus-bulk discriminator, unless supported by the scaling experiments in suggestion 1.
+- Replace or supplement γ with a figure of merit suited to boundary transport, such as a nonlinear conductance in units of e³/h, or V^2ω/(I²R²) per unit edge length. Temper the cross-material comparisons.
+- Reconcile the quantum-metric interpretation of V_xx,S with the symmetry framework and with the absence of PT symmetry in the V/Cr sandwich.
+- Move statistics for S2–S4 and the 25 mK current and frequency dependence into the main text or Extended Data.
+- Discuss explicitly how this work goes beyond Yasuda et al. (2020), Zhang et al. (2022) and Li et al. (2024), particularly regarding edge-dependent signs and the axion-insulator regime.

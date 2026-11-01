@@ -1,0 +1,142 @@
+# Merged review
+
+## A. Must address
+
+**1. The fitted splitting is an order of magnitude larger than the DFT prediction.**
+The DFT calculation predicts a momentum separation of only ≈0.01 Å⁻¹ between the opposite-spin Fermi crossings of the dog-bone bands near M′. The two-Voigt fit to the 55 eV MDC (Fig. 2h) gives two peaks separated by ≈0.09 Å⁻¹, about nine times larger. The manuscript neither acknowledges nor explains this discrepancy, yet states that the fit is "consistent with our DFT results." This is the paper's key result, and the logic fails either way:
+- If DFT is correct, the fitted second peak cannot be the altermagnetic spin partner of these bands.
+- If the experiment is correct, the claimed agreement with DFT breaks down precisely where it matters.
+
+The paper also never estimates the energy splitting corresponding to the claimed Δk (ΔE ≈ v_F·Δk), nor the maximal altermagnetic energy splitting from DFT. Its size therefore cannot be judged against the 20 meV energy resolution. The authors should:
+- explicitly compare the DFT and fitted separations, in both momentum and energy;
+- examine candidate explanations (different bands, SOC, U-dependence, surface effects);
+- revise the claims of agreement accordingly.
+
+**2. The resolution statement is inconsistent and the two-peak fit is statistically unsupported.**
+- *Resolution.* The quoted angular resolution of 0.1° at hν = 55 eV (E_kin ≈ 50 eV) corresponds to Δk ≈ 0.006 Å⁻¹. Yet an "instrumental (Gaussian) width" of ≈0.08 Å⁻¹ is used in the fit. That width must therefore be dominated by something other than the instrument: k_z broadening, lifetime, Co-order disorder, sample mosaicity, surface inhomogeneity, or fixed fitting choices. Describing the splitting as "close to the momentum resolution limit" is misleading.
+- *Fit constraint.* The fitted peaks are separated by roughly one linewidth, so the decomposition is near the Rayleigh limit and weakly constrained. The "clear hump" is a shoulder of modest amplitude relative to the plotted noise band, and it comes from a single cut at a single photon energy.
+- *Missing statistics.* No parameter uncertainties or residuals are given. The paper does not state which parameters (widths, Lorentzian/Gaussian ratio, background) were fixed or free. There is no single- versus double-peak model comparison (χ², F-test, AIC/BIC).
+
+The authors should:
+- justify the instrumental width from the stated resolution or measure it on a reference feature;
+- separate instrumental resolution from intrinsic linewidth;
+- report the full fitting protocol with uncertainties, residuals and model selection.
+
+**3. The k_z assignments of the photon energies are unverified and may be wrong.**
+The manuscript assigns hν = 55, 51 and 48 eV to k_z ≈ π/2c, π/4c and 0. With c ≈ 12.45 Å, Γ–A spans π/c ≈ 0.25 Å⁻¹ and π/2c ≈ 0.126 Å⁻¹. For a typical inner potential (V₀ ≈ 10–15 eV), changing hν from 48 to 55 eV shifts k_z by ≈0.2–0.25 Å⁻¹. That is close to a full Γ→A distance rather than Γ→π/2c, so 55 eV could lie near k_z = π/c. The authors themselves identify that plane as a nodal plane, which would undercut the central interpretation.
+
+No inner potential, no photon-energy-dependent map, and no periodicity criterion are shown. The Introduction and Results mention photon-energy-dependent measurements and "increased band dispersion in the out-of-plane momentum" above T_N, but these data appear nowhere. The authors should:
+- present a full photon-energy map (e.g. 40–100 eV) with the extracted V₀ and k_z periodicity;
+- show explicitly which hν corresponds to k_z = 0, π/2c and π/c;
+- recompute the assignments accordingly;
+- ideally, show that the splitting reverses or vanishes symmetrically about the nodal planes.
+
+**4. k_z broadening is neither discussed nor modelled, and it alone could produce the reported trends.**
+At 50–55 eV the photoelectron escape depth is ≈5 Å. This gives an intrinsic k_z broadening of order 0.1–0.2 Å⁻¹, comparable to the whole 0 → π/2c range. The spectra therefore integrate over k_z values that include nodal regions where the g-wave splitting changes sign (it is odd about k_z = 0 and π/c). This can either blur or mimic a splitting.
+
+Final-state k_z broadening also broadens a band most where it disperses along k_z (near π/2c) and least at k_z = 0, where dE/dk_z = 0. The reported "broad at 55 eV, narrow at 48 eV" contrast is therefore expected from k_z broadening alone. The same holds for the rotation-dependent broadening if the k_z dispersion is anisotropic in-plane.
+
+The authors should simulate ARPES lineshapes from k_z-integrated, matrix-element-free DFT spectral functions, convolved with realistic escape depth, measured linewidth and resolution. This would show whether the predicted splitting can produce the observed lineshape and its photon-energy and angle dependence.
+
+**5. The single- versus double-peak control is not like-for-like.**
+The control MDC at 48 eV is taken along Γ–M, not at an equivalent momentum on the same band. Photon energy, matrix elements, cross-sections, final states, k_z, band velocity and possibly band character all differ from the 55 eV Γ′–M′ cut, so the lineshape contrast is not a clean test.
+
+Cleaner internal controls are available but not used:
+- The same-photon-energy nodal direction (Γ′–K′ at 55 eV) is shown in Fig. 2(f) but not fitted.
+- No comparison is made at the same hν and geometry above and below T_N with quantitative MDC fits.
+
+The authors should apply the same fitting to the 55 eV Γ′–K′ cut and to identical-geometry data across T_N. They should also compare the same band at the same k∥ across k_z.
+
+**6. Non-altermagnetic origins of the band doubling are not excluded.**
+The measurements are entirely spin-integrated. A second feature or an increased MDC width along Γ′–M′ could arise from:
+- interlayer (bilayer) bonding–antibonding splitting from the two inequivalent TaSe₂ layers per unit cell, which is strongly k_z-dependent;
+- backfolding of 2H-TaSe₂ bands by the 2×2 Co superlattice;
+- SOC-induced splittings of Ta 5d states;
+- nonmagnetic bands near the dog-bone pocket;
+- surface or surface-resonance states and surface-versus-bulk components;
+- partial Co disorder, vacancies or stacking variants.
+
+No nonmagnetic or paramagnetic DFT is shown to demonstrate that the split pair near M′ is absent without magnetic order. The authors should:
+- add nonmagnetic and paramagnetic (e.g. disordered-local-moment) DFT, with and without SOC;
+- show spectral weight unfolded from the 2×2 supercell to the 1×1 TaSe₂ zone;
+- ideally, measure ARPES on nonmagnetic 2H-TaSe₂ and/or the paramagnetic state at identical hν and geometry.
+
+**7. No spin-sensitive measurement is presented, and theoretical spin labels are presented as observations.**
+All spin assignments rest on DFT overlays. The red/blue spin labels in Figs. 2a, c and d and the "complete spin polarization" of the −150 meV constant-energy contours (Fig. 2d) are theoretical only, but the text presents them as observations. Comparable work on Co1/4NbSe2, MnTe and CrSb sets a benchmark: a claim of "observation of altermagnetic spin splitting" increasingly requires spin resolution or an equally decisive control.
+
+The authors should, ideally, provide spin-resolved ARPES (S_z, given moments ∥ c) at the dog-bone crossings along Γ′–M′ at k_z ≈ π/2c. Such data should show:
+- sign reversal between symmetry-related Γ′–M′ directions (±k_M′, 60° apart);
+- vanishing polarization along Γ′–K′.
+
+If spin-resolved ARPES is unavailable, they should consider magnetic circular or linear dichroism with an appropriate symmetry analysis, or laser/low-hν ARPES with better k and k_z resolution. In any case, they should clearly distinguish calculated from measured spin character in figures and text.
+
+**8. Spin–orbit coupling is apparently omitted from the DFT and the symmetry analysis.**
+The manuscript does not state whether SOC is included, and the calculations appear to neglect it. Ta 5d SOC is large (hundreds of meV in 2H-TaSe₂-derived bands). With moments along c and SOC included:
+- spin is no longer a good quantum number;
+- the magnetic-group analysis departs from the nonrelativistic spin-group picture;
+- the "nodal" degeneracies can be lifted;
+- SOC can itself produce splittings comparable to or larger than the claimed altermagnetic one.
+
+SOC is also the most physically distinctive feature of the Ta compound relative to Nb. The authors should report DFT+SOC band structures with moments ∥ c and the corresponding magnetic-group/spin-group analysis. They should then assess whether the feature near M′ is altermagnetic, relativistic, or both.
+
+**9. The surface termination and its magnetic consequences are not addressed.**
+In the type-A structure each Co plane is ferromagnetic. A cleaved surface with a Co-covered, Co-depleted or partially covered top layer of uncertain coverage breaks magnetic compensation within the ARPES probing depth. Uncompensated surface magnetization, surface symmetry breaking or surface states could then produce FM- or Zeeman-like splittings unrelated to bulk altermagnetism. The cleavage plane, the Co surface coverage and the magnetic domain population are not discussed. The authors should characterize the cleaved surface (core-level spectroscopy, LEED, STM) and discuss possible contributions from the uncompensated top layer.
+
+## B. Should address
+
+**10. The angular evolution of the broadening is shown only qualitatively.**
+The "gradual broadening" when rotating from Γ′–K′ toward Γ′–M′ (Fig. 2f, g) is indicated only by hand-drawn white bars. Linewidth changes with rotation angle can also come from changing band velocity, matrix elements, k_z broadening, or overlap with neighbouring bands. The authors should plot fitted MDC widths or splittings versus in-plane angle (0–30°) and versus photon energy/k_z, overlaid on the DFT-predicted g-wave angular form factor.
+
+**11. The temperature dependence is limited to two temperatures and does not separate magnetic from thermal effects.**
+Only 7 K and 200 K are compared, and 200 K is just 22 K above T_N. At 200 K, Fermi–Dirac broadening (≈3.5–4 k_BT ≈ 60–70 meV) and Debye–Waller effects alone can wash out a 0.09 Å⁻¹ double-peak structure, reduce spectral weight at E_F, and alter the apparent bandwidth. Fermi–Dirac normalization or symmetrization of the 200 K data is not described. Surface aging, adsorption, chemical-potential drift during cycling, and reversibility on re-cooling are not addressed.
+
+The reported "narrower band" above T_N, despite the higher temperature, needs a quantitative linewidth analysis before it can be interpreted. No temperature series shows an order-parameter-like evolution, so statements about the "absence of strong precursor fluctuations above T_N" cannot be assessed. The authors should:
+- measure a series through T_N (e.g. 7, 100, 150, 170, 185, 200 K) with thermal cycling;
+- extract splitting and linewidth versus T from Fermi–Dirac-divided EDCs/MDCs;
+- show that the splitting tracks the magnetic order parameter beyond trivial thermal broadening.
+
+**12. "Closing of energy gaps" and "band reconstruction" are claimed but never quantified.**
+The abstract asserts gap closing and band reconstruction at T_N, but no gap is identified, located in k, quantified, or tied to a DFT magnetic gap. The EDC changes in Fig. 3(f) are attributed to an undifferentiated mix of thermal broadening, matrix elements, suppressed splitting and gap closing. The authors should either quantify specific gaps with EDC fits and connect them to DFT features, or bring the abstract in line with the hedged Results.
+
+**13. Several DFT details needed for a 3d/5d system are missing.**
+Beyond SOC (concern 8), the manuscript does not state:
+- whether a Hubbard U or other correction is applied to Co 3d, or how sensitive the splitting is to U;
+- the calculated Co moment, for comparison with the neutron value of 1.35 μ_B;
+- any Fermi-level shift or bandwidth renormalization used for the ARPES overlays;
+- whether bands were unfolded for comparison with ARPES intensities.
+
+The authors should report these items, together with orbital-projected DOS supporting the "quarter of the DOS from Co" claim and the maximal altermagnetic energy splitting.
+
+**14. The contribution beyond the isostructural Co1/4NbSe2 is not articulated.**
+Several elements of this work are already established:
+- Co1/4NbSe2 has been identified as an altermagnet, with symmetry analysis, neutron/μSR/susceptibility characterization, and DFT/ARPES evidence of splitting along Γ′–M′ at k_z = π/2c, by overlapping author groups (Refs. 37–40).
+- The magnetic structure, moment and T_N of Co1/4TaSe2 were established by neutron diffraction (Ref. 41).
+- The g-wave form follows directly from the known spin-group analysis of NiAs-type MnTe, with which this structure is symmetry-equivalent.
+
+The new content is therefore mainly the Nb → Ta substitution and the ARPES/DFT comparison. The manuscript does not explore what is gained, such as the role of Ta 5d SOC, differences in splitting magnitude, or slightly higher T_N. The statement that Co1/4TaSe2 is "unique among the discussed altermagnetic materials due to its layered van der Waals structure" contradicts the paper's own discussion of Co1/4NbSe2. The authors should add an explicit comparison with Co1/4NbSe2 (splitting magnitude and location, which bands are split, SOC effects, T_N, moment) and remove or revise the "unique" claim.
+
+**15. The magnetic characterization is overstated and sample characterization is incomplete.**
+- *Type-A ordering.* Susceptibility cannot "confirm type-A ordering," as the abstract claims; that rests on Ref. 41.
+- *Easy-axis anisotropy.* This requires both B∥c and B⊥c data, but only B∥c is shown.
+- *FC/ZFC bifurcation and low-T upturn.* These are not discussed. They could indicate a ferromagnetic impurity phase, Co inhomogeneity or disorder, spin-glass behaviour, or canting. Canting is not symmetry-allowed for the 6′/m′mm′-type configuration with moments ∥ c, so its presence would bear directly on the altermagnetic classification.
+- *Composition and Co order.* No composition analysis (EDX/WDS) or diffraction verifying 2×2 Co order (superstructure intensities) is given for the measured crystals.
+
+The authors should add B⊥c susceptibility, discuss the bifurcation and upturn, provide composition and structural characterization, and revise the abstract wording.
+
+**16. Several mechanistic statements are speculative and unsupported by the data.**
+The discussion invokes RKKY coupling, a "dual localized–itinerant character," "momentum-selective gap openings," and the "absence of precursor fluctuations above T_N." It also attributes intensity changes at Γ′ to orbital/matrix-element effects. None of these is backed by specific data in the manuscript. The authors should support these statements with data or remove them.
+
+## C. Minor
+
+**17. The Γ′ pocket is described inconsistently.**
+It is called "electron-like" on p. 4 and "hole-like" on p. 6. The Results say spectral weight is suppressed, "potentially indicating a downward shift," while the Conclusion asserts "closing of the small Γ′ pocket." The authors should correct the carrier type and harmonize the Results and Conclusion wording.
+
+**18. The resistivity interpretation is garbled.**
+The text attributes the behaviour below T_N to "strong scattering off spin fluctuations." The stronger temperature dependence below T_N reflects the freezing-out (reduction) of spin-disorder scattering, and the text should say so.
+
+**19. Typographical and cross-referencing errors.**
+- "Gray diamonds in Fig. 2(d)" should read Fig. 3(d).
+- "APRES" should read "ARPES."
+- The c lattice parameter differs between DFT (12.47 Å) and experiment (12.4535 Å); the authors should state which is used and why.
+- The sentence on FM/AFM distinctions in the Introduction is garbled.
+- Referenced supplementary figures and the mentioned photon-energy data should be shown or the references removed.

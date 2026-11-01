@@ -1,0 +1,109 @@
+{
+  "overall_feedback": "This is the first momentum-resolved study of a cuprate side surface. It combines a FIB-defined (110) cleave of overdoped LSCO with self-consistent BdG slab simulations. The sample-preparation result is valuable and convincingly documented: SQUID data before and after milling, SEM and AFM images, and a recognizable Fermi surface from photon-energy maps. The topological background in the Supplement (chiral basis, Eqs. 12–16, the time-reversal operator in the chiral basis) is largely correct. My main concerns are with how strongly the physical conclusions are drawn.\n\n(i) Gap expectation. The quoted expected antinodal gap (15–25 meV, ~20 meV, and a 24 meV value used to tune the BdG model) conflicts with the authors' own (001) reference measurement of ~7 meV, which was taken on an x = 0.19 sample rather than x = 0.22. This weakens both the claim that the gap is suppressed and the predicted visibility of the flat-band dip/peak.\n\n(ii) Disorder strength. The disorder invoked to remove the flat band (Gaussian σ = 100 meV on every site, with the pairing interaction re-tuned upward by ~40%) is described as 'comparable to the gap' and 'moderate'. It is in fact 4–15× the gap. It has not been checked against observable bulk quantities such as nodal linewidths.\n\n(iii) Roughness modelling. The conclusion that geometric roughness is insufficient depends on mapping a 2D AFM map onto a 1D lattice edge whose discretization step exceeds the RMS roughness. Several aspects of that mapping are unspecified.\n\n(iv) Numerical and notational slips. The kz broadening is quoted as both 0.2 and 0.4 Å⁻¹. The pairing interaction V is given in meV but cannot produce a 24 meV gap. Eq. (32) is dimensionally inconsistent. The 'mass' versus 'chemical potential' disorder distinction is misleading, since the Nambu-σz term is ordinary potential disorder.\n\nThe headline statement that disorder is 'the key factor' is a plausible hypothesis supported by a tuned model. It is not an experimentally established conclusion.",
+  "comments": [
+    {
+      "title": "Inconsistent kz broadening (0.2 vs 0.4 Å⁻¹) and ambiguous amplitude vs. intensity weighting",
+      "quote": "This allows us to obtain an estimate for the momentum broadening of ∆kz ≈ 0.4 Å",
+      "explanation": "The values disagree across the paper:\n- Methods D derives Δkz ≈ 2/λ ≈ 0.42 Å⁻¹ from λ = 4.74 Å, and Sec. II C repeats 'on the order of 0.4 Å⁻¹'.\n- The Fig. 3 caption states that 'All the calculations include a kz broadening of Δk[110] = 0.2 Å⁻¹', based on λ ≈ 5 Å.\n\nThe two numbers differ by exactly a factor of two. I first suspected a simple FWHM/HWHM mix-up. However, the underlying issue is whether the exponential envelope is applied to the wavefunction amplitude or to the intensity.\n- The photoemission intensity decays as e^{-z/λ}, so the amplitude decays as e^{-z/(2λ)}.\n- The squared modulus of the one-sided Fourier transform of the amplitude envelope is then a Lorentzian of FWHM 1/λ ≈ 0.21 Å⁻¹. This matches the usual ARPES convention Δkz ≈ 1/λ.\n\nMethods E says only that eigenstates were 'weighted by an exponential function ... with a characteristic length scale equal to the inelastic mean free path'. If that weight is applied to amplitudes with length λ, the effective intensity decay length is λ/2 and the broadening is doubled. This could be exactly the 'slight overestimate' of kz broadening the authors notice in Fig. 3c. They instead attribute it to TPP-2M underestimating λ and to aliasing.",
+      "type": "technical",
+      "severity": "moderate",
+      "suggested_fix": "State explicitly whether the e^{-r/λ} weight multiplies amplitudes or intensities. If it multiplies amplitudes, use e^{-r/(2λ)} so that intensity decays over λ (Δkz ≈ 1/λ ≈ 0.21 Å⁻¹). Then report a single consistent Δkz value in the Sec. II C text, the Fig. 3 caption, and Methods D."
+    },
+    {
+      "title": "Expected gap magnitude conflicts with the authors' own (001) reference measurement",
+      "quote": "our (001)-surface reference measurement on a comparably prepared sample",
+      "explanation": "The figures for the gap do not line up:\n- Sec. II D says the LSCO antinodal gap is 'typically 10–20 meV' and that this is 'consistent with our (001)-surface reference measurement'.\n- The Introduction quotes 15–25 meV, and Sec. II D later says 'approximately 20 meV at our doping level'.\n- The BdG pairing interaction is tuned to give ~24 meV at the antinodes.\n- Supplementary Sec. VI E, however, reports a gap of ~7 meV from symmetrized EDCs. That measurement was on an x = 0.19 sample, not x = 0.22, and at 4–5 meV resolution.\n\nThe authors argue the 7 meV value is consistent with Ref. [66], but it is clearly not in the 10–20 meV range claimed in the main text. At x = 0.22 the gap would be expected to be smaller still.\n\nThis matters for two reasons:\n1. The dip/peak and coherence-peak structure that the simulations predict (Fig. 4e), and whose absence is the central 'surprising' result, scales with the assumed bulk gap. With a 24 meV gap the predicted features are far more prominent than with a ~5–7 meV gap at 3–4 meV resolution.\n2. Disorder of fixed strength (100 meV) is relatively much stronger compared with a smaller gap. Even weaker disorder might then suffice, which changes the quantitative argument.",
+      "type": "logical",
+      "severity": "major",
+      "suggested_fix": "Measure (or at least quote) the (001) antinodal gap on an x = 0.22 sample from the same batch. Re-run the BdG simulations with V tuned to that measured gap, show Fig. 4e for that gap value, and revise the '10–20 meV, consistent with our reference' statement to report the measured ~7 meV (x = 0.19)."
+    },
+    {
+      "title": "Absence of a gap on (110) is not clearly attributable to pair breaking given kz averaging and different analysis protocol",
+      "quote": "within our experimental energy resolution of 3–4 meV, we do not observe a superconducting",
+      "explanation": "The abstract presents gap suppression as an observation. I checked what would be needed to distinguish suppression from non-detection.\n\nOn the (110) surface, the 'antinodal' EDCs integrate over a kz window of 0.2–0.4 Å⁻¹ along [110]. That window mixes antinodal and off-antinodal states, which have smaller gaps; Fig. 3e shows strong intensity filling between the bands for exactly this reason.\n\nThe (001) reference used a full protocol: gold Fermi-edge correction, nodal leading-edge-midpoint (LEM) alignment, flux extrapolation, and symmetrization. The (110) EDCs in Fig. 4g are instead normalized, background-subtracted raw curves compared to gold. No symmetrization or leading-edge comparison between nodal and antinodal (110) spectra is reported.\n\nTheory already predicts suppression over a coherence length larger than the ARPES probing depth, so non-observation is the expected outcome. However, the same non-observation would also follow from kz averaging of a ~5–7 meV gap at 3–4 meV resolution, even without pair breaking. The data therefore do not discriminate between these scenarios.",
+      "type": "logical",
+      "severity": "moderate",
+      "suggested_fix": "Apply the same protocol used in Supplementary VI E (gold correction, nodal LEM alignment, symmetrization) to the (110) antinodal and nodal EDCs and report the resulting LEM shift. In addition, simulate the kz-broadened (110) EDC with the bulk gap left unsuppressed (non-self-consistent) to show whether a gap would be resolvable at all under these conditions."
+    },
+    {
+      "title": "Pairing interaction V in meV cannot produce a 24 meV gap",
+      "quote": "V = 0.153 meV (V = 0.21555 meV when the onsite disorder is introduced)",
+      "explanation": "In Eq. (6), Δ_ij = V Σ_n u_n(i) v_n*(j) tanh(E_n/2k_BT). The sum is the anomalous correlator ⟨c_i↑ c_j↓⟩, which is bounded in magnitude by ~1/2. Hence |Δ_ij| ≲ V/2.\n\nA nearest-neighbour amplitude of ~6 meV (Fig. 4b), giving an antinodal gap of ~24 meV, therefore requires V of at least tens of meV. A value of 0.153 meV would yield a gap of order 0.1 meV.\n\nThe intended unit is presumably eV (V ≈ 0.15 eV, of the order of J in cuprates). As written, the parameter is not reproducible.\n\nSeparately, the ~40% increase of V when disorder is added is a significant re-tuning. Without it, disorder would substantially suppress Tc and the gap. This should be stated explicitly when arguing that the disorder level is compatible with bulk superconductivity.",
+      "type": "technical",
+      "severity": "moderate",
+      "suggested_fix": "Correct the units (presumably V = 0.153 eV and 0.21555 eV). State explicitly that V was increased with disorder to restore the bulk gap, and report what bulk gap/Tc the disordered model would have with the clean-system V."
+    },
+    {
+      "title": "Eq. (32) for k⊥^F is dimensionally inconsistent",
+      "quote": "By equating Equation 10 to zero, we can derive the expression of the perpendicular component of the Fermi momentum",
+      "explanation": "Expanding Eq. (10) to second order gives ε ≈ −(4t+μ) + tδ²(k∥²+k⊥²)/2. Setting ε = 0 yields k² = 2(4t+μ)/(tδ²) = (4t+μ)/(ta²). This is consistent with the k_F quoted after Eq. (26). It follows that k⊥^F = sqrt((4t+μ)/(ta²) − k∥²) = (1/t) sqrt(t(4t+μ)/a² − t²k∥²).\n\nEq. (32) as printed is (1/t) sqrt(t² · t(4t+μ)/a² − k∥²). Here the first term under the root has units of E⁴/L² and the second 1/L², so the factor t² is attached to the wrong term.\n\nThe correct form is also what is needed for Eq. (33) to follow from Eq. (18) in the Δ→0 limit, where κ → ±(1/t) sqrt(t²k∥² − t(4t+μ)/a²).",
+      "type": "technical",
+      "severity": "minor",
+      "suggested_fix": "Replace Eq. (32) by k⊥^F = (1/t) sqrt( t(4t+μ)/a² − t² k∥² ) = sqrt( (4t+μ)/(t a²) − k∥² )."
+    },
+    {
+      "title": "Disorder strength is not 'comparable to the gap' and is not cross-checked against bulk observables",
+      "quote": "Anderson disorder with a magnitude comparable to the superconducting gap",
+      "explanation": "The disorder used is a Gaussian random onsite term with σ = 100 meV on every site. Compared with the relevant scales:\n- It is ~4× the 24 meV model gap and ~14× the measured (001) gap of ~7 meV.\n- It is ~0.3–0.4 t for LSCO hoppings.\n\nCalling this 'comparable to the superconducting gap' (Introduction) or 'moderate' is therefore misleading. A rough Born estimate of the scattering rate, Γ ~ πN₀σ², gives values comparable to the gap itself. This is why V had to be raised by ~40%.\n\nSuch disorder would also broaden bulk quasiparticles near the node. The paper shows nodal dispersions (Fig. 3c,d) whose MDC widths could directly bound the disorder strength, but no such comparison is made.\n\nThe claim in Sec. II D that this disorder 'is not inconsistent' with a (001) gap rests only on the model DOS (Fig. 12), not on a comparison with measured spectra.",
+      "type": "logical",
+      "severity": "moderate",
+      "suggested_fix": "Describe the disorder as σ ≈ 4Δ (≈0.4t) rather than 'comparable to the gap'. Add a comparison of the simulated nodal MDC width with σ = 100 meV against the measured nodal MDC width (Fig. 3d), and show the flat-band suppression as a function of σ to identify the minimal disorder needed."
+    },
+    {
+      "title": "Nambu σz 'mass' disorder is ordinary potential disorder, so contrasting it with chemical-potential disorder is misleading",
+      "quote": "or mass disorder (used in our calculations), as well as disorder in the hopping terms",
+      "explanation": "Methods E defines the disorder as V_i = v_i σ_z in the reduced Nambu basis (c_i↑, c†_i↓). Writing this out gives v_i(c†_i↑c_i↑ − c_i↓c†_i↓) = v_i(n_i↑ + n_i↓ − 1). This is precisely a random onsite chemical potential, i.e. standard Anderson potential disorder.\n\nI checked that it becomes σ_x in the chiral basis: U_Γ†σ_zU_Γ = σ_x. This is consistent with Supplementary VI C, so the physics in the calculations is self-consistent.\n\nHowever, the Discussion lists 'chemical potential disorder or mass disorder (used in our calculations)' as distinct types. That suggests to the reader that the calculations used something other than potential disorder. It also obscures the fact that the conclusion applies to the most generic, non-magnetic, TRS-preserving impurity potential.",
+      "type": "technical",
+      "severity": "minor",
+      "suggested_fix": "Rename the term 'random onsite potential (chemical-potential) disorder, which in the Nambu basis enters as v_i σ_z'. Remove the implied distinction between 'chemical potential disorder' and 'mass disorder' in the Discussion."
+    },
+    {
+      "title": "Mapping of 2D AFM topography to a 1D lattice edge is underspecified and limits the roughness conclusion",
+      "quote": "the effective spatial resolution along the [11] direction is limited to a",
+      "explanation": "The text states that the effective spatial resolution along [11] is a√2/2 ≈ 2.7 Å. The measured RMS roughness is 1.8 Å, which is smaller than this discretization step. Most AFM heights would therefore round to zero or one removed row, so the 'Edge AFM' slab is close to a clean edge almost by construction.\n\nSeveral further details are missing:\n- The AFM map is two-dimensional, spanning [1−10] and [001]. The slab model has only one edge coordinate ([1−1]), and [001] variations are not representable. The paper does not say how the 2D height map was reduced to a 1D profile: a line cut, an average, or a sampling.\n- It does not say how the AFM pixel size, of order nm, was mapped onto lattice sites spaced by a few Å.\n- It does not say whether the AFM was performed on the same ARPES-cleaved surface after air exposure.\n- The 'probabilistic roughness (GE0.5)' case is never defined.\n\nThe authors correctly acknowledge AFM's limited lateral resolution. Even so, the abstract's statement that the 'measured geometric roughness ... is too weak' mostly reflects what AFM can resolve and how it was discretized, not the true atomic-scale roughness.",
+      "type": "technical",
+      "severity": "moderate",
+      "suggested_fix": "In Methods, specify how the AFM map was converted into the 1D edge profile (cut direction, interpolation, height-to-row rounding rule). Define GE0.5 explicitly (e.g. 'each edge site removed independently with probability 0.5'). Rephrase the abstract to state that roughness resolvable by AFM (lateral scale ≳ few nm) is insufficient to remove the flat band."
+    },
+    {
+      "title": "Surface-doping estimate is too uncertain to support the no-reconstruction conclusion",
+      "quote": "indicates little variation of the effective doping",
+      "explanation": "Supplementary VI F itself states that Fermi-surface distortions 'prevent[] us from obtaining an accurate estimate of the effective doping'. It reports fits ranging up to p ≈ 0.3, which it calls 'slightly overdoped', although p = 0.3 is near the edge of the superconducting dome.\n\nThe main text then uses this estimate to argue for little bulk–surface doping variation and against a surface reconstruction. It also switches between x and p.\n\nA spread of 0.2–0.3 is large compared with the doping changes that would significantly alter the gap and Tc in overdoped LSCO, where Tc vanishes near 0.27–0.3. The estimate therefore cannot exclude a surface region that is substantially more overdoped, and hence weakly superconducting or non-superconducting. That would be an alternative explanation for both the missing gap and the missing flat band.",
+      "type": "logical",
+      "severity": "moderate",
+      "suggested_fix": "Report the doping as p ≈ 0.23 with an uncertainty spanning ~0.20–0.30. Explicitly note that a near-surface layer overdoped toward the edge of the dome (p ≳ 0.27) cannot be excluded, and list it as an alternative explanation for the absent gap and flat band."
+    },
+    {
+      "title": "Headline conclusion overstates what the data and model establish",
+      "quote": "reveal disorder as the key factor currently preventing appearance",
+      "explanation": "The experimental result is a null observation: no gap and no zero-energy peak. Attributing it to bulk Anderson disorder rests on one model calculation with a chosen disorder strength of σ = 100 meV.\n\nThe paper itself lists several alternatives that are not excluded:\n- sub-AFM-resolution roughness;\n- surface states displaced below the topmost layer;\n- spatial fragmentation diluted over a 50 µm beam spot;\n- kz broadening (possibly overestimated);\n- the uncertain gap magnitude;\n- possible surface overdoping.\n\nIn addition, the predicted symmetry-broken surface phases (TRS breaking, phase crystals) would split or shift the zero-energy peak, and this is not considered as an explanation. The data support the statement that disorder of this type is sufficient to explain the null result within the model, not that it is 'the key factor'.",
+      "type": "logical",
+      "severity": "moderate",
+      "suggested_fix": "Rephrase as: '...and show that moderate-to-strong bulk potential disorder is sufficient, within our model, to suppress the flat-band signal, alongside other possible factors (sub-nm roughness, surface doping, kz averaging).'"
+    },
+    {
+      "title": "Spatial-scale comparison is off by more than an order of magnitude",
+      "quote": "the reported spatial range only covers about 16 nm, which is two orders of magnitude smaller",
+      "explanation": "The ARPES beam spot is ~40–50 µm, per Methods B and the Discussion. The ratio of 50 µm to 16 nm is ≈3×10³, i.e. three to four orders of magnitude, not two. The qualitative argument stands, but the number is wrong.",
+      "type": "technical",
+      "severity": "minor",
+      "suggested_fix": "Replace 'two orders of magnitude' with 'more than three orders of magnitude (16 nm vs. ~50 µm)'."
+    },
+    {
+      "title": "Target space of the winding map written as R\\{0} instead of R²\\{0}",
+      "quote": "the fundamental homotopy group π1 (R \\ {0}) = Z",
+      "explanation": "Supplementary VI A writes the map as d_k: S¹ → R\\{0} ≃ S¹ and states π₁(R\\{0}) = Z. However, R\\{0} is two disconnected half-lines with trivial π₁. The correct target, used in Fig. 5 and Fig. 1b, is R²\\{0} ≃ S¹, since d_k = (Re q, −Im q) is a two-component vector. This is clearly a typo, but it appears in the formal statement of the invariant.",
+      "type": "technical",
+      "severity": "minor",
+      "suggested_fix": "Replace R\\{0} by R²\\{0} in both occurrences: d_k: S¹ → R²\\{0} ≃ S¹ and π₁(R²\\{0}) = Z."
+    },
+    {
+      "title": "Use of the superconducting gap as the 'band gap' input in TPP-2M",
+      "quote": "and a band gap of 20 meV, corresponding to the superconducting gap at the antinodes",
+      "explanation": "The band-gap parameter E_g in the TPP-2M formula refers to the electronic band gap that determines the valence plasmon/electron-hole excitation threshold. For a metal it is set to zero.\n\nThe superconducting gap is not relevant to the inelastic losses of 79–95 eV electrons. The numerical effect is negligible, but the stated justification is physically incorrect. It also cites a 20 meV gap that conflicts with the authors' own 7 meV reference measurement.",
+      "type": "technical",
+      "severity": "minor",
+      "suggested_fix": "Set E_g = 0 (metallic LSCO) in the TPP-2M estimate and note that the resulting λ is essentially unchanged."
+    }
+  ]
+}

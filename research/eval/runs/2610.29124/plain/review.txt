@@ -1,0 +1,119 @@
+Referee report
+
+Manuscript: "Magnetization and Josephson current coupling drives the Josephson diode effect in FeTe0.55Se0.45 van der Waals junctions" (Shin, Ahn, et al.)
+
+1. Summary of the submission
+
+The authors build vertical van der Waals Josephson junctions by micro-cleaving a single FeTe0.55Se0.45 (FTS) flake on a Peltier-cooled stage in argon and restacking the two halves without rotation. HAADF-STEM shows an aligned interface with a gap of about 2.8 A. R(T) shows a two-step transition (Tc,FTS about 13.5 K, Tc,JJ about 6 K). At 20 mK they report:
+
+(a) unequal switching currents at nominally zero field (|Ic+| = 35.2 uA, |Ic-| = 28.9 uA, eta = 9.8%), with half-wave rectification that stays stable over 5,000 cycles;
+(b) Ic+(Bx) and Ic-(Bx) envelopes centered at Bx = -8 G and offset from each other by about 4 G, which gives an eta(Bx) that is antisymmetric about -8 G with a range of about +/-20%;
+(c) a Fraunhofer pattern that depends on sweep direction (main-lobe maxima at -6 G and +22 G);
+(d) a low-dV/dI feature at a nearly field-independent V of about 170 uV (about 82 GHz). It appears inside the Fraunhofer lobes and is also seen for By;
+(e) at Bx = 75 G, near the first node, half-integer Shapiro steps whose +1/2 and -1/2 steps evolve differently with RF drive.
+
+They interpret all of this with a Buzdin-type phi0 CPR, I1 sin(phi - alpha.m+) + I2 sin 2phi, coupled to LLG dynamics for two in-plane ferromagnetic surface layers with antiferromagnetic interlayer exchange. They conclude that interfacial magnetization coupled to the supercurrent "drives" the JDE.
+
+The fabrication route is attractive, and the data set is broad, combining switching statistics, interference, finite-voltage spectroscopy and microwave response on one device. Iron-chalcogenide interfacial superconductivity is a topical subject. However, the central causal claim in the title and abstract ("confirming that the JDE originates from interfacial coupling between magnetization and Josephson current") is not established by the evidence presented. Several conventional explanations are not excluded and would produce the same signatures. Some parts of the proposed model also appear to be in tension with the data, or with each other. I explain this below.
+
+2. Major issues
+
+2.1 The "zero-field" diode is, on the authors' own data, a field offset. Its origin has not been separated from instrumental remanence or trapped flux.
+
+Fig. 2c-d shows that Ic+ and Ic- are symmetric about Bx = -8 G and that eta is antisymmetric about that point. Supplementary Fig. 1b states this explicitly: the field axis is plotted relative to B0, "the symmetric field at which eta = 0". So the diode efficiency vanishes at the point of symmetry. The 9.8% at nominal Bx = 0 is just eta(B) read off 8 G away from B0. This is exactly what an ordinary field-induced diode effect would show (eta odd in field, zero at zero total field) if the true zero of field at the sample is offset by 8 G.
+
+A residual field of this size is typical of a large superconducting vector magnet after it has been swept, and the Oxford 6-1-1 T system used here is such a magnet. Flux trapped in the thick, strongly pinning type-II FTS electrodes can do the same. Neither possibility is addressed. To claim a spontaneous, magnetization-driven zero-field JDE, the authors need to show at least the following.
+
+- An independent calibration of the field at the sample, for the same magnet history. Options are a Hall sensor, a reference non-magnetic junction (for example NbSe2 or Al) measured in the same cooldown or setup, or the magnet's own remanence characterization after the actual sweep protocol.
+- The dependence of B0 and of eta(0) on magnetic history: field cooling in +B versus -B, the maximum field reached before returning to zero, and minor loops. If interfacial magnetization drives the effect, eta at true zero field should be able to change sign after training with opposite polarity. That would be the key experiment.
+- The magnet history before the Fig. 2a/2b measurements. "Zero-field cooling" alone does not set the remanent field of the magnet.
+
+2.2 Internal tension: antiferromagnetic interlayer alignment implies m+ = 0 at zero field.
+
+The Discussion and Supplementary Note 1 conclude that the two interfacial layers are antiferromagnetically aligned, mt = -mb. Then m+ = (mt + mb)/2 vanishes at zero field. By the authors' own statement below Eq. (1) and in Fig. 2e, the CPR then keeps odd symmetry and no zero-field diode is allowed. Supplementary Note 3B gives m+ = h_ext eta + alpha Gamma eta sin(phi_c) + O(Gamma^2). The static part is induced by the external field. The current-odd part is a current-induced canting that enters as an effective field, B_total = B_ext + mu0 Ms m+.
+
+In this model the diode is therefore controlled by the total effective field, and it should vanish where that field vanishes. This matches what is observed in 2.1, and it also matches a conventional effect plus a field offset. The authors should state clearly what produces a nonzero m+ at zero applied field. Candidates are an uncompensated moment, unequal layer moments, or a remanent canted state. They should then show that this, and not the magnet, sets B0. The same question applies to the Fraunhofer hysteresis: a compensated antiferromagnetic bilayer would not normally give a 28 G hysteretic shift of the interference pattern. The relation to Qiu et al. (Ref. 19), who interpreted similar hysteresis as emergent ferromagnetism, should be discussed explicitly. Is this a reinterpretation of their result?
+
+2.3 The symmetry argument for interfacial inversion breaking, and for an in-plane polar axis, is not convincing.
+
+The STEM data are presented as showing a native, bulk-like vdW gap (2.8 A) between crystallographically aligned flakes of the same crystal. Two identical centrosymmetric layers stacked without rotation keep an inversion centre for any relative in-plane translation: inversion about the midpoint maps one layer onto the other. A restacked bulk-like interface therefore does not break inversion by itself.
+
+There is a further point. For current flowing along z through the junction, a Buzdin phi0 term needs a polar axis perpendicular to the current. The authors therefore assume inversion breaking "primarily along the x-direction", which gives a y-oriented alpha (Supplementary Note 1). Nothing in a C4-symmetric (001) interface singles out an in-plane polar direction. The mechanisms invoked (chemical-potential mismatch, strain, relaxation) are generic and would naturally give a polar axis along z, and that produces no phi0 for current along z. The "macroscopic inversion asymmetry of the device geometry" is the most plausible in-plane polar vector here, for example current fed in from one side and out the other in an overlap geometry. But that is the classic source of conventional, geometric Fraunhofer asymmetry and diode effects from non-uniform current injection and screening currents in the electrodes. It does not require any magnetism. Please:
+- justify the in-plane polar axis microscopically, or acknowledge that it is phenomenological;
+- estimate the conventional geometric diode effect for the actual electrode geometry, flake thicknesses and penetration depth (lambda of FTS is several hundred nm, and kinetic inductance in thin flakes is large);
+- explain how a bulk-like interface becomes a weak link with Tc,JJ about 6 K. The observed weak coupling suggests the interface is not bulk-like. Possible causes include contamination, local disorder, and in particular excess interstitial Fe at the cleaved surface, a known feature of FTS and a natural local magnetic source. Is the STEM lamella from the measured device, and how representative is one cross-section of a 17 x 8 um overlap? EELS/EDS across the interface would help.
+
+2.4 The Fraunhofer periodicity and the "fast oscillation" need a consistency check against geometry. The fast oscillation cannot be set aside.
+
+From the main lobe (first node near 75 G for Bx, with an effective length of about 17 um per Supplementary Fig. 4b), the implied magnetic thickness is Lambda = Phi0/(Delta B * L), about 2.07e-15 / (7.5e-3 T * 17e-6 m), or about 16 nm. For flakes of typical exfoliated thickness (about 100 nm) and lambda of a few hundred nm, Lambda should be of order 100 nm. The expected full-junction period would then be about 12 G, which is suspiciously close to the 11 G "fast oscillation" superimposed on the envelope.
+
+Please report the thicknesses of both flakes, the overlap geometry, Rn and IcRn, and compare the measured periods for Bx and By with the expected ones. If the 11 G oscillation is the interference pattern of the full overlap and the 75 G envelope reflects a much narrower effective channel, or if the two coexist as parallel channels, then the device is effectively an interferometer of inequivalent junctions. An asymmetric multi-channel or SQUID-like geometry with unequal harmonic content is itself a well-established JDE mechanism (Ref. 9, Fominov and Mikhailov, which the authors cite). It also naturally produces envelope offsets between Ic+ and Ic-, phase shifts between harmonics, and enhanced effective second harmonics near nodes.
+
+The statement that the fast component's "microscopic origin is not directly relevant to the JDE" is therefore not justified. In addition, removing an FFT window of 10-15 G from Ic(B) curves whose relevant offset is only about 4 G may distort the extracted envelopes. Please show that the offset and eta(B) survive without filtering.
+
+2.5 The 170 uV feature: alternatives to magnetic resonance are not excluded, and the tests used do not discriminate.
+
+(i) Fiske modes. The argument rests on the ratio of effective lengths for Bx versus By (17 versus 8 um, ratio about 2.1). That ratio means the n = 2 Fiske mode for one orientation nearly coincides with the n = 1 mode for the other, so a feature at the "same" voltage in both orientations does not rule out cavity modes. A rough Swihart-velocity estimate also matters here. With a barrier of a few A, epsilon of about 5-10, and the large kinetic magnetic thickness of thin flakes, c-bar is of order 1e6 m/s, which puts V1 = h c-bar / (2e * 2L) in the range of tens to a few hundred uV. That is the same range as 170 uV. Please give a quantitative estimate with measured parameters. A stronger argument against Fiske modes is available and should be made explicitly if the data support it: the presence of the feature at zero field in the main lobe, where ideal Fiske steps vanish.
+
+(ii) Environmental or parasitic resonances. A Josephson junction coupled to any linear electromagnetic mode gives a voltage feature whose position is independent of field and whose strength scales as Ic(B)^2. Such modes include an on-chip LC formed by the large overlap and lead capacitance, or a resonance of the wiring or sample box. This is the same signature the authors attribute to magnetic resonance: field-independent V, strength following the Fraunhofer lobes, and the sin^2 interference dependence quoted in Supplementary Note 4B. The observations listed therefore do not single out a magnetic mode.
+
+(iii) Discriminating tests. Over the +/-100 G range used, any magnetic resonance shifts by only gamma*B, about 0.3 GHz, or under 1 uV. "Field independence" is thus expected for magnetic, cavity and environmental modes alike and carries no weight. Since the field is in-plane, the junction should tolerate several kG to a few T. A measurement of V_MR(B) at fields of order 0.5-1 T, where an AFMR or FMR mode would move by tens of GHz (tens of uV) with a characteristic field dependence, would be decisive. Temperature dependence of V_MR, comparison across devices with different overlap geometry, and direct microwave spectroscopy near 80 GHz (or a resonance seen in a second, independent probe) would also help.
+
+(iv) Parameter consistency. With BM = 2000 G (Eq. S4) and a standard gyromagnetic ratio (about 28 GHz/T), a resonance set by gamma*BM would be about 5.6 GHz, not 82 GHz, unless the normalizations differ from what I infer from the text. Please give the physical values of Ms, K1, K2 and Jex implied by the fit, and show that they reproduce 82 GHz.
+
+(v) Interpretation. The "intermediate between FMR (about 10 GHz) and AFMR (more than 100 GHz)" argument for a weakly exchange-coupled antiferromagnetic bilayer is not discriminating. Ferromagnets with sizable anisotropy resonate well above 10 GHz, and layered or synthetic antiferromagnets resonate in the 10-100 GHz range. The inferred magnetic structure (in-plane FM layers, AFM interlayer coupling) should be presented as one consistent possibility, not as an observation.
+
+2.6 The Shapiro analysis at Bx = 75 G does not isolate the proposed mechanism.
+
+- Near a Fraunhofer node the first harmonic is strongly suppressed and the current distribution is highly non-uniform. A large effective I2/I1 is then generic, from inhomogeneity, parallel channels (see 2.4) or the sinc structure itself. It is not a junction property comparable to zero-field I2/I1 values of transparent junctions (Refs. 38, 39). The argument that I2/I1 = 0.7 exceeds what transparent junctions give, and therefore requires magnetization feedback, compares quantities measured under different conditions.
+- At Bx = 75 G time-reversal symmetry is broken by the applied field. Any CPR with I(phi) not equal to -I(-phi), including the conventional geometric and interferometric ones above, gives asymmetric +1/2 and -1/2 steps. Asymmetric half-integer steps at finite field are therefore not specific to magnetization-supercurrent coupling.
+- The phenomenological RCSJ fits show that I2eff and phi0eff are sufficient to reproduce the data. They do not show that magnetization is necessary. The statement in Supplementary Note 6 that "coupling with interfacial magnetization is necessary" does not follow from the control simulations, which only vary the parameters of a phase-only CPR.
+- "No signature of a 0-pi transition" is asserted without supporting data. Please show what was checked (for example temperature dependence of Ic near a possible cusp).
+- Absence of current hysteresis at 75 G, where Ic and hence beta_c are small, does not mean inertial or thermal effects on fractional steps are negligible. Please give beta_c, the noise temperature, and the measured step widths compared with the simulation in physical units. Fractional steps (1/6) are mentioned in Methods for the simulations but are not shown or discussed. Are they present in the data?
+
+2.7 The model has many adjustable parameters, which change between data sets.
+
+Beyond the fixed set in Eq. (S4), the fits adjust omega_M/omega_J, two components of alpha, Gamma (isotropic or anisotropic), beta_J and i2 for each data set. These change substantially, and not only in magnitude:
+- alpha = (-15, 75) for Fraunhofer (S5), (-6, 30) for I-V (S7, attributed to "dynamic screening"), and (40, 20) for Shapiro (S10). The direction rotates and the x component changes sign.
+- i2 = -0.2 (S5), -0.1 (S7), +0.1 (S10). The negative sign is motivated by SFFS physics, but the sign flips for the Shapiro fit.
+- Gamma becomes anisotropic only for the Shapiro fit.
+
+If alpha encodes a fixed interfacial SOC vector and m+ the magnetic state, it is hard to see why its orientation should change between measurements on the same device. With this many parameters, qualitative agreement with three separate experiments is a consistency check, not a confirmation. Please (a) justify each change physically or perform a single global fit with one parameter set, (b) give some quantitative measure of agreement, and (c) show how sensitive the conclusions are to the parameters. Key theoretical results are deferred to "Ahn et al., in preparation" (Supplementary Ref. 7): the sin^2 scaling of the MR feature, the dominance of the static phase shift, and the interference rescaling near the node. These should be included in the Supplement or made available to the referees, since the interpretation depends on them.
+
+2.8 Reproducibility and controls.
+
+All data appear to come from a single device. Please report how many junctions were made and measured, how many show a JDE, and the sign and magnitude of eta(0) and B0 across devices. A spontaneous magnetic origin would predict device-to-device, and possibly cooldown-to-cooldown, variation of sign. A geometric origin would tie the sign to the current-path geometry. Useful controls include a junction made by the same route from a non-magnetic layered superconductor (for example NbSe2) in the same setup, a deliberately degraded FTS interface (air or heat exposed), and a twisted FTS junction. Without these controls, the claim that the clean interface is responsible, and that magnetism is the mechanism, rests on interpretation alone.
+
+3. Minor issues and presentation
+
+- Switching versus critical current. The junction is hysteretic at 20 mK, and the quantity measured is a stochastic switching current that depends on damping and the environment. Please give Rn, IcRn, Ir, beta_c and the width of the switching distributions, and comment on whether asymmetric escape or retrapping dynamics could contribute to the measured asymmetry.
+- Consistency between Fig. 2a (single sweep, eta = 9.8%) and the 100-sweep means at Bx = 0 in Fig. 2c should be stated.
+- Field-sweep direction and history for Fig. 2c, Fig. 4 (is "75 G" before or after the 28 G hysteretic shift?) and Supplementary Fig. 6 should be specified.
+- Branch nomenclature is inconsistent. The main text uses 0-p / 0-n for switching. Methods says positive switching events come from "n-p" and negative from "p-n" branches. Supplementary Note 2A says voltage pulses occur for "p-n" while the junction stays superconducting for "n-p". Please unify.
+- Cross-references. The Fig. 3 caption points to Supplementary Note 3 for the RCSJ+LLG I-V simulation, while the text and the supplement use Note 4. The Supplementary Fig. 4 caption says "same junction shown in Fig. 4". The Supplementary Fig. 7 caption refers to "Fig. 3c" and "Fig. 3d" for the 5.776 GHz Shapiro data, which are in Fig. 4.
+- The I_rf axis is defined as 10^(P/20) in arbitrary units. Since the RF coupling is frequency dependent, comparing data at 4.3-9.7 GHz with simulations in i_ac needs an explicit calibration, for example from the zeros of the n = 0 step.
+- The statement that FTS "crystallizes in a centrosymmetric P4/nmm structure, therefore the effect arises from inversion and time-reversal breaking at the interface" moves from "unlikely to originate from the bulk" to a definite attribution. Please soften it, given 2.3.
+- The surface-degradation statement ("we also observed noticeable surface changes in FTS under air and heat exposure") should be backed by data (AFM, Raman or similar) or removed.
+- The Edelstein-type explanation in the main text and the Buzdin phi0 model in the Supplement are related but not identical. Please state which is used quantitatively.
+- Methods, crystal growth: "cooled to 950 C at 0.5 hour" and "cooled ... and then shut down the furnace and cooled to room temperature" read awkwardly and repeat themselves. Please edit.
+- Data availability "upon reasonable request" is weak for a claim that depends on reanalysis of switching statistics and FFT filtering. Please deposit the raw data and the simulation code.
+
+4. Assessment of claims
+
+- Supported: fabrication of clean-looking, aligned restacked FTS junctions; reproducible asymmetric switching at nominal zero applied field; a hysteretic interference pattern; a field-independent finite-voltage feature near 170 uV; asymmetric half-integer Shapiro steps at 75 G.
+- Not yet supported:
+  (a) that the zero-field diode is intrinsic and not a field offset (2.1);
+  (b) that interfacial magnetism exists at the junction and is coupled to the supercurrent, as opposed to trapped flux or remanence for the hysteresis and an electromagnetic mode for the 170 uV feature (2.1, 2.5);
+  (c) the specific magnetic structure (2.2, 2.5);
+  (d) that magnetization-supercurrent coupling is the mechanism ("drives", "confirming") rather than one model consistent with the data (2.6, 2.7).
+
+5. Recommendation
+
+Major revision. The platform and data are of interest, and the experiments are carefully executed in many respects. But the manuscript currently presents a model-consistent interpretation as a demonstrated mechanism. The most important additions would be:
+(1) field calibration and magnetic-history (training) dependence of B0 and of eta at true zero field;
+(2) geometric consistency of the Fraunhofer periods, with a treatment of the parallel-channel or interferometer and conventional geometric diode alternatives;
+(3) a decisive test of the magnetic nature of the 170 uV mode, such as its dependence on in-plane field up to about 1 T, its temperature dependence, and a quantitative exclusion of Fiske and environmental modes;
+(4) a single, physically constrained parameter set for the model, with the deferred theory included;
+(5) additional devices and controls.
+
+If these support the authors' picture, the work would be a valuable contribution. If they do not, the title, abstract and conclusions should be reframed as a phenomenological characterization of nonreciprocal transport in FTS vdW junctions, with magnetization-supercurrent coupling offered as one candidate explanation.

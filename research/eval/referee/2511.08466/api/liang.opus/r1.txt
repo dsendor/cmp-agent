@@ -1,0 +1,170 @@
+Review outline:
+
+**1. Significance and novelty**
+
+- **Scope of the work.** The manuscript reports microwave (cQED-style) measurements of the kinetic inductance of hBN-encapsulated few-layer 2H-NbSe₂.
+  - The NbSe₂ flakes are edge-contacted as the shorting termination of λ/4 Al CPW resonators.
+  - Twelve devices span AFM thicknesses of ~2–52 nm.
+  - Reported quantities are L_k,sq (up to ~1.2 nH/□ for the thinnest device), self-Kerr coefficients (−0.008 to −14.7 Hz/photon), the DC-bias dependence (I* ≈ 0.4 mA for a 9-nm device), and a claimed thickness-driven "clean-to-dirty-limit crossover."
+- **Topical relevance.**
+  - Crystalline 2D superconductors as compact, low-nonlinearity superinductors are attractive for fluxonium/0-π circuits, high-impedance resonators and detectors.
+  - Microwave access to the reactive response (superfluid stiffness) of atomically thin vdW superconductors complements the DC transport that dominates the literature.
+- **Novelty is moderate.**
+  - The measurement platform (Al λ/4 resonator terminated by an edge-contacted vdW heterostructure) was previously established by the same group for magic-angle graphene (Ref. 2); related hybrid-circuit work exists for cuprates (Ref. 4).
+  - The NbSe₂ superfluid density and Pearl length have recently been probed by other means (e.g., Ref. 66).
+  - The new elements are therefore:
+    - a systematic thickness series in NbSe₂;
+    - the Kerr characterization;
+    - the phenomenological clean/dirty decomposition.
+  - The physical conclusions drawn from these elements are where the paper is weakest (see Section 3).
+- **Headline claims requiring scrutiny.**
+  - (i) The "monolayer limit" value of 1.2 nH/□.
+  - (ii) The 1/d scaling.
+  - (iii) The crossover to dirty-limit behavior.
+  - (iv) "Low nonlinearity" relative to gr-Al and JJ arrays.
+  - (v) Possible confinement enhancement in the Pearl regime.
+  - (vi) Consistency of the quadratic I_DC dependence with anisotropic nodeless pairing.
+
+**2. Potential reasons for acceptance**
+
+- **Clean experimental concept.**
+  - Comparing an NbSe₂-terminated resonator with an Al-terminated control of the same design gives a direct, model-light handle on the added inductance.
+  - Spot checks of Eq. 12 against the table (e.g., D1: tan(π/2·3.62/5.30) ≈ 1.83 vs. Z₀/ωL_k ≈ 1.84; D6: 6.2 vs. 6.1) show the reported L_k values are internally consistent with the stated model.
+- **Breadth of the data set.**
+  - Twelve devices span over an order of magnitude in thickness.
+  - Each device is characterized by frequency, Qi and Kerr.
+  - Complementary DC transport (Tc, R_s, I_c), contact-resistance optimization, Raman and AFM are provided.
+- **Technically demanding fabrication.**
+  - Air-sensitive few-layer NbSe₂ is integrated into microwave circuits via glovebox assembly and superconducting 1D edge contacts.
+  - Qi values of ~10⁴–10⁵ are retained, and DC contacts show zero resistance within the noise floor.
+  - This demonstrates a reusable route to characterizing other 2D superconductors, which is valuable to the community.
+- **Methodologically sound nonlinear characterization.**
+  - The power- and DC-bias-dependent frequency shifts are measured consistently.
+  - The Kerr coefficient is estimated independently from I* (Eq. 8), with order-of-magnitude agreement.
+  - The resulting numbers are practically useful for circuit designers considering NbSe₂ inductors.
+- **Directly useful for device design.**
+  - Large sheet inductance in a crystalline, nominally low-disorder material is of genuine engineering interest.
+  - Even with the caveats below, the thick- and intermediate-thickness data (≈5–12 nm) provide useful reference values.
+
+**3. Potential reasons for rejection**
+
+**3.1 The "monolayer" headline and the thickness/layer-number assignment are not established and are internally inconsistent.**
+- **D1 is not demonstrably a monolayer.**
+  - AFM gives 1.99 nm; Raman yields a "fitted N = 1.5," a non-physical layer number.
+  - The interlayer shear mode is absent in a true monolayer, as the authors themselves state. Observing any shear feature (19.04 cm⁻¹) therefore argues against a monolayer.
+  - Using the authors' own relation ω_s = 29.39·cos(π/2N), 19.04 cm⁻¹ corresponds to N ≈ 1.8 (bilayer ≈ 20.8 cm⁻¹), not 1.5; N = 1.5 would give ≈14.7 cm⁻¹.
+  - The plausible interpretations are a bilayer, a mixed 1L/2L flake, or a degraded bilayer. Yet the abstract, Fig. 4a (top axis "1"), Fig. 4b and Table S3 ("Layers = 1") all present it as a monolayer.
+- **The thickness-to-layer conversion uses "1 layer = 1 nm."**
+  - The 2H-NbSe₂ interlayer spacing is ≈0.63 nm (c ≈ 1.255 nm per two layers), so AFM thicknesses of 8–9 nm would correspond to ~13–14 layers, not 8–9.
+  - The Raman data (Fig. S7) cover only N = 4–9, and Table S3 assigns "4, 6, 7, 8, 10 layers" by pairing devices with DC samples of nominally similar AFM thickness.
+  - The thickness d entering the 1/d fit, ρ_s = R_s·d (Fig. S5a), and the λ/Pearl estimates is thus uncertain by a factor that is itself thickness-dependent. This directly affects the claimed scaling law.
+- **The monolayer data point carries a disproportionate load.**
+  - For "1 layer," R_s and T_c are taken from the literature (Khestanova et al.: 240 Ω, 3.5 K) rather than measured on D1 or even a same-batch flake.
+  - If D1 is a bilayer, or partially degraded, the R_s/T_c abscissa of the single highest-leverage point in Fig. 4c is wrong.
+
+**3.2 The extraction of L_k is not robust against parasitic contributions, especially at both thickness extremes.**
+- **Contact and weak-link inductance cannot be separated from intrinsic L_k.**
+  - For a 1.5–2 nm flake, the 1D edge contact spans a nanometre-scale height over a few-µm width. Any reduced transparency acts as a Josephson-like weak link, with L_J = Φ₀/2πI_c ≈ 33 pH at I_c = 10 µA and ≈330 pH at 1 µA.
+  - DC contact tests (Table S1) cover only 4–10 nm. Contact resistance at the microwave termination is not measured, and some DC samples show contacts of 1–2 Ω/µm.
+  - No device geometry (e.g., multiple lengths of the same flake) is presented that would allow a contact term to be separated, in the manner of a transmission-line method.
+  - The anomalously large Kerr of D1 is also qualitatively what a weak-link contribution would produce.
+- **Thick-sample values are within the systematic error of the method.**
+  - For D10–D12, the frequency shifts are only 20–30 MHz, while the Al-control frequencies themselves vary by ~400 MHz across chips (5.21–5.62 GHz).
+  - The extracted 8–14 pH is comparable to the geometric (self-)inductance of a few-µm-long flake and its Al leads, which is not subtracted.
+  - Differences in termination geometry between the Al control and the NbSe₂ device (bridging layers, lead lengths, irregular flake shapes in Fig. 3d) are not modeled. The control resonator is not on the same chip in all cases.
+  - Error bars in Fig. 4 are not explained (origin: fit? geometry? thickness?).
+- **The number of squares is taken from nominal W and L.**
+  - Flakes are irregular, and RIE edge damage plus possible edge oxidation reduce the effective superconducting width. A ~100–200 nm damaged edge on a 2.5–3 µm strip is a 10–15% effect, larger in the thinnest flakes.
+  - No independent determination of the current-carrying geometry is offered.
+- **Internal numerical inconsistencies undermine confidence in the bookkeeping.**
+  - The text quotes f_r,Al − f_r,Al−NbSe₂ = 0.45 GHz for D6; Table 1 gives 5.34 − 4.79 = 0.55 GHz.
+  - Qi for D6 is 2.8×10⁴ in the text and 2×10⁴ in Fig. 3a.
+  - The onset power is −90 dBm in the text and −100 dBm in the Fig. 3b caption.
+  - The text states "nine devices" while twelve are tabulated.
+  - The stated sensitivity "200 MHz per 0.1 nH" and the simulated Al-only frequency of 5.6 GHz do not match the tabulated frequency–inductance relation.
+  - The Kerr sign flips between the abstract and the conclusions.
+
+**3.3 The clean-to-dirty "crossover" analysis is quantitatively inconsistent with the theory it invokes.**
+- **The fitted dirty-limit slope disagrees with BCS/Mattis–Bardeen theory, and this is not discussed.**
+  - The fitted slope is 16.3 pH·K/Ω.
+  - Eq. 24 as printed predicts ħ/(1.764k_B) ≈ 4.3 pH·K/Ω, a factor ≈3.8 discrepancy.
+  - Eq. 23 retains a factor π (L_k = ħR_s/πΔ₀) that is silently dropped in Eq. 24. With it, the standard prediction is ≈1.4 pH·K/Ω, a factor ≈12 discrepancy.
+  - Concretely, for the "monolayer" (R_s = 240 Ω, T_c = 3.5 K), Mattis–Bardeen gives ≈95 pH, versus the measured 1195 pH.
+  - Even in the fully dirty limit, the measured inductance thus far exceeds what normal-state resistance and gap imply. This points to additional physics or artifacts: phase fluctuations near BKT, inhomogeneity or degradation, contact inductance, or a suppressed gap or superfluid density beyond BCS.
+  - A ~10× discrepancy cannot be described as the model "capturing the crossover."
+- **The clean-limit term is treated inconsistently.**
+  - Eq. 2 and Eq. 25c require the clean term to scale as μ₀λ_L²/d. The analysis instead uses a constant 80 pH intercept as "L_k,sq,clean" for all thicknesses (Table S3 ratios = L_k,sq/80 pH).
+  - The 10-layer ratio of 0.71 < 1 implies, via Eq. 26, a negative ξ₀/l_MFP, which is unphysical.
+  - With the bulk λ ≈ 230 nm, μ₀λ²/d ≈ 7.5 pH at 8.8 nm and ≈44 pH at 1.5 nm, an order of magnitude below the measured values at every thickness.
+  - The paper never confronts the more basic observation that even the "clean" samples show a strongly suppressed superfluid density. The implied λ is ≈0.9 µm for D6 and ≈1.2 µm for D1, versus 230 nm in bulk.
+- **The data used in Fig. 4c and Table S3 are not from the same samples.**
+  - L_k comes from microwave devices, while R_s and T_c come from separate DC devices or from literature (Refs. 38, 39), paired by nominal thickness.
+  - Given flake-to-flake variability (RRR 5–10; Table S1 R_s varies 19–60 Ω at similar thickness) and the layer-assignment problems in 3.1, the abscissa is not reliable.
+  - The fit is dominated by a single literature-derived point at R_s/T_c ≈ 69 Ω/K. The legend ("Khestanova et al.," "Cao et al.") also misleadingly suggests that L_k came from those works.
+- **Formal errors weaken the theory section.**
+  - Eq. 19 contains a spurious μ₀ (dimensionally wrong).
+  - Eq. 27 omits the square (Λ = 2λ²/d).
+  - The introduction defines n₀ as "superfluid density per unit thickness."
+  - The proposed mechanisms (surface scattering, multiband effects, longer ξ) are offered qualitatively, without any discriminating measurement.
+  - For a top-tier physics journal, the central physical claim, i.e., "thickness-dependent crossover from clean- to dirty-limit behavior," rests on this analysis.
+
+**3.4 Several physical interpretations and application claims are overstated or not supported by the data.**
+- **The Pearl-regime "confinement enhancement" argument is internally inconsistent and physically questionable.**
+  - The quoted Pearl lengths (10–70 µm) use the bulk λ = 230 nm. The authors' own data imply Λ = 2L_k,sq/μ₀ ≈ 200 µm for D6 and ≈1.9 mm for D1.
+  - More fundamentally, w ≪ Λ is the regime in which current is uniform and L_k = L_k,sq·(L/W) holds. This is not obviously a mechanism for enhancing the sheet kinetic inductance.
+  - Invoking YBCO results (Ref. 67) as a possible explanation for "steeper-than-expected" scaling is speculative. It needs either a model or a width-dependence experiment.
+- **The "low nonlinearity" comparison is not like-for-like.**
+  - The Kerr values are mode Kerr coefficients of a resonator whose inductance is mostly geometric Al. The NbSe₂ participation ratio L_k/L₀ is ~0.1 for D6, and K ∝ participation².
+  - The quoted gr-Al (4.5 MHz) and JJ-array (8 MHz) values refer to devices with near-unity participation and different mode impedances.
+  - The relevant intrinsic figure of merit is I* (or the depairing current density) at given L_k, or Kerr normalized to full participation and fixed impedance.
+  - On a normalized basis, NbSe₂ may be comparable to, not orders of magnitude better than, disordered films. The factor ~2 disagreement between Eq. 8 (−3.8 Hz) and the measured value (−1.7 Hz) is described as "good agreement," and the photon-number calibration (attenuation uncertainty, Eq. 5) is not error-budgeted.
+- **The pairing-symmetry claim is unfounded.**
+  - A quadratic L_k(I_DC) at I ≪ I* is generic Ginzburg–Landau behavior for essentially any superconductor.
+  - Testing nodal versus nodeless pairing would require, e.g., a search for a linear nonlinear-Meissner term at the lowest currents and temperatures, angle-dependent current bias, or the temperature dependence of the superfluid stiffness. None is presented.
+- **Suitability for superinductors and fluxonium is asserted without a loss analysis.**
+  - Correcting Qi for participation, the NbSe₂-attributable loss is substantial: for D6, (1/2.8×10⁴ − 1/10⁵)/0.1 gives Q_NbSe₂ ~ 4×10³. Several devices sit at Qi ≈ (0.6–0.8)×10⁴.
+  - This falls well short of gr-Al or NbN superinductors, and power-dependent linewidth broadening is noted but not analyzed.
+  - Without TLS/quasiparticle loss characterization, temperature dependence, or a demonstrated lumped superinductor approaching R_Q, the application claims in the abstract and conclusions are premature.
+
+**4. Suggestions for improvement**
+
+**4.1 Firmly establish layer number and remove ambiguity in the headline result.**
+- Determine the layer number of D1 (and all devices) by an independent method. Options include:
+  - optical contrast calibrated on known flakes;
+  - Raman A₁g/E₂g mode analysis appropriate for 1L, or the breathing mode;
+  - AFM of the bare NbSe₂ step before encapsulation;
+  - post-measurement cross-sectional TEM of representative devices.
+- Use the correct interlayer spacing (≈0.63 nm/layer) and state explicitly which thickness enters each analysis.
+- If D1 cannot be confirmed as a monolayer, re-label it (e.g., "bilayer" or "≤2 layers") in the title, abstract and figures.
+- Measure T_c and R_s on the actual microwave flakes, e.g., via a DC-accessible geometry, the existing DC bias line, or the resonator response versus temperature/field. Alternatively, use sister flakes from the same exfoliation with matched layer number.
+- Present Fig. 4c only with same-flake or clearly matched data, and report how the fit changes when the literature-derived points are excluded.
+
+**4.2 Strengthen the inductance extraction with controls and a full error budget.**
+- Separate intrinsic L_k,sq from contact or weak-link and geometric contributions.
+  - One option is to fabricate several terminations of different length L (and width W) from the same flake or on the same chip, then fit L_total = L_contact + L_geo + L_k,sq·L/W.
+  - Alternatively, perform full EM simulations (Sonnet/HFSS) of the actual flake and lead geometry, including the Al bridging layers.
+- Place the Al control resonator on the same chip as each NbSe₂ device and quantify the chip-to-chip spread of f_r,Al.
+- Propagate uncertainties in frequency, geometry (effective W from SEM/AFM including edge damage), and Z₀ and ε_eff into the reported L_k,sq. Explain the error bars in Fig. 4.
+- Correct the numerical inconsistencies listed in 3.2, and reconcile the device count between the text and Table 1.
+
+**4.3 Make the clean/dirty analysis quantitative and add a measurement that discriminates between mechanisms.**
+- Correct Eqs. 19, 24 (factor π) and 27.
+- Fit Eq. 2/25c with the clean term ∝ 1/d (not a constant intercept), with a and λ_L as stated parameters. Compare the fitted dirty-limit slope explicitly with ħ/(πΔ₀) and discuss the ~10× excess.
+- Report the implied λ(d), n_s(d) and ξ₀/l_MFP with uncertainties. Compare quantitatively with SQUID-on-tip Pearl-length data (Ref. 66) and with DC mean-free-path estimates (Refs. 37, 38, 42).
+- Measure L_k(T), i.e., the superfluid stiffness versus temperature. This is the natural observable for distinguishing:
+  - single- versus two-gap behavior;
+  - clean versus dirty limit, through the low-T exponential and the near-T_c slope;
+  - nodal versus nodeless pairing;
+  - BKT/phase-fluctuation effects in the thinnest flakes.
+- Since the Al resonators become normal at ~1.2 K, consider Nb/NbTiN/MoRe resonators, or at minimum report L_k(T) up to ~1 K.
+- Add a perpendicular-field dependence, which would further test the role of vortices and the quantum-metal regime in the thinnest devices.
+
+**4.4 Reframe the nonlinearity and application claims on a normalized, loss-aware basis.**
+- Report participation-independent metrics: I* and the depairing current density J* versus thickness, and K normalized to unit participation at fixed impedance and frequency. Compare these against gr-Al, NbN, NbTiN, WSi and JJ arrays using the same normalization.
+- Give an error budget for the photon-number calibration.
+- Extract the NbSe₂-attributed loss tangent from Qi using participation ratios, as a function of power and temperature, and separate contact/residue loss from intrinsic loss (e.g., through devices with different L/W).
+- Analyze the power-dependent linewidth broadening.
+- Either remove or substantiate the statements on:
+  - nodeless pairing from the quadratic I_DC dependence;
+  - confinement-enhanced L_k in the Pearl regime, which requires a width series and the self-consistent Λ from the measured L_k.
+- Tone down the fluxonium/superinductor claims unless a lumped NbSe₂ inductor with reactance approaching R_Q and adequate Q is demonstrated, or a realistic projection is given using the measured Q_NbSe₂.

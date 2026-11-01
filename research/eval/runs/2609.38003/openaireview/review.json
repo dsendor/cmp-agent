@@ -1,0 +1,109 @@
+{
+  "overall_feedback": "This is a carefully executed materials and transport study. The MBE heterostructures are well characterized (STEM, EDX, XRD, SQUID, XMLD-PEEM), the barrier-thickness tuning of Tc is a nice idea, and the anisotropic, hysteretic, zero-field diode response in Fig. 3 is a striking observation. The main weakness is the step from 'a remanent, field-history-dependent SDE exists' to 'the polarity is controlled by the remanent Neel state of CuMnAs'. Four links in that chain look weak to me. (i) Extrinsic remanence in the measurement is not excluded by a direct control: superconducting-magnet remanence, trapped flux in the Al after it is driven normal at 1 T, and edge stray fields. The 5 K nonlinear magnetoresistance on a different wafer shows that CuMnAs has memory, but it does not show that the Al has none. (ii) In bulk PT-symmetric CuMnAs a uniform magnetic field cannot linearly select L+ over L-, and the manuscript offers no mechanism for how +/-1 T along [100] writes opposite 180-degree domain imbalances. (iii) By my reading of the P4/nmm magnetic symmetry with L along [100], the mirror perpendicular to [100] survives the interface and forbids an SDE for current parallel to L. Yet the [100]-oriented bar is reported to behave like the [010] bar. (iv) The headline claim that spin-split bands are not needed rests on bulk band structure, while the proximity coupling happens at an interface where P, and therefore PT, is broken. The supporting tight-binding calculation is evaluated at T = 1 K, which corresponds to a Tc threshold near the isolated-film value, not the measured 350 mK. So it does not quantitatively support the claimed 'sizable' proximity regime. With a direct remanent-field control, a same-device normal-state readout of the Neel state, and a symmetry analysis of which current directions permit an SDE, the conclusions could be much stronger. As written, 'establish' and 'conclude' overstate what is shown.",
+  "comments": [
+    {
+      "title": "Extrinsic remanence (magnet remanent field, trapped flux in Al) not excluded by a direct control; the 5 K reference argument is a non sequitur",
+      "quote": "originates in CuMnAs rather than from spurious flux trapping or vortex dynamics",
+      "explanation": "The authors rightly recognize that flux trapping and vortex dynamics generate SDE (Refs. 28,29) and try to rule them out. Their argument is that a CuMnAs bar without Al shows a remanent nonlinear MR at 5 K. This shows that CuMnAs retains memory of the field history. It does not show that the superconducting device lacks an independent memory with the same odd-in-H_prep symmetry. Two such memories are generic in this protocol. (1) A superconducting magnet ramped to +/-1 T or more and back to nominal zero typically leaves a remanent field of order 0.1 to a few mT, whose sign depends on the polarity of the last excursion. Any out-of-plane component, even from sub-degree misalignment, matters for a 5 um wide, 9 nm thick Al strip, because the vortex-entry scale Phi_0/w^2 is about 0.08 mT. (2) At 20 mK and 1 T in-plane, the Al (Tc = 350 mK, Pauli limit of roughly 0.6 T) is driven normal and re-enters superconductivity on the way back to zero, in whatever residual perpendicular field is present, so vortices of a definite sign can be trapped. A switching current of about 29 uA in a 5 um x 9.2 nm cross-section corresponds to roughly 6e4 A/cm^2. That is far below a plausible depairing current, which suggests edge-barrier or vortex-limited switching. This is exactly the regime where tiny perpendicular fields produce diode efficiencies of tens of percent (Hou et al.). Both mechanisms are odd in H_prep and hysteretic, and they differ between the coils of a vector magnet, which could also mimic the [100]/[010] anisotropy. The 'neither mechanism is naturally expected to track the Neel-vector anisotropy' argument therefore does not exclude them, especially since both bars sit in the same magnet with the same coil-to-crystal alignment.",
+      "type": "logical",
+      "severity": "major",
+      "suggested_fix": "After each preparation state, measure eta as a function of a small applied out-of-plane field H_z (for example +/-0.3 mT, with a Hall sensor or a reference Al strip on a non-magnetic barrier reading the residual field). Show that the two prepared eta(H_z) curves are not simply shifted copies of each other, that is, that the remanent eta cannot be cancelled by a compensating H_z."
+    },
+    {
+      "title": "Field preparation strongly lowers the switching current relative to the ZFC state, which points to a change in the superconductor itself",
+      "quote": "states retain a comparable mean switching-current scale",
+      "explanation": "I agree that the two prepared states in Fig. 3b have similar mean switching currents. Reading the axes, though, the ZFC switching currents in Fig. 3a (inset) lie at about 27 to 31 uA, while after +/-1 T preparation (Fig. 3b) they lie at about 16 to 23 uA. That is a drop of roughly 30% in the mean. The comparison the authors make (between the two prepared states) is fine, but it hides the larger fact that any 1 T excursion leaves the superconducting strip in a degraded state. This is what one expects if vortices are trapped or a residual field remains after the excursion. It is not obviously expected from a change in the 180-degree Neel-domain balance of an antiferromagnet with sub-mT stray field. The text uses Fig. 3b to argue that the preparation 'predominantly reverses the nonreciprocal component', but the overall suppression is itself evidence of field-history effects in the Al.",
+      "type": "logical",
+      "severity": "moderate",
+      "suggested_fix": "Report the mean switching current (I+ + |I-|)/2 alongside eta for every point of Fig. 3d,e and for the ZFC state. Also report whether warming the device above Tc (about 0.4 to 1 K) at nominal zero field after preparation restores the ZFC switching current while keeping the sign of eta."
+    },
+    {
+      "title": "Field-preparation protocol underspecified (reset field, temperature during excursion, ramp, alignment)",
+      "quote": "system at high field, we apply the preparation field, H prep , of opposite sign and progressively",
+      "explanation": "The interpretation of Fig. 3d,e and Fig. 4c depends on details of the protocol that are not given. Neither the main text nor the Methods states: the magnitude of the 'reset' field along each axis; whether the sample stays at 20 mK during the excursion or is warmed above Tc before readout at H = 0; the ramp rate and settling time at zero; how 'H = 0' is defined (nominal current zero, persistent mode, or a compensated field); the magnet type (vector magnet coils) and the sample misalignment relative to the coils. For the [010] axis the preparation range (+/-4 T) also differs from the [100] range (+/-1 T), so the 'weaker response' along [010] is compared at very different field scales. Without these details the remanence cannot be reproduced or separated from magnet or flux-trapping artifacts.",
+      "type": "technical",
+      "severity": "moderate",
+      "suggested_fix": "Add to the Methods the reset-field magnitude for each axis, the sample temperature during the excursion, whether and to what temperature the sample is warmed above Tc at H = 0 before readout, the ramp rate, the magnet type with its specified remanent field, and the measured misalignment angle between the sample plane and each coil axis."
+    },
+    {
+      "title": "No mechanism for how a uniform field selects L+ versus L- in a PT-symmetric antiferromagnet",
+      "quote": "imbalances between oppositely oriented Néel-domain populations retained after the field is",
+      "explanation": "In bulk CuMnAs the two Mn sublattices are exchanged by inversion P, a symmetry of the paramagnetic crystal. Under P, L = M1 - M2 goes to -L while a uniform magnetic field H is unchanged. So every free-energy term odd in L is forbidden at any H, and a uniform field along the easy axis cannot energetically favour L+ over L-. That is precisely why prior work on 180-degree reversal in CuMnAs (Ref. 22) used staggered current-induced torques rather than fields. A field-polarity-dependent 180-degree domain imbalance therefore needs some P-breaking coupling linear in L, such as an uncompensated interfacial or surface Mn layer, a defect-bound moment, or the AlAs/Al interface. The paper never identifies this coupling. It also sits uneasily with the paper's own argument: the SQUID bound is used to argue that uncompensated magnetization is negligible, yet some uncompensated or interface moment is exactly what would let +/-1 T write opposite Neel states. In addition, 1 T along the easy axis may be below the spin-flop field reported for CuMnAs (Ref. 27), so it is unclear what happens microscopically during the excursion. As written, the 'reversible control' of L by fields is asserted rather than explained.",
+      "type": "logical",
+      "severity": "major",
+      "suggested_fix": "Add a symmetry and energetics paragraph that names the P-breaking term coupling H linearly to L in the film, for example an uncompensated interfacial Mn plane with moment m_int coupling as -mu0 m_int H.L, and estimate its magnitude. Check this estimate against the SQUID bound and against the observed +/-1 T switching scale."
+    },
+    {
+      "title": "Symmetry appears to forbid an SDE for current parallel to L, yet the [100]-oriented bar behaves like the [010] bar",
+      "quote": "The response shows the same qualitative dependence on the preparation-field",
+      "explanation": "I tried to check which current directions allow a Neel-vector-induced SDE. In P4/nmm (origin choice 2), Mn sits at 2c, (1/4,1/4,z) and (3/4,3/4,-z). The mirror perpendicular to [100], (-x+1/2, y, z), leaves each Mn sublattice in place. It also leaves the x-component of an axial vector unchanged. With L along [100], this mirror M_x is therefore a symmetry of the magnetic structure. It is not broken by the AlAs/Al interface, which breaks only z-related operations. The GaP(001) surface mirrors also lie along CuMnAs [100]/[010], given the usual 45-degree epitaxial rotation. M_x reverses a current along x, so I_c(+x) = I_c(-x): no SDE, and no second-order longitudinal nonlinear MR, for I parallel to L. For I perpendicular to L (the [010] bar of Fig. 3), M_yT, C2zT and PT all leave j_y invariant, so an SDE is allowed. If the easy axis is [100] (XMLD-PEEM), the [100] bar in Extended Data Fig. 4 should show little or no Neel-controlled SDE. Instead it reportedly shows the same +/-20% reversal under [100] preparation. Unless I have misidentified a symmetry, this is hard to reconcile with an intrinsic Neel-vector origin. It is, however, easy to reconcile with an artifact tied to the magnet coil axes. The orientation of the reference bar used for Fig. 4 is also not stated, so it is unclear whether its Reven signal is even allowed.",
+      "type": "technical",
+      "severity": "major",
+      "suggested_fix": "Include an explicit magnetic-point-group analysis giving the allowed form of the zero-field SDE (and of Reven) as a function of the angle between I and L. State the crystallographic orientation of the Fig. 4 reference bar. Then either explain the [100]-bar result within that analysis or report the SDE amplitude ratio between the two bars as a test of the Neel-vector origin."
+    },
+    {
+      "title": "The correlation with the Neel state is indirect: different wafer, cap, temperature and field range",
+      "quote": "We therefore conclude that the polarity of the field-free SDE is controlled",
+      "explanation": "The evidence linking diode polarity to L is a qualitative resemblance between two experiments. The SDE was measured at 20 mK on the CuMnAs/AlAs/Al heterostructure with +/-1 T preparation along [100]. The nonlinear MR was measured at 5 K on a different wafer with a 3 nm oxidized Al cap (a different interface, possibly a different CuMnAs thickness and anisotropy) with preparation up to +/-5 T. No coercive or switching fields are compared quantitatively, and the field ranges differ by a factor of about five. XMLD-PEEM is even in L, so it confirms the easy axis but cannot see the 180-degree domain imbalance that the argument relies on. 'Establish' in the abstract and 'conclude' here therefore overstate a correspondence that is suggestive but not demonstrated on the same device.",
+      "type": "logical",
+      "severity": "major",
+      "suggested_fix": "On the same CuMnAs/AlAs/Al bar used for Fig. 3, measure Reven in the normal state (for example at 1 to 5 K, above Tc) after each preparation field of the Fig. 3c protocol, and plot remanent eta and remanent Reven against the same H_prep axis to compare switching fields directly."
+    },
+    {
+      "title": "'Spin-split bands are not a prerequisite' rests on bulk symmetry, but the proximity coupling occurs at a PT-broken interface",
+      "quote": "Our results therefore show that spin-split bands are not",
+      "explanation": "The authors correctly note that bulk CuMnAs is PT symmetric with spin-degenerate bands (Fig. 1d). However, the Al couples to CuMnAs only through its top surface and a 2 nm AlAs barrier. At that interface P, and therefore PT, is broken. The surface Mn plane belongs to one sublattice, and interfacial Rashba SOC is present. Interface-localized states, and the effective exchange field felt by the Al, can therefore be spin split even though bulk bands are not. Bulk spin degeneracy does not imply that the electronic structure mediating the proximity effect is spin degenerate. The magnitude of eta (up to 20% through an insulating spacer) is also not connected to any calculation. The tight-binding model in the Methods has no SOC and only zero-momentum pairing, so it cannot produce an SDE.",
+      "type": "logical",
+      "severity": "major",
+      "suggested_fix": "Either calculate the spin splitting of the CuMnAs states at the AlAs interface in a slab DFT calculation and show that it is negligible, or narrow the claim to 'the bulk band structure of the antiferromagnet need not be spin split'."
+    },
+    {
+      "title": "Superconducting-instability calculation at T = 1 K does not test the measured Tc of 350 mK",
+      "quote": "Within this model, λmax reaches unity at approximately six spacer layers, marking the",
+      "explanation": "The kernel is evaluated at T = 1 K, with U calibrated to give a gap of 0.17 meV in the isolated film. By BCS (Delta = 1.764 kB Tc), that gap implies an isolated-film Tc of about 1.12 K. lambda_max(T) = 1 defines Tc, so 'lambda_max > 1 at 1 K' means that the model Tc exceeds 1 K, a suppression of at most about 10% from the isolated value. The calculated 'crossover' at about six layers is therefore the spacer thickness at which Tc falls below 1 K, not the thickness at which superconductivity is strongly suppressed. The model as presented then predicts Tc above 1 K for seven layers (2.0 nm), whereas the experiment gives 350 mK and the text cites this as evidence of 'sizable proximity coupling'. The location of the threshold also depends on parameters that are not independently justified (interface hopping 2.6, exchange splitting 0.5, t_s,z = 5). Without a run in which the exchange splitting is set to zero, magnetic pair breaking cannot be separated from ordinary inverse proximity into a metallic layer.",
+      "type": "technical",
+      "severity": "moderate",
+      "suggested_fix": "Compute Tc(N_S) from the condition lambda_max(T) = 1 and compare it directly with the measured 350 mK at about 7 layers and the absence of a transition down to 20 mK at about 5 layers. Repeat the calculation with the AFM exchange splitting set to zero (onsite energies -4 for both spins) to isolate the magnetic contribution."
+    },
+    {
+      "title": "Tc difference between 1.5 and 2.0 nm barriers is attributed to proximity coupling, but the samples differ in growth history, and no non-magnetic reference is shown",
+      "quote": "Increasing the AlAs thickness to 2 nm (Fig. 2a) reduces",
+      "explanation": "The barrier-thickness series is the main evidence for a 'sizable' proximity coupling. According to the Methods, the 1.5 nm sample was taken out of the growth chamber into UHV and reintroduced before Al growth, so its interface history differs from the 2.0 nm sample, not just its barrier thickness. Extended Data Fig. 2 also shows differences in Al thickness (8.7 vs 9.2 nm) and CuMnAs thickness (11.7 vs 12.4 nm), and Ga was detected in the Al. Moreover, comparing with bulk Al (1.2 K) understates the reference: epitaxial Al films around 9 nm thick usually have Tc above the bulk value. Suppression of Tc to 350 mK, or to below 20 mK, could therefore partly come from disorder, As incorporation during the self-assembled alloying step, or non-magnetic inverse proximity to semimetallic CuMnAs, rather than from magnetic pair breaking.",
+      "type": "logical",
+      "severity": "moderate",
+      "suggested_fix": "Show RS/RN(T) for an Al film of the same thickness grown by the same self-assembled AlAs route on a non-magnetic underlayer (for example GaP or GaAs without CuMnAs), and quote the suppression relative to that Tc rather than the bulk 1.2 K."
+    },
+    {
+      "title": "SQUID bound does not by itself make edge stray fields negligible for vortex-limited switching",
+      "quote": "Together with the vanishingly small residual magnetic moment",
+      "explanation": "I checked the bound: 1e-7 emu over 3 mm x 5 mm x 12 nm, with about 2.2e22 Mn/cm^3 (a = 3.80 A, c = 6.32 A, 2 Mn per cell), does give about 3e-3 muB/Mn. One uncompensated plane in about 39 planes gives about 0.1 muB/Mn, so these numbers are self-consistent. However, 3e-3 muB/Mn corresponds to M of about 0.6 emu/cm^3, or mu0 M of about 0.8 mT. Near the edges of a patterned bar, fields of this order are not small compared with the roughly 0.08 mT scale Phi_0/w^2 for a 5 um strip. Moreover, they are opposite at the two edges, which is the geometry known to produce field-free SDE (Ref. 30). The bound is also an upper limit on a wafer piece measured at SQUID temperatures (1.8 K or above). It is not the remanent moment after the +/-1 T preparation, and not the moment at ion-milled edges. 'Disfavors' is therefore reasonable, but the bound needs to be turned into a stray-field estimate to carry weight.",
+      "type": "technical",
+      "severity": "moderate",
+      "suggested_fix": "Report the SQUID remanent moment after +1 T and -1 T excursions along [100] and [010]. Convert the upper bound into an estimate of the out-of-plane edge field at the Al (B_z of about mu0 M t/(2 pi x) for an in-plane moment) and compare it with the vortex-entry field of the 5 um strip."
+    },
+    {
+      "title": "Nonlinear readout current density is close to CuMnAs switching densities",
+      "quote": "from measurements at +4 mA and −4 mA",
+      "explanation": "With 4 mA in a 10 um wide, roughly 12 nm thick CuMnAs bar, the current density is about 3e6 A/cm^2. That is within an order of magnitude of the densities used for current-induced Neel switching in CuMnAs. Because the staggered spin-orbit field is odd in current, the +I and -I readings could push the domain configuration in opposite directions, so the readout may not be passive. Joule heating at this density can also add thermoelectric voltages that are even in current. The paper treats Reven as a passive probe of the remanent state.",
+      "type": "technical",
+      "severity": "minor",
+      "suggested_fix": "Show that the remanent Reven, normalized as defined, does not depend on the probe current (for example at 1, 2 and 4 mA), and that repeated readouts without a new field excursion do not drift."
+    },
+    {
+      "title": "'ZFC state' is not a reset of the antiferromagnet",
+      "quote": "After zero-field cooling (ZFC) from above the super-",
+      "explanation": "The 7% diode efficiency in the 'ZFC state' is presented as the baseline field-free SDE. But cooling from above the Al Tc (about 0.35 K) does not reset CuMnAs, whose Neel temperature is 480 K. The magnetic state at that point reflects whatever field and thermal history preceded it, possibly including earlier preparation fields and the superconducting magnet's remanence. A reader could take 'ZFC' to mean an unbiased, virgin domain state. In that case a nonzero 7% would need a separate explanation, for example geometric asymmetry or contacts.",
+      "type": "logical",
+      "severity": "minor",
+      "suggested_fix": "State the field history the sample had seen since the room-temperature cooldown before the ZFC measurement, and label the ZFC eta as history-dependent, or report it for a cooldown with no prior field exposure."
+    },
+    {
+      "title": "Historical overclaim about spin degeneracy with broken T",
+      "quote": "In fact, CuMnAs is the magnet in which this departure from the usual",
+      "explanation": "Spin-degenerate bands in antiferromagnets with broken T but preserved PT (or T combined with a translation) have been part of standard magnetic band theory for decades, for example in conventional two-sublattice antiferromagnets such as Cr2O3-type structures. Refs. 15 and 16 identified Dirac quasiparticles and their electrical control in CuMnAs. They did not first identify the absence of spin splitting under broken T. The introduction is allowed to simplify, but this sentence assigns priority incorrectly.",
+      "type": "logical",
+      "severity": "minor",
+      "suggested_fix": "Rephrase as 'CuMnAs is a prominent example of a PT-symmetric antiferromagnet in which broken T coexists with spin-degenerate bands, with Dirac quasiparticles whose properties depend on the Neel vector (Refs. 15,16)'."
+    }
+  ]
+}

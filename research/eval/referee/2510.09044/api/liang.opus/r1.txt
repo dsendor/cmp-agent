@@ -1,0 +1,141 @@
+Review outline:
+
+**1. Significance and novelty**
+
+- **Topic.** The manuscript studies the gate-controlled supercurrent (GCS) effect. Its microscopic origin is debated: direct electric-field effect, Joule heating, electron injection, or non-equilibrium phonons/quasiparticles. The debate matters for proposed superconducting transistor logic.
+- **Main novelty.** The authors use a probe other than transport. They image the loss of Meissner screening in Nb islands (∼20 nm Nb on ∼5 nm Ti, on SiO₂/Si) with a sub-Kelvin scanning NV magnetometer. To my knowledge, this is the first spatially resolved, two-dimensional map of gate-induced suppression of superconductivity. Previous spatial information was essentially one-dimensional (multi-gate, STM-tip position).
+- **Key claimed results:**
+  - The suppressed region grows radially from the gate apex and exceeds 1 µm at a few µW.
+  - The suppression radius r₀ depends only on the dissipated leakage power P. It is independent of bath temperature (0.4 K vs 5.6 K) and of gate polarity, and correlates poorly with V_G.
+  - The data fit a two-parameter steady-state diffusion ("hot-spot") model: r₀ = r_d·W₀(eP/P_d), with r_d ≈ 0.6 µm.
+  - Suppression also occurs for remote and floating-island gate configurations, and depends on gate geometry.
+  - Vortices are expelled at low gate power.
+- **Potential impact.** If the conclusions hold, the work would:
+  - strengthen the emerging consensus that GCS in many metallic devices is driven by leakage-current dissipation;
+  - introduce a quantitative, imaging-based handle on the length scales of non-equilibrium suppression.
+- **Overall assessment of novelty.** The technique is novel. The physical conclusion (leakage-power-driven suppression via non-equilibrium particles) is largely consistent with, and partly anticipated by, earlier transport work (Ritter et al. 2021/2022; Elalaily et al.; Ruf et al.). The conceptual advance therefore hinges on:
+  - whether the imaging truly discriminates between mechanisms;
+  - whether the µW, micron-scale regime studied is representative of the nW-scale GCS seen in transport.
+
+**2. Potential reasons for acceptance**
+
+- **Technically demanding, original experiment.** Scanning NV magnetometry in a dilution refrigerator is combined with in-situ gating of superconducting devices. The images in Fig. 2c and Fig. 4 directly visualize the shrinking Meissner region, which transport cannot provide.
+- **Broad parameter coverage.** Data span:
+  - multiple devices (D2a, D2b, D3) and several cool-downs;
+  - two polarities and two temperatures (with additional temperatures for the vortex data);
+  - several gate geometries (finger gate, extended gate, corner gate, gate-to-gate with floating island).
+- **Robust empirical scaling.** The collapse of r₀ onto a single curve versus P (Fig. 3a) is an experimentally valuable constraint for theory.
+- **Good engineering practice.** Operating in constant-power mode via a software PID loop addresses the documented drift of V_G under stress, a known nuisance in GCS devices.
+- **Physically intuitive geometry dependence.** Extended gates give weaker, elongated suppression; the floating-island configuration still suppresses. Both support a localized-source, diffusive picture and agree with Ritter et al. 2022.
+- **New, intriguing observation.** Vortices are expelled at powers where only a small fraction of the island is suppressed. This could open a new line of study of quasiparticle–vortex interaction.
+- **Clear methodology and outlook.** Methods (SuperScreen simulations, vector-field reconstruction) are standard and reasonably described. The suggestions for follow-up (time-resolved magnetometry, substrate variation) are concrete.
+
+**3. Potential reasons for rejection**
+
+**3.1 The exclusion of Joule heating and other thermal mechanisms is not convincing; the hot-spot model is not shown to be distinct from a thermal model.**
+
+- **Bath-temperature independence does not rule out heating; it is arguably what heating predicts.**
+  - With P ∼ 0.1–5 µW dissipated in a sub-100 nm region of amorphous SiO₂ at sub-Kelvin temperatures, the local temperature at the source can greatly exceed T_c of Nb. SiO₂ has very low thermal conductivity at low T, and there are Kapitza resistances at the SiO₂/Si and Nb/Ti/SiO₂ interfaces.
+  - In that limit, the isotherm T = T_c(B₀) is set almost entirely by P and the substrate conductance, not by T_bath. A bath change of 0.4 K → 5.6 K is then a small perturbation.
+  - The authors provide no estimate of the local temperature rise. Without it, the statement "Joule heating can be excluded because the quenching does not depend on temperature" is a non sequitur.
+  - The argument may only exclude a picture in which the whole island is uniformly heated, which nobody proposes.
+- **The temperature independence is equally unexplained within the authors' own model.**
+  - In the hot-spot model, the threshold ρ_c should depend strongly on temperature. The gap Δ(T), the thermal quasiparticle background, recombination times and the superfluid density all change substantially between 0.4 K and 5.6 K.
+  - This is especially true if 5.6 K is close to T_c of a 20 nm Nb/Ti bilayer.
+  - The manuscript should explain why ρ_c (and hence P_d) is unchanged. Otherwise the observation does not support the model either.
+- **The diffusion-plus-decay equation is not specific to non-equilibrium particles.**
+  - Consider a thin, poorly conducting layer (300 nm SiO₂) on a highly conducting phonon sink (Si at low T, effectively ballistic). Steady-state heat diffusion then gives exactly a "decay term."
+  - The healing length is √(κ_ox·t_ox/G_interface), and the radial profile is K₀(r/r_d), i.e., a 2D screened form.
+  - So r_d ∼ 0.6 µm could be a purely thermal healing length. Fitting Eq. (3) does not discriminate "NEPs" from local Joule heating with non-trivial heat sinking.
+  - The conceptual distinction the authors draw from SNSPD hot spots ("not caused by Joule heating") is asserted rather than demonstrated.
+- **The model geometry and fit are weakly constraining.**
+  - Eq. (2) is the 3D isotropic Green's function. The particles are said to diffuse in the 300 nm oxide, which is thinner than r_d, so a 2D (K₀) or layered geometry would be more appropriate.
+  - The source is assumed at the gate apex, ∼80 nm from the island, and r₀ is measured from it.
+  - With ∼20 points over roughly one decade of P and two free parameters, many monotonic forms would fit comparably well: logarithmic, √P, or P^(1/3)-type isotherm scaling from thermal models.
+  - "Excellent agreement" is therefore not evidence for the specific mechanism. No residuals, model comparison or goodness-of-fit metrics are given.
+
+**3.2 Extraction of r₀ and the claim of "complete suppression" rely on strong, insufficiently validated modeling assumptions.**
+
+- **The effective screening length is comparable to the device size.**
+  - With λ ≈ 240 nm and d ≈ 20 nm, Λ = λ²/d ≈ 2.9 µm (Pearl length 2λ²/d ≈ 5.8 µm). This is comparable to or larger than the 3 µm island.
+  - Screening is therefore weak and the field maxima are smeared on micron scales. The statement that "the stray field maxima roughly delineate the superconducting region" is only approximate in this regime.
+  - Sub-100-nm determinations of r₀ (Fig. 3a error bars) are thus strongly model-dependent. They depend on assumed λ, z₀, NV orientation, and reconstruction artifacts from the Fourier-based vector reconstruction.
+- **The binary, circular cut-out model cannot distinguish full from partial suppression.**
+  - Simulations remove a circular disk of radius r₀ with a sharp boundary. A diffusive quasiparticle density instead produces a smooth gradient of superfluid density (spatially varying Λ).
+  - Such a gradient yields qualitatively similar stray fields. The data therefore cannot establish "complete suppression of superconductivity exceeding distances of 1 µm," as claimed in the abstract and conclusions.
+  - At minimum, the authors should show that a graded-Λ model is disfavored, or soften the claim.
+- **The two extraction methods are not cross-validated on a common dataset.**
+  - The line-cut fit (which ignores vortices) and the B_x edge-shift method (relative to a V_G = 0 reference map) are not shown to agree.
+  - Fig. 4 shows incomplete screening attributed to "vortices and non-superconducting grains." This is a non-ideal reference state.
+  - The reference-subtraction approach is also vulnerable to vortex rearrangement between maps (which the authors show happens at low P), to tip drift, and to height changes.
+  - Systematic uncertainties are not quantified.
+- **Measurement back-action is not characterized.**
+  - The NV readout uses green laser illumination and microwave pulses from an adjacent CPW, about 100 nm above a superconductor at 0.4 K.
+  - Both can generate quasiparticles and heat locally, and could alter the threshold or the vortex configuration.
+  - Laser and microwave powers, duty cycles, and controls (e.g., r₀ versus laser power) are not reported.
+
+**3.3 The connection to the transport GCS effect, and hence the title and abstract claims, is not established.**
+
+- **The regime differs by orders of magnitude.**
+  - Powers here are ∼0.1–5 µW, and leakage currents up to hundreds of nA. Transport GCS is typically reported at nW or lower, with ≲ nA leakage. The authors themselves note this and suggest it "may hint at differences."
+  - Yet the abstract asserts that the results establish the GCS "as a genuine feature of superconductivity that is not restricted to transport."
+  - Without showing that the same device switches in transport at a corresponding power, the paper demonstrates leakage-power-induced suppression of screening in Nb islands. Whether this is the same phenomenon as GCS in nanowires is not shown.
+  - Device D1, a nanowire "designed to mimic transport-based GCS devices," is fabricated but apparently not used for a transport–imaging correlation. Only its superconducting parameters are tabulated (Table S1).
+- **The mechanism-exclusion arguments are weaker than presented.**
+  - **Direct field effect.** Any electrostatic field effect in a metal is screened within ångströms to nanometers. Suppression over >1 µm cannot be a direct field effect almost by construction, so this "exclusion" carries little information about transport devices, where the field effect was proposed for nanoscale constrictions.
+  - **Fig. 3b.** Contrary to "only weak correlation," r₀ is monotonic and steep in V_G within each temperature dataset. The datasets are merely offset, likely due to V_G drift. A controlled test would be stronger, e.g., the same V_G at different currents (through oxide conditioning) or the same P at different V_G.
+  - **Polarity.** Polarity independence is used to exclude electron injection "through vacuum." In trap-assisted or Poole–Frenkel conduction through SiO₂, however, hot carriers deposit energy predominantly at the anode. Reversing polarity moves the main dissipation site by only ∼80 nm (gate vs island), which is negligible on the µm scale probed.
+  - So polarity independence at µm scale cannot discriminate injection-type mechanisms that differ in where energy is first deposited.
+- **The leakage-current path is not characterized, yet it is central to the interpretation.**
+  - The location, nature and stability of the current path (surface conduction, bulk oxide, filament formation, path through intrinsic Si) are not determined.
+  - The documented drift of V_G^ON (7–16 V) and the vSILC-like behaviour suggest evolving conduction paths, possibly filaments. These could move the hot-spot location away from the assumed apex position.
+  - The 60 GΩ parasitic wiring path is noted but the fraction of P actually dissipated near the device is not quantified. This matters most at low P, where it sets the effective origin of the r₀(P) curve.
+- **Novelty relative to prior work is overstated.**
+  - Remote-gate and floating-island suppression, and the leakage-current or phonon mechanism, were already demonstrated in transport (Ritter et al. 2022; Elalaily et al. 2021–2024; Ruf et al.).
+  - The manuscript's main conceptual conclusion therefore confirms existing interpretations. The quantitative new parameter (r_d) is model-dependent, as argued above.
+
+**3.4 Several quantitative interpretations and secondary claims are under-supported or internally inconsistent.**
+
+- **The lifetime estimates rest on inappropriate inputs.**
+  - The quasiparticle diffusion coefficient D ∼ 5·10⁻⁴ m²/s is taken from a different material and device (Ref. 13), not measured for this Nb/Ti bilayer.
+  - The substrate diffusion coefficient uses a room-temperature thermal diffusivity of glass (Ref. 29). At sub-Kelvin temperatures, amorphous SiO₂ has drastically different conductivity and heat capacity (two-level systems, plateau region), and phonon transport may be partly ballistic.
+  - Dismissing the substrate scenario because τ ∼ 350 ns "appears unreasonably long" is therefore not justified. The conclusion τ ∼ 10⁻⁹ s quoted in the abstract is essentially an assumption.
+- **Device-to-device variation and material details are not addressed.**
+  - P_d differs by a factor of ∼3 between D3 (0.95 µW) and D2b (0.36 µW) at similar r_d. This implies large differences in α/ρ_c that are not discussed: geometry, gap distance, oxide state, or film quality.
+  - The ∼5 nm Ti adhesion layer is normal at most measurement temperatures (T_c ≈ 0.4–0.5 K) and acts as a proximity layer and quasiparticle trap. It likely affects both λ and ρ_c, but is ignored.
+- **Statements about T_c are unclear.** The text claims coverage of temperatures "above the critical temperature of Nb," yet Meissner screening is imaged at 5.6–5.8 K. The film's T_c(B₀) and its relation to the measurement temperatures must be stated explicitly. This is critical for interpreting the temperature-independence argument.
+- **The vortex observations are anecdotal.**
+  - Only a few maps are shown. The escape power is non-monotonic in temperature (higher at 3.5 K than at 0.45 K and 5.8 K), with no explanation.
+  - No information is given on cooling history (field-cooled vs zero-field-cooled), reversibility (do vortices re-enter when P is removed?), statistics, or whether mild global heating or the bias-field history explains the expulsion.
+  - As presented, the vortex result cannot be considered a finding. Emphasizing it in the abstract is premature.
+- **Hysteresis and time dependence are not reported.**
+  - It is unclear whether r₀ is reversible when P is swept up and down, and over what timescale suppression sets in during a scan.
+  - Scans take substantial time while P fluctuates (e.g., 1.74(14) µW). The relation between the quoted P and the instantaneous suppression during image acquisition should be clarified.
+
+**4. Suggestions for improvement**
+
+1. **Discriminate quantitatively between thermal and non-equilibrium mechanisms.**
+   - Provide a realistic thermal model of the actual stack (Nb/Ti/SiO₂/Si). Use temperature-dependent κ and C, boundary resistances, and a 2D/layered geometry, and estimate the local temperature profile and T = T_c isotherm versus P.
+   - Compare this model's r₀(P) with Eq. (3), using residuals and information criteria.
+   - Perform a dense temperature series, particularly approaching T_c. Here thermal and quasiparticle models predict distinct changes in r₀ and P_d.
+   - Consider substrate variation (sapphire, diamond, thinner or thicker oxide), which the authors already propose. A thermal healing-length picture predicts a specific dependence on t_ox and interface conductance.
+   - Explain why ρ_c is temperature-independent within the hot-spot model.
+2. **Establish the link to transport GCS on the same chip.**
+   - Measure the switching or critical current of the nanowire D1, or of a constriction integrated with an island, versus gate power. Ideally image the same structure.
+   - Show at what P transport switching occurs relative to the onset of measurable Meissner suppression.
+   - Vary island size and gate–island gap to test whether the orders-of-magnitude power difference is purely geometric.
+   - Revise the title and abstract claims ("genuine feature," "complete suppression," mechanism exclusions) to match what is directly demonstrated.
+3. **Strengthen the extraction of r₀ and its uncertainty.**
+   - Reconstruct the sheet-current density and, if possible, a spatial map of Λ (superfluid density) from B_z. Test explicitly whether a graded suppression profile fits as well as or better than the sharp circular cut-out.
+   - Cross-validate the two extraction methods on common datasets. Propagate systematic uncertainties from λ, z₀, NV angle and reconstruction.
+   - Report reversibility and hysteresis of r₀ upon power cycling, and the time stability of P during each scan.
+   - Report laser and microwave powers, and include control measurements of r₀ versus laser power and MW duty cycle to exclude probe-induced quasiparticle generation.
+4. **Characterize the leakage path and firm up the secondary claims.**
+   - Locate the dissipation site, e.g., by:
+     - imaging the Oersted field of the leakage current itself (∼100 nA, possibly detectable with lock-in or AC magnetometry);
+     - post-mortem SEM/AFM inspection for filaments;
+     - control devices with varied gap, and gate-to-substrate leakage tests.
+   - Quantify the fraction of P dissipated locally versus in wiring.
+   - Use measured or at least low-temperature-appropriate diffusion constants for the τ estimates, and present τ as a range conditioned on assumptions.
+   - Discuss the role of the Ti layer and explain the device-to-device spread in P_d.
+   - Either expand the vortex study (cooling protocols, reversibility, statistics, a T-series explaining the non-monotonic escape power) or move it to the supplement and remove it from the abstract.

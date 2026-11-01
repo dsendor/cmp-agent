@@ -1,0 +1,168 @@
+# Referee Report
+
+**Manuscript:** "Correlated insulating states in slow Dirac fermions on a honeycomb moiré superlattice" (Yang, Liang, Hu et al., arXiv:2504.17970v1)
+
+---
+
+## 1. Summary
+
+The authors study twisted MoSe₂ homobilayers (2.9°–4.0°). In these devices the topmost Γ-valley moiré valence bands are expected to realize a spin-degenerate honeycomb (graphene-like) band structure with a strongly reduced Fermi velocity. They use two optical probes:
+
+- **Charge state:** a WS₂ 2s Rydberg exciton sensor placed ~1 nm away.
+- **Charge distribution and spin:** two moiré trions (X₁⁺, X₂⁺) in the t-MoSe₂ itself.
+
+Their main claims are:
+
+1. Incompressible states at ν = −1, −2 and at several fractional fillings (−1/6 … −5/6, and −3/2 in the figures).
+2. The ν = −2 (Dirac-point) state is a Mott insulator rather than a sublattice CDW. This is argued from the filling dependence of the "tightly bound" vs. "charge-transfer" trions. Its melting temperature reaches ~65 K (D1) and ~105 K (D2), from which U₀/t ≥ 5 and ≥ 17 are estimated.
+3. ν = −1 shows non-monotonic melting (attributed to a Pomeranchuk-like effect) and a small positive Curie–Weiss temperature, interpreted as weak ferromagnetic coupling.
+4. ν = −2 shows no measurable MCD, interpreted as antiferromagnetic or spin-liquid-like.
+
+**Significance.** The topic is timely. A strongly correlated, SU(2)-symmetric honeycomb Hubbard simulator is of broad interest, and combining Rydberg sensing with spatially distinct moiré trions is a creative way to access charge distribution and spin, not just compressibility. The data quality (narrow 2s linewidths, reproducibility over three devices and two positions) appears good.
+
+**Main weaknesses.** Several central conclusions rest on indirect or circular arguments, some quantitative statements are internally inconsistent, and a few claims in the abstract and conclusion go beyond what the data support. I recommend **major revision**.
+
+---
+
+## 2. Major comments
+
+### 2.1 Filling-factor assignment is partly circular and the gate-voltage spacings are not equal
+
+- The two most prominent features (Vtg = −2.36 V and −3.48 V) are *assumed* to be ν = −1 and −2. n_M and the twist angle are then *derived* from that assumption, and the agreement with the target angle (3.8° vs. 3.6°) is presented as a consistency check. With a ±0.5° stacking uncertainty typical of tear-and-stack, this check cannot distinguish, for example, (−1, −2) from (−2, −4) or (−1/2, −1). An independent density calibration would make the assignment much more robust. Options include Landau-level or quantum-oscillation features in the sensor or sample at high field, or a direct comparison of the CNP-to-feature distance with the capacitance model.
+- The text states that the fillings are assigned "based on the equal voltage spacing between the two integer fillings and the charge-neutral condition." The quoted numbers do not show equal spacing:
+  - CNP (−1.0 V) → ν = −1 (−2.36 V): ΔVtg = 1.36 V.
+  - ν = −1 → ν = −2 (−3.48 V): ΔVtg = 1.12 V.
+  - This is a ~20% discrepancy. Under a linear model, the feature at −2.36 V corresponds to ν ≈ −1.2.
+
+  The authors attribute dispersion to nonlinear gating at low density. If so, the *linear* interpolation used to label six closely spaced fractional states between 0 and −1 is questionable. These states are precisely in the regime (ν ≥ −1/3) where the authors acknowledge contact-resistance artifacts. Please provide uncertainties on the fractional assignments, or restrict the claims to the most robust fractions.
+- **Clarifying question about the neutrality window.** For a symmetrically dual-gated, contacted sample, the incompressible window around charge neutrality should span a gate-voltage range set by the transport gap (~1 eV or more for MoSe₂/WS₂). In Fig. 2a the transition from electron doping to hole-polaron formation near −1 V appears very narrow. Please show the full electron-to-hole gate range, and explain how the neutrality window and the identification of the "charge-neutral condition" at −1 V are consistent with the expected gap. This bears directly on the density calibration.
+- The text says fractional states appear for 0 > ν > −1. However, Fig. 2b and Fig. 3c also show ν = −3/2, with Tm ≈ 25 K. Please reconcile.
+
+### 2.2 Alternative, single-particle origin of the ν = −2 gap
+
+The key claim is a *correlation-driven* gap at the Dirac point. In the Γ-valley t-TMD model, the MX and XM sites are related by a C₂y operation that exchanges layers. Any layer asymmetry therefore acts as a staggered sublattice (Semenoff) mass and opens a *single-particle* gap at ν = −2. This device is intrinsically asymmetric, so such a mass is plausible. Possible sources:
+
+- the WS₂ sensor on one side only;
+- unequal top and bottom hBN thicknesses (6.6 vs. 9.5 nm);
+- residual displacement field;
+- heterostrain or reconstruction.
+
+The weak E-field dependence argues against a *large* field-induced mass but does not exclude a built-in one. Please:
+
+- estimate the sublattice potential produced by the dielectric asymmetry and by the residual field at the chosen Vbg/Vtg ratio, and compare it with the observed Tm;
+- discuss whether a sublattice-imbalanced band insulator is compatible with the X₂⁺ maximum at ν = −2. In that scenario the charge distribution is CDW-like, so the trion argument in §2.3 is directly relevant.
+
+### 2.3 The trion-based Mott vs. CDW discrimination is qualitative
+
+The argument is that X₂⁺ (same-site trion) is maximal when every site holds exactly one hole, while in a CDW half the sites are doubly occupied. Several issues weaken this:
+
+- **CDW predictions are not worked out.** It is not shown what X₁⁺ and X₂⁺ would look like in the CDW scenario. Excitons on empty sites could bind to holes on neighboring doubly-occupied sites, and excitons on doubly occupied sites may still form same-site complexes. A simple occupancy-counting or polaron model predicting both trion amplitudes vs. ν for the two scenarios would make the argument quantitative.
+- **Non-correlated explanations are not excluded.** Oscillator-strength transfer between attractive-polaron branches with increasing density happens generically, even without correlated states. The authors should rule out that the X₁⁺ and X₂⁺ maxima simply track density-dependent polaron physics. The D2 data, where X₂⁺ is maximal at ν = −2 at a different absolute density, help here, but this should be argued explicitly.
+- **The spatial assignment relies on unshown DFT.** The X₁⁺ (charge-transfer) vs. X₂⁺ (tightly bound) assignment depends on calculations not shown in the main text. It is also not obvious that K-valley intralayer excitons localize at the same MX/XM sites as Γ-valley holes at 3.8°. Please show the exciton and hole localization maps.
+- **Text contradiction.** The manuscript states: "Since the exciton-hole distance is larger in X₂⁺, the Coulomb attraction and binding energy become smaller." This contradicts the assignment (X₁⁺ has the larger separation and smaller binding energy) and should be corrected.
+- **"Chiral symmetry" terminology.** The statement that "the Mott insulator phase breaks the chiral symmetry, while the CDW phase breaks the AB sublattice symmetry" is imprecise. In the Gross–Neveu language both states break a chiral symmetry (chiral Heisenberg vs. chiral Ising universality classes). The Néel state breaks spin SU(2) together with sublattice symmetry; the CDW breaks sublattice/inversion symmetry. Please rephrase.
+
+### 2.4 Estimates of U₀, U₀/t, and ε are internally inconsistent
+
+- **Abstract vs. text on Tm.** The abstract states the Mott gap "persists up to 110 K." In the main text Tm(ν = −2) is ~65 K for the principal device D1 and ~105 K for D2 (Fig. 3d). Please state which device and criterion the 110 K refers to.
+- **Mapping Tm to U₀.** The relation U₀ ≈ 4.75 k_B Tm from Ref. [39] applies to a specific thermodynamic crossover (e.g., a specific-heat or charge-compressibility feature) in the *pure on-site* Hubbard model. Here Tm is defined phenomenologically as the temperature where 2s spectral-weight contrast falls to 10% of its maximum. It is also affected by the sensor's loss of sensitivity at high temperature, and the actual system has sizable U₁ (which the authors invoke elsewhere). Please justify the mapping, or present U₀/t as an order-of-magnitude estimate with explicit caveats.
+- **Inconsistent U₀ values.** The introduction quotes U₀ = 100–200 meV and t ≈ 5 meV (U₀/t = 20–40). The Tm-based estimate gives U₀ ≈ 25 meV (U₀/t ≈ 5), which then implies ε ≈ 27–30.
+  - That dielectric constant is very large for hBN encapsulation (ε ≈ 4–5).
+  - If gate screening (graphite ~7–10 nm away; d/a_M ≈ 1.5–2) is responsible, it should be modeled explicitly rather than absorbed into ε.
+  - Comparing the HF charge gap in Extended Fig. 4c with a Tm-derived "U₀" conflates the gap with U₀. HF is also known to overestimate gaps substantially.
+- **Twist-angle trend.** The claim that HF "agrees with the observation that Tm of ν = −2 decreases with increasing twist angle" rests on effectively two angles. D1 (3.8°) and D3 (4.0°) are equal within error, and D3 is nominally higher.
+- **Proximity to the transition.** U₀/t ≈ 5 is close to the critical value (~3.8; the text says 4). With t taken from a continuum model at a nominal angle, the uncertainty in U₀/t should be stated. It would be valuable to discuss whether any device lies near the semimetal–insulator transition, and to compare with the Cornell work (arXiv:2412.07150), which targets the same physics.
+
+### 2.5 Magnetism at ν = −1: the ferromagnetic claim is not statistically supported
+
+- **Statistical significance.** Θ_CW = +0.20 ± 0.20 K is consistent with zero within 1σ. The second position gives +1.10 ± 0.40 K, about 2.7σ, and differs from the first by ~2σ. With temperatures of 1.6–7 K, Θ is a short extrapolation from roughly seven points; the 8 K point deviates strongly and is excluded. The data support "|Θ_CW| ≲ 1 K, i.e., very weak exchange of either sign," not "weak ferromagnetic coupling."
+- **MCD as a magnetization proxy.** MCD ∝ M assumes a temperature-independent proportionality. The authors themselves note that the trion's exchange-mediated sensitivity fails above ~7 K. Temperature-dependent linewidths and spectral weight can also bias the slope. Please normalize MCD by the trion oscillator strength at each temperature, or otherwise show the proportionality holds over 1.6–7 K.
+- **Integration window.** The text (5 meV window around 1.620 eV, i.e., the RP) and the Methods (near the repulsive polaron) disagree with the Fig. 5c caption ("integrated near the resonance of X₂⁺"). Please clarify which feature is used. The two have opposite signs, so this matters.
+- **Saturation behavior.** At 1.6 K the MCD is linear up to an abrupt saturation at 3.8 T. This is not the smooth Brillouin form expected for paramagnetic spin-½ moments. Please comment, since the shape is itself informative about the exchange.
+- **Quantitative comparison with theory.** For a triangular lattice of S = ½ moments (sublattice-polarized ν = −1), Θ_CW = zJS(S+1)/3k_B, which gives |J| ~ 0.01 meV for Θ = 0.2 K. Please compare this with the J computed in the Fig. 5d inset at ε ≈ 27–30.
+- **Consistency of the ν = −1 picture.** The ν = −1 state is called a "sublattice-polarized electronic crystal" from HF and a "generalized Wigner crystal" in the conclusion. Yet its Tm (~65 K) equals that of the Mott state and is nearly twist-angle independent, while the fractional Wigner crystals melt at 13–25 K. The Lindemann/local-potential argument is asserted rather than demonstrated. The Pomeranchuk interpretation of the non-monotonic contrast likewise needs at least an entropy estimate, or a magnetic-field dependence of T*, to go beyond resemblance. Apart from the X₁⁺ trion maximum, which does not uniquely imply sublattice order, there is little experimental evidence for sublattice polarization.
+
+### 2.6 Magnetism at ν = −2 is overstated in the conclusion
+
+- The main text correctly states that AFM and gapped spin-liquid scenarios cannot be distinguished. The conclusion, however, asserts "a Mott insulator with antiferromagnetic coupling between carriers," and the abstract and conclusion frame the result as an "unconventional magnetic ground state." Both should be toned down.
+- "Zero magnetic susceptibility" is too strong. A Heisenberg antiferromagnet has a finite, reduced χ. With full SU(2) symmetry in 2D there is no finite-temperature Néel order. Please quote an *upper bound* on χ(ν = −2) relative to χ(ν = −1) under identical conditions.
+- Please also discuss whether the trion-based MCD probe is equally sensitive at ν = −2. Every site is occupied, and the exciton–hole exchange configuration differs from that at ν = −1.
+
+### 2.7 "Dirac fermions" are inferred from theory, not measured
+
+- No experimental signature of the Dirac dispersion, or of the semimetal it replaces, is presented. The title and abstract ("Mott gap at the Dirac point," "simulate massless Dirac fermions") should make clear that the Dirac character is a continuum-model prediction.
+- **Velocity claims disagree.** The abstract says the Fermi velocity is "reduced by nearly two orders of magnitude," while the introduction says "over thirty times slower." With t ≈ 5 meV and a_NN = a_M/√3 ≈ 2.9 nm, v_F = 3ta_NN/2ħ ≈ 3 × 10⁴ m/s, about 30× smaller than graphene. "Two orders of magnitude" should be corrected.
+- The ~200 meV Γ–K offset is supported by DFT and indirect-exciton PL in the Supplementary Information. Please show this in the main or extended figures, since the Γ-valley character underpins the whole SU(2) honeycomb picture.
+- The electric-field range (±50 mV/nm) is modest. The <10% variation of R₂s is reasonable supporting evidence but not decisive. Note also that Fig. 2d shows a sizable drop for ν = −2 at negative E, as the authors mention.
+
+### 2.8 Electrostatics and gate-variable definitions
+
+- From the given parameters, Ctg = ε₀/2.62 nm and Cbg = ε₀/3.17 nm, so Ctg/Cbg ≈ 1.21.
+  - Constant displacement field would require Vbg/Vtg ≈ 1.21 if the WS₂ dielectric is included.
+  - The quoted E-field expression uses bare geometric thicknesses and gives 1.15.
+  - The difference is small but should be made consistent.
+- The definition Vg = (Vtg + 1.15 Vbg)/2 looks dimensionally inconsistent with the density relation n ∝ CtgVtg + CbgVbg, which would suggest Vtg + (Cbg/Ctg)Vbg ≈ Vtg + 0.83 Vbg. Please check whether the factor should be 1/1.15.
+- Please state how the interlayer MoSe₂ field is related to the hBN fields, given the different dielectric constants.
+
+### 2.9 Supplementary material
+
+Many key results are referenced only to the Supplementary Information, which was not available for review. These include:
+
+- the HF calculations (S1);
+- the exchange calculation (S3);
+- the circuit model (S4);
+- Fig. S4 (contact-gate-off data and indirect-exciton PL);
+- Fig. S6 (spectral-weight contrast definition);
+- Fig. S7 (Pomeranchuk-like behavior in D3).
+
+These need to be provided for a complete assessment.
+
+---
+
+## 3. Minor comments
+
+1. **Fig. 3b / Tm definition.** The 10% threshold is arbitrary. Please show how Tm changes with a 20% or 50% threshold. Also show the raw spectral-weight contrast for the fractional states, whose Tm values (13–25 K) are close to where the 2s linewidth itself evolves.
+2. **Error bars.** Please state how the error bars on Tm in Figs. 3c,d are obtained.
+3. **Repulsive polaron MCD.** The opposite-sign MCD of the repulsive polaron is attributed to Ref. [42], a different system (AB-MoTe₂/WSe₂). Please justify why the same selection-rule reversal applies to Γ–K polarons here.
+4. **X₂⁺ at ν = −1 in D2.** The enhancement is attributed to "reduced screening." Please clarify why the same reduced screening does not similarly affect the interpretation of the X₁⁺ maximum at ν = −1.
+5. **Moiré trion localization.** Please give the twist angle and potential depth used in the DFT, and indicate whether reconstruction is included.
+6. **Spatial homogeneity.** Positions P1 and P2 show different fractional-state visibility and Θ_CW. A spatial map of the ν = −1/−2 gate voltages would quantify twist-angle disorder within the beam spot.
+7. **Temperature regime.** Compressibility data are taken at 7 K while magnetism data are taken at 1.6 K. Please confirm that the state assignments are unchanged at 1.6 K (Extended Fig. 3 suggests so; state it explicitly).
+8. **MCD convention.** Methods define σ⁺ as "left-handed." Handedness conventions vary, so please define them relative to the field and propagation direction.
+9. **χ definition.** χ_zz is defined as ∂M/∂B, but MCD is measured. State explicitly that χ is in arbitrary units and assumed ∝ ∂MCD/∂B.
+10. **Missing citations.** Ref. [2] is not cited in the text; the text jumps from [1] to [3]. Ref. [45] is not cited in the Note, which gives only the arXiv number.
+11. **Acknowledgements.** "M.Z." appears but is not an author.
+
+---
+
+## 4. Typographical and presentation issues
+
+- "MacDonald-Bistritzer model" → "Bistritzer–MacDonald model" (it is also called that earlier in the text).
+- "correlated insulation states" → "insulating states"; "fraction fillings" → "fractional fillings."
+- "moire" without the accent appears in several places.
+- Fig. 3b axis label: "weigtht" → "weight."
+- Fig. 3b/d captions describe ν = −2 as "yellow," but the data appear orange.
+- Fig. 2 caption: confirm the grey vs. black dashed-line assignment matches the figure.
+- Ref. [15] contains a stray "165"; Refs. [15, 16] should read "MoTe₂."
+- "Jerry. I Dadap" → "Jerry I. Dadap."
+- Extended Fig. 4d: the "dashed orange" line is described but not clearly visible; label it in the panel.
+
+---
+
+## 5. Overall assessment
+
+The experiment is well executed and the optical toolkit is valuable. Observing robust incompressible states at ν = −1 and −2 in Γ-valley t-MoSe₂, with high melting temperatures, is a solid result. However, the headline interpretations are not yet established at the level claimed:
+
+- that ν = −2 is a correlation-driven Mott state "at the Dirac point";
+- that ν = −1 is ferromagnetically coupled;
+- that ν = −2 is antiferromagnetic.
+
+To support them, the authors should:
+
+1. firm up the density calibration;
+2. address a single-particle sublattice-mass explanation of the ν = −2 gap;
+3. make the trion-based charge-distribution argument quantitative;
+4. reconcile the U₀, t, and ε estimates;
+5. soften the magnetic conclusions to match the statistics.
+
+With these revisions the work would be a strong contribution. I recommend **major revision**.

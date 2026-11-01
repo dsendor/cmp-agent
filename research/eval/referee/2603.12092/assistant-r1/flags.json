@@ -1,0 +1,45 @@
+{"paper": "2603.12092", "version": "v1", "library_version": "0.5",
+ "checks": [
+  {"id": "report-counts", "status": "partly"},
+  {"id": "report-ranges", "status": "partly"},
+  {"id": "report-processing", "status": "partly"}
+ ],
+ "lookalikes": [
+  {"id": "fine-tuning-and-selection", "status": "tested in part", "note": null,
+   "tests": [
+    {"test": "Devices and datasets measured, and how many showed the effect", "shown": "part"},
+    {"test": "How the shown data were chosen", "shown": "no"},
+    {"test": "A second device or dataset shown", "shown": "part"}],
+   "source": null},
+  {"id": "diode-vortex-screening", "status": "tested in part", "note": null,
+   "tests": [
+    {"test": "Same measurement on a plain film or junction of the parent superconductor", "shown": "part"},
+    {"test": "Effect followed against field, sample width or edge quality", "shown": "all"}],
+   "source": null},
+  {"id": "outside: vortex-induced Josephson phase shift", "status": "not tested", "note": "data bear on it",
+   "tests": [
+    {"test": "SQUID pattern compared with flux trapped and with flux removed (warming above Tc and cooling in zero field, or current pulses)", "shown": "no"},
+    {"test": "Measured phase values checked for shifts between 0 and pi, which a vortex near the junction can give", "shown": "no"}],
+   "source": "https://arxiv.org/abs/1003.1033"},
+  {"id": "outside: vortex stray field with nonuniform bias (zero-field diode)", "status": "not tested", "note": "data bear on it",
+   "tests": [
+    {"test": "Zero-field asymmetry compared with a vortex trapped and removed", "shown": "no"},
+    {"test": "Bias configuration changed (current injected through other contacts)", "shown": "no"},
+    {"test": "Shift of the Is(B) pattern from B = 0 measured", "shown": "no"}],
+   "source": "https://arxiv.org/abs/2205.12196"},
+  {"id": "outside: asymmetric-SQUID readout distortion of the CPR", "status": "not tested", "note": "data bear on it",
+   "tests": [
+    {"test": "Derivative asymmetry of the two arms shown to be high enough for Is(Phi) to follow the studied junction's CPR", "shown": "no"},
+    {"test": "Is(Phi) checked for angle-shaped extremes or linear segments, which mark method artifacts", "shown": "no"}],
+   "source": "https://arxiv.org/abs/2302.02705"}
+ ],
+ "questions": [
+  "How many SQUIDs did you fabricate and measure, and in how many did you see a half-period intercept, a finite η′ at B = 0, and the second harmonic? Your p. 4 lists 0°, 40°, 42°, 44° and 45° devices, but the counts behind each claim are not in the v1 PDF.",
+  "Why were the other devices set aside for the phase measurement, and does any device show only integer intercepts at every in-plane field?",
+  "Which in-plane fields, perpendicular field ranges, bias currents and temperatures did you measure beyond those shown, and were the in-plane sweeps of Extended Data Fig. 2 repeated in another cooldown?",
+  "What does the second-best phase dataset look like? SI 14 is cited for another device but is not part of the v1 PDF.",
+  "What is the uncertainty on each intercept in Fig. 3 and Extended Data Fig. 2? The fit in Fig. 3a spans 41 to 59 µA and extrapolates to I = 0 over more than twice that span, and the slopes in Fig. 3a and 3b read about 0.05 and 0.07 period per µA to me; why would A Lgeo change between 0 and 10 µT in-plane field, and how did you make sure each star tracks the same minimum?",
+  "Did you warm above Tc and cool in zero field between in-plane settings, and does the intercept repeat after that? The half-integer values spread from about 0.75π to 0.95π and differ between sweep directions at 0 µT (Extended Data Fig. 2), and the period is about seven times smaller than Φ0/Ageo (p. 6), which suggests flux in the surrounding flakes couples to the loop.",
+  "Where is the true zero of flux in Fig. 4? Is+(+B) and |Is−(−B)| in Fig. 4a look like copies shifted along B; what residual field do you measure inside the cryoperm shield, what offset would bring η′(0) to zero, and how does the 0° control's η′(B) compare?",
+  "Did you simulate Is(Φ) for a purely first-harmonic CPR with your 3:1 arm asymmetry and β ∼ 1, and compare its FFT with Fig. 4d? How was the background in Fig. 4d chosen and subtracted?"
+ ]}

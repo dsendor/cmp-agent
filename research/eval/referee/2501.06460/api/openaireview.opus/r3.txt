@@ -1,0 +1,135 @@
+```json
+{
+  "overall_feedback": "This is an interesting transport study of alternating-twist quadralayer graphene. The superconductivity is clearly established: zero resistance, V∝I³ BKT behaviour, interference in dV/dI, and Pauli-limit violation. Separating Dirac-band and flat-band densities using Dirac-LL trajectories is a worthwhile approach, and many numbers check out on recomputation: n0 ↔ θ = 1.58°, the Dirac-LL density formula, Bp ≈ 3.7 T, T*/TBKT = 1.45 and 2.19, and ξkF ≈ 2 at ξ = 30 nm with v* ≈ 0.05. The main interpretive claims, however, rest on a chain of estimates whose assumptions are not justified and sometimes conflict with the paper's own data.\n\n(i) The BCS–BEC argument (ξkF ≈ 2) uses a pairing density counted only from flat-band half filling. This excludes the ~0.45×10¹² cm⁻² Dirac carriers that the paper itself emphasizes. ξkF therefore goes to zero by construction at vflat = 2.\n\n(ii) The 'conventional' superfluid stiffness used to argue for a quantum-metric enhancement likewise ignores the Dirac bands. Their conventional stiffness would exceed the measured Ds by orders of magnitude.\n\n(iii) The gap estimate Δ/kBTc ≈ 0.2 sits uneasily with a strong-coupling/BEC picture. It is also built from quantities measured in different regimes: a drift velocity from correlated-gap breakdown at B = 0.2 T and a GL ξ.\n\n(iv) The extrapolated Bc0 implied by ξ = 30 nm (~0.37 T) appears to exceed the field at which superconductivity is already destroyed at 100 mK.\n\nThere are also notational slippages between vtot and vflat in the Landau-fan discussion. Key geometric parameters (channel width for js and jn) are missing, and quantum-metric contributions are invoked without any calculation. The data are valuable, but the quantitative conclusions about BEC-like pairing, 'vanishing' Fermi velocity and geometric superfluid stiffness should be substantially tempered or better supported.",
+  "comments": [
+    {
+      "title": "Pairing density excludes Dirac-band carriers, which drives the BEC conclusion",
+      "quote": "where n* is the pairing carrier density and g = 2 is the band degeneracy",
+      "explanation": "I first read n* as the total carrier density in the superconducting band(s). The text then defines v* = |vflat − 2|, so only flat-band carriers counted from half filling enter kF.\n\nThe paper's own analysis (Fig. 2e,f) gives nDirac ≈ 0.45×10¹² cm⁻² on the plateau around vtot ≈ 2.3. The paper also argues that 'superconductivity arises with the multiband involvement.'\n- If those carriers are included, kF ≈ √(2π·4.5×10¹⁵ m⁻²) ≈ 1.7×10⁸ m⁻¹ with g = 2.\n- For ξ = 30–70 nm this gives ξkF ≈ 5–12 rather than ≈ 2.\n\nThe BEC-regime claim therefore depends entirely on the unstated assumption that the Dirac carriers do not participate in pairing. That sits in tension with the multiband framing. The ξkF threshold (~2.2, ref. 38) is also defined for the pair size in a single-band model, not for a GL ξ in a multiband system.",
+      "type": "logical",
+      "severity": "major",
+      "suggested_fix": "Plot ξkF for both choices of n*: flat-band-only (v* = |vflat−2|) and flat + Dirac. State explicitly that the BEC-regime assignment holds only under the assumption that Dirac carriers are unpaired, and discuss why that assumption is justified."
+    },
+    {
+      "title": "ξkF minimum is set by proximity to the assumed vflat = 2 point, not by the physics",
+      "quote": "The coupling strength becomes stronger when vtot closes to 2.36 (vflat = 2), which",
+      "explanation": "With v* = |vflat − 2|, kF ∝ √v* vanishes identically at vflat = 2, while ξ remains finite (~50–100 nm). The dip in Fig. 3c down to ~2 is therefore guaranteed by construction. Its depth simply reflects how close the sampled filling lies to the assumed vflat = 2 point.\n\nThat point is itself uncertain:\n- The text places vflat = 2 at vtot ≈ 2.36 from the μ plateau.\n- It also states vflat ≈ 1.96 at vtot ≈ 2.3. On a plateau where nDirac is constant, these two statements are not mutually consistent (Δvtot = 0.06 versus Δvflat = 0.04).\n- A shift of a few hundredths in the location of vflat = 2 changes v* at vtot = 2.31 by order unity, and hence changes ξkF substantially.\n\nThe same applies to Fig. 4c, where n* is held at v* ≈ 0.05 for all D.",
+      "type": "logical",
+      "severity": "moderate",
+      "suggested_fix": "Propagate the uncertainty in the vflat = 2 location (e.g. ±0.05 in vtot) into error bars on ξkF in Figs. 3c and 4c. Note explicitly that ξkF → 0 at vflat = 2 is a consequence of the definition of v*."
+    },
+    {
+      "title": "Δ/kBTc ≈ 0.2 contradicts the strong-coupling claim and mixes incompatible quantities",
+      "quote": "obtain ∆/kBTc ≈ 0.2, one order lower than the BCS prediction of 1.75",
+      "explanation": "I recomputed the estimate: ℏ·1700 m/s / 30 nm ≈ 37 μeV and kB·2 K ≈ 172 μeV, giving a ratio of ≈ 0.22. The arithmetic is correct.\n\nThe interpretation is problematic on three counts.\n1. In strong-coupling and BEC-crossover superconductors, Δ/kBTc is expected to exceed the BCS value, not to fall an order of magnitude below it. A gap far below kBTc is physically odd and undercuts the paper's central strong-coupling narrative.\n2. The BCS Pippard relation is ξ0 = ℏvF/(πΔ), so the stated relation omits a factor of π. Including it lowers the ratio further to ~0.07.\n3. The relation Δ ≈ ℏv/ξ is a BCS-dispersive-band result. In the flat-band, quantum-metric scenario the authors invoke, ξ is set by the quantum metric rather than ℏvF/Δ (e.g. ref. 45). Moreover, vn is extracted from the correlated-insulator breakdown current at B = 0.2 T, outside the superconducting state.\n\nThe small ratio is therefore more likely an artifact of an inapplicable formula than evidence about the gap.",
+      "type": "technical",
+      "severity": "major",
+      "suggested_fix": "Either remove the Δ/kBTc estimate or present it with the π factor (Δ = ℏvn/(πξ)). Add an explicit caveat that the Pippard relation is not valid for flat-band/quantum-metric superconductors, and reconcile the resulting Δ < kBTc with the strong-coupling interpretation."
+    },
+    {
+      "title": "Conventional superfluid stiffness baseline ignores the dispersive Dirac bands",
+      "quote": "one order larger than the conventional contribution of",
+      "explanation": "The baseline Ds = e²n*/m* uses the tiny flat-band n* (v* ≈ 0.05, ~7×10¹⁰ cm⁻²) and m* = ℏkF/vn with vn = 1700 m/s. I recover ≈ 4×10⁶ H⁻¹, matching the red line.\n\nThe Dirac bands, however, carry ~0.45×10¹² cm⁻² with vF ≈ 6×10⁵ m/s. Their conventional stiffness is:\n- kF = √(4πn/8) ≈ 8×10⁷ m⁻¹\n- m* = ℏkF/vF ≈ 0.016 me\n- e²n/m* ~ 10¹⁰ H⁻¹\n\nThat is two to three orders of magnitude above the measured Ds. If the Dirac bands participate in the condensate at all, as the multiband framing suggests, no quantum-metric enhancement is needed to explain Ds ~ 4×10⁷ H⁻¹.\n\nIn addition, the red line is drawn D-independent even though the DOS and dispersion change strongly toward the VHS. Finally, vn is measured only at D = 0.26 V/nm.\n\nThe claim of geometric enhancement therefore rests on an unjustified choice of baseline.",
+      "type": "logical",
+      "severity": "major",
+      "suggested_fix": "Add the conventional Dirac-band contribution e²nDirac/m*_Dirac (with vF ≈ 6.1×10⁵ m/s and the measured nDirac) to Fig. 5d alongside the flat-band baseline. Either argue explicitly why Dirac carriers do not contribute to Ds, or restrict the quantum-metric claim accordingly."
+    },
+    {
+      "title": "ξ = 30 nm implies Bc0 ≈ 0.37 T, apparently inconsistent with suppression at 0.2 T",
+      "quote": "reaching a minimum ξ of ~30 nm at D = 0.25",
+      "explanation": "With ξ = √(Φ0/2πBc0), ξ = 30 nm requires Bc0 ≈ 2.07×10⁻¹⁵/(2π·9×10⁻¹⁶) ≈ 0.37 T.\n\nThe paper's own data at base temperature point the other way:\n- Supplementary Fig. 7c (T = 100 mK, B⊥ = 0.2 T) shows no zero-resistance region at any D, including D ≈ 0.25 V/nm.\n- Fig. 5a (B⊥ = 0.2 T) shows only a faint remnant.\n- nH in Fig. 4d is taken at 0.5 T 'when superconductivity is fully suppressed'.\n\nThe linear extrapolation of Bc(T) from data above ~0.6 K (Supplementary Fig. 2b) appears to overestimate the true zero-temperature critical field. This would underestimate ξ and push ξkF toward the BEC side, so it directly affects the coupling-strength and Ds conclusions (Ds ∝ ξ).",
+      "type": "technical",
+      "severity": "moderate",
+      "suggested_fix": "Report the measured Bc⊥ at base temperature (100 mK) for D = 0.25 V/nm alongside the extrapolated Bc0. State the resistance criterion used to define Bc. Use the base-temperature value (or a WHH-type extrapolation) to recompute ξ, ξkF and Ds."
+    },
+    {
+      "title": "Drift-velocity interpretation of jn conflicts with the stated Zener–Klein mechanism; 'vanishing Fermi velocity' overstated",
+      "quote": "The calculated vn ≈ 1700 m/s suggests an extremely flat dispersion",
+      "explanation": "The higher critical current jn is attributed to interband Zener–Klein tunnelling across a correlated gap. The paper then converts its density slope into a band velocity via vn = (1/e)djn/dn.\n\nThese are different physical pictures:\n- Zener breakdown thresholds are governed by the gap and the field, not by a carrier drift velocity.\n- The relation j = nev, with v identified as a Fermi velocity, presumes velocity saturation of mobile carriers.\n\nFurther problems with the extraction:\n- It is unclear which n enters dn: total, flat-band, or v* counted from half filling.\n- It is done at B = 0.2 T in the correlated state.\n- It is done at a single D.\n\nThe value is then used both for the superconducting gap and for m* in the stiffness baseline. Calling 1700 m/s a 'vanishing Fermi velocity' (abstract, conclusions) overstates what a single, model-dependent extraction can establish.",
+      "type": "logical",
+      "severity": "moderate",
+      "suggested_fix": "State explicitly which density n is used in djn/dn and the assumption (j = e n v_sat with v_sat ≈ vF) under which vn equals the flat-band Fermi velocity. Replace 'vanishing Fermi velocity' with 'a small effective velocity (~10³ m/s) inferred from the correlated-gap breakdown current'."
+    },
+    {
+      "title": "Channel width and prefactor convention for js, jn and Ds are not given",
+      "quote": "superfluid stiffness at zero temperature limit using the critical current density js in Fig. 5c, based on",
+      "explanation": "Both vn and Ds require converting measured currents (nA) into sheet current densities (A/m), but the Hall-bar width is never stated. Back-calculating from vn ≈ 1700 m/s and the slope in Fig. 5b implies W ~ 0.8 μm, but readers cannot verify this.\n\nThe relation Ds = 2πjsξ/Φ0 is quoted from ref. 41 without derivation. The GL depairing-current relation gives a different numerical prefactor (≈ 3√3π/4 ≈ 4.1 instead of 2π ≈ 6.3). This difference depends on whether n_s counts electrons or pairs, and should be stated.\n\nThe measured switching current is also typically below the depairing current (heating, vortex entry), so Ds is a lower bound. That caveat matters for the 'one order larger' comparison.",
+      "type": "technical",
+      "severity": "moderate",
+      "suggested_fix": "State the channel width used to convert Ic to js and jn. Write the GL relation js = (2/3√3)(Φ0/2πξ)·(2Ds/...) with the convention for n_s explicitly, so that the 2π prefactor can be checked. Note that the switching current gives a lower bound on the depairing current."
+    },
+    {
+      "title": "Fan-origin fillings labelled as flat-band fillings although they are vtot values",
+      "quote": "suggests interaction-induced energy gaps at integer fillings 2 and 3, as well as the fractional filling",
+      "explanation": "The paper stresses that vflat ≠ vtot (e.g. vflat = 2 only at vtot ≈ 2.36). Yet the LL fans emanate from vtot ≈ 2, 3 and 3.3, and these are described as 'integer fillings 2 and 3' and 'fractional filling 10/3 of the flat band'.\n\nUsing the paper's own nDirac (Fig. 2e), the flat-band fillings are lower:\n- vtot ≈ 3.3 has nDirac ≈ 0.75×10¹² cm⁻², i.e. vDirac ≈ 0.5, so vflat ≈ 2.8 rather than 10/3.\n- The fan at vtot ≈ 2 corresponds to vflat < 2.\n\nSimilarly, the valence-side 'C = −2 gap at vflat = −2' is read off at vtot = −2. The CDW-at-10/3 inference, and the comparison with alternating twisted trilayer graphene, depend on this labelling.",
+      "type": "technical",
+      "severity": "moderate",
+      "suggested_fix": "Label the fan origins consistently with the decomposition vflat = vtot − 4nDirac/n0 (giving the corresponding vflat values). Alternatively, state explicitly that the integer/fractional labels refer to vtot and justify why they nonetheless correspond to commensurate flat-band fillings."
+    },
+    {
+      "title": "Dirac LL fan from vtot = 4 is hard to reconcile with nDirac ≈ 0.96×10¹² cm⁻² at vtot = 4",
+      "quote": "At vtot > 4, a series of LLs with vLL= +4, +12, +20, +28, +36 suggest the exclusive",
+      "explanation": "By the Středa construction, a fan of Dirac LLs (+4, +12, +20, …) emanating from vtot = 4 implies the following at B → 0:\n- the flat band holds exactly n0 (full and incompressible);\n- the Dirac bands sit at their Dirac point.\n\nFig. 2e instead reports nDirac ≈ 0.96×10¹² cm⁻² at vtot = 4, i.e. vflat ≈ 3.3, so the flat band would not be full there. The fit nH = (vtot − v0)n0/4 is stated without giving v0. Fig. 2f suggests v0 ≈ 4, which again gives zero Dirac density at vtot = 4.\n\nEither the Dirac carriers redistribute (e.g. a Hartree shift of the Dirac point) between vtot = 4 and ~4.7, or one of the two analyses is off. This affects the claimed 'order of magnitude' band-broadening evidence.",
+      "type": "logical",
+      "severity": "moderate",
+      "suggested_fix": "Give the fitted value of v0 and discuss explicitly how nDirac(vtot = 4) ≈ 0.96×10¹² cm⁻² is compatible with a Dirac-LL fan originating at vtot = 4. For example, specify at what vtot the flat band becomes full and whether the Dirac point shifts."
+    },
+    {
+      "title": "Hall density used as carrier density in a two-carrier system",
+      "quote": "We take the Hall carrier density as an approximation for the real carrier density in a minimal",
+      "explanation": "In a system with coexisting light Dirac carriers and heavy, low-mobility flat-band carriers, nH = B/(eRxy) is a mobility-weighted quantity. It is dominated by the high-mobility species.\n\nThe conclusion that 'the free carrier density from the flat band is negligible' because nH ≈ nDirac near vtot ≈ 2.3 is therefore partly circular: heavy flat-band carriers would contribute little to Rxy even if present.\n\nThe same caveat applies to Fig. 4d. There nH equals the nDirac line for |D| < 0.3 V/nm, and the divergence near the VHS reflects a Hall sign change rather than a direct DOS measurement.",
+      "type": "logical",
+      "severity": "moderate",
+      "suggested_fix": "Add a two-carrier Drude analysis (or at least the expression nH = (n1μ1 + n2μ2)²/(n1μ1² + n2μ2²)). State that nH ≈ nDirac is consistent with, but does not prove, a negligible flat-band carrier density."
+    },
+    {
+      "title": "Diverging nH interpreted as large DOS",
+      "quote": "The divergent nH suggests a large DOS close to van Hove singularity (VHS),",
+      "explanation": "nH = B/(eRxy) diverges whenever Rxy crosses zero, as happens at a Lifshitz transition or VHS where the Fermi-surface topology changes. This indicates proximity to a VHS. It does not by itself measure the DOS.\n\nThe subsequent argument is that Tc falls while the DOS rises, which is 'inconsistent with BCS'. That argument therefore relies on an indirect DOS inference.",
+      "type": "technical",
+      "severity": "minor",
+      "suggested_fix": "Rephrase as 'the divergence of nH (Rxy sign change) signals a Lifshitz transition/VHS' and, if available, support the DOS claim with the continuum-model DOS at the corresponding U."
+    },
+    {
+      "title": "Quantum-metric attribution is asserted rather than demonstrated",
+      "quote": "The enhanced coupling strength and superfluid stiffness tuned by D can be attributed to the increasing",
+      "explanation": "No quantum-metric calculation is presented for ATQG at the relevant U, filling or twist angle, even though the continuum model is available and a theory coauthor is involved. The 'excess' stiffness depends on the baseline choice (see the Dirac-band comment).\n\nThe T*/TBKT increase from 1.45 to 2.19 is described as 'validating the strong coupling induced by quantum geometry'. A larger ratio of nonlinear-onset temperature to TBKT is a generic signature of phase fluctuations or a pseudogap, not specifically of quantum geometry.\n\nMoreover, T* is defined as the onset of non-linear I–V. That onset can also arise from heating or from the correlated-gap breakdown (jn) identified elsewhere in the paper.",
+      "type": "logical",
+      "severity": "moderate",
+      "suggested_fix": "Compute the minimal quantum metric (integrated over the flat band) versus U from the continuum model and compare its D-dependence with Ds(D). Otherwise, replace 'validating' with 'consistent with' and list alternative explanations (phase fluctuations, Dirac-band contribution)."
+    },
+    {
+      "title": "Ds near the VHS does not actually approach the conventional line",
+      "quote": "Ds rapidly decreases and approaches the level of conventional contribution",
+      "explanation": "In Fig. 5d the lowest Ds near |D| ≈ 0.4 V/nm is ~1.5×10⁷ H⁻¹, still about four times the red dashed line (~0.4×10⁷ H⁻¹). The baseline is also drawn D-independent with a single vn, so it does not reflect the changing band structure near the VHS.",
+      "type": "technical",
+      "severity": "minor",
+      "suggested_fix": "Replace with 'Ds decreases by a factor of ~3 but remains ~4× above the (D-independent) conventional estimate'."
+    },
+    {
+      "title": "ξkF ≈ 10–20 described as close to the BCS limit",
+      "quote": "it increases quickly and keeps the value above 10, close to the BCS limit",
+      "explanation": "Conventional BCS superconductors have ξkF ~ 10³–10⁴. Values of 10–20 lie in the crossover regime in standard treatments (e.g. ref. 38). Describing the doping evolution as tuning 'from the BEC to the BCS limit' therefore overstates the range covered.",
+      "type": "logical",
+      "severity": "minor",
+      "suggested_fix": "Describe the doping evolution as 'from near the BEC onset (ξkF ≈ 2–4) toward the BCS side of the crossover (ξkF ≈ 10–20)'."
+    },
+    {
+      "title": "Chemical-potential span equated with flat-band bandwidth",
+      "quote": "provides an experimental estimation of the flat band",
+      "explanation": "The ~50 meV span of μ from vtot = 0 to 4 includes interaction-induced gaps, cascade jumps and Hartree shifts; the authors themselves attribute it to many-body gaps. This is the total chemical-potential range over the flat-band filling, not a single-particle bandwidth.\n\nIt is also extracted assuming the continuum-model Dirac velocity (6.1×10⁵ m/s) is unrenormalized by interactions and unaffected by hybridization.",
+      "type": "technical",
+      "severity": "minor",
+      "suggested_fix": "Call the 50 meV the 'chemical-potential range across the flat-band filling' and note its dependence on the assumed Dirac velocity vF = 6.1×10⁵ m/s."
+    },
+    {
+      "title": "High-bias dV/dI(T) used as evidence of a pseudogap",
+      "quote": "The insulating behavior of dV/dI (Fig. 4f) in the normal state above",
+      "explanation": "Fig. 4f is measured at Idc = 420 nA, a strongly non-equilibrium, Joule-heated regime that is likely near the correlated-gap breakdown current. A ~12% decrease of dV/dI with T there can reflect electron heating and the T-dependence of breakdown thresholds rather than an equilibrium insulating normal state. The inference of 'pre-paired electrons' from this is therefore weak.",
+      "type": "logical",
+      "severity": "minor",
+      "suggested_fix": "Show the zero-bias normal-state R(T) at a field just above Bc for D = 0.26 V/nm to support the insulating trend. Alternatively, qualify Fig. 4f as high-bias data subject to heating."
+    }
+  ]
+}
+```

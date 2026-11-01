@@ -1,0 +1,716 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Referee preview</title>
+<style>
+:root {
+  --bg: #fbfaf7; --panel: #ffffff; --ink: #1f1d1a; --muted: #6b665e; --line: #e4e0d8; --soft: #f3f0ea;
+  --accent: #2d5b8a; --accent-soft: #e6eef7;
+  --a: #a3352b; --a-soft: #f8e6e3; --b: #9a6a12; --b-soft: #f7efdc; --c: #5f6b73; --c-soft: #eceff1;
+  --ok: #2f6b3a; --ok-soft: #e3f0e5; --warn: #9a6a12; --bad: #a3352b;
+  --del: #fbe3e0; --ins: #e1f1e3;
+  --serif: Georgia, "Iowan Old Style", "Times New Roman", serif;
+  --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; background: var(--bg); color: var(--ink); font: 15px/1.5 var(--sans); }
+button, select, input, textarea { font: inherit; color: inherit; }
+button { cursor: pointer; }
+header.top { padding: 18px 24px 10px; border-bottom: 1px solid var(--line); background: var(--panel); }
+.kicker { font-size: 12px; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
+h1 { font: 600 24px/1.25 var(--serif); margin: 4px 0 6px; max-width: 70ch; }
+.meta { color: var(--muted); font-size: 13px; }
+.toolbar { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-top: 10px; }
+.btn { border: 1px solid var(--line); background: var(--panel); border-radius: 6px; padding: 5px 10px; }
+.btn:hover { border-color: var(--accent); }
+.btn.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+.progress { flex: 1; min-width: 160px; display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--muted); }
+.bar { flex: 1; height: 6px; background: var(--soft); border-radius: 3px; overflow: hidden; max-width: 260px; }
+.bar > i { display: block; height: 100%; background: var(--ok); width: 0; }
+.notice { font-size: 13px; color: var(--muted); margin-top: 8px; }
+section.overview { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); gap: 20px; padding: 14px 24px; border-bottom: 1px solid var(--line); }
+@media (max-width: 900px) { section.overview { grid-template-columns: 1fr; } }
+.overview h2 { font: 600 15px var(--serif); margin: 0 0 6px; }
+.claimchips { display: flex; flex-wrap: wrap; gap: 6px; margin: 6px 0; }
+.claimchips button, .claimlist button { border: 1px solid var(--line); background: var(--panel); border-radius: 14px; padding: 2px 10px; font-size: 13px; }
+.claimchips button[aria-pressed="true"], .claimlist button[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: #fff; }
+.claimlist { list-style: none; margin: 6px 0 0; padding: 0; }
+.claimlist li { margin: 4px 0; }
+.claimlist button { border-radius: 6px; text-align: left; width: 100%; font-size: 14px; }
+.claimlist b { font-variant-numeric: tabular-nums; margin-right: 6px; }
+.menu { position: relative; }
+.menu > summary { list-style: none; cursor: pointer; font-size: 13px; }
+.menu > summary::-webkit-details-marker { display: none; }
+.menubox { position: absolute; right: 0; top: 32px; z-index: 10; background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 8px 12px; min-width: 230px; box-shadow: 0 4px 14px rgba(0,0,0,.08); font-size: 13px; }
+.menubox label { display: flex; gap: 8px; align-items: center; padding: 3px 0; }
+.lanenote { font-size: 13px; color: var(--muted); border: 1px dashed var(--line); border-radius: 6px; padding: 6px 10px; margin: 8px 0; }
+#sent { position: fixed; inset: 0; background: rgba(0,0,0,.35); display: none; align-items: center; justify-content: center; z-index: 20; }
+#sent.open { display: flex; }
+#sent .box { background: var(--panel); border-radius: 10px; padding: 18px 22px; max-width: 560px; font-size: 14px; }
+#sent input { width: 100%; font: 13px ui-monospace, Menlo, monospace; padding: 6px 8px; border: 1px solid var(--line); border-radius: 6px; margin: 6px 0; }
+#toggle-pdf[aria-pressed="true"] { background: var(--accent-soft); border-color: var(--accent); }
+details > summary { cursor: pointer; color: var(--accent); font-size: 13px; }
+table.grid { border-collapse: collapse; font-size: 13px; }
+table.grid th, table.grid td { border: 1px solid var(--line); padding: 4px 8px; text-align: center; }
+table.grid th { background: var(--soft); font-weight: 600; }
+table.grid td button { border: 0; background: none; padding: 2px 6px; border-radius: 4px; min-width: 44px; }
+table.grid td button:hover, table.grid td button.on { background: var(--accent-soft); }
+table.grid td.quick { background: var(--ok-soft); }
+.demo { margin-top: 10px; padding: 8px 10px; border: 1px dashed var(--b); border-radius: 6px; background: var(--b-soft); font-size: 13px; }
+.demo ul { margin: 6px 0 0; padding-left: 18px; }
+nav.controls { position: sticky; top: 0; z-index: 5; display: flex; flex-wrap: wrap; gap: 10px; align-items: center; padding: 8px 24px; background: var(--bg); border-bottom: 1px solid var(--line); }
+.seg { display: inline-flex; border: 1px solid var(--line); border-radius: 6px; overflow: hidden; background: var(--panel); }
+.seg button { border: 0; background: none; padding: 4px 10px; border-right: 1px solid var(--line); font-size: 13px; }
+.seg button:last-child { border-right: 0; }
+.seg button[aria-pressed="true"] { background: var(--accent); color: #fff; }
+.controls select, .controls input[type=search] { border: 1px solid var(--line); border-radius: 6px; padding: 4px 8px; background: var(--panel); font-size: 13px; }
+.chip { display: inline-flex; gap: 6px; align-items: center; background: var(--accent-soft); border-radius: 12px; padding: 2px 10px; font-size: 12px; }
+.chip button { border: 0; background: none; padding: 0; }
+main { display: flex; align-items: flex-start; }
+#list { flex: 1; min-width: 0; padding: 14px 24px 80px; }
+#pdfpane { width: 46%; position: sticky; top: 49px; height: calc(100vh - 49px); border-left: 1px solid var(--line); background: var(--panel); display: flex; flex-direction: column; }
+#pdfpane.hidden { display: none; }
+#pdfpane .pdfbar { display: flex; justify-content: space-between; align-items: center; padding: 6px 10px; font-size: 13px; color: var(--muted); border-bottom: 1px solid var(--line); }
+#pdfpane iframe { flex: 1; border: 0; width: 100%; }
+@media (max-width: 900px) { #pdfpane { display: none; } }
+.group { font: 600 13px var(--sans); color: var(--muted); text-transform: uppercase; letter-spacing: .05em; margin: 18px 0 6px; }
+.card { background: var(--panel); border: 1px solid var(--line); border-left: 4px solid var(--c); border-radius: 8px; padding: 12px 14px; margin: 10px 0; }
+.card.tA { border-left-color: var(--a); } .card.tB { border-left-color: var(--b); } .card.lcopy { border-left-color: var(--line); }
+.card.sel { outline: 2px solid var(--accent); outline-offset: 1px; }
+.card.done { opacity: .62; }
+.card.done.sel { opacity: 1; }
+.tags { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; font-size: 12px; color: var(--muted); margin-bottom: 6px; }
+.tag { border-radius: 4px; padding: 0 6px; background: var(--soft); }
+.tag.tA { background: var(--a-soft); color: var(--a); font-weight: 600; }
+.tag.tB { background: var(--b-soft); color: var(--b); font-weight: 600; }
+.tag.tC { background: var(--c-soft); color: var(--c); font-weight: 600; }
+.tag.ok { background: var(--ok-soft); color: var(--ok); }
+.tag.warn { background: var(--b-soft); color: var(--warn); }
+.tag.bad { background: var(--a-soft); color: var(--bad); }
+.tag.ref { background: #efe7f7; color: #5b3a86; }
+.tag.unmeasured { background: none; border: 1px dashed var(--line); }
+.issue { font: 16px/1.45 var(--serif); margin: 0 0 4px; }
+.claim { font-size: 13px; color: var(--muted); margin-bottom: 8px; }
+blockquote { margin: 8px 0; padding: 6px 10px; border-left: 3px solid var(--line); background: var(--soft); font: 14px/1.45 var(--serif); }
+blockquote .where { display: block; margin-top: 4px; font: 12px var(--sans); color: var(--muted); }
+.link { border: 0; background: none; color: var(--accent); padding: 0; text-decoration: underline; font-size: 12px; }
+.fix { font-size: 14px; margin: 6px 0; }
+.fix b { font-weight: 600; }
+.diff { font: 13px/1.5 ui-monospace, SFMono-Regular, Menlo, monospace; background: var(--soft); border-radius: 6px; padding: 6px 8px; white-space: pre-wrap; word-break: break-word; margin: 6px 0; }
+.diff del { background: var(--del); text-decoration: line-through; }
+.diff ins { background: var(--ins); text-decoration: none; }
+.diff .dlabel { color: var(--muted); font-size: 11px; }
+.card details.src { margin: 4px 0; } .card details.src summary { font-size: 12px; }
+.decide { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+.decide button { border: 1px solid var(--line); background: var(--panel); border-radius: 14px; padding: 2px 10px; font-size: 13px; }
+.decide button kbd { font: 11px var(--sans); color: var(--muted); margin-left: 4px; }
+.decide button[aria-pressed="true"] { background: var(--ink); color: #fff; border-color: var(--ink); }
+.decide button[aria-pressed="true"] kbd { color: #ddd; background: transparent; border-color: #666; }
+.note { width: 100%; margin-top: 8px; border: 1px solid var(--line); border-radius: 6px; padding: 6px 8px; font-size: 13px; min-height: 34px; resize: vertical; display: none; }
+.card.sel .note, .note.has { display: block; }
+.collapsed { padding: 10px 14px; border: 1px dashed var(--line); border-radius: 8px; margin: 14px 0; color: var(--muted); }
+.bulk { display: flex; gap: 10px; align-items: center; margin: 8px 0; font-size: 13px; }
+.empty { color: var(--muted); padding: 30px 0; }
+#help { position: fixed; inset: 0; background: rgba(0,0,0,.35); display: none; align-items: center; justify-content: center; z-index: 20; }
+#help.open { display: flex; }
+#help .box { background: var(--panel); border-radius: 10px; padding: 18px 22px; max-width: 520px; font-size: 14px; }
+#help table td { padding: 2px 10px 2px 0; vertical-align: top; }
+kbd { font: 12px ui-monospace, Menlo, monospace; border: 1px solid var(--line); border-bottom-width: 2px; border-radius: 4px; padding: 0 4px; background: var(--soft); }
+</style>
+</head>
+<body>
+<script id="review-data" type="application/json">/*REVIEW_JSON*/null</script>
+
+<header class="top">
+  <div class="kicker">Referee preview · likely referee objections, before you submit</div>
+  <h1 id="title"></h1>
+  <div class="meta" id="meta"></div>
+  <div class="toolbar">
+    <div class="progress"><span id="progress-text"></span><div class="bar"><i id="progress-bar"></i></div></div>
+    <button class="btn primary" id="send" title="Save your decisions where Claude Code can read them, and copy the command that applies them">Send to Claude</button>
+    <button class="btn" id="export-plan">Revision plan (.md)</button>
+    <label class="btn" title="Load decisions exported earlier">Import decisions<input type="file" id="import" accept=".json,application/json" hidden></label>
+    <button class="btn" id="open-help" title="Keyboard shortcuts">?</button>
+  </div>
+  <div class="notice">Every item here is AI-generated and labeled AI only. Presentation and copy items come from passes not yet measured against real referee reports. Decisions are saved in this browser as you go. When you are done, click Send to Claude.</div>
+</header>
+
+<section class="overview">
+  <div>
+    <h2>Main claims, as Claude read them</h2>
+    <div class="notice" style="margin-top:0">Check that these are your claims. Click one to see only the objections to it.</div>
+    <div class="claimchips" id="claimchips"></div>
+    <details id="claimdetails"><summary>Read the claims in full</summary><ol class="claimlist" id="claims"></ol></details>
+    <details><summary>Summary</summary><p id="summary"></p></details>
+    <div id="demo"></div>
+  </div>
+  <div>
+    <h2>Importance and effort to fix</h2>
+    <table class="grid" id="grid"></table>
+    <div class="notice">Science and presentation items. Click a cell to show those items; green cells are quick wins (must or should address, fixed with a text edit). Both are AI estimates.</div>
+  </div>
+</section>
+
+<nav class="controls">
+  <div class="seg" id="lanes"></div>
+  <div class="seg" id="views"></div>
+  <div class="seg" id="tiers" title="Importance: click to show or hide each level"></div>
+  <select id="topic"><option value="">All topics</option></select>
+  <select id="status">
+    <option value="open">Undecided</option><option value="all">All</option><option value="decided">Decided</option>
+  </select>
+  <select id="order" title="Order within each importance level">
+    <option value="rank">Reviewer's order</option><option value="effort">Least effort first</option>
+  </select>
+  <input type="search" id="search" placeholder="Search  /" size="16">
+  <span id="chips"></span>
+  <details class="menu" id="tagmenu"><summary class="btn">Tags ▾</summary><div class="menubox" id="tagbox"></div></details>
+  <button class="btn" id="toggle-pdf" title="Show or hide the paper beside the list (p)">Show PDF ▸</button>
+</nav>
+
+<main>
+  <div id="list"></div>
+  <aside id="pdfpane">
+    <div class="pdfbar"><span id="pdf-label">Paper</span><a id="pdf-open" target="_blank" rel="noopener">Open in a new tab</a></div>
+    <iframe id="pdf" title="The paper"></iframe>
+  </aside>
+</main>
+
+<div id="help" role="dialog" aria-label="Keyboard shortcuts"><div class="box">
+  <h2 style="font:600 17px var(--serif);margin:0 0 8px">Keyboard</h2>
+  <table>
+    <tr><td><kbd>j</kbd> <kbd>k</kbd></td><td>next, previous item</td></tr>
+    <tr><td><kbd>1</kbd> to <kbd>5</kbd></td><td>Will fix, Scope the claim, Already in the paper, Disagree, Not worth it</td></tr>
+    <tr><td><kbd>a</kbd> <kbd>r</kbd> <kbd>e</kbd></td><td>copy edits: accept, reject, edit</td></tr>
+    <tr><td><kbd>u</kbd></td><td>clear the decision</td></tr>
+    <tr><td><kbd>n</kbd></td><td>write a note</td></tr>
+    <tr><td><kbd>p</kbd></td><td>show or hide the PDF</td></tr>
+    <tr><td><kbd>/</kbd></td><td>search</td></tr>
+    <tr><td><kbd>Esc</kbd></td><td>leave a text box, close this</td></tr>
+  </table>
+  <p style="color:var(--muted);font-size:13px">When you are done, click Send to Claude and paste the command into Claude Code. Accepted text edits go into your source; Claude then works through the items you will fix, one by one.</p>
+  <button class="btn" id="close-help">Close</button>
+</div></div>
+
+<div id="sent" role="dialog" aria-label="Send to Claude"><div class="box">
+  <h2 style="font:600 17px var(--serif);margin:0 0 8px">Your decisions are saved</h2>
+  <p id="sent-where"></p>
+  <p>In Claude Code, paste this command (it is on your clipboard):</p>
+  <input id="sent-cmd" readonly>
+  <p style="color:var(--muted);font-size:13px">Claude applies the accepted edits to your source, compiles, and commits so one command undoes it. Then it goes through each item you marked Will fix and offers to help, using your notes as instructions.</p>
+  <p style="font-size:13px">Not using Claude Code? Email the saved file to whoever sent you this review: your decisions and notes are the most useful feedback on it.</p>
+  <button class="btn" id="close-sent">Close</button>
+</div></div>
+
+<script>
+(function () {
+"use strict";
+const R = JSON.parse(document.getElementById("review-data").textContent);
+if (!R) { document.body.textContent = "No review data in this file."; return; }
+
+const LANES = [["all", "All"], ["science", "Science"], ["presentation", "Presentation"], ["copy", "Copy"]];
+const VIEWS = [["triage", "Triage"], ["walk", "Walk through"]];
+const IMPORTANCE = { A: "Must address", B: "Should address", C: "Minor" };
+const EFFORT = { text: "Text edit", existing_data: "Reanalysis", new_work: "New experiment" };
+const TAGS = [["lane", "Lane (in the All view)"], ["topic", "Topic"], ["runs", "Runs that raised it"], ["quote", "Quote check, when it passed"], ["referee", "Referee matches (demo)"]];
+const EFFORT_ORDER = { text: 0, existing_data: 1, new_work: 2 };
+const TOPIC = {
+  samples: "Samples and devices", null_control: "Null control", apparatus: "Apparatus artifacts", heating: "Heating",
+  calibration: "Calibration", dependences: "Missing dependences", fits: "Fits and extraction", inhomogeneity: "Inhomogeneity",
+  direct_evidence: "Direct evidence", theory: "Theory set-up", consistency: "Consistency", other: "Other",
+  overclaiming: "Overclaiming", clarity: "Clarity", context: "Missing context", figures: "Figures and captions", structure: "Structure",
+  notation: "Notation and units", references: "References and numbering", language: "Language"
+};
+const DECISIONS = [
+  ["will_fix", "Will fix", "1"], ["scope_claim", "Scope the claim", "2"], ["already_in_paper", "Already in the paper", "3"],
+  ["disagree", "Disagree", "4"], ["not_worth_it", "Not worth it", "5"]
+];
+const COPY_DECISIONS = [["accept", "Accept", "a"], ["reject", "Reject", "r"], ["edit", "Edit", "e"]];
+const LABEL = Object.fromEntries(DECISIONS.concat(COPY_DECISIONS).map(d => [d[0], d[1]]));
+const KEY = "referee-preview:" + R.id;
+
+const issues = R.issues;
+const byId = Object.fromEntries(issues.map(i => [i.id, i]));
+let decisions = {};
+try { decisions = JSON.parse(localStorage.getItem(KEY) || "{}") || {}; } catch (e) { decisions = {}; }
+let prefs = { lane: true, topic: false, runs: false, quote: false, referee: true };
+try { Object.assign(prefs, JSON.parse(localStorage.getItem("referee-preview:tags") || "{}")); } catch (e) {}
+const state = { lane: "all", view: "triage", tiers: { A: true, B: true, C: true }, claim: null,
+  topic: "", status: "open", order: "rank", q: "", cell: null, sel: null, pdf: true, copyOpen: false };
+
+// demo-only referee overlay
+const refOf = {};
+if (R.demo && R.demo.referee_concerns) {
+  for (const c of R.demo.referee_concerns) for (const m of (c.matches || [])) {
+    (refOf[m.issue] = refOf[m.issue] || []).push({ id: c.id, raised: m.raised, severity: c.severity, summary: c.summary });
+  }
+}
+
+const $ = id => document.getElementById(id);
+function el(tag, attrs, ...kids) {
+  const e = document.createElement(tag);
+  for (const [k, v] of Object.entries(attrs || {})) {
+    if (v == null || v === false) continue;
+    if (k === "class") e.className = v; else if (k === "text") e.textContent = v;
+    else if (k.startsWith("on")) e.addEventListener(k.slice(2), v); else e.setAttribute(k, v === true ? "" : v);
+  }
+  for (const k of kids) if (k != null) e.append(k);
+  return e;
+}
+function save() { try { localStorage.setItem(KEY, JSON.stringify(decisions)); } catch (e) {} }
+function decided(i) { return !!(decisions[i.id] && decisions[i.id].decision); }
+
+// ---------- header ----------
+$("title").textContent = R.paper.title || R.paper.id;
+document.title = "Referee preview: " + (R.paper.title || R.paper.id);
+const runs = R.mode === "exhaustive" ? R.runs + " runs merged" : "one run";
+$("meta").textContent = [R.paper.id, "reviewer v" + (R.reviewer.version || "?"), runs, R.model, R.date,
+  R.target_journal ? "for " + R.target_journal : null].filter(Boolean).join(" · ");
+function drawClaims() {
+  const chips = $("claimchips"), list = $("claims");
+  chips.textContent = ""; list.textContent = "";
+  const count = k => issues.filter(i => i.claim_id === k && i.lane !== "copy").length;
+  const pick = k => () => { state.claim = state.claim === k ? null : k; render(); };
+  (R.claims || []).forEach((c, n) => {
+    const k = n + 1, on = String(state.claim === k);
+    chips.append(el("button", { "aria-pressed": on, title: c, onclick: pick(k), text: "Claim " + k + " · " + count(k) }));
+    list.append(el("li", {}, el("button", { "aria-pressed": on, onclick: pick(k) }, el("b", { text: k + "." }), c + " (" + count(k) + " objections)")));
+  });
+  const general = count(0);
+  if (general) chips.append(el("button", { "aria-pressed": String(state.claim === 0), title: "Objections about the paper as a whole",
+    onclick: pick(0), text: "General · " + general }));
+  if (!issues.some(i => i.claim_id != null)) chips.append(el("span", { class: "notice", text: "(This review has no claim links.)" }));
+}
+$("summary").textContent = R.summary || "";
+
+if (R.demo && R.demo.referee_concerns) {
+  const rc = R.demo.referee_concerns;
+  const yes = rc.filter(c => c.raised === "yes").length, partly = rc.filter(c => c.raised === "partly").length;
+  const missed = rc.filter(c => c.raised === "no");
+  const box = el("div", { class: "demo" },
+    el("b", { text: "Demo only. " }),
+    (R.demo.note || "") + " The journal's referees raised " + rc.length + " concerns about this version; this review raised " +
+    yes + " of them and " + partly + " in part. Items a referee raised carry a purple tag.");
+  if (missed.length) {
+    const ul = el("ul");
+    for (const c of missed) ul.append(el("li", { text: c.id + " (" + c.severity + "): " + c.summary }));
+    box.append(el("details", {}, el("summary", { text: "Referee concerns this review missed (" + missed.length + ")" }), ul));
+  }
+  $("demo").append(box);
+}
+
+// ---------- grid ----------
+function drawGrid() {
+  const g = $("grid"); g.textContent = "";
+  const head = el("tr", {}, el("th", { text: "" }));
+  for (const e of Object.keys(EFFORT)) head.append(el("th", { text: EFFORT[e] }));
+  g.append(head);
+  for (const t of ["A", "B", "C"]) {
+    const tr = el("tr", {}, el("th", { text: IMPORTANCE[t] }));
+    for (const e of Object.keys(EFFORT)) {
+      const items = issues.filter(i => i.lane !== "copy" && i.tier === t && i.effort === e);
+      const open = items.filter(i => !decided(i)).length;
+      const on = state.cell && state.cell[0] === t && state.cell[1] === e;
+      const td = el("td", { class: (t !== "C" && e === "text") ? "quick" : null });
+      td.append(el("button", { class: on ? "on" : null, title: open + " undecided of " + items.length,
+        text: items.length ? open + " / " + items.length : "·",
+        onclick: () => { state.cell = on ? null : [t, e]; if (!on) { state.lane = "all"; state.tiers = { A: true, B: true, C: true }; } render(); } }));
+      tr.append(td);
+    }
+    g.append(tr);
+  }
+}
+
+// ---------- controls ----------
+function seg(id, options, key) {
+  const s = $(id); s.textContent = "";
+  for (const [v, label] of options) {
+    let text = label;
+    if (key === "lane") {
+      const n = v === "all" ? issues.length : issues.filter(i => i.lane === v).length;
+      text = label + " " + n;
+    }
+    s.append(el("button", { "aria-pressed": String(state[key] === v), text,
+      onclick: () => { state[key] = v; render(); } }));
+  }
+}
+const topics = [...new Set(issues.map(i => i.topic))];
+for (const t of topics) $("topic").append(el("option", { value: t, text: TOPIC[t] || t }));
+$("topic").onchange = e => { state.topic = e.target.value; render(); };
+$("status").onchange = e => { state.status = e.target.value; render(); };
+$("order").onchange = e => { state.order = e.target.value; render(); };
+$("search").oninput = e => { state.q = e.target.value.toLowerCase(); render(); };
+$("toggle-pdf").onclick = () => { state.pdf = !state.pdf; layoutPdf(); };
+function drawTiers() {
+  const s = $("tiers"); s.textContent = "";
+  const pool = issues.filter(i => i.lane !== "copy" && (state.lane === "all" || i.lane === state.lane));
+  for (const t of ["A", "B", "C"]) s.append(el("button", { "aria-pressed": String(state.tiers[t]),
+    title: (state.tiers[t] ? "Hide " : "Show ") + IMPORTANCE[t].toLowerCase() + " items",
+    text: IMPORTANCE[t] + " " + pool.filter(i => i.tier === t).length,
+    onclick: () => { state.tiers[t] = !state.tiers[t]; render(); } }));
+}
+for (const [k, label] of TAGS) {
+  if (k === "referee" && !R.demo) continue;
+  const cb = el("input", { type: "checkbox" }); cb.checked = !!prefs[k];
+  cb.onchange = () => { prefs[k] = cb.checked; try { localStorage.setItem("referee-preview:tags", JSON.stringify(prefs)); } catch (e) {} render(); };
+  $("tagbox").append(el("label", {}, cb, label));
+}
+$("tagbox").append(el("div", { class: "notice", text: "Importance and effort always show. A quote that was not found in the paper, and an item only one of three runs raised, always show." }));
+
+function drawChips() {
+  const c = $("chips"); c.textContent = "";
+  if (state.claim != null) c.append(el("span", { class: "chip" }, state.claim ? "Claim " + state.claim : "General",
+    el("button", { "aria-label": "clear", text: "×", onclick: () => { state.claim = null; render(); } })));
+  if (state.cell) c.append(el("span", { class: "chip" }, IMPORTANCE[state.cell[0]] + " · " + EFFORT[state.cell[1]],
+    el("button", { "aria-label": "clear", text: "×", onclick: () => { state.cell = null; render(); } })));
+}
+
+// ---------- filtering and order ----------
+function visible() {
+  let xs = issues.filter(i => state.lane === "all" || i.lane === state.lane);
+  if (state.cell) xs = xs.filter(i => i.lane !== "copy" && i.tier === state.cell[0] && i.effort === state.cell[1]);
+  if (state.topic) xs = xs.filter(i => i.topic === state.topic);
+  if (state.status === "open") xs = xs.filter(i => !decided(i) || i.id === state.sel);
+  if (state.status === "decided") xs = xs.filter(decided);
+  if (state.q) xs = xs.filter(i => [i.issue, i.claim, i.fix, i.evidence.quote, i.id, i.edit && i.edit.before, i.edit && i.edit.after]
+    .join(" ").toLowerCase().includes(state.q));
+  if (state.claim != null) xs = xs.filter(i => i.claim_id === state.claim);
+  if (!state.cell) xs = xs.filter(i => i.lane === "copy" || state.tiers[i.tier]);
+  const laneOrder = { science: 0, presentation: 1, copy: 2 };
+  const tierOrder = { A: 0, B: 1, C: 2 };
+  if (state.view === "walk") {
+    xs.sort((a, b) => (a.evidence.page || 999) - (b.evidence.page || 999) || laneOrder[a.lane] - laneOrder[b.lane] || a.rank - b.rank);
+  } else {
+    xs.sort((a, b) => (a.lane === "copy") - (b.lane === "copy") || (tierOrder[a.tier] ?? 3) - (tierOrder[b.tier] ?? 3) ||
+      (state.order === "effort" ? EFFORT_ORDER[a.effort] - EFFORT_ORDER[b.effort] : 0) ||
+      laneOrder[a.lane] - laneOrder[b.lane] || a.rank - b.rank);
+  }
+  return xs;
+}
+
+// ---------- word diff ----------
+function diff(before, after) {
+  const a = before.split(/(\s+)/), b = after.split(/(\s+)/);
+  const n = a.length, m = b.length;
+  if (n * m > 250000) return el("div", { class: "diff" }, el("del", { text: before }), "\n", el("ins", { text: after }));
+  const L = Array.from({ length: n + 1 }, () => new Int32Array(m + 1));
+  for (let i = n - 1; i >= 0; i--) for (let j = m - 1; j >= 0; j--)
+    L[i][j] = a[i] === b[j] ? L[i + 1][j + 1] + 1 : Math.max(L[i + 1][j], L[i][j + 1]);
+  const wa = a.filter(t => /\S/.test(t)), wb = b.filter(t => /\S/.test(t));
+  const pool = {}; for (const w of wa) pool[w] = (pool[w] || 0) + 1;
+  let shared = 0; for (const w of wb) if (pool[w] > 0) { pool[w]--; shared++; }
+  if (shared < 0.5 * Math.min(wa.length, wb.length)) {
+    // mostly rewritten: show the two versions one above the other
+    return el("div", { class: "diff" }, el("span", { class: "dlabel", text: "Now  " }), el("del", { text: before }),
+      "\n", el("span", { class: "dlabel", text: "New  " }), el("ins", { text: after }));
+  }
+  const out = el("div", { class: "diff" });
+  let i = 0, j = 0, dl = "", ad = "";
+  const flush = () => {
+    if (dl.trim()) out.append(el("del", { text: dl.trim() }));
+    if (dl.trim() && ad.trim()) out.append(" ");
+    if (ad.trim()) out.append(el("ins", { text: ad.trim() }));
+    if (dl.trim() || ad.trim()) out.append(" ");
+    dl = ""; ad = "";
+  };
+  while (i < n || j < m) {
+    if (i < n && j < m && a[i] === b[j]) {
+      if (/\S/.test(a[i])) { flush(); out.append(a[i]); }
+      else if (dl || ad) { dl += a[i]; ad += b[j]; }
+      else out.append(a[i]);
+      i++; j++;
+    }
+    else if (j < m && (i === n || L[i][j + 1] >= L[i + 1][j])) { ad += b[j]; j++; }
+    else { dl += a[i]; i++; }
+  }
+  flush();
+  return out;
+}
+
+// ---------- cards ----------
+function evidenceTag(i) {
+  const f = i.evidence_found;
+  if (f === "exact") return el("span", { class: "tag ok", title: "The quote appears in the paper", text: "quote found" });
+  if (f === "close") return el("span", { class: "tag ok", title: "The quote appears with small differences (hyphenation, symbols)", text: "quote found (close)" });
+  if (f === "not_found") return el("span", { class: "tag bad", title: "The quote was not found in the paper's text; check it", text: "quote not found" });
+  return el("span", { class: "tag", text: "quote unchecked" });
+}
+
+function card(i) {
+  const d = decisions[i.id] || {};
+  const c = el("article", { class: "card " + (i.tier ? "t" + i.tier : "") + " l" + i.lane + (d.decision ? " done" : "") + (state.sel === i.id ? " sel" : ""),
+    id: "card-" + i.id, tabindex: "-1" });
+  c.addEventListener("click", ev => { if (ev.target.closest("button, textarea, a")) return; select(i.id, false); });
+
+  const tags = el("div", { class: "tags" }, el("span", { text: i.id }));
+  if (i.tier) tags.append(el("span", { class: "tag t" + i.tier, title: "Importance (AI estimate)", text: IMPORTANCE[i.tier] }));
+  if (i.lane !== "copy") tags.append(el("span", { class: "tag", title: "Effort to fix (AI estimate)", text: "Fix: " + EFFORT[i.effort].toLowerCase() }));
+  if (prefs.lane && state.lane === "all") tags.append(el("span", { class: "tag" + (i.lane === "science" ? "" : " unmeasured"),
+    title: i.lane === "science" ? "Science lane" : "From a pass not yet measured against referee reports",
+    text: i.lane[0].toUpperCase() + i.lane.slice(1) + (i.lane === "science" ? "" : " (unmeasured)") }));
+  if (prefs.topic) tags.append(el("span", { class: "tag", text: TOPIC[i.topic] || i.topic }));
+  if (i.lane === "science" && R.mode === "exhaustive" && i.runs && i.runs.length && (prefs.runs || i.runs.length === 1))
+    tags.append(el("span", { class: "tag" + (i.runs.length === 1 ? " warn" : ""),
+      title: i.runs.length === 1 ? "Only one of the independent review runs raised this; weigh it accordingly" : "Independent review runs that raised it: " + i.runs.join(", "),
+      text: i.runs.length + " of " + R.runs + " runs" }));
+  if (i.lane === "copy" && i.risk !== "low") tags.append(el("span", { class: "tag warn",
+    title: "Touches a number, symbol, unit, citation or hedge word: check it before accepting", text: "check: changes a number or claim word" }));
+  if (prefs.quote || i.evidence_found === "not_found") tags.append(evidenceTag(i));
+  const refs = prefs.referee ? refOf[i.id] || [] : [];
+  if (refs.length) {
+    const full = refs.filter(r => r.raised === "yes").map(r => r.id), part = refs.filter(r => r.raised !== "yes").map(r => r.id);
+    tags.append(el("span", { class: "tag ref", title: "Demo only. " + refs.map(r => r.id + ": " + r.summary).join("  "),
+      text: "referees: " + [full.length ? "raised " + full.join(", ") : null, part.length ? "partly " + part.join(", ") : null].filter(Boolean).join("; ") }));
+  }
+  c.append(tags);
+
+  c.append(el("p", { class: "issue", text: i.issue }));
+  if (i.claim) c.append(el("div", { class: "claim", text: "Affects " + (i.claim_id ? "claim " + i.claim_id + ": " : ": ") + i.claim }));
+
+  if (i.evidence.quote) {
+    const where = [i.evidence.page ? "p. " + i.evidence.page : null, i.evidence.location].filter(Boolean).join(" · ");
+    const bq = el("blockquote", {}, "“" + i.evidence.quote + "”");
+    const w = el("span", { class: "where" }, where + " ");
+    if (i.evidence.page) w.append(el("button", { class: "link", text: "show in PDF", onclick: () => showPage(i.evidence.page) }));
+    if (i.evidence.cited_page) w.append(" (cited as p. " + i.evidence.cited_page + ")");
+    bq.append(w); c.append(bq);
+  }
+  if (i.fix) c.append(el("p", { class: "fix" }, el("b", { text: "Fix: " }), i.fix));
+  if (i.edit) {
+    const after = d.decision === "edit" && d.after != null ? d.after : i.edit.after;
+    c.append(el("div", { class: "claim", text: i.edit.file ? "Edit in " + i.edit.file : "Suggested text" }));
+    c.append(diff(i.edit.before, after));
+  }
+  if (i.fix_scoped) {
+    c.append(el("p", { class: "fix" }, el("b", { text: "Or scope the claim: " }), i.fix_scoped));
+    if (i.edit_scoped) c.append(el("details", { class: "src" }, el("summary", { text: "The edit to the source" }),
+      diff(i.edit_scoped.before, i.edit_scoped.after)));
+  }
+
+  const row = el("div", { class: "decide" });
+  const opts = i.lane === "copy" ? COPY_DECISIONS : DECISIONS.filter(x => x[0] !== "scope_claim" || i.fix_scoped);
+  for (const [v, label, k] of opts) row.append(el("button", { "aria-pressed": String(d.decision === v),
+    onclick: () => decide(i.id, v) }, label, el("kbd", { text: k })));
+  if (d.decision) row.append(el("button", { onclick: () => decide(i.id, null) }, "Clear", el("kbd", { text: "u" })));
+  c.append(row);
+
+  if (i.lane === "copy" && d.decision === "edit") {
+    const ta = el("textarea", { class: "note has", "aria-label": "Your version" });
+    ta.value = d.after != null ? d.after : i.edit.after;
+    ta.addEventListener("input", () => { decisions[i.id].after = ta.value; save(); });
+    c.append(ta);
+  }
+  const note = el("textarea", { class: "note" + (d.note ? " has" : ""), placeholder: "Note (optional): why, or what you will do", "aria-label": "Note" });
+  note.value = d.note || "";
+  note.addEventListener("input", () => { (decisions[i.id] = decisions[i.id] || {}).note = note.value; decisions[i.id].at = new Date().toISOString(); save(); });
+  c.append(note);
+  return c;
+}
+
+function decide(id, v) {
+  const i = byId[id];
+  if (v === null) { if (decisions[id]) { delete decisions[id].decision; delete decisions[id].after; } }
+  else {
+    const d = decisions[id] = decisions[id] || {};
+    d.decision = v; d.at = new Date().toISOString();
+    if (v === "edit" && d.after == null) d.after = i.edit.after;
+  }
+  save();
+  const xs = visible();
+  if (v && v !== "edit" && state.sel === id) {
+    const k = xs.findIndex(x => x.id === id);
+    const next = xs.slice(k + 1).find(x => !decided(x));
+    render();
+    if (next) select(next.id, true);
+  } else render();
+}
+
+// ---------- list ----------
+function render() {
+  seg("lanes", LANES, "lane"); seg("views", VIEWS, "view"); drawTiers(); drawClaims();
+  drawGrid(); drawChips(); progress();
+  const list = $("list"); list.textContent = "";
+  const xs = visible();
+  if (state.lane === "presentation" || state.lane === "copy")
+    list.append(el("div", { class: "lanenote", text: (state.lane === "copy" ? "Copy edits" : "Presentation items") +
+      " come from a pass not yet measured against real referee reports." }));
+  if (!xs.length) { list.append(el("div", { class: "empty", text: "Nothing to show with these filters." })); return; }
+
+  const copy = xs.filter(i => i.lane === "copy");
+  const rest = state.view === "triage" && state.lane === "all" && !state.copyOpen && !state.q ? xs.filter(i => i.lane !== "copy") : xs;
+  let group = null;
+  const groupOf = i => state.view === "walk" ? "Page " + (i.evidence.page || "?") : i.lane === "copy" ? "Copy edits" : IMPORTANCE[i.tier];
+  const sizes = {}; for (const i of rest) sizes[groupOf(i)] = (sizes[groupOf(i)] || 0) + 1;
+  for (const i of rest) {
+    const g = groupOf(i);
+    if (g !== group) { list.append(el("div", { class: "group", text: g + " (" + sizes[g] + ")" })); group = g;
+      if (g === "Copy edits") list.append(bulkBar(copy)); }
+    list.append(card(i));
+  }
+  if (rest !== xs && copy.length) {
+    list.append(el("div", { class: "collapsed" }, copy.length + " copy edits (spelling, notation, consistency) are folded away so they do not crowd the science. ",
+      el("button", { class: "link", text: "Show them", onclick: () => { state.copyOpen = true; render(); } })));
+  }
+  if (state.sel) { const c = $("card-" + state.sel); if (c) c.classList.add("sel"); }
+}
+
+function bulkBar(copy) {
+  const low = copy.filter(i => i.risk === "low" && !decided(i));
+  return el("div", { class: "bulk" }, low.length + " low-risk copy edits shown and undecided. ",
+    el("button", { class: "btn", disabled: low.length ? null : true, text: "Accept all " + low.length,
+      onclick: () => {
+        if (!confirm("Accept " + low.length + " low-risk copy edits? Each changes prose only; you can still clear any of them.")) return;
+        const now = new Date().toISOString();
+        for (const i of low) decisions[i.id] = Object.assign(decisions[i.id] || {}, { decision: "accept", at: now, bulk: true });
+        save(); render();
+      } }));
+}
+
+function progress() {
+  const n = issues.length, k = issues.filter(decided).length;
+  $("progress-text").textContent = k + " of " + n + " decided";
+  $("progress-bar").style.width = (n ? 100 * k / n : 0) + "%";
+}
+
+// ---------- selection, PDF ----------
+function select(id, scroll) {
+  state.sel = id;
+  document.querySelectorAll(".card.sel").forEach(c => c.classList.remove("sel"));
+  const c = $("card-" + id);
+  if (c) { c.classList.add("sel"); if (scroll) c.scrollIntoView({ block: "nearest", behavior: "smooth" }); }
+  const i = byId[id];
+  if (i && i.evidence.page) showPage(i.evidence.page);
+}
+const pdfBase = R.paper.pdf_local ? R.paper.pdf : (R.paper.arxiv ? "https://arxiv.org/pdf/" + R.paper.arxiv : null);
+let shownPage = null;
+function showPage(p) {
+  if (!pdfBase || !state.pdf || p === shownPage) return;
+  shownPage = p;
+  const f = $("pdf"), url = pdfBase + "#page=" + p;
+  f.src = "about:blank";
+  setTimeout(() => { f.src = url; }, 30);
+  $("pdf-label").textContent = "Paper, page " + p;
+  $("pdf-open").href = url;
+}
+function layoutPdf() {
+  $("pdfpane").classList.toggle("hidden", !state.pdf || !pdfBase);
+  $("toggle-pdf").textContent = state.pdf ? "Hide PDF ◂" : "Show PDF ▸";
+  $("toggle-pdf").setAttribute("aria-pressed", String(state.pdf));
+  if (state.pdf) { shownPage = null; showPage(state.sel && byId[state.sel].evidence.page || 1); }
+}
+
+// ---------- keyboard ----------
+document.addEventListener("keydown", ev => {
+  const t = ev.target;
+  if (ev.key === "Escape") { if (t.matches("input, textarea")) t.blur(); $("help").classList.remove("open"); $("sent").classList.remove("open"); return; }
+  if (t.matches("input, textarea, select") || ev.metaKey || ev.ctrlKey || ev.altKey) return;
+  const xs = visible(); const k = xs.findIndex(x => x.id === state.sel);
+  const cur = byId[state.sel];
+  const go = d => { const n = xs[Math.max(0, Math.min(xs.length - 1, k + d))]; if (n) select(n.id, true); };
+  switch (ev.key) {
+    case "j": case "ArrowDown": go(k < 0 ? 0 : 1); break;
+    case "k": case "ArrowUp": go(k < 0 ? 0 : -1); break;
+    case "p": state.pdf = !state.pdf; layoutPdf(); break;
+    case "/": ev.preventDefault(); $("search").focus(); break;
+    case "?": $("help").classList.add("open"); break;
+    case "u": if (cur) decide(cur.id, null); break;
+    case "n": if (cur) { const n = $("card-" + cur.id).querySelector(".note:not(.has)") || $("card-" + cur.id).querySelector("textarea.note"); if (n) { ev.preventDefault(); n.style.display = "block"; n.focus(); } } break;
+    default:
+      if (!cur) return;
+      const opts = cur.lane === "copy" ? COPY_DECISIONS : DECISIONS.filter(x => x[0] !== "scope_claim" || cur.fix_scoped);
+      const hit = opts.find(o => o[2] === ev.key);
+      if (hit) { ev.preventDefault(); decide(cur.id, hit[0]); }
+  }
+});
+$("open-help").onclick = () => $("help").classList.add("open");
+$("close-help").onclick = () => $("help").classList.remove("open");
+
+// ---------- export, import ----------
+function download(name, text, type) {
+  const a = el("a", { href: URL.createObjectURL(new Blob([text], { type })), download: name });
+  document.body.append(a); a.click(); a.remove();
+}
+function exportObject() {
+  const out = {};
+  for (const [id, d] of Object.entries(decisions)) if (d.decision || d.note) out[id] = d;
+  return { schema: "referee-preview/decisions/1", review: R.id, paper: R.paper.id, reviewer: R.reviewer.version,
+    exported: new Date().toISOString(), decided: issues.filter(decided).length, total: issues.length, decisions: out };
+}
+$("send").onclick = async () => {
+  const name = "decisions-" + R.id + ".json", text = JSON.stringify(exportObject(), null, 1);
+  let where = "your Downloads folder";
+  if (window.showSaveFilePicker) {
+    try {
+      const h = await window.showSaveFilePicker({ id: "referee-preview", suggestedName: name,
+        types: [{ description: "Decisions", accept: { "application/json": [".json"] } }] });
+      const w = await h.createWritable(); await w.write(text); await w.close();
+      where = "the folder you chose (the review folder next to this dashboard is best)";
+    } catch (e) {
+      if (e && e.name === "AbortError") return;
+      download(name, text, "application/json");
+    }
+  } else download(name, text, "application/json");
+  const cmd = "/referee-preview:apply " + name;
+  $("sent-where").textContent = "Saved " + name + " to " + where + ".";
+  $("sent-cmd").value = cmd;
+  try { await navigator.clipboard.writeText(cmd); } catch (e) {}
+  $("sent").classList.add("open"); $("sent-cmd").select();
+};
+$("close-sent").onclick = () => $("sent").classList.remove("open");
+$("import").onchange = async e => {
+  const f = e.target.files[0]; if (!f) return;
+  try {
+    const d = JSON.parse(await f.text());
+    if (d.review !== R.id && !confirm("These decisions are for " + d.review + ", not this review (" + R.id + "). Load the ones whose ids match?")) return;
+    let n = 0;
+    for (const [id, v] of Object.entries(d.decisions || {})) if (byId[id]) { decisions[id] = v; n++; }
+    save(); render(); alert("Loaded " + n + " decisions.");
+  } catch (err) { alert("Could not read that file: " + err.message); }
+  e.target.value = "";
+};
+$("export-plan").onclick = () => download("revision-plan-" + R.id + ".md", plan(), "text/markdown");
+
+function plan() {
+  const L = [], d = id => decisions[id] || {};
+  const line = i => "- **" + i.id + (i.tier ? ", " + IMPORTANCE[i.tier].toLowerCase() : "") + "** " + i.issue + (i.fix ? " *Fix:* " + i.fix : "") + (d(i.id).note ? " *Note:* " + d(i.id).note : "");
+  L.push("# Revision plan: " + (R.paper.title || R.paper.id), "",
+    "From Referee preview, reviewer v" + (R.reviewer.version || "") + ", " + R.date + ". AI-generated items, decided by the authors.", "");
+  const science = issues.filter(i => i.lane !== "copy" && d(i.id).decision === "will_fix");
+  for (const e of Object.keys(EFFORT)) {
+    const xs = science.filter(i => i.effort === e);
+    if (xs.length) { L.push("## To do: " + EFFORT[e].toLowerCase() + " (" + xs.length + ")", ""); xs.forEach(i => L.push(line(i))); L.push(""); }
+  }
+  const scoped = issues.filter(i => d(i.id).decision === "scope_claim");
+  if (scoped.length) {
+    L.push("## Claims to scope (" + scoped.length + ")", "");
+    scoped.forEach(i => { L.push(line(i)); if (i.edit_scoped) L.push("  - Before: " + i.edit_scoped.before, "  - After: " + i.edit_scoped.after); });
+    L.push("");
+  }
+  const copy = issues.filter(i => ["accept", "edit"].includes(d(i.id).decision));
+  if (copy.length) {
+    L.push("## Copy edits accepted (" + copy.length + ")", "");
+    copy.forEach(i => L.push("- " + i.id + ": \"" + i.edit.before + "\" → \"" + (d(i.id).decision === "edit" ? d(i.id).after : i.edit.after) + "\""));
+    L.push("");
+  }
+  const aside = issues.filter(i => ["already_in_paper", "disagree", "not_worth_it", "reject"].includes(d(i.id).decision));
+  if (aside.length) {
+    L.push("## Set aside (" + aside.length + ")", "");
+    aside.forEach(i => L.push("- " + i.id + " (" + LABEL[d(i.id).decision].toLowerCase() + "): " + i.issue + (d(i.id).note ? " *Note:* " + d(i.id).note : "")));
+    L.push("");
+  }
+  const open = issues.filter(i => !decided(i));
+  if (open.length) L.push("## Not yet decided: " + open.length + " items", "");
+  return L.join("\n");
+}
+
+// ---------- start ----------
+if (!pdfBase) { state.pdf = false; $("toggle-pdf").disabled = true; }
+render();
+layoutPdf();
+const first = visible()[0]; if (first) select(first.id, false);
+})();
+</script>
+</body>
+</html>

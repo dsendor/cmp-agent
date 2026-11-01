@@ -1,0 +1,159 @@
+# Referee Report
+
+**Manuscript:** "Quantum interference in a twisted high-Tc SQUID senses emergent interfacial order" (Basu et al., arXiv:2603.12092)
+
+---
+
+## 1. Summary of the submission
+
+The authors make c-axis dc SQUIDs from twisted Bi-2212 (BSCCO) junctions. Each device is a cryogenically exfoliated twisted stack whose overlap region is cut with a tapered fiber scalpel into two parallel artificial Josephson junctions (AJJs). Devices span θ = 0°, 40°, 42°, 44° and 45°. The main claims are:
+
+1. Clear SQUID oscillations in switching current and voltage. The period is about 7× smaller than Φ0/A_geo, which the authors attribute to flux focusing and Meissner screening.
+2. Using a Wollman-type extrapolation of dV/dI minima to zero bias, an anomalous phase ϕ12 ≈ π between the two arms appears for some in-plane field histories and ϕ12 ≈ 0 for others. The authors interpret this as the two arms sitting in opposite-chirality (d+id / d−id) free-energy minima, following Can et al.
+3. Zero-field time-reversal symmetry breaking (TRSB), inferred from η′ = [I⁺(+B) − |I⁻(−B)|]/[…] ≠ 0 at B = 0. Reported values are ~4% at 45° and ~8% at 40°.
+4. Second-harmonic content in Is(B), interpreted as Cooper-pair co-tunneling.
+5. An extracted interfacial Josephson inductance whose temperature dependence differs from bulk superfluid stiffness.
+6. A flux noise of ~1.5 µΦ0/√Hz, presented as state-of-the-art.
+
+The fabrication route is interesting and potentially useful. A SQUID-based phase-sensitive probe of twisted cuprate interfaces is a valuable idea, because it can access information that single-junction experiments cannot. However, the central claim (2) rests on a measurement whose systematic uncertainties and mundane alternative explanations have not been addressed. Several other claims are internally inconsistent or overstated. In its current form I do not think the data support the headline conclusion of opposite-chirality interfacial order.
+
+---
+
+## 2. Major concerns
+
+### 2.1 The ϕ12 ≈ π result: statistical and systematic robustness
+
+This is the key result, and it currently rests on very little.
+
+**(a) Extrapolation uncertainty.** In Fig. 3(a), Ibias spans ~41–59 µA, but the line is extrapolated to I = 0. That reaches an intercept roughly two flux periods away from the data. A ~10% error in the fitted slope therefore moves the intercept by ~0.2 period, or ~0.4π. Fig. 3(b) has a similar lever arm (22–48 µA). The authors must:
+- report fit uncertainties on the intercept;
+- state how minima positions were determined, given that the traces in Fig. 3 are strongly non-sinusoidal;
+- show that the I-dependence of the minima is actually linear over the full range, including at low bias.
+
+Without error bars, distinguishing 0 from π modulo 2π is not established.
+
+**(b) Statistics and bimodality.** Extended Data Fig. 2 contains only ten points from one up/down sweep. The "integer" values cluster around 0.07–0.2π and the "half-integer" values around 0.8–0.97π. Neither cluster sits cleanly at 0 or π, and the assignment is hysteretic and non-reproducible (e.g., at B∥ = 0 the two sweep directions give opposite classes). A binary interpretation is being imposed on a small sample. To support a two-state picture, the authors should provide:
+- a histogram of ϕ12 from many repeated sweeps and thermal cycles;
+- evidence that the distribution is genuinely bimodal at 0 and π rather than broad.
+
+**(c) Trapped flux and vortices: the obvious alternative.** Two features of the experiment make extrinsic flux offsets likely:
+- Perpendicular fields up to ±60 µT are applied, and the authors themselves infer ~7× flux focusing. That implies local fields of hundreds of µT at 50–100 nm thick flakes, where perpendicular vortex entry is easy.
+- An Abrikosov vortex trapped in an electrode near the loop couples a non-quantized, history-dependent fraction of Φ0 into the loop.
+
+Similarly, the arms are not in the short-junction limit. With Jc ≈ 0.013 kA/cm² and d_eff ≈ 2λ_ab + d ≈ 0.4 µm, I estimate λ_J ≈ 20 µm, comparable to the arm dimensions. A Josephson vortex trapped in one arm shifts its effective phase and distorts the pattern.
+
+The authors' own proposed mechanism, in-plane-field coupling of Josephson and Abrikosov vortices, is essentially this extrinsic scenario. It does not require chiral order at all. The manuscript needs to show why trapped flux does not explain the random, hysteretic 0/π switching. Useful tests would include:
+- zero-field cooling versus field cooling;
+- warming above Tc between sweeps;
+- verifying that the oscillation pattern is reproducible over repeated perpendicular sweeps without in-plane field;
+- deliberately trapping flux to show it produces generic, non-π offsets.
+
+**(d) Missing essential control.** The 0° device is used only as a control for the zero-field diode effect. The decisive control for the ϕ12 claim is the same protocol (in-plane field cycling plus Wollman extrapolation) on the 0° device, and ideally on a 0° device with comparable Jc. There, ϕ12 should always be 0. If the 0° device also shows "half-integer" intercepts after in-plane cycling, the chirality interpretation fails.
+
+**(e) In-plane field misalignment.** A misalignment of only 1–2° between the in-plane coil and the sample plane converts 20 µT in-plane into 0.35–0.7 µT perpendicular. Against a period of ~2–3 µT, that is 0.1–0.3 of a period. The authors should:
+- quantify the alignment;
+- explain why a perpendicular leak does not simply shift the reference zero of the perpendicular sweep;
+- explain how the zero of applied flux is defined after each in-plane step.
+
+Note that the Wollman method needs an absolute flux reference, which the original YBCO–Pb experiment obtained with care.
+
+### 2.2 Internal consistency of the chiral-order interpretation with the measured harmonic content
+
+In the Can et al. framework, take a junction free energy E(φ) = −E1 cos φ + E2 cos 2φ.
+- It has two degenerate minima at ±φ0 only if E2 > E1/4, i.e., |I2/I1| > 1/2 with the appropriate (negative) sign of the second harmonic.
+- The anomalous phase between arms in opposite minima is 2φ0. This equals π only in the pure second-harmonic limit.
+- In that limit, however, a π shift is invisible: sin 2(φ+π) = sin 2φ, and the SQUID period would be h/4e.
+
+The devices show a dominant h/2e period, and the reported A2/A1 ratios are 0.20–0.37, below the 0.5 threshold even if they mapped directly onto CPR harmonics. Read literally, the data therefore suggest a single minimum and no degenerate chiral states. Even if degeneracy exists, a clean π would not be the expected signature.
+
+The authors should present the free-energy analysis of SI 10 quantitatively with the measured harmonic ratios. In particular:
+- What value of ϕ12 is predicted for 40° and for 45°?
+- Does it match the observations, including the "data from another device" in SI 14?
+
+### 2.3 Second-harmonic and co-tunneling claims
+
+In an asymmetric SQUID with β ~ 1, Is(Φ) is skewed and sawtooth-like even for a purely sinusoidal CPR (cf. Fig. 2(d)). FFT harmonics of Is(B) are therefore not a measure of CPR harmonics. Background subtraction can further generate spurious harmonics.
+
+To attribute A2/A1 to co-tunneling, the authors need to fit the full Is(Φ) with a model that includes Lgeo, the arm asymmetry, and a CPR of the form I1 sin φ + I2 sin 2φ. They should then show that I2 ≠ 0 is required, with confidence intervals.
+
+The claim that a non-monotonic temperature dependence of A2/A1 "reflects simple Cooper pair transport along with co-tunneling" rests on three temperatures and no error bars. It should be either substantiated or toned down.
+
+### 2.4 Zero-field TRSB via η′
+
+η′(B = 0) ≠ 0 is a zero-field diode effect. In a SQUID with oscillation period ~2–3 µT and steep Is(Φ) slopes, a residual or trapped flux offset of order 0.1 µT produces several-percent η′ at nominal B = 0. A trapped vortex does break TRS, but extrinsically.
+
+In Fig. 4(a,b), the envelopes of I⁺(+B) and |I⁻(−B)| are shifted relative to each other by many µT. This strongly suggests that the effective zero of the system is not at B = 0, or that self-field/inductive effects dominate. The authors should:
+- show that η′(0) survives warming above Tc and zero-field cooling;
+- show that its sign is not randomized by cooldown or field history (or, if it is randomized, discuss what that implies);
+- quantify the residual field inside the cryoperm shield;
+- report η′(0) for the 0° device under identical conditions, not only a qualitative statement.
+
+It is also surprising that the 40° device shows a larger η′(0) (~8%) than the 45° device (~4%). In Can et al., the TRSB window around 45° is narrow for weak interlayer coupling. Please reconcile.
+
+### 2.5 Flux-noise claims are inconsistent and overstated
+
+- **Temperature.** The abstract says "close to 77 K". The main text and Fig. 5 say 60 K. Extended Data Fig. 1 lists the operating temperature as 77 K and gives 1.41 rather than 1.5 µΦ0/√Hz. The junction Tc is ~75 K (Fig. 1(d)), so operation at 77 K is impossible for this device. This must be corrected throughout, and the "liquid-N2" framing removed unless a device actually works at 77 K.
+- **Frequency.** Fig. 5(b) shows strong 1/f-like noise: ~10⁻⁵ Φ0/√Hz at low frequency, approaching ~(3–10)×10⁻⁷ only near 10 kHz. The quoted figure should specify its frequency, and the white-noise level and 1/f corner should be stated. Low-frequency noise at 1–10 Hz is the relevant metric for most magnetometry.
+- **Measurement chain.** Please give the preamplifier noise floor, the transfer coefficient V_Φ used, and the method for converting voltage noise to flux noise.
+- **Comparison with other SQUIDs.** Flux noise alone is not a fair comparison across SQUIDs with loop inductances differing by orders of magnitude. Please quote the energy resolution ε = S_Φ/2L. The field noise (34 pT/√Hz) is three to four orders of magnitude worse than the YBCO magnetometers listed. Calling the device "state-of-the-art" is therefore misleading as a sensor claim.
+- **Effective area.** Given the 7× effective-area enhancement, the field noise should be computed with A_eff rather than A_geo.
+
+### 2.6 Device geometry and what the loop actually encloses
+
+For a c-axis SQUID it is not obvious which surface the superconducting loop encloses. The loop runs top flake → JJ1 → bottom flake → JJ2. It encloses the in-plane hole only if the top- and bottom-flake paths go around opposite sides of the cut. Otherwise the enclosed area lies in a vertical plane and couples to in-plane field.
+
+A clear 3D schematic (or AFM) of the cut geometry is needed, showing the current paths in both flakes. This bears directly on:
+- whether in-plane fields thread part of the loop;
+- how the 7× period reduction arises;
+- why a perpendicular field (parallel to the c-axis current) produces the slowly varying "envelope" in Fig. 2(a,d) attributed to the large arm. A perpendicular field should not produce a Fraunhofer-like pattern in a c-axis junction.
+
+A factor of ~7 from flux focusing is large and appears nearly identical for two different geometries. Please show the SI 7 modeling quantitatively against all devices in Table V.
+
+### 2.7 Josephson inductance extraction
+
+The relation LJ,1 = (Φ0/2π)·φ1/Is1 is not the Josephson inductance, which is Φ0/(2π Ic cos φ). The expression for Is1 treats LJ,1 as constant, which it is not; near switching, cos φ1 → small and LJ diverges for a sinusoidal CPR. Extracting LJ from dIs1/dΦext = 1/(LJ,1 + Lgeo,1) therefore needs justification, ideally by validating the procedure on the simulated Is(Φ) of SI 11 with known inputs.
+
+The interpretive claim also needs support. The junction "superfluid stiffness" is essentially ∝ Ic(T) of a tunnel junction. Comparing it to the T² dependence of bulk in-plane superfluid density from thin-film measurements is not a like-for-like comparison. It is unclear what "unusual" behavior is being claimed. The green trace in Fig. 2(f) is also non-monotonic at low T within large error bars.
+
+---
+
+## 3. Minor issues
+
+1. **Fig. 3 caption versus text.** The text implies Fig. 3(b) was taken during in-plane field cycling. The caption says 3(a) is at B∥ = 10 µT (ϕ12 ≈ 0) and 3(b) is at B∥ = 0 (ϕ12 ≈ π). Please make these consistent. Also explain why the Fig. 3 data are at 20 K while most other data are at 60–74 K.
+2. **dV/dI "below the switching current".** The Vac traces are nonzero and peaked, so the measurement is in a thermally activated or phase-diffusion regime. Discuss how this affects the minima positions.
+3. **Number of devices.** State how many devices were measured at each angle, and how many showed ϕ12 ≈ π, TRSB, and second harmonics. Also report which devices failed or showed no SQUID modulation.
+4. **Twist-angle accuracy.** The 0.5° figure is the stage accuracy. Was the final angle verified after the drop, for example from flake edges or SHG?
+5. **Damage from cutting.** Junction Tc is ~75 K versus ~92 K for bulk. Comment on oxygen loss during room-temperature cutting and contact deposition, and on possible edge degradation along the cut, which could create inhomogeneous arms. This is relevant to ref. [50] (inhomogeneity-induced TRSB).
+6. **"First-of-its-kind c-axis SQUID".** Please qualify this relative to ref. [16] (twisted vdW SQUIDs) and prior intrinsic-junction BSCCO interferometers.
+7. **Bias-asymmetry formalism.** The approximations ν ≈ perimeter asymmetry and γ ≈ area asymmetry assume uniform Jc and simple inductance scaling. Please state these assumptions, and note the tension between Is2 ≫ Is1 (main text) and the stated 3:1 areal ratio.
+8. **Extended Data Fig. 1.** The field-noise entries mix magnetometers with pickup coils and bare loops. Add loop inductance and energy resolution columns.
+9. **Typos and wording.** "twsited"; "time reversal asymmetry breaking"; "enhanced co-tunneling periodicity" (should be halved period); inconsistent η versus η′ notation; equation formatting for Is1.
+
+---
+
+## 4. Requested additions (summary)
+
+- Error bars on all ϕ12 intercepts, plus a histogram over many sweeps and cooldowns.
+- The ϕ12 protocol applied to the 0° control device.
+- ZFC/FC and thermal-cycling tests for both ϕ12 and η′(0).
+- Quantified in-plane coil alignment and residual field.
+- Full model fits of Is(Φ) including Lgeo and a two-harmonic CPR, with extracted I2/I1 and confidence intervals.
+- A quantitative prediction of ϕ12 from the free-energy model using the measured harmonic ratios, compared with the data.
+- A 3D loop schematic and quantitative flux-focusing modeling.
+- Corrected and consistent noise data (temperature, frequency, white level, 1/f corner, energy resolution).
+
+---
+
+## 5. Assessment and recommendation
+
+The fabrication approach is creative, and the twisted-cuprate SQUID platform could become a genuinely useful phase-sensitive probe. The observation of SQUID modulation in twisted BSCCO is itself of interest.
+
+However, the main physics claim, that ϕ12 ≈ π reveals opposite-chirality d ± id order in the two arms, currently rests on:
+- a long-lever-arm extrapolation without uncertainties;
+- ten hysteretic data points;
+- no 0° control under the same protocol;
+- an experimental context (large flux focusing, junctions comparable to λ_J, field cycling) in which trapped Abrikosov or Josephson vortices are a natural and simpler explanation.
+
+The supporting TRSB and second-harmonic evidence is similarly vulnerable to extrinsic flux offsets and to SQUID-inductance artifacts. It is also not quantitatively consistent with the double-minimum regime the interpretation requires. The sensor-performance claims contain a factual inconsistency (77 K versus a Tc of 75 K) and overstate performance relative to the comparison set.
+
+**Recommendation: major revision.** The central conclusion should either be substantiated with the controls listed above or reframed as one possible interpretation among others.

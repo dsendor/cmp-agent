@@ -1,0 +1,149 @@
+{
+  "overall_feedback": "This paper reports point-contact spectroscopy (PCS) on the (001) surface of UTe2 under hydrostatic pressure, which is a valuable data set: symmetry-sensitive probes under pressure are scarce. The extended BTK formalism for unitary triplet states is laid out in reasonable detail, and the qualitative pressure evolution of the spectra is striking. Three spectral changes stand out: side dips appearing above ~0.3 GPa, the ZBCP exceeding 2, and double-dip structures. However, the quantitative conclusions depend heavily on fitted parameters that are poorly constrained.\n\n1. **Degenerate fit parameters.** The ratio Δz/Δx(y) is degenerate with Z and Γ, and both Z and Γ change substantially with pressure on the same junction. The SC1→SC3 claim therefore requires showing that the parameter trade-offs cannot explain the changes.\n2. **Non-unique spectral signatures.** The ambient-pressure ZBCP (height ~1.15) is reproduced by the authors' own pure px(y) simulation at low Z, so it does not uniquely signal a ZABS. The side dips used as the hallmark of intrinsic ABS are also a well-known critical-current artifact in non-ballistic soft contacts. The contact regime is never established.\n3. **Weak symmetry discrimination.** The rejection of Au relies on simulations with Γ = 0.01 meV, far below the fitted Γ ≈ 0.1–0.4 meV.\n4. **Overreaching phase assignments.** The B2u→B3u assignment for SC2→SC3 cannot be supported by PCS, which the authors themselves say cannot distinguish B2u from B3u. The phase-transition inference from shallow minima of a fitted ratio is overstated.\n5. **Implausible gap magnitudes.** The fitted gaps (2Δ/kBTc ≈ 13 at ambient pressure) are far larger than STM values, which suggests the model parameters are not literal gap amplitudes.\n6. **Internal inconsistency.** The Table S1 columns for Δz and Δx(y) are swapped relative to the text and Fig. S7.\n7. **Model and methods gaps.** The model also omits the quasi-2D Fermi surface and the k∥-normalization details. The multi-channel fit procedure is underspecified.\n\nThe data merit publication, but the claims should be tempered and the parameter degeneracies addressed explicitly.",
+  "comments": [
+    {
+      "title": "Δz and Δx(y) columns swapped in Table S1",
+      "quote": "Sample ∆z (meV) ∆x(y) (meV) Z Γ (meV)",
+      "explanation": "Table S1 lists S1 as Δz = 1.18(7) meV and Δx(y) = 0.72(4) meV, and S2/S3 as Δz ≈ 1.15 meV and Δx(y) ≈ 0.6 meV. Taken at face value, Δz/Δx(y) ≈ 1.6–1.9, i.e., pz-dominant at ambient pressure. That contradicts the main-text statement that px(y) dominates with Δz/Δx(y) ≈ 0.57(5). Fig. S7(a) for the same S1 fit gives Δx(y) = 1.18(7) meV and Δz = 0.72(4) meV, and Fig. S9(a) also shows Δx(y) > Δz. With the columns swapped, the ratios are 0.61, 0.54 and 0.52, averaging ≈ 0.56, consistent with the text. So the table headers are interchanged. Because the ambient-pressure px(y) dominance is central to the SC1 vs SC3 distinction, this error could badly mislead a reader.",
+      "type": "technical",
+      "severity": "moderate",
+      "suggested_fix": "Swap the column headers of Table S1 so that it reads 'Sample, Δx(y) (meV), Δz (meV), Z, Γ (meV)', consistent with Fig. S7(a) and the quoted ratio 0.57(5)."
+    },
+    {
+      "title": "Ambient-pressure ZBCP is not unique evidence of a zero-energy ABS",
+      "quote": "ZBCP in various samples strongly suggests the existence of zero-energy Andreev bound",
+      "explanation": "The authors correctly rule out some extrinsic origins, but their own simulations undercut the inference. Fig. 4(b) and Fig. S5(a) show that a pure px(y) gap with no ABS at all yields a ZBCP of height ~1.2–1.35 at small Z, simply from enhanced Andreev reflection. The B1u state also gives a ZBCP at small Z (Fig. S6b). The ambient spectra of S1 and S2 show a featureless peak of height ~1.1–1.15 with no side dips. These could be fit equally well by a low-Z px(y)-only (no ABS) state with Γ broadening; the fitted Z = 1.67 for S1 is not shown to be uniquely selected. Only the >0.3 GPa spectra, with sub-unity side dips and peaks >2, carry a genuinely ABS-specific signature. The abstract's statement that the observation of ABS 'strongly suggests' a pz component therefore rests mainly on the pressurized data. For the ambient data it is a model assumption rather than a finding.",
+      "type": "logical",
+      "severity": "major",
+      "suggested_fix": "Show fits of the ambient S1/S2 spectra with a pure px(y) (or B1u) model at free Z and Γ and report the goodness of fit relative to B2u. If comparable, state that the ambient ZBCP alone does not establish a ZABS."
+    },
+    {
+      "title": "Peak height <2 as evidence of px(y) dominance ignores Γ/T/contact-regime reduction",
+      "quote": "pairing component plays a more dominant role than the pz pairing",
+      "explanation": "The argument runs as follows: the peaks are below 1.2, a pz-dominant ABS gives peaks above 2 at large Z, so px(y) must dominate. But the absolute ZBCP height in PCS is strongly reduced by several factors: Dynes broadening (Γ ≈ 0.4 meV for S1/S2, comparable to Δz), thermal smearing, spreading/series resistance, and non-ballistic (diffusive or partially thermal) transport. These effects are especially severe in Au-epoxy soft contacts that consist of many parallel micro-channels. Absolute peak height is therefore a weak discriminator. In the fits, Z, Γ and Δz/Δx(y) all trade off against peak height. No correlation matrix or uniqueness test is presented, so the reported ratio 0.57(5) is not shown to be determined by the data rather than by the chosen Z and Γ.",
+      "type": "logical",
+      "severity": "moderate",
+      "suggested_fix": "Report the parameter correlations, e.g., χ² maps in the (Δz/Δx(y), Γ) and (Δz/Δx(y), Z) planes, for the ambient and 0.8 GPa fits. This would demonstrate that the ratio is constrained independently of Z and Γ."
+    },
+    {
+      "title": "Pressure-induced change in pz weight confounded with junction changes (Z, Γ)",
+      "quote": "These dips can only be reproduced by increasing the weight of pz component",
+      "explanation": "All pressure data come from a single junction on S1 that is compressed in the cell. The fitted junction parameters change markedly: at ambient pressure Z = 1.67 and Γ = 0.39 meV, while at 0.8 GPa Z ≈ 1.2 and Γ ≈ 0.10 meV (Fig. S8). Fig. S6(d) shows that side features at fixed Δz/Δx(y) appear or deepen sharply when Γ is reduced. Ambient sample S3, which has a lower Γ = 0.16 meV, already shows satellite structure (Fig. 2f). The claim that the dips 'can only' be reproduced by raising the pz weight is never demonstrated. The authors would need to show that the 0.6–0.8 GPa spectra cannot be fit with Δz/Δx(y) ≈ 0.6 and free Z and Γ. A reversibility check on depressurization is also absent, so a junction reconfiguration under load cannot be excluded. This directly affects the headline SC1→SC3 conclusion.",
+      "type": "logical",
+      "severity": "major",
+      "suggested_fix": "Present constrained fits of the 0.6/0.8 GPa spectra with Δz/Δx(y) fixed at the ambient value (~0.6) and Z, Γ free, and report the resulting χ². Also include spectra taken after releasing pressure to show the junction returns to the ambient line shape."
+    },
+    {
+      "title": "Side dips are also a known critical-current artifact; contact regime not established",
+      "quote": "the appearance of these side dips suggests that these ZBCPs",
+      "explanation": "The authors cite Sheet et al. (Ref. 42) only to rule out a heating-induced ZBCP. That same work shows that symmetric conductance dips flanking a peak are the classic signature of the contact current reaching the critical current in non-ballistic point contacts. Such dips occur at bias values that track Ic(T,H), not Δ. Several features of the data are compatible with this artifact:\n- The dips appear only above ~0.3 GPa on a single compressed Au-epoxy junction.\n- The dips fall below the normal-state conductance.\n- At higher pressure additional dips appear.\nNo contact resistance, Sharvin/Wexler estimate of contact size versus mean free path, or field dependence of the dip positions under pressure is shown. Without these, the intrinsic ABS interpretation of the dips, the key feature used to infer pz dominance, is not secured.",
+      "type": "logical",
+      "severity": "major",
+      "suggested_fix": "Report junction resistances and a Wexler-formula estimate of the contact radius versus the electronic mean free path at each pressure. Also show the magnetic-field and temperature dependence of the dip bias at 0.6–1.2 GPa, which should scale with Δ for ABS but with Ic for the artifact."
+    },
+    {
+      "title": "Magnetic-scattering ZBA dismissed on the wrong criterion",
+      "quote": "this is not relevant here because UTe2 does not exhibit magnetic ordering",
+      "explanation": "Appelbaum/Shen–Rowell zero-bias anomalies (Refs. 45, 46) arise from exchange scattering off local moments and Kondo physics. They require no long-range magnetic order, and UTe2 is a Kondo-lattice heavy-fermion compound with strong magnetic fluctuations. The absence of order is therefore not a valid argument. The stronger argument available in the data is that the ZBCP vanishes in the normal state (flat spectrum at 3 K). In addition, the 1.4 GPa data lie at the border of the magnetically ordered phases, where this reasoning would not apply anyway.",
+      "type": "logical",
+      "severity": "minor",
+      "suggested_fix": "Replace the 'no magnetic ordering' argument with the observation that the ZBCP is absent above Tc and follows the superconducting temperature and field dependence. Discuss Kondo-type anomalies explicitly for the 1.4 GPa data near the MO phases."
+    },
+    {
+      "title": "Exclusion of Au relies on simulations with unrealistically small Γ",
+      "quote": "pairing typically splits at any finite Z",
+      "explanation": "The Au simulation in Fig. S6(a) uses Δx = Δy = Δz = 0.25 meV with Γ = 0.01 meV. The experimental fits, by contrast, require Γ = 0.10–0.40 meV, i.e., comparable to or larger than such a splitting. With realistic Γ, and especially if the in-plane components Δx and Δy are smaller than Δz, the split peak of an Au (BW-like) state would merge into a single ZBCP. Remark (1) partly concedes this. Still, the main-text statement that the splitting 'is not observed in all of our samples' is presented as evidence against Au without a like-for-like comparison.",
+      "type": "logical",
+      "severity": "moderate",
+      "suggested_fix": "Repeat the Au simulation and fits with Γ in the experimental range (0.1–0.4 meV) and anisotropic Δx, Δy ≠ Δz. Report whether Au fits the ambient and pressurized spectra with χ² comparable to B2u."
+    },
+    {
+      "title": "Fitted gap magnitudes are implausibly large; BCS comparison is misleading",
+      "quote": "which again demonstrates the unconventional nature of SC in UTe2",
+      "explanation": "Fig. S2(c) and Fig. S7 give Δx(y) ≈ 1.18 meV at 0.3 K with Tc0 = 2.1 K, i.e., 2Δ/kBTc ≈ 13. That is more than three times the weak-coupling BCS value. It is also far larger than spectroscopic gaps reported for UTe2 by STM (~0.25–0.3 meV). The 'violation' of BCS in Fig. S2(c) is mostly this magnitude discrepancy (the BCS curve is at ~0.3 meV), not a demonstrated anomalous temperature dependence. Such enhanced apparent gaps are typical of spreading-resistance or non-ballistic effects in PCS. This suggests the fitted 'Δ' should not be read as an intrinsic gap amplitude, which in turn weakens the interpretation of Δz/Δx(y) as a physical weight.",
+      "type": "technical",
+      "severity": "moderate",
+      "suggested_fix": "Compare the fitted Δ with STM and specific-heat gap estimates and discuss possible spreading-resistance or bias-scaling corrections. Remove the claim that deviation from the BCS curve demonstrates unconventional pairing, or base it on the normalized Δ(T)/Δ(0) shape only."
+    },
+    {
+      "title": "Normalization and angular weighting of the k∥ sum unspecified",
+      "quote": "where G0 represents the conductance of the junction in the normal state",
+      "explanation": "In Eq. (1)/(S14) the bracket 1 + ½Σ(|a|²−|b|²) is summed over k∥ and multiplied by G0. In the normal state this bracket equals |tn(k∥)|², which depends on k∥ through Z/k̃. A correctly normalized spectrum must therefore be divided by Σk∥ |tn|², with the appropriate current (cosθ) weighting, as in the Tanaka–Kashiwaya formalism. The simulated curves tend to 1 at high bias, so some normalization was presumably applied, but it is not stated. The weighting of grazing trajectories (k̃ → 0, where Z/k̃ diverges) matters precisely for the kz-sign-changing ABS contribution. A reader cannot reproduce the simulations without this information.",
+      "type": "technical",
+      "severity": "moderate",
+      "suggested_fix": "Write the normalized conductance explicitly, e.g. G_NS/G_N = Σ_k∥ σ_S(k∥) / Σ_k∥ |t_n(k∥)|², with t_n = k̃/(k̃+iZ). State the integration measure over k∥ (or solid angle) used in the simulations and fits."
+    },
+    {
+      "title": "Spherical free-electron Fermi surface used for a quasi-2D material",
+      "quote": "the wave vector components obey the approximate relation",
+      "explanation": "The model assumes an isotropic spherical Fermi surface, k_z² + |k∥|² ≈ k_F², matched to the normal metal. UTe2 has quasi-2D cylindrical Fermi sheets along c (Ref. 39, co-authored here). For c-axis tunneling into such sheets, the distribution of kz versus k∥ and of v_z differs qualitatively from a sphere. A realistic pz-like gap on cylinders would also be periodic in kz (e.g., ∝ sin kz c). This affects the relative contribution of the kz-odd component to the conductance and hence the quantitative Δz/Δx(y). Similarly, the statement that B2u and B3u are indistinguishable relies on the rotational symmetry of the model Fermi surface.",
+      "type": "technical",
+      "severity": "moderate",
+      "suggested_fix": "State the spherical-Fermi-surface assumption as a limitation in the main text. Ideally, check the robustness of the extracted ratio with a cylindrical Fermi-surface model with Δz ∝ sin(kz c)."
+    },
+    {
+      "title": "Multi-channel superposition fit underspecified and possibly overparameterized",
+      "quote": "the fractional contribution. This model can fit the multi-dip behavior rather well",
+      "explanation": "Eq. (2) introduces weights wi ∈ [0,1], but several points are left open:\n- It is not stated whether Σwi = 1, which is needed to preserve normalization of G_total at high bias.\n- The number of channels is not given.\n- It is not stated whether Z and Γ are shared or independent across channels.\nWith two channels, each carrying Δx, Δz, Z and Γ plus a weight, the model has roughly nine free parameters to fit a few spectral features, so a good fit is not surprising. The quantity ⟨Δz⟩/⟨Δx(y)⟩ in Eq. (3) then depends on these choices. It also mixes two physically different scenarios (multiband gaps versus pressure domains) without distinguishing them.",
+      "type": "technical",
+      "severity": "moderate",
+      "suggested_fix": "State the constraint Σi wi = 1, the number of channels, and which parameters (Z, Γ) are shared. Report the fitted wi with uncertainties and the number of free parameters for each fit in Figs. 5(e) and S9(c)."
+    },
+    {
+      "title": "Phase-transition inference from shallow minima of a fitted ratio is overstated",
+      "quote": "an underlying phase transition between the SC2 and SC3 states than a mere crossover",
+      "explanation": "At 0.8 GPa, the S8 fits give a ratio drop from ~1.26 to ~0.98 and a rise back, which is a clear trend. At 1.2 GPa (Fig. S9f), however, the 'minimum' at 0.7 K (~1.18) is within error bars of neighbouring points (~1.23). Near Tc, where Δ → 0, the ratio becomes ill-determined and its error bars grow strongly (Fig. S9e,f). A smooth extremum in a ratio of fitted parameters, which also depends on thermal smearing at fixed Γ, does not by itself distinguish a thermodynamic transition from a crossover or a fitting artifact. The agreement with literature SC2–SC3 boundaries is suggestive but not conclusive.",
+      "type": "logical",
+      "severity": "moderate",
+      "suggested_fix": "Rephrase the conclusion as 'consistent with' the SC2–SC3 boundary and quantify the significance of each minimum relative to the error bars. Drop the 1.2 GPa point from the claimed correspondence unless the minimum is statistically resolved."
+    },
+    {
+      "title": "B2u→B3u assignment cannot be supported by PCS that cannot distinguish B2u from B3u",
+      "quote": "In this sense, and also taking into account our PCS experiment",
+      "explanation": "The authors state explicitly that B2u and B3u are indistinguishable for a (001) junction in their model, and they fit Δx(y) without distinguishing x from y. The proposed SC2 = B2u, SC3 = B3u assignment therefore comes entirely from the NMR Knight-shift data of Ref. 31, not from PCS. There is a further problem. A second transition below Tc from a B2u state would generically produce a mixed B2u + (i)B3u state rather than a pure B3u state, unless the transition is first order. The conclusion that the SC2–SC3 transition 'may be across different irreducible representations, e.g. B2u to B3u' therefore overstates what this experiment shows.",
+      "type": "logical",
+      "severity": "moderate",
+      "suggested_fix": "State that the PCS data are equally consistent with B2u and B3u in both SC2 and SC3, and attribute the B2u/B3u distinction solely to Ref. 31. Note that a continuous transition from B2u would lead to a mixed B2u + iB3u state in SC3."
+    },
+    {
+      "title": "SC2 and SC3 are not distinguished by the value of the 'single parameter'",
+      "quote": "and remarkably, the multiple SC phases can be distinguished",
+      "explanation": "The ratio clearly separates SC1 (~0.6) from the high-pressure phases. However, SC2 and SC3 both have ⟨Δz⟩/⟨Δx(y)⟩ ≳ 1: about 1.0–1.3 in SC3 and about 1.2–1.9 (with large error bars) in SC2, per Figs. 5f and S9e,f. These ranges overlap. SC2 and SC3 are distinguished only by the location of a minimum in the temperature dependence, not by the value of the parameter. The abstract and summary claim that the ratio alone distinguishes SC1–3 is therefore an overstatement.",
+      "type": "logical",
+      "severity": "minor",
+      "suggested_fix": "Revise to: 'SC1 is distinguished from SC2/SC3 by the ratio ⟨Δz⟩/⟨Δx(y)⟩, while the SC2–SC3 boundary coincides with a minimum in its temperature dependence.'"
+    },
+    {
+      "title": "Broad transition onset at 2.6 K and ZBCP above bulk Tc0",
+      "quote": "a slight hump appears in the differential conductance spectrum",
+      "explanation": "Ultraclean MSF-grown UTe2 (RRR ~400) normally shows a sharp transition near 2.1 K. Here the resistive onset is reported at 2.6 K with zero resistance at 2.1 K, a ~0.5 K width, and the PCS hump appears already at 2.5 K. The gaps in Fig. S2(c), however, close near 2.1 K. This raises the question of whether the PCS probes a strained or surface region (polished surface, cured epoxy) with enhanced Tc rather than the bulk. That matters for mapping the PCS onto the bulk phase diagram under pressure.",
+      "type": "logical",
+      "severity": "minor",
+      "suggested_fix": "Comment on the origin of the 2.6 K onset (e.g., filamentary or strained regions) and compare it with a bulk probe (specific heat or AC susceptibility) on the same crystal at ambient pressure."
+    },
+    {
+      "title": "Pressure calibration method not stated",
+      "quote": "A hybrid piston-clamp type cell was used to",
+      "explanation": "The Methods describe the cell and the Daphne 7373 medium but not how the pressure was determined, e.g., from the Pb or Sn Tc or a manganin gauge, or whether it was measured at low temperature. Since the conclusions hinge on locating spectra relative to the SC1/SC2/SC3 boundaries (e.g., 0.2 vs 0.3 GPa near the SC1–SC3 border), the pressure uncertainty matters.",
+      "type": "technical",
+      "severity": "minor",
+      "suggested_fix": "Specify the manometer used, the temperature at which pressure was determined, and the estimated pressure uncertainty and gradient."
+    },
+    {
+      "title": "Wrong figure panel reference in SI V",
+      "quote": "a zero-bias dip develops [Fig. S5(a)]",
+      "explanation": "The sentence discusses the large-Z (Z = 1) px(y) case. That case is shown in Fig. S5(b); Fig. S5(a) is the Z = 0.2 case, which shows a peak.",
+      "type": "technical",
+      "severity": "minor",
+      "suggested_fix": "Change '[Fig. S5(a)]' to '[Fig. S5(b)]'."
+    },
+    {
+      "title": "Fermi wave-vector relation miswritten",
+      "quote": "For those particles with energy E ≪ εF",
+      "explanation": "The following relation is written as k_F² = sqrt(2mε_F/ħ²). The correct expression is k_F = sqrt(2mε_F/ħ²), i.e., k_F² = 2mε_F/ħ². This is a small typo but sits in the core derivation.",
+      "type": "technical",
+      "severity": "minor",
+      "suggested_fix": "Write k_z² + |k∥|² ≈ k_F² = 2mε_F/ħ²."
+    }
+  ]
+}
