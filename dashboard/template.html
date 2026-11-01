@@ -583,7 +583,9 @@ function select(id, scroll) {
   const i = byId[id];
   if (i && i.evidence.page) showPage(i.evidence.page);
 }
-const pdfBase = R.paper.pdf_local ? R.paper.pdf : (R.paper.arxiv ? "https://arxiv.org/pdf/" + R.paper.arxiv : null);
+// Prefer arXiv when the paper is there: the dashboard then works as a single file sent by email.
+// A draft not on arXiv uses the local paper.pdf, which must travel with the dashboard.
+const pdfBase = R.paper.arxiv ? "https://arxiv.org/pdf/" + R.paper.arxiv : (R.paper.pdf_local ? R.paper.pdf : null);
 let shownPage = null;
 function showPage(p) {
   if (!pdfBase || !state.pdf || p === shownPage) return;
