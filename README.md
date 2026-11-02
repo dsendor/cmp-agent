@@ -17,7 +17,7 @@ every other lab. Today a new signal is judged against the simple explanations a 
 referees happen to know, and what labs learn (failed runs, null results, the checks that ruled
 an artifact out) mostly stays on lab drives. The vision, the pain points it addresses and the
 phases to get there are set out at
-**[Shared knowledge for condensed matter physics](https://reproducible-cmp.vercel.app/where-this-goes/)**.
+**[Shared knowledge for condensed matter physics](https://reproducible-cmp.vercel.app/)**.
 
 Referee preview is the first step: a tool that is useful to a working physicist today, built
 on what the field already knows about how claims fail. The major next step is a shared record
