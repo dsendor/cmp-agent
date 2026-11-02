@@ -10,6 +10,21 @@ Everything it produces is AI-generated and labeled so. It does not judge whether
 is right; it lists what a careful referee would ask. How well it does that is in
 [EVALUATION.md](EVALUATION.md).
 
+## Why this exists
+
+The goal is shared knowledge for condensed matter physics: what one lab learns should help
+every other lab. Today a new signal is judged against the simple explanations a lab and its
+referees happen to know, and what labs learn (failed runs, null results, the checks that ruled
+an artifact out) mostly stays on lab drives. The vision, the pain points it addresses and the
+phases to get there are set out at
+**[Shared knowledge for condensed matter physics](https://reproducible-cmp.vercel.app/where-this-goes/)**.
+
+Referee preview is the first step: a tool that is useful to a working physicist today, built
+on what the field already knows about how claims fail. The major next step is a shared record
+of what has been tried: experiments, controls and dead ends, recorded as they happen and
+shared, so that the next lab starts from what the field has already learned. Feedback that
+authors choose to share from this plugin (see below) is the first small piece of that record.
+
 ## Install
 
 In Claude Code:
