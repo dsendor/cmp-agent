@@ -44,7 +44,7 @@ publish as `base_version`. Record both in `<folder>/artifact/published.json`
 
 Give the link and say, briefly:
 
-- the paper shows in the PDF pane; arXiv links (an earlier version or its supplement) open in
+- the paper shows in the PDF pane, drawn page by page (an artifact's sandbox blocks the browser's own PDF viewer, so the page uses pdf.js); arXiv links (an earlier version or its supplement) open in
   a new tab, because an artifact cannot show other sites inside the page;
 - decisions are kept in each viewer's own browser. Send to Claude shows them as text with a
   Copy button: paste that into Claude Code to apply them, or a co-author sends it back to the

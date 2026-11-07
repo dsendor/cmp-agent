@@ -80,6 +80,11 @@ main { display: flex; align-items: flex-start; }
 #pdfpane.hidden { display: none; }
 #pdfpane .pdfbar { display: flex; justify-content: space-between; align-items: center; padding: 6px 10px; font-size: 13px; color: var(--muted); border-bottom: 1px solid var(--line); }
 #pdfpane iframe { flex: 1; border: 0; width: 100%; }
+#pdfjs { flex: 1; overflow: auto; background: #e8e6e1; padding: 8px 0; display: none; }
+#pdfjs .pg { margin: 0 auto 8px; background: #fff; box-shadow: 0 1px 3px rgba(0,0,0,.2); }
+#pdfjs .pg canvas { display: block; width: 100%; height: auto; }
+#pdfjs .msg { padding: 16px; font-size: 13px; color: var(--muted); }
+body.hosted #pdf { display: none; } body.hosted #pdfjs { display: block; }
 @media (max-width: 900px) { #pdfpane { display: none; } }
 .group { font: 600 13px var(--sans); color: var(--muted); text-transform: uppercase; letter-spacing: .05em; margin: 18px 0 6px; }
 .card { background: var(--panel); border: 1px solid var(--line); border-left: 4px solid var(--c); border-radius: 8px; padding: 12px 14px; margin: 10px 0; }
@@ -220,6 +225,7 @@ kbd { font: 12px ui-monospace, Menlo, monospace; border: 1px solid var(--line); 
     <div class="pdfbar"><span class="pdfsrc"><span class="seg" id="pdf-src" hidden></span><span id="pdf-label">Paper</span></span><a id="pdf-open" target="_blank" rel="noopener">Open in a new tab</a></div>
     <div id="pdf-warn"></div>
     <iframe id="pdf" title="The paper"></iframe>
+    <div id="pdfjs" role="document" aria-label="The paper"></div>
   </aside>
 </main>
 
@@ -263,6 +269,7 @@ kbd { font: 12px ui-monospace, Menlo, monospace; border: 1px solid var(--line); 
 const R = JSON.parse(document.getElementById("review-data").textContent);
 if (!R) { document.body.textContent = "No review data in this file."; return; }
 const HOSTED = R.hosted === "artifact";
+if (HOSTED) document.body.classList.add("hosted");
 
 const LANES = [["all", "All"], ["science", "Science"], ["presentation", "Presentation"], ["copy", "Copy"]];
 const VIEWS = [["triage", "Triage"], ["walk", "Walk through"]];
@@ -655,14 +662,62 @@ function pdfLabel(src, p) {
   const inSup = OLD.supplement_first_page && p >= OLD.supplement_first_page;
   return OLD.label + (inSup ? " supplement" : "") + ", PDF page " + p;
 }
+// A claude.ai artifact runs in a sandboxed frame, where the browser's own PDF viewer does not run.
+// Hosted pages draw the PDF with pdf.js instead (from cdnjs, which artifacts allow), page by page as they scroll in.
+const PDFJS = "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/";
+let pdfDoc = null, pdfLoading = null;
+function loadScript(src) {
+  return new Promise((res, rej) => { const t = document.createElement("script"); t.src = src; t.onload = res; t.onerror = rej; document.head.append(t); });
+}
+function loadPdfDoc() {
+  if (pdfLoading) return pdfLoading;
+  const box = $("pdfjs");
+  box.textContent = ""; box.append(el("p", { class: "msg", text: "Loading the paper..." }));
+  pdfLoading = (async () => {
+    // The worker script also loads on the page, so pdf.js runs it in the page: artifacts allow no cross-site workers.
+    await loadScript(PDFJS + "pdf.min.js");
+    await loadScript(PDFJS + "pdf.worker.min.js");
+    pdfjsLib.GlobalWorkerOptions.workerSrc = PDFJS + "pdf.worker.min.js";
+    const data = await (await fetch(pdfBase)).arrayBuffer();
+    pdfDoc = await pdfjsLib.getDocument({ data, isEvalSupported: false }).promise;
+    const first = await pdfDoc.getPage(1), vp = first.getViewport({ scale: 1 });
+    box.textContent = "";
+    const io = new IntersectionObserver(es => { for (const e of es) if (e.isIntersecting) drawPdfPage(e.target); }, { root: box, rootMargin: "600px 0px" });
+    for (let n = 1; n <= pdfDoc.numPages; n++) {
+      const d = el("div", { class: "pg", id: "pg-" + n, "data-n": n });
+      d.style.width = "calc(100% - 16px)"; d.style.aspectRatio = vp.width + " / " + vp.height;
+      box.append(d); io.observe(d);
+    }
+  })().catch(e => {
+    box.textContent = "";
+    box.append(el("p", { class: "msg" }, "The paper could not be shown here. ",
+      el("a", { href: pdfBase, target: "_blank", rel: "noopener", text: "Open the PDF" }), "."));
+    throw e;
+  });
+  return pdfLoading;
+}
+async function drawPdfPage(d) {
+  if (d.dataset.drawn) return; d.dataset.drawn = "1";
+  const page = await pdfDoc.getPage(+d.dataset.n);
+  const w = d.clientWidth || 600, scale = w / page.getViewport({ scale: 1 }).width * (window.devicePixelRatio || 1);
+  const vp = page.getViewport({ scale }), c = document.createElement("canvas");
+  c.width = vp.width; c.height = vp.height; d.append(c);
+  await page.render({ canvasContext: c.getContext("2d"), viewport: vp }).promise;
+}
+function showHostedPage(p) {
+  loadPdfDoc().then(() => {
+    const d = $("pg-" + Math.min(Math.max(1, p), pdfDoc.numPages));
+    if (d) $("pdfjs").scrollTop = d.offsetTop - 8;
+  }, () => {});
+}
 function showPdf(src, p) {
   const base = src === "old" ? oldBase : pdfBase;
   if (!base || !state.pdf || (src === pdfView.src && p === pdfView.page)) return;
   pdfView.src = src; pdfView.page = p;
   if (src === "old") pdfView.oldPage = p;
   const f = $("pdf"), url = base + "#page=" + p;
-  f.src = "about:blank";
-  setTimeout(() => { f.src = url; }, 30);
+  if (HOSTED) showHostedPage(p);
+  else { f.src = "about:blank"; setTimeout(() => { f.src = url; }, 30); }
   $("pdf-label").textContent = pdfLabel(src, p);
   $("pdf-open").href = url;
   $("pdf-warn").textContent = src === "old" ? OLD.warning || "" : "";
