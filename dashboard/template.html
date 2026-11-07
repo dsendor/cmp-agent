@@ -48,6 +48,12 @@ section.overview { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax
 .lanenote { font-size: 13px; color: var(--muted); border: 1px dashed var(--line); border-radius: 6px; padding: 6px 10px; margin: 8px 0; }
 #sent { position: fixed; inset: 0; background: rgba(0,0,0,.35); display: none; align-items: center; justify-content: center; z-index: 20; }
 #sent.open { display: flex; }
+#ask { position: fixed; inset: 0; background: rgba(0,0,0,.35); display: none; align-items: center; justify-content: center; z-index: 30; }
+#ask.open { display: flex; }
+#ask .box { background: var(--panel); border-radius: 10px; padding: 18px 22px; max-width: 480px; font-size: 14px; }
+#ask .row { display: flex; gap: 8px; justify-content: flex-end; margin-top: 12px; }
+#sent textarea { width: 100%; height: 140px; font: 12px ui-monospace, Menlo, monospace; padding: 6px 8px; border: 1px solid var(--line); border-radius: 6px; margin: 6px 0; }
+#pdf-open.ext::after, a.ext::after { content: " ↗"; }
 #sent .box { background: var(--panel); border-radius: 10px; padding: 18px 22px; max-width: 560px; font-size: 14px; }
 #sent input { width: 100%; font: 13px ui-monospace, Menlo, monospace; padding: 6px 8px; border: 1px solid var(--line); border-radius: 6px; margin: 6px 0; }
 #toggle-pdf[aria-pressed="true"] { background: var(--accent-soft); border-color: var(--accent); }
@@ -233,7 +239,9 @@ kbd { font: 12px ui-monospace, Menlo, monospace; border: 1px solid var(--line); 
   <button class="btn" id="close-help">Close</button>
 </div></div>
 
-<div id="sent" role="dialog" aria-label="Send to Claude"><div class="box">
+<div id="ask" role="dialog" aria-label="Confirm"><div class="box"><p id="ask-text"></p><div class="row"><button class="btn" id="ask-no">Cancel</button><button class="btn primary" id="ask-yes">OK</button></div></div></div>
+
+<div id="sent" role="dialog" aria-label="Send to Claude"><div class="box" id="sent-local">
   <h2 style="font:600 17px var(--serif);margin:0 0 8px">Your decisions are saved</h2>
   <p id="sent-where"></p>
   <p>In Claude Code, paste this command (it is on your clipboard):</p>
@@ -241,6 +249,12 @@ kbd { font: 12px ui-monospace, Menlo, monospace; border: 1px solid var(--line); 
   <p style="color:var(--muted);font-size:13px">Claude applies the accepted edits to your source, compiles, and commits so one command undoes it. Then it goes through each item you marked Will fix and offers to help, using your notes as instructions.</p>
   <p style="font-size:13px">Not using Claude Code? Email the saved file to whoever sent you this review: your decisions and notes are the most useful feedback on it.</p>
   <button class="btn" id="close-sent">Close</button>
+</div><div class="box" id="sent-hosted" style="display:none">
+  <h2 style="font:600 17px var(--serif);margin:0 0 8px">Your decisions</h2>
+  <p>They are saved in this browser only. To apply them, copy this and paste it into Claude Code, in the folder of your LaTeX source:</p>
+  <textarea id="sent-json" readonly></textarea>
+  <p style="font-size:13px">Not using Claude Code? Copy it and send it to whoever shared this review: your decisions and notes are the most useful feedback on it.</p>
+  <button class="btn primary" id="copy-sent">Copy</button> <button class="btn" id="close-sent-hosted">Close</button> <span id="copy-note" style="color:var(--muted);font-size:13px"></span>
 </div></div>
 
 <script>
@@ -248,6 +262,7 @@ kbd { font: 12px ui-monospace, Menlo, monospace; border: 1px solid var(--line); 
 "use strict";
 const R = JSON.parse(document.getElementById("review-data").textContent);
 if (!R) { document.body.textContent = "No review data in this file."; return; }
+const HOSTED = R.hosted === "artifact";
 
 const LANES = [["all", "All"], ["science", "Science"], ["presentation", "Presentation"], ["copy", "Copy"]];
 const VIEWS = [["triage", "Triage"], ["walk", "Walk through"]];
@@ -515,7 +530,7 @@ function card(i) {
     if (i.evidence.page) w.append(el("button", { class: "link", text: "show in PDF", onclick: () => showPage(i.evidence.page) }));
     if (i.evidence.cited_page) w.append(" (cited as p. " + i.evidence.cited_page + ")");
     for (const l of (R.comparison && R.comparison.issue_supplement_links || {})[i.id] || []) {
-      w.append(" · ", el("button", { class: "link", text: l.label, onclick: () => openPdf("old", l.page) }));
+      w.append(" · ", pdfRef("old", l.page, { class: "link", text: l.label }));
     }
     bq.append(w); c.append(bq);
   }
@@ -602,8 +617,8 @@ function bulkBar(copy) {
   const low = copy.filter(i => i.risk === "low" && !decided(i));
   return el("div", { class: "bulk" }, low.length + " low-risk copy edits shown and undecided. ",
     el("button", { class: "btn", disabled: low.length ? null : true, text: "Accept all " + low.length,
-      onclick: () => {
-        if (!confirm("Accept " + low.length + " low-risk copy edits? Each changes prose only; you can still clear any of them.")) return;
+      onclick: async () => {
+        if (!await ask("Accept " + low.length + " low-risk copy edits? Each changes prose only; you can still clear any of them.")) return;
         const now = new Date().toISOString();
         for (const i of low) decisions[i.id] = Object.assign(decisions[i.id] || {}, { decision: "accept", at: now, bulk: true });
         save(); render();
@@ -627,7 +642,10 @@ function select(id, scroll) {
 }
 // Prefer arXiv when the paper is there: the dashboard then works as a single file sent by email.
 // A draft not on arXiv uses the local paper.pdf from the dashboard's own folder.
-const pdfBase = R.paper.arxiv ? "https://arxiv.org/pdf/" + R.paper.arxiv : (R.paper.pdf_local ? R.paper.pdf : null);
+// Published as a Claude artifact, the page cannot frame other sites: it shows the paper.pdf published
+// with it, and arXiv opens in a new tab.
+const pdfBase = HOSTED && R.paper.pdf_local ? R.paper.pdf
+  : R.paper.arxiv ? "https://arxiv.org/pdf/" + R.paper.arxiv : (R.paper.pdf_local ? R.paper.pdf : null);
 // A draft can lean on an earlier arXiv version for what it does not contain, usually the supplement.
 const OLD = R.comparison && R.comparison.old;
 const oldBase = OLD && OLD.arxiv ? "https://arxiv.org/pdf/" + OLD.arxiv : null;
@@ -657,11 +675,18 @@ function drawPdfSrc() {
   s.hidden = false; s.textContent = "";
   s.append(el("button", { "aria-pressed": String(pdfView.src === "new"), text: R.comparison.new.short,
       title: "paper.pdf, in the same folder as this dashboard", onclick: () => showPdf("new", state.sel && byId[state.sel].evidence.page || 1) }),
-    el("button", { "aria-pressed": String(pdfView.src === "old"), text: OLD.short,
+    HOSTED ? pdfRef("old", pdfView.oldPage, { text: OLD.short })
+    : el("button", { "aria-pressed": String(pdfView.src === "old"), text: OLD.short,
       title: OLD.supplement_first_page ? "Loaded from arXiv: use this for the supplement the draft does not include" : "Loaded from arXiv",
       onclick: () => showPdf("old", pdfView.oldPage) }));
 }
 // Page links open the pane if it is hidden. Issue evidence pages always refer to the paper under review.
+function pdfRef(src, p, attrs) {
+  if (src === "old" && HOSTED)
+    return el("a", Object.assign({}, attrs, { class: (attrs.class || "") + " ext", href: oldBase + "#page=" + p, target: "_blank", rel: "noopener",
+      title: "Opens arXiv in a new tab", onclick: null }));
+  return el("button", Object.assign({ onclick: () => openPdf(src, p) }, attrs));
+}
 function openPdf(src, p) {
   if (!state.pdf) { state.pdf = true; pdfView.page = null; layoutPdf(); }
   showPdf(src, p);
@@ -697,7 +722,7 @@ function refButtons(item) {
   const row = el("div", { class: "v-refs" });
   for (const r of item.refs || []) {
     const name = r.src === "old" ? OLD.short : R.comparison.new.short;
-    row.append(el("button", { class: "v-ref", title: "Show in the PDF pane", text: name + " p. " + r.page + (r.note ? ", " + r.note : ""), onclick: () => openPdf(r.src, r.page) }));
+    row.append(pdfRef(r.src, r.page, { class: "v-ref", title: "Show in the PDF pane", text: name + " p. " + r.page + (r.note ? ", " + r.note : "") }));
   }
   for (const id of item.issues || []) if (byId[id])
     row.append(el("button", { class: "v-ref iss", title: byId[id].issue, text: "Item " + id, onclick: () => openIssue(id) }));
@@ -734,7 +759,7 @@ function mdInline(text) {
     else if (tok.startsWith("`")) f.append(el("code", { text: tok.slice(1, -1) }));
     else {
       const src = tok[0] === "O" ? "old" : "new", p = parseInt(tok.slice(1), 10);
-      f.append(el("button", { class: "link", title: "Show in the PDF pane", text: tok, onclick: () => openPdf(src, p) }));
+      f.append(pdfRef(src, p, { class: "link", title: "Show in the PDF pane", text: tok }));
     }
   }
   f.append(text.slice(at));
@@ -824,6 +849,17 @@ document.addEventListener("keydown", ev => {
 $("open-help").onclick = () => $("help").classList.add("open");
 $("close-help").onclick = () => $("help").classList.remove("open");
 
+// ---------- in-page dialogs (an artifact viewer ignores alert and confirm) ----------
+function ask(text, cancel = true) {
+  $("ask-text").textContent = text; $("ask-no").style.display = cancel ? "" : "none";
+  $("ask").classList.add("open"); $("ask-yes").focus();
+  return new Promise(res => {
+    const done = v => { $("ask").classList.remove("open"); $("ask-yes").onclick = $("ask-no").onclick = null; res(v); };
+    $("ask-yes").onclick = () => done(true); $("ask-no").onclick = () => done(false);
+  });
+}
+const notice = text => ask(text, false);
+
 // ---------- export, import ----------
 function download(name, text, type) {
   const a = el("a", { href: URL.createObjectURL(new Blob([text], { type })), download: name });
@@ -835,7 +871,15 @@ function exportObject() {
   return { schema: "referee-preview/decisions/1", review: R.id, paper: R.paper.id, reviewer: R.reviewer.version,
     exported: new Date().toISOString(), decided: issues.filter(decided).length, total: issues.length, decisions: out };
 }
+async function copyText(text) { try { await navigator.clipboard.writeText(text); return true; } catch (e) { return false; } }
 $("send").onclick = async () => {
+  if (HOSTED) {
+    $("sent-local").style.display = "none"; $("sent-hosted").style.display = "";
+    $("sent-json").value = "/referee-preview:apply\n" + JSON.stringify(exportObject(), null, 1);
+    $("copy-note").textContent = "";
+    $("sent").classList.add("open"); $("sent-json").select();
+    return;
+  }
   const name = "decisions-" + R.id + ".json", text = JSON.stringify(exportObject(), null, 1);
   let where = "your Downloads folder";
   if (window.showSaveFilePicker) {
@@ -855,19 +899,27 @@ $("send").onclick = async () => {
   try { await navigator.clipboard.writeText(cmd); } catch (e) {}
   $("sent").classList.add("open"); $("sent-cmd").select();
 };
-$("close-sent").onclick = () => $("sent").classList.remove("open");
+$("close-sent").onclick = $("close-sent-hosted").onclick = () => $("sent").classList.remove("open");
+$("copy-sent").onclick = async () => {
+  const ok = await copyText($("sent-json").value);
+  $("copy-note").textContent = ok ? "Copied." : "Select the text and copy it by hand.";
+  if (!ok) $("sent-json").select();
+};
 $("import").onchange = async e => {
   const f = e.target.files[0]; if (!f) return;
   try {
     const d = JSON.parse(await f.text());
-    if (d.review !== R.id && !confirm("These decisions are for " + d.review + ", not this review (" + R.id + "). Load the ones whose ids match?")) return;
+    if (d.review !== R.id && !await ask("These decisions are for " + d.review + ", not this review (" + R.id + "). Load the ones whose ids match?")) return;
     let n = 0;
     for (const [id, v] of Object.entries(d.decisions || {})) if (byId[id]) { decisions[id] = v; n++; }
-    save(); render(); alert("Loaded " + n + " decisions.");
-  } catch (err) { alert("Could not read that file: " + err.message); }
+    save(); render(); notice("Loaded " + n + " decisions.");
+  } catch (err) { notice("Could not read that file: " + err.message); }
   e.target.value = "";
 };
-$("export-plan").onclick = () => download("revision-plan-" + R.id + ".md", plan(), "text/markdown");
+$("export-plan").onclick = async () => {
+  if (!HOSTED) return download("revision-plan-" + R.id + ".md", plan(), "text/markdown");
+  notice(await copyText(plan()) ? "The revision plan (Markdown) is on your clipboard." : "Your browser did not allow copying. Open this review in Claude Code to get the plan.");
+};
 
 function plan() {
   const L = [], d = id => decisions[id] || {};

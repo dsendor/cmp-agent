@@ -80,5 +80,6 @@ Tell the user, briefly:
 - the counts: science items by tier, presentation items, copy edits, and how many quotes were found in the paper;
 - how to work: Triage view for deciding, Walk through view for editing page by page, the claim buttons to see the objections to one claim, `?` for keys, and that decisions are saved in the browser;
 - the next step: "Click Send to Claude, then paste the command it copies here." That runs the `apply` skill.
+- that they can get a shareable link with `/referee-preview:publish`, which uploads the review and the paper to their claude.ai account as a private artifact; only on their request.
 
 Do not paste the issues into the chat; the dashboard is where they are read.
