@@ -92,6 +92,15 @@ body.hosted #pdf { display: none; } body.hosted #pdfjs { display: block; }
 .card.sel { outline: 2px solid var(--accent); outline-offset: 1px; }
 .card.done { opacity: .62; }
 .card.done.sel { opacity: 1; }
+.team { margin-top: 8px; font-size: 12.5px; display: flex; flex-wrap: wrap; gap: 6px; align-items: center; color: var(--muted); }
+.team:empty { display: none; }
+.who { display: inline-flex; align-items: center; gap: 5px; border: 1px solid var(--line); border-radius: 12px; padding: 1px 8px 1px 2px; color: var(--ink, inherit); background: var(--panel); }
+.who img { width: 16px; height: 16px; border-radius: 50%; }
+.who.differs { border-color: var(--b); }
+.agreed { font-weight: 600; color: var(--ink, inherit); }
+.team select { font-size: 12.5px; }
+.team .link { font-size: 12.5px; }
+#team-status { font-size: 12.5px; color: var(--muted); margin-left: 10px; }
 .tags { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; font-size: 12px; color: var(--muted); margin-bottom: 6px; }
 .tag { border-radius: 4px; padding: 0 6px; background: var(--soft); }
 .tag.tA { background: var(--a-soft); color: var(--a); font-weight: 600; }
@@ -175,7 +184,7 @@ kbd { font: 12px ui-monospace, Menlo, monospace; border: 1px solid var(--line); 
   <h1 id="title"></h1>
   <div class="meta" id="meta"></div>
   <div class="toolbar">
-    <div class="progress"><span id="progress-text"></span><div class="bar"><i id="progress-bar"></i></div></div>
+    <div class="progress"><span id="progress-text"></span><span id="team-status"></span><div class="bar"><i id="progress-bar"></i></div></div>
     <button class="btn primary" id="send" title="Save your decisions where Claude Code can read them, and copy the command that applies them">Send to Claude</button>
     <button class="btn" id="export-plan">Revision plan (.md)</button>
     <label class="btn" title="Load decisions exported earlier">Import decisions<input type="file" id="import" accept=".json,application/json" hidden></label>
@@ -435,6 +444,8 @@ function visible() {
   if (state.topic) xs = xs.filter(i => i.topic === state.topic);
   if (state.status === "open") xs = xs.filter(i => !decided(i) || i.id === state.sel);
   if (state.status === "decided") xs = xs.filter(decided);
+  if (state.status === "differ") xs = xs.filter(i => differs(i.id) || i.id === state.sel);
+  if (state.status === "unagreed") xs = xs.filter(i => !(shared && shared.agreed[i.id]) || i.id === state.sel);
   if (state.q) xs = xs.filter(i => [i.issue, i.claim, i.fix, i.evidence.quote, i.id, i.edit && i.edit.before, i.edit && i.edit.after]
     .join(" ").toLowerCase().includes(state.q));
   if (state.claim != null) xs = xs.filter(i => i.claim_id === state.claim);
@@ -502,8 +513,8 @@ function evidenceTag(i) {
 function card(i) {
   const d = decisions[i.id] || {};
   const c = el("article", { class: "card " + (i.tier ? "t" + i.tier : "") + " l" + i.lane + (d.decision ? " done" : "") + (state.sel === i.id ? " sel" : ""),
-    id: "card-" + i.id, tabindex: "-1" });
-  c.addEventListener("click", ev => { if (ev.target.closest("button, textarea, a")) return; select(i.id, false); });
+    id: "card-" + i.id, tabindex: "-1", "data-comment-target": true });
+  c.addEventListener("click", ev => { if (ev.target.closest("button, textarea, a, select")) return; select(i.id, false); });
 
   const tags = el("div", { class: "tags" }, el("span", { text: i.id }));
   if (i.tier) tags.append(el("span", { class: "tag t" + i.tier, title: "Importance (AI estimate)", text: IMPORTANCE[i.tier] }));
@@ -570,6 +581,9 @@ function card(i) {
   note.value = d.note || "";
   note.addEventListener("input", () => { (decisions[i.id] = decisions[i.id] || {}).note = note.value; decisions[i.id].at = new Date().toISOString(); save(); });
   c.append(note);
+  const team = el("div", { class: "team", id: "team-" + i.id });
+  c.append(team);
+  if (shared) drawTeam(i.id, team);
   return c;
 }
 
@@ -922,7 +936,7 @@ function download(name, text, type) {
 }
 function exportObject() {
   const out = {};
-  for (const [id, d] of Object.entries(decisions)) if (d.decision || d.note) out[id] = d;
+  for (const [id, d] of Object.entries(effectiveDecisions())) if (d.decision || d.note) out[id] = d;
   return { schema: "referee-preview/decisions/1", review: R.id, paper: R.paper.id, reviewer: R.reviewer.version,
     exported: new Date().toISOString(), decided: issues.filter(decided).length, total: issues.length, decisions: out };
 }
@@ -977,7 +991,7 @@ $("export-plan").onclick = async () => {
 };
 
 function plan() {
-  const L = [], d = id => decisions[id] || {};
+  const E = effectiveDecisions(), L = [], d = id => E[id] || {};
   const line = i => "- **" + i.id + (i.tier ? ", " + IMPORTANCE[i.tier].toLowerCase() : "") + "** " + i.issue + (i.fix ? " *Fix:* " + i.fix : "") + (d(i.id).note ? " *Note:* " + d(i.id).note : "");
   L.push("# Revision plan: " + (R.paper.title || R.paper.id), "",
     "From Referee preview, reviewer v" + (R.reviewer.version || "") + ", " + R.date + ". AI-generated items, decided by the authors.", "");
@@ -1009,6 +1023,144 @@ function plan() {
   return L.join("\n");
 }
 
+// ---------- shared decisions (a Claude artifact with db, user and comments) ----------
+// Each person's decisions live in decisions/<their id>; everyone reads them, each writes their own.
+// The agreed decision for an item lives in agreed/<item id>, set by the owner or an editor.
+// Comment threads are claude.ai's own: the page only opens the composer on a card.
+// Anywhere these are missing (a local file, signed out, an older link) the page keeps working
+// with this browser's storage alone.
+let shared = null;
+function effectiveDecisions() {
+  if (!shared) return decisions;
+  const out = {};
+  for (const i of issues) {
+    const mine = decisions[i.id], a = shared.agreed[i.id];
+    if (a && a.decision) out[i.id] = Object.assign({}, mine, { decision: a.decision, agreed: true,
+      after: a.after != null ? a.after : mine && mine.after, agreed_note: a.note || undefined });
+    else if (mine) out[i.id] = mine;
+  }
+  return out;
+}
+function differs(id) {
+  if (!shared) return false;
+  const ds = new Set();
+  for (const [uid, items] of Object.entries(shared.people)) {
+    const d = uid === shared.me ? decisions[id] : items[id];
+    if (d && d.decision) ds.add(d.decision);
+  }
+  return ds.size > 1;
+}
+function drawTeam(id, box) {
+  box = box || $("team-" + id); if (!box || !shared) return;
+  box.textContent = "";
+  const i = byId[id], mine = (decisions[id] || {}).decision, a = shared.agreed[id];
+  const others = Object.entries(shared.people).filter(([uid, items]) => uid !== shared.me && items[id] && (items[id].decision || items[id].note));
+  for (const [uid, items] of others) {
+    const d = items[id], p = shared.profiles[uid] || {};
+    const w = el("span", { class: "who" + (d.decision && mine && d.decision !== mine ? " differs" : ""), title: d.note || "" });
+    if (p.avatarUrl) w.append(el("img", { src: p.avatarUrl, alt: "" }));
+    w.append((p.name || "Co-author") + ": " + (d.decision ? LABEL[d.decision] : "note") + (d.note ? " ✎" : ""));
+    box.append(w);
+  }
+  const opts = i.lane === "copy" ? COPY_DECISIONS : DECISIONS.filter(x => x[0] !== "scope_claim" || i.fix_scoped);
+  if (shared.canAgree) {
+    const sel = el("select", { "aria-label": "Agreed decision", title: "The decision that gets applied. Owner and editors set it." },
+      el("option", { value: "", text: a && a.decision ? "Agreed: " + LABEL[a.decision] : "Set agreed decision" }));
+    for (const [v, label] of opts) sel.append(el("option", { value: v, text: label }));
+    if (a && a.decision) sel.append(el("option", { value: "-", text: "Clear agreed decision" }));
+    sel.onchange = () => setAgreed(id, sel.value);
+    if (a && a.decision) sel.classList.add("agreed");
+    box.append(sel);
+  } else if (a && a.decision) box.append(el("span", { class: "agreed", text: "Agreed: " + LABEL[a.decision] }));
+  if (shared.comments) box.append(el("button", { class: "link", text: "Discuss", title: "Open a comment thread on this item (claude.ai comments)",
+    onclick: ev => { ev.stopPropagation(); openThread(id); } }));
+}
+function drawAllTeams() {
+  for (const i of issues) drawTeam(i.id);
+  drawTeamStatus();
+}
+function drawTeamStatus() {
+  const n = Object.keys(shared.people).filter(uid => uid !== shared.me).length;
+  $("team-status").textContent = "· Shared: saved to claude.ai" + (n ? ", with " + n + " co-author" + (n > 1 ? "s" : "") : "") +
+    (shared.readOnly ? " (view only: your decisions stay in this browser)" : "");
+}
+async function openThread(id) {
+  try {
+    const r = await shared.comments.openComposer({ element: $("card-" + id) });
+    if (!r.opened) notice("Close the comment you have open first, then try again.");
+  } catch (e) { shared.comments = null; drawAllTeams(); notice("Comments are not available in this view."); }
+}
+async function setAgreed(id, v) {
+  const ref = shared.db.doc("agreed/" + id);
+  try {
+    if (v === "-") await ref.delete();
+    else if (v) {
+      const mine = decisions[id] || {};
+      await ref.set({ decision: v, by: shared.me, at: new Date().toISOString(),
+        after: v === "edit" ? (mine.after != null ? mine.after : byId[id].edit.after) : null });
+    }
+  } catch (e) { notice("The agreed decision was not saved (" + (e && e.code || "error") + ")."); }
+}
+// One write at a time to this person's document, coalescing a burst of changes.
+let pushTimer = null, pushing = false, pushAgain = false;
+function schedulePush() {
+  if (!shared || shared.readOnly) return;
+  clearTimeout(pushTimer); pushTimer = setTimeout(push, 800);
+}
+async function push() {
+  if (pushing) { pushAgain = true; return; }
+  pushing = true;
+  try {
+    await shared.db.doc("decisions/" + shared.me).set({ review: R.id, at: new Date().toISOString(), items: JSON.parse(JSON.stringify(decisions)) });
+  } catch (e) {
+    if (e && e.code === "invalid_argument") { shared.readOnly = true; drawAllTeams(); }
+    else if (e && e.code === "quota_exceeded") notice("Your decisions could not be saved to claude.ai: the store is full. They are kept in this browser.");
+  }
+  pushing = false;
+  if (pushAgain) { pushAgain = false; push(); }
+}
+const saveLocal = save;
+save = function () { saveLocal(); schedulePush(); };
+async function startShared() {
+  if (!window.claude || typeof window.claude.use !== "function") return;
+  const [db, user, comments] = await Promise.all(["db", "user", "comments"].map(n => window.claude.use(n).catch(() => null)));
+  if (!db || !user) return;
+  const me = await user.id();
+  if (!me) return;
+  shared = { db, user, me, comments, people: {}, agreed: {}, profiles: {}, readOnly: false,
+    canAgree: await user.canEdit() };
+  if (await user.can("data.write") === false) shared.readOnly = true;
+  // This person's saved decisions win over this browser's; a first visit uploads what the browser has.
+  try {
+    const snap = await db.doc("decisions/" + me).get();
+    const saved = snap.exists && snap.data().items;
+    if (saved) { decisions = JSON.parse(JSON.stringify(saved)); saveLocal(); }
+    else if (Object.keys(decisions).length) schedulePush();
+  } catch (e) {}
+  for (const [v, label] of [["differ", "Co-authors differ"], ["unagreed", "No agreed decision"]])
+    $("status").append(el("option", { value: v, text: label }));
+  const refresh = async () => {
+    const ids = Object.keys(shared.people);
+    if (ids.length) shared.profiles = await user.profiles(ids);
+    if (document.activeElement && document.activeElement.closest && document.activeElement.closest("#list textarea, #list select")) drawAllTeams();
+    else render();
+    drawTeamStatus();
+  };
+  db.collection("decisions").onSnapshot(qs => {
+    const people = {};
+    for (const d of qs.docs) { const b = d.data(); if (b && b.items && typeof b.items === "object") people[d.id] = b.items; }
+    people[me] = people[me] || {};
+    shared.people = people; refresh();
+  }, () => {});
+  db.collection("agreed").onSnapshot(qs => {
+    const agreed = {};
+    for (const d of qs.docs) { const b = d.data(); if (b && byId[d.id] && LABEL[b.decision]) agreed[d.id] = b; }
+    shared.agreed = agreed; refresh();
+  }, () => {});
+  shared.people[me] = {};
+  render();
+}
+
 // ---------- start ----------
 if (!pdfBase && !oldBase) { state.pdf = false; $("toggle-pdf").disabled = true; }
 render();
@@ -1022,6 +1174,7 @@ if (R.comparison) {
   if (location.hash === "#compare") { try { history.scrollRestoration = "manual"; } catch (e) {} }
   setPage(location.hash === "#compare" ? "versions" : "review");
 }
+if (HOSTED) startShared();
 })();
 </script>
 </body>

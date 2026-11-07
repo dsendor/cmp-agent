@@ -36,8 +36,14 @@ This writes `<folder>/artifact/index.html` (the dashboard in hosted mode) and
 and `paper.pdf` as `paper.pdf`, title "Referee preview: <paper title>", icon "review". If the
 client refuses a path it may not read, ask the user to add the review folder to the session.
 
+On the first publish, then declare the page's capabilities with `declare_capabilities`
+(its `base_version` is the version the publish returned), so co-authors can share decisions
+and discuss items. The declaration is in `${CLAUDE_PLUGIN_ROOT}/docs/shared-review.md`. If the
+client has no `declare_capabilities` tool, skip it: the page then keeps decisions in each
+browser.
+
 To republish after a rebuild, pass the artifact's `slug` and the `version` from the last
-publish as `base_version`. Record both in `<folder>/artifact/published.json`
+publish as `base_version`; the declaration carries over. Record both in `<folder>/artifact/published.json`
 (`{"slug", "version", "url"}`) so a later run can find them.
 
 ## 4. Report
@@ -46,7 +52,11 @@ Give the link and say, briefly:
 
 - the paper shows in the PDF pane, drawn page by page (an artifact's sandbox blocks the browser's own PDF viewer, so the page uses pdf.js); arXiv links (an earlier version or its supplement) open in
   a new tab, because an artifact cannot show other sites inside the page;
-- decisions are kept in each viewer's own browser. Send to Claude shows them as text with a
-  Copy button: paste that into Claude Code to apply them, or a co-author sends it back to the
-  author;
+- decisions are saved to claude.ai under each person's name, and every co-author sees the
+  others' choices on each card. The owner and editors set the agreed decision for an item;
+  Discuss opens a claude.ai comment thread on it. Co-authors need Contributor access or
+  higher to mark items (Editor to set agreed decisions); someone outside the owner's
+  organization must be invited by email as an Editor;
+- to apply, run `/referee-preview:apply` here: it reads the agreed decisions from the artifact.
+  Send to Claude in the page also gives them as text to paste;
 - to share it, open the link and use Share on claude.ai.

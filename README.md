@@ -86,8 +86,11 @@ arXiv, send `paper.pdf` with it, in the same folder.
 **Sharing it as a link.** `/referee-preview:publish` publishes the dashboard and `paper.pdf` as
 a private Claude artifact, which you can then share from its page on claude.ai. It needs a
 client with Claude artifacts, such as the Claude desktop app, and asks before uploading
-anything. In the published page arXiv opens in a new tab rather than the PDF pane, and Send to
-Claude gives your decisions as text to copy.
+anything. Co-authors you share it with mark items under their own names and see each other's
+choices; you and any editors set the agreed decision for each item, and Discuss opens a
+claude.ai comment thread on it. `/referee-preview:apply` then reads the agreed decisions from
+the artifact. In the published page arXiv opens in a new tab rather than the PDF pane. Details
+in [docs/shared-review.md](docs/shared-review.md).
 
 ## Your data
 
