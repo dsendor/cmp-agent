@@ -117,6 +117,42 @@ blockquote .where { display: block; margin-top: 4px; font: 12px var(--sans); col
 #help.open { display: flex; }
 #help .box { background: var(--panel); border-radius: 10px; padding: 18px 22px; max-width: 520px; font-size: 14px; }
 #help table td { padding: 2px 10px 2px 0; vertical-align: top; }
+.pagetabs { display: flex; gap: 18px; margin-top: 12px; border-top: 1px solid var(--line); padding-top: 8px; }
+.pagetabs button { border: 0; background: none; padding: 2px 0; font-size: 14px; color: var(--muted); border-bottom: 2px solid transparent; }
+.pagetabs button[aria-pressed="true"] { color: var(--ink); font-weight: 600; border-bottom-color: var(--accent); }
+body.on-versions section.overview { display: none; }
+body.on-versions nav.controls > *:not(#toggle-pdf) { display: none; }
+body.on-versions #list { display: none; }
+#versions { flex: 1; min-width: 0; padding: 18px 24px 80px; display: none; }
+body.on-versions #versions { display: block; }
+#versions h2 { font: 600 19px/1.3 var(--serif); margin: 30px 0 4px; }
+#versions h2.first { font-size: 22px; margin-top: 0; }
+.v-lead { font: 17px/1.5 var(--serif); margin: 8px 0; max-width: 68ch; }
+.v-note { font-size: 13px; color: var(--muted); max-width: 72ch; margin: 4px 0 10px; }
+.v-item { border-left: 3px solid var(--line); padding: 2px 0 2px 12px; margin: 14px 0; max-width: 76ch; }
+.v-better .v-item { border-left-color: var(--ok); }
+.v-worse .v-item { border-left-color: var(--a); }
+.v-open .v-item { border-left-color: var(--b); }
+.v-item b.t { display: block; font-weight: 600; }
+.v-item p { margin: 2px 0; font-size: 14px; }
+.v-item ul { margin: 4px 0; padding-left: 18px; font-size: 14px; }
+.v-refs { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 5px; }
+.v-ref { border: 1px solid var(--line); background: var(--panel); border-radius: 12px; padding: 0 8px; font-size: 12px; color: var(--accent); }
+.v-ref:hover { border-color: var(--accent); }
+.v-ref.iss { color: var(--ink); background: var(--soft); }
+table.v-table { border-collapse: collapse; font-size: 13px; margin: 8px 0; width: 100%; max-width: 76ch; }
+table.v-table th, table.v-table td { border: 1px solid var(--line); padding: 4px 8px; text-align: left; vertical-align: top; }
+table.v-table th { background: var(--soft); font-weight: 600; }
+#v-log { max-width: 80ch; font-size: 14px; }
+#v-log h3 { font: 600 16px var(--serif); margin: 20px 0 4px; }
+#v-log h4 { font: 600 14px var(--serif); margin: 14px 0 4px; }
+#v-log ul { padding-left: 20px; margin: 6px 0; }
+#v-log code { font: 12px ui-monospace, Menlo, monospace; background: var(--soft); padding: 0 3px; border-radius: 3px; }
+#v-log hr { border: 0; border-top: 1px solid var(--line); margin: 16px 0; }
+#v-log .link { font-size: inherit; }
+.pdfsrc { display: inline-flex; gap: 8px; align-items: center; }
+#pdf-warn { display: none; padding: 5px 10px; font-size: 12px; background: var(--b-soft); color: #6d4b0c; border-bottom: 1px solid var(--line); }
+#pdf-warn.on { display: block; }
 kbd { font: 12px ui-monospace, Menlo, monospace; border: 1px solid var(--line); border-bottom-width: 2px; border-radius: 4px; padding: 0 4px; background: var(--soft); }
 </style>
 </head>
@@ -135,6 +171,7 @@ kbd { font: 12px ui-monospace, Menlo, monospace; border: 1px solid var(--line); 
     <button class="btn" id="open-help" title="Keyboard shortcuts">?</button>
   </div>
   <div class="notice">Every item here is AI-generated and labeled AI only. Presentation and copy items come from passes not yet measured against real referee reports. Decisions are saved in this browser as you go. When you are done, click Send to Claude.</div>
+  <div class="pagetabs" id="pagetabs" hidden></div>
 </header>
 
 <section class="overview">
@@ -172,8 +209,10 @@ kbd { font: 12px ui-monospace, Menlo, monospace; border: 1px solid var(--line); 
 
 <main>
   <div id="list"></div>
+  <div id="versions"></div>
   <aside id="pdfpane">
-    <div class="pdfbar"><span id="pdf-label">Paper</span><a id="pdf-open" target="_blank" rel="noopener">Open in a new tab</a></div>
+    <div class="pdfbar"><span class="pdfsrc"><span class="seg" id="pdf-src" hidden></span><span id="pdf-label">Paper</span></span><a id="pdf-open" target="_blank" rel="noopener">Open in a new tab</a></div>
+    <div id="pdf-warn"></div>
     <iframe id="pdf" title="The paper"></iframe>
   </aside>
 </main>
@@ -237,7 +276,7 @@ let decisions = {};
 try { decisions = JSON.parse(localStorage.getItem(KEY) || "{}") || {}; } catch (e) { decisions = {}; }
 let prefs = { lane: true, topic: false, runs: false, quote: false, referee: true };
 try { Object.assign(prefs, JSON.parse(localStorage.getItem("referee-preview:tags") || "{}")); } catch (e) {}
-const state = { lane: "all", view: "triage", tiers: { A: true, B: true, C: true }, claim: null,
+const state = { page: "review", lane: "all", view: "triage", tiers: { A: true, B: true, C: true }, claim: null,
   topic: "", status: "open", order: "rank", q: "", cell: null, sel: null, pdf: true, copyOpen: false };
 
 // demo-only referee overlay
@@ -475,6 +514,9 @@ function card(i) {
     const w = el("span", { class: "where" }, where + " ");
     if (i.evidence.page) w.append(el("button", { class: "link", text: "show in PDF", onclick: () => showPage(i.evidence.page) }));
     if (i.evidence.cited_page) w.append(" (cited as p. " + i.evidence.cited_page + ")");
+    for (const l of (R.comparison && R.comparison.issue_supplement_links || {})[i.id] || []) {
+      w.append(" · ", el("button", { class: "link", text: l.label, onclick: () => openPdf("old", l.page) }));
+    }
     bq.append(w); c.append(bq);
   }
   if (i.fix) c.append(el("p", { class: "fix" }, el("b", { text: "Fix: " }), i.fix));
@@ -584,23 +626,175 @@ function select(id, scroll) {
   if (i && i.evidence.page) showPage(i.evidence.page);
 }
 // Prefer arXiv when the paper is there: the dashboard then works as a single file sent by email.
-// A draft not on arXiv uses the local paper.pdf, which must travel with the dashboard.
+// A draft not on arXiv uses the local paper.pdf from the dashboard's own folder.
 const pdfBase = R.paper.arxiv ? "https://arxiv.org/pdf/" + R.paper.arxiv : (R.paper.pdf_local ? R.paper.pdf : null);
-let shownPage = null;
-function showPage(p) {
-  if (!pdfBase || !state.pdf || p === shownPage) return;
-  shownPage = p;
-  const f = $("pdf"), url = pdfBase + "#page=" + p;
+// A draft can lean on an earlier arXiv version for what it does not contain, usually the supplement.
+const OLD = R.comparison && R.comparison.old;
+const oldBase = OLD && OLD.arxiv ? "https://arxiv.org/pdf/" + OLD.arxiv : null;
+const pdfView = { src: "new", page: null, oldPage: OLD ? OLD.supplement_first_page || 1 : 1 };
+function pdfLabel(src, p) {
+  if (src === "new") return (R.comparison ? R.comparison.new.label : "Paper") + ", page " + p;
+  const inSup = OLD.supplement_first_page && p >= OLD.supplement_first_page;
+  return OLD.label + (inSup ? " supplement" : "") + ", PDF page " + p;
+}
+function showPdf(src, p) {
+  const base = src === "old" ? oldBase : pdfBase;
+  if (!base || !state.pdf || (src === pdfView.src && p === pdfView.page)) return;
+  pdfView.src = src; pdfView.page = p;
+  if (src === "old") pdfView.oldPage = p;
+  const f = $("pdf"), url = base + "#page=" + p;
   f.src = "about:blank";
   setTimeout(() => { f.src = url; }, 30);
-  $("pdf-label").textContent = "Paper, page " + p;
+  $("pdf-label").textContent = pdfLabel(src, p);
   $("pdf-open").href = url;
+  $("pdf-warn").textContent = src === "old" ? OLD.warning || "" : "";
+  $("pdf-warn").classList.toggle("on", src === "old" && !!OLD.warning);
+  drawPdfSrc();
 }
+function drawPdfSrc() {
+  const s = $("pdf-src");
+  if (!oldBase || !pdfBase) { s.hidden = true; return; }
+  s.hidden = false; s.textContent = "";
+  s.append(el("button", { "aria-pressed": String(pdfView.src === "new"), text: R.comparison.new.short,
+      title: "paper.pdf, in the same folder as this dashboard", onclick: () => showPdf("new", state.sel && byId[state.sel].evidence.page || 1) }),
+    el("button", { "aria-pressed": String(pdfView.src === "old"), text: OLD.short,
+      title: OLD.supplement_first_page ? "Loaded from arXiv: use this for the supplement the draft does not include" : "Loaded from arXiv",
+      onclick: () => showPdf("old", pdfView.oldPage) }));
+}
+// Page links open the pane if it is hidden. Issue evidence pages always refer to the paper under review.
+function openPdf(src, p) {
+  if (!state.pdf) { state.pdf = true; pdfView.page = null; layoutPdf(); }
+  showPdf(src, p);
+}
+function showPage(p) { showPdf("new", p); }
 function layoutPdf() {
-  $("pdfpane").classList.toggle("hidden", !state.pdf || !pdfBase);
+  $("pdfpane").classList.toggle("hidden", !state.pdf || !(pdfBase || oldBase));
   $("toggle-pdf").textContent = state.pdf ? "Hide PDF ◂" : "Show PDF ▸";
   $("toggle-pdf").setAttribute("aria-pressed", String(state.pdf));
-  if (state.pdf) { shownPage = null; showPage(state.sel && byId[state.sel].evidence.page || 1); }
+  if (state.pdf) { const src = pdfView.src, p = pdfView.page; pdfView.page = null;
+    showPdf(src, p || (state.sel && byId[state.sel].evidence.page) || 1); }
+}
+
+// ---------- pages ----------
+function setPage(p) {
+  state.page = p;
+  document.body.classList.toggle("on-versions", p === "versions");
+  drawPageTabs();
+  try { history.replaceState(null, "", p === "versions" ? "#compare" : "#"); } catch (e) {}
+  window.scrollTo(0, 0);
+}
+function drawPageTabs() {
+  const t = $("pagetabs"); t.textContent = "";
+  for (const [k, label] of [["review", "Review items (" + issues.length + ")"], ["versions", R.comparison.page_title]])
+    t.append(el("button", { "aria-pressed": String(state.page === k), text: label, onclick: () => setPage(k) }));
+}
+function openIssue(id) {
+  Object.assign(state, { lane: "all", view: "triage", tiers: { A: true, B: true, C: true }, claim: null, topic: "", status: "all", q: "", cell: null, copyOpen: true });
+  $("topic").value = ""; $("status").value = "all"; $("search").value = "";
+  setPage("review"); render(); select(id, true);
+}
+function refButtons(item) {
+  const row = el("div", { class: "v-refs" });
+  for (const r of item.refs || []) {
+    const name = r.src === "old" ? OLD.short : R.comparison.new.short;
+    row.append(el("button", { class: "v-ref", title: "Show in the PDF pane", text: name + " p. " + r.page + (r.note ? ", " + r.note : ""), onclick: () => openPdf(r.src, r.page) }));
+  }
+  for (const id of item.issues || []) if (byId[id])
+    row.append(el("button", { class: "v-ref iss", title: byId[id].issue, text: "Item " + id, onclick: () => openIssue(id) }));
+  return row.children.length ? row : null;
+}
+function vSection(title, note, cls, items) {
+  const box = el("section", { class: cls });
+  box.append(el("h2", { text: title }));
+  if (note) box.append(el("p", { class: "v-note", text: note }));
+  for (const it of items) {
+    const d = el("div", { class: "v-item" }, el("b", { class: "t", text: it.title }));
+    if (it.text) d.append(el("p", { text: it.text }));
+    if (it.points) { const ul = el("ul"); it.points.forEach(p => ul.append(el("li", { text: p }))); d.append(ul); }
+    const r = refButtons(it); if (r) d.append(r);
+    box.append(d);
+  }
+  return box;
+}
+function vTable(head, rows) {
+  const t = el("table", { class: "v-table" }), h = el("tr");
+  head.forEach(c => h.append(el("th", { text: c }))); t.append(h);
+  for (const r of rows) { const tr = el("tr"); r.forEach(c => tr.append(c instanceof Node ? el("td", {}, c) : el("td", { text: c }))); t.append(tr); }
+  return t;
+}
+// Change log: a small Markdown subset. In it, N14 L386 means the draft's page 14 and O6 the arXiv version's page 6.
+function mdInline(text) {
+  const f = document.createDocumentFragment();
+  const re = /(\*\*[^*]+\*\*|`[^`]+`|\b[ON]\d{1,2}(?: L\d+(?:-\d+)?)?\b)/g;
+  let at = 0, m;
+  while ((m = re.exec(text))) {
+    f.append(text.slice(at, m.index)); at = m.index + m[0].length;
+    const tok = m[0];
+    if (tok.startsWith("**")) f.append(el("b", {}, mdInline(tok.slice(2, -2))));
+    else if (tok.startsWith("`")) f.append(el("code", { text: tok.slice(1, -1) }));
+    else {
+      const src = tok[0] === "O" ? "old" : "new", p = parseInt(tok.slice(1), 10);
+      f.append(el("button", { class: "link", title: "Show in the PDF pane", text: tok, onclick: () => openPdf(src, p) }));
+    }
+  }
+  f.append(text.slice(at));
+  return f;
+}
+function mdRender(md) {
+  const out = el("div"), lines = md.split("\n");
+  const cells = l => l.trim().replace(/^\|\s*/, "").replace(/\s*\|$/, "").split(/(?<=\s)\|(?=\s)/).map(c => c.trim());
+  let n = 0;
+  while (n < lines.length) {
+    const l = lines[n];
+    if (!l.trim()) { n++; continue; }
+    let h;
+    if ((h = l.match(/^(#{1,4}) (.*)/))) { if (h[1].length > 1) out.append(el(h[1].length === 2 ? "h3" : "h4", {}, mdInline(h[2]))); n++; continue; }
+    if (/^---+\s*$/.test(l)) { out.append(el("hr")); n++; continue; }
+    if (l.startsWith("|")) {
+      const rows = [];
+      while (n < lines.length && lines[n].startsWith("|")) { if (!/^\|[\s|:-]+\|?\s*$/.test(lines[n])) rows.push(cells(lines[n])); n++; }
+      const t = el("table", { class: "v-table" });
+      rows.forEach((r, k) => { const tr = el("tr"); r.forEach(c => tr.append(el(k ? "td" : "th", {}, mdInline(c)))); t.append(tr); });
+      out.append(t); continue;
+    }
+    if (/^\s*- /.test(l)) {
+      const ul = el("ul");
+      let last = null, sub = null;
+      while (n < lines.length && /^\s*- /.test(lines[n])) {
+        const nested = /^\s+- /.test(lines[n]), li = el("li", {}, mdInline(lines[n].replace(/^\s*- /, "")));
+        if (nested && last) { if (!sub) { sub = el("ul"); last.append(sub); } sub.append(li); }
+        else { ul.append(li); last = li; sub = null; }
+        n++;
+      }
+      out.append(ul); continue;
+    }
+    out.append(el("p", {}, mdInline(l))); n++;
+  }
+  return out;
+}
+function drawVersions() {
+  const C = R.comparison, v = $("versions");
+  v.append(el("div", { class: "kicker", text: C.new.label + " compared with " + C.old.label }));
+  v.append(el("h2", { class: "first", text: C.heading }));
+  v.append(el("p", { class: "v-lead", text: C.verdict }));
+  v.append(el("p", { class: "v-note", text: C.caveat }));
+  v.append(el("h2", { text: "Review results" }));
+  v.append(vTable(["", C.old.label, C.new.label], C.counts));
+  if (C.counts_note) v.append(el("p", { class: "v-note", text: C.counts_note }));
+  v.append(vSection("What changed", null, "v-changed", C.changed));
+  v.append(vSection("What got better", null, "v-better", C.improved));
+  v.append(vSection("What got worse", null, "v-worse", C.worse));
+  v.append(vSection("Still unresolved in both", null, "v-open", C.unresolved));
+  v.append(el("h2", { text: "Where the draft and the arXiv supplement do not match" }));
+  if (C.si_note) v.append(el("p", { class: "v-note", text: C.si_note }));
+  v.append(vTable(["Draft says", "Against the arXiv supplement", "Show"], C.si_mismatches.map(m => [m.says, m.result, refButtons(m) || ""])));
+  if (C.si_disagreements) v.append(vSection("Also disagrees", null, "v-open", C.si_disagreements));
+  if (C.changelog) {
+    const d = el("details", {}, el("summary", { text: "Full change log, " + C.changelog_summary }));
+    d.append(el("p", { class: "v-note", text: "Page references are links: N14 L386 is the draft, page 14, line 386; O6 is the arXiv version, page 6." }));
+    const log = el("div", { id: "v-log" }); log.append(mdRender(C.changelog)); d.append(log);
+    v.append(el("h2", { text: "Everything else" }), d);
+  }
 }
 
 // ---------- keyboard ----------
@@ -608,6 +802,7 @@ document.addEventListener("keydown", ev => {
   const t = ev.target;
   if (ev.key === "Escape") { if (t.matches("input, textarea")) t.blur(); $("help").classList.remove("open"); $("sent").classList.remove("open"); return; }
   if (t.matches("input, textarea, select") || ev.metaKey || ev.ctrlKey || ev.altKey) return;
+  if (state.page === "versions" && ev.key !== "p" && ev.key !== "?") return;
   const xs = visible(); const k = xs.findIndex(x => x.id === state.sel);
   const cur = byId[state.sel];
   const go = d => { const n = xs[Math.max(0, Math.min(xs.length - 1, k + d))]; if (n) select(n.id, true); };
@@ -708,10 +903,18 @@ function plan() {
 }
 
 // ---------- start ----------
-if (!pdfBase) { state.pdf = false; $("toggle-pdf").disabled = true; }
+if (!pdfBase && !oldBase) { state.pdf = false; $("toggle-pdf").disabled = true; }
 render();
+const first = visible()[0];
+if (first) state.sel = first.id;
 layoutPdf();
-const first = visible()[0]; if (first) select(first.id, false);
+if (first) select(first.id, false);
+if (R.comparison) {
+  $("pagetabs").hidden = false;
+  drawVersions();
+  if (location.hash === "#compare") { try { history.scrollRestoration = "manual"; } catch (e) {} }
+  setPage(location.hash === "#compare" ? "versions" : "review");
+}
 })();
 </script>
 </body>

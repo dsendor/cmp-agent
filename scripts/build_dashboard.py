@@ -4,6 +4,9 @@
     python3 build_dashboard.py <review-folder> [--open]
 
 The folder must hold review.json; paper.pdf beside it is shown in the PDF pane.
+An optional comparison.json adds a version comparison page and lets the PDF pane
+switch to the earlier arXiv version (usually for a supplement the draft lacks).
+Its "changelog_file", if set, names a Markdown file in the folder to include in full.
 With --open, opens the dashboard in the default browser.
 """
 import json
@@ -23,6 +26,13 @@ def main():
     folder = Path(args[0]).resolve()
     review = json.loads((folder / "review.json").read_text())
     review["paper"]["pdf_local"] = (folder / "paper.pdf").exists()
+    comparison_file = folder / "comparison.json"
+    if comparison_file.exists():
+        comparison = json.loads(comparison_file.read_text())
+        log = comparison.pop("changelog_file", None)
+        if log:
+            comparison["changelog"] = (folder / log).read_text()
+        review["comparison"] = comparison
     data = json.dumps(review, ensure_ascii=False).replace("</", "<\\/")
     html = TEMPLATE.read_text()
     if MARK not in html:
