@@ -20,6 +20,10 @@ button, select, input, textarea { font: inherit; color: inherit; }
 button { cursor: pointer; }
 header.top { padding: 18px 24px 10px; border-bottom: 1px solid var(--line); background: var(--panel); }
 .kicker { font-size: 12px; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
+.kicker { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 4px 16px; }
+.repolink { text-transform: none; letter-spacing: 0; color: var(--accent); }
+footer.site { padding: 14px 24px 24px; border-top: 1px solid var(--line); font-size: 13px; color: var(--muted); }
+footer.site a { color: var(--accent); }
 h1 { font: 600 24px/1.25 var(--serif); margin: 4px 0 6px; max-width: 70ch; }
 .meta { color: var(--muted); font-size: 13px; }
 .toolbar { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-top: 10px; }
@@ -180,7 +184,7 @@ kbd { font: 12px ui-monospace, Menlo, monospace; border: 1px solid var(--line); 
 <script id="review-data" type="application/json">/*REVIEW_JSON*/null</script>
 
 <header class="top">
-  <div class="kicker">Referee preview · likely referee objections, before you submit</div>
+  <div class="kicker"><span>Referee preview · likely referee objections, before you submit</span><a class="repolink" href="https://github.com/dsendor/cmp-agent" target="_blank" rel="noopener">Get the plugin on GitHub ↗</a></div>
   <h1 id="title"></h1>
   <div class="meta" id="meta"></div>
   <div class="toolbar">
@@ -237,6 +241,7 @@ kbd { font: 12px ui-monospace, Menlo, monospace; border: 1px solid var(--line); 
     <div id="pdfjs" role="document" aria-label="The paper"></div>
   </aside>
 </main>
+<footer class="site">Made with <a href="https://github.com/dsendor/cmp-agent" target="_blank" rel="noopener">referee-preview</a>, an open-source Claude Code plugin that reviews condensed matter papers the way referees will. Get it, read how it works, or contribute at <a href="https://github.com/dsendor/cmp-agent" target="_blank" rel="noopener">github.com/dsendor/cmp-agent</a>.</footer>
 
 <div id="help" role="dialog" aria-label="Keyboard shortcuts"><div class="box">
   <h2 style="font:600 17px var(--serif);margin:0 0 8px">Keyboard</h2>
