@@ -83,10 +83,20 @@ works through each item you marked *Will fix*, using your note on it as the inst
 arXiv it loads the paper from arXiv, so the file alone is enough; for a draft that is not on
 arXiv, send `paper.pdf` with it, in the same folder.
 
+**Sharing it as a link.** `/referee-preview:publish` publishes the dashboard and `paper.pdf` as
+a private Claude artifact, which you can then share from its page on claude.ai. It needs a
+client with Claude artifacts, such as the Claude desktop app, and asks before uploading
+anything. Co-authors you share it with mark items under their own names and see each other's
+choices; you and any editors set the agreed decision for each item, and Discuss opens a
+claude.ai comment thread on it. `/referee-preview:apply` then reads the agreed decisions from
+the artifact. In the published page arXiv opens in a new tab rather than the PDF pane. Details
+in [docs/shared-review.md](docs/shared-review.md).
+
 ## Your data
 
 - Your paper is read by Claude Code on your machine and sent only to the model, as in any
-  Claude Code session. The plugin has no server and sends nothing anywhere else.
+  Claude Code session. The plugin has no server and sends nothing anywhere else, unless you
+  choose to publish a dashboard as a Claude artifact (`/referee-preview:publish`).
 - Your house style, standing rules and a history of reviews and decisions live in
   `~/.referee-preview/`, outside the plugin, so updates never touch them.
 
@@ -94,7 +104,7 @@ arXiv, send `paper.pdf` with it, in the same folder.
 
 | | |
 |---|---|
-| `skills/review/`, `skills/apply/`, `skills/contribute/` | the three commands |
+| `skills/review/`, `skills/apply/`, `skills/publish/`, `skills/contribute/` | the four commands |
 | `agents/` | subagents: three science reviewers in parallel, the merger, the structurer, presentation and copy |
 | `engine/` | the prompts. `science.md` and `merge.md` are the measured reviewer (`VERSION`); the others are newer and not yet measured |
 | `scripts/` | `paper_text.py`, `assemble.py`, `check_evidence.py` (is each quote really in the paper), `build_dashboard.py`, `contribute.py` (redact, scrub, send) |
@@ -117,7 +127,7 @@ real concerns overlaid: `research/eval/sample/2601.01843/dashboard.html`.
 
 ## Status
 
-Version 0.2, an early release for feedback from working physicists. Known limits: Word
+Version 0.3, an early release for feedback from working physicists. Known limits: Word
 documents are not supported yet (use a PDF); the presentation and copy lanes are not yet
 measured; the measurements so far are judged by an AI model, not yet by physicists.
 

@@ -8,8 +8,13 @@ An optional comparison.json adds a version comparison page and lets the PDF pane
 switch to the earlier arXiv version (usually for a supplement the draft lacks).
 Its "changelog_file", if set, names a Markdown file in the folder to include in full.
 With --open, opens the dashboard in the default browser.
+
+With --artifact, also writes <review-folder>/artifact/ for publishing as a Claude
+artifact: index.html (the dashboard in hosted mode, which shows the paper.pdf
+published with it and opens arXiv in a new tab) and a copy of paper.pdf.
 """
 import json
+import shutil
 import subprocess
 import sys
 import webbrowser
@@ -40,6 +45,15 @@ def main():
     out = folder / "dashboard.html"
     out.write_text(html.replace(MARK, data))
     print(out)
+    if "--artifact" in sys.argv:
+        hosted = dict(review, hosted="artifact")
+        data = json.dumps(hosted, ensure_ascii=False).replace("</", "<\\/")
+        art = folder / "artifact"
+        art.mkdir(exist_ok=True)
+        (art / "index.html").write_text(html.replace(MARK, data))
+        if review["paper"]["pdf_local"]:
+            shutil.copyfile(folder / "paper.pdf", art / "paper.pdf")
+        print(art / "index.html")
     if "--open" in sys.argv:
         opener = {"darwin": ["open"], "win32": ["cmd", "/c", "start", ""]}.get(sys.platform, ["xdg-open"])
         try:
