@@ -83,6 +83,9 @@ def summary(con, r):
     # QCoDeS marks a run completed even when the measurement raised; the traceback is kept
     # in the measurement_exception metadata column. Treat that as aborted.
     aborted = bool(exc) or not completed
+    last = exc.strip().splitlines()[-1] if exc else None
+    if last and last.startswith("KeyboardInterrupt"):
+        last = "stopped by hand (KeyboardInterrupt)"
     return {
         "run_id": d["run_id"],
         "captured_run_id": d.get("captured_run_id"),
@@ -94,7 +97,7 @@ def summary(con, r):
         "finished": ts(d.get("completed_timestamp")),
         "completed": bool(completed),
         "aborted": aborted,
-        "exception": (exc.strip().splitlines()[-1] if exc else None),
+        "exception": last,
         "points": points(con, d.get("result_table_name")),
     }
 
@@ -115,6 +118,17 @@ def flatten_snapshot(snap):
     station = (snap or {}).get("station", snap or {})
     for iname, inst in (station.get("instruments") or {}).items():
         walk(iname + ".", inst)
+    # Some labs never add instruments to the station, so the snapshot is empty, but the
+    # station YAML config is stored. Its values are configured initial values, not the state
+    # during the run: mark them so they are never cited as measured.
+    if not out:
+        for iname, inst in ((station.get("config") or {}).get("instruments") or {}).items():
+            for pname, p in (inst.get("parameters") or {}).items():
+                if isinstance(p, dict):
+                    key = iname + "." + pname
+                    out[key] = {"value": p.get("initial_value"), "unit": p.get("unit") or "",
+                                "alias": p.get("alias"), "label": p.get("label"),
+                                "kind": "configured initial value, not the state during the run"}
     for pname, p in (station.get("parameters") or {}).items():
         if isinstance(p, dict) and "value" in p:
             out["station." + pname] = {"value": p.get("value"), "unit": p.get("unit") or ""}
@@ -140,6 +154,18 @@ def detail(con, run_id):
         except ValueError:
             snap = None
     out["settings"] = flatten_snapshot(snap)
+    out["settings_source"] = ("station config (configured values, not measured)"
+                              if any("kind" in v for v in out["settings"].values()) else "snapshot at run start")
+    standard = {"run_id", "exp_id", "name", "result_table_name", "result_counter", "run_timestamp",
+                "completed_timestamp", "is_completed", "parameters", "guid", "run_description",
+                "snapshot", "captured_run_id", "captured_counter", "parent_datasets",
+                "measurement_exception"}
+    extra_cols = [c for c in rc if c not in standard]
+    if extra_cols:
+        vals = con.execute('select %s from runs where run_id=?' % ", ".join('"%s"' % c for c in extra_cols), (run_id,)).fetchone()
+        out["metadata"] = {c: vals[c] for c in extra_cols if vals[c] not in (None, "")}
+    else:
+        out["metadata"] = {}
     out["measured"] = []
     if "run_description" in rc and raw["run_description"]:
         try:
@@ -221,9 +247,14 @@ def main():
         print("measured:")
         for m in d["measured"]:
             print("  %s [%s]%s" % (m["name"], m["unit"], ("  vs " + ", ".join(m["depends_on"])) if m["depends_on"] else ""))
-        print("settings (%d):" % len(d["settings"]))
+        if d["metadata"]:
+            print("metadata the lab added:")
+            for k, v in d["metadata"].items():
+                print("  %s = %s" % (k, str(v)[:200]))
+        print("settings (%d, from %s):" % (len(d["settings"]), d["settings_source"]))
         for k, v in sorted(d["settings"].items()):
-            print("  %s = %s %s" % (k, v["value"], v["unit"]))
+            extra = ("  [%s]" % v["alias"]) if v.get("alias") else ""
+            print("  %s = %s %s%s" % (k, v["value"], v["unit"], extra))
         return 0
 
     if a.cmd == "diff":
