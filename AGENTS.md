@@ -8,7 +8,9 @@ the research behind it is in `research/`. This is a public repository.
 
 1. **Work on a branch, open a PR.** Never commit to, merge into or push `main`, and never edit
    this file, without the maintainer's OK. Commit often. When you finish a piece of work,
-   push the branch and open a PR without being asked; the maintainer merges.
+   push the branch and open a PR without being asked; the maintainer merges. Before pushing
+   to a branch that already had a PR, check that PR's state (`gh pr view`); if it was merged
+   or closed, branch from the latest `main` and open a new PR.
 2. **End every chat reply with a TL;DR.** Not in documents.
 3. **Keep this file short. Detail lives in the markdown pages below.** When you learn
    something a future session needs, update the page it belongs to, or add a page and its
