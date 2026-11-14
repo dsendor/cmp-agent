@@ -25,6 +25,12 @@ of what has been tried: experiments, controls and dead ends, recorded as they ha
 shared, so that the next lab starts from what the field has already learned. Feedback that
 authors choose to share from this plugin (see below) is the first small piece of that record.
 
+## Also in this repository
+
+**[Lab notes](lab-notes/)**: an AI lab notebook. Dictate notes, drop in notebook photos and
+instrument runs, and get a record where every number cites its source; procedure manuals from
+dictation; plots the lab's way. `/plugin install lab-notes@cmp-agent`.
+
 ## Install
 
 In Claude Code:
