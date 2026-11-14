@@ -23,11 +23,14 @@ If one for this procedure already exists, you are revising it (step 4).
 
 The researcher is usually busy with their hands. Make it easy:
 
-- They can dictate in chunks as they go ("now I'm doing X"), or record a voice memo and drop
-  the transcript in `lab-record/inbox/` afterwards. Either works.
+- They dictate in chunks as they go ("now I'm doing X"), with the app's dictation, and
+  attach photos of the setup in the chat as they take them. A voice memo transcript pasted in
+  afterwards works too.
 - Save every chunk as an original, verbatim, before using it:
   `python3 ${CLAUDE_PLUGIN_ROOT}/scripts/record.py dictate lab-record --text "<their words>"`.
-  Photos of the setup: `record.py add lab-record <files>`.
+  Photos: as in the `note` skill, `record.py add` when the attachment has a file path,
+  otherwise `record.py attachment` with a description of what the photo shows (a manual can
+  then say "photo not kept: shows the bonder with the clamp open").
 - While they're working, reply in one short line ("Got it, step 4: ...") so they don't have
   to read. Ask a question only if something will be lost if you wait (a number they said too
   fast, which knob).

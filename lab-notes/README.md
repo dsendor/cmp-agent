@@ -7,7 +7,7 @@ from. Version 0.1, early: built to try with a few researchers and improve from w
 | Command | What you do | What you get |
 |---|---|---|
 | `/lab-notes:setup` | once per project | a `lab-record/` folder; it finds your notebooks and data |
-| `/lab-notes:note` | dictate or type what you did or saw; drop in a notebook photo, a screenshot, a data file | an entry where each number, setting and run cites its source, with failed runs and missing details listed as questions |
+| `/lab-notes:note` | dictate or type what you did or saw; attach a notebook photo, a screenshot, a data file | an entry where each number, setting and run cites its source, with failed runs and missing details listed as questions |
 | `/lab-notes:procedure` | talk through a procedure while you do it | a step-by-step manual for the next student, with your tips, revised each time someone does it |
 | `/lab-notes:learn` | point it at the lab's good example notebooks | a lab guide: how this lab loads, corrects and plots its data |
 | `/lab-notes:plot` | "plot run 214" or "plot yesterday's sweep on D7" | the figure, the script that made it, and the plotted numbers as CSV, ready for a paper's data deposit |
@@ -29,15 +29,16 @@ needed to read QCoDeS databases; the plugin reads them directly.
 
 ## Talking to it
 
-- **At the desk:** use dictation. On a Mac, press the dictation key (or `fn` twice) in the
-  message box and talk; on Windows, `Win + H`. Talk as you would to a labmate. It saves your
-  words exactly as you said them, then structures them.
-- **At the bench, on your phone:** take photos and record a voice memo (the iPhone Voice
-  Memos app shows a transcript). Save them into `lab-record/inbox/` (AirDrop, iCloud Drive,
-  Dropbox, any synced folder works), and later say "process my inbox".
-- **Photos of notebook pages and screenshots:** drop them into `lab-record/inbox/` or give
-  the path. It transcribes what it can read, marks what it can't as `[illegible]` and asks,
-  and never guesses a digit or a unit.
+- **Dictate in the Claude desktop app.** Click the microphone in the message box and talk as
+  you would to a labmate. It saves your words exactly as you said them, then structures them.
+- **Attach photos and files in the chat**: a notebook page, a screenshot, a data file. Drag
+  the file in from Finder or Explorer if you can: then the photo itself is kept in the record.
+  Pasted images work too; it transcribes them, but the image isn't kept, and it says so.
+- **Lots of files at once, or from your phone without opening Claude:** save them into
+  `lab-record/inbox/` (any synced folder works) and later say "process my inbox".
+
+Unreadable handwriting is marked `[illegible]` and asked about; it never guesses a digit or
+a unit.
 
 ## What it promises
 

@@ -4,6 +4,9 @@
   record.py init     ROOT [--lab NAME] [--project NAME]
   record.py add      ROOT FILE [FILE ...]      copy inputs into originals/, print path + sha256
   record.py dictate  ROOT [--text TEXT]        save dictated text (or stdin) as an original
+  record.py attachment ROOT --name NAME [--text TEXT]
+                                               save the transcription of a chat attachment that
+                                               has no file (the image itself can't be kept)
   record.py new-id   ROOT TITLE                print a fresh entry id: YYYY-MM-DD-HHMM-slug
   record.py index    ROOT                      rebuild index.json from entry sidecars
   record.py inbox    ROOT                      list files waiting in inbox/
@@ -107,6 +110,22 @@ def cmd_dictate(a):
     print(json.dumps(r))
 
 
+def cmd_attachment(a):
+    text = a.text if a.text is not None else sys.stdin.read()
+    if not text.strip():
+        sys.exit("no text")
+    stamp = datetime.now().strftime("%H%M%S")
+    tmp = os.path.join(a.root, "inbox", ".attachment-%s.txt" % stamp)
+    with open(tmp, "w") as f:
+        f.write("Transcription of a chat attachment (the image itself was not kept): %s\n\n" % a.name)
+        f.write(text.rstrip() + "\n")
+    try:
+        r = add_original(a.root, tmp, name="attachment-%s-%s.txt" % (slug(a.name, 30), stamp))
+    finally:
+        os.remove(tmp)
+    print(json.dumps(r))
+
+
 def cmd_new_id(a):
     eid = "%s-%s" % (datetime.now().strftime("%Y-%m-%d-%H%M"), slug(a.title))
     n, base = 2, eid
@@ -160,6 +179,7 @@ def main():
     p = sub.add_parser("init"); p.add_argument("root"); p.add_argument("--lab"); p.add_argument("--project"); p.set_defaults(fn=cmd_init)
     p = sub.add_parser("add"); p.add_argument("root"); p.add_argument("files", nargs="+"); p.set_defaults(fn=cmd_add)
     p = sub.add_parser("dictate"); p.add_argument("root"); p.add_argument("--text"); p.set_defaults(fn=cmd_dictate)
+    p = sub.add_parser("attachment"); p.add_argument("root"); p.add_argument("--name", required=True); p.add_argument("--text"); p.set_defaults(fn=cmd_attachment)
     p = sub.add_parser("new-id"); p.add_argument("root"); p.add_argument("title"); p.set_defaults(fn=cmd_new_id)
     p = sub.add_parser("index"); p.add_argument("root"); p.set_defaults(fn=cmd_index)
     p = sub.add_parser("inbox"); p.add_argument("root"); p.set_defaults(fn=cmd_inbox)

@@ -51,6 +51,8 @@ def main():
         photo = json.loads(run(rec, "add", "lab-record", "notebook-page.jpg", cwd=proj).stdout)[0]
         again = json.loads(run(rec, "add", "lab-record", "notebook-page.jpg", cwd=proj).stdout)[0]
         assert again["new"] is False and again["path"] == photo["path"], "same file stored twice"
+        att = json.loads(run(rec, "attachment", "lab-record", "--name", "notebook page 2", "--text",
+                             "Cooldown 3, D7, Vg sweep -2..0.5 V, B = 0.5 T", cwd=proj).stdout)
         eid = run(rec, "new-id", "lab-record", "D7 gate sweeps", cwd=proj).stdout.strip()
 
         db = {"type": "qcodes", "path": "data/experiments.db"}
@@ -67,6 +69,8 @@ def main():
             {"id": "f5", "field": "sample on page", "value": "D7", "status": "stated",
              "source": {"type": "photo", "path": photo["path"], "sha256": photo["sha256"],
                         "locator": {"page": 1, "region": "top left"}, "quote": "D7"}},
+            {"id": "f8", "field": "field on page 2", "value": 0.5, "unit": "T", "status": "stated",
+             "source": {"type": "attachment", "path": att["path"], "sha256": att["sha256"], "quote": "B = 0.5 T"}},
             {"id": "f6", "field": "lock-in amplitude", "value": None, "status": "not recorded",
              "source": {"type": "dictation", "path": d["path"]}},
             {"id": "f7", "field": "base temperature, K", "value": 0.012, "unit": "K", "status": "inferred",
@@ -82,15 +86,15 @@ def main():
         ed = os.path.join(proj, "lab-record", "entries")
         json.dump({"id": eid, "kind": "session", "devices": ["D7"], "facts": facts,
                    "questions": ["Lock-in amplitude?"]}, open(os.path.join(ed, eid + ".json"), "w"))
-        open(os.path.join(ed, eid + ".md"), "w").write("# D7\n\n12 mK[^f1], aborted[^f2], see[^f8].\n")
+        open(os.path.join(ed, eid + ".md"), "w").write("# D7\n\n12 mK[^f1], aborted[^f2], see[^f9].\n")
 
         p = run(ver, "lab-record", "--json", cwd=proj, ok=False)
         out = json.loads(p.stdout)
         failed = {i["fact"] for i in out["items"] if i["result"] == "fail"}
         person = {i["fact"] for i in out["items"] if i["result"] == "person"}
         assert p.returncode == 1, "verify should exit 1 on failures"
-        assert failed == {"e1", "e2", "e3", "f8"}, "expected planted failures, got %s" % failed
-        assert person == {"f5"}, person
+        assert failed == {"e1", "e2", "e3", "f9"}, "expected planted failures, got %s" % failed
+        assert person == {"f5", "f8"}, person
         assert out["counts"]["ok"] == 6, out["counts"]
 
         # Changing an original after it was cited must be caught.

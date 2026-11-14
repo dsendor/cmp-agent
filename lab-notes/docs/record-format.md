@@ -81,6 +81,7 @@ Readable by a person, in the lab's own words. Sections, each optional:
 | `file` (CSV, TSV) | `row` (1-based, header is row 1), `column` (name or 1-based number), and `unit` if the file stores the value in a different unit from the fact (file in A, fact in nA) | yes: re-reads the cell |
 | `json` | `pointer` (JSON pointer, `/a/b/0`) | yes |
 | `dictation`, `text` | `quote`: the exact words in the transcript or note | yes: the quote must appear in the file |
+| `attachment` | `quote`: the exact words in the transcription of an image attached in the chat with no file (the image itself isn't kept) | partly: the quote must be in the transcription; then listed for a person |
 | `photo`, `pdf` | `page`, `region` (words, e.g. "top right, under 'cooldown 3'") and `quote` (what the page says, transcribed) | no: listed for a person to check against the crop |
 | `inferred` | `from`: the fact ids it was inferred from, and `reason` | the facts it rests on are checked |
 | `person` | who said it, when (answered an open question) | no |

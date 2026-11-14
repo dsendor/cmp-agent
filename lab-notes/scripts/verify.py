@@ -167,6 +167,15 @@ def check_fact(fact, project, facts_by_id):
         text = open(full, errors="replace").read()
         return ("ok", "quote found") if norm(quote) in norm(text) else ("fail", "quote not in %s" % path)
 
+    if t == "attachment":
+        quote = src.get("quote")
+        if not quote:
+            return "fail", "attachment source needs the exact quote from the transcription"
+        text = open(full, errors="replace").read()
+        if norm(quote) not in norm(text):
+            return "fail", "quote not in the transcription %s" % path
+        return "person", "from a chat attachment that wasn't kept; check the transcription: %r" % quote
+
     if t in ("photo", "pdf"):
         where = ", ".join(str(x) for x in (loc.get("page"), loc.get("region")) if x)
         return "person", "check by eye: %s%s reads %r" % (path, (" (" + where + ")") if where else "", src.get("quote", val))

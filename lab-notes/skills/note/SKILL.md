@@ -28,12 +28,20 @@ will never change:
 - **Dictated or typed text:** the researcher's words, verbatim, exactly as given:
   `python3 ${CLAUDE_PLUGIN_ROOT}/scripts/record.py dictate lab-record --text "<their words>"`
   (or pipe it on stdin for long text). Do not clean it up first.
-- **Photos, screenshots, PDFs, files:** `python3 ${CLAUDE_PLUGIN_ROOT}/scripts/record.py add lab-record <files>`.
-  For an image pasted into the chat with no file path, ask the researcher to save it into
-  `lab-record/inbox/` (or drag it there), then add it.
-- **"Process my inbox":** `record.py inbox lab-record` lists waiting files; add each one,
-  then treat them as one session unless their dates or content say otherwise. After an entry
-  is written, delete the inbox copy only (the original is safe in `originals/`).
+- **Photos, screenshots, PDFs and files attached in the chat** (the usual way): take them as
+  they come; never ask the researcher to move files first.
+  - If an attachment comes with a file path (dragged in from Finder or Explorer, or named in
+    the message), save it: `python3 ${CLAUDE_PLUGIN_ROOT}/scripts/record.py add lab-record <files>`.
+  - If it has no path (pasted or attached straight into the chat), you can see it but there is
+    no file to keep. Transcribe everything on it now, verbatim, into a text original:
+    `record.py attachment lab-record --name "<what it is, e.g. notebook page 1>" --text "<transcription>"`.
+    Facts from it use source type `attachment` (see the record format), which is listed for a
+    person to check because the image itself isn't kept. At the end, mention once, without
+    insisting, that dragging in the file next time keeps the photo too.
+- **"Process my inbox":** for files that arrived without the chat (a phone's synced folder,
+  a pile of old notebook scans): `record.py inbox lab-record` lists them; add each one, treat
+  them as one session unless their dates or content say otherwise, and after the entry is
+  written delete the inbox copy only (the original is safe in `originals/`).
 
 Each call prints the stored path and sha256. Use those in the sidecar.
 
