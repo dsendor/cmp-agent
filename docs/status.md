@@ -15,6 +15,11 @@ out, add what you learned that the next session needs. History belongs in git, n
 
 ## Next
 
+- **Lab notes plugin** (`lab-notes/`, v0.1.0): setup, note, procedure, learn, plot. First
+  tester: a physicist moving from LabVIEW to a Python-notebook lab. Not yet tried on a real
+  lab's data. Next: his feedback; eLabFTW export; a hand-annotated messy lab day as the
+  benchmark (`lab-notes/docs/record-format.md` is the format).
+
 - Physicists rate the reviews; run the held-out test papers (`EVALUATION.md`).
 - Measure the presentation and copy lanes.
 - Word (`.docx`) input.
