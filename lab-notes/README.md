@@ -82,3 +82,4 @@ the tested one.
 | `docs/record-format.md` | the record's format, for people and other tools |
 | `tests/run_tests.py` | end-to-end test on a simulated database (`python3 lab-notes/tests/run_tests.py`) |
 | `tests/make_test_db.py` | makes that database with QCoDeS's simulated instruments |
+| `tests/build_test_kit.py` | builds a test kit for trying the skills by hand: a fake lab project with planted problems, the skills packaged for Claude Science upload, published data (Riggert et al. 2025, CC BY 4.0), and prompts with what a good answer does |

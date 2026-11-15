@@ -10,7 +10,7 @@
 lookalike assistant (POC)"). Nothing here is human-checked yet.*
 
 A small proof of concept of phase 1 on the condensed matter site
-(https://reproducible-cmp.vercel.app/): an assistant that knows the known lookalikes in one
+(https://cmp.sendorai.com/): an assistant that knows the known lookalikes in one
 subfield, topological transport, and writes a one-page report on a paper. The question to
 put to physicists: would this have helped you?
 
