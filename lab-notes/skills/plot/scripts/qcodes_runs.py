@@ -9,6 +9,10 @@ The database is opened read-only (sqlite URI mode=ro). Nothing is ever written.
   qcodes_runs.py get   DB RUN_ID FIELD          (FIELD: instrument.param, or name,
                                                sample_name, experiment, completed, points,
                                                started, finished, guid)
+  qcodes_runs.py copy  DB [--to DIR]           make a consistent copy (default: a new temp
+                                               folder) and print its path. Give QCoDeS or the
+                                               lab's loader the copy, never the original: they
+                                               open it read-write and can upgrade it in place.
 
 Exit codes: 0 ok, 1 not found, 2 bad input.
 """
@@ -215,8 +219,22 @@ def main():
     p = sub.add_parser("show"); p.add_argument("db"); p.add_argument("run", type=int); p.add_argument("--json", action="store_true")
     p = sub.add_parser("diff"); p.add_argument("db"); p.add_argument("a", type=int); p.add_argument("b", type=int); p.add_argument("--json", action="store_true")
     p = sub.add_parser("get"); p.add_argument("db"); p.add_argument("run", type=int); p.add_argument("field")
+    p = sub.add_parser("copy"); p.add_argument("db"); p.add_argument("--to")
     a = ap.parse_args()
     con = connect(a.db)
+
+    if a.cmd == "copy":
+        import tempfile
+        d = a.to or tempfile.mkdtemp(prefix="qcodes-copy-")
+        os.makedirs(d, exist_ok=True)
+        dest = os.path.join(d, os.path.basename(a.db))
+        if os.path.exists(dest):
+            sys.exit("refusing to overwrite %s" % dest)
+        out = sqlite3.connect(dest)
+        con.backup(out)  # includes anything still in the -wal file
+        out.close()
+        print(dest)
+        return 0
 
     if a.cmd == "list":
         runs = [summary(con, r) for r in run_rows(con)]
