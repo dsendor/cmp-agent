@@ -370,11 +370,9 @@ def package_skills(out):
     os.makedirs(dest)
     for name in sorted(os.listdir(os.path.join(PLUGIN, "skills"))):
         d = os.path.join(dest, name)
-        shutil.copytree(os.path.join(PLUGIN, "skills", name), d)
-        shutil.copytree(os.path.join(PLUGIN, "scripts"), os.path.join(d, "scripts"),
-                        ignore=shutil.ignore_patterns("__pycache__"))
-        os.makedirs(os.path.join(d, "docs"))
-        shutil.copy(os.path.join(PLUGIN, "docs", "record-format.md"), os.path.join(d, "docs"))
+        # Each skill folder already carries its scripts and docs (tests/sync_skills.py).
+        shutil.copytree(os.path.join(PLUGIN, "skills", name), d,
+                        ignore=shutil.ignore_patterns("__pycache__", ".DS_Store"))
         zip_dir(d, os.path.join(dest, "lab-notes-%s.zip" % name), base=dest)
 
 

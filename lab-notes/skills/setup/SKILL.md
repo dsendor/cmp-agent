@@ -9,7 +9,7 @@ You set up `lab-record/` in the researcher's project and learn where things are.
 short: the researcher should be capturing notes within five minutes. Invoking this skill is
 the go-ahead.
 
-Scripts: paths below use `${CLAUDE_PLUGIN_ROOT}`, the plugin's folder. If it isn't set (for example when this skill was imported on its own into Claude Science), the scripts are in `scripts/` next to this file or two levels above it; find them before starting. The same goes for `docs/record-format.md`.
+Scripts: paths below use `${CLAUDE_PLUGIN_ROOT}`, the plugin's folder. If it isn't set (for example in Claude Science), use the copies in `scripts/` and `docs/` in this skill's own folder, next to this file. If you can't find them, tell the person the skill was imported without its scripts and ask them to re-import it; don't rebuild the record by hand, because the scripts catch things a hand-built record misses, such as runs that crashed.
 
 Everything this plugin writes is AI-drafted and says so. Originals (photos, dictation, data
 files) are never changed or deleted.

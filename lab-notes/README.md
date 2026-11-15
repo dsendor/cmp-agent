@@ -75,11 +75,12 @@ the tested one.
 
 | | |
 |---|---|
-| `skills/` | the five commands |
+| `skills/` | the five commands; each folder carries copies of `scripts/` and `docs/record-format.md` so it works when imported on its own |
 | `scripts/record.py` | the record: set up, save originals, entry ids, index |
 | `scripts/qcodes_runs.py` | read a QCoDeS database read-only: list runs, show settings, diff two runs, flag aborted runs |
 | `scripts/verify.py` | check every fact against its source |
 | `docs/record-format.md` | the record's format, for people and other tools |
 | `tests/run_tests.py` | end-to-end test on a simulated database (`python3 lab-notes/tests/run_tests.py`) |
+| `tests/sync_skills.py` | refreshes those copies after a script changes (`--check` fails if they've drifted; the tests run it) |
 | `tests/make_test_db.py` | makes that database with QCoDeS's simulated instruments |
 | `tests/build_test_kit.py` | builds a test kit for trying the skills by hand: a fake lab project with planted problems, the skills packaged for Claude Science upload, published data (Riggert et al. 2025, CC BY 4.0), and prompts with what a good answer does |
