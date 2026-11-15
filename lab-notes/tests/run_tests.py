@@ -26,6 +26,7 @@ def run(*args, cwd, ok=True):
 
 
 def main():
+    run(os.path.join(HERE, "sync_skills.py"), "--check", cwd=HERE)
     proj = tempfile.mkdtemp(prefix="lab-notes-test-")
     try:
         os.makedirs(os.path.join(proj, "data"))
