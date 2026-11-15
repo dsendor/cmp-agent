@@ -262,6 +262,9 @@ def main():
         for k in ("run_id", "name", "experiment", "sample_name", "started", "finished",
                   "completed", "aborted", "exception", "points", "guid"):
             print("%-12s %s" % (k, d.get(k)))
+        if d.get("aborted") and d.get("completed"):
+            print("             (normal for QCoDeS: a run that raised an error is closed as completed,"
+                  " with the error stored beside it)")
         print("measured:")
         for m in d["measured"]:
             print("  %s [%s]%s" % (m["name"], m["unit"], ("  vs " + ", ".join(m["depends_on"])) if m["depends_on"] else ""))
