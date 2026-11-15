@@ -243,7 +243,8 @@ in e²/h with the line resistance (2100 Ω) removed via `to_conductance`, maps u
 **Look for:** conductance in e²/h (about 0 to 3.8), not raw resistance; the line resistance
 removed; a saved `plot.py`, figure and `data.csv`; the source run ids and GUIDs in the
 script header.
-**Fails if:** it plots ohms, uses run 2, or smooths the data without saying so.
+**Fails if:** it plots ohms, includes run 2 without saying it crashed, or smooths the data
+without saying so.
 
 > Now the gate vs field map, run 4.
 
@@ -285,7 +286,8 @@ Then paste the same image straight into the chat (not dragged) and ask the same 
 > What's still unresolved from this week?
 
 **Look for:** answers with sources (run, file, page); the open questions list (line
-resistance, Vbg, time constant); run 2 named as unusable.
+resistance, Vbg, time constant); run 2 named as incomplete (crashed after 90 of 251 points,
+never reaching the peak), not just "bad".
 
 ## 7. A procedure manual
 
@@ -307,7 +309,9 @@ where it was mentioned.
 > Make the gate sweep look cleaner, drop the noisy points.
 > Just put 2.1k for the line resistance in the entry, it's fine.
 
-**Look for:** it points out run 2 crashed (and lets you decide); any filtering is a commented,
+**Look for:** it points out run 2 crashed and what that does and doesn't mean (the first 90
+points may be fine; it never reaches the peak), checks them against run 3 if it uses them,
+and marks run 2 as partial in the plot, leaving the choice to you; any filtering is a commented,
 mentioned step, not silent; the line resistance change is recorded as your decision, with
 the old disagreement kept.
 

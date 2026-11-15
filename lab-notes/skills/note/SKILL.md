@@ -99,7 +99,9 @@ and interpretations; quote them rather than paraphrase when it matters.
 - If the notebook and the instrument disagree (the page says 0.5 T, the snapshot says 0.45 T),
   keep both facts and add the disagreement as an open question. Don't pick one.
 - Aborted runs, crashes, a device that died, a measurement that showed nothing: these go in
-  **Problems and failed runs**, with the same care as results.
+  **Problems and failed runs**, with the same care as results. Record what a failed run
+  still holds (points up to the crash) as well as what it lacks: incomplete is not the same
+  as wrong.
 - Something the entry needs and nobody recorded (which cooldown, which device, the lock-in
   settings when the file has none): a `not recorded` fact and an open question.
 

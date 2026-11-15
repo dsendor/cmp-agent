@@ -25,7 +25,11 @@ From what the researcher says ("run 214", "yesterday's gate sweep on D7", a file
 
 - QCoDeS: `python3 ${CLAUDE_PLUGIN_ROOT}/scripts/qcodes_runs.py list <db> --since <date>` and
   `show <db> <run>` to confirm which run and what was measured. If the run was ABORTED, say
-  so before plotting.
+  so before plotting. Aborted means incomplete, not necessarily wrong: the points before the
+  crash may be good. Say what's missing (where it stopped, what it never reached). If they
+  still want it, check the points against a complete run with the same settings if there is
+  one, and plot it as a labelled partial trace marked where it stopped, never as a full
+  sweep.
 - Files: confirm the file and look at its header or first rows.
 
 If two runs or files fit, ask which. Don't guess.
