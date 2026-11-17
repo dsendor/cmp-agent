@@ -46,6 +46,11 @@ def main():
         diff = json.loads(run(qc, "diff", "data/experiments.db", "1", "3", "--json", cwd=proj).stdout)
         assert {c["setting"] for c in diff} >= {"magnet.B", "lockin.time_constant"}, diff
         assert not os.path.exists(os.path.join(proj, "data", "experiments.db-wal")), "reader wrote to the database"
+        before = open(os.path.join(proj, "data", "experiments.db"), "rb").read()
+        cp = run(qc, "copy", "data/experiments.db", "--to", os.path.join(proj, "tmpcopy"), cwd=proj).stdout.strip()
+        assert "ABORTED" in run(qc, "list", cp, cwd=proj).stdout, "copy lost the runs"
+        assert open(os.path.join(proj, "data", "experiments.db"), "rb").read() == before, "copy changed the original"
+        assert run(qc, "copy", "data/experiments.db", "--to", os.path.join(proj, "tmpcopy"), cwd=proj, ok=False).returncode != 0, "copy overwrote"
 
         d = json.loads(run(rec, "dictate", "lab-record", "--text",
                            "Cooldown 3. Swept the gate on D7 from minus two to half a volt.", cwd=proj).stdout)

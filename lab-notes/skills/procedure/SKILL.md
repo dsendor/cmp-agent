@@ -76,8 +76,9 @@ Rules:
 - **The tips section is the most valuable part.** The "everyone learns this the hard way"
   things they mention in passing go there.
 
-Show them the manual as a short summary plus the open questions. Ask them to answer the open
-questions now if they can, by dictation.
+Show them the manual as a short summary plus the open questions, most important first:
+safety, then anything a student can't do the step without. Ask at most three now, by
+dictation if they like; the rest stay in the manual's open questions for whoever knows.
 
 ## 3. Make it findable
 

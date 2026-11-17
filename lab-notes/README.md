@@ -51,7 +51,8 @@ a unit.
 - **Failures are kept.** Aborted runs (QCoDeS records the crash), dead devices and
   disagreements between your notes and the instrument are written down, not smoothed over.
 - **Read only on instruments.** It reads files your measurement software already saved. It
-  never controls an instrument.
+  never controls an instrument. Plots load a copy of a QCoDeS database, because QCoDeS can
+  rewrite a file it opens.
 - **AI-drafted, and it says so.** Each entry shows which items a person has confirmed. You
   confirm only what it flags, not every line.
 
