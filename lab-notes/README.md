@@ -11,6 +11,7 @@ from. Version 0.1, early: built to try with a few researchers and improve from w
 | `/lab-notes:procedure` | talk through a procedure while you do it | a step-by-step manual for the next student, with your tips, revised each time someone does it |
 | `/lab-notes:learn` | point it at the lab's good example notebooks | a lab guide: how this lab loads, corrects and plots its data |
 | `/lab-notes:plot` | "plot run 214" or "plot yesterday's sweep on D7" | the figure, the script that made it, and the plotted numbers as CSV, ready for a paper's data deposit |
+| `/lab-notes:deposit` | "package the figures for Zenodo" | an [RO-Crate](https://www.researchobject.org/ro-crate/): each figure with its script, numbers and the runs it used, plus which runs no figure uses. It never uploads |
 
 You don't need to type the commands: say what you want ("log this", "let me walk you through
 the cooldown", "plot the last run") and Claude picks the skill.
@@ -94,10 +95,11 @@ the tested one.
 
 | | |
 |---|---|
-| `skills/` | the five commands; each folder carries copies of `scripts/` and `docs/record-format.md` so it works when imported on its own |
+| `skills/` | the six commands; each folder carries copies of `scripts/` and `docs/record-format.md` so it works when imported on its own |
 | `scripts/record.py` | the record: set up, save originals, entry ids, index |
 | `scripts/qcodes_runs.py` | read a QCoDeS database read-only: list runs, show settings, diff two runs, flag aborted runs |
 | `scripts/verify.py` | check every fact against its source, and that each entry has a TL;DR and stays short |
+| `scripts/rocrate.py` | build and check an RO-Crate from figure folders: which code and runs made each figure, every run in the database, aborted and unused ones marked |
 | `scripts/authorship.py` | who wrote what: fingerprints the AI's paragraphs, marks AI text, records a person's check, commits only the AI's writing |
 | `hooks/hooks.json` | in Claude Code, runs `authorship.py` around the AI's own edits in `lab-record/` |
 | `docs/record-format.md` | the record's format, for people and other tools |
