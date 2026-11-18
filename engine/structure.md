@@ -13,6 +13,7 @@ From the review, one item per numbered concern, in the review's order:
 - `topic`: the one that fits best: "samples" (how many samples or devices, spread, thermal cycling), "null_control" (a sample or geometry where the effect should vanish), "apparatus" (contacts, filters, probes, illumination, tip, trapped flux), "heating" (Joule, optical, electron against lattice temperature), "calibration" (gate to density, angles, fluence, stoichiometry), "dependences" (temperature, field, power, frequency or angle dependence missing), "fits" (free and fixed parameters, extrapolation, error bars), "inhomogeneity" (disorder, strain, domains, interfaces, terminations), "direct_evidence" (direct evidence for the headline property, uniqueness of the signature), "theory" (model assumptions, parameters, convergence, quantitative comparison), "consistency" (between figures, text and figures, earlier data, literature), or "other".
 - `claim`: which of the paper's claims the concern affects, in a few words.
 - `claim_id`: the number of that claim in your `claims` list (1 for the first), or 0 when the concern is about the paper in general.
+- `headline`: the concern in at most 12 plain words, so an author can scan the list ("Alignment ξ is inferred from the effect, not measured independently").
 - `issue`: the concern in one to three plain sentences, understandable on its own.
 - `evidence`: the passage of the paper the concern is about.
   - `quote`: copied exactly, character for character, from the paper's text, 8 to 40 words. Copy prose, not equations. If the concern is about something missing, quote the sentence that makes the claim the missing item would support.
@@ -26,4 +27,4 @@ From the review, one item per numbered concern, in the review's order:
 
 Reply with JSON only, no prose before or after:
 
-{"title": "...", "claims": ["..."], "summary": "...", "issues": [{"tier": "A", "rank": 1, "topic": "...", "claim": "...", "claim_id": 1, "issue": "...", "evidence": {"quote": "...", "page": 1, "location": "..."}, "effort": "text", "fix": "...", "fix_scoped": null, "edit_scoped": null, "runs": ["r1"]}]}
+{"title": "...", "claims": ["..."], "summary": "...", "issues": [{"tier": "A", "rank": 1, "topic": "...", "claim": "...", "claim_id": 1, "headline": "...", "issue": "...", "evidence": {"quote": "...", "page": 1, "location": "..."}, "effort": "text", "fix": "...", "fix_scoped": null, "edit_scoped": null, "runs": ["r1"]}]}
