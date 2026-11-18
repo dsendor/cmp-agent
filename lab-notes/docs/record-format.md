@@ -21,6 +21,9 @@ lab-record/
   open-questions.md      and every open question, each linking to its entry
   index.json           rebuilt by record.py: entries, devices, runs, open questions
   authorship.json      which paragraphs the AI wrote, by fingerprint (scripts/authorship.py)
+  figures/<date>-<slug>/  plot.py, figure.png/.pdf, data.csv, and figure.json: the runs or
+                          files the figure used and the corrections applied
+  deposits/<name>/     an RO-Crate built by scripts/rocrate.py for a data deposit
 ```
 
 Open `lab-record/` as a vault in Obsidian, or read it in any Markdown viewer or on GitHub:

@@ -92,6 +92,18 @@ Write `lab-record/figures/<YYYY-MM-DD>-<slug>/plot.py`:
   `data.csv` with exactly the numbers plotted. That CSV is what a paper's data deposit needs
   later, figure by figure.
 
+Beside them, write `figure.json`, so the figure can be packaged for a deposit later (the
+`deposit` skill) and anyone can see which data made it:
+
+```json
+{"title": "D7 gate sweeps at 0 and 0.5 T",
+ "sources": [{"type": "qcodes", "path": "data/experiments.db", "run_id": 1, "guid": "..."},
+             {"type": "qcodes", "path": "data/experiments.db", "run_id": 3, "guid": "..."}],
+ "corrections": ["R_LINE = 2100 Ω subtracted (labutils.to_conductance)"]}
+```
+
+Paths are relative to the project. For a plain file, `{"type": "file", "path": "..."}`.
+
 Run it with the lab's Python (the environment the notebooks use; ask if unclear). If it
 fails, fix and rerun. Look at the figure yourself before showing it: axes the right way,
 units right, nothing empty or clipped.
