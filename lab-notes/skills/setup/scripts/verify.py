@@ -13,6 +13,8 @@ For each fact in each entry sidecar:
   - inferred: the facts it rests on must exist;
   - any number must have a unit (unit "" is allowed only for counts and ids, marked
     "unit": "1").
+And for each entry's text: frontmatter with `checked:`, a **TL;DR:** first (at most 60
+words), and a warning past 300 words of prose.
 Exit 1 if anything fails, so it can gate a commit.
 """
 import argparse
@@ -183,6 +185,46 @@ def check_fact(fact, project, facts_by_id):
     return "fail", "unknown source type %r" % t
 
 
+TLDR_WORDS = 60     # the TL;DR: two or three lines
+BODY_WORDS = 300    # the rest of the entry's prose, before it's flagged as long
+
+
+def check_shape(md):
+    """The entry opens with frontmatter (with `checked`) and a short TL;DR, and stays short.
+    Tables, footnote definitions and the Originals list don't count toward the length."""
+    out = []
+    lines = md.split("\n")
+    fm_end = 0
+    if lines and lines[0].strip() == "---":
+        try:
+            fm_end = lines.index("---", 1) + 1
+        except ValueError:
+            fm_end = 0
+    if not fm_end:
+        out.append(("fail", "no frontmatter (title, date, devices, author, checked, tags)"))
+    elif not any(l.startswith("checked:") for l in lines[1:fm_end - 1]):
+        out.append(("fail", "frontmatter has no `checked:` (new entries are `checked: ai`)"))
+    body = [l for l in lines[fm_end:] if not l.startswith("🤖 ")]
+    paras = [p.strip() for p in "\n".join(body).split("\n\n") if p.strip()]
+    paras = [p for p in paras if not p.startswith("# ")]
+    if not paras or not re.match(r"\*\*TL;DR:?\*\*", paras[0]):
+        out.append(("fail", "the first thing under the title must be **TL;DR:** (two or three lines)"))
+    else:
+        n = len(re.sub(r"\[\^f\d+\]", "", paras[0]).split()) - 1
+        if n > TLDR_WORDS:
+            out.append(("fail", "TL;DR is %d words; keep it under %d" % (n, TLDR_WORDS)))
+    words, skip = 0, False
+    for l in body:
+        if l.startswith("## "):
+            skip = l[3:].strip().lower().startswith("originals")
+        if skip or l.startswith(("|", "[^", "#")) or "TL;DR" in l:
+            continue
+        words += len(re.sub(r"\[\^f\d+\]", "", l).split())
+    if words > BODY_WORDS:
+        out.append(("warn", "entry is %d words; aim for under %d (detail belongs in the sidecar)" % (words, BODY_WORDS)))
+    return out
+
+
 def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("root")
@@ -193,7 +235,7 @@ def main():
     project = os.path.dirname(root)
     ed = os.path.join(root, "entries")
     names = [e + ".json" for e in a.entries] or sorted(f for f in os.listdir(ed) if f.endswith(".json"))
-    report, counts = [], {"ok": 0, "fail": 0, "person": 0}
+    report, counts = [], {"ok": 0, "fail": 0, "person": 0, "warn": 0}
     for n in names:
         e = json.load(open(os.path.join(ed, n)))
         facts = e.get("facts", [])
@@ -211,13 +253,17 @@ def main():
             counts["fail"] += 1
             report.append({"entry": n[:-5], "fact": u, "field": None, "result": "fail",
                            "detail": "entry text cites %s, which the sidecar does not have" % u})
+        for res, why in check_shape(md_text):
+            counts[res] += 1
+            report.append({"entry": n[:-5], "fact": "text", "field": None, "result": res, "detail": why})
     if a.json:
         print(json.dumps({"counts": counts, "items": report}, indent=1))
     else:
         for r in report:
             if r["result"] != "ok":
                 print("%-6s %s %s (%s): %s" % (r["result"].upper(), r["entry"], r["fact"], r["field"], r["detail"]))
-        print("verified %d, failed %d, for a person to check %d" % (counts["ok"], counts["fail"], counts["person"]))
+        print("verified %d, failed %d, for a person to check %d, warnings %d" % (
+            counts["ok"], counts["fail"], counts["person"], counts["warn"]))
     return 1 if counts["fail"] else 0
 
 

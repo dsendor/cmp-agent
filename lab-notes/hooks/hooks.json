@@ -1,0 +1,13 @@
+{
+  "description": "Records which paragraphs in lab-record/ the AI wrote, so authorship never depends on the AI remembering. Only acts on .md files inside a lab-record folder; never blocks a tool.",
+  "hooks": {
+    "PreToolUse": [
+      {"matcher": "Write|Edit|MultiEdit",
+       "hooks": [{"type": "command", "command": "python3 \"${CLAUDE_PLUGIN_ROOT}/scripts/authorship.py\" hook"}]}
+    ],
+    "PostToolUse": [
+      {"matcher": "Write|Edit|MultiEdit",
+       "hooks": [{"type": "command", "command": "python3 \"${CLAUDE_PLUGIN_ROOT}/scripts/authorship.py\" hook"}]}
+    ]
+  }
+}
