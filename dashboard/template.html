@@ -154,6 +154,14 @@ ol.major .hl { font: 600 15px/1.4 var(--serif); }
 .route { border: 1px solid var(--line); border-radius: 6px; padding: 8px 10px; font-size: 14px; }
 .route b { display: block; margin-bottom: 2px; }
 .route p { margin: 0 0 6px; }
+.rfcard h3 { display: flex; flex-wrap: wrap; gap: 8px; align-items: baseline; }
+.rfcard dl { margin: 6px 0 8px; display: grid; grid-template-columns: 11em 1fr; gap: 4px 12px; font-size: 14px; }
+.rfcard dt { color: var(--muted); }
+.rfcard dd { margin: 0; }
+.rfcard .v-refs { margin: 4px 0 0; }
+.rfcard .earlier { font-size: 13px; color: var(--muted); }
+@media (max-width: 700px) { .rfcard dl { grid-template-columns: 1fr; } }
+.rfsum { display: flex; flex-wrap: wrap; gap: 8px; margin: 6px 0 2px; font-size: 13px; }
 .collapsed { padding: 10px 14px; border: 1px dashed var(--line); border-radius: 8px; margin: 14px 0; color: var(--muted); }
 .bulk { display: flex; gap: 10px; align-items: center; margin: 8px 0; font-size: 13px; }
 .empty { color: var(--muted); padding: 30px 0; }
@@ -306,7 +314,9 @@ const HOSTED = R.hosted === "artifact";
 if (HOSTED) document.body.classList.add("hosted");
 
 const LANES = [["all", "All"], ["science", "Science"], ["presentation", "Presentation"], ["copy", "Copy"]];
-const VIEWS = [["overview", "Start here"], ["triage", "By importance"], ["walk", "In page order"]];
+const WALK = R.demo && R.demo.inferred && R.demo.walkthrough ? R.demo.walkthrough : null;
+const VIEWS = [["overview", "Start here"]].concat(WALK ? [["referees", "Referee feedback"]] : [], [["triage", "By importance"], ["walk", "In page order"]]);
+const VERDICT = { addressed: ["Looks addressed", "ok"], partly: ["Partly addressed", "warn"], not_addressed: ["Not addressed", "bad"], unclear: ["Can't tell", ""] };
 const IMPORTANCE = { A: "Must address", B: "Should address", C: "Minor" };
 const EFFORT = { text: "Text edit", existing_data: "Reanalysis", new_work: "New experiment" };
 const TAGS = [["lane", "Lane (in the All view)"], ["topic", "Topic"], ["runs", "Runs that raised it"], ["quote", "Quote check, when it passed"], ["referee", "Referee matches (demo or inferred)"]];
@@ -332,7 +342,7 @@ let decisions = {};
 try { decisions = JSON.parse(localStorage.getItem(KEY) || "{}") || {}; } catch (e) { decisions = {}; }
 let prefs = { lane: true, topic: false, runs: false, quote: false, referee: true };
 try { Object.assign(prefs, JSON.parse(localStorage.getItem("referee-preview:tags") || "{}")); } catch (e) {}
-const state = { page: "review", lane: "all", view: "overview", only: null, expand: false, tiers: { A: true, B: true, C: true }, claim: null,
+const state = { page: "review", lane: "all", view: "overview", only: null, ids: null, expand: false, tiers: { A: true, B: true, C: true }, claim: null,
   topic: "", status: "open", order: "rank", q: "", cell: null, sel: null, pdf: true, copyOpen: false };
 
 // demo-only referee overlay
@@ -380,7 +390,7 @@ function drawClaims() {
 }
 $("summary").textContent = R.summary || "";
 
-if (R.demo && R.demo.referee_concerns) {
+if (R.demo && R.demo.referee_concerns && !WALK) {
   const rc = R.demo.referee_concerns;
   const yes = rc.filter(c => c.raised === "yes").length, partly = rc.filter(c => c.raised === "partly").length;
   const missed = rc.filter(c => c.raised === "no");
@@ -466,6 +476,8 @@ function drawChips() {
     el("button", { "aria-label": "clear", text: "×", onclick: () => { state.claim = null; render(); } })));
   if (state.only) c.append(el("span", { class: "chip" }, state.only === "scoped" ? "Narrow the wording" : "Support it as written",
     el("button", { "aria-label": "clear", text: "×", onclick: () => { state.only = null; render(); } })));
+  if (state.ids) c.append(el("span", { class: "chip" }, "Inferred referee concern " + state.ids.q,
+    el("button", { "aria-label": "clear", text: "×", onclick: () => { state.ids = null; render(); } })));
   if (state.cell) c.append(el("span", { class: "chip" }, IMPORTANCE[state.cell[0]] + " · " + EFFORT[state.cell[1]],
     el("button", { "aria-label": "clear", text: "×", onclick: () => { state.cell = null; render(); } })));
 }
@@ -482,6 +494,7 @@ function visible() {
   if (state.q) xs = xs.filter(i => [i.issue, i.claim, i.fix, i.evidence.quote, i.id, i.edit && i.edit.before, i.edit && i.edit.after]
     .join(" ").toLowerCase().includes(state.q));
   if (state.claim != null) xs = xs.filter(i => i.claim_id === state.claim);
+  if (state.ids) xs = xs.filter(i => state.ids.list.includes(i.id));
   if (state.only === "scoped") xs = xs.filter(i => i.lane !== "copy" && (i.fix_scoped || i.effort === "text"));
   if (state.only === "support") xs = xs.filter(i => i.lane !== "copy" && i.effort !== "text");
   if (!state.cell) xs = xs.filter(i => i.lane === "copy" || state.tiers[i.tier]);
@@ -660,7 +673,7 @@ function openIssue(id) {
   render(); select(id, true);
 }
 function showRoute(k, only) {
-  Object.assign(state, { view: "triage", claim: k, only, cell: null, lane: "all", tiers: { A: true, B: true, C: true } });
+  Object.assign(state, { view: "triage", claim: k, only, ids: null, cell: null, lane: "all", tiers: { A: true, B: true, C: true } });
   render(); window.scrollTo({ top: $("list").offsetTop - 60, behavior: "smooth" });
 }
 function plural(n, one, many) { return n + " " + (n === 1 ? one : many); }
@@ -673,6 +686,14 @@ function drawOverview(list) {
     " items from " + (R.mode === "exhaustive" ? R.runs + " independent review runs" : "one review run") +
     ". A referee would likely raise only some of them. Start with the " + plural(major.length, "major point", "major points") +
     " and the claims they touch; the rest can wait." })));
+  if (WALK) {
+    const n = k => WALK.filter(c => c.verdict === k).length;
+    list.append(el("div", { class: "intro" }, el("p", { text: "This is a revised version. From what changed since " +
+      (R.comparison ? R.comparison.old.label : "the earlier version") + ", the AI inferred " + plural(WALK.length, "concern", "concerns") +
+      " the referees most likely raised (no referee report was seen): " + [n("addressed") + " look addressed", n("partly") + " partly",
+      n("not_addressed") + " not addressed", n("unclear") ? n("unclear") + " can't tell" : null].filter(Boolean).join(", ") + ". " }),
+      el("button", { class: "btn", text: "Walk through the referee feedback", onclick: () => { state.view = "referees"; render(); window.scrollTo(0, 0); } })));
+  }
 
   list.append(el("div", { class: "group", text: "Major points (" + major.length + ")" }));
   const ol = el("ol", { class: "major" });
@@ -722,6 +743,52 @@ function drawOverview(list) {
     el("button", { class: "link", text: "Go through them by importance", onclick: () => { state.view = "triage"; render(); } })));
 }
 
+function showIds(q, list) {
+  Object.assign(state, { view: "triage", ids: { q, list }, claim: null, only: null, cell: null, lane: "all", status: "all", tiers: { A: true, B: true, C: true } });
+  $("status").value = "all";
+  render(); window.scrollTo({ top: $("list").offsetTop - 60, behavior: "smooth" });
+}
+function drawReferees(list) {
+  const n = k => WALK.filter(c => c.verdict === k).length;
+  list.append(el("div", { class: "intro" }, el("p", { text: "We have not seen the referee reports. From what the authors changed between " +
+    (R.comparison ? R.comparison.old.label : "the earlier version") + " and this revision, the AI inferred what the referees most likely asked, " +
+    "then judged whether the revision answers each point. A blind AI review of the revision (the items in this dashboard) was used as a second check: " +
+    "it never saw the earlier version or these inferences. All of this is AI-generated; treat each verdict as a question to check, not a finding." })));
+  const sum = el("div", { class: "rfsum" });
+  for (const k of ["addressed", "partly", "not_addressed", "unclear"]) if (n(k))
+    sum.append(el("span", { class: "tag " + VERDICT[k][1], text: VERDICT[k][0] + ": " + n(k) }));
+  list.append(sum);
+  const rank = { high: 0, medium: 1, low: 2 }, vrank = { not_addressed: 0, partly: 1, unclear: 2, addressed: 3 };
+  const cs = WALK.slice().sort((a, b) => (rank[a.confidence] - rank[b.confidence]) || (vrank[a.verdict] - vrank[b.verdict]));
+  for (const c of cs) {
+    const [vt, vc] = VERDICT[c.verdict] || VERDICT.unclear;
+    const card = el("div", { class: "claimcard rfcard" },
+      el("h3", {}, el("span", { text: c.id + ". " + c.title }), el("span", { class: "tag " + vc, text: vt }),
+        el("span", { class: "tag ref", title: "How sure the AI is that referees raised this", text: "inferred, " + c.confidence + " confidence" })));
+    const dl = el("dl");
+    const row = (t, v) => { if (v) dl.append(el("dt", { text: t }), el("dd", {}, v)); };
+    row("Referees likely asked", c.asked);
+    row("The revision", c.response);
+    row("Our read", c.judgment);
+    row("Could come up again", c.still_open);
+    card.append(dl);
+    const refs = el("div", { class: "v-refs" });
+    for (const ch of c.changes || []) {
+      if (ch.old_page && OLD) refs.append(pdfRef("old", ch.old_page, { class: "v-ref", title: ch.summary, text: OLD.short + " p. " + ch.old_page }));
+      if (ch.new_page) refs.append(pdfRef("new", ch.new_page, { class: "v-ref", title: ch.summary, text: (R.comparison ? R.comparison.new.short : "p.") + " p. " + ch.new_page }));
+    }
+    if (refs.children.length) card.append(el("div", { class: "earlier", text: "What changed (hover for the change, click to open the page):" }), refs);
+    if ((c.earlier || []).length) card.append(el("p", { class: "earlier", text: "The review of " + (OLD ? OLD.short : "the earlier version") + " flagged this as " +
+      c.earlier.map(e => e.id + " (" + (e.status || "").replace("_", " ") + " in the revision)").join(", ") + "." }));
+    const blind = (c.blind || []).filter(id => byId[id]);
+    card.append(el("div", { class: "routes" },
+      el("div", { class: "route" }, el("b", { text: "Still raised by the blind review" }),
+        el("p", { text: blind.length ? plural(blind.length, "item", "items") + " in this review press on the same point." : "No item in this review presses on it." }),
+        blind.length ? el("button", { class: "btn", text: "See " + (blind.length === 1 ? "it" : "them"), onclick: () => showIds(c.id, blind) }) : null)));
+    list.append(card);
+  }
+}
+
 // ---------- list ----------
 function render() {
   seg("lanes", LANES, "lane"); seg("views", VIEWS, "view"); drawTiers(); drawClaims();
@@ -729,6 +796,7 @@ function render() {
   const list = $("list"); list.textContent = "";
   list.classList.toggle("compact", !state.expand);
   if (state.view === "overview") { drawOverview(list); return; }
+  if (state.view === "referees") { drawReferees(list); return; }
   list.append(el("div", { class: "lanenote" }, "Each item shows a one-line headline; click it, or move with j and k, to open it. ",
     el("button", { class: "link", text: state.expand ? "Collapse all" : "Open all", onclick: () => { state.expand = !state.expand; render(); } })));
   const xs = visible();
@@ -905,7 +973,7 @@ function drawPageTabs() {
     t.append(el("button", { "aria-pressed": String(state.page === k), text: label, onclick: () => setPage(k) }));
 }
 function openIssue(id) {
-  Object.assign(state, { lane: "all", view: "triage", tiers: { A: true, B: true, C: true }, claim: null, topic: "", status: "all", q: "", cell: null, copyOpen: true });
+  Object.assign(state, { lane: "all", view: "triage", tiers: { A: true, B: true, C: true }, claim: null, only: null, ids: null, topic: "", status: "all", q: "", cell: null, copyOpen: true });
   $("topic").value = ""; $("status").value = "all"; $("search").value = "";
   setPage("review"); render(); select(id, true);
 }
