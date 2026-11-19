@@ -51,6 +51,8 @@ the paper. The review is written for Claude Opus; other models work but are not 
 /referee-preview:review path/to/paper.pdf
 /referee-preview:review path/to/latex-folder --journal "Physical Review B"
 /referee-preview:review 2601.01843 quick
+/referee-preview:publish                             # share the dashboard as a private claude.ai link
+/referee-preview:compare <old review folder> new.pdf  # a revision: what changed, what referees likely asked
 ```
 
 The review runs three independent scientific reviews in parallel and merges them (about 10 to
@@ -98,6 +100,13 @@ claude.ai comment thread on it. `/referee-preview:apply` then reads the agreed d
 the artifact. In the published page arXiv opens in a new tab rather than the PDF pane. Details
 in [docs/shared-review.md](docs/shared-review.md).
 
+**After peer review.** `/referee-preview:compare` takes the reviewed version and the revision.
+It reviews the revision blind, infers from what changed what the referees most likely asked
+(referee reports are rarely available), and judges whether the revision answers each point.
+The dashboard's **Referee feedback** view walks through them, and **Version comparison**
+lists every change. Each comparison leaves a revision record in `~/.referee-preview/revisions/`
+so changes can be tracked from version to version. See [docs/revisions.md](docs/revisions.md).
+
 ## Your data
 
 - Your paper is read by Claude Code on your machine and sent only to the model, as in any
@@ -110,7 +119,7 @@ in [docs/shared-review.md](docs/shared-review.md).
 
 | | |
 |---|---|
-| `skills/review/`, `skills/apply/`, `skills/publish/`, `skills/contribute/` | the four commands |
+| `skills/review/`, `skills/apply/`, `skills/publish/`, `skills/compare/`, `skills/contribute/` | the five commands |
 | `agents/` | subagents: three science reviewers in parallel, the merger, the structurer, presentation and copy |
 | `engine/` | the prompts. `science.md` and `merge.md` are the measured reviewer (`VERSION`); the others are newer and not yet measured |
 | `scripts/` | `paper_text.py`, `assemble.py`, `check_evidence.py` (is each quote really in the paper), `build_dashboard.py`, `contribute.py` (redact, scrub, send) |
