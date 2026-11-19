@@ -37,3 +37,26 @@ An **item** is `{title, text, points?, refs?, issues?}`: `points` is a list of b
 `issues` a list of review issue ids (shown as chips that jump to the card), and `refs` a list
 of `{src, page, note?}` where `src` is `"old"` or `"new"`. Check every page in `refs` against
 the PDF text before building.
+
+## Referee overlay (`review.json` → `demo`)
+
+An optional `demo` object in `review.json` tags review cards with referee concerns and adds a
+box under the summary. It has `note` (string), `referee_concerns` (list of `{id, severity,
+summary, raised, matches}`, where `raised` is `yes`, `partly` or `no` and `matches` is a list
+of `{issue, raised}` naming review issue ids) and `inferred` (boolean).
+
+- `inferred: false` or absent: the concerns come from real referee reports (the sample
+  dashboard). The box says "Demo only" and lists the concerns the review missed.
+- `inferred: true`: the concerns were inferred by AI from what changed between two versions
+  of the paper; no referee report was seen. The box and tags say so, and the box lists every
+  inferred concern. Use this with a `comparison.json` built from the same two versions.
+- `walkthrough` (with `inferred: true`): a list of `{id, title, confidence, verdict, asked,
+  response, judgment, still_open, changes, earlier, blind}`, written by `scripts/revision.py`
+  (format in `engine/compare.md`, step 3). It adds a **Referee feedback** view: one card per
+  inferred concern with its verdict (looks addressed, partly, not addressed, can't tell),
+  what changed between versions with page links, and a button that lists the blind review's
+  items on the same point. **Start here** then opens with a line saying the paper is a
+  revision, and the summary box above is not shown.
+
+**Start here** and **Referee feedback** hide the claim grid, lane and filter controls; the
+item views show them.
