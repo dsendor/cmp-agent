@@ -315,6 +315,20 @@ and marks run 2 as partial in the plot, leaving the choice to you; any filtering
 mentioned step, not silent; the line resistance change is recorded as your decision, with
 the old disagreement kept.
 
+## 8b. Who wrote what
+
+Open today's entry (`lab-record/entries/*.md`) in a text editor or Obsidian, add a sentence
+of your own anywhere, save, then:
+
+> I added a line to today's entry. It's right now, mark it checked.
+
+**Look for:** the entry's frontmatter has `author: mixed`, `checked: human` with your name
+and date; your sentence sits outside the `🤖 AI` / `🤖 end` lines and the AI's text inside
+them; you didn't have to tag anything. Every file starts with a short **TL;DR:**, and
+`open-questions.md`, `timeline.md` and `devices/D7.md` exist.
+**Fails if:** it claims your sentence as its own, marks the entry checked before you said so,
+or asks you to tag your own text.
+
 ## 9. Real data: Riggert et al. 2025 (InSb nanoribbons)
 
 Open `project-real/`. Published data under CC BY 4.0 (see `ATTRIBUTION.md`): database 2, the

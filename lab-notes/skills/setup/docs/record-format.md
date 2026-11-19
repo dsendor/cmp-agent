@@ -14,19 +14,49 @@ lab-record/
   entries/             one entry per session, idea or meeting
     2026-11-14-1530-d7-gate-sweep.md     the readable entry
     2026-11-14-1530-d7-gate-sweep.json   its sidecar: every fact and where it came from
+  procedures/          step-by-step manuals, revised each time someone does them
+  lab-guide.md         how this lab loads, corrects and plots data
+  devices/D7.md        browsing pages, rebuilt by record.py index: one per device,
+  timeline.md            every entry newest first,
+  open-questions.md      and every open question, each linking to its entry
   index.json           rebuilt by record.py: entries, devices, runs, open questions
+  authorship.json      which paragraphs the AI wrote, by fingerprint (scripts/authorship.py)
 ```
+
+Open `lab-record/` as a vault in Obsidian, or read it in any Markdown viewer or on GitHub:
+links are ordinary relative Markdown links.
 
 ## The entry (`.md`)
 
-Readable by a person, in the lab's own words. Sections, each optional:
+Readable by a person, in the lab's own words. It opens with frontmatter and a TL;DR:
+
+```
+---
+title: D7 gate sweeps and field map
+date: 2026-11-12
+kind: session            # session | idea | meeting
+devices: [D7]
+cooldown: 3
+runs: [1, 2, 3, 4]
+checked: ai              # ai = AI only; human = a person read it and stands behind it
+tags: [ai, d7]
+author: ai               # set by the plugin: ai | person | mixed
+---
+# D7 gate sweeps and field map
+
+**TL;DR:** Two gate sweeps at 0 and 0.5 T and an overnight map; run 2 crashed. The peak
+near -0.6 V moves with field. Open: the line resistance and run 3's time constant.
+```
+
+The TL;DR is at most 60 words; the prose after it aims for under 300 (`verify.py` fails a
+missing TL;DR and warns past 300 words). Then sections, each optional:
 
 - **What was done**, **What was seen**, **Ideas**, **Problems and failed runs**,
   **Open questions** (things the record does not hold and someone should answer).
 - Every number, setting, device or run mentioned carries a footnote marker `[^f3]` pointing
   to fact `f3` in the sidecar. Text with no marker is narrative, not a fact.
-- The first line under the title says the entry is AI-drafted, and which items a person has
-  confirmed.
+- Who wrote it and whether a person checked it is in the frontmatter (below), not in the
+  text.
 
 ## The sidecar (`.json`)
 
@@ -92,6 +122,29 @@ a person, transcribed), `inferred` (the agent's inference, never shown as a fact
 
 Units are required for every number that has one. A number with no unit and no source is
 not written.
+
+## Who wrote what
+
+Only the AI marks anything; people never tag their own text.
+
+- `author`: `ai` (every paragraph is the AI's), `person`, or `mixed`. Set by
+  `authorship.py mark`, which `record.py index` runs.
+- `checked`: `ai` until a person says the file is right (`authorship.py check`, with
+  `checked_by` and `checked_on`). Any later change, by anyone, returns it to `ai`.
+- The tag `ai` while any AI text remains, so "everything still AI only" is one search.
+- In a `mixed` file, each run of AI paragraphs sits between a line `🤖 AI YYYY-MM-DD` and a
+  line `🤖 end`. Text outside them is a person's.
+
+How it knows: `authorship.json` holds a fingerprint (sha256) of every paragraph the AI
+wrote, recorded as it writes (`authorship.py write`, or a Claude Code hook around its own
+edits). A paragraph with no AI fingerprint is a person's, so an edit is noticed with nobody
+saying so, and the AI never takes its own text for a person's. Marker lines and frontmatter
+are not fingerprinted, so marking changes nothing.
+
+Git: `authorship.py commit` commits only files whose new paragraphs are all the AI's, with
+the message starting `🤖 lab-notes:` and the trailer `AI-Generated: lab-notes plugin`. A file
+a person edited is left for them to commit. So git history and the fingerprints agree, and
+nothing depends on the AI remembering to commit.
 
 ## What is never done
 

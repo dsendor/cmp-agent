@@ -92,7 +92,9 @@ def main():
         ed = os.path.join(proj, "lab-record", "entries")
         json.dump({"id": eid, "kind": "session", "devices": ["D7"], "facts": facts,
                    "questions": ["Lock-in amplitude?"]}, open(os.path.join(ed, eid + ".json"), "w"))
-        open(os.path.join(ed, eid + ".md"), "w").write("# D7\n\n12 mK[^f1], aborted[^f2], see[^f9].\n")
+        open(os.path.join(ed, eid + ".md"), "w").write(
+            "---\ntitle: D7\nchecked: ai\ntags: [d7]\n---\n# D7\n\n**TL;DR:** Two sweeps; run 2 crashed.\n\n"
+            "12 mK[^f1], aborted[^f2], see[^f9].\n")
 
         p = run(ver, "lab-record", "--json", cwd=proj, ok=False)
         out = json.loads(p.stdout)
@@ -113,9 +115,93 @@ def main():
         run(rec, "index", "lab-record", cwd=proj)
         idx = json.load(open(os.path.join(proj, "lab-record", "index.json")))
         assert idx["devices"] == {"D7": [eid]} and len(idx["open_questions"]) == 1
+
+        authorship_tests(proj, eid)
         print("all lab-notes tests passed")
     finally:
         shutil.rmtree(proj, ignore_errors=True)
+
+
+def authorship_tests(proj, eid):
+    au = os.path.join(SCRIPTS, "authorship.py")
+    ver = os.path.join(SCRIPTS, "verify.py")
+    rec = os.path.join(SCRIPTS, "record.py")
+    root = os.path.join(proj, "lab-record")
+    md = os.path.join("lab-record", "entries", eid + ".md")
+    status = lambda: {r["file"]: r for r in json.loads(run(au, "status", "lab-record", "--json", cwd=proj).stdout)}
+
+    # Hub pages for browsing: one per device, a timeline, the open questions; marked as AI.
+    for page in ("devices/D7.md", "timeline.md", "open-questions.md"):
+        text = open(os.path.join(root, page)).read()
+        assert "**TL;DR:**" in text and "author: ai" in text and "tags: [ai" in text, page
+    assert "entries/%s.md" % eid in open(os.path.join(root, "devices", "D7.md")).read()
+
+    # The entry was written by hand above (not through the script): the AI writes it again
+    # through authorship.py, so its paragraphs are the AI's.
+    text = open(os.path.join(proj, md)).read()
+    os.remove(os.path.join(proj, md))  # rewriting identical text would (rightly) claim nothing
+    run(au, "write", md, "--text", text, cwd=proj)
+    assert status()[md]["author"] == "ai"
+
+    # A person adds a line. Nobody tags it; it is noticed.
+    open(os.path.join(proj, md), "a").write("\nContact 3 is flaky again, use 1 and 4.\n")
+    s = status()[md]
+    assert s["author"] == "mixed" and s["changed_since_last_look"] == 1, s
+
+    # Marks: AI text between robot lines, the person's line unmarked, fingerprints unchanged.
+    run(au, "mark", "lab-record", cwd=proj)
+    marked = open(os.path.join(proj, md)).read()
+    assert "🤖 AI " in marked and "🤖 end" in marked and "author: mixed" in marked
+    after_ai = marked.split("🤖 end")[-1]
+    assert "Contact 3 is flaky" in after_ai, "the person's line should be outside the AI block"
+    assert status()[md]["author"] == "mixed"
+    run(au, "mark", "lab-record", cwd=proj)
+    assert open(os.path.join(proj, md)).read() == marked, "marking twice must change nothing"
+
+    # The Claude Code hook: snapshot before, claim after.
+    hook = lambda ev: subprocess.run([sys.executable, au, "hook"], cwd=proj, text=True, capture_output=True,
+                                     input=json.dumps({"hook_event_name": ev, "tool_input": {"file_path": os.path.join(proj, md)}}))
+    hook("PreToolUse")
+    open(os.path.join(proj, md), "a").write("\nThe peak may track the field.\n")
+    hook("PostToolUse")
+    s = status()[md]
+    assert s["ai_paragraphs"] >= 4 and s["other_paragraphs"] == 1, s
+
+    # Checked by a person; any later change returns it to AI only.
+    run(au, "check", "lab-record", md, "--by", "Matan", cwd=proj)
+    assert status()[md]["checked"] == "human" and "checked: human" in open(os.path.join(proj, md)).read()
+    open(os.path.join(proj, md), "a").write("\nOne more thing.\n")
+    s = status()[md]
+    assert s["checked"] == "ai" and s["changed_since_checked"], s
+
+    # The verifier wants frontmatter and a short TL;DR first.
+    bad = os.path.join(root, "entries", eid + ".md")
+    keep = open(bad).read()
+    open(bad, "w").write("# D7\n\n12 mK[^f1], aborted[^f2].\n")
+    out = json.loads(run(ver, "lab-record", eid, "--json", cwd=proj, ok=False).stdout)
+    why = " ".join(i["detail"] for i in out["items"] if i["fact"] == "text")
+    assert "frontmatter" in why and "TL;DR" in why, why
+    open(bad, "w").write(keep)
+
+    # git: the AI commits only what it wrote, marked as AI; a person's edit is left alone.
+    if shutil.which("git"):
+        g = lambda *a: subprocess.run(["git", "-C", proj] + list(a), capture_output=True, text=True)
+        g("init", "-q"); g("config", "user.email", "t@example.org"); g("config", "user.name", "Tester")
+        g("add", "-A"); g("commit", "-qm", "start")
+        other = os.path.join("lab-record", "entries", "idea.md")
+        run(au, "write", other, "--text", "---\nchecked: ai\n---\n# Idea\n\n**TL;DR:** Try a back gate.\n", cwd=proj)
+        open(os.path.join(proj, md), "a").write("\nA person wrote this.\n")
+        res = json.loads(run(au, "commit", "lab-record", "-m", "idea", cwd=proj).stdout)
+        assert other in res["committed"] and md in [x["file"] for x in res["left_for_the_person"]], res
+        msg = g("log", "-1", "--format=%B").stdout
+        assert msg.startswith("🤖 lab-notes: idea") and "AI-Generated: lab-notes plugin" in msg, msg
+        assert md in g("status", "--porcelain").stdout, "the person's edit should stay uncommitted"
+
+    # A hub page a person edited is not overwritten.
+    page = os.path.join(root, "timeline.md")
+    open(page, "a").write("\nMy own note on the timeline.\n")
+    out = run(rec, "index", "lab-record", cwd=proj).stdout
+    assert "not overwritten" in out and "My own note" in open(page).read(), out
 
 
 if __name__ == "__main__":
