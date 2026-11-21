@@ -25,19 +25,19 @@ header.top { padding: 18px 24px 10px; border-bottom: 1px solid var(--line); back
 footer.site { padding: 14px 24px 24px; border-top: 1px solid var(--line); font-size: 13px; color: var(--muted); }
 footer.site a { color: var(--accent); }
 /* Ask Claude: a chat about this review, in a published artifact only */
-#ask { position: fixed; right: 16px; bottom: 16px; width: min(460px, calc(100vw - 32px)); height: min(640px, calc(100vh - 32px));
+#chat { position: fixed; right: 16px; bottom: 16px; width: min(460px, calc(100vw - 32px)); height: min(640px, calc(100vh - 32px));
   background: var(--panel); border: 1px solid var(--line); border-radius: 10px; box-shadow: 0 8px 30px rgba(0,0,0,.15);
   display: none; flex-direction: column; z-index: 50; }
-#ask.open { display: flex; }
-#ask .askhead { display: flex; justify-content: space-between; align-items: center; padding: 8px 12px; border-bottom: 1px solid var(--line); font-weight: 600; }
-#ask .asklog { flex: 1; overflow: auto; padding: 10px 12px; font-size: 14px; }
-#ask .msg { margin: 0 0 10px; white-space: pre-wrap; }
-#ask .msg.user { background: var(--accent-soft); border-radius: 8px; padding: 6px 10px; }
-#ask .msg.err { color: var(--bad); }
-#ask .askstart button { display: block; text-align: left; margin: 4px 0; width: 100%; }
-#ask form { display: flex; gap: 6px; padding: 8px; border-top: 1px solid var(--line); }
-#ask textarea { flex: 1; resize: none; height: 54px; border: 1px solid var(--line); border-radius: 6px; padding: 6px 8px; font: 14px var(--sans); }
-#ask .asknote { font-size: 12px; color: var(--muted); padding: 0 12px 8px; }
+#chat.open { display: flex; }
+#chat .chathead { display: flex; justify-content: space-between; align-items: center; padding: 8px 12px; border-bottom: 1px solid var(--line); font-weight: 600; }
+#chat .chatlog { flex: 1; overflow: auto; padding: 10px 12px; font-size: 14px; }
+#chat .msg { margin: 0 0 10px; white-space: pre-wrap; }
+#chat .msg.user { background: var(--accent-soft); border-radius: 8px; padding: 6px 10px; }
+#chat .msg.err { color: var(--bad); }
+#chat .chatstart button { display: block; text-align: left; margin: 4px 0; width: 100%; }
+#chat form { display: flex; gap: 6px; padding: 8px; border-top: 1px solid var(--line); }
+#chat textarea { flex: 1; resize: none; height: 54px; border: 1px solid var(--line); border-radius: 6px; padding: 6px 8px; font: 14px var(--sans); }
+#chat .chatnote { font-size: 12px; color: var(--muted); padding: 0 12px 8px; }
 h1 { font: 600 24px/1.25 var(--serif); margin: 4px 0 6px; max-width: 70ch; }
 .meta { color: var(--muted); font-size: 13px; }
 .toolbar { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-top: 10px; }
@@ -237,7 +237,7 @@ kbd { font: 12px ui-monospace, Menlo, monospace; border: 1px solid var(--line); 
   <div class="meta" id="meta"></div>
   <div class="toolbar">
     <div class="progress"><span id="progress-text"></span><span id="team-status"></span><div class="bar"><i id="progress-bar"></i></div></div>
-    <button class="btn" id="askbtn" hidden title="Chat with Claude about this review and the paper">Ask Claude</button>
+    <button class="btn" id="chatbtn" hidden title="Chat with Claude about this review and the paper">Ask Claude</button>
     <button class="btn primary" id="send" title="Save your decisions where Claude Code can read them, and copy the command that applies them">Send to Claude</button>
     <button class="btn" id="export-plan">Revision plan (.md)</button>
     <label class="btn" title="Load decisions exported earlier">Import decisions<input type="file" id="import" accept=".json,application/json" hidden></label>
@@ -290,11 +290,11 @@ kbd { font: 12px ui-monospace, Menlo, monospace; border: 1px solid var(--line); 
     <div id="pdfjs" role="document" aria-label="The paper"></div>
   </aside>
 </main>
-<div id="ask" role="dialog" aria-label="Ask Claude about this review">
-  <div class="askhead"><span>Ask Claude about this review</span><button class="btn" id="askclose" aria-label="Close">×</button></div>
-  <div class="asklog" id="asklog"></div>
-  <div class="asknote">Claude reads this review and the paper's text. Answers are AI-generated; check them against the paper.</div>
-  <form id="askform"><textarea id="askinput" placeholder="Ask about an item, or tell Claude it is already in the paper…"></textarea><button class="btn primary">Ask</button></form>
+<div id="chat" role="dialog" aria-label="Ask Claude about this review">
+  <div class="chathead"><span>Ask Claude about this review</span><button class="btn" id="chatclose" aria-label="Close">×</button></div>
+  <div class="chatlog" id="chatlog"></div>
+  <div class="chatnote">Claude reads this review and the paper's text. Answers are AI-generated; check them against the paper.</div>
+  <form id="chatform"><textarea id="chatinput" placeholder="Ask about an item, or tell Claude it is already in the paper…"></textarea><button class="btn primary">Ask</button></form>
 </div>
 <footer class="site">Made with <a href="https://github.com/dsendor/cmp-agent" target="_blank" rel="noopener">referee-preview</a>, an open-source Claude Code plugin that reviews condensed matter papers the way referees will. Get it, read how it works, or contribute at <a href="https://github.com/dsendor/cmp-agent" target="_blank" rel="noopener">github.com/dsendor/cmp-agent</a>.</footer>
 
@@ -1095,15 +1095,19 @@ function drawVersions() {
   v.append(el("p", { class: "v-lead", text: C.verdict }));
   v.append(el("p", { class: "v-note", text: C.caveat }));
   v.append(el("h2", { text: "Review results" }));
-  v.append(vTable(["", C.old.label, C.new.label], C.counts));
+  if (C.counts) v.append(vTable(["", C.old.label, C.new.label], C.counts));
   if (C.counts_note) v.append(el("p", { class: "v-note", text: C.counts_note }));
-  v.append(vSection("What changed", null, "v-changed", C.changed));
-  v.append(vSection("What got better", null, "v-better", C.improved));
-  v.append(vSection("What got worse", null, "v-worse", C.worse));
-  v.append(vSection("Still unresolved in both", null, "v-open", C.unresolved));
-  v.append(el("h2", { text: "Where the draft and the arXiv supplement do not match" }));
-  if (C.si_note) v.append(el("p", { class: "v-note", text: C.si_note }));
-  v.append(vTable(["Draft says", "Against the arXiv supplement", "Show"], C.si_mismatches.map(m => [m.says, m.result, refButtons(m) || ""])));
+  v.append(vSection("What changed", null, "v-changed", C.changed || []));
+  v.append(vSection("What got better", null, "v-better", C.improved || []));
+  v.append(vSection("What got worse", null, "v-worse", C.worse || []));
+  v.append(vSection("Still unresolved in both", null, "v-open", C.unresolved || []));
+  // the supplement checks are optional (docs/dashboard.md): skip the section when there are none
+  if (C.si_note || (C.si_mismatches || []).length) {
+    v.append(el("h2", { text: "Where the draft and the arXiv supplement do not match" }));
+    if (C.si_note) v.append(el("p", { class: "v-note", text: C.si_note }));
+    if ((C.si_mismatches || []).length)
+      v.append(vTable(["Draft says", "Against the arXiv supplement", "Show"], C.si_mismatches.map(m => [m.says, m.result, refButtons(m) || ""])));
+  }
   if (C.si_disagreements) v.append(vSection("Also disagrees", null, "v-open", C.si_disagreements));
   if (C.changelog) {
     const d = el("details", {}, el("summary", { text: "Full change log, " + C.changelog_summary }));
@@ -1397,17 +1401,17 @@ if (R.comparison) {
   setPage(location.hash === "#compare" ? "versions" : "review");
 }
 if (HOSTED) startShared();
-if (HOSTED) startAsk();
+if (HOSTED) startChat();
 
 // ---------- Ask Claude (published artifact only) ----------
-async function startAsk() {
+async function startChat() {
   let sample = null;
   try { sample = await window.claude.use("sample"); } catch (e) { sample = null; }
   if (!sample) return;
-  const btn = $("askbtn"), box = $("ask"), log = $("asklog"), input = $("askinput");
+  const btn = $("chatbtn"), box = $("chat"), log = $("chatlog"), input = $("chatinput");
   btn.hidden = false;
   btn.onclick = () => { box.classList.add("open"); input.focus(); };
-  $("askclose").onclick = () => box.classList.remove("open");
+  $("chatclose").onclick = () => box.classList.remove("open");
   const history = [];
   const pages = { paper: R.paper_text || [], si: R.si_text || [] };
   const brief = i => ({ id: i.id, lane: i.lane, tier: i.tier || null, headline: headlineOf(i), decision: (decisions[i.id] || {}).decision || null });
@@ -1451,12 +1455,12 @@ async function startAsk() {
   const add = (cls, text) => { const d = el("div", { class: "msg " + cls, text }); log.append(d); log.scrollTop = log.scrollHeight; return d; };
   const starts = ["Which must-address items does the paper already answer?", "Check item " + ((issues.find(i => i.tier === "A") || issues[0] || {}).id || "S01") + " against the paper.",
     WALK ? "Which referee concerns did this revision not fully address?" : "Which items are quickest to fix?"];
-  const st = el("div", { class: "askstart" });
-  for (const q of starts) st.append(el("button", { class: "btn", text: q, onclick: () => { input.value = q; ask(); } }));
+  const st = el("div", { class: "chatstart" });
+  for (const q of starts) st.append(el("button", { class: "btn", text: q, onclick: () => { input.value = q; send(); } }));
   log.append(st);
 
   let busy = false;
-  async function ask() {
+  async function send() {
     const q = input.value.trim(); if (!q || busy) return;
     busy = true; input.value = ""; st.remove();
     add("user", q);
@@ -1473,8 +1477,8 @@ async function startAsk() {
     }
     busy = false;
   }
-  $("askform").onsubmit = ev => { ev.preventDefault(); ask(); };
-  input.onkeydown = ev => { if (ev.key === "Enter" && !ev.shiftKey) { ev.preventDefault(); ask(); } };
+  $("chatform").onsubmit = ev => { ev.preventDefault(); send(); };
+  input.onkeydown = ev => { if (ev.key === "Enter" && !ev.shiftKey) { ev.preventDefault(); send(); } };
 }
 })();
 </script>
