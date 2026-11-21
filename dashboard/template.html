@@ -37,6 +37,8 @@ footer.site a { color: var(--accent); }
 #chat .chatstart button { display: block; text-align: left; margin: 4px 0; width: 100%; }
 #chat form { display: flex; gap: 6px; padding: 8px; border-top: 1px solid var(--line); }
 #chat textarea { flex: 1; resize: none; height: 54px; border: 1px solid var(--line); border-radius: 6px; padding: 6px 8px; font: 14px var(--sans); }
+#chat .chathead select { font: 13px var(--sans); margin-left: auto; margin-right: 8px; }
+#chat .who { font-size: 11px; color: var(--muted); margin: -6px 0 10px; }
 #chat .chatnote { font-size: 12px; color: var(--muted); padding: 0 12px 8px; }
 h1 { font: 600 24px/1.25 var(--serif); margin: 4px 0 6px; max-width: 70ch; }
 .meta { color: var(--muted); font-size: 13px; }
@@ -291,7 +293,7 @@ kbd { font: 12px ui-monospace, Menlo, monospace; border: 1px solid var(--line); 
   </aside>
 </main>
 <div id="chat" role="dialog" aria-label="Ask Claude about this review">
-  <div class="chathead"><span>Ask Claude about this review</span><button class="btn" id="chatclose" aria-label="Close">×</button></div>
+  <div class="chathead"><span>Ask Claude about this review</span><select id="chatmodel" title="Which Claude model answers"></select><button class="btn" id="chatclose" aria-label="Close">×</button></div>
   <div class="chatlog" id="chatlog"></div>
   <div class="chatnote">Claude reads this review and the paper's text. Answers are AI-generated; check them against the paper.</div>
   <form id="chatform"><textarea id="chatinput" placeholder="Ask about an item, or tell Claude it is already in the paper…"></textarea><button class="btn primary">Ask</button></form>
@@ -1413,6 +1415,14 @@ async function startChat() {
   btn.onclick = () => { box.classList.add("open"); input.focus(); };
   $("chatclose").onclick = () => box.classList.remove("open");
   const history = [];
+  // [model id, label, tier]. "auto" lets the host pick its strongest model for the "complex" tier.
+  const MODELS = [["auto", "Best available", "complex"], ["claude-opus-5-5", "Claude Opus 5.5", "complex"],
+    ["claude-fable-5-2", "Claude Fable 5.2", "complex"], ["claude-sonnet-5-5", "Claude Sonnet 5.5", "default"], ["claude-haiku-5-5", "Claude Haiku 5.5", "quick"]];
+  const pick = $("chatmodel");
+  for (const [id, label] of MODELS) pick.append(el("option", { value: id, text: label }));
+  try { pick.value = localStorage.getItem("referee-preview:chat-model") || "auto"; } catch (e) {}
+  if (!pick.value) pick.value = "auto";
+  pick.onchange = () => { try { localStorage.setItem("referee-preview:chat-model", pick.value); } catch (e) {} };
   const pages = { paper: R.paper_text || [], si: R.si_text || [] };
   const brief = i => ({ id: i.id, lane: i.lane, tier: i.tier || null, headline: headlineOf(i), decision: (decisions[i.id] || {}).decision || null });
   const cut = (t, n) => (t && t.length > n ? t.slice(0, n) + " …[cut]" : t);
@@ -1467,8 +1477,15 @@ async function startChat() {
     history.push({ role: "user", content: (history.length ? "" : preamble + "\n\nThe author asks: ") + q });
     const out = add("bot", "Thinking…");
     try {
-      const r = await sample(history, { tools, cache: false, modelTier: "complex", onText: ({ text }) => { out.textContent = text; log.scrollTop = log.scrollHeight; } });
+      const m = MODELS.find(x => x[0] === pick.value) || MODELS[0];
+      const opts = { tools, cache: false, modelTier: m[2], onText: ({ text }) => { out.textContent = text; log.scrollTop = log.scrollHeight; } };
+      if (m[0] !== "auto") opts.model = m[0];
+      const r = await sample(history, opts);
       out.textContent = r.text;
+      // the host may refuse a named model and fall back to the tier; say which model actually answered
+      const used = r.modelApplied || r.model || null;
+      out.after(el("div", { class: "who", text: "Answered by " + (used ? (MODELS.find(x => x[0] === used) || [used, used])[1] : m[1]) +
+        (m[0] !== "auto" && used && used !== m[0] ? " (" + m[1] + " was not available)" : "") }));
       history.push({ role: "assistant", content: r.text });
     } catch (e) {
       out.className = "msg err";

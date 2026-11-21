@@ -76,5 +76,5 @@ Claude answers through tools that read the page's own data:
 - the inferred referee feedback and the version comparison, when present;
 - `analysis.md`, a written analysis in the review folder, when present.
 
-It is told to check claims against the paper text, and to say which figure panel an item
+A menu in the panel picks the model: *Best available* (the host's strongest, the default), Claude Opus 5.5, Fable 5.2, Sonnet 5.5 or Haiku 5.5. The choice is kept in the browser. The host may refuse a named model and fall back, so each answer says which model gave it. It is told to check claims against the paper text, and to say which figure panel an item
 rests on, since it cannot see figures. Conversations are not saved.
