@@ -11,7 +11,9 @@ With --open, opens the dashboard in the default browser.
 
 With --artifact, also writes <review-folder>/artifact/ for publishing as a Claude
 artifact: index.html (the dashboard in hosted mode, which shows the paper.pdf
-published with it and opens arXiv in a new tab) and a copy of paper.pdf.
+published with it and opens arXiv in a new tab) and a copy of paper.pdf. The hosted page
+also carries the text of paper.pages.json, si.pages.json and analysis.md, when present, for
+its Ask Claude chat (the `sample` capability; see docs/dashboard.md).
 """
 import json
 import shutil
@@ -47,6 +49,13 @@ def main():
     print(out)
     if "--artifact" in sys.argv:
         hosted = dict(review, hosted="artifact")
+        # For Ask Claude: the paper's text by page, the supplement's, and an optional written analysis.
+        for name, key in (("paper.pages.json", "paper_text"), ("si.pages.json", "si_text")):
+            if (folder / name).exists():
+                # pdftotext writes U+FFFD for glyphs it cannot map (ligatures, math); artifacts refuse it
+                hosted[key] = [t.replace("\ufffd", "") for t in json.loads((folder / name).read_text())["pages"]]
+        if (folder / "analysis.md").exists():
+            hosted["analysis"] = (folder / "analysis.md").read_text()
         data = json.dumps(hosted, ensure_ascii=False).replace("</", "<\\/")
         art = folder / "artifact"
         art.mkdir(exist_ok=True)
