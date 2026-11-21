@@ -691,7 +691,8 @@ function headlineOf(i) {
   // Older reviews have no headline: use the first sentence, or the first 15 words when the
   // sentence is cut short by an abbreviation ("Fig.", "Ref.").
   const all = (i.issue || "").split(/\s+/);
-  const t = (i.issue || "").split(/(?<=[.?!])\s/)[0], w = t.split(/\s+/);
+  // not after an abbreviation such as "Fig." or "Ref."
+  const t = (i.issue || "").split(/(?<!\b(?:Figs?|Refs?|Eqs?|Sec|Tab|Supp|al|vs|e\.g|i\.e|ca|approx|No)\.)(?<=[.?!])\s/)[0], w = t.split(/\s+/);
   if (w.length >= 6 && w.length <= 16) return t;
   return all.length > 15 ? all.slice(0, 15).join(" ") + "…" : i.issue || "";
 }
@@ -1415,13 +1416,14 @@ async function startChat() {
   btn.onclick = () => { box.classList.add("open"); input.focus(); };
   $("chatclose").onclick = () => box.classList.remove("open");
   const history = [];
-  // [model id, label, tier]. "auto" lets the host pick its strongest model for the "complex" tier.
-  const MODELS = [["auto", "Best available", "complex"], ["claude-opus-5-5", "Claude Opus 5.5", "complex"],
+  // [model id, label, tier]. The latest Opus is the default; "auto" lets the host pick for the "complex" tier.
+  const DEFAULT_MODEL = "claude-opus-5-5";
+  const MODELS = [["claude-opus-5-5", "Claude Opus 5.5", "complex"], ["auto", "Best available", "complex"],
     ["claude-fable-5-2", "Claude Fable 5.2", "complex"], ["claude-sonnet-5-5", "Claude Sonnet 5.5", "default"], ["claude-haiku-5-5", "Claude Haiku 5.5", "quick"]];
   const pick = $("chatmodel");
   for (const [id, label] of MODELS) pick.append(el("option", { value: id, text: label }));
-  try { pick.value = localStorage.getItem("referee-preview:chat-model") || "auto"; } catch (e) {}
-  if (!pick.value) pick.value = "auto";
+  try { pick.value = localStorage.getItem("referee-preview:chat-model") || DEFAULT_MODEL; } catch (e) {}
+  if (!pick.value) pick.value = DEFAULT_MODEL;
   pick.onchange = () => { try { localStorage.setItem("referee-preview:chat-model", pick.value); } catch (e) {} };
   const pages = { paper: R.paper_text || [], si: R.si_text || [] };
   const brief = i => ({ id: i.id, lane: i.lane, tier: i.tier || null, headline: headlineOf(i), decision: (decisions[i.id] || {}).decision || null });
@@ -1477,7 +1479,7 @@ async function startChat() {
     history.push({ role: "user", content: (history.length ? "" : preamble + "\n\nThe author asks: ") + q });
     const out = add("bot", "Thinking…");
     try {
-      const m = MODELS.find(x => x[0] === pick.value) || MODELS[0];
+      const m = MODELS.find(x => x[0] === pick.value) || MODELS.find(x => x[0] === DEFAULT_MODEL);
       const opts = { tools, cache: false, modelTier: m[2], onText: ({ text }) => { out.textContent = text; log.scrollTop = log.scrollHeight; } };
       if (m[0] !== "auto") opts.model = m[0];
       const r = await sample(history, opts);
