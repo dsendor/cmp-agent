@@ -134,6 +134,26 @@ blockquote .where { display: block; margin-top: 4px; font: 12px var(--sans); col
 .decide button[aria-pressed="true"] kbd { color: #ddd; background: transparent; border-color: #666; }
 .note { width: 100%; margin-top: 8px; border: 1px solid var(--line); border-radius: 6px; padding: 6px 8px; font-size: 13px; min-height: 34px; resize: vertical; display: none; }
 .card.sel .note, .note.has { display: block; }
+.headline { font: 600 15px/1.4 var(--serif); margin: 2px 0 0; }
+#list.compact .card:not(.sel):not(.open) .body { display: none; }
+#list.compact .card:not(.sel):not(.open) { cursor: pointer; padding: 8px 14px; margin: 6px 0; }
+#list:not(.compact) .card .headline, .card.sel .headline, .card.open .headline { display: none; }
+.intro { font: 15px/1.5 var(--serif); background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 12px 16px; margin: 10px 0 4px; }
+.intro p { margin: 0; }
+ol.major { margin: 4px 0 8px; padding-left: 22px; }
+ol.major li { margin: 4px 0; }
+ol.major button.row { all: unset; cursor: pointer; display: block; }
+ol.major button.row:hover .hl, ol.major button.row:focus .hl { text-decoration: underline; }
+ol.major .hl { font: 600 15px/1.4 var(--serif); }
+.sub { display: block; font-size: 13px; color: var(--muted); }
+.claimcard { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 12px 14px; margin: 10px 0; }
+.claimcard h3 { font: 600 15px/1.4 var(--serif); margin: 0 0 4px; }
+.claimcard .counts { font-size: 13px; color: var(--muted); margin-bottom: 8px; }
+.routes { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+@media (max-width: 700px) { .routes { grid-template-columns: 1fr; } }
+.route { border: 1px solid var(--line); border-radius: 6px; padding: 8px 10px; font-size: 14px; }
+.route b { display: block; margin-bottom: 2px; }
+.route p { margin: 0 0 6px; }
 .collapsed { padding: 10px 14px; border: 1px dashed var(--line); border-radius: 8px; margin: 14px 0; color: var(--muted); }
 .bulk { display: flex; gap: 10px; align-items: center; margin: 8px 0; font-size: 13px; }
 .empty { color: var(--muted); padding: 30px 0; }
@@ -286,7 +306,7 @@ const HOSTED = R.hosted === "artifact";
 if (HOSTED) document.body.classList.add("hosted");
 
 const LANES = [["all", "All"], ["science", "Science"], ["presentation", "Presentation"], ["copy", "Copy"]];
-const VIEWS = [["triage", "Triage"], ["walk", "Walk through"]];
+const VIEWS = [["overview", "Start here"], ["triage", "By importance"], ["walk", "In page order"]];
 const IMPORTANCE = { A: "Must address", B: "Should address", C: "Minor" };
 const EFFORT = { text: "Text edit", existing_data: "Reanalysis", new_work: "New experiment" };
 const TAGS = [["lane", "Lane (in the All view)"], ["topic", "Topic"], ["runs", "Runs that raised it"], ["quote", "Quote check, when it passed"], ["referee", "Referee matches (demo)"]];
@@ -312,7 +332,7 @@ let decisions = {};
 try { decisions = JSON.parse(localStorage.getItem(KEY) || "{}") || {}; } catch (e) { decisions = {}; }
 let prefs = { lane: true, topic: false, runs: false, quote: false, referee: true };
 try { Object.assign(prefs, JSON.parse(localStorage.getItem("referee-preview:tags") || "{}")); } catch (e) {}
-const state = { page: "review", lane: "all", view: "triage", tiers: { A: true, B: true, C: true }, claim: null,
+const state = { page: "review", lane: "all", view: "overview", only: null, expand: false, tiers: { A: true, B: true, C: true }, claim: null,
   topic: "", status: "open", order: "rank", q: "", cell: null, sel: null, pdf: true, copyOpen: false };
 
 // demo-only referee overlay
@@ -438,6 +458,8 @@ function drawChips() {
   const c = $("chips"); c.textContent = "";
   if (state.claim != null) c.append(el("span", { class: "chip" }, state.claim ? "Claim " + state.claim : "General",
     el("button", { "aria-label": "clear", text: "×", onclick: () => { state.claim = null; render(); } })));
+  if (state.only) c.append(el("span", { class: "chip" }, state.only === "scoped" ? "Narrow the wording" : "Support it as written",
+    el("button", { "aria-label": "clear", text: "×", onclick: () => { state.only = null; render(); } })));
   if (state.cell) c.append(el("span", { class: "chip" }, IMPORTANCE[state.cell[0]] + " · " + EFFORT[state.cell[1]],
     el("button", { "aria-label": "clear", text: "×", onclick: () => { state.cell = null; render(); } })));
 }
@@ -454,6 +476,8 @@ function visible() {
   if (state.q) xs = xs.filter(i => [i.issue, i.claim, i.fix, i.evidence.quote, i.id, i.edit && i.edit.before, i.edit && i.edit.after]
     .join(" ").toLowerCase().includes(state.q));
   if (state.claim != null) xs = xs.filter(i => i.claim_id === state.claim);
+  if (state.only === "scoped") xs = xs.filter(i => i.lane !== "copy" && (i.fix_scoped || i.effort === "text"));
+  if (state.only === "support") xs = xs.filter(i => i.lane !== "copy" && i.effort !== "text");
   if (!state.cell) xs = xs.filter(i => i.lane === "copy" || state.tiers[i.tier]);
   const laneOrder = { science: 0, presentation: 1, copy: 2 };
   const tierOrder = { A: 0, B: 1, C: 2 };
@@ -589,6 +613,10 @@ function card(i) {
   const team = el("div", { class: "team", id: "team-" + i.id });
   c.append(team);
   if (shared) drawTeam(i.id, team);
+  // Collapsed by default: the tags and a one-line headline; the rest opens when selected.
+  const body = el("div", { class: "body" });
+  while (c.children.length > 1) body.append(c.children[1]);
+  c.append(el("p", { class: "headline", text: headlineOf(i) + (d.decision ? "  (" + LABEL[d.decision] + ")" : "") }), body);
   return c;
 }
 
@@ -610,11 +638,93 @@ function decide(id, v) {
   } else render();
 }
 
+function headlineOf(i) {
+  if (i.headline) return i.headline;
+  // Older reviews have no headline: use the first sentence, or the first 15 words when the
+  // sentence is cut short by an abbreviation ("Fig.", "Ref.").
+  const all = (i.issue || "").split(/\s+/);
+  const t = (i.issue || "").split(/(?<=[.?!])\s/)[0], w = t.split(/\s+/);
+  if (w.length >= 6 && w.length <= 16) return t;
+  return all.length > 15 ? all.slice(0, 15).join(" ") + "…" : i.issue || "";
+}
+function openIssue(id) {
+  Object.assign(state, { view: "triage", claim: null, only: null, cell: null, topic: "", status: "all", q: "",
+    lane: "all", tiers: { A: true, B: true, C: true } });
+  $("status").value = "all"; $("topic").value = ""; $("search").value = "";
+  render(); select(id, true);
+}
+function showRoute(k, only) {
+  Object.assign(state, { view: "triage", claim: k, only, cell: null, lane: "all", tiers: { A: true, B: true, C: true } });
+  render(); window.scrollTo({ top: $("list").offsetTop - 60, behavior: "smooth" });
+}
+function plural(n, one, many) { return n + " " + (n === 1 ? one : many); }
+
+function drawOverview(list) {
+  const sci = issues.filter(i => i.lane !== "copy");
+  const major = sci.filter(i => i.tier === "A");
+  const copyN = issues.length - sci.length;
+  list.append(el("div", { class: "intro" }, el("p", { text: "This review is exhaustive: " + issues.length +
+    " items from " + (R.mode === "exhaustive" ? R.runs + " independent review runs" : "one review run") +
+    ". A referee would likely raise only some of them. Start with the " + plural(major.length, "major point", "major points") +
+    " and the claims they touch; the rest can wait." })));
+
+  list.append(el("div", { class: "group", text: "Major points (" + major.length + ")" }));
+  const ol = el("ol", { class: "major" });
+  for (const i of major) {
+    const d = decisions[i.id];
+    ol.append(el("li", {}, el("button", { class: "row", onclick: () => openIssue(i.id) },
+      el("span", { class: "hl", text: headlineOf(i) }),
+      el("span", { class: "sub", text: [i.claim_id ? "Claim " + i.claim_id : "The paper as a whole", "fix: " + EFFORT[i.effort].toLowerCase(),
+        i.lane === "presentation" ? "presentation" : null, d && d.decision ? "decided: " + LABEL[d.decision] : null].filter(Boolean).join(" · ") }))));
+  }
+  list.append(ol);
+
+  list.append(el("div", { class: "group", text: "Your claims, and two ways to answer the objections" }));
+  const claims = R.claims || [];
+  for (const k of claims.map((_, n) => n + 1).concat([0])) {
+    const xs = sci.filter(i => i.claim_id === k);
+    if (!xs.length) continue;
+    const by = t => xs.filter(i => i.tier === t).length;
+    const narrow = xs.filter(i => i.fix_scoped), text = xs.filter(i => i.effort === "text");
+    const data = xs.filter(i => i.effort === "existing_data"), work = xs.filter(i => i.effort === "new_work");
+    const cc = el("div", { class: "claimcard" },
+      el("h3", { text: k ? "Claim " + k + ": " + claims[k - 1] : "The paper as a whole" }),
+      el("div", { class: "counts", text: plural(xs.length, "objection", "objections") + ": " +
+        [by("A") ? by("A") + " major" : null, by("B") ? by("B") + " should address" : null, by("C") ? by("C") + " minor" : null].filter(Boolean).join(", ") }));
+    const routes = el("div", { class: "routes" });
+    const nNarrow = narrow.length + text.length;
+    routes.append(el("div", { class: "route" }, el("b", { text: "Narrow the wording" }),
+      el("p", { text: nNarrow ? plural(nNarrow, "objection", "objections") + " can be met in the text: " +
+        [narrow.length ? narrow.length + " by a narrower claim, drafted for you" : null,
+         text.length ? text.length + " by a rewording, caveat or citation" : null].filter(Boolean).join("; ") + "."
+        : "No objection here is met by wording alone." }),
+      nNarrow ? el("button", { class: "btn", text: "See the wording changes", onclick: () => showRoute(k, "scoped") }) : null));
+    routes.append(el("div", { class: "route" }, el("b", { text: "Support it as written" }),
+      el("p", { text: data.length + work.length ? "Takes " + [data.length ? plural(data.length, "reanalysis of data you have", "reanalyses of data you have") : null,
+        work.length ? plural(work.length, "new measurement or calculation", "new measurements or calculations") : null].filter(Boolean).join(" and ") +
+        ". That work is yours; Claude can help plan it, not do it." : "Nothing beyond wording is asked for." }),
+      data.length + work.length ? el("button", { class: "btn", text: "See what it would take", onclick: () => showRoute(k, "support") }) : null));
+    cc.append(routes);
+    list.append(cc);
+  }
+
+  const later = sci.filter(i => i.tier !== "A");
+  list.append(el("div", { class: "group", text: "Can wait" }));
+  list.append(el("div", { class: "collapsed" },
+    plural(later.length, "item", "items") + " that should be addressed or are minor, and " + plural(copyN, "copy edit", "copy edits") +
+    " (spelling, notation, consistency) you can accept in one go. ",
+    el("button", { class: "link", text: "Go through them by importance", onclick: () => { state.view = "triage"; render(); } })));
+}
+
 // ---------- list ----------
 function render() {
   seg("lanes", LANES, "lane"); seg("views", VIEWS, "view"); drawTiers(); drawClaims();
   drawGrid(); drawChips(); progress();
   const list = $("list"); list.textContent = "";
+  list.classList.toggle("compact", !state.expand);
+  if (state.view === "overview") { drawOverview(list); return; }
+  list.append(el("div", { class: "lanenote" }, "Each item shows a one-line headline; click it, or move with j and k, to open it. ",
+    el("button", { class: "link", text: state.expand ? "Collapse all" : "Open all", onclick: () => { state.expand = !state.expand; render(); } })));
   const xs = visible();
   if (state.lane === "presentation" || state.lane === "copy")
     list.append(el("div", { class: "lanenote", text: (state.lane === "copy" ? "Copy edits" : "Presentation items") +
@@ -653,7 +763,8 @@ function bulkBar(copy) {
 
 function progress() {
   const n = issues.length, k = issues.filter(decided).length;
-  $("progress-text").textContent = k + " of " + n + " decided";
+  const major = issues.filter(i => i.tier === "A"), km = major.filter(decided).length;
+  $("progress-text").textContent = "Major points: " + km + " of " + major.length + " decided · all items: " + k + " of " + n;
   $("progress-bar").style.width = (n ? 100 * k / n : 0) + "%";
 }
 
