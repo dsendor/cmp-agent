@@ -13,6 +13,12 @@ out, add what you learned that the next session needs. History belongs in git, n
 - Publishing a dashboard as a Claude artifact, as an option after the review, so it can be
   shared as a link. The local `dashboard.html` stays the default.
 
+- Comparing versions after peer review (`/referee-preview:compare`, `docs/revisions.md`):
+  a blind review of the revision, inferred referee requests, a Referee feedback view and a
+  revision record. Tried once, on a private revision. Next: validate the inference on the
+  papers in `research/eval/referee/` whose reports are public, then collect public records
+  in `research/eval/revisions/`.
+
 ## Next
 
 - **Lab notes plugin** (`lab-notes/`, v0.1.0): setup, note, procedure, learn, plot. Not yet tried on a real
