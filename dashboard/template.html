@@ -1074,15 +1074,19 @@ function drawVersions() {
   v.append(el("p", { class: "v-lead", text: C.verdict }));
   v.append(el("p", { class: "v-note", text: C.caveat }));
   v.append(el("h2", { text: "Review results" }));
-  v.append(vTable(["", C.old.label, C.new.label], C.counts));
+  if (C.counts) v.append(vTable(["", C.old.label, C.new.label], C.counts));
   if (C.counts_note) v.append(el("p", { class: "v-note", text: C.counts_note }));
-  v.append(vSection("What changed", null, "v-changed", C.changed));
-  v.append(vSection("What got better", null, "v-better", C.improved));
-  v.append(vSection("What got worse", null, "v-worse", C.worse));
-  v.append(vSection("Still unresolved in both", null, "v-open", C.unresolved));
-  v.append(el("h2", { text: "Where the draft and the arXiv supplement do not match" }));
-  if (C.si_note) v.append(el("p", { class: "v-note", text: C.si_note }));
-  v.append(vTable(["Draft says", "Against the arXiv supplement", "Show"], C.si_mismatches.map(m => [m.says, m.result, refButtons(m) || ""])));
+  v.append(vSection("What changed", null, "v-changed", C.changed || []));
+  v.append(vSection("What got better", null, "v-better", C.improved || []));
+  v.append(vSection("What got worse", null, "v-worse", C.worse || []));
+  v.append(vSection("Still unresolved in both", null, "v-open", C.unresolved || []));
+  // the supplement checks are optional (docs/dashboard.md): skip the section when there are none
+  if (C.si_note || (C.si_mismatches || []).length) {
+    v.append(el("h2", { text: "Where the draft and the arXiv supplement do not match" }));
+    if (C.si_note) v.append(el("p", { class: "v-note", text: C.si_note }));
+    if ((C.si_mismatches || []).length)
+      v.append(vTable(["Draft says", "Against the arXiv supplement", "Show"], C.si_mismatches.map(m => [m.says, m.result, refButtons(m) || ""])));
+  }
   if (C.si_disagreements) v.append(vSection("Also disagrees", null, "v-open", C.si_disagreements));
   if (C.changelog) {
     const d = el("details", {}, el("summary", { text: "Full change log, " + C.changelog_summary }));
