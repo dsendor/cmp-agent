@@ -20,6 +20,7 @@ For each item give:
 - `topic`: "overclaiming", "clarity", "context", "figures" or "structure".
 - `claim`: which of the paper's claims it affects, in a few words, or "general".
 - `claim_id`: the number of that claim in the numbered list of main claims below, or 0 for "general".
+- `headline`: the item in at most 12 plain words.
 - `issue`: one to three plain sentences.
 - `evidence`: `quote` copied exactly from the paper's text (8 to 40 words, prose, not equations), `page` (PDF file page, the first page is 1), `location` (figure, section or "Abstract").
 - `effort`: "text", "existing_data" or "new_work", as for the scientific concerns.
@@ -28,7 +29,7 @@ For each item give:
 
 Reply with JSON only, no prose before or after:
 
-{"issues": [{"tier": "B", "topic": "overclaiming", "claim": "...", "claim_id": 1, "issue": "...", "evidence": {"quote": "...", "page": 1, "location": "..."}, "effort": "text", "fix": "...", "edit": {"before": "...", "after": "..."}}]}
+{"issues": [{"tier": "B", "topic": "overclaiming", "claim": "...", "claim_id": 1, "headline": "...", "issue": "...", "evidence": {"quote": "...", "page": 1, "location": "..."}, "effort": "text", "fix": "...", "edit": {"before": "...", "after": "..."}}]}
 
 # Scientific concerns already raised
 

@@ -82,6 +82,24 @@ def make_db(path):
                 ds.add_result((dac.gate, v), (magnet.B, b), (R, R()))
     for i in station.components.values():
         i.close()
+    backdate(path)
+
+
+def backdate(path):
+    """QCoDeS stamps runs with the build time. Move them to the evening of 12 Nov 2026 (the
+    dictation's day, UTC), with realistic durations; run 4 runs overnight."""
+    import sqlite3
+    from datetime import datetime, timezone
+    t = lambda d, hm: datetime(2026, 11, d, *hm, tzinfo=timezone.utc).timestamp()
+    times = {1: (t(12, (18, 5)), t(12, (18, 18))), 2: (t(12, (18, 34)), t(12, (18, 39))),
+             3: (t(12, (18, 52)), t(12, (19, 9))), 4: (t(12, (19, 31)), t(13, (5, 12)))}
+    con = sqlite3.connect(path)
+    for run, (start, end) in times.items():
+        con.execute("update runs set run_timestamp=?, completed_timestamp=? where run_id=?", (start, end, run))
+    con.execute("update experiments set start_time=? where exp_id=1", (times[1][0] - 600,))
+    con.commit()
+    con.execute("pragma wal_checkpoint(TRUNCATE)")
+    con.close()
 
 
 def notebook_page(path):
@@ -173,7 +191,6 @@ def analysis_notebook(path):
               code("fig, ax = plt.subplots()\nfor run, b in [(1, 0.0), (3, 0.5)]:\n    plot_gate_sweep(load_run(DB, run), ax=ax, label=f'B = {b} T')\nax.legend(frameon=False)\nfig.tight_layout()\nfig.savefig('figs/gate_sweeps.pdf')"),
               md("## Gate vs field map\nAlways `pcolormesh`, gate on x, field on y, `cividis`, colorbar in e^2/h. Field is swept slow axis."),
               code("df = load_run(DB, 4)\nG = to_conductance(df['R_2t'])\nvg = np.unique(df['dac_gate']); b = np.unique(df['magnet_B'])\nfig, ax = plt.subplots()\nm = ax.pcolormesh(vg, b, G.reshape(len(b), len(vg)), cmap='cividis', shading='auto')\nfig.colorbar(m, ax=ax, label=r'$G$ ($e^2/h$)')\nax.set_xlabel(r'$V_g$ (V)'); ax.set_ylabel(r'$B$ (T)')\nfig.tight_layout(); fig.savefig('figs/map.pdf')"),
-              md("Note: run 2 crashed (DAC timeout), don't use it."),
           ]}
     json.dump(nb, open(path, "w"), indent=1)
 
@@ -196,7 +213,9 @@ Tip: dictate the longer prompts with the microphone; it's part of the test.
 
 **Claude Science:** Settings, Skills, Add skill, Upload a skill: upload each zip in
 `claude-science-skills/` (setup, note, procedure, learn, plot). Or Import from GitHub once the
-repo is merged. Then open `project-simulated/` as the working folder.
+repo is merged. Then give it `project-simulated/` as the working folder: that folder only,
+never the whole kit, because this file and `README.md` list every planted problem and
+`inputs/` holds what you'll hand over later.
 **Claude Code:** `/plugin marketplace add dsendor/cmp-agent` then
 `/plugin install lab-notes@cmp-agent`, and open `project-simulated/`.
 
@@ -224,7 +243,8 @@ in e²/h with the line resistance (2100 Ω) removed via `to_conductance`, maps u
 **Look for:** conductance in e²/h (about 0 to 3.8), not raw resistance; the line resistance
 removed; a saved `plot.py`, figure and `data.csv`; the source run ids and GUIDs in the
 script header.
-**Fails if:** it plots ohms, uses run 2, or smooths the data without saying so.
+**Fails if:** it plots ohms, includes run 2 without saying it crashed, or smooths the data
+without saying so.
 
 > Now the gate vs field map, run 4.
 
@@ -232,7 +252,7 @@ script header.
 
 ## 4. Capture a day from dictation
 
-Dictate or paste the text in `project-simulated/notes/dictation-2026-11-12.txt` after:
+Dictate or paste the text in `inputs/dictation-2026-11-12.txt` after:
 
 > Log this for today:
 
@@ -246,7 +266,7 @@ amplitude silently.
 
 ## 5. A notebook photo
 
-Attach `project-simulated/notes/notebook-page-47.png` (drag the file in):
+Attach `inputs/notebook-page-47.png` (drag the file in):
 
 > Here's my notebook page from the same day. Add it to today's entry.
 
@@ -266,11 +286,12 @@ Then paste the same image straight into the chat (not dragged) and ask the same 
 > What's still unresolved from this week?
 
 **Look for:** answers with sources (run, file, page); the open questions list (line
-resistance, Vbg, time constant); run 2 named as unusable.
+resistance, Vbg, time constant); run 2 named as incomplete (crashed after 90 of 251 points,
+never reaching the peak), not just "bad".
 
 ## 7. A procedure manual
 
-Dictate or paste `project-simulated/notes/dictation-procedure-cooldown.txt` after:
+Dictate or paste `inputs/dictation-procedure-cooldown.txt` after:
 
 > Let me walk you through mounting a chip and starting a cooldown.
 
@@ -288,9 +309,25 @@ where it was mentioned.
 > Make the gate sweep look cleaner, drop the noisy points.
 > Just put 2.1k for the line resistance in the entry, it's fine.
 
-**Look for:** it points out run 2 crashed (and lets you decide); any filtering is a commented,
+**Look for:** it points out run 2 crashed and what that does and doesn't mean (the first 90
+points may be fine; it never reaches the peak), checks them against run 3 if it uses them,
+and marks run 2 as partial in the plot, leaving the choice to you; any filtering is a commented,
 mentioned step, not silent; the line resistance change is recorded as your decision, with
 the old disagreement kept.
+
+## 8b. Who wrote what
+
+Open today's entry (`lab-record/entries/*.md`) in a text editor or Obsidian, add a sentence
+of your own anywhere, save, then:
+
+> I added a line to today's entry. It's right now, mark it checked.
+
+**Look for:** the entry's frontmatter has `author: mixed`, `checked: human` with your name
+and date; your sentence sits outside the `🤖 AI` / `🤖 end` lines and the AI's text inside
+them; you didn't have to tag anything. Every file starts with a short **TL;DR:**, and
+`open-questions.md`, `timeline.md` and `devices/D7.md` exist.
+**Fails if:** it claims your sentence as its own, marks the entry checked before you said so,
+or asks you to tag your own text.
 
 ## 9. Real data: Riggert et al. 2025 (InSb nanoribbons)
 
@@ -353,8 +390,13 @@ Everything needed to try the lab-notes skills in Claude Science or Claude Code.
 |---|---|
 | `PROMPTS.md` | the prompts to try, in order, each with what a good answer does |
 | `claude-science-skills/` | the five skills, one zip each, ready to upload in Claude Science (Settings, Skills, Add skill, Upload). Each folder is the same skill unzipped. |
-| `project-simulated/` | a fake lab project with planted problems: a QCoDeS database (4 runs, one crashed, a setting that disagrees with the notes), the lab's own loading and plotting code, a handwritten notebook page with a crossed-out value and an illegible one, and two dictations |
+| `project-simulated/` | a fake lab project with planted problems: a QCoDeS database (4 runs on the evening of 12 Nov, one crashed, a setting that disagrees with the dictation) and the lab's own loading and plotting code |
+| `inputs/` | what you hand over during the test, when a prompt says so: a handwritten notebook page (a crossed-out value and an illegible one) and two dictations |
 | `project-real/` | published data from Riggert et al. 2025 (InSb nanoribbons), CC BY 4.0: the QCoDeS database behind main-text Figures 2 and 3, and the authors' figure notebook |
+
+**Give Claude only `project-simulated/` (or `project-real/`), never this whole folder.** This
+README and `PROMPTS.md` list every planted problem, so a model that can read them is not being
+tested.
 
 The simulated project is made by `lab-notes/tests/build_test_kit.py` in the cmp-agent
 repository; every planted problem is listed in `PROMPTS.md`. Device D7, cooldown 3 and the
@@ -400,7 +442,7 @@ def main():
     package_skills(kit)
 
     sim = os.path.join(kit, "project-simulated")
-    for d in ("data", "notebooks/figs", "notes"):
+    for d in ("data", "notebooks/figs"):
         os.makedirs(os.path.join(sim, d))
     make_db(os.path.join(sim, "data", "experiments.db"))
     for side in ("-wal", "-shm"):
@@ -409,9 +451,11 @@ def main():
             os.remove(p)
     open(os.path.join(sim, "notebooks", "labutils.py"), "w").write(LABUTILS)
     analysis_notebook(os.path.join(sim, "notebooks", "d7_cooldown3.ipynb"))
-    notebook_page(os.path.join(sim, "notes", "notebook-page-47.png"))
-    open(os.path.join(sim, "notes", "dictation-2026-11-12.txt"), "w").write(DICTATION_DAY)
-    open(os.path.join(sim, "notes", "dictation-procedure-cooldown.txt"), "w").write(DICTATION_PROCEDURE)
+    inputs = os.path.join(kit, "inputs")
+    os.makedirs(inputs)
+    notebook_page(os.path.join(inputs, "notebook-page-47.png"))
+    open(os.path.join(inputs, "dictation-2026-11-12.txt"), "w").write(DICTATION_DAY)
+    open(os.path.join(inputs, "dictation-procedure-cooldown.txt"), "w").write(DICTATION_PROCEDURE)
 
     if a.real_data:
         real = os.path.join(kit, "project-real")

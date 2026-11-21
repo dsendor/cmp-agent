@@ -40,6 +40,24 @@ needed to read QCoDeS databases; the plugin reads them directly.
 Unreadable handwriting is marked `[illegible]` and asked about; it never guesses a digit or
 a unit.
 
+## Who wrote what, and keeping it short
+
+- **AI text is marked, by code.** Every file has `author` (ai, person or mixed) and
+  `checked` (ai until a person says it's right) properties. Where a file has both, the AI's
+  paragraphs sit between `🤖 AI <date>` and `🤖 end` lines. You never tag anything: the
+  plugin fingerprints what the AI writes, so your edits are noticed on their own.
+- **Git, if you want it:** the AI commits only its own writing, marked as AI, and leaves any
+  file you edited for you.
+- **TL;DR first** in every file, and entries stay under about 300 words; the detail is in the
+  sources, linked.
+
+## Browsing it
+
+Open `lab-record/` as a vault in [Obsidian](https://obsidian.md) (or any Markdown viewer).
+Entries have properties (date, device, runs, checked), and the plugin rebuilds a page per
+device, a `timeline.md` and an `open-questions.md` each time it writes. Search `tag:#ai` for
+everything a person hasn't checked yet.
+
 ## What it promises
 
 - **Originals are never changed.** Photos, dictation and files are copied into
@@ -51,7 +69,8 @@ a unit.
 - **Failures are kept.** Aborted runs (QCoDeS records the crash), dead devices and
   disagreements between your notes and the instrument are written down, not smoothed over.
 - **Read only on instruments.** It reads files your measurement software already saved. It
-  never controls an instrument.
+  never controls an instrument. Plots load a copy of a QCoDeS database, because QCoDeS can
+  rewrite a file it opens.
 - **AI-drafted, and it says so.** Each entry shows which items a person has confirmed. You
   confirm only what it flags, not every line.
 
@@ -78,7 +97,9 @@ the tested one.
 | `skills/` | the five commands; each folder carries copies of `scripts/` and `docs/record-format.md` so it works when imported on its own |
 | `scripts/record.py` | the record: set up, save originals, entry ids, index |
 | `scripts/qcodes_runs.py` | read a QCoDeS database read-only: list runs, show settings, diff two runs, flag aborted runs |
-| `scripts/verify.py` | check every fact against its source |
+| `scripts/verify.py` | check every fact against its source, and that each entry has a TL;DR and stays short |
+| `scripts/authorship.py` | who wrote what: fingerprints the AI's paragraphs, marks AI text, records a person's check, commits only the AI's writing |
+| `hooks/hooks.json` | in Claude Code, runs `authorship.py` around the AI's own edits in `lab-record/` |
 | `docs/record-format.md` | the record's format, for people and other tools |
 | `tests/run_tests.py` | end-to-end test on a simulated database (`python3 lab-notes/tests/run_tests.py`) |
 | `tests/sync_skills.py` | refreshes those copies after a script changes (`--check` fails if they've drifted; the tests run it) |
