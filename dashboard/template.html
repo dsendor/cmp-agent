@@ -309,7 +309,7 @@ const LANES = [["all", "All"], ["science", "Science"], ["presentation", "Present
 const VIEWS = [["overview", "Start here"], ["triage", "By importance"], ["walk", "In page order"]];
 const IMPORTANCE = { A: "Must address", B: "Should address", C: "Minor" };
 const EFFORT = { text: "Text edit", existing_data: "Reanalysis", new_work: "New experiment" };
-const TAGS = [["lane", "Lane (in the All view)"], ["topic", "Topic"], ["runs", "Runs that raised it"], ["quote", "Quote check, when it passed"], ["referee", "Referee matches (demo)"]];
+const TAGS = [["lane", "Lane (in the All view)"], ["topic", "Topic"], ["runs", "Runs that raised it"], ["quote", "Quote check, when it passed"], ["referee", "Referee matches (demo or inferred)"]];
 const EFFORT_ORDER = { text: 0, existing_data: 1, new_work: 2 };
 const TOPIC = {
   samples: "Samples and devices", null_control: "Null control", apparatus: "Apparatus artifacts", heating: "Heating",
@@ -384,14 +384,20 @@ if (R.demo && R.demo.referee_concerns) {
   const rc = R.demo.referee_concerns;
   const yes = rc.filter(c => c.raised === "yes").length, partly = rc.filter(c => c.raised === "partly").length;
   const missed = rc.filter(c => c.raised === "no");
+  // inferred: concerns inferred by AI from what changed between versions, not read from referee reports
+  const inf = !!R.demo.inferred;
   const box = el("div", { class: "demo" },
-    el("b", { text: "Demo only. " }),
-    (R.demo.note || "") + " The journal's referees raised " + rc.length + " concerns about this version; this review raised " +
-    yes + " of them and " + partly + " in part. Items a referee raised carry a purple tag.");
-  if (missed.length) {
+    el("b", { text: inf ? "Inferred referee feedback (AI-generated). " : "Demo only. " }),
+    (R.demo.note || "") + (inf
+      ? " From what changed between versions, the AI inferred " + rc.length + " concerns the referees most likely raised; " +
+        yes + " of them bear on items in this review and " + partly + " in part. Those items carry a purple tag. No referee report was seen."
+      : " The journal's referees raised " + rc.length + " concerns about this version; this review raised " +
+        yes + " of them and " + partly + " in part. Items a referee raised carry a purple tag."));
+  const listed = inf ? rc : missed;
+  if (listed.length) {
     const ul = el("ul");
-    for (const c of missed) ul.append(el("li", { text: c.id + " (" + c.severity + "): " + c.summary }));
-    box.append(el("details", {}, el("summary", { text: "Referee concerns this review missed (" + missed.length + ")" }), ul));
+    for (const c of listed) ul.append(el("li", { text: c.id + " (" + c.severity + (inf && c.raised === "no" ? ", no matching item" : "") + "): " + c.summary }));
+    box.append(el("details", {}, el("summary", { text: inf ? "Inferred referee concerns (" + rc.length + ")" : "Referee concerns this review missed (" + missed.length + ")" }), ul));
   }
   $("demo").append(box);
 }
@@ -562,8 +568,8 @@ function card(i) {
   const refs = prefs.referee ? refOf[i.id] || [] : [];
   if (refs.length) {
     const full = refs.filter(r => r.raised === "yes").map(r => r.id), part = refs.filter(r => r.raised !== "yes").map(r => r.id);
-    tags.append(el("span", { class: "tag ref", title: "Demo only. " + refs.map(r => r.id + ": " + r.summary).join("  "),
-      text: "referees: " + [full.length ? "raised " + full.join(", ") : null, part.length ? "partly " + part.join(", ") : null].filter(Boolean).join("; ") }));
+    tags.append(el("span", { class: "tag ref", title: (R.demo.inferred ? "Inferred by AI from the revision, not from referee reports. " : "Demo only. ") + refs.map(r => r.id + ": " + r.summary).join("  "),
+      text: (R.demo.inferred ? "inferred referees: " : "referees: ") + [full.length ? "raised " + full.join(", ") : null, part.length ? "partly " + part.join(", ") : null].filter(Boolean).join("; ") }));
   }
   c.append(tags);
 
