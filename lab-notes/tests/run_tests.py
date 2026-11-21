@@ -117,6 +117,7 @@ def main():
         assert idx["devices"] == {"D7": [eid]} and len(idx["open_questions"]) == 1
 
         authorship_tests(proj, eid)
+        rocrate_tests(proj)
         print("all lab-notes tests passed")
     finally:
         shutil.rmtree(proj, ignore_errors=True)
@@ -202,6 +203,38 @@ def authorship_tests(proj, eid):
     open(page, "a").write("\nMy own note on the timeline.\n")
     out = run(rec, "index", "lab-record", cwd=proj).stdout
     assert "not overwritten" in out and "My own note" in open(page).read(), out
+
+
+def rocrate_tests(proj):
+    rc = os.path.join(SCRIPTS, "rocrate.py")
+    fig = os.path.join(proj, "lab-record", "figures", "2026-11-12-d7-sweeps")
+    os.makedirs(fig)
+    open(os.path.join(fig, "figure.png"), "wb").write(b"\x89PNG not really")
+    open(os.path.join(fig, "plot.py"), "w").write("# runs 1 and 3\n")
+    open(os.path.join(fig, "data.csv"), "w").write("run,V_g,G\n1,-2,0.01\n")
+    json.dump({"title": "D7 gate sweeps", "corrections": ["R_LINE subtracted"],
+               "sources": [{"type": "qcodes", "path": "data/experiments.db", "run_id": 1},
+                           {"type": "qcodes", "path": "data/experiments.db", "run_id": 3}]},
+              open(os.path.join(fig, "figure.json"), "w"))
+    before = open(os.path.join(proj, "data", "experiments.db"), "rb").read()
+    out = json.loads(run(rc, "build", "lab-record", "paper1", fig, "--label", fig + "=Fig. 1",
+                         "--title", "Test deposit", cwd=proj).stdout)
+    assert out["problems"] == [] and out["figures"] == 1 and out["runs_not_shown"] == 1, out
+    crate = os.path.join(proj, "lab-record", "deposits", "paper1")
+    doc = json.load(open(os.path.join(crate, "ro-crate-metadata.json")))
+    ents = {e["@id"]: e for e in doc["@graph"]}
+    act = [e for e in doc["@graph"] if e["@type"] == "CreateAction"][0]
+    assert {o["@id"] for o in act["object"]} == {"#experiments.db-run-1", "#experiments.db-run-3"}, act
+    assert act["instrument"]["@id"].endswith("plot.py") and act["name"] == "Made Fig. 1"
+    assert "aborted" in ents["#experiments.db-run-2"]["description"]
+    assert "not used by any figure" in ents["#experiments.db-run-2"]["description"]
+    readme = open(os.path.join(crate, "README.md")).read()
+    assert "Measured but not shown" in readme and "run 2" in readme and "run 1:" not in readme, readme
+    assert open(os.path.join(proj, "data", "experiments.db"), "rb").read() == before, "original database changed"
+    assert run(rc, "check", crate, cwd=proj).returncode == 0
+    assert run(rc, "build", "lab-record", "paper1", fig, cwd=proj, ok=False).returncode != 0, "overwrote a crate"
+    os.remove(os.path.join(crate, "README.md"))
+    assert run(rc, "check", crate, cwd=proj, ok=False).returncode == 1, "missing file not caught"
 
 
 if __name__ == "__main__":

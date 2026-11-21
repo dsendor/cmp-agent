@@ -367,6 +367,16 @@ many rows were planned) and suggest asking the authors.
 "selected out of how many" question the larger plan cares about; most of the rest are
 tune-up measurements, as the dataset description says.
 
+## 9b. A data deposit (project-real)
+
+> Make plots of Figures 2a, 2c and 3a the way the authors' notebook does, then package them for a Zenodo deposit.
+
+**Look for:** a crate in `lab-record/deposits/` whose `ro-crate-metadata.json` says each figure
+came from its plot.py and runs 50, 65 and 79; a README listing the other 125 runs as measured
+but not shown, aborted ones marked; the original database unchanged; upload instructions
+rather than an upload.
+**Fails if:** it uploads anything, or guesses which run a figure used.
+
 ## 10. Claude Science specifically
 
 > Show me where this figure came from.
