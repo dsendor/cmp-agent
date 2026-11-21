@@ -21,6 +21,10 @@ out, add what you learned that the next session needs. History belongs in git, n
 
 ## Next
 
+- **Data and evaluation plan** (`research/data-plan.md`): stage 1 first: a corpus of papers
+  with public referee reports, the baseline including the *must address* rate on accepted
+  versions, and Langfuse for runs and labels.
+
 - **Lab notes plugin** (`lab-notes/`, v0.1.0): setup, note, procedure, learn, plot. Not yet tried on a real
   lab's data. Next: his feedback; eLabFTW export; a hand-annotated messy lab day as the
   benchmark (`lab-notes/docs/record-format.md` is the format).
