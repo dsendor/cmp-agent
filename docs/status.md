@@ -19,6 +19,13 @@ out, add what you learned that the next session needs. History belongs in git, n
   papers in `research/eval/referee/` whose reports are public, then collect public records
   in `research/eval/revisions/`.
 
+- **Stage 1 corpus** (`research/corpus/`): built and checked against `EVALUATION.md` (recall
+  reproduces). The reserve is split into dev2 and test2 (27 each, `split.py --split-reserve`);
+  test2 is held out for the new metrics. `eval/recheck_pending.py` rechecks the pending pool
+  papers for a peer review file. `eval/jclub/selections.json` lists the Journal Club's last 12
+  months (links and DOIs only: the commentaries carry no licence); 12 papers are in scope.
+  Next: Langfuse in the harness, then the stage 1 baseline on dev2.
+
 ## Next
 
 - **Lab notes plugin** (`lab-notes/`, v0.1.0): setup, note, procedure, learn, plot. Not yet tried on a real

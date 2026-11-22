@@ -5,6 +5,7 @@
     python3 research/eval/split.py --write             # also write referee/split.json
     python3 research/eval/split.py --borderline        # let borderline-scope papers into the draw
     python3 research/eval/split.py --keep --write      # keep dev and test, new papers to the reserve
+    python3 research/eval/split.py --split-reserve     # reserve into dev2 and test2 (data-plan.md), once
 
 Dev is the 16 judged papers plus about 14 post-cutoff papers drawn at random; test is about 50
 post-cutoff papers drawn at random from the rest; every other post-cutoff paper is the reserve.
@@ -16,6 +17,7 @@ sorted arXiv ids with a fixed seed, so it is reproducible. No concerns are extra
 import argparse
 import json
 import random
+import sys
 from collections import Counter
 from pathlib import Path
 
@@ -31,7 +33,10 @@ def main():
     ap.add_argument("--borderline", action="store_true")
     ap.add_argument("--write", action="store_true")
     ap.add_argument("--keep", action="store_true", help="keep the dev and test in split.json; add new post-cutoff papers to the reserve")
+    ap.add_argument("--split-reserve", action="store_true", help="split the reserve into dev2 and test2, once, and write split.json and api/sets.json")
     a = ap.parse_args()
+    if a.split_reserve:
+        return split_reserve()
     pool = json.loads((REF / "pool.json").read_text())
     sets = json.loads((HERE / "api" / "sets.json").read_text())
     judged = sets["referee16"]
@@ -62,7 +67,8 @@ def main():
     if a.keep:
         old = json.loads((REF / "split.json").read_text())
         dev_extra, test = old["dev_new"], old["test"]
-        reserve = [p for p in order if p not in set(dev_extra) | set(test)]
+        fixed = set(old.get("dev2", [])) | set(old.get("test2", []))   # split once by --split-reserve
+        reserve = [p for p in order if p not in set(dev_extra) | set(test) | fixed]
         print(f"Kept dev and test from split.json; reserve {len(old['reserve'])} -> {len(reserve)}")
     short = max(0, need - len(post))
     print(f"\nProposed split (seed {SEED}): dev {len(judged)} + {len(dev_extra)} = {len(judged) + len(dev_extra)}, "
@@ -76,8 +82,32 @@ def main():
                "test": sorted(test), "reserve": sorted(reserve),
                "note": "Dev and test as approved by David (U5); papers found later go to the reserve."
                if a.keep else "Proposed; not final until David approves. No concerns extracted."}
+        if a.keep:   # keep dev2, test2 and their note
+            out.update({k: old[k] for k in ("dev2", "test2", "note2") if k in old})
         (REF / "split.json").write_text(json.dumps(out, indent=1))
         print("wrote referee/split.json")
+
+
+def split_reserve():
+    """Split the reserve in half, by the same seed: dev2 develops the new metrics of
+    research/data-plan.md (the must-address rate on accepted versions, revision mode, the
+    inference test), test2 measures them once. Runs once; papers found later go to the reserve."""
+    split = json.loads((REF / "split.json").read_text())
+    if split.get("dev2") or split.get("test2"):
+        sys.exit("split.json already has dev2 and test2; they are fixed")
+    order = sorted(split["reserve"])
+    random.Random(SEED + 2).shuffle(order)
+    half = len(order) // 2
+    split["dev2"], split["test2"] = sorted(order[:half]), sorted(order[half:])
+    split["reserve"] = []
+    split["note2"] = (f"dev2 and test2: the reserve of {len(order)} split in half with seed {SEED} + 2 "
+                      "(split.py --split-reserve), for the new metrics in research/data-plan.md. test2 is held out.")
+    (REF / "split.json").write_text(json.dumps(split, indent=1))
+    sets_file = HERE / "api" / "sets.json"
+    sets = json.loads(sets_file.read_text())
+    sets["dev2"], sets["test2"] = split["dev2"], split["test2"]
+    sets_file.write_text(json.dumps(sets, indent=1))
+    print(f"dev2 {len(split['dev2'])}, test2 {len(split['test2'])}; wrote referee/split.json and api/sets.json")
 
 
 if __name__ == "__main__":

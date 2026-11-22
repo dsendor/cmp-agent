@@ -31,6 +31,7 @@ plain prompt 46%. Assistant runs are paused. From 2026-10-27 the work follows a 
 |---|---|
 | `writer-mvp-plan.md` | The plan for the writer-mode MVP: six stages, three lanes, build order. |
 | The plugin | The Claude Code plugin built from that plan (reviewer v1.0) is the root of this repository. Sample dashboard in `eval/sample/`. |
+| `corpus/` | The research corpus: one DuckDB database built from everything below (papers, sets, referee concerns, reviews, judge verdicts, revision records, Journal Club selections). `corpus/README.md`. |
 | `eval.md` | **Start here.** Every experiment (11 of them), its result and verdict, what worked, what didn't and why, and the eval plan with its Step 0 checks. |
 | `library/lookalikes.yaml` | The library: ordinary effects that can produce a claimed topological signal, each with mechanism, discrete tests, what fuller data would show, and verbatim quotes from sources with URLs. |
 | `skill/SKILL.md` | The workflow, seven steps from claims to report. Plain markdown, usable as a prompt in any model. |
