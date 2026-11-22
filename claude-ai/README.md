@@ -11,18 +11,20 @@ the ordinary Claude app or website. Everything it produces is AI-generated.
    Don't unzip it.
 2. **Turn on file creation.** In Claude, open **Settings > Capabilities** and switch on
    **Create and edit files**. The skill needs it to run its scripts and make the dashboard. On a
-   Team or Enterprise plan, an admin turns this on, along with **Skills**, in Organization
+   Team or Enterprise plan, an admin turns this on, and allows custom plugins, in Organization
    settings.
-3. **Upload the skill.** Open **Customize > Skills**, click **+**, then **Create skill**, then
-   **Upload a skill**, and choose the zip. It is private to your account.
+3. **Upload it as a plugin.** Go to the **Plugins** page (from **Settings > Plugins**, click
+   **Browse plugins**). Click **Add** at the top right, then **Upload plugin**, and choose the
+   zip. A preview shows **referee-preview** and its description; click **Upload**. It appears
+   under **Your plugins** as **Referee preview**, private to your account.
 
-If you don't see Skills or the upload option, your plan or organization may not include
-custom skills yet.
+If you don't see Plugins or the upload option, your plan or organization may not allow custom
+plugins yet.
 
 ## Use
 
-Start a new chat, attach your paper's PDF (and the supplement, if it is a separate file), and
-paste:
+Start a new chat (or click **Try in chat** on the plugin's page), attach your paper's PDF (and
+the supplement, if it is a separate file), and paste:
 
 > Run a referee preview on this paper. The target journal is ___ (or: no target journal).
 
