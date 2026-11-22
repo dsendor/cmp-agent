@@ -1,0 +1,106 @@
+{
+ "schema": 1,
+ "note": "A made-up example for tests and for showing the dashboard. The ideas, estimates and prior-work notes are invented; the arXiv papers are real but were picked by hand.",
+ "created": "2026-11-21",
+ "researcher": {
+  "stage": "postdoc",
+  "horizon_months": 24,
+  "goal": "One strong first-author result before applying for faculty jobs",
+  "setup": "Dilution fridge with a scanning nanoSQUID; access to a shared stacking lab"
+ },
+ "utility": "total",
+ "ideas": [
+  {
+   "id": "thermal-mag",
+   "title": "Local thermal transport in magic-angle graphene",
+   "summary": "Image heat flow near the magic angle with a nanoSQUID thermometer, to separate electronic and phonon contributions locally.",
+   "heilmeier": {
+    "what": "Map where heat is carried by electrons versus phonons in twisted bilayer graphene near 1.1 degrees.",
+    "today": "Global thermal conductance measurements, averaged over twist-angle disorder.",
+    "new": "Local thermometry resolves twist-angle domains.",
+    "who_cares": "Groups arguing about strange-metal transport and Planckian dissipation.",
+    "risks": "Thermometer sensitivity at the needed temperature; sample quality.",
+    "cost": "Existing setup; two to three devices.",
+    "time": "12 to 20 months",
+    "midterm": "Thermal image of a single device at 1 K with domain contrast.",
+    "final": "Temperature and density dependence of the local electronic share."
+   },
+   "estimates": {
+    "p_success": {"low": 0.2, "best": 0.35, "high": 0.55, "by": "researcher"},
+    "impact": {"low": 6, "best": 8, "high": 9, "by": "researcher"},
+    "fallback": {"low": 2, "best": 3, "high": 4, "by": "researcher"},
+    "months": {"low": 12, "best": 16, "high": 22, "by": "researcher"}
+   },
+   "assumptions": [
+    {"text": "The electronic contribution varies between twist-angle domains by more than the thermometer noise.", "kind": "nature", "risk": 4, "readout_months": 6, "scariest": true},
+    {"text": "The nanoSQUID thermometer keeps its sensitivity in the field range needed.", "kind": "capability", "risk": 3, "readout_months": 2},
+    {"text": "We can make a device within 0.05 degrees of the magic angle.", "kind": "capability", "risk": 3, "readout_months": 4}
+   ],
+   "prior_work": {
+    "searched": "2026-11-21",
+    "sources": ["arXiv API"],
+    "queries": ["(abs:\"magic-angle\" OR abs:\"twisted bilayer\") AND abs:\"thermal conductance\"", "abs:nanoSQUID AND abs:thermometry AND abs:graphene"],
+    "closest": [
+     {"arxiv": "2301.00323", "title": "Magic angle in thermal conductivity of twisted bilayer graphene", "year": 2023, "similarity": 6, "overlap": "Thermal conductivity versus twist angle.", "difference": "Theory of the phonon part, not a local measurement."}
+    ],
+    "counts": {"query": "(abs:\"magic-angle\" OR abs:\"twisted bilayer\") AND abs:thermal", "per_year": {"2019": 20, "2020": 31, "2021": 38, "2022": 41, "2023": 44, "2024": 40, "2025": 43, "2026": 37}, "note": "Invented numbers for the example."}
+   },
+   "cheapest_test": {"text": "Image one existing device at 1 K for two weeks and look for domain contrast.", "resolves": "p_success", "months": 1},
+   "inversion": "A calibrated local thermometer on a 2D device is a methods paper on its own."
+  },
+  {
+   "id": "alter-noise",
+   "title": "Noise thermometry of an altermagnet thin film",
+   "summary": "Use Johnson noise to look for the spin-split transport an altermagnet should show.",
+   "estimates": {
+    "p_success": {"low": 0.3, "best": 0.5, "high": 0.7, "by": "researcher"},
+    "impact": {"low": 4, "best": 6, "high": 8, "by": "researcher"},
+    "fallback": {"low": 1, "best": 2, "high": 3, "by": "researcher"},
+    "months": {"low": 8, "best": 12, "high": 18, "by": "researcher"}
+   },
+   "assumptions": [
+    {"text": "Films with clean enough transport are available from a collaborator.", "kind": "capability", "risk": 3, "readout_months": 3},
+    {"text": "The spin-split signal is large enough to see in noise at our bandwidth.", "kind": "nature", "risk": 4, "readout_months": 10, "scariest": true}
+   ],
+   "cheapest_test": {"text": "Estimate the signal from published band parameters before ordering films.", "resolves": "p_success", "months": 0.5},
+   "inversion": "A noise setup for thin films is reusable for the next material."
+  },
+  {
+   "id": "stack-auto",
+   "title": "Automated stacking with in-line twist-angle check",
+   "summary": "Add Raman checks to the stacking workflow so bad stacks are caught before they are fabricated.",
+   "estimates": {
+    "p_success": {"low": 0.6, "best": 0.75, "high": 0.9, "by": "researcher"},
+    "impact": {"low": 3, "best": 4, "high": 6, "by": "researcher"},
+    "fallback": {"low": 2, "best": 3, "high": 3, "by": "researcher"},
+    "months": {"low": 4, "best": 6, "high": 9, "by": "model"}
+   },
+   "assumptions": [
+    {"text": "Raman on the stamp predicts twist angle well enough to reject bad stacks.", "kind": "capability", "risk": 2, "readout_months": 2}
+   ],
+   "inversion": "Even if it fails, the lab gets a log of every stack."
+  },
+  {
+   "id": "trilayer-sc",
+   "title": "Superconductivity in a new twisted trilayer stacking",
+   "summary": "Look for superconductivity in a trilayer stacking no one has measured.",
+   "estimates": {
+    "p_success": {"low": 0.05, "best": 0.12, "high": 0.3, "by": "researcher"},
+    "impact": {"low": 7, "best": 9, "high": 10, "by": "researcher"},
+    "fallback": {"low": 1, "best": 2, "high": 3, "by": "researcher"},
+    "months": {"low": 14, "best": 20, "high": 30, "by": "researcher"}
+   },
+   "assumptions": [
+    {"text": "This stacking has flat bands near charge neutrality.", "kind": "nature", "risk": 3, "readout_months": 1},
+    {"text": "Superconductivity appears at all.", "kind": "nature", "risk": 5, "readout_months": 20, "scariest": true},
+    {"text": "We can control three twist angles at once.", "kind": "capability", "risk": 4, "readout_months": 8},
+    {"text": "Twist disorder is low enough over a device.", "kind": "capability", "risk": 4, "readout_months": 10}
+   ],
+   "inversion": "Transport on a new stacking is publishable even without superconductivity, at lower impact."
+  }
+ ],
+ "pi_questions": [
+  "Would the lab support 12 months on the thermal project if the one-month test shows domain contrast?",
+  "Is the altermagnet film collaboration real enough to plan around?"
+ ]
+}
