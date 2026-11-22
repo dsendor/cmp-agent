@@ -121,6 +121,53 @@ known. Use it to measure the reviewer, test the inference and learn what "enough
 
 The 73 papers in `eval/referee/` are the start. Target: about 200 condensed matter papers.
 
+A further source, for selection rather than concerns: the [Journal Club for Condensed Matter
+Physics](https://www.condmatjclub.org/). Each month, experts recommend one or two arXiv papers
+with a short commentary, each with a DOI. It is small (a few papers a month) and the
+commentaries are about significance more than flaws. That makes it useful in two ways:
+- a set of papers the field rated important, to check that the reviewer's strengths and
+  novelty lane recognise them, and that it does not bury them in *must address* items;
+- a source of expert context on where a paper sits, against which to compare the novelty
+  lane's positioning.
+
+It is not a source of referee concerns. Use the commentaries by link and short quotation; check
+their licence before storing any text.
+
+### Held-out sets
+
+`eval/referee/split.json` already fixes the sets (seed 20261028). By publication date, every
+test and reserve paper and every new dev paper appeared after the reviewer model's training
+cutoff (June 2026), so the model cannot have seen their reports or accepted versions:
+
+| Set | Papers | Published | Use |
+|---|---|---|---|
+| Dev | 30 (16 judged earlier, 14 new) | 14 of them from July 2026 | Develop and tune every prompt. |
+| Test | 22 | 21 from July 2026 | Frozen. Run once per engine version that changes the reviewer, never to tune. |
+| Reserve | 54 | all from July 2026 | Split once, by the same seed, into **dev-2** (27) and **test-2** (27). |
+| Pending | 94 candidates | | Vet, then add to the reserve. |
+
+The new tasks need their own held-out papers, because tuning tiers or the inference on the
+test set would spend it. Use dev-2 to develop the A rate on accepted versions, revision mode
+and the inference test, and test-2 to measure them once. The original test set stays for
+recall, as `EVALUATION.md` promised. Arxiv v1 dates are mostly before the cutoff, but that
+matters less: the model may know a preprint, but not the referees' reports on it.
+
+### Physicists
+
+Physicist time is scarce and must be in the physicist's own field, so spend it where AI
+judges are weakest, on a few papers in their subfield (the test set spans magnetism,
+superconductivity, moiré and 2D materials, ferroelectrics, optics and correlated electrons):
+1. **Tier A items on accepted versions** (the "enough" metric). For two or three papers, does
+   each item show the referees missed something, or that the reviewer is too strict? About
+   30 items settles the open question below.
+2. **Judge check.** On the same papers, rate whether each referee concern was raised, to check
+   the AI judge where it matters.
+3. **Inference check.** Do the inferred referee requests match what an expert reads from the
+   changes?
+
+About two to three hours per paper. Annotation queues in Langfuse hold the items and record
+the answers; each physicist needs a Langfuse seat.
+
 **Steps:**
 1. **Assemble triples:** arXiv v1, reports with responses, and the accepted version (the
    last arXiv version, or the open-access journal version). Load the corpus. Keep the
@@ -222,6 +269,23 @@ public.
 - **Regression set:** contributed items the reviewer got wrong (with the author's consent,
   generalized) become test cases that each engine version must not repeat.
 
+## Setup
+
+**The maintainer:**
+- [ ] A Langfuse Cloud account (Hobby, free), with an organization and a project
+      `referee-preview-public`. Pick the data region once; it cannot move.
+- [ ] Project API keys in the environment of the machine that runs the harness:
+      `LANGFUSE_PUBLIC_KEY`, `LANGFUSE_SECRET_KEY`, `LANGFUSE_BASE_URL`.
+- [ ] Credit on the judge model's API (Gemini was blocked by depleted prepaid credit on
+      2026-10-28), and a spending cap on each provider.
+- [ ] An OpenAlex API key (required since February 2026) for stage 2 matching.
+- [ ] A Hugging Face account or organization for the public corpus snapshots (stage 2).
+- [ ] When physicists join: Langfuse seats for them. Hobby has two users and 30 days of
+      data; move to a paid plan then, or when 50k units a month are not enough.
+
+**The agent:** everything in "Order of work" below, starting with the corpus and the Langfuse
+client in the harness.
+
 ## Order of work
 
 1. Corpus schema in DuckDB, a loader for `eval/referee/` and the revision record, and a
@@ -237,6 +301,6 @@ public.
 - Which target journal does "enough" calibrate to when the author names none? Probably the
   journal the paper ended up in, for corpus papers, and a stated default for users.
 - Are physicist labels needed on the A rate on accepted versions, to tell "referees missed it"
-  from "too strict"? A sample of 30 items probably settles it.
+  from "too strict"? A sample of 30 items probably settles it (see Physicists).
 - Does revision mode need the old version and the response letter, or can it work from the
   new version alone?
