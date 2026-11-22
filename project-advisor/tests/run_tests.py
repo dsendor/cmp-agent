@@ -81,6 +81,20 @@ def main():
         check("AI-drafted" in page and "not judged by the model" in page, "dashboard labels AI work")
         check("\u2014" not in page, "no em dashes on the page")
         check("novel" not in page.lower(), "the page never calls an idea novel")
+
+        pk = os.path.join(tmp, "packet")
+        p = subprocess.run([sys.executable, os.path.join(os.path.dirname(HERE), "eval", "packet.py"),
+                            os.path.join(HERE, "example", "baseline.md"), tmp, pk],
+                           capture_output=True, text=True)
+        check(p.returncode == 0, "blind packet builds")
+        key = json.load(open(os.path.join(pk, "key.json")))
+        check(sorted(key.values()) == ["advisor", "plain prompt"], "key names one page per condition")
+        pages = {k: open(os.path.join(pk, k + ".html")).read() for k in "AB"}
+        giveaways = ["advisor", "plugin", "ai-drafted", "pareto", "<svg", "decide.py", "claude"]
+        check(not [g for g in giveaways for t in pages.values() if g in t.lower()],
+              "neither page names the tool or carries its labels or chart")
+        papers = open(os.path.join(pk, "papers.md")).read()
+        check("2301.00323" in papers and "2502.01234" in papers, "paper list has every arXiv id cited")
     finally:
         shutil.rmtree(tmp)
 

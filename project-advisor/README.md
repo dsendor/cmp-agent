@@ -73,7 +73,8 @@ Not measured yet. The plan, before anyone relies on it: researchers run it and a
 and say which sharpened their thinking, which prior-work hits were real and new to them, and
 how long each took. Then, three to six months later: what did they pick, and did the
 cheapest test happen? The referee-preview plugin's lookalike library lost to a plain prompt
-(`research/README.md`), so the baseline is a real bar.
+(`research/README.md`), so the baseline is a real bar. The protocol, forms and the script that makes the blind pages
+are in [`eval/`](eval/).
 
 ## Tests
 
