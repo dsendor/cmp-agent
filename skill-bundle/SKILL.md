@@ -41,10 +41,18 @@ If it exits 2 (no `pdftotext`), go on: quotes will show as unchecked.
 Read `<skill>/engine/science.md` and follow it on the paper, reading the whole PDF (and the
 supplement). Write the review to `review/science-review.md`.
 
-When the user asks for a thorough review, write two more reviews to `review/runs/r2.md` and
-`r3.md`. Start each from the paper again, not from the earlier review. Then merge the three
-with `<skill>/engine/merge.md` into `science-review.md`. The plugin runs these
-independently; here they are not, so say so in the report.
+**Thorough review, only when the user asks for one:** one more pass, a hunt for what the review
+missed. You cannot run independent reviews here, since every pass shares this conversation. So
+don't write a second full review: it would mostly repeat the first.
+- Go through the paper again with `science.md`'s claims, required-evidence, hidden-assumption
+  and figures-against-text steps and its condensed matter checklist, item by item. For each,
+  ask whether a referee would raise a concern that `science-review.md` does not already have.
+- Do not repeat, reword or re-rank concerns already there.
+- Add each new concern under its heading (A, B or C), numbered after the last concern, written
+  like the others, and ending with the line `Raised by: gap`. If you find none, add nothing.
+
+This pass is unmeasured. The Claude Code plugin's three independent runs, merged, are what the
+evaluation measured.
 
 Then follow `<skill>/engine/structure.md` on `science-review.md` and the paper, and write
 `review/science.json`. The strengths come from the "Potential reasons for acceptance"
@@ -72,7 +80,7 @@ python3 <skill>/scripts/check_evidence.py review/review.json review/paper.pages.
 python3 <skill>/scripts/build_dashboard.py review
 ```
 
-For a thorough review, use `--mode exhaustive --runs 3`. Fix any problem `assemble.py` reports
+Use these flags for a thorough review too: it is still one review, plus a gap pass. Fix any problem `assemble.py` reports
 (usually a lane file that is not valid JSON) and rerun. Skip `check_evidence.py` when
 `paper.pages.json` does not exist.
 
@@ -83,8 +91,9 @@ the PDF from arXiv, so the file works on its own. For any other paper, also copy
 ## 5. Report
 
 Briefly:
-- the counts: science items by tier, presentation items (with the novelty items), copy edits,
-  and how many quotes were found in the paper;
+- the counts: science items by tier (and, for a thorough review, how many the gap pass added),
+  presentation items (with the novelty items), copy edits, and how many quotes were found in
+  the paper;
 - the novelty lane's overall grade (precedent exists, extends close prior work, or no
   precedent found in the searches, with how many searches), the closest prior paper, and any
   priority claim in conflict with prior work;

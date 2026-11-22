@@ -28,7 +28,8 @@ the supplement, if it is a separate file), and paste:
 
 > Run a referee preview on this paper. The target journal is ___ (or: no target journal).
 
-For a more thorough review (slower, uses more of your plan), add: "Make it a thorough review."
+For a more thorough review, add: "Make it a thorough review." Claude then reads the paper once
+more, looking only for what the first review missed. It is slower, and uses more of your plan.
 
 Claude reads the paper several times, so a review takes a while and uses your plan's usage.
 When it finishes, download **dashboard.html** and open it in your browser. If your paper is not
