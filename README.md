@@ -42,6 +42,12 @@ In Claude Code:
 
 To try it for one session from a clone, without installing: `claude --plugin-dir <path to this repository>`.
 
+**Without Claude Code (claude.ai).** A basic version runs as a claude.ai skill: one Claude
+does every lane in turn, and you download the dashboard. Install steps, written for someone
+who has never installed a skill: [claude-ai/README.md](claude-ai/README.md). It is untested
+in claude.ai so far; Claude Code is the tested route. After changing `engine/`, the scripts or
+the dashboard template, rebuild the committed zip with `bash scripts/package_skill.sh`.
+
 Needs Python 3. `pdftotext` (poppler) is optional; without it, quotes are not checked against
 the paper. The review is written for Claude Opus; other models work but are not measured.
 
@@ -59,17 +65,24 @@ The review runs three independent scientific reviews in parallel and merges them
 25 minutes on your Claude Code plan); say "quick" for one review. It writes a folder
 `referee-preview/<paper>-<date>/` next to the paper and opens `dashboard.html`.
 
-It looks at the paper in three lanes:
+It looks at the paper in four lanes:
 
 - **Science:** does the evidence support the conclusions (controls, samples, artifacts,
   heating, calibration, fits, alternative explanations, theory).
 - **Presentation:** overclaiming, unclear claims, missing context, figures and captions.
+- **Novelty:** checks the paper's "first" and "has not been shown" statements against its own
+  references and an arXiv search, lists the closest prior papers, and grades each claim:
+  *precedent exists*, *extends close prior work*, or *no precedent found in the searches*. It
+  needs network access.
 - **Copy:** numbers that disagree between text and figures, notation, numbering, language.
 
 In the dashboard:
 
-- **Triage** sorts by importance: *must address* (the conclusion does not follow without it),
-  *should address* (a claim is weaker), *minor*. **Walk through** follows the paper page by
+- **Start here** opens with what the paper does well, the major points, where the paper sits
+  in the literature, and each claim with two routes: narrow the wording, or support it as
+  written.
+- **By importance** sorts by *must address* (the conclusion does not follow without it),
+  *should address* (a claim is weaker), *minor*. **In page order** follows the paper page by
   page, with the PDF beside it (Show PDF).
 - Each objection is linked to the main claim it affects; click a claim to see only its
   objections. Importance buttons show or hide each level, and the Tags menu sets which labels

@@ -18,9 +18,12 @@ declare):
     { "path": "agreed",           "read": "view", "write": "admin" }
   ] },
   "user": { "scopes": ["profile"] },
-  "comments": { "composer_only": true }
+  "comments": { "composer_only": true },
+  "sample": {}
 }
 ```
+
+`sample` lets the page's Ask Claude chat call Claude as the viewer (`docs/dashboard.md`).
 
 ## Data
 
