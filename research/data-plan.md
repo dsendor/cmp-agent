@@ -149,7 +149,7 @@ cutoff (June 2026), so the model cannot have seen their reports or accepted vers
 The new tasks need their own held-out papers, because tuning tiers or the inference on the
 test set would spend it. Use dev-2 to develop the A rate on accepted versions, revision mode
 and the inference test, and test-2 to measure them once. The original test set stays for
-recall, as `EVALUATION.md` promised. Arxiv v1 dates are mostly before the cutoff, but that
+recall, as `EVALUATION.md` promised. arXiv v1 dates are mostly before the cutoff, but that
 matters less: the model may know a preprint, but not the referees' reports on it.
 
 ### Physicists
