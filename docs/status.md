@@ -25,6 +25,13 @@ out, add what you learned that the next session needs. History belongs in git, n
   papers for a peer review file. `eval/jclub/selections.json` lists the Journal Club's last 12
   months (links and DOIs only: the commentaries carry no licence); 12 papers are in scope.
   Next: Langfuse in the harness, then the stage 1 baseline on dev2.
+- **How evals run from now on** (maintainer's decision, 2026-11-22): Claude reviews and Claude
+  judging run as Claude Code subagents on the maintainer's plan, not through the API, to save
+  money; Gemini (`gemini-4-argon`, through the API) is the second, non-Claude judge. Keys are in
+  `.env` in the main checkout (gitignored; names in `.env.example`); all four were checked
+  working on 2026-11-22. Subagent runs use the session's model and effort, which differ from the
+  API harness's fixed settings: record them, and don't mix their numbers with API-run numbers in
+  one comparison.
 
 ## Next
 
