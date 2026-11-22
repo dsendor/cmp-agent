@@ -42,6 +42,9 @@ Ask once, in one message, for:
 - the ideas, as many as they have, however rough ("dictate them; one or two sentences each
   is enough to start");
 - their stage (student, postdoc, PI) and how many months they have to show a result;
+- who has the final say on what they work on (they do, their PI does, or jointly). If it isn't
+  them, the questions for the PI matter most: draft them so the researcher can bring the
+  dashboard to that conversation;
 - their setup in a line (instruments, materials, collaborators), so feasibility is judged
   against what they actually have;
 - whether time is the binding constraint. If yes, set `"utility": "per_year"` (value per
@@ -63,7 +66,8 @@ the scariest. Offer your own guesses only if asked, labeled as yours.
 
 ## 3. Prior work (in parallel, while they score)
 
-Dispatch one `prior-work-searcher` subagent per idea, all in one message, while the
+Create `project-choice/<date>/prior-work/`, then dispatch one `prior-work-searcher` subagent
+per idea, all in one message, while the
 researcher scores assumptions. Give each: the idea's restatement and Heilmeier answers, the
 path of `search.py`, and the output path `project-choice/<date>/prior-work/<id>.json`. Each
 runs the search loop in `references/prior-work.md` and writes the closest papers, the

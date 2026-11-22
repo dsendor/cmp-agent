@@ -1,7 +1,9 @@
 #!/usr/bin/env python3
 """Search arXiv for prior work on a research idea, and count papers per year. Standard library only.
 
-  python3 search.py papers QUERY [--max 15] [--cat cond-mat]      closest papers, as JSON
+  python3 search.py papers QUERY [--max 15] [--cat cond-mat] [--brief]
+                                                                  closest papers, as JSON;
+                                                                  --brief cuts abstracts to 300 characters
   python3 search.py counts QUERY [--from 2019] [--to 2026] [--cat cond-mat]
                                                                   papers per year, as JSON
 
@@ -10,14 +12,18 @@ QUERY uses arXiv's search syntax (https://info.arxiv.org/help/api/user-manual.ht
   '(abs:moire OR abs:"moiré" OR abs:"magic-angle") AND abs:nanoSQUID'
 Spell out synonyms and both spellings: arXiv matches words, not meanings.
 
-The arXiv API asks for at most one request every 3 seconds; this script waits between calls
-and retries a failed call twice. Counts are what the arXiv API reports and are useful
+The arXiv API asks for at most one request every 3 seconds. This script keeps to that across
+every copy of itself running on the machine (several searches can run in parallel), through a
+lock file in the system temp folder, and retries a failed call twice. Counts are what the arXiv API reports and are useful
 relative to each other (this idea against that one, this year against last), not as a
 census of the field.
 """
+import fcntl
 import json
+import os
 import re
 import sys
+import tempfile
 import time
 import urllib.parse
 import urllib.request
@@ -26,16 +32,31 @@ import xml.etree.ElementTree as ET
 API = "https://export.arxiv.org/api/query"
 NS = {"a": "http://www.w3.org/2005/Atom", "o": "http://a9.com/-/spec/opensearch/1.1/"}
 WAIT = 3.1
-_last = [0.0]
+LOCK = os.path.join(tempfile.gettempdir(), "cmp-agent-arxiv-rate.lock")
+
+
+def _wait_turn():
+    """Block until WAIT seconds have passed since any process's last arXiv call, then claim it."""
+    with open(LOCK, "a+") as f:
+        fcntl.flock(f, fcntl.LOCK_EX)
+        f.seek(0)
+        try:
+            last = float(f.read().strip() or 0)
+        except ValueError:
+            last = 0.0
+        delay = WAIT - (time.time() - last)
+        if delay > 0:
+            time.sleep(delay)
+        f.seek(0)
+        f.truncate()
+        f.write("%.3f" % time.time())
+        f.flush()
 
 
 def _get(params):
     url = API + "?" + urllib.parse.urlencode(params, quote_via=urllib.parse.quote_plus)
     for attempt in range(3):
-        delay = WAIT - (time.time() - _last[0])
-        if delay > 0:
-            time.sleep(delay)
-        _last[0] = time.time()
+        _wait_turn()
         try:
             req = urllib.request.Request(url, headers={"User-Agent": "cmp-agent-project-advisor/0.1"})
             with urllib.request.urlopen(req, timeout=60) as r:
@@ -61,7 +82,11 @@ def _clean(s):
     return re.sub(r"\s+", " ", s or "").strip()
 
 
-def papers(query, n=15, cat=None):
+def _brief(s, n=300):
+    return s if len(s) <= n else s[:n].rsplit(" ", 1)[0] + " ..."
+
+
+def papers(query, n=15, cat=None, brief=False):
     root = _get({"search_query": _scoped(query, cat), "start": 0, "max_results": n,
                  "sortBy": "relevance", "sortOrder": "descending"})
     out = []
@@ -75,7 +100,8 @@ def papers(query, n=15, cat=None):
             "first_author": _clean(e.findtext("a:author/a:name", "", NS)),
             "n_authors": len(e.findall("a:author", NS)),
             "categories": [c.get("term") for c in e.findall("a:category", NS)],
-            "abstract": _clean(e.findtext("a:summary", "", NS)),
+            "abstract": _brief(_clean(e.findtext("a:summary", "", NS))) if brief else
+                        _clean(e.findtext("a:summary", "", NS)),
         })
     return {"source": "arXiv API", "query": query, "category": cat,
             "searched": time.strftime("%Y-%m-%d"), "papers": out}
@@ -100,7 +126,9 @@ def main():
     args, opts = [], {}
     it = iter(sys.argv[1:])
     for a in it:
-        if a.startswith("--"):
+        if a == "--brief":
+            opts["brief"] = True
+        elif a.startswith("--"):
             opts[a[2:]] = next(it, None)
         else:
             args.append(a)
@@ -109,7 +137,7 @@ def main():
     mode, query = args
     cat = opts.get("cat")
     if mode == "papers":
-        res = papers(query, int(opts.get("max") or 15), cat)
+        res = papers(query, int(opts.get("max") or 15), cat, bool(opts.get("brief")))
     else:
         res = counts(query, int(opts.get("from") or 2019),
                      int(opts["to"]) if opts.get("to") else None, cat)

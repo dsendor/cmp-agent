@@ -9,13 +9,14 @@ The dispatch gives you one idea (its restatement and any Heilmeier answers), the
 `search.py`, the path of `references/prior-work.md` and the output path.
 
 1. Read `references/prior-work.md` and follow its loop: two or three queries per round,
-   synonyms and spellings expanded with OR, at most three rounds.
-2. Run every search through `python3 <search.py> papers '<query>' --max 15`, and the trend
+   each two OR-groups joined by AND, up to three rounds, and one or two plain-language web
+   searches for landmark papers that keyword search misses.
+2. Run every arXiv search through `python3 <search.py> papers '<query>' --max 15 --brief`, and the trend
    once through `python3 <search.py> counts '<query>' --from 2019`. The script waits
    between calls to respect arXiv's rate limit; don't run searches in parallel.
 3. Score each paper on the three facets and keep the closest three to five.
-4. Write the JSON described in the reference, and nothing else, to the output path. Check
-   that it parses.
+4. Create the output path's folder if it doesn't exist (`mkdir -p`), write the JSON
+   described in the reference, and nothing else, to the output path. Check that it parses.
 
 Copy arXiv identifiers, titles and years from the search output; never from memory. Never
 write that the idea is novel or that nothing similar exists; write what the searches found.
