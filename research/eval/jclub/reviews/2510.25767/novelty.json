@@ -1,61 +1,212 @@
 {
-  "searched": "2026-11-22",
-  "sources": ["arXiv API (one query; three further queries refused with HTTP 429)", "web search (fallback)", "paper's reference list"],
-  "queries": [
-    "abs:overdoped AND (abs:cuprate OR abs:cuprates) AND (abs:disorder OR abs:\"dirty d-wave\") AND (abs:BCS OR abs:\"Landau-BCS\" OR abs:\"weak-coupling\")",
-    "[arXiv, failed 429] abs:overdoped AND (abs:cuprate OR abs:cuprates) AND abs:\"Fermi liquid\" AND (abs:BCS OR abs:\"weak coupling\") AND (abs:inhomogeneity OR abs:puddles OR abs:disorder)",
-    "[arXiv, failed 429] (abs:Bi2212 OR abs:Bi2Sr2CaCu2O8 OR abs:\"Bi-2212\") AND abs:overdoped AND (abs:\"pairing interaction\" OR abs:\"pairing strength\" OR abs:coupling) AND (abs:ARPES OR abs:photoemission)",
-    "[web] overdoped cuprates dirty d-wave Landau-BCS paradigm superfluid density",
-    "[web] invert gap equation ARPES Bi2212 overdoped pairing interaction doping dependence",
-    "[web] Valla vanishing coupling overdoped Bi2212 (identifier check)",
-    "[web] overdoped cuprates superconducting puddles inhomogeneity superfluid density Fermi liquid BCS"
-  ],
-  "coverage": {"queries": 5, "references_checked": true, "sources": ["arXiv API (1 successful query)", "web search (4 queries)", "reference list [1]-[118]"]},
-  "overall": {"grade": "incremental", "sentence": "The thesis that overdoped cuprates are Fermi-liquid/BCS d-wave superconductors whose anomalies come from disorder was argued earlier by Lee-Hone, Broun, Hirschfeld and co-workers (arXiv:1802.10198, 1902.08286, cited as [28]-[30]); this Perspective is new chiefly in attributing the anomalies to mesoscopic inhomogeneity rather than effective-medium pair breaking, in the cross-material synthesis (YBCO stiffness, Tl2201 oscillations, Bi2212 gap inversion) and in its falsifiable predictions."},
-  "assessment": [
-    {"claim": "1-2: crossover to a weak-coupling BCS/Fermi-liquid overdoped regime, with the anomalies (boomerang, residual C/T and Drude weight, gaps above Tc) extrinsic to disorder", "grade": "incremental", "closest": "1902.08286", "note": "Same question and systems as the earlier dirty d-wave papers [28]-[30]; the method differs (granular, mesoscopic-inhomogeneity picture and a disorder-free phase diagram rather than effective-medium Abrikosov-Gorkov fits), which the paper itself says is an ongoing debate. Search was limited by arXiv rate limits."},
-    {"claim": "5: inverting the BCS gap equation on Bi2212 ARPES gives a magnetic-scale pairing interaction that decreases with doping", "grade": "incremental", "closest": "1905.01370", "note": "Valla et al. (2019, not cited) found from ARPES on overdoped Bi2212 that the coupling weakens with doping and vanishes where superconductivity ends, and pointed to spin fluctuations; the gap-equation inversion is a different analysis, so the method facet is new."},
-    {"claim": "6: falsifiable predictions for cleaner overdoped cuprates (exponential Tc tail, Ttheta >> Tc, Delta0 ~ 2kBTc, mean-field specific-heat jump, vanishing T-linear resistivity)", "grade": "incremental", "closest": "1902.08286", "note": "Earlier dirty d-wave work implies that cleaner samples should be more BCS-like; the specific list of tests is not found stated there in the abstracts read, but the search was too limited (arXiv refused most queries) to grade no_precedent_found."}
-  ],
-  "positioning": "This Perspective sits directly on the line of work by Lee-Hone, Broun, Hirschfeld and co-workers, who argued from 2018 that overdoped LSCO and Tl2201 are compatible with a Landau-BCS description once dopant disorder is treated as dirty d-wave theory; the paper cites these as [28]-[30] but discusses them only in the disorder section and supplementary material, not where it states its proposal. What it adds, as far as the searches show, is the emphasis on mesoscopic inhomogeneity amplified by the short coherence length, the YBCO superfluid-stiffness comparison, the gap-equation inversion of Bi2212 ARPES, and a set of falsifiable predictions; one close uncited ARPES study (Valla et al., arXiv:1905.01370) already reports a pairing coupling that vanishes with overdoping in Bi2212. arXiv refused three of four queries (HTTP 429), so coverage rests on one arXiv query, four web searches and the reference list.",
-  "closest": [
-    {"arxiv": "1902.08286", "title": "From Mott to not: phenomenology of overdoped cuprates", "year": 2019, "cited_as": "[29]", "facets": {"question": true, "system": true, "method": false}, "overlap": "Argues overdoped LSCO and Tl2201 fit a Landau-BCS picture with dirty d-wave disorder; published as Phys. Rev. Res. 2, 013228 under a different title."},
-    {"arxiv": "1802.10198", "title": "Optical conductivity of overdoped cuprate superconductors: application to LSCO", "year": 2018, "cited_as": "[28]", "facets": {"question": true, "system": true, "method": false}, "overlap": "Superfluid density and optical conductivity of overdoped LSCO explained almost entirely by disordered BCS d-wave theory."},
-    {"arxiv": "2206.01348", "title": "Effect of realistic out-of-plane dopant potentials on the superfluid density of overdoped cuprates", "year": 2022, "cited_as": "[30]", "facets": {"question": true, "system": true, "method": false}, "overlap": "Defends the Landau-BCS paradigm for overdoped cuprates against claims of its breakdown, with realistic dopant potentials."},
-    {"arxiv": "1905.01370", "title": "Disappearance of Superconductivity Due to Vanishing Coupling in the Overdoped Bi2Sr2CaCu2O8+δ", "year": 2019, "cited_as": null, "facets": {"question": true, "system": true, "method": false}, "overlap": "ARPES on overdoped Bi2212 finds the coupling weakening with doping and vanishing where superconductivity ends, attributed to spin fluctuations."},
-    {"arxiv": "2205.09740", "title": "Puddle formation, persistent gaps, and non-mean-field breakdown of superconductivity in overdoped (Pb,Bi)2Sr2CuO6+δ", "year": 2022, "cited_as": "[79]", "facets": {"question": true, "system": true, "method": false}, "overlap": "STM shows superconducting puddles and gaps persisting beyond the dome in overdoped Bi2201, the inhomogeneity the paper invokes."}
-  ],
-  "issues": [
+ "searched": "2026-11-22",
+ "sources": [
+  "arXiv API"
+ ],
+ "queries": [
+  "abs:overdoped AND (abs:cuprate OR abs:cuprates) AND (abs:BCS OR abs:\"weak-coupling\" OR abs:\"Fermi liquid\") AND (abs:disorder OR abs:inhomogeneity OR abs:inhomogeneous)",
+  "abs:overdoped AND (abs:\"superfluid density\" OR abs:\"superfluid stiffness\" OR abs:\"phase stiffness\") AND (abs:inhomogeneity OR abs:inhomogeneous OR abs:granular OR abs:puddles)",
+  "(abs:\"pairing interaction\" OR abs:\"pairing strength\" OR abs:\"pairing potential\") AND (abs:ARPES OR abs:photoemission) AND (abs:\"gap equation\" OR abs:BCS) AND (abs:Bi2212 OR abs:Bi2Sr2CaCu2O8 OR abs:overdoped)",
+  "abs:\"gap equation\" AND (abs:cuprate OR abs:cuprates OR abs:Bi2212) AND (abs:doping) AND (abs:\"pairing interaction\" OR abs:\"pairing strength\" OR abs:\"coupling constant\") AND (abs:ARPES OR abs:photoemission OR abs:\"tight-binding\")",
+  "(abs:\"Landau-BCS\" OR abs:\"Fermi liquid\" OR abs:\"BCS paradigm\" OR abs:\"conventional BCS\") AND abs:overdoped AND (abs:cuprate OR abs:cuprates) AND (abs:\"superfluid density\" OR abs:\"specific heat\" OR abs:\"Drude\")",
+  "(abs:\"T-linear\" OR abs:\"linear-in-T\" OR abs:\"strange metal\" OR abs:\"strange-metal\") AND abs:overdoped AND (abs:puddles OR abs:\"superconducting fluctuations\" OR abs:\"dopant disorder\" OR abs:\"spatially random\")",
+  "(abs:\"dirty d-wave\" OR abs:\"pair breaking\" OR abs:\"pair-breaking\" OR abs:\"Abrikosov-Gorkov\") AND abs:overdoped AND (abs:\"superfluid density\" OR abs:\"phase stiffness\" OR abs:\"residual\" OR abs:\"uncondensed\")",
+  "(abs:YBCO OR abs:YBa2Cu3O7 OR abs:YBa2Cu3Oy OR abs:\"YBa2Cu3O6+x\") AND abs:overdoped AND (abs:\"superfluid density\" OR abs:\"penetration depth\" OR abs:\"phase stiffness\") AND (abs:disorder OR abs:clean OR abs:calcium OR abs:Ca)",
+  "(abs:\"pairing interaction\" OR abs:\"pairing strength\") AND (abs:overdoped OR abs:overdoping) AND (abs:decrease OR abs:decreasing OR abs:declining OR abs:weakening) AND (abs:\"d-wave\" OR abs:cuprate OR abs:cuprates)",
+  "(abs:\"superconductor-metal\" OR abs:\"superconductor-to-metal\" OR abs:\"superconductor to metal\") AND (abs:\"d-wave\") AND (abs:disorder OR abs:granular OR abs:inhomogeneous) AND (abs:overdoped OR abs:cuprate OR abs:cuprates)",
+  "abs:overdoped AND (abs:cuprate OR abs:cuprates) AND (abs:\"clean limit\" OR abs:\"disorder-free\" OR abs:\"cleaner\" OR abs:\"pristine\" OR abs:\"stoichiometric\") AND (abs:\"superconducting dome\" OR abs:\"T_c\" OR abs:BCS OR abs:\"superfluid\")"
+ ],
+ "coverage": {
+  "queries": 11,
+  "references_checked": true,
+  "sources": [
+   "arXiv API (cond-mat)",
+   "the paper's reference list (118 entries)"
+  ]
+ },
+ "overall": {
+  "grade": "incremental",
+  "sentence": "The headline idea, that overdoped cuprates are Landau-BCS d-wave superconductors once dopant disorder is included, was argued earlier by the dirty d-wave program of Lee-Hone, Broun, Hirschfeld and co-workers (arXiv:1902.08286, likely the paper's ref. [29]); this Perspective is new in attributing the anomalies mainly to mesoscopic inhomogeneity amplified by the short coherence length, in the clean-versus-disordered YBCO contrast, and in its set of falsifiable predictions."
+ },
+ "assessment": [
+  {
+   "claim": "1: overdoped regime is a weak-coupling BCS superconductor on a Fermi-liquid normal state (crossover picture)",
+   "grade": "incremental",
+   "closest": "1902.08286",
+   "note": "Lee-Hone et al. already concluded that overdoped LSCO and Tl2201 are described semiquantitatively by Landau-BCS 'dirty d-wave' theory (same question and system); new here is the crossover framing with Tθ >> Tc ≈ Δ0/2 as the organising criterion and the qualitative synthesis across probes rather than a quantitative t-matrix fit."
+  },
+  {
+   "claim": "2: overdoped anomalies are extrinsic, from substitutional disorder amplified by the short coherence length",
+   "grade": "incremental",
+   "closest": "2211.13338",
+   "note": "Pal et al. (cited as [5]) and Sulangi et al. (2503.20861, cited as [6]) simulate inhomogeneity from dopant disorder in overdoped cuprates (same question and system, computational method); the paper adds a cross-probe argument (stiffness, C/T, Drude weight, T-linear resistivity, gaps above Tc) and the YBCO contrast."
+  },
+  {
+   "claim": "5: inverting the BCS gap equation on Bi2212 ARPES data gives a short-range pairing interaction ~4J that decreases with doping",
+   "grade": "incremental",
+   "closest": "0707.2239",
+   "note": "Storey et al. (2007, not cited) solved the BCS gap equation with an ARPES-derived dispersion and found the pairing interaction must decline rapidly with doping, consistent with a magnetic interaction (same question and method); new here are the use of measured doping-dependent Bi2212 gaps, the magnitude estimate J ≈ 0.15 eV and the argument from the gap's k-dependence against a quantum-critical pairing mode."
+  },
+  {
+   "claim": "6: cleaner overdoped cuprates should show an exponential Tc tail, Tθ >> Tc, Δ0 ≈ 2kBTc, a mean-field specific-heat jump and vanishing T-linear resistivity",
+   "grade": "incremental",
+   "closest": "1902.08286",
+   "note": "Disorder-driven trends in stiffness, residual C/T and Tc were already expected in the dirty d-wave work (cleaner Tl2201 vs LSCO); the combined prediction set, the exponential tail and pressure-doped YBCO as the test were not found, but only one round of searches targeted the predictions, so no stronger grade is given."
+  }
+ ],
+ "positioning": "The closest earlier work is the dirty d-wave program (Lee-Hone, Broun, Hirschfeld et al., arXiv:1704.04803, 1802.10198, 1902.08286, 2206.01348) and Maier et al. (arXiv:2004.13120), which already argued that overdoped cuprates fit a Landau-BCS description with weak dopant scattering and a pairing strength that falls with doping; the paper cites the first group as [28-30] only as pair-breaking theory and leaves them out of its list of overlapping approaches. What this Perspective adds, as the searches show, is an argument that mesoscopic inhomogeneity rather than effective-medium pair breaking explains the anomalies, the clean-YBCO versus Ca-YBCO comparison, and a list of disorder-dependent predictions. Its BCS-inversion estimate of the pairing interaction has an uncited precedent in Storey et al. (arXiv:0707.2239), and ARPES on overdoped Bi2212 (Valla et al., arXiv:1905.01370) already linked the vanishing coupling to the end of the dome. The paper makes no explicit 'first' claims, so no tier A or C items arise.",
+ "closest": [
+  {
+   "arxiv": "1902.08286",
+   "title": "From Mott to not: phenomenology of overdoped cuprates",
+   "year": 2019,
+   "cited_as": "[29]",
+   "facets": {
+    "question": true,
+    "system": true,
+    "method": false
+   },
+   "overlap": "Argues overdoped LSCO and Tl2201 follow Landau-BCS dirty d-wave theory, with disorder explaining the anomalies; matched to [29] by first author and content (published title differs)."
+  },
+  {
+   "arxiv": "0707.2239",
+   "title": "Saddle-point van Hove singularity and the phase diagram of high-Tc cuprates",
+   "year": 2007,
+   "cited_as": null,
+   "facets": {
+    "question": true,
+    "system": false,
+    "method": true
+   },
+   "overlap": "Solves the BCS gap equation with an ARPES-derived dispersion and infers a pairing interaction that declines rapidly with doping, consistent with a magnetic interaction. Uses a generic ARPES-derived cuprate dispersion; Bi2212 gaps across doping are not named in the abstract."
+  },
+  {
+   "arxiv": "2004.13120",
+   "title": "The overdoped end of the cuprate phase diagram",
+   "year": 2020,
+   "cited_as": null,
+   "facets": {
+    "question": true,
+    "system": true,
+    "method": false
+   },
+   "overlap": "Decreasing d-wave pairing strength plus weak impurity scattering treated as disordered BCS d-wave ends the Tc dome."
+  },
+  {
+   "arxiv": "2211.13338",
+   "title": "Simulating Superconducting Properties of Overdoped Cuprates: the Role of Inhomogeneity",
+   "year": 2022,
+   "cited_as": "[5]",
+   "facets": {
+    "question": true,
+    "system": true,
+    "method": false
+   },
+   "overlap": "Dopant-induced inhomogeneity explains anomalous overdoped superconducting properties within BCS-type d-wave models."
+  },
+  {
+   "arxiv": "2609.01213",
+   "title": "Thermodynamics of $T_{\\rm c}$ suppression in far-overdoped Tl$_2$Ba$_2$CuO$_6$",
+   "year": 2026,
+   "cited_as": null,
+   "facets": {
+    "question": true,
+    "system": true,
+    "method": false
+   },
+   "overlap": "Posted after this paper: weak-coupling BCS with cation disorder reproduces specific-heat anomalies in overdoped Tl2201."
+  }
+ ],
+ "issues": [
+  {
+   "tier": "B",
+   "topic": "novelty",
+   "claim": "In an ideal, disorder-free hole-doped cuprate there is a crossover near optimal doping to an overdoped regime described by weak-coupling BCS theory on a Fermi-liquid normal state.",
+   "claim_id": 1,
+   "headline": "Dirty d-wave Landau-BCS work left out of the overlap list",
+   "issue": "Lee-Hone et al. (arXiv:1902.08286, apparently the paper's ref. [29]) and Maier et al. (arXiv:2004.13120, not cited) already argued that overdoped cuprates fit a Landau-BCS d-wave description once weak dopant scattering is included. The paper cites [28-30] only as pair-breaking theory and leaves them out of the list of studies that overlap its approach, so a referee from that community may say the headline is not new.",
+   "evidence": {
+    "quote": "there is a subset of studies that overlap either in some details or in perspective with the present approach [2–11].)",
+    "page": 2,
+    "location": "Introduction, paragraph after the three doping regimes"
+   },
+   "effort": "text",
+   "fix": "Name the dirty d-wave Landau-BCS analyses (refs [28-30] and Maier et al. 2020) where the paper states its contribution, and say in one sentence how this Perspective differs: mesoscopic inhomogeneity rather than effective-medium pair breaking, the clean-YBCO contrast, and the predictions.",
+   "edit": {
+    "before": "there is a subset of studies that overlap either in some details or in perspective with the present approach [2–11].)",
+    "after": "there is a subset of studies that overlap either in some details or in perspective with the present approach [2–11]; in particular, 'dirty d-wave' analyses [28–30] and Maier et al. (arXiv:2004.13120) have argued that overdoped cuprates are Landau–BCS superconductors once weak dopant scattering is included, whereas we attribute the anomalies mainly to mesoscopic inhomogeneity on the scale of the coherence length.)"
+   },
+   "prior": [
     {
-      "tier": "B",
-      "topic": "novelty",
-      "claim": "The overdoped regime is BCS/Fermi-liquid-like and its anomalies are extrinsic effects of disorder.",
-      "claim_id": 2,
-      "headline": "Position the proposal against the earlier dirty d-wave Landau-BCS papers",
-      "issue": "Lee-Hone, Broun, Hirschfeld and co-workers (arXiv:1802.10198, 1902.08286, 2206.01348; refs [28]-[30]) already argued that overdoped cuprates fit a Landau-BCS picture with disorder explaining the anomalies. The introduction states the proposal without naming this work; it is discussed only later and in the supplement, so a referee may read the headline as claiming more novelty than it has.",
-      "evidence": {"quote": "Our primary purpose is to critically assess the validity of a weak-coupling approach to the overdoped cuprates.", "page": 2, "location": "Introduction, paragraph after the bullet list"},
-      "effort": "text",
-      "fix": "Name refs [28]-[30] where the proposal is stated and say in one clause how this Perspective differs (mesoscopic inhomogeneity versus effective-medium pair breaking; disorder-free phase diagram; predictions).",
-      "edit": {"before": "Our primary purpose is to critically assess the validity of a weak-coupling approach to the overdoped cuprates.", "after": "Our primary purpose is to critically assess the validity of a weak-coupling approach to the overdoped cuprates, building on earlier arguments that dirty d-wave BCS theory accounts for much of the overdoped phenomenology [28-30], from which we differ chiefly in attributing the anomalies to mesoscopic inhomogeneity rather than to homogeneous pair breaking."},
-      "prior": [
-        {"arxiv": "1902.08286", "title": "From Mott to not: phenomenology of overdoped cuprates", "year": 2019, "cited_as": "[29]", "facets": {"question": true, "system": true, "method": false}, "overlap": "Landau-BCS description of overdoped LSCO and Tl2201 with dirty d-wave disorder."},
-        {"arxiv": "1802.10198", "title": "Optical conductivity of overdoped cuprate superconductors: application to LSCO", "year": 2018, "cited_as": "[28]", "facets": {"question": true, "system": true, "method": false}, "overlap": "Overdoped LSCO superfluid density and optics explained by disordered BCS d-wave theory."}
-      ]
+     "arxiv": "1902.08286",
+     "title": "From Mott to not: phenomenology of overdoped cuprates",
+     "year": 2019,
+     "cited_as": "[29]",
+     "facets": {
+      "question": true,
+      "system": true,
+      "method": false
+     },
+     "overlap": "Overdoped LSCO and Tl2201 described by Landau-BCS dirty d-wave theory, anomalies from disorder."
     },
     {
-      "tier": "B",
-      "topic": "novelty",
-      "claim": "Inverting the BCS gap equation on Bi2212 ARPES data gives a magnetic-scale pairing interaction that decreases with doping.",
-      "claim_id": 5,
-      "headline": "Cite the ARPES study finding vanishing coupling in overdoped Bi2212",
-      "issue": "Valla, Drozdov and Gu (arXiv:1905.01370, Nat. Commun. 11, 569, 2020) reported from ARPES on overdoped Bi2212 that the coupling weakens with doping and vanishes where superconductivity disappears, and argued for a spin-fluctuation origin. This supports the paper's Fig. 3 conclusion by a different analysis but is not cited.",
-      "evidence": {"quote": "Comparing this expectation with direct probes of the doping dependence of the magnetic fluctuations is somewhat complicated.", "page": 11, "location": "The nature of the mechanism, paragraph after Fig. 3"},
-      "effort": "text",
-      "fix": "Cite Valla et al. as independent ARPES evidence that the pairing coupling in Bi2212 falls with overdoping, and note that the gap-equation inversion reaches the same trend by a different route.",
-      "edit": {"before": "Comparing this expectation with direct probes of the doping dependence of the magnetic fluctuations is somewhat complicated.", "after": "An independent ARPES study of overdoped Bi2212 likewise found that the electron-boson coupling weakens with doping and vanishes where superconductivity disappears [Valla et al., Nat. Commun. 11, 569 (2020)]. Comparing this expectation with direct probes of the doping dependence of the magnetic fluctuations is somewhat complicated."},
-      "prior": [
-        {"arxiv": "1905.01370", "title": "Disappearance of Superconductivity Due to Vanishing Coupling in the Overdoped Bi2Sr2CaCu2O8+δ", "year": 2019, "cited_as": null, "facets": {"question": true, "system": true, "method": false}, "overlap": "Pairing-relevant coupling in overdoped Bi2212 from ARPES falls to zero with Tc; spin-fluctuation origin proposed."}
-      ]
+     "arxiv": "2004.13120",
+     "title": "The overdoped end of the cuprate phase diagram",
+     "year": 2020,
+     "cited_as": null,
+     "facets": {
+      "question": true,
+      "system": true,
+      "method": false
+     },
+     "overlap": "Falling d-wave pairing strength plus disordered BCS d-wave scattering ends the overdoped dome."
     }
-  ]
+   ]
+  },
+  {
+   "tier": "B",
+   "topic": "novelty",
+   "claim": "Inverting the BCS gap equation on Bi2212 ARPES data gives a short-range pairing interaction of magnitude consistent with magnetic exchange that decreases with doping.",
+   "claim_id": 5,
+   "headline": "Earlier gap-equation inversion from ARPES dispersion is not cited",
+   "issue": "Storey et al. (arXiv:0707.2239, 2007) solved the BCS gap equation with an ARPES-derived dispersion and concluded that the pairing interaction must decline rapidly with doping, consistent with a magnetic interaction. Valla et al. (arXiv:1905.01370, 2019) showed by ARPES on overdoped Bi2212 that the coupling weakens and vanishes where superconductivity ends. Neither is cited where the paper presents its inversion as a new step.",
+   "evidence": {
+    "quote": "it is possible to work backwards from observations of the gap function to draw incomplete but clear inferences on the nature of the interactions responsible for the pairing.",
+    "page": 10,
+    "location": "The nature of the mechanism, first paragraph"
+   },
+   "effort": "text",
+   "fix": "Cite Storey et al. 2007 and Valla et al. 2019 at the start of the inversion section and state what is new: measured doping-dependent gaps, the magnitude estimate J ≈ 0.15 eV, and the argument from the gap's k-dependence.",
+   "edit": {
+    "before": "it is possible to work backwards from observations of the gap function to draw incomplete but clear inferences on the nature of the interactions responsible for the pairing.",
+    "after": "it is possible to work backwards from observations of the gap function to draw incomplete but clear inferences on the nature of the interactions responsible for the pairing. (A related analysis using an ARPES-derived dispersion found that the pairing interaction must decline rapidly with doping [Storey et al., arXiv:0707.2239], and ARPES on overdoped Bi2212 shows the coupling vanishing where superconductivity ends [Valla et al., arXiv:1905.01370]; here we use the measured doping-dependent gaps to extract the magnitude of the interaction.)"
+   },
+   "prior": [
+    {
+     "arxiv": "0707.2239",
+     "title": "Saddle-point van Hove singularity and the phase diagram of high-Tc cuprates",
+     "year": 2007,
+     "cited_as": null,
+     "facets": {
+      "question": true,
+      "system": false,
+      "method": true
+     },
+     "overlap": "BCS gap equation with ARPES dispersion implies a pairing interaction declining with doping, magnetic in origin. Uses a generic ARPES-derived cuprate dispersion; Bi2212 gaps across doping are not named in the abstract."
+    },
+    {
+     "arxiv": "1905.01370",
+     "title": "Disappearance of Superconductivity Due to Vanishing Coupling in the Overdoped Bi$_2$Sr$_2$CaCu$_2$O$_{8+δ}$",
+     "year": 2019,
+     "cited_as": null,
+     "facets": {
+      "question": true,
+      "system": true,
+      "method": false
+     },
+     "overlap": "ARPES on overdoped Bi2212: coupling weakens with doping and vanishes with superconductivity, likely spin fluctuations."
+    }
+   ]
+  }
+ ]
 }
