@@ -1,0 +1,94 @@
+{
+  "searched": "2026-11-22",
+  "sources": ["paper reference list (main text and Supplementary Information)", "arXiv API", "web search (fallback for one query that kept failing with HTTP 429)"],
+  "queries": [
+    "(abs:\"infinite-layer\" OR abs:\"multilayer\" OR abs:\"multiple quantum well\" OR abs:superlattice) AND abs:Halperin AND (abs:irrational OR abs:\"fractional quantum Hall\")",
+    "(abs:\"three-dimensional\" OR abs:\"3D\") AND (abs:\"fractional quantum Hall\") AND (abs:fracton OR abs:\"non-foliated\" OR abs:foliated OR abs:\"irrational statistics\" OR abs:\"irrational braiding\")",
+    "(abs:\"twisted graphite\" OR abs:\"alternating twisted\" OR abs:\"helical twisted\" OR abs:\"twisted multilayer\") AND abs:\"quantum Hall\"",
+    "(abs:\"multiple quantum well\" OR abs:superlattice OR abs:\"multilayer\") AND abs:\"fractional quantum Hall\" AND (abs:\"three-dimensional\" OR abs:\"interlayer coherent\" OR abs:staging OR abs:\"infinite layer\")",
+    "(abs:\"twisted\" OR abs:\"van der Waals\") AND (abs:\"irrational\" OR abs:fracton OR abs:\"non-foliated\") AND abs:\"quantum Hall\"",
+    "FAILED (HTTP 429 three times, retried after 60 s): (abs:twisted OR abs:helical OR abs:alternating OR abs:spiral) AND (abs:multilayer OR abs:graphite) AND (abs:\"fractional quantum Hall\" OR abs:\"three-dimensional quantum Hall\" OR abs:\"3D quantum Hall\"); replaced by the third query above and a web search",
+    "web: arXiv fractional quantum Hall twisted multilayer graphene helical alternating three-dimensional interlayer Coulomb Halperin",
+    "web: arXiv infinite-component Chern-Simons fracton irrational braiding multilayer quantum Hall realization graphene stack"
+  ],
+  "coverage": {"queries": 7, "references_checked": true, "sources": ["paper references [1]-[53] and Supplementary references [1]-[41]", "arXiv API (5 successful queries, 1 failed with HTTP 429)", "web search (2 queries)"]},
+  "overall": {
+    "grade": "no_precedent_found",
+    "sentence": "That large-angle twisted van der Waals multilayers energetically favour generalized Halperin (interlayer-correlated, irrational-anyon) liquids over metallic SILC states: no precedent found in the paper's references and 7 searches (5 arXiv, 2 web; 2026-11-22); the earlier work either studies the same class of infinite-layer states in generic stacked 2DEGs or the same twisted-graphite system without fractional states."
+  },
+  "assessment": [
+    {
+      "claim": "3: in twisted multilayers, generalized Halperin states replace SILC phases at accessible fields (the headline result)",
+      "grade": "no_precedent_found",
+      "closest": "2309.00825",
+      "note": "No precedent found in the paper's references and 7 searches (2026-11-22): 2309.00825 [43] shares the system (alternating twisted graphite) but treats non-interacting 3D Landau levels; Naud et al. [10] share the states but in generic stacked 2DEGs without an energetics study."
+    },
+    {
+      "claim": "4: the states have rational charges, irrational braiding and non-foliated order ('a fundamentally new form of fractionalization')",
+      "grade": "incremental",
+      "closest": "cond-mat/0006432",
+      "note": "Irrational braiding in infinite-layer generalized Halperin states (question and K-matrix method) is in Naud, Pryadko, Sondhi 2000 [10] and non-foliated order in Ma et al. [7]; new are the specific winning states (3110), (3111) and the finite-layer convergence analysis."
+    },
+    {
+      "claim": "6: twisted vdW multilayers as 'the first realistic condensed-matter platform' for non-foliated 3D FQH phases",
+      "grade": "incremental",
+      "closest": "cond-mat/0006432",
+      "note": "Realistic platforms for the same infinite-layer states were proposed before (stacked 2DEGs and superlattices in [10], multiple quantum wells with irrational charge in Qiu-Joynt-MacDonald, Supp. ref [20], multilayers in the intermediate-tunneling regime in 0902.0824); the twisted vdW system is the new element."
+    }
+  ],
+  "positioning": "The paper combines two lines of earlier work: the theory of infinite-layer generalized Halperin states with irrational braiding and fracton-like order (Naud-Pryadko-Sondhi [10, 11], Ma et al. [7], Qiu-Joynt-MacDonald [32]) and the band structure and quantum Hall experiments of large-angle twisted graphene (refs [24-26], [43]). What it adds, as far as these searches show, is a variational energetics study placing those states in a concrete twisted vdW material and contrasting it with untwisted graphite; no earlier paper found does that. The paper already cites the closest works, so the only items are two wordings ('first realistic platform', 'fundamentally new form of fractionalization') that are stronger than the earlier literature allows. One arXiv query failed repeatedly with HTTP 429 and was replaced by a narrower arXiv query and a web search; a later experiment on trilayer GaAs (2609.26916) is context only.",
+  "closest": [
+    {"arxiv": "cond-mat/0006432", "title": "The fractional quantum Hall effect in infinite layer systems", "year": 2000, "cited_as": "[10]", "facets": {"question": true, "system": false, "method": true}, "overlap": "Infinite-layer Halperin-type FQH phases analysed with K matrices, finding irrational braiding, in generic stacked 2DEGs."},
+    {"arxiv": "cond-mat/0006506", "title": "Notes on Infinite Layer Quantum Hall Systems", "year": 2000, "cited_as": "[11]", "facets": {"question": true, "system": false, "method": true}, "overlap": "Companion paper on the same infinite-layer quantum Hall states and their bulk and surface properties."},
+    {"arxiv": "2309.00825", "title": "Magic momenta and three dimensional Landau levels from a three dimensional graphite moiré superlattice", "year": 2023, "cited_as": "[43]", "facets": {"question": false, "system": true, "method": false}, "overlap": "Same system (bulk alternating twisted graphite) in a magnetic field, but non-interacting 3D Landau levels, not fractional states."},
+    {"arxiv": "0902.0824", "title": "Gapless layered three-dimensional fractional quantum Hall states", "year": 2009, "cited_as": null, "facets": {"question": true, "system": false, "method": false}, "overlap": "A 3D multilayer FQH state distinct from stacked Laughlin layers, proposed for multilayers in an intermediate tunneling regime, built with partons."},
+    {"arxiv": "2609.26916", "title": "Interlayer-correlated fractional quantum Hall state in a trilayer electron system", "year": 2026, "cited_as": null, "facets": {"question": true, "system": false, "method": false}, "overlap": "Posted after this paper: observation of a trilayer generalized Laughlin (Psi_33311) state in GaAs triple quantum wells."}
+  ],
+  "issues": [
+    {
+      "tier": "C",
+      "topic": "novelty",
+      "claim": "Twisted vdW multilayers as the first realistic platform",
+      "claim_id": 6,
+      "headline": "'First realistic platform' overlooks earlier multilayer and quantum-well proposals",
+      "issue": "Naud, Pryadko and Sondhi (cond-mat/0006432, cited as [10]) proposed stacked two-dimensional electron systems for the same infinite-layer phases, Qiu, Joynt and MacDonald (Supp. ref. [20]) proposed multiple quantum wells with irrational charge, and Levin and Fisher (0902.0824, not cited) proposed multilayers in the intermediate-tunneling regime. The word 'first' is not contradicted outright, since 'realistic' is a judgment, but a referee who knows these works will read it as overstated.",
+      "evidence": {
+        "quote": "Our work suggests that twisted vdW multilayers may provide the first realistic condensed-matter platform for non-foliated topological phases and their associated topological degeneracies.",
+        "page": 6,
+        "location": "Discussion, last paragraph"
+      },
+      "effort": "text",
+      "fix": "Drop 'first' and say what makes twisted vdW multilayers more favourable than the earlier quantum-well and superlattice proposals (atomic-scale layer spacing with suppressed tunneling).",
+      "edit": {
+        "before": "Our work suggests that twisted vdW multilayers may provide the first realistic condensed-matter platform for non-foliated topological phases and their associated topological degeneracies.",
+        "after": "Our work suggests that twisted vdW multilayers, which combine atomic-scale layer spacing with suppressed interlayer tunneling, may provide a more favourable condensed-matter platform for non-foliated topological phases and their topological degeneracies than the multilayer quantum wells and superlattices proposed earlier [10, 32]."
+      },
+      "prior": [
+        {"arxiv": "cond-mat/0006432", "title": "The fractional quantum Hall effect in infinite layer systems", "year": 2000, "cited_as": "[10]", "facets": {"question": true, "system": false, "method": true}, "overlap": "Stacked 2DEGs proposed as hosts of infinite-layer FQH phases with irrational braiding."},
+        {"arxiv": "0902.0824", "title": "Gapless layered three-dimensional fractional quantum Hall states", "year": 2009, "cited_as": null, "facets": {"question": true, "system": false, "method": false}, "overlap": "Multilayer systems proposed as hosts of genuinely 3D FQH states."}
+      ]
+    },
+    {
+      "tier": "C",
+      "topic": "novelty",
+      "claim": "Irrational braiding as a new form of fractionalization",
+      "claim_id": 4,
+      "headline": "'Fundamentally new form of fractionalization' was reported for infinite-layer states in 2000",
+      "issue": "Rational charges with irrational braiding in infinite-layer Halperin-type states were found by Naud, Pryadko and Sondhi (cond-mat/0006432, cited as [10]) and placed in the fracton framework by Ma et al. [7]. The paper cites both elsewhere, but the Discussion sentence presents the property as this work's finding.",
+      "evidence": {
+        "quote": "thereby realizing a fundamentally new form of fractionalization beyond conventional topological order.",
+        "page": 5,
+        "location": "Discussion, first paragraph"
+      },
+      "effort": "text",
+      "fix": "Attribute the irrational braiding to [7, 10, 11] in this sentence and state the paper's own contribution: these particular states win energetically and their statistics converge within about 20 layers.",
+      "edit": {
+        "before": "thereby realizing a fundamentally new form of fractionalization beyond conventional topological order.",
+        "after": "thereby realizing in a concrete material the form of fractionalization beyond conventional topological order identified for infinite-layer systems [7, 10, 11]."
+      },
+      "prior": [
+        {"arxiv": "cond-mat/0006432", "title": "The fractional quantum Hall effect in infinite layer systems", "year": 2000, "cited_as": "[10]", "facets": {"question": true, "system": false, "method": true}, "overlap": "Irrational braiding of quasiparticles in infinite-layer FQH phases, from K-matrix analysis."}
+      ]
+    }
+  ]
+}

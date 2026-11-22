@@ -19,6 +19,26 @@ out, add what you learned that the next session needs. History belongs in git, n
   papers in `research/eval/referee/` whose reports are public, then collect public records
   in `research/eval/revisions/`.
 
+- **Stage 1 corpus** (`research/corpus/`): built and checked against `EVALUATION.md` (recall
+  reproduces). The reserve is split into dev2 and test2 (27 each, `split.py --split-reserve`);
+  test2 is held out for the new metrics. `eval/recheck_pending.py` rechecks the pending pool
+  papers for a peer review file: on 2026-11-22, 0 of 94 had one (the checker found the known
+  file for three control papers, on Springer and in PMC), so the pending papers most likely
+  never opted in. The reserve gets no new papers from them; new ones come from new publications. `eval/jclub/selections.json` lists the Journal Club's last 12
+  months (links and DOIs only: the commentaries carry no licence); 12 papers are in scope.
+  Next: Langfuse in the harness, then the stage 1 baseline on dev2.
+- **Journal Club run** (`research/eval/jclub/results.md`, 2026-11-22): 12 expert-recommended
+  papers each got 3 to 6 *must address* items (4.2 on average), so the tiers are relative, not
+  absolute. The novelty lane's recurring finding: a priority claim contradicted by the paper's own
+  references. Four novelty checks were rate-limited by arXiv (run them in sequence) and the lane
+  treats companion papers inconsistently.
+- **How evals run from now on** (maintainer's decision, 2026-11-22): Claude reviews and Claude
+  judging run as Claude Code subagents on the maintainer's plan, not through the API, to save
+  money; Gemini (`gemini-4-argon`, through the API) is the second, non-Claude judge. Keys are in
+  `.env` in the main checkout (gitignored; names in `.env.example`); all four were checked
+  working on 2026-11-22. Subagent runs use the session's model and effort, which differ from the
+  API harness's fixed settings: record them, and don't mix their numbers with API-run numbers in
+  one comparison.
 - **Novelty lane** (`engine/novelty.md`, `agents/novelty-checker.md`): tried once, on a
   public arXiv paper, where it found a cited reference contradicting a priority statement that
   the science review missed. Not yet measured against referees. The project advisor's

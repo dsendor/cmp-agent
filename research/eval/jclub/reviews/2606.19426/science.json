@@ -1,0 +1,452 @@
+{
+  "title": "Three-dimensional Foliated Fractional Quantum Hall Phases",
+  "claims": [
+    "Stacks of decoupled ν = 1/3 Laughlin layers (a foliated Laughlin phase) stay stable up to interlayer interactions comparable to the intralayer ones, with a finite extrapolated gap.",
+    "In the bilayer, increasing the interlayer pseudopotential V1(1) drives a transition from decoupled Laughlin states to the non-Abelian Fibonacci state, seen in overlaps, torus degeneracy and quasihole counting.",
+    "Stacks of two, three and four coupled layers host non-Abelian SU(3)_Nℓ topological order, for which the paper builds explicit CFT model wavefunctions and identifies the spin-TQFT.",
+    "With next-nearest-neighbour interlayer interactions, the stack spontaneously breaks layer translation symmetry into a trimerized [1/3 1/3 0] charge pattern.",
+    "Within the trimerized sector, the occupied layer pairs form Fibonacci bilayers, so a foliated Fibonacci phase exists in the 9-layer system.",
+    "These phases could be realized in layered van der Waals crystals and multilayer heterostructures in strong magnetic fields."
+  ],
+  "summary": "The paper studies stacks of lowest-Landau-level layers at filling 1/3 per layer with truncated Haldane pseudopotential interactions, using exact diagonalization on sphere and torus for up to 10 layers, thin-torus perturbation theory and CFT model wavefunctions. It reports that decoupled Laughlin layers are robust to interlayer coupling, that few-layer stacks host SU(3)_Nℓ non-Abelian orders, and that next-nearest-neighbour interactions can trimerize the stack into a foliated Fibonacci phase.",
+  "strengths": [
+    "It is the first exact-diagonalization study of quantum Hall multilayers well beyond four layers, combining sphere and torus ED, thin-torus analysis, CFT wavefunctions and Monte Carlo overlaps.",
+    "It gives an explicit, general CFT construction of SU(Nℓ)_k multilayer wavefunctions with a spin-TQFT identification, and generalized SU(3)_Nℓ exclusion rules checked layer multiplet by multiplet against ED spectra.",
+    "The bilayer analysis is consistent across sphere and torus, with the 9-to-6 torus degeneracy change, quasihole counting and the rejection of the interlayer Pfaffian agreeing with one another and with earlier work.",
+    "A transparent thin-torus mapping shows that interlayer pseudopotentials generate correlated pair hopping that maps onto a transverse-field Ising model, and the paper is candid about open questions such as the unidentified D = 3 torus region."
+  ],
+  "issues": [
+    {
+      "tier": "A",
+      "rank": 1,
+      "topic": "theory",
+      "claim": "Spontaneous layer trimerization",
+      "claim_id": 4,
+      "headline": "Layer charge-density wave may be an artifact of truncated short-range interaction",
+      "issue": "With only V1(0) intralayer, moving electrons between layers at filling ≤ 1/3 costs no intralayer energy, and the truncated pseudopotentials drop the long-range tails that give the capacitive (Hartree) cost of a period-3 layer-density modulation, which for d ≲ l_B is comparable to the FQH and quasihole gaps. The classical argument of Eqs. 24–25 assumes an intralayer cost the ED Hamiltonian lacks and needs a negative layer kernel that a real Coulomb interaction with neutralizing background does not give, so the foliated Fibonacci phase currently holds only for the pseudopotential model.",
+      "evidence": {
+        "quote": "In this work we have shown ED results for short-range pseudopotential interactions. Studying the stability of the phases we have found when including a long-range tail of the interaction in Eq. (30) is an area which deserves future study.",
+        "page": 19,
+        "location": "Sec. V B1 (Eqs. 24–25), Fig. 7(a,b), Fig. S5, Sec. VI B"
+      },
+      "effort": "new_work",
+      "fix": "State where the neutralizing charge sits, and repeat the sector competition of Figs. 7(a,b) and S5 and the analysis of Eq. (24) with at least V3(0), ideally a longer Coulomb-derived tail or the full projected Coulomb interaction, including or estimating the Hartree energy of the layer-density modulation for realistic d/l_B and comparing it with the trimerization gain and quasihole gaps. If the [1/3 1/3 0] region does not survive, reframe the claim as a property of the short-range model and say which ingredient (for example dielectric engineering) could make λ(2π/3) < 0.",
+      "fix_scoped": "Restrict the trimerization and foliated Fibonacci claim to the truncated short-range pseudopotential model, stating that it may not survive long-range Coulomb interactions.",
+      "edit_scoped": {
+        "before": "By focusing on the case of filling ν = 1/3 of the lowest Landau level in each layer, we show that (i) the limit of decoupled Laughlin states is stable upon introducing interlayer interactions and (ii) the system can enter a spontaneously layer-trimerized foliated non-Abelian Fibonacci phase.",
+        "after": "By focusing on the case of filling ν = 1/3 of the lowest Landau level in each layer, we show that (i) the limit of decoupled Laughlin states is stable upon introducing interlayer interactions and (ii) for short-range pseudopotential interactions truncated to the leading intralayer and interlayer terms, the system can enter a layer-trimerized foliated non-Abelian Fibonacci phase."
+      },
+      "runs": ["r1", "r2", "r3"]
+    },
+    {
+      "tier": "A",
+      "rank": 2,
+      "topic": "direct_evidence",
+      "claim": "Spontaneous layer trimerization",
+      "claim_id": 4,
+      "headline": "Trimerization largely fixed by commensurability; uniform competitor absent at Nℓ = 9",
+      "issue": "For Nℓ = 9 (Ne = 12, Nφ = 3) the uniform [2/9 2/9 2/9] configuration cannot occur, and with Nφ = 3 the [220]^3 arrangement is essentially forced, so the larger trimerized region is partly built into the choice of system; for Nℓ = 6 the sectors are compared at one Nφ that sits at the Laughlin shift for [330] but not for the uniform sector. Without tunneling, layer particle numbers are conserved, so the three-fold degeneracy in Fig. 8(c,d) is a translation degeneracy of superselection sectors that holds by construction and does not test dynamical symmetry breaking.",
+      "evidence": {
+        "quote": "In the Nℓ = 9 system, the trimerized phase occupies a larger region as there is no competing state with homogeneous filling at that total particle number",
+        "page": 16,
+        "location": "Sec. V B3, Fig. 7(a,b), Fig. 8(c,d), Fig. S5"
+      },
+      "effort": "new_work",
+      "fix": "Provide a size series in which the uniform competitor is present and both sectors have a candidate FQH state at the appropriate shift, compare energies per particle with background-charge and shift corrections and show the size trend, ideally repeat the competition on the torus, and add a small interlayer tunneling to the Nℓ = 6 ED to show the k_z = 2π/3 layer-density modulation survives. Until then, qualify \"spontaneously layer-trimerized\" (abstract) and \"appears to be robust\" (end of Sec. V B3).",
+      "fix_scoped": "State that for Nℓ = 9 the uniform competitor is excluded by the choice of particle number, so the trimerized region there partly reflects that choice and not demonstrated spontaneous trimerization.",
+      "edit_scoped": {
+        "before": "In the Nℓ = 9 system, the trimerized phase occupies a larger region as there is no competing state with homogeneous filling at that total particle number (since Ne = 12 is not divisible by Nℓ = 9).",
+        "after": "In the Nℓ = 9 system, no state with homogeneous filling exists at this total particle number (since Ne = 12 is not divisible by Nℓ = 9), so the larger trimerized region there partly reflects the choice of system size rather than demonstrating spontaneous trimerization."
+      },
+      "runs": ["r1", "r2", "r3"]
+    },
+    {
+      "tier": "A",
+      "rank": 3,
+      "topic": "direct_evidence",
+      "claim": "Foliated Fibonacci phase in 9 layers",
+      "claim_id": 5,
+      "headline": "Foliated Fibonacci identification rests on 2+2 quasihole counting only",
+      "issue": "In the Nℓ = 9 calculation each Fibonacci bilayer is a 2+2 system in 4 orbitals, where Fibonacci counting (D0 ⊕ D2) differs from decoupled Laughlin (D0 ⊕ D1 ⊕ D2) by a single L = 1 multiplet, and the paper does not show that competing shift-3 bilayer states give different counting at these sizes. Δ_QH in Fig. 7(c,d) is not defined precisely, the Nℓ = 6 overlap of the blue counting region with the gapped trimerized region is never plotted, and there is no gap scaling or torus degeneracy for the foliated Fibonacci phase.",
+      "evidence": {
+        "quote": "Specifically, we show that the foliated Fibonacci phase exists in the 9-layer system with pseudopotential interactions within and between neighboring layers.",
+        "page": 1,
+        "location": "Abstract; Figs. 7(b–d), 8, S5"
+      },
+      "effort": "new_work",
+      "fix": "Define Δ_QH; give the predicted quasihole counting of competing bilayer states at 2+2, Nφ = 4 and 3+3, Nφ = 7; plot the intersection of trimerized and Fibonacci-counting regions for Nℓ = 6; compute overlaps of the Nℓ = 6 and 9 ground states with products of bilayer Fibonacci wavefunctions and with products of Ψ_330, Ψ_PSS, Laughlin or ED bilayer states; where feasible add a larger per-layer size; and give the torus ground-state degeneracy of a trimerized stack.",
+      "fix_scoped": "Describe the 9-layer result as quasihole counting consistent with a foliated Fibonacci phase at two electrons per occupied layer, not as an established phase.",
+      "edit_scoped": {
+        "before": "Specifically, we show that the foliated Fibonacci phase exists in the 9-layer system with pseudopotential interactions within and between neighboring layers.",
+        "after": "Specifically, we find quasihole counting consistent with a foliated Fibonacci phase in a 9-layer system with two electrons per occupied layer and pseudopotential interactions within and between neighboring layers."
+      },
+      "runs": ["r1", "r2", "r3"]
+    },
+    {
+      "tier": "B",
+      "rank": 4,
+      "topic": "theory",
+      "claim": "Realization in van der Waals crystals",
+      "claim_id": 6,
+      "headline": "Fibonacci parameter regime never placed against realistic Coulomb interactions",
+      "issue": "Sec. II A says all phases appear in parameter space obeying physical inequalities, yet Sec. VI B needs V1(1) ~ V1(0) and V1(1) ≳ V0(1), and the Fibonacci regions of Fig. 7(c,d) lie mostly at V1(1) > V0(1), which Coulomb at d > 0 does not satisfy. For LLL Coulomb, V0/V1 ≈ 2 places the system in the S = 1 / singlet region or on the decoupled-Laughlin / (112) boundary of Figs. 2–3, and the truncation drops V3(0), V2(1) and V1(2).",
+      "evidence": {
+        "quote": "All phases we find in this work appear in a reasonable portion of parameter space in that they can be stabilized with interaction coefficients that satisfy this set of inequalities.",
+        "page": 5,
+        "location": "Sec. II A; Sec. VI B; Figs. 2, 3, 7(c,d)"
+      },
+      "effort": "new_work",
+      "fix": "Correct the Sec. II A statement; evaluate Eq. (31) with finite well width or Rytova–Keldysh form over a range of d/l_B and mark the trajectory on Figs. 2, 3 and 7; quantify how far Landau-level mixing or dielectric engineering would need to move it; run at least one bilayer ED with full Coulomb interaction versus d/l_B; and state in Sec. VI which required conditions no known platform meets, or soften the abstract's realization statement.",
+      "fix_scoped": "State that the Fibonacci phases require V1(1) ≳ V0(1), which realistic Coulomb interactions at finite layer separation do not satisfy, while the foliated Laughlin phase lies in the physical range.",
+      "edit_scoped": {
+        "before": "All phases we find in this work appear in a reasonable portion of parameter space in that they can be stabilized with interaction coefficients that satisfy this set of inequalities.",
+        "after": "The foliated Laughlin phase appears in a portion of parameter space that satisfies this set of inequalities, whereas the Fibonacci phases require V1(1) ≳ V0(1), which unscreened Coulomb interactions at finite layer separation do not satisfy."
+      },
+      "runs": ["r1", "r2", "r3"]
+    },
+    {
+      "tier": "B",
+      "rank": 5,
+      "topic": "fits",
+      "claim": "Stability of foliated Laughlin phase",
+      "claim_id": 1,
+      "headline": "Foliated Laughlin gap extrapolation unjustified and tests only two-particle limit",
+      "issue": "Fig. 5(a) uses 2 electrons per layer, where the intralayer L = 0 state is unique, so the near-unit overlap cannot distinguish Laughlin layers from weakly correlated states. The Δ∞ ≈ 0.37 extrapolation uses a b/Nℓ form that Table S6 contradicts (gap constant in Nℓ from Nℓ = 4), is dominated by N = 2 points, ignores the spread of per-Nℓ fits (0.596 to 0.461), is done at one interaction point, and omits interlayer charge-transfer excitations in other sectors.",
+      "evidence": {
+        "quote": "First, decoupled Laughlin layers remain stable against interlayer interactions up to strengths comparable to the intralayer interactions.",
+        "page": 3,
+        "location": "Sec. I C; Fig. 5(a,b); App. L, Eq. (S124), Table S6"
+      },
+      "effort": "new_work",
+      "fix": "Include neighbouring per-layer sectors in Δ; fit at fixed Nℓ ≥ 4 using only N ≥ 3 and quote fit uncertainties; use the largest N per layer for Nℓ ≥ 3; give the uncoupled single-layer reference gap; extrapolate along a cut toward the boundary and show how the Laughlin / (112) boundary moves with N and Nℓ; and state that the Nℓ = 10 overlap map tests only the two-particle limit.",
+      "fix_scoped": "Claim only that, at the one interaction point studied, the foliated Laughlin gap stays finite in small systems, with the large-Nℓ overlap map limited to two particles per layer.",
+      "edit_scoped": {
+        "before": "First, decoupled Laughlin layers remain stable against interlayer interactions up to strengths comparable to the intralayer interactions.",
+        "after": "First, decoupled Laughlin layers remain gapped against interlayer interactions of moderate strength in the finite systems we can study, although for many layers our data are limited to two particles per layer."
+      },
+      "runs": ["r1", "r2", "r3"]
+    },
+    {
+      "tier": "B",
+      "rank": 6,
+      "topic": "direct_evidence",
+      "claim": "Bilayer Laughlin–Fibonacci transition",
+      "claim_id": 2,
+      "headline": "Bilayer Fibonacci overlaps beaten by interlayer Pfaffian; transition not shown",
+      "issue": "The ~0.67 Fibonacci overlap called \"high\" is below the interlayer Pfaffian overlap at every size in Fig. S2, the two model states overlap each other more than either overlaps ED, and the torus Ψ_Fib reference in Fig. 3(b) is an ED ground state, showing only adiabatic continuity. The Laughlin–Fibonacci boundary is drawn where one overlap exceeds the other, App. G shows no gap collapse, Fig. S7 shows an ambiguous ×3/×6 structure, and the torus degeneracy and counting come from one or two sizes.",
+      "evidence": {
+        "quote": "This wavefunction has a high overlap (∼ 0.67 for Ne = 7 + 7 particles where the L = 0 Hilbert space has total dimension 101266) with the ground state in the bilayer Fibonacci phase obtained from ED.",
+        "page": 8,
+        "location": "Sec. III B; Fig. 2(b), Fig. 3(b), Fig. S2, Fig. S7, App. G"
+      },
+      "effort": "new_work",
+      "fix": "Report the interlayer Pfaffian overlaps next to the 0.67 figure in the main text; project Ψ_Fib onto S = 0 and report projected overlaps; label ED reference states as such in Fig. 3(b); add orbital entanglement-spectrum counting; and show the torus spectrum along the Fig. S7 cut for at least two sizes (Ne = 8 and 10), or present the transition as conjecture.",
+      "fix_scoped": "Report the Fibonacci overlap alongside the higher interlayer Pfaffian overlap and rest the Fibonacci identification on torus degeneracy and quasihole counting, presenting the transition as conjectured.",
+      "edit_scoped": {
+        "before": "This wavefunction has a high overlap (∼ 0.67 for Ne = 7 + 7 particles where the L = 0 Hilbert space has total dimension 101266) with the ground state in the bilayer Fibonacci phase obtained from ED.",
+        "after": "This wavefunction has an overlap of ∼ 0.67 for Ne = 7 + 7 particles (L = 0 Hilbert space dimension 101266) with the ground state in the bilayer Fibonacci phase obtained from ED, slightly below the interlayer Pfaffian overlap of ∼ 0.715 (App. D), so overlaps alone do not single out the Fibonacci state."
+      },
+      "runs": ["r1", "r2", "r3"]
+    },
+    {
+      "tier": "B",
+      "rank": 7,
+      "topic": "direct_evidence",
+      "claim": "SU(3)_Nℓ order for 3 and 4 layers",
+      "claim_id": 3,
+      "headline": "SU(3)_Nℓ claim rests on one size each, partial agreement",
+      "issue": "The evidence for Nℓ = 3 and 4 is one quasihole spectrum each with 3 electrons per layer, and Table S5 shows mismatches at several 2L values with no data for 2L ≤ 11 in the Ne = 9 trilayer, which does not match \"confirmed numerically\" or \"excellent agreement\". The Eq. (21) wavefunction is never compared with ED (Fig. S4(f) uses an ED reference), no torus degeneracy is shown, periodic layer boundary conditions make Nℓ = 3 all-to-all coupled, and for Nℓ = 4 with NN-only interactions the Hamiltonian is not SU(4) symmetric.",
+      "evidence": {
+        "quote": "observe excellent agreement with the numerical results in Fig. 4(b,c) for Nℓ = 3 and Nℓ = 4.",
+        "page": 12,
+        "location": "Sec. IV A–B; Fig. 4(b,c); Table S5; Fig. S4(f)"
+      },
+      "effort": "new_work",
+      "fix": "Add at least one more size or a torus degeneracy for Nℓ = 3 and 4; give Monte Carlo overlaps with Eq. (21); state that Fig. S4(f) uses an ED reference; comment on open versus periodic layer boundary conditions and on how the missing SU(4) symmetry affects the \"intrinsically four-layer order\" claim; and soften the agreement statement.",
+      "fix_scoped": "State that the counting agrees with the SU(3)_Nℓ prediction at one system size per layer number, with deviations at small 2L listed in Table S5.",
+      "edit_scoped": {
+        "before": "We have extended the generalized exclusion principles to the case of the Nℓ-layer SU(3)Nℓ state (see App. K 2 for more details) and observe excellent agreement with the numerical results in Fig. 4(b,c) for Nℓ = 3 and Nℓ = 4.",
+        "after": "We have extended the generalized exclusion principles to the case of the Nℓ-layer SU(3)Nℓ state (see App. K 2 for more details) and observe agreement with the numerical results in Fig. 4(b,c) for Nℓ = 3 and Nℓ = 4 at one system size each, with deviations at small 2L (Table S5)."
+      },
+      "runs": ["r1", "r2", "r3"]
+    },
+    {
+      "tier": "B",
+      "rank": 8,
+      "topic": "consistency",
+      "claim": "Bilayer phase diagram",
+      "claim_id": 2,
+      "headline": "Main text implies (112) for D = 3 region; App. H rules it out",
+      "issue": "Sec. III C and Fig. 3(b) label the 3-fold degenerate torus region Ψ_singlet and say the (112) overlap is larger there, while App. H reports that interpolating to the (112) Hamiltonian closes the gap, ruling out (112), and leaves the region's topological character open. The multilayer phase-separation argument of Sec. V A builds on the (112)/S = 1 identification.",
+      "evidence": {
+        "quote": "The Halperin (112) overlap is larger throughout the 3-fold degenerate region and is shown in Fig. 3(b); the smaller PH(1/3) overlap is shown separately in App. H.",
+        "page": 9,
+        "location": "Sec. III C; Fig. 3(b); Table I; App. H"
+      },
+      "effort": "existing_data",
+      "fix": "Make the main text, Fig. 3 labels and Table I consistent with App. H; give the actual (112) overlap values; show the interpolation spectrum; explain how the high sphere singlet overlap fits with the torus result; and say whether the S = 1 sphere region and the D = 3 torus region are the same phase.",
+      "fix_scoped": "State in the main text that the D = 3 torus region is not identified, since interpolation to the (112) Hamiltonian closes the gap.",
+      "edit_scoped": {
+        "before": "The Halperin (112) overlap is larger throughout the 3-fold degenerate region and is shown in Fig. 3(b); the smaller PH(1/3) overlap is shown separately in App. H.",
+        "after": "The Halperin (112) overlap is larger than the PH(1/3) overlap throughout the 3-fold degenerate region (Fig. 3(b) and App. H), but interpolation to the (112) Hamiltonian closes the gap (App. H), so the topological character of this region remains open."
+      },
+      "runs": ["r1", "r2", "r3"]
+    },
+    {
+      "tier": "B",
+      "rank": 9,
+      "topic": "theory",
+      "claim": "Spontaneous layer trimerization",
+      "claim_id": 4,
+      "headline": "Tunneling, density control and disorder omitted though trimerization needs charge transfer",
+      "issue": "The model has no single-particle tunneling, yet tunneling drives the Laughlin-to-Fibonacci transition in Ref. 84, mixes particle-per-layer sectors and favours the uniform configuration, and for d ≲ l_B it is not obviously small compared with sub-meV FQH gaps. Filling 1/3 at 10 T needs about 8 × 10^10 cm^-2 per layer from intrinsic doping with matching disorder, and in a 3D crystal the average filling is tuned only by B.",
+      "evidence": {
+        "quote": "Although our model does not include interlayer tunneling, the physical realization of the layer-translational symmetry-breaking state should include a small tunneling between the layers to allow charge redistribution.",
+        "page": 15,
+        "location": "Sec. V B; Sec. VI A"
+      },
+      "effort": "new_work",
+      "fix": "Estimate the tunneling scale at which the [1/3 1/3 0] state is destabilized (for example by second-order perturbation theory between sectors) relative to the computed gaps in meV; estimate tunneling scales and required doping homogeneity for the proposed platforms; and say over what range of average filling around 2/9 the trimerized state remains the ground state.",
+      "fix_scoped": "State that the effect of interlayer tunneling on the trimerized state is not determined, since tunneling also mixes particle-per-layer sectors and can drive the Laughlin-to-Fibonacci transition.",
+      "edit_scoped": {
+        "before": "The FFQH phases we obtain are gapped, and hence they are stable as long as the strength of the tunneling is much smaller than the gap.",
+        "after": "The FFQH phases we obtain are gapped, but tunneling also mixes particle-per-layer sectors and can itself drive the Laughlin-to-Fibonacci transition, so the tunneling scale up to which the trimerized state survives remains to be determined."
+      },
+      "runs": ["r1", "r2", "r3"]
+    },
+    {
+      "tier": "B",
+      "rank": 10,
+      "topic": "dependences",
+      "claim": "Spontaneous layer trimerization",
+      "claim_id": 4,
+      "headline": "NNN interaction incompletely specified; ratio V0(2)/V0(1) fixed by hand",
+      "issue": "Only V0(2) = V0(1)/2 is specified, while Eq. (26) and the quantum-gain estimate of Eq. (29) involve J(2), which depends on V1(2); the text never says whether V1(2) = 0 in the ED or whether NNN couplings enter Fig. 5. Since the NNN sector creates the trimerization, the dependence on this ratio matters.",
+      "evidence": {
+        "quote": "We will mostly be considering the largest terms of the intralayer, NN layer and NNN layer interaction",
+        "page": 5,
+        "location": "Sec. II A; Eqs. (26), (29); Figs. 5, 7, 8"
+      },
+      "effort": "new_work",
+      "fix": "State every fixed pseudopotential for each figure, including V1(2) in Figs. 7–8, and show how the trimerized and Fibonacci regions of Fig. 7 move when V0(2)/V0(1) is varied (for example 0.3 and 0.7).",
+      "fix_scoped": "State that the trimerized phase diagram is obtained for a single fixed NNN ratio V0(2) = V0(1)/2 and that its dependence on this ratio is not explored.",
+      "edit_scoped": {
+        "before": "We use ED to characterize the possible phases for Nℓ = 6, 9 with periodic boundary conditions.",
+        "after": "We use ED to characterize the possible phases for Nℓ = 6, 9 with periodic boundary conditions, for a single fixed NNN ratio V0(2) = V0(1)/2; how the phase diagram depends on this ratio is not explored here."
+      },
+      "runs": ["r1", "r3"]
+    },
+    {
+      "tier": "B",
+      "rank": 11,
+      "topic": "theory",
+      "claim": "Spontaneous layer trimerization",
+      "claim_id": 4,
+      "headline": "Thin-torus predictions depend on aspect ratio κ; link to ED undemonstrated",
+      "issue": "The thin-torus decoupled-Laughlin region is a narrow wedge that closes as ε → 0, whereas ED finds an extended region bounded by V0(1) ~ 2V1(1), matching only at κ² ≈ 2, far from the thin-torus limit. The classical-versus-quantum comparison of Eqs. (27)–(29) depends on κ, Fig. 6 is only a schematic, Eq. (29) is an order-of-magnitude estimate, and no numerical κ is given for where the analysis applies.",
+      "evidence": {
+        "quote": "Although we do not expect the energetics from the thin-torus analysis to agree quantitatively with the numerical results, the tendencies toward these phases",
+        "page": 10,
+        "location": "Sec. III D, Eq. (13); Sec. V B2, Eqs. (27)–(29), Fig. 6; App. J, Eq. (S106)"
+      },
+      "effort": "new_work",
+      "fix": "State the κ-dependence and the numerical κ (or L_y/l_B) at which Sec. V B2 applies; replace Fig. 6 with thin-torus energies of configurations A, B and C versus V1(1) at a few κ; compare the predicted window directly with the ED boundaries of Fig. 7; ideally follow the A/B energy difference in ED for Nℓ = 6 from thin torus to square torus; and tone down \"the tendencies ... are consistent\".",
+      "fix_scoped": "Present the thin-torus result as a qualitative, κ-dependent illustration rather than an explanation of the ED phase diagrams.",
+      "edit_scoped": {
+        "before": "The correlated interlayer hopping provides a quantum energy gain that acts exclusively on the pair-foliated configuration promoting it to a stable phase.",
+        "after": "In the thin-torus limit, the correlated interlayer hopping provides a quantum energy gain that acts mainly on the pair-foliated configuration; whether this stabilizes it depends on the aspect ratio κ, so the sketch is qualitative."
+      },
+      "runs": ["r1", "r2", "r3"]
+    },
+    {
+      "tier": "C",
+      "rank": 12,
+      "topic": "theory",
+      "claim": "Generalized Halperin states",
+      "claim_id": 0,
+      "headline": "Degeneracy 1 listed where K matrix is singular",
+      "issue": "Table II and App. A (Eq. S8) list a ground-state degeneracy of 1 for Nℓ ≡ 0 (mod 3), where det K = 0. A singular K matrix signals gapless neutral modes, as App. A itself says, not a unique gapped ground state.",
+      "evidence": {
+        "quote": "and ground state degeneracy (GSD) on the torus is |det(K)|, except if det(K) = 0, in which case the GSD is 1.",
+        "page": 27,
+        "location": "Table II; App. A, Eq. (S8)"
+      },
+      "effort": "text",
+      "fix": "Mark that entry \"gapless/undefined\".",
+      "fix_scoped": null,
+      "edit_scoped": null,
+      "runs": ["r1"]
+    },
+    {
+      "tier": "C",
+      "rank": 13,
+      "topic": "consistency",
+      "claim": "SU(3)_Nℓ order for 3 layers",
+      "claim_id": 3,
+      "headline": "Fig. 4(b) half-integer multiplets plotted on integer-L axis",
+      "issue": "Fig. 4(b) (Nℓ = 3, Ne = 9, Nφ = 7) predicts half-integer multiplets D3/2 ⊕ D5/2 ⊕ D9/2 but plots states on an integer-L axis.",
+      "evidence": {
+        "quote": "For the trilayer SU(3)3 state with Ne = 9 particles and Nφ = 6 + 1 flux quanta, the predicted quasihole counting is",
+        "page": 12,
+        "location": "Fig. 4(b)"
+      },
+      "effort": "text",
+      "fix": "Correct or explain the axis, for example by labelling it 2L as in Table S5.",
+      "fix_scoped": null,
+      "edit_scoped": null,
+      "runs": ["r1", "r2", "r3"]
+    },
+    {
+      "tier": "C",
+      "rank": 14,
+      "topic": "consistency",
+      "claim": "Stability of foliated Laughlin phase",
+      "claim_id": 1,
+      "headline": "\"Filling 2/3\" for general Nℓ and \"up to 10 layers\" inconsistent",
+      "issue": "The Fig. 5(b) caption and Sec. V A state \"filling 2/3\" (and \"shift 3\") for general Nℓ, which should read ν = 1/3 per layer. The abstract and Sec. V say \"up to 10 layers\", while Table S6 and Fig. 5(b) go to Nℓ = 13.",
+      "evidence": {
+        "quote": "We support our claims by numerical exact diagonalization of up to 10 layers as well as perturbative analytical calculations.",
+        "page": 1,
+        "location": "Abstract; Sec. V A; Fig. 5(b) caption; Table S6"
+      },
+      "effort": "text",
+      "fix": "Change \"filling 2/3\" to ν = 1/3 per layer in the Fig. 5(b) caption and Sec. V A, and make the stated maximum number of layers consistent with Table S6 and Fig. 5(b).",
+      "fix_scoped": null,
+      "edit_scoped": null,
+      "runs": ["r1", "r2", "r3"]
+    },
+    {
+      "tier": "C",
+      "rank": 15,
+      "topic": "consistency",
+      "claim": "Text and caption errors",
+      "claim_id": 0,
+      "headline": "Several text and caption errors across Figs. 3, 7, 8, S5, S9",
+      "issue": "Sec. III C says Fig. 3(b) shows overlaps on the sphere though Fig. 3 is the torus; the Fig. 7 caption reads \"(a) Nℓ = 6 and (b) Nφ = 3\" and has \"redregion\"/\"red regioncorresponds\"; the Fig. 8 caption has a sentence starting in lower case; colorbar labels in Figs. 2–3 overlap; the Fig. S5 caption does not describe the plotted configurations; the Fig. S9 caption says Ne = 10 while App. I refers to Ne = 8; and in Fig. 8(a) the L = 0 count (18) exceeds the predicted 15 without the caption saying so.",
+      "evidence": {
+        "quote": "In Fig. 3(b) we have plotted the overlap of the ground state on the sphere with several model states.",
+        "page": 9,
+        "location": "Sec. III C; captions of Figs. 2, 3, 7, 8, S5, S9"
+      },
+      "effort": "text",
+      "fix": "Fix each of these text and caption errors, state which size Fig. S9 shows, and note the finite-size excess in the L = 0 count in the Fig. 8 caption.",
+      "fix_scoped": null,
+      "edit_scoped": null,
+      "runs": ["r1", "r2", "r3"]
+    },
+    {
+      "tier": "C",
+      "rank": 16,
+      "topic": "other",
+      "claim": "Bilayer phase diagram",
+      "claim_id": 2,
+      "headline": "Shift selection compares gaps across Nφ; hashed and S = 0 regions unidentified",
+      "issue": "Shift selection on the sphere (Fig. 2a, Fig. S4) compares gaps at different Nφ, and small-system gap magnitudes depend strongly on Nφ. The hashed region of Fig. 2(a) and the S = 0 region (Fig. S3) remain unidentified.",
+      "evidence": {
+        "quote": "Instead, we compute the gap in all shift sectors and use the shift with the largest gap as a proxy for the ground state shift, as was done in Ref. 131.",
+        "page": 8,
+        "location": "Sec. III C; Fig. 2(a); Figs. S3, S4"
+      },
+      "effort": "text",
+      "fix": "Add a sentence on how robust the yellow boundaries are to this criterion (for example by comparing ground-state energies per particle after background correction) and list in the main text what was checked for the hashed and S = 0 regions and which candidates remain.",
+      "fix_scoped": null,
+      "edit_scoped": null,
+      "runs": ["r2", "r3"]
+    },
+    {
+      "tier": "C",
+      "rank": 17,
+      "topic": "theory",
+      "claim": "Bilayer Fibonacci wavefunction",
+      "claim_id": 2,
+      "headline": "Eq. (12) interlayer exponent 4/3 versus 2/3 in Eq. (21)",
+      "issue": "Eq. (12) has interlayer exponent 4/3, whereas Eq. (21)/(S60) give 2/3 per unordered adjacent pair; they agree only if the pair (1,2) is counted twice for Nℓ = 2 with periodic boundaries, while Fig. S4 explicitly avoids double counting in the Hamiltonian.",
+      "evidence": {
+        "quote": "i.e. the top and bottom layers in the stack interact, for the bilayer we do not double count the interlayer interactions.",
+        "page": 42,
+        "location": "Eq. (12); Eqs. (21), (S60); Fig. S4 caption"
+      },
+      "effort": "text",
+      "fix": "State that the pair (1,2) is counted twice for the bilayer with periodic boundaries in the wavefunction construction.",
+      "fix_scoped": null,
+      "edit_scoped": null,
+      "runs": ["r2"]
+    },
+    {
+      "tier": "C",
+      "rank": 18,
+      "topic": "other",
+      "claim": "Foliated Fibonacci phase",
+      "claim_id": 5,
+      "headline": "Stabilized phases are stacked 2D orders; App. M state not found",
+      "issue": "The phases actually stabilized are stacks of decoupled 2D orders (Laughlin layers, or Fibonacci bilayers separated by empty layers); the interlayer-entangled foliated Fibonacci state of Fig. 1(c) and App. M, with no charge modulation, is not found in the numerics.",
+      "evidence": {
+        "quote": "We note that this is a different foliated Fibonacci state to the one considered in the main text, since there is no layer charge modulation.",
+        "page": 54,
+        "location": "Fig. 1(c,f); Sec. I A; App. M"
+      },
+      "effort": "text",
+      "fix": "Give the App. M state a distinct name to avoid confusion with Fig. 1(c) and (f), and make clear in the abstract and Sec. I A that the \"fracton\" character here is that of the simplest stacked foliated phases.",
+      "fix_scoped": null,
+      "edit_scoped": null,
+      "runs": ["r1", "r2"]
+    },
+    {
+      "tier": "C",
+      "rank": 19,
+      "topic": "other",
+      "claim": "Presentation of evidence strength",
+      "claim_id": 0,
+      "headline": "Abstract should separate robust bilayer results from tentative Nℓ = 9 claim",
+      "issue": "The abstract and Sec. I C do not distinguish the robust bilayer and few-layer results from the tentative Nℓ = 9 foliated Fibonacci result, and key caveats sit only in appendices: the interlayer Pfaffian's higher overlaps, the 2-electron-per-layer sizes, and the exclusion of the uniform sector for Nℓ = 9.",
+      "evidence": {
+        "quote": "the system can enter a spontaneously layer-trimerized foliated non-Abelian Fibonacci phase.",
+        "page": 1,
+        "location": "Abstract; Sec. I C"
+      },
+      "effort": "text",
+      "fix": "State the strength of the evidence for each claim in the abstract and Sec. I C, and move the key caveats into the main text.",
+      "fix_scoped": null,
+      "edit_scoped": null,
+      "runs": ["r1", "r3"]
+    },
+    {
+      "tier": "C",
+      "rank": 20,
+      "topic": "other",
+      "claim": "Realization in van der Waals crystals",
+      "claim_id": 6,
+      "headline": "No discussion of spin and valley polarization for proposed platforms",
+      "issue": "The model treats spinless, single-component electrons, but the candidate van der Waals and misfit platforms of Sec. VI A may have spin and valley degrees of freedom at the relevant fields.",
+      "evidence": {
+        "quote": "As-grown layered 3D materials are the preferable, more generic platform.",
+        "page": 18,
+        "location": "Sec. VI A"
+      },
+      "effort": "text",
+      "fix": "Add a sentence on spin and valley polarization at the relevant fields for the candidate platforms.",
+      "fix_scoped": null,
+      "edit_scoped": null,
+      "runs": ["r2"]
+    },
+    {
+      "tier": "C",
+      "rank": 21,
+      "topic": "other",
+      "claim": "References",
+      "claim_id": 0,
+      "headline": "Duplicated references and one misplaced citation",
+      "issue": "Several references are duplicated: [84]/[88], [103]/[162], [109]/[200], [141]/[211], [191]/[215] and [4]/[197]. Ref. [196] (Skyrmions) is cited for the (112) singlet construction on p. 26 and looks misplaced.",
+      "evidence": {
+        "quote": "A. Vaezi and M. Barkeshli, Fibonacci anyons from abelian bilayer quantum hall states, Phys. Rev. Lett. 113, 236804 (2014).",
+        "page": 22,
+        "location": "References"
+      },
+      "effort": "text",
+      "fix": "Merge the duplicated references and check the citation of Ref. [196] for the (112) singlet construction.",
+      "fix_scoped": null,
+      "edit_scoped": null,
+      "runs": ["r1", "r2", "r3"]
+    }
+  ]
+}

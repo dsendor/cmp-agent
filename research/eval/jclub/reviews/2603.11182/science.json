@@ -1,0 +1,540 @@
+{
+  "title": "Controlled localization of anyons in a graphene quantum Hall interferometer",
+  "claims": [
+    "A gate-controlled anti-dot inside a bilayer-graphene Fabry-Pérot interferometer produces hundreds of reproducible, discrete phase slips in five fractional quantum Hall states.",
+    "The interfering edge carries charge equal to the fractional part of the cavity filling, e.g. e/2 at 1+1/2 and 2e/5 at -2/5, from the Aharonov-Bohm periodicity.",
+    "For the abelian states 1+1/3 and -2/5, the slip sizes (about 1/3 and 1/5 of 2π) agree with the expected braiding phases of single e/3 and e/5 quasiparticles entering the anti-dot.",
+    "At 1+1/2, the slips indicate that putative non-abelian e/4 quasiparticles are loaded one by one into the anti-dot, a step toward non-abelian braiding.",
+    "Slip spacing and slip counting, combined with the anti-dot radius, give fractional localized charges and exclude charge e.",
+    "Slip regions recur once per anti-dot Landau level, with an ordering that tracks the cavity filling, pointing to reconstructed anti-dot edges."
+  ],
+  "summary": "The authors etch a hole in the top graphite gate of a bilayer-graphene Fabry-Pérot interferometer and tune the enclosed anti-dot with a bridge gate, observing long series of discrete interference phase slips at ν = -1/2, -2/5, -1/3, 1+1/3 and 1+1/2. They interpret the slips as single fractional quasiparticles entering the anti-dot and extract braiding phases of about 1/3, 1/5 and 1/4 (in units of 2π), presenting the last as controlled localization of putative non-abelian e/4 anyons.",
+  "strengths": [
+    "A new and useful device concept: a bridge-gated anti-dot inside a graphite-gated bilayer-graphene interferometer gives gate control of the localized quasiparticle population rather than relying on random traps.",
+    "Clean Aharonov-Bohm interference in five fractional states, including two even-denominator states, with interfering charges consistent with the fractional part of the filling (Fig. 1d-f).",
+    "The slips recur at the same bridge-gate voltage over 50 repeated sweeps (Ext. Fig. 6) and group into three anti-dot filling windows per state whose ordering follows the cavity filling (Fig. 4b), at two magnetic fields (Ext. Fig. 8).",
+    "Capacitance-based charge estimates rule out charge e entering the anti-dot, and self-consistent COMSOL/Thomas-Fermi electrostatics support the parallel-plate estimate of the anti-dot filling."
+  ],
+  "issues": [
+    {
+      "tier": "A",
+      "rank": 1,
+      "topic": "fits",
+      "claim": "Slip sizes match expected braiding phases",
+      "claim_id": 3,
+      "headline": "Slip sizes come from hand-picked steps; full distribution never shown",
+      "issue": "The headline slip sizes (0.330(72), 0.206(50), 0.221(30)) rest on about 4-10 steps chosen as the most prominent and closest to the statistical value, out of ~200-300 slips, and the paper concedes that less prominent jumps are often smaller than expected. The extraction has further free choices (trimming window, plateau threshold, averaging only negative Δθ), and the undiscussed Ext. Fig. 9 analyses at ν_cav = -1/3 and -1/2 appear to give steps of about 0.10-0.25, below the expected values.",
+      "evidence": {
+        "quote": "to analyze the jumps closest to the statistical value. Further statistical analysis of a wide range of",
+        "page": 5,
+        "location": "Section IV; Fig. 3d-f; Ext. Fig. 3; Ext. Fig. 9; Methods F"
+      },
+      "effort": "existing_data",
+      "fix": "Fix automated jump-detection and step-height criteria in advance, apply them to every resolved slip, and show signed histograms with slip counts for every (ν_cav, ν_AD) combination including -1/3 and -1/2, with unselected mean, median, spread and the fraction within uncertainty of theory. State the threshold values used and how Δθ_ps changes across them, and discuss any state that departs from theory; if distributions are broad and centred low, restate the claim as an upper envelope.",
+      "fix_scoped": "For abelian anyons, the most prominent phase slips, selected for analysis, agree with the theoretically expected value, while many less prominent slips are smaller.",
+      "edit_scoped": {
+        "before": "For abelian anyons, the observed phase slips agree with the theoretically expected value.",
+        "after": "For abelian anyons, the most prominent phase slips, selected for analysis, agree with the theoretically expected value, while many less prominent slips are smaller."
+      },
+      "runs": ["r1", "r2", "r3"]
+    },
+    {
+      "tier": "A",
+      "rank": 2,
+      "topic": "fits",
+      "claim": "Localized e/4 charge at 1+1/2",
+      "claim_id": 4,
+      "headline": "Data cannot distinguish e/4 from e/5; error bars undefined",
+      "issue": "At 1+1/2 the value 0.221(30) is within one uncertainty of both 0.25 and 0.20, and it is statistically indistinguishable from the 0.206(50) at -2/5; individual steps span wide ranges. The paper does not say whether the bracketed error is a standard deviation or a standard error, nor how many steps enter each panel, so the 'direct measurement' of e/4 is not supported at an assessable confidence level.",
+      "evidence": {
+        "quote": "is indeed consistent with the 1/4 expectation, leading us to conclude that the AD charge changes discretely by",
+        "page": 6,
+        "location": "Section IV; Fig. 3d-f"
+      },
+      "effort": "existing_data",
+      "fix": "Define the error, give the likelihood or goodness of fit of the full step distribution under the 1/5, 1/4, 1/3, 1/2 hypotheses and their sign-flipped mod-2π complements, and add slips from other ν_AD windows, bridge-gate ranges and the 7.95 T data to separate them. Otherwise soften the abstract and conclusion.",
+      "fix_scoped": "Our measurement value, |∆θps|/2π = 0.221(30), is consistent with the 1/4 expectation but cannot yet be distinguished from 1/5, so a localized charge |e∗loc/e| = 1/4 in this state is suggested rather than established.",
+      "edit_scoped": {
+        "before": "Our measurement value, |∆θps|/2π = 0.221(30), is indeed consistent with the 1/4 expectation, leading us to conclude that the AD charge changes discretely by |e∗loc/e| = 1/4 in this state.",
+        "after": "Our measurement value, |∆θps|/2π = 0.221(30), is consistent with the 1/4 expectation but cannot yet be distinguished from 1/5, so a localized charge |e∗loc/e| = 1/4 in this state is suggested rather than established."
+      },
+      "runs": ["r1", "r2", "r3"]
+    },
+    {
+      "tier": "A",
+      "rank": 3,
+      "topic": "theory",
+      "claim": "Slip size equals braiding phase θ_a",
+      "claim_id": 3,
+      "headline": "AD-to-edge coupling may set slip size and is never estimated",
+      "issue": "The sawtooth of a large negative inter-slip slope plus positive jumps is the generic signature of a charging island capacitively coupled to the interfering edge, where the jump is θ_a minus a non-universal coupling term that can be as large as the jump. The paper invokes such coupling for the smaller jumps but assumes the prominent ones carry the bare θ_a, and the small-ζ conclusion of Methods D concerns cavity bulk-edge coupling, not AD-to-edge coupling.",
+      "evidence": {
+        "quote": "As discussed in the main text, the discrete phase slips are expected to arise from the statistical contributions of single quasiparticles jumping into the AD according to Eq. (1)",
+        "page": 10,
+        "location": "Methods F; Fig. 2c; Ext. Fig. 3"
+      },
+      "effort": "new_work",
+      "fix": "Estimate the AD-edge mutual capacitance relative to edge stiffness from the COMSOL/Thomas-Fermi model and from statistics-free data, propagate it into the expected jump, plot Δθ_ps against slope times spacing slip by slip, and show Δθ_ps is fixed while slope and spacing vary with B, V_BG, plunger, AD-edge distance and AD Landau level. Fit a model with AD-edge and bulk-edge coupling, report how far Δθ_ps can be pulled from θ_a, and explain why coupling is negligible for the prominent jumps only.",
+      "fix_scoped": "As discussed in the main text, the discrete phase slips are expected to arise mainly from the statistical contributions of single quasiparticles jumping into the AD according to Eq. (1), so that ∆θps ≈ θa up to an AD–edge coupling correction that we have not measured.",
+      "edit_scoped": {
+        "before": "As discussed in the main text, the discrete phase slips are expected to arise from the statistical contributions of single quasiparticles jumping into the AD according to Eq. (1), meaning that ∆θps = θa.",
+        "after": "As discussed in the main text, the discrete phase slips are expected to arise mainly from the statistical contributions of single quasiparticles jumping into the AD according to Eq. (1), so that ∆θps ≈ θa up to an AD–edge coupling correction that we have not measured."
+      },
+      "runs": ["r1", "r2", "r3"]
+    },
+    {
+      "tier": "A",
+      "rank": 4,
+      "topic": "consistency",
+      "claim": "Slip sizes match expected braiding phases",
+      "claim_id": 3,
+      "headline": "Slip sign contradicts loading direction; mod-2π branch not fixed",
+      "issue": "The slip sign corresponds to removing quasiparticles while the gate loads them, and with only cos θ measured the sign decides which theoretical value matches (+1/3 equals -2/3, +1/4 equals -3/4, and at 1+1/2 1/4 and 3/4 are equally possible). The branch is inferred from continuity with a large opposite-sign θ_cnt, and the main text compares magnitudes only.",
+      "evidence": {
+        "quote": "We find that, in our experiments, the observed phase-slip sign consistently corresponds to removing quasiparticles from the interferometer cavity (equivalently, adding quasiholes), even though sweeping",
+        "page": 6,
+        "location": "Section IV; Ext. Fig. 10; SI A"
+      },
+      "effort": "existing_data",
+      "fix": "Explain how the θ_cnt/Δθ_ps decomposition fixes the branch, give a signed comparison using the SI sign conventions, determine from Fig. 1d and the loading direction whether quasiparticles or quasiholes are added, and state which signed theoretical phase each value is compared with. Resolve or model the sign inversion before tying step size uniquely to θ_a.",
+      "fix_scoped": "The magnitudes of the measured phase slips ∆θps can be compared with the magnitude of the anyon braiding statistical angle θa using Eq. (1), although the slip sign and the mod-2π branch remain unresolved.",
+      "edit_scoped": {
+        "before": "The quantitative analysis of the measured phase slips ∆θps enables us to estimate the anyon braiding statistical angle θa using Eq. (1).",
+        "after": "The magnitudes of the measured phase slips ∆θps can be compared with the magnitude of the anyon braiding statistical angle θa using Eq. (1), although the slip sign and the mod-2π branch remain unresolved."
+      },
+      "runs": ["r1", "r2", "r3"]
+    },
+    {
+      "tier": "A",
+      "rank": 5,
+      "topic": "null_control",
+      "claim": "Slips come from quasiparticles entering the AD",
+      "claim_id": 1,
+      "headline": "No integer-filling or pre-etch controls where statistical phase is trivial",
+      "issue": "At integer cavity filling, electrons entering the AD give a trivial 2π phase, so any visible slip would measure pure Coulomb or coupling effects; similar controls are an integer ν_AD window, a depleted or far-off-plateau hole region, and data taken before the hole was etched. Without them, a jump of about 1/3 cannot be separated from coupling-induced jumps or electrostatic artifacts at the bridge-gate overhang, which also tunes the area.",
+      "evidence": {
+        "quote": "located close to these trenches, tuning the bridge gate also tunes the cavity area. These two effects can be easily disentangled as they have two different experimental signatures",
+        "page": 3,
+        "location": "Section III; Methods D"
+      },
+      "effort": "new_work",
+      "fix": "Show the same V_brg-V_TG maps and step analysis at integer ν_cav under the AD conditions of Figs. 2-4, for an integer ν_AD, and from before the hole was etched, reporting whether slips appear and how large they are.",
+      "fix_scoped": "These observations are consistent with the AD filling with quasiparticles one-by-one, although without integer-filling control measurements we cannot exclude electrostatic contributions to the slips.",
+      "edit_scoped": {
+        "before": "Thus, we conclude that the observed phase slips originate from the AD filling with quasiparticles one-by-one, with each new quasiparticle causing a phase slip.",
+        "after": "These observations are consistent with the AD filling with quasiparticles one-by-one, although without integer-filling control measurements we cannot exclude electrostatic contributions to the slips."
+      },
+      "runs": ["r1", "r2", "r3"]
+    },
+    {
+      "tier": "A",
+      "rank": 6,
+      "topic": "calibration",
+      "claim": "Slip spacing gives fractional localized charge",
+      "claim_id": 5,
+      "headline": "Spacing-based charges depend on unmeasured radius and favour larger charges",
+      "issue": "The spacing estimate scales with r_AD², which is quoted variously as 100, 150-200 and 100-200 nm, so the 0.2-0.4 range only excludes e; with a common radius, and radius-independently via spacing ratios, the spacing data favour e/2 and 2e/5 over e/4 and e/5. The spacings are also broad (42-140% relative spread), and (C/eA)_brg is derived from the top gate slope while Methods H says the top gate barely couples to the AD.",
+      "evidence": {
+        "quote": "We find that the capacitance extracted from this spacing is consistent with individual fractional charges",
+        "page": 4,
+        "location": "Section III; Methods E; Ext. Figs. 3d-5d; Methods H"
+      },
+      "effort": "existing_data",
+      "fix": "Show spacing histograms, resolve the capacitance inconsistency, and bound r_AD independently (Thomas-Fermi at each state's gate voltages or the AD Landau-level periodicity) or justify a state-dependent r_AD. Otherwise drop the claim that spacing confirms e/4 and e/5 and is inconsistent with larger charges, presenting it as a consistency check that excludes only e.",
+      "fix_scoped": "Given the uncertain AD radius, the phase-slip spacing is consistent with fractional charges entering the AD and excludes only charges as large as |e∗loc/e| = 1 (Extended Fig. 4, 5); it does not by itself distinguish 1/5, 1/4 and 1/3.",
+      "edit_scoped": {
+        "before": "The best estimate of the corresponding quasiparticle charge e∗loc jumping into the AD region are consistent with the expected elementary quasiparticle charges, where |e∗loc/e| = 1/5 and 1/4 respectively, and inconsistent with larger charges such as |e∗loc/e| = 1 (Extended Fig. 4, 5).",
+        "after": "Given the uncertain AD radius, the phase-slip spacing is consistent with fractional charges entering the AD and excludes only charges as large as |e∗loc/e| = 1 (Extended Fig. 4, 5); it does not by itself distinguish 1/5, 1/4 and 1/3."
+      },
+      "runs": ["r1", "r2", "r3"]
+    },
+    {
+      "tier": "B",
+      "rank": 7,
+      "topic": "calibration",
+      "claim": "Interfering edge charge equals ν̃e",
+      "claim_id": 2,
+      "headline": "Interfering-edge charges rest on one fitted area and circular reasoning",
+      "issue": "The area A = 0.56 µm² is a free parameter of a fit that assumes e*_ie = ν̃e, the 'measured' charges are then obtained by dividing by that A, and small ζ is concluded because the charges match theory. Hole-like and electron-like states were measured with opposite back-gate and plunger settings and need not share one area, and the AD filling can change the effective area.",
+      "evidence": {
+        "quote": "Since the charges we extract are very close to the theoretical charges, we conclude that there is minimal bulk-edge coupling",
+        "page": 9,
+        "location": "Fig. 1f; Methods D"
+      },
+      "effort": "new_work",
+      "fix": "Calibrate A independently from integer fillings under the same gate settings for each polarity, fit A and ζ together using the ν/ν̃ dependence or the stripe slope in the B-V_PG plane and report the ζ constraint, give the fit intercept and uncertainty, state the ν_AD of each Fig. 1d map, and ideally measure e*_ie by DC bias for each state.",
+      "fix_scoped": "Assuming a common area A = 0.56 µm2 for all states, the extracted charges are close to the theoretical charges, which is consistent with small bulk-edge coupling, although A and ζ are not determined independently.",
+      "edit_scoped": {
+        "before": "Since the charges we extract are very close to the theoretical charges, we conclude that there is minimal bulk-edge coupling (ζ small) when the filling is close to constant.",
+        "after": "Assuming a common area A = 0.56 µm2 for all states, the extracted charges are close to the theoretical charges, which is consistent with small bulk-edge coupling (ζ small), although A and ζ are not determined independently."
+      },
+      "runs": ["r1", "r2", "r3"]
+    },
+    {
+      "tier": "B",
+      "rank": 8,
+      "topic": "direct_evidence",
+      "claim": "Putative non-abelian e/4 anyons loaded",
+      "claim_id": 4,
+      "headline": "e/4 charge with e/2 interferer does not test non-abelian statistics",
+      "issue": "With an abelian e/2 interferer, the expected slip reduces to the localized charge, so the measurement probes only the charge-sector phase, which is the same for Pfaffian, anti-Pfaffian and abelian candidates such as 331 or K = 8, and no even-odd effect can appear. The abstract and conclusion nevertheless read as evidence of non-abelian loading.",
+      "evidence": {
+        "quote": "Controlling the population of localized e/4 anyons in an interferometer marks a significant milestone towards observing their non-local exchange statistics",
+        "page": 1,
+        "location": "Abstract; Section IV; Conclusion"
+      },
+      "effort": "text",
+      "fix": "State that the data fix the localized charge and abelian mutual statistics but not non-abelian character, list the compatible candidate orders, temper the milestone and qubit language, and discuss or attempt the parity-dependent e/4 interference test this AD enables.",
+      "fix_scoped": null,
+      "edit_scoped": null,
+      "runs": ["r1", "r2", "r3"]
+    },
+    {
+      "tier": "B",
+      "rank": 9,
+      "topic": "direct_evidence",
+      "claim": "Slip regions recur once per AD Landau level",
+      "claim_id": 6,
+      "headline": "Slips at ν_AD ≠ ν_cav unanalysed; window assignment is post-hoc",
+      "issue": "Slips appear in three ν_AD windows per Landau level at non-simple fillings, assigned to -1/3, 2/3 and 1+1/3 by a 'least steep profile' heuristic chosen after the fact; compressible rings charging capacitively could produce slips in all windows. Their sizes are only described as comparable to or smaller than the statistical phase.",
+      "evidence": {
+        "quote": "We notice that the fillings where jumps are visible correspond to the least steep density profiles that have a 1/3 edge both in the AD and in the cavity.",
+        "page": 23,
+        "location": "Fig. 4; Ext. Fig. 9; SI B; SI Fig. 1"
+      },
+      "effort": "existing_data",
+      "fix": "Report Δθ_ps for each window with the Fig. 3 analysis, state the braiding phase predicted for each window under the SI edge-reconstruction picture (and which windows should appear for -2/5 and 1+1/2), compare, and present SI B as a hypothesis.",
+      "fix_scoped": "One possible explanation is that only within certain νAD intervals does the outer-edge structure support the appropriate quasiparticles, although the slip sizes in these intervals have not been compared with a prediction and capacitive charging of compressible rings remains an alternative.",
+      "edit_scoped": {
+        "before": "Consequently, only within certain νAD intervals does the outer-edge structure support the appropriate quasiparticles and yield measurable exchange statistics induced phase slips.",
+        "after": "One possible explanation is that only within certain νAD intervals does the outer-edge structure support the appropriate quasiparticles, although the slip sizes in these intervals have not been compared with a prediction and capacitive charging of compressible rings remains an alternative."
+      },
+      "runs": ["r1", "r2", "r3"]
+    },
+    {
+      "tier": "B",
+      "rank": 10,
+      "topic": "consistency",
+      "claim": "Slips come from quasiparticles entering the AD",
+      "claim_id": 1,
+      "headline": "Representative data mislabelled by AD filling; two analyses disagree",
+      "issue": "Fig. 2a appears in Fig. 4a and Ext. Fig. 7 as the ν_AD ≈ 0.6 window, yet the text says its slip region coincides with ν_AD ≈ ν_cav, and Fig. 2b matches the 0 < ν_AD < 1 row of Ext. Fig. 9. Ext. Fig. 6 shows three sinusoids (2π/3 jumps) for the same window where Ext. Fig. 9 FFT step heights appear to be about 0.15-0.23.",
+      "evidence": {
+        "quote": "This scan is taken around the same anti-dot (AD) density as in (a) indicated in pink at fixed",
+        "page": 4,
+        "location": "Fig. 2a-b; Fig. 4a; Ext. Fig. 6; Ext. Fig. 7; Ext. Fig. 9"
+      },
+      "effort": "existing_data",
+      "fix": "Label every dataset and panel with its ν_AD, correct the Section III statement, and reconcile the Ext. Fig. 6 and Ext. Fig. 9 analyses; different step sizes from two methods on the same data bear directly on concern 1.",
+      "fix_scoped": "The phase-slip region in Fig. 2a lies in the νAD ≈ 0.6 window rather than at νAD ≈ νcav (see Extended Fig. 7), and the discrete phase slips are consistent with quasiparticles entering (or exiting) the AD by tuning Vbrg.",
+      "edit_scoped": {
+        "before": "Since a phase slip region (ii) coincides with νAD ≈ νcav (see Extended Fig. 3), this strongly suggests that the discrete phase slips arise from quasiparticles entering (or exiting) the AD by tuning Vbrg.",
+        "after": "The phase-slip region in Fig. 2a lies in the νAD ≈ 0.6 window rather than at νAD ≈ νcav (see Extended Fig. 7), and the discrete phase slips are consistent with quasiparticles entering (or exiting) the AD by tuning Vbrg."
+      },
+      "runs": ["r1", "r2"]
+    },
+    {
+      "tier": "B",
+      "rank": 11,
+      "topic": "calibration",
+      "claim": "Slip-region ordering tracks ν_cav",
+      "claim_id": 6,
+      "headline": "ν_AD calibration too imprecise for window and ordering claims",
+      "issue": "The ordering claim rests on peak differences of 0.05-0.15 in ν_AD, while peaks move by 0.07-0.10 or more between 7.95 and 9.95 T with bars of about ±0.2. Neglecting f(V_TG) rests on three scans, the Thomas-Fermi model has free r_AD and exchange parameters and a hand-set κ, and the zero-density offset of the AD is not measured.",
+      "evidence": {
+        "quote": "Notably, the ordering of the phase-slip regions across a given LL tracks the ordering of",
+        "page": 7,
+        "location": "Fig. 4b; Ext. Fig. 7c; Ext. Fig. 8; Ext. Fig. 10g"
+      },
+      "effort": "existing_data",
+      "fix": "State the ν_AD uncertainty on the Fig. 4b axes and test whether the ordering survives it; show simulated and parallel-plate ν_AD at each dataset's gate voltages with uncertainty bands; report slip windows relative to reservoir plateau edges; show scaling with B over more than two fields; and state the predicted r_AD at each state's gate voltages.",
+      "fix_scoped": "The phase-slip regions for νcav = −1/2 appear at lower AD fillings than those for νcav = −2/5 and −1/3, although the differences are comparable to the uncertainty of the νAD calibration.",
+      "edit_scoped": {
+        "before": "Notably, the ordering of the phase-slip regions across a given LL tracks the ordering of νcav: for example, the phase slips for νcav = −1/2 consistently occur at lower AD fillings than those for νcav = −2/5, which in turn are lower than those for νcav = −1/3.",
+        "after": "The phase-slip regions for νcav = −1/2 appear at lower AD fillings than those for νcav = −2/5 and −1/3, although the differences are comparable to the uncertainty of the νAD calibration."
+      },
+      "runs": ["r1", "r2", "r3"]
+    },
+    {
+      "tier": "B",
+      "rank": 12,
+      "topic": "fits",
+      "claim": "Hundreds of controlled phase slips; counting relation",
+      "claim_id": 1,
+      "headline": "'Hundreds' of slips are extrapolated; counting relation is near-identity",
+      "issue": "Directly counted slips are N ≥ 70, 29 and 9, extrapolated to ~300, ≥200 and ≥200 assuming uniform spacing despite large spacing scatter. The relation |e*_loc N_ps| ≈ eν̃Φ_AD assumes e*_loc from the start and reuses the same capacitance and radius, so it inherits the assumptions of concern 6.",
+      "evidence": {
+        "quote": "Assuming that the phase slips are equally spaced in this range with the spacing estimated from",
+        "page": 10,
+        "location": "Methods E; Ext. Figs. 3-5"
+      },
+      "effort": "text",
+      "fix": "State how many slips were counted directly and how many extrapolated, restate the abstract's 'hundreds of controlled phase slips' as the number observed (or count the full ranges), and present the counting relation as a consistency check, not evidence.",
+      "fix_scoped": null,
+      "edit_scoped": null,
+      "runs": ["r1", "r2", "r3"]
+    },
+    {
+      "tier": "B",
+      "rank": 13,
+      "topic": "samples",
+      "claim": "Reproducible controlled phase slips",
+      "claim_id": 1,
+      "headline": "One device, one AD, one cooldown, one field for slip sizes",
+      "issue": "Everything comes from a single interferometer with one AD of uncertain radius, apparently in one cooldown, with slip sizes analysed only at 9.95 T, so device spread, thermal cycling and AD-size dependence cannot be assessed. Varying AD size would test the charge assignment without assuming r_AD.",
+      "evidence": {
+        "quote": "False-color scanning electron microscopy image of a similar device to the one measured.",
+        "page": 3,
+        "location": "Fig. 1b"
+      },
+      "effort": "new_work",
+      "fix": "Add a second device, ideally with a different hole radius, or at minimum repeat the slip-size extraction after a thermal cycle and at 7.95 T.",
+      "fix_scoped": "In a single device, discrete changes in the localized anyon number produce phase slips in the FQH interference signal that are reproducible within one cooldown across five fractional states, including two even-denominator fractions.",
+      "edit_scoped": {
+        "before": "Discrete changes in the localized anyon number produce reproducible phase slips in the FQH interference signal across five fractional states, including two even-denominator fractions.",
+        "after": "In a single device, discrete changes in the localized anyon number produce phase slips in the FQH interference signal that are reproducible within one cooldown across five fractional states, including two even-denominator fractions."
+      },
+      "runs": ["r1", "r2", "r3"]
+    },
+    {
+      "tier": "B",
+      "rank": 14,
+      "topic": "heating",
+      "claim": "Slip sizes reflect braiding statistics",
+      "claim_id": 3,
+      "headline": "Excitation, electron temperature and their effects not characterized",
+      "issue": "A 20 µV excitation is about ten times k_BT/e at 20 mK, the amplitude at the sample and electron temperature are not stated, and visibilities are only ~1-3%; heating could affect which excitation interferes and how localized charges equilibrate, especially at 1+1/2. A statistical phase should be temperature-independent, and repeatability is shown only for one window at 1+1/3.",
+      "evidence": {
+        "quote": "via a voltage divider with a 10-20 Hz excitation generated by a SRS SR830 lock-in amplifier",
+        "page": 8,
+        "location": "Methods B; Ext. Fig. 6"
+      },
+      "effort": "new_work",
+      "fix": "Give the electron temperature, show AB amplitude and slip pattern are linear in excitation, add temperature dependence of visibility and Δθ_ps for at least one state, test sweep-direction hysteresis, and show repeatability data at 1+1/2.",
+      "fix_scoped": "The graphene source contact is voltage biased with 20µV via a voltage divider with a 10-20 Hz excitation generated by a SRS SR830 lock-in amplifier; the electron temperature and the dependence of the slips on excitation and temperature were not characterized.",
+      "edit_scoped": {
+        "before": "The graphene source contact is voltage biased with 20µV via a voltage divider with a 10-20 Hz excitation generated by a SRS SR830 lock-in amplifier.",
+        "after": "The graphene source contact is voltage biased with 20µV via a voltage divider with a 10-20 Hz excitation generated by a SRS SR830 lock-in amplifier; the electron temperature and the dependence of the slips on excitation and temperature were not characterized."
+      },
+      "runs": ["r1", "r2", "r3"]
+    },
+    {
+      "tier": "B",
+      "rank": 15,
+      "topic": "theory",
+      "claim": "Simulations confirm fractional charge",
+      "claim_id": 5,
+      "headline": "Simulations said to 'confirm' e/3 more strongly than they can",
+      "issue": "The e/3 versus e jump-spacing comparison depends on r_AD and on an ad hoc smoothing stiffness κ = 1 meV, so e/4, e/5, or e at a different radius may match equally well.",
+      "evidence": {
+        "quote": "further confirming that fractional charge is entering the AD",
+        "page": 22,
+        "location": "Ext. Fig. 10g; SI C"
+      },
+      "effort": "existing_data",
+      "fix": "Show the ΔQ = e/4 and e/5 curves and the sensitivity to κ, and describe the simulations as consistent with fractional charge rather than confirming e/3.",
+      "fix_scoped": "The simulations are therefore consistent with fractional charge ∆Q = e/3 jumping into the AD, although other charges may match for other radii or smoothing parameters.",
+      "edit_scoped": {
+        "before": "We therefore conclude that the simulations agree with fractional charge ∆Q = e/3 jumping into the AD.",
+        "after": "The simulations are therefore consistent with fractional charge ∆Q = e/3 jumping into the AD, although other charges may match for other radii or smoothing parameters."
+      },
+      "runs": ["r2"]
+    },
+    {
+      "tier": "B",
+      "rank": 16,
+      "topic": "theory",
+      "claim": "Each localized quasiparticle produces a slip",
+      "claim_id": 1,
+      "headline": "Where added charge goes in slow-change regions is unexplained",
+      "issue": "Across most of the bridge-gate range the AD density still changes but no slips are seen. Unless the charge goes into compressible regions invisible to interference, this conflicts with the picture that each localized quasiparticle produces a slip.",
+      "evidence": {
+        "quote": "shows low magnitude when the oscillations change slowly, and larger magnitude when the oscillations become non-uniform.",
+        "page": 4,
+        "location": "Fig. 2a; Fig. 4a"
+      },
+      "effort": "existing_data",
+      "fix": "Use the Thomas-Fermi profiles (compressible rings in Ext. Fig. 10c,d) to state where charge accumulates in these regions and estimate how many quasiparticles enter without a detectable slip.",
+      "fix_scoped": "These two effects can be easily disentangled as they have two different experimental signatures: (i) the modulation of the cavity area should generate continuous oscillations in the smooth AB phase similar to the VPG sweep we discussed in Fig. 1d, and (ii) increasing the density of the AD can create discrete phase slips ∆θps as quasiparticles populate the AD region, although over much of the Vbrg range the AD density changes without visible slips.",
+      "edit_scoped": {
+        "before": "These two effects can be easily disentangled as they have two different experimental signatures: (i) the modulation of the cavity area should generate continuous oscillations in the smooth AB phase similar to the VPG sweep we discussed in Fig. 1d, and (ii) increasing the density of the AD should create discrete phase slips ∆θps as the quasiparticles populate the AD region.",
+        "after": "These two effects can be easily disentangled as they have two different experimental signatures: (i) the modulation of the cavity area should generate continuous oscillations in the smooth AB phase similar to the VPG sweep we discussed in Fig. 1d, and (ii) increasing the density of the AD can create discrete phase slips ∆θps as quasiparticles populate the AD region, although over much of the Vbrg range the AD density changes without visible slips."
+      },
+      "runs": ["r2"]
+    },
+    {
+      "tier": "B",
+      "rank": 17,
+      "topic": "fits",
+      "claim": "Discrete 2π/3, 2π/4, 2π/5 phase steps",
+      "claim_id": 3,
+      "headline": "Sinusoid-family count is visual and depends on chosen traces",
+      "issue": "Reading three, four and five interleaved families depends on V_brg traces 'selected to include a sufficient number of phase slips', on the window and cut angle, and on visual grouping.",
+      "evidence": {
+        "quote": "the traces separate into three and five interleaved families, respectively, corresponding to phase steps of",
+        "page": 6,
+        "location": "Fig. 3g-i"
+      },
+      "effort": "existing_data",
+      "fix": "Give α, β and the window, describe how traces were chosen, show the family count is unchanged when the window shifts, and add an objective analysis such as a histogram of fitted AB phase (mod 2π) over many slips or a fit of N equally spaced offsets with N free, checking the phase returns after n slips.",
+      "fix_scoped": "For the abelian states ν = 1 + 1/3 and −2/5, traces selected to include several phase slips appear to group into three and five interleaved families within one 2π period, consistent with phase steps of 2π/3 and 2π/5, respectively (Figs. 3g and Fig. 3i).",
+      "edit_scoped": {
+        "before": "For the abelian states ν = 1 + 1/3 and −2/5, the phase evolution can be read off as groups of shifted sinusoids: within one 2π period, the traces separate into three and five interleaved families, respectively, corresponding to phase steps of 2π/3 and 2π/5, respectively (Figs. 3g and Fig. 3i).",
+        "after": "For the abelian states ν = 1 + 1/3 and −2/5, traces selected to include several phase slips appear to group into three and five interleaved families within one 2π period, consistent with phase steps of 2π/3 and 2π/5, respectively (Figs. 3g and Fig. 3i)."
+      },
+      "runs": ["r1", "r2", "r3"]
+    },
+    {
+      "tier": "C",
+      "rank": 18,
+      "topic": "consistency",
+      "claim": "Slip regions at same ν_AD at two fields",
+      "claim_id": 6,
+      "headline": "Ext. Fig. 8 caption swaps the ν_cav = -1/2 and -1/3 labels",
+      "issue": "The peak values listed in the Ext. Fig. 8 caption for ν_cav = -1/2 are plotted in the -1/3 row, and the reverse; Fig. 4b agrees with the figure, not the caption.",
+      "evidence": {
+        "quote": "Lower panel shows mean and standard deviation of each peak found in upper panel.",
+        "page": 20,
+        "location": "Ext. Fig. 8"
+      },
+      "effort": "text",
+      "fix": "Correct the caption labels.",
+      "fix_scoped": null,
+      "edit_scoped": null,
+      "runs": ["r2", "r3"]
+    },
+    {
+      "tier": "C",
+      "rank": 19,
+      "topic": "other",
+      "claim": "Presentation",
+      "claim_id": 0,
+      "headline": "Caption and typographical errors throughout",
+      "issue": "Ext. Fig. 2 caption lists -2/3 instead of -1/3; Ext. Fig. 10a,b label ν_AD in units of e²/h; and there are typos: 'derivative if the conductance', 'indicates that that', 'has lead', 'the the central cavity', 'contrbution', 'Ithaco', 'the center if the AD', plus mixed 'Extended Fig.' and 'Extended Data Fig.'.",
+      "evidence": {
+        "quote": "This smooth background oscillation indicates that that it arises from a change in area",
+        "page": 4,
+        "location": "Fig. 2 caption; Ext. Figs. 2, 8, 10; Methods B, F; SI C4"
+      },
+      "effort": "text",
+      "fix": "Correct the listed caption and typographical errors and use one figure-naming convention throughout.",
+      "fix_scoped": null,
+      "edit_scoped": null,
+      "runs": ["r1", "r2", "r3"]
+    },
+    {
+      "tier": "C",
+      "rank": 20,
+      "topic": "other",
+      "claim": "Presentation",
+      "claim_id": 0,
+      "headline": "Inconsistent units, notation and unlabeled panels",
+      "issue": "Δs is in mV in the text and V elsewhere; ΔG and ΔG_D, Φ_0 and φ_0 alternate; Fig. 3d-f omit uncertainties; Fig. 2c panels are not tied to datasets; the Fig. 1 caption says all data at 9.95 T though Fig. 1d spans 9.95-10.05 T; and the Ext. Figs. 3-5 derivative axis lacks units or a normalization statement.",
+      "evidence": {
+        "quote": "Representative line cuts (Fig. 2c) indeed show that the sharp change of the interference phase in regime (ii) contains two components (upper panel)",
+        "page": 4,
+        "location": "Fig. 1; Fig. 2c; Fig. 3d-f; Ext. Figs. 3-5"
+      },
+      "effort": "text",
+      "fix": "Make units and notation consistent, add uncertainties to Fig. 3d-f, name the Fig. 2c datasets, correct the field statement, and label the Ext. Figs. 3-5 axes.",
+      "fix_scoped": null,
+      "edit_scoped": null,
+      "runs": ["r1", "r2", "r3"]
+    },
+    {
+      "tier": "C",
+      "rank": 21,
+      "topic": "consistency",
+      "claim": "AD radius",
+      "claim_id": 5,
+      "headline": "AD radius quoted inconsistently as 100, 150-200 and 100-200 nm",
+      "issue": "The AD radius is given as ~100 nm in Methods D, 150-200 nm in the main text and 100-200 nm in Ext. Figs. 3-5.",
+      "evidence": {
+        "quote": "was etched into the top gate in the center of the interferometer cavity, and a metal bridge gate was added",
+        "page": 9,
+        "location": "Methods D; Section III; Ext. Figs. 3-5"
+      },
+      "effort": "text",
+      "fix": "State one convention, distinguishing lithographic radius from effective radius in the graphene plane.",
+      "fix_scoped": null,
+      "edit_scoped": null,
+      "runs": ["r1"]
+    },
+    {
+      "tier": "C",
+      "rank": 22,
+      "topic": "other",
+      "claim": "Slip windows per AD filling",
+      "claim_id": 6,
+      "headline": "SI Fig. 1 'No' does not distinguish unmeasured from absent",
+      "issue": "SI Fig. 1 marks 'Yes/No' for whether jumps are seen at six AD fillings without saying which ν_AD ranges were measured and how densely.",
+      "evidence": {
+        "quote": "In the lower panels, we then note that we observe jumps experimentally only in",
+        "page": 24,
+        "location": "SI Fig. 1"
+      },
+      "effort": "text",
+      "fix": "Mark which ν_AD ranges were actually measured, and how densely, so that 'No' is distinguishable from 'not measured'.",
+      "fix_scoped": null,
+      "edit_scoped": null,
+      "runs": ["r1"]
+    },
+    {
+      "tier": "C",
+      "rank": 23,
+      "topic": "other",
+      "claim": "Device description",
+      "claim_id": 0,
+      "headline": "Fig. 1b shows a similar device, not the measured one",
+      "issue": "Fig. 1b shows only 'a similar device', not the measured device with its AD hole and bridge.",
+      "evidence": {
+        "quote": "False-color scanning electron microscopy image of a similar device to the one measured.",
+        "page": 3,
+        "location": "Fig. 1b"
+      },
+      "effort": "existing_data",
+      "fix": "Show an image of the measured device, including the AD hole and the bridge.",
+      "fix_scoped": null,
+      "edit_scoped": null,
+      "runs": ["r2"]
+    },
+    {
+      "tier": "C",
+      "rank": 24,
+      "topic": "other",
+      "claim": "Reproducibility of the analysis",
+      "claim_id": 0,
+      "headline": "No data or analysis-code availability statement",
+      "issue": "The paper does not state data and analysis-code availability; given the analysis freedom in concern 1, the extraction scripts matter for reproducibility.",
+      "evidence": {
+        "quote": "To extract a step height, we fit each plateau to the average phase within their respective regions.",
+        "page": 10,
+        "location": "Methods F"
+      },
+      "effort": "text",
+      "fix": "State data and analysis-code availability.",
+      "fix_scoped": null,
+      "edit_scoped": null,
+      "runs": ["r1"]
+    },
+    {
+      "tier": "C",
+      "rank": 25,
+      "topic": "other",
+      "claim": "Charge needed to destabilize AD order",
+      "claim_id": 5,
+      "headline": "Destabilization-charge statement is suggestive but not quantified",
+      "issue": "The statement that the charge needed to destabilize the AD topological order roughly equals the charge forming it is suggestive but not quantified.",
+      "evidence": {
+        "quote": "the amount of charges it takes to destabilize the topological order in the AD is roughly equal to the amount forming the topological order itself",
+        "page": 4,
+        "location": "Section III"
+      },
+      "effort": "text",
+      "fix": "Either support the statement quantitatively or soften it.",
+      "fix_scoped": null,
+      "edit_scoped": null,
+      "runs": ["r3"]
+    }
+  ]
+}

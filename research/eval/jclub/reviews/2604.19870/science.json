@@ -1,0 +1,506 @@
+{
+  "title": "Melting temperature shifts from quantum fluctuations in generalized Wigner crystals",
+  "claims": [
+    "At filling n = 1/3, nearest-neighbour hopping slightly lowers the melting temperature of the generalized Wigner crystal, roughly as t².",
+    "At fillings n = 1/2 and 1/4, quantum fluctuations raise the melting temperature, by as much as 30-40% on the clusters studied.",
+    "Including quantum effects shifts the theoretical melting temperatures toward experiment, where classical estimates are in some cases more than 50% off.",
+    "A finite-temperature perturbation theory explains why the shift scales as t² at small t, and at n = 1/3 traces the reduction to a lower domain-wall energy.",
+    "The increase at n = 1/2 and 1/4 arises from energetic and entropic contributions to melting.",
+    "These predictions can be tested in experiments where the bandwidth is tuned, for example by a displacement field."
+  ],
+  "summary": "The paper uses exact diagonalization and the finite-temperature Lanczos method on small spin-polarized triangular clusters of an extended Hubbard model (screened long-range and nearest-neighbour interactions) to track how hopping shifts the specific-heat maximum of generalized Wigner crystals in WS2/WSe2 moiré bilayers. It reports that hopping lowers T_c at n = 1/3, explained by a perturbative domain-wall calculation, but raises it at n = 1/2 and 1/4, and argues this narrows the gap between classical Monte Carlo and measured transition temperatures.",
+  "strengths": [
+    "The question is clear and testable, with a direct experimental handle in the bandwidth tuned by displacement field.",
+    "Screened long-range and nearest-neighbour models are compared side by side on several cluster geometries, including the 27-site cluster with the full symmetry of the √3×√3 state.",
+    "For n = 1/3 an analytic finite-temperature perturbation theory gives the sign and rough size of the T_c reduction and agrees with the FTLM data at small t.",
+    "The classical Monte Carlo baseline is updated and documented carefully, with sizes up to 35×35 and replica exchange, showing filling-dependent discrepancies with experiment of up to about 55%."
+  ],
+  "issues": [
+    {
+      "tier": "A",
+      "rank": 1,
+      "topic": "direct_evidence",
+      "claim": "T_c increase at n = 1/2 and 1/4",
+      "claim_id": 2,
+      "headline": "Specific-heat maximum at n = 1/2, 1/4 may not mark charge-order melting",
+      "issue": "With increasing t the sharp low-temperature C_v peak at n = 1/2 and 1/4 does not move up; it loses weight while a broad higher-temperature hump grows and becomes the maximum, so the plotted T_c appears to jump from an ordering anomaly to a kinetic crossover. The rise coincides with the collapse of the many-body gap and of the order parameter near the GWC-FL boundary, where the paper itself places n = 1/2 and 1/4 at t = 1.8 meV, and no finite-temperature order parameter is shown.",
+      "evidence": {
+        "quote": "In the GWC phase this maximum must be interpreted as the temperature where charge order is destroyed, and in the Fermi liquid (FL) phase (which is not conventionally ordered) it corresponds to a characteristic scale associated with the kinetic energy",
+        "page": 3,
+        "location": "Fig. 2(b), 2(c), 2(e), 2(f); Fig. 3; Fig. 1"
+      },
+      "effort": "new_work",
+      "fix": "Compute S(Q,T)/N at the ordering wavevectors and the charge susceptibility or a Binder-type ratio versus T at each t, track the low-T peak and high-T hump separately, split C_v into kinetic and potential contributions, and mark the GWC-FL boundary on Fig. 3, reporting T_c(t) only where the ground state is a GWC on every cluster. If the increase survives only beyond the boundary, rephrase the central claim.",
+      "fix_scoped": "In contrast, for fillings n = 1/4 and 1/2, the specific-heat maximum on the system sizes studied here moves to higher temperature with hopping, but at t = 1.8 meV these fillings are close to or beyond the GWC-FL boundary, so whether this maximum still marks melting of charge order remains to be established.",
+      "edit_scoped": {
+        "before": "In contrast, for fillings n = 1/4 and 1/2, quantum fluctuations increase the melting temperature by as much as 30–40%, at least on the system sizes studied here.",
+        "after": "In contrast, for fillings n = 1/4 and 1/2, the specific-heat maximum on the system sizes studied here moves to higher temperature with hopping, but at t = 1.8 meV these fillings are close to or beyond the GWC-FL boundary, so whether this maximum still marks melting of charge order remains to be established."
+      },
+      "runs": ["r1", "r2", "r3"]
+    },
+    {
+      "tier": "A",
+      "rank": 2,
+      "topic": "theory",
+      "claim": "T_c increase at n = 1/2 and 1/4",
+      "claim_id": 2,
+      "headline": "Cluster T_c(0) is twice the thermodynamic value; relative shift not transferable",
+      "issue": "At t = 0 the cluster C_v maxima sit near 27 K (n = 1/2) and 31 K (n = 1/4), about twice the authors' own large-lattice Monte Carlo values of 13.40 K and 14.31 K (and about 25 K against 15.6 K at n = 2/5), so the cluster peak may be a finite-size, Schottky-like feature whose relative t-dependence need not match the true transition. The normalized shift also varies by up to about 50% between cluster sizes at n = 1/2, comparable to the effect itself below about 1.5 meV.",
+      "evidence": {
+        "quote": "The normalization by Tc(0) is invoked to compare different system sizes on the same scale.",
+        "page": 3,
+        "location": "Fig. 2(b), 2(c); Fig. 3; Table I; Fig. 5(b), 5(d); Fig. 7(a)"
+      },
+      "effort": "new_work",
+      "fix": "List the t = 0 cluster T_c next to the Monte Carlo value for every cluster, run classical Monte Carlo on exactly the FTLM clusters and trace T_c(0) to the large-lattice value, and add size-trend plots or bounds of δT_c/T_c(0) at fixed t with particle numbers. Most decisively, run large-lattice classical Monte Carlo with the effective Hamiltonian of Eqs. 5-7 / Eq. 25 at n = 1/2, 1/4 and other fillings, or explain why the relative shift should be insensitive to size.",
+      "fix_scoped": "In contrast, for fillings n = 1/4 and 1/2, hopping raises the specific-heat maximum of the 20-36 site clusters studied here, whose classical peak lies about twice above the thermodynamic transition temperature, so the size of this shift in the thermodynamic limit is not established.",
+      "edit_scoped": {
+        "before": "In contrast, for fillings n = 1/4 and 1/2, quantum fluctuations increase the melting temperature by as much as 30–40%, at least on the system sizes studied here.",
+        "after": "In contrast, for fillings n = 1/4 and 1/2, hopping raises the specific-heat maximum of the 20-36 site clusters studied here, whose classical peak lies about twice above the thermodynamic transition temperature, so the size of this shift in the thermodynamic limit is not established."
+      },
+      "runs": ["r1", "r2", "r3"]
+    },
+    {
+      "tier": "A",
+      "rank": 3,
+      "topic": "consistency",
+      "claim": "Quantum effects move T_c toward experiment",
+      "claim_id": 3,
+      "headline": "Claim that quantum effects capture the experimental shift is not shown",
+      "issue": "No quantum-corrected T_c in kelvin is set against experiment, and the numbers suggest the claim fails: n = 1/4 and 1/2 need about +120% but 30-40% gives only about 17-21 K, n = 2/5 is internally inconsistent (a reduction in the text, about +30-40% in Fig. 7), and at n = 1/3 hopping lowers T_c by about 10% so the classically fitted ε no longer reproduces experiment. A self-consistent refit of ε would shift every classical T_c by a comparable amount.",
+      "evidence": {
+        "quote": "We show that quantum effects capture the shift relative to the classical estimates, which in some cases are more than 50 percent off from the experimental values.",
+        "page": 1,
+        "location": "Abstract; Table I; Fig. 7(c, d); Appendix A"
+      },
+      "effort": "existing_data",
+      "fix": "Add rows or a column to Table I with the quantum-corrected T_c at t = 1.8 meV for each filling (classical T_c × (1 + δT_c/T_c(0))), with ε refitted self-consistently at n = 1/3 including the quantum shift, propagated experimental error bars and a finite-size uncertainty. Restate the abstract and Conclusions to match, including n = 2/5, or remove the claim.",
+      "fix_scoped": "We show that quantum effects shift the transition temperature relative to the classical estimates, which in some cases are more than 50 percent off from the experimental values, but on the cluster sizes studied they account for only part of this discrepancy.",
+      "edit_scoped": {
+        "before": "We show that quantum effects capture the shift relative to the classical estimates, which in some cases are more than 50 percent off from the experimental values.",
+        "after": "We show that quantum effects shift the transition temperature relative to the classical estimates, which in some cases are more than 50 percent off from the experimental values, but on the cluster sizes studied they account for only part of this discrepancy."
+      },
+      "runs": ["r1", "r2", "r3"]
+    },
+    {
+      "tier": "B",
+      "rank": 4,
+      "topic": "theory",
+      "claim": "T_c increase at n = 1/2 and 1/4",
+      "claim_id": 2,
+      "headline": "Spin-polarized model drops spin entropy that may decide the sign",
+      "issue": "All calculations are spin-polarized while experiments are at zero field; localized GWC carriers carry spin entropy near ln 2 per particle at 20-40 K whereas a metallic disordered state quenches it, which enters S_d − S_o in the entropic mechanism of Eq. 11 at the same order as the claimed effect. Spin also changes the kinetic scale and finite-U virtual hopping, and the cited evidence that spin is unimportant concerns only n = 1/3 and 2/3.",
+      "evidence": {
+        "quote": "While we can not rule out the possibly significant role of spin near the GWC-Fermi liquid quantum phase transition, we choose to work with the spin polarized sector throughout this study.",
+        "page": 3,
+        "location": "Main text p. 3; Eq. (11)"
+      },
+      "effort": "new_work",
+      "fix": "Run a spinful FTLM calculation (large but finite U) on at least one small cluster at n = 1/2 or 1/4 to check whether the sign of δT_c(t) survives. Failing that, estimate the spin-entropy contribution to Eq. 11 or argue it cancels, and narrow the predictions to spin-polarized conditions, saying so in the abstract.",
+      "fix_scoped": "While we can not rule out the possibly significant role of spin near the GWC-Fermi liquid quantum phase transition, we choose to work with the spin polarized sector throughout this study, so our predictions for n = 1/2 and 1/4 apply to spin-polarized conditions such as a large in-plane field.",
+      "edit_scoped": {
+        "before": "While we can not rule out the possibly significant role of spin near the GWC-Fermi liquid quantum phase transition, we choose to work with the spin polarized sector throughout this study.",
+        "after": "While we can not rule out the possibly significant role of spin near the GWC-Fermi liquid quantum phase transition, we choose to work with the spin polarized sector throughout this study, so our predictions for n = 1/2 and 1/4 apply to spin-polarized conditions such as a large in-plane field."
+      },
+      "runs": ["r1", "r2", "r3"]
+    },
+    {
+      "tier": "B",
+      "rank": 5,
+      "topic": "theory",
+      "claim": "Energetic and entropic origin of the increase",
+      "claim_id": 5,
+      "headline": "Entropic mechanism for the increase is asserted, never computed",
+      "issue": "Eq. 11 only shows that a positive δT_c is possible if δS_d − δS_o is negative enough; no term is evaluated and the candidate stripe and shear-mode mechanisms are not tied to any computed quantity. The Appendix E perturbation theory is applied only to n = 1/3, and the good αt² fits do not test the mechanism.",
+      "evidence": {
+        "quote": "This counter-intuitive enhancement can be understood as arising from energetic and entropic contributions to melting.",
+        "page": 7,
+        "location": "Eq. (11); Conclusions"
+      },
+      "effort": "existing_data",
+      "fix": "Evaluate E_o, E_d, S_o and S_d (or δE and δS on both sides of the peak, or the full free-energy curves) from the FTLM E(T) and S(T) = ∫C_v/T dT for t = 0 and small t on at least one cluster, and show whether the numerator of Eq. 11 is positive, which term dominates and whether its size matches δT_c. Also explain why a spatial mechanism should apply equally to the stripe and 2×2 states.",
+      "fix_scoped": "We conjecture that this counter-intuitive enhancement arises from energetic and entropic contributions to melting, as allowed by Eq. (11), although we have not evaluated these contributions.",
+      "edit_scoped": {
+        "before": "This counter-intuitive enhancement can be understood as arising from energetic and entropic contributions to melting.",
+        "after": "We conjecture that this counter-intuitive enhancement arises from energetic and entropic contributions to melting, as allowed by Eq. (11), although we have not evaluated these contributions."
+      },
+      "runs": ["r1", "r2", "r3"]
+    },
+    {
+      "tier": "B",
+      "rank": 6,
+      "topic": "theory",
+      "claim": "T_c increase at n = 1/2 and 1/4",
+      "claim_id": 2,
+      "headline": "NN model hosts no GWC at n = 1/2, 1/4 yet supports the claim",
+      "issue": "The paper says the classical NN model at n = 1/2 and 1/4 has a macroscopically degenerate, gapless ground manifold and no conventional GWC, so its C_v maximum does not describe GWC melting, yet its curves and t² fits are used as evidence and normalized by an NN T_c(0). In Fig. 2(e, f) the t = 1.8 meV marker sits on a shoulder, making the T_c assignment ambiguous.",
+      "evidence": {
+        "quote": "Both LR and NN models show the same qualitative trends even though their low energy properties are different, as we discuss below.",
+        "page": 4,
+        "location": "Fig. 2(e, f); Fig. 3 (third row)"
+      },
+      "effort": "text",
+      "fix": "State what the NN C_v peak at t = 0 represents physically, then either remove or caveat the NN normalized curves at these fillings as evidence, or add the V_2 interaction needed to stabilize a GWC and repeat the calculation.",
+      "fix_scoped": null,
+      "edit_scoped": null,
+      "runs": ["r2", "r3"]
+    },
+    {
+      "tier": "B",
+      "rank": 7,
+      "topic": "calibration",
+      "claim": "T_c increase at n = 1/2 and 1/4",
+      "claim_id": 2,
+      "headline": "Model parameters inconsistent across models; robustness to them not shown",
+      "issue": "t = 1.8 meV comes from a paper on a kagome spin liquid in twisted TMD bilayers, hopping is nearest-neighbour only, d/a is fixed at 10, V_1 = 9 meV comes from an earlier n = 1/3 mapping with unstated assumptions, and the ε refit from 3.9 to 4.67 is a 20% change left unexplained. A density-dependent V_1 could move n = 1/2 and 1/4 back into the GWC regime, and the n = 1/2 shift changes steeply right around 1.8 meV.",
+      "evidence": {
+        "quote": "The dotted line corresponds to t = 1.8 meV, which has been reported previously in reference to the TMD bilayer [18].",
+        "page": 2,
+        "location": "Fig. 1; Fig. 3; Appendix A"
+      },
+      "effort": "new_work",
+      "fix": "State how V_1 and t follow from the present ε, a and d/a and explain the change from 3.9 to 4.67. Show how the sign and size of δT_c/T_c at n = 1/2 and 1/4 depend on t over 1-2.5 meV, on d/a, and on a density-dependent V_1 or a V_2 term.",
+      "fix_scoped": "The dotted line corresponds to t = 1.8 meV, which has been reported previously in reference to the TMD bilayer [18]; our results at n = 1/2 and 1/4 are specific to this value of t, to d/a = 10 and to V1 = 9 meV, and their sensitivity to these parameters has not been tested.",
+      "edit_scoped": {
+        "before": "The dotted line corresponds to t = 1.8 meV, which has been reported previously in reference to the TMD bilayer [18].",
+        "after": "The dotted line corresponds to t = 1.8 meV, which has been reported previously in reference to the TMD bilayer [18]; our results at n = 1/2 and 1/4 are specific to this value of t, to d/a = 10 and to V1 = 9 meV, and their sensitivity to these parameters has not been tested."
+      },
+      "runs": ["r1", "r2", "r3"]
+    },
+    {
+      "tier": "B",
+      "rank": 8,
+      "topic": "fits",
+      "claim": "t² scaling of the T_c shift",
+      "claim_id": 4,
+      "headline": "t² scaling at n = 1/2, 1/4 not supported, especially for LR",
+      "issue": "In Fig. 3 the LR curves at n = 1/2 and 1/4 are flat within the cluster spread up to about 1 meV and then rise steeply, which looks sigmoidal rather than quadratic. The 0.097 t² and 0.077 t² fits are shown only for the NN model, span the region beyond the GWC-FL boundary, and at n = 1/4 differ by about 30% between N = 24a and 36.",
+      "evidence": {
+        "quote": "In contrast, for n = 1/4 and n = 1/2 there is no perceptible decline of Tc at small t, instead it increases with t",
+        "page": 3,
+        "location": "Fig. 3 (first and third rows)"
+      },
+      "effort": "existing_data",
+      "fix": "Give the fit window and residuals, fit only the GWC regime, compare quadratic with higher-order or activated forms, add log-log plots of δT_c/T_c(0) against t for the LR data with the fitted exponent and uncertainty, and report α with an uncertainty per cluster. Otherwise drop the t² claim at these fillings.",
+      "fix_scoped": "In contrast, for n = 1/4 and n = 1/2 there is no perceptible decline of Tc at small t; instead it stays nearly flat at low t and then increases with t.",
+      "edit_scoped": {
+        "before": "In contrast, for n = 1/4 and n = 1/2 there is no perceptible decline of Tc at small t, instead it increases with t with a t2 dependence at low t.",
+        "after": "In contrast, for n = 1/4 and n = 1/2 there is no perceptible decline of Tc at small t; instead it stays nearly flat at low t and then increases with t."
+      },
+      "runs": ["r1", "r3"]
+    },
+    {
+      "tier": "B",
+      "rank": 9,
+      "topic": "theory",
+      "claim": "Domain-wall explanation of the n = 1/3 reduction",
+      "claim_id": 4,
+      "headline": "n = 1/3 domain-wall estimate has unjustified steps and a numerical mismatch",
+      "issue": "T_c is assumed proportional to the T = 0 domain-wall energy, ignoring wall entropy that sets a Potts transition, and the expansion of Eq. 26 is not small at T_c (βt ≈ 0.56) with the dominant Δ_ij = 0 terms really needing degenerate perturbation theory. The quoted −11% and the Fig. 3 dashed line are only the leading −w term, whereas the full f(w) gives about −12.7%, and w uses the experimental 37 K rather than the NN model's own T_c.",
+      "evidence": {
+        "quote": "Despite this limitation, we find the resultant analytic expression to be remarkably consistent with our numerical FTLM results in the perturbative regime, as shown in Fig. 3.",
+        "page": 6,
+        "location": "Eqs. (7)-(10); Fig. 3 (third row, n = 1/3); Appendices E-F"
+      },
+      "effort": "existing_data",
+      "fix": "State which expression is compared with the numerics and plot the full Eq. 10 on Fig. 3, use the NN model's own T_c(0) in w, list the approximations behind Eq. 7, and state the range of βV_1, βt and t/V_1 where Eq. 10 is controlled. Justify neglecting wall entropy or include its leading t-dependence.",
+      "fix_scoped": "Despite this limitation, we find that the leading term of the resultant analytic expression is consistent with our numerical FTLM results at small t, as shown in Fig. 3, although the expansion is not controlled near Tc at t = 1.8 meV.",
+      "edit_scoped": {
+        "before": "Despite this limitation, we find the resultant analytic expression to be remarkably consistent with our numerical FTLM results in the perturbative regime, as shown in Fig. 3.",
+        "after": "Despite this limitation, we find that the leading term of the resultant analytic expression is consistent with our numerical FTLM results at small t, as shown in Fig. 3, although the expansion is not controlled near Tc at t = 1.8 meV."
+      },
+      "runs": ["r1", "r2", "r3"]
+    },
+    {
+      "tier": "B",
+      "rank": 10,
+      "topic": "fits",
+      "claim": "Paper in general",
+      "claim_id": 0,
+      "headline": "No FTLM error bars or T_c uncertainties are reported",
+      "issue": "Figs. 2, 3 and 7 have no error bars and Appendix B only asserts convergence for R = 200 random vectors and M = 200 Lanczos steps. The C_v peak positions that drive the whole δT_c analysis sit where FTLM is noisiest, near-degenerate NN manifolds dominate, and the maxima near t = 1.8 meV are broad and flat.",
+      "evidence": {
+        "quote": "We have verified that our results have well converged over the temperature range of interest.",
+        "page": 8,
+        "location": "Appendix B; Figs. 2, 3, 7"
+      },
+      "effort": "existing_data",
+      "fix": "Give error bars on representative C_v curves and on T_c(t) from the spread over independent random-vector sets (for example bootstrap), state the T_c resolution of the temperature grid, and compare the largest clusters with full ED where possible.",
+      "fix_scoped": "We have checked convergence of our results over the temperature range of interest, but we do not report statistical uncertainties on Cv or on the Tc values extracted from it.",
+      "edit_scoped": {
+        "before": "We have verified that our results have well converged over the temperature range of interest.",
+        "after": "We have checked convergence of our results over the temperature range of interest, but we do not report statistical uncertainties on Cv or on the Tc values extracted from it."
+      },
+      "runs": ["r1", "r2", "r3"]
+    },
+    {
+      "tier": "B",
+      "rank": 11,
+      "topic": "consistency",
+      "claim": "Quantum effects move T_c toward experiment",
+      "claim_id": 3,
+      "headline": "Experimental optical T_c may differ from a C_v maximum",
+      "issue": "The experimental values in Table I come from optical sensing of the insulating states and are likely onset or crossover temperatures, possibly affected by disorder, not thermodynamic anomalies. This matters when the discrepancies being explained are 13% at some fillings and when the C_v maximum may sit on a kinetic crossover.",
+      "evidence": {
+        "quote": "To the best of our knowledge, no previous study has addressed the issue of the considerable difference between the transition temperature of the (classical) theory and experiment for various other fillings, as Table I shows.",
+        "page": 2,
+        "location": "Table I"
+      },
+      "effort": "text",
+      "fix": "Discuss whether a cluster C_v maximum and an optically detected loss of the insulating state should agree.",
+      "fix_scoped": null,
+      "edit_scoped": null,
+      "runs": ["r1", "r2", "r3"]
+    },
+    {
+      "tier": "B",
+      "rank": 12,
+      "topic": "other",
+      "claim": "Paper in general",
+      "claim_id": 0,
+      "headline": "Novelty framing omits order-by-disorder and Pomeranchuk counterexamples",
+      "issue": "The 'it is generally believed' framing leaves out known cases where quantum fluctuations create order or raise a melting line: quantum order by disorder, the triangular-lattice hard-core boson supersolid at half filling, the pinball phase, and the Pomeranchuk effect.",
+      "evidence": {
+        "quote": "It is generally believed that quantum fluctuations collaborate with thermal fluctuations, effectively reducing transition temperatures (e.g. for melting of charge order).",
+        "page": 1,
+        "location": "Abstract"
+      },
+      "effort": "text",
+      "fix": "Discuss the n = 1/2 and 1/4 results against these mechanisms and make clear what is specific to GWCs in moiré systems.",
+      "fix_scoped": null,
+      "edit_scoped": null,
+      "runs": ["r2"]
+    },
+    {
+      "tier": "B",
+      "rank": 13,
+      "topic": "other",
+      "claim": "Testable in bandwidth-tuning experiments",
+      "claim_id": 6,
+      "headline": "Bandwidth-tuning prediction not given in measurable units",
+      "issue": "No prediction is given in measurable units, and the proposed knob, a displacement field, also changes the effective dielectric screening and may add further-neighbour hopping and change the moiré potential.",
+      "evidence": {
+        "quote": "Our predictions should be observable in future experiments where the bandwidth can be tuned.",
+        "page": 1,
+        "location": "Abstract; Conclusions"
+      },
+      "effort": "existing_data",
+      "fix": "Give T_c in kelvin against t for each filling with the LR model, or against displacement field via a stated t(D) relation, with uncertainty bands; state over what range of t a GWC ground state still exists, and discuss how changes in ε and d compete with the t-induced shift.",
+      "fix_scoped": "The sign of the quantum shift could be tested in future experiments where the bandwidth can be tuned, although we do not give quantitative predictions in measurable units here.",
+      "edit_scoped": {
+        "before": "Our predictions should be observable in future experiments where the bandwidth can be tuned.",
+        "after": "The sign of the quantum shift could be tested in future experiments where the bandwidth can be tuned, although we do not give quantitative predictions in measurable units here."
+      },
+      "runs": ["r2", "r3"]
+    },
+    {
+      "tier": "C",
+      "rank": 14,
+      "topic": "consistency",
+      "claim": "T_c increase at n = 1/2 and 1/4",
+      "claim_id": 2,
+      "headline": "Quoted 30-40% increase does not match the figures",
+      "issue": "For n = 1/2 (LR, N = 28) Fig. 2(b) goes from about 27 K to about 44 K, roughly +60%, and Fig. 3 gives about 0.4-0.6 for n = 1/2 and 0.3-0.4 for n = 1/4 across clusters.",
+      "evidence": {
+        "quote": "In contrast, for fillings n = 1/4 and 1/2, quantum fluctuations increase the melting temperature by as much as 30–40%, at least on the system sizes studied here.",
+        "page": 7,
+        "location": "Conclusions; Fig. 2(b); Fig. 3"
+      },
+      "effort": "text",
+      "fix": "Quote the range by filling, model and cluster size.",
+      "fix_scoped": null,
+      "edit_scoped": null,
+      "runs": ["r1", "r2", "r3"]
+    },
+    {
+      "tier": "C",
+      "rank": 15,
+      "topic": "consistency",
+      "claim": "Classical baseline in Table I",
+      "claim_id": 3,
+      "headline": "Fig. 5 omits the n = 1/3 calibration and repeats a T_c",
+      "issue": "The n = 1/3 fit that sets ε and every number in Table I is 'not shown', panels (b) and (c) both list T_c = 15.98 K, and the caption sentence on sweeps is garbled.",
+      "evidence": {
+        "quote": "ϵ = 4.67 was obtained by fitting data obtained from the n = 1/3 case (not shown here).",
+        "page": 8,
+        "location": "Fig. 5"
+      },
+      "effort": "existing_data",
+      "fix": "Include the n = 1/3 Monte Carlo panel, correct the duplicated 15.98 K entry, and fix the garbled sweep sentence.",
+      "fix_scoped": null,
+      "edit_scoped": null,
+      "runs": ["r1", "r2", "r3"]
+    },
+    {
+      "tier": "C",
+      "rank": 16,
+      "topic": "other",
+      "claim": "Quantum effects move T_c toward experiment",
+      "claim_id": 3,
+      "headline": "State limited coverage at n = 2/5 and absence at n = 1/7",
+      "issue": "n = 2/5 is treated on a single N = 25 cluster, so the reported reduction cannot be separated from finite-size effects, and n = 1/7 appears in Table I with no quantum calculation.",
+      "evidence": {
+        "quote": "The specific heat data shows a small, but observable, reduction in Tc with t in the perturbative regime of the GWC phase, i.e. near t = 0.",
+        "page": 9,
+        "location": "Appendix D; Fig. 7; Table I"
+      },
+      "effort": "text",
+      "fix": "Say explicitly that n = 2/5 is computed on one cluster only and that n = 1/7 has no quantum calculation.",
+      "fix_scoped": null,
+      "edit_scoped": null,
+      "runs": ["r1", "r3"]
+    },
+    {
+      "tier": "C",
+      "rank": 17,
+      "topic": "other",
+      "claim": "Paper in general",
+      "claim_id": 0,
+      "headline": "Fig. 7(a, b) x-axis mislabelled T_c instead of T",
+      "issue": "The x-axis of Fig. 7(a, b) is labelled T_c (K) but should be T (K).",
+      "evidence": {
+        "quote": "Temperature dependence of the specific heat (heat capacity per site in arbitrary units), Cv/N, for filling fraction n = 2/5 (top panels, (a,b))",
+        "page": 9,
+        "location": "Fig. 7(a, b)"
+      },
+      "effort": "text",
+      "fix": "Relabel the x-axis as T (K).",
+      "fix_scoped": null,
+      "edit_scoped": null,
+      "runs": ["r1", "r2", "r3"]
+    },
+    {
+      "tier": "C",
+      "rank": 18,
+      "topic": "other",
+      "claim": "Paper in general",
+      "claim_id": 0,
+      "headline": "Duplicate references 23/26 and 30/38",
+      "issue": "Refs. 23 and 26 are identical, and so are Refs. 30 and 38.",
+      "evidence": {
+        "quote": "B. Padhi, R. Chitra, and P. W. Phillips, Generalized wigner crystallization in moiré materials, Phys. Rev. B 103, 125146 (2021).",
+        "page": 12,
+        "location": "References"
+      },
+      "effort": "text",
+      "fix": "Remove the duplicate entries and renumber citations.",
+      "fix_scoped": null,
+      "edit_scoped": null,
+      "runs": ["r1", "r2", "r3"]
+    },
+    {
+      "tier": "C",
+      "rank": 19,
+      "topic": "other",
+      "claim": "Paper in general",
+      "claim_id": 0,
+      "headline": "Fig. 1 lacks momentum, averaging and normalization definitions",
+      "issue": "The momentum k used for each filling and panel is not stated, nor is how S(k) is averaged over degenerate stripe ground states at n = 1/2 (including bent stripes), nor the normalization; sqrt(S(k)/N) = n holds only for the perfect classical crystal.",
+      "evidence": {
+        "quote": "The contributions from exactly degenerate ground states have been averaged over, where applicable.",
+        "page": 2,
+        "location": "Fig. 1; Eq. (3)"
+      },
+      "effort": "text",
+      "fix": "State the k used per filling and panel, the averaging over degenerate stripe states, and the normalization, noting that sqrt(S(k)/N) = n only for the perfect classical crystal.",
+      "fix_scoped": null,
+      "edit_scoped": null,
+      "runs": ["r1", "r2", "r3"]
+    },
+    {
+      "tier": "C",
+      "rank": 20,
+      "topic": "other",
+      "claim": "Paper in general",
+      "claim_id": 0,
+      "headline": "C_v/N given in arbitrary units instead of k_B per site",
+      "issue": "Figs. 2, 5 and 7 give C_v/N in arbitrary units; units of k_B per site would let readers judge the entropy released.",
+      "evidence": {
+        "quote": "Temperature dependence of the specific heat (heat capacity per site in arbitrary units)",
+        "page": 4,
+        "location": "Figs. 2, 5, 7"
+      },
+      "effort": "existing_data",
+      "fix": "Plot C_v/N in units of k_B per site so that ∫C_v/T can be compared with ln-type entropy estimates.",
+      "fix_scoped": null,
+      "edit_scoped": null,
+      "runs": ["r2", "r3"]
+    },
+    {
+      "tier": "C",
+      "rank": 21,
+      "topic": "theory",
+      "claim": "Domain-wall explanation of the n = 1/3 reduction",
+      "claim_id": 4,
+      "headline": "Wall-particle hop counting and 'rest' cancellation need explanation",
+      "issue": "It is not explained why a wall particle has five empty neighbours (four costing +V_1, one costing 0), nor confirmed that hops of non-wall particles next to the wall, lumped into 'rest', cancel between E'_D and E'_A.",
+      "evidence": {
+        "quote": "For one of the 5 hops the energy of the new and old configurations is exactly the same, which corresponds to the case of k = 0.",
+        "page": 11,
+        "location": "Fig. 4; Appendix F"
+      },
+      "effort": "text",
+      "fix": "Explain the five-neighbour counting explicitly and confirm the cancellation of the 'rest' terms.",
+      "fix_scoped": null,
+      "edit_scoped": null,
+      "runs": ["r1"]
+    },
+    {
+      "tier": "C",
+      "rank": 22,
+      "topic": "other",
+      "claim": "Quantum effects move T_c toward experiment",
+      "claim_id": 3,
+      "headline": "Table I sign convention and experimental sources undefined",
+      "issue": "The sign convention of ΔT_c is not defined and the experimental values are not tied to their source panel in Ref. 8.",
+      "evidence": {
+        "quote": "Comparison between the classical model and experimental transition temperatures Tc for various densities n",
+        "page": 2,
+        "location": "Table I"
+      },
+      "effort": "text",
+      "fix": "Define ΔT_c as T_exp − T_model and quote the experimental values with their source panel in Ref. 8.",
+      "fix_scoped": null,
+      "edit_scoped": null,
+      "runs": ["r2"]
+    },
+    {
+      "tier": "C",
+      "rank": 23,
+      "topic": "other",
+      "claim": "Paper in general",
+      "claim_id": 0,
+      "headline": "Particle numbers of clusters not given",
+      "issue": "The n = 1/2, 1/4 and 2/5 analyses use clusters with only 6-14 particles, but particle numbers are not listed.",
+      "evidence": {
+        "quote": "The use of multiple cluster shapes and sizes allows us to estimate finite-size effects and test the robustness of the results.",
+        "page": 9,
+        "location": "Fig. 3; Appendix C"
+      },
+      "effort": "text",
+      "fix": "Give the particle number next to N in Fig. 3 and in the Appendix C table.",
+      "fix_scoped": null,
+      "edit_scoped": null,
+      "runs": ["r2"]
+    },
+    {
+      "tier": "C",
+      "rank": 24,
+      "topic": "inhomogeneity",
+      "claim": "Quantum effects move T_c toward experiment",
+      "claim_id": 3,
+      "headline": "Quenched disorder set aside without an estimate",
+      "issue": "Disorder is mentioned only in passing, yet twist-angle and strain inhomogeneity can shift and broaden T_c at the 10-15 K scale under discussion.",
+      "evidence": {
+        "quote": "The role of quenched disorder [45] may also be important towards a conclusive quantitative explanation of the experiment, and we leave such an exploration to future work.",
+        "page": 7,
+        "location": "Conclusions"
+      },
+      "effort": "text",
+      "fix": "Add a brief estimate of whether disorder could account for the residual discrepancy.",
+      "fix_scoped": null,
+      "edit_scoped": null,
+      "runs": ["r3"]
+    }
+  ]
+}

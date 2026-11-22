@@ -1,0 +1,565 @@
+{
+  "title": "Reconfigurable chiral superconductivity",
+  "claims": [
+    "SQUID-on-tip imaging of the zero-resistance state in rhombohedral pentalayer graphene shows a trainable, sign-reversible orbital magnetization, which the authors present as unambiguous evidence for chiral superconductivity.",
+    "The time-reversal symmetry breaking and the chiral domain structure in the superconducting phase are inherited from the isospin-polarized quarter-metal parent state.",
+    "The density at which domain walls proliferate coincides with the onset of superconductivity, indicating a hidden transition in the parent state that both induces superconductivity and reduces domain-wall energy.",
+    "The low-, high- and negative-resistance transport regimes of the superconducting phase come from configurations of chiral domains separated by highly resistive domain walls, with a wall resistivity of about 41 kOhm·µm.",
+    "Ultra-low currents, down to sub-nA, deterministically move domain walls and enable reversible switching between states of opposite chirality.",
+    "Current-driven domain-wall motion is dominated by linear momentum transfer from reflected electrons, and both spin and valley contribute to the wall's barrier."
+  ],
+  "summary": "The authors use nanoscale SQUID-on-tip magnetometry and transport on two rhombohedral pentalayer graphene devices to image isospin-polarized domains in the quarter-metal and superconducting phases, reporting a field-trainable magnetic signal in the zero-resistance state and a domain-wall proliferation density that tracks the superconducting boundary above and below Tc. They tie the high-, low- and negative-resistance transport states to imaged domain configurations with highly resistive walls, and show domain-wall motion and resistance switching driven by nA-scale currents.",
+  "strengths": [
+    "This is the first spatially resolved magnetic imaging of the superconducting regime of rhombohedral graphene, and the opposite signals after opposite initialization at the same measurement field (Fig. 1j,k) are a clean training test.",
+    "The quarter-metal imaging is careful: the m_z reconstruction (Fig. 1m-p) gives uniform domains with a large orbital magnetization of about 9.5 µB per electron on each branch of the hysteresis loop.",
+    "Imaged domain-wall geometries are tied to specific transport states (Figs. 2m-t, 3, 5; Extended Data Fig. 9), giving a concrete explanation for the resistance spikes in earlier transport data and a first estimate of the domain-wall resistivity.",
+    "The onset of spike-like hysteresis at the same n_DW(D) at 20 mK, 550 mK and 1 K, seen in two devices, is a striking empirical finding, and current-driven domain dynamics are imaged in detail with polarity, frequency and amplitude dependences (Figs. 4, 5; Extended Data Figs. 6-8)."
+  ],
+  "issues": [
+    {
+      "tier": "A",
+      "rank": 1,
+      "topic": "direct_evidence",
+      "claim": "Unambiguous evidence for chiral superconductivity",
+      "claim_id": 1,
+      "headline": "Data show inherited orbital TRS breaking, not chiral superconductivity itself",
+      "issue": "Because the parent quarter-metal is already orbitally ferromagnetic and CSC is defined as any superconductor with orbital TRS breaking, any superconductor in this pocket meets the definition; the SOT dM_z/dn signal would look the same whether or not pairing is chiral or the condensate takes part, and no superconducting versus normal-state comparison at the same (n, D) is made. The comparisons to Sr2RuO4 searches ('long sought') and the claims of 'no analogue' / 'absent in other superconductors' overlook that those searches targeted condensate-generated magnetization and that ferromagnetic superconductors such as UCoGe, URhGe and EuFe2(As1-xPx)2 host switchable domains.",
+      "evidence": {
+        "quote": "revealing two degenerate superconducting states of opposite chirality. This constitutes unambiguous thermodynamic evidence for CSC in RMG.",
+        "page": 4,
+        "location": "Fig. 1h-k"
+      },
+      "effort": "new_work",
+      "fix": "Measure B_z^ac or m_z at the Fig. 1h point with fixed training history from 20 mK through Tc to about 0.5-1 K and as a function of n across the pocket edge, to see whether anything changes at Tc. Unless the condensate is shown to be involved, reword the title, abstract and main text to macroscopic orbital TRS breaking in the superconducting regime inherited from the isospin order, and remove or make precise the 'unambiguous', 'long sought' and 'no analogue'/'absent in other superconductors' statements.",
+      "fix_scoped": "This constitutes thermodynamic evidence for macroscopic orbital TRS breaking in the superconducting regime of RMG, inherited from the isospin-polarized parent state.",
+      "edit_scoped": {
+        "before": "This constitutes unambiguous thermodynamic evidence for CSC in RMG.",
+        "after": "This constitutes thermodynamic evidence for macroscopic orbital TRS breaking in the superconducting regime of RMG, inherited from the isospin-polarized parent state."
+      },
+      "runs": ["r1", "r2", "r3"]
+    },
+    {
+      "tier": "A",
+      "rank": 2,
+      "topic": "direct_evidence",
+      "claim": "Trainable magnetization in the zero-resistance state",
+      "claim_id": 1,
+      "headline": "Zero-resistance maps unquantified; field-odd artifacts excluded at one point only",
+      "issue": "The Fig. 1h-k maps show a few-nT tint on streaky noise at a ±25 nT scale, with no averaged value, noise floor, line cuts, reconstructed m_z or stated sensitivity to minority domains. The sign flip with B in Fig. 1h,i is also expected from gate-modulated Meissner screening or vortex motion, and only one training pair (Fig. 1j,k) at one (n, D) point in device D1 separates trained magnetization from field-odd responses.",
+      "evidence": {
+        "quote": "Figures 1h-k show that in the ZR state the sample is uniformly polarized, forming a single isospin-majority domain.",
+        "page": 8,
+        "location": "Fig. 1h-k"
+      },
+      "effort": "new_work",
+      "fix": "Give the area-averaged B_z^ac with uncertainty and the reconstructed m_z in µB per electron for Fig. 1h-k, and estimate the Meissner and vortex dM/dn from the Pearl length. Show the training dependence at several fields including B ≈ 0, at more than one (n, D) point including one deeper in the pocket, and in device D2.",
+      "fix_scoped": "Figures 1h-k show a weak signal of uniform sign in the ZR state at one (n, D) point in device D1, consistent with a single isospin-majority domain within our sensitivity.",
+      "edit_scoped": {
+        "before": "Figures 1h-k show that in the ZR state the sample is uniformly polarized, forming a single isospin-majority domain.",
+        "after": "Figures 1h-k show a weak signal of uniform sign in the ZR state at one (n, D) point in device D1, consistent with a single isospin-majority domain within our sensitivity."
+      },
+      "runs": ["r1", "r2", "r3"]
+    },
+    {
+      "tier": "A",
+      "rank": 3,
+      "topic": "calibration",
+      "claim": "Imaging is of the superconducting (ZR) state",
+      "claim_id": 1,
+      "headline": "Not shown that the sample stays superconducting during gate-modulated imaging",
+      "issue": "The 0.1 V_rms back-gate modulation's n^ac and D^ac are not stated and may be several 10^10 cm^-2, while the imaging point sits near the high-density edge of the zero-resistance window, so each cycle may sweep the sample out of the pocket or across n_DW and the dM/dn signal could be dominated by the normal state. Tip heating with Tc ≈ 150 mK and a tip 140 nm above the sample is not excluded, and Extended Data Fig. 3v,w shows spontaneous ZR-to-LR transitions.",
+      "evidence": {
+        "quote": "Here we use nanoscale SQUID-on-tip magnetometry to image isospin-polarized domains in rhombohedral pentalayer graphene and establish CSC via spatially resolved thermodynamic detection of TRS breaking.",
+        "page": 1,
+        "location": "Fig. 1g,h-k; Extended Data Table 1"
+      },
+      "effort": "new_work",
+      "fix": "Quote n^ac and D^ac for every gate-modulated map, and show R_xx at the exact imaging (n, D, B) point recorded during the scans or immediately before and after each map with the tip at scan height. Repeat at least one sign-training pair deeper inside the pocket at a smaller modulation amplitude.",
+      "fix_scoped": "Here we use nanoscale SQUID-on-tip magnetometry to image isospin-polarized domains in rhombohedral pentalayer graphene and detect spatially resolved TRS breaking in the superconducting regime.",
+      "edit_scoped": {
+        "before": "Here we use nanoscale SQUID-on-tip magnetometry to image isospin-polarized domains in rhombohedral pentalayer graphene and establish CSC via spatially resolved thermodynamic detection of TRS breaking.",
+        "after": "Here we use nanoscale SQUID-on-tip magnetometry to image isospin-polarized domains in rhombohedral pentalayer graphene and detect spatially resolved TRS breaking in the superconducting regime."
+      },
+      "runs": ["r1", "r2", "r3"]
+    },
+    {
+      "tier": "A",
+      "rank": 4,
+      "topic": "direct_evidence",
+      "claim": "Hidden transition at n_DW induces superconductivity",
+      "claim_id": 3,
+      "headline": "Hidden transition at n_DW inferred only from hysteresis shape change",
+      "issue": "The hidden symmetry-breaking transition and its coincidence with the superconducting boundary rest on a box-to-spike hysteresis change and qualitative magenta-square overlays at a few D values, while spike-like hysteresis also appears in the high-|D| quarter-metal without superconductivity. A simpler Imry-Ma-type picture, with M_z falling steeply at lower n and disorder producing domains, or a Lifshitz transition, is not tested, and the Landau model has parameters not tied to measurement.",
+      "evidence": {
+        "quote": "We find that the density at which domain walls proliferate at elevated temperatures coincides with the onset of CSC, indicating an underlying transition in the parent state that both induces superconductivity and reduces domain-wall energy.",
+        "page": 1,
+        "location": "Abstract; Fig. 2i-l; Extended Data Figs. 1, 2, 11"
+      },
+      "effort": "new_work",
+      "fix": "Plot n_DW(D) and n_SC(D) together with stated criteria and error bars for both devices, look for an independent signature at n_DW above Tc (m_z(n) kink, R_xx feature at 1 K, compressibility, quantum oscillations), track n_DW above 1 K, and compare n_DW(D) with measured M_z(n) and B_co(n). If nematic order is proposed, note that the one-edge contact geometry cannot test anisotropy; otherwise say 'coincides with' and present the hidden order as one hypothesis among several.",
+      "fix_scoped": "We find that the density at which domain walls proliferate at elevated temperatures coincides with the onset of CSC, which may point to an underlying transition in the parent state, one of several possible explanations.",
+      "edit_scoped": {
+        "before": "We find that the density at which domain walls proliferate at elevated temperatures coincides with the onset of CSC, indicating an underlying transition in the parent state that both induces superconductivity and reduces domain-wall energy.",
+        "after": "We find that the density at which domain walls proliferate at elevated temperatures coincides with the onset of CSC, which may point to an underlying transition in the parent state, one of several possible explanations."
+      },
+      "runs": ["r1", "r2", "r3"]
+    },
+    {
+      "tier": "B",
+      "rank": 5,
+      "topic": "direct_evidence",
+      "claim": "Reversible switching between states of opposite chirality",
+      "claim_id": 5,
+      "headline": "Current moves a local domain wall, not the macroscopic chirality",
+      "issue": "In Figs. 4 and 5 the majority isospin never changes; the current moves the wall of a minority bubble near a contact, and the static configurations are schematics inferred from ac difference maps rather than imaged. Nonvolatility at I_dc = 0 is not stated, and switching is shown for about six cycles at one point in one device without endurance statistics.",
+      "evidence": {
+        "quote": "This reversible switching between states of opposite chirality highlights a defining property of the CSC phase in RMG—macroscopic, switchable TRS breaking—absent in conventional superconductors.",
+        "page": 12,
+        "location": "Figs. 4, 5"
+      },
+      "effort": "new_work",
+      "fix": "Image the Fig. 5 LR and HR states directly with gate modulation at fixed I_dc, read them out with I_ac alone after the dc pulse to test nonvolatility, add statistics over many cycles and a second device or operating point. Either show current-driven reversal of the whole sample's net magnetization or reword as current-controlled positioning of chiral domain walls.",
+      "fix_scoped": "This reversible, current-controlled positioning of chiral domain walls highlights the switchable TRS breaking of the CSC phase in RMG.",
+      "edit_scoped": {
+        "before": "This reversible switching between states of opposite chirality highlights a defining property of the CSC phase in RMG—macroscopic, switchable TRS breaking—absent in conventional superconductors.",
+        "after": "This reversible, current-controlled positioning of chiral domain walls highlights the switchable TRS breaking of the CSC phase in RMG."
+      },
+      "runs": ["r1", "r2", "r3"]
+    },
+    {
+      "tier": "B",
+      "rank": 6,
+      "topic": "apparatus",
+      "claim": "Ultra-low-current domain manipulation",
+      "claim_id": 5,
+      "headline": "Nominal ac currents and unknown filter response undermine quantitative claims",
+      "issue": "The quoted ac currents are nominal and the real sample current is 'significantly lower' due to ~1 kHz filters, possibly also on gate lines, while imaging is at 0.43-2.1 kHz. This affects the 'lowest reported' 0.4 nA claim, the fourfold current difference between 20 mK and 550 mK (where sample impedance and field polarity differ), the frequency dependence in Extended Data Fig. 7, and possibly absolute m_z values.",
+      "evidence": {
+        "quote": "However, the actual current flowing through the sample is expected to be significantly lower due to the low-pass filters installed on the electrical lines, whose cutoff frequency is comparable to or below the drive frequency.",
+        "page": 35,
+        "location": "Extended Data Table 1; Extended Data Figs. 7, 8"
+      },
+      "effort": "new_work",
+      "fix": "Measure or model the transfer function of current and gate lines at each frequency and temperature, quote actual sample currents and δn, and repeat the Extended Data Fig. 7 frequency series with filter-corrected amplitudes. Restate the 'lowest current' claim as comparable to the lowest reported values with the estimated actual current.",
+      "fix_scoped": "Remarkably, DW dynamics can be resolved at nominal currents as low as 0.4 nA (Extended Data Fig. 8g), with the actual sample current lower still, comparable to the lowest magnetic domain manipulation currents reported to date [35,36,45].",
+      "edit_scoped": {
+        "before": "Remarkably, DW dynamics can be resolved at currents as low as 0.4 nA (Extended Data Fig. 8g), representing the lowest magnetic domain manipulation current reported to date [35,36,45].",
+        "after": "Remarkably, DW dynamics can be resolved at nominal currents as low as 0.4 nA (Extended Data Fig. 8g), with the actual sample current lower still, comparable to the lowest magnetic domain manipulation currents reported to date [35,36,45]."
+      },
+      "runs": ["r1", "r2", "r3"]
+    },
+    {
+      "tier": "B",
+      "rank": 7,
+      "topic": "theory",
+      "claim": "DW motion dominated by linear momentum transfer",
+      "claim_id": 6,
+      "headline": "Momentum-transfer force estimate flawed and alternative mechanisms not excluded",
+      "issue": "The force estimate uses only the transmitted current, whereas an electrochemical-potential estimate gives a force about 100 times larger; the two pinning estimates differ by ~8x, the second misuses differential m_z and an inconsistent B_co, and the superconducting pinning term is too small to explain the fourfold current increase. Alternatives such as current-induced orbital magnetization reversal, contact edge potential shifts, valley-unpolarized injection and Joule heating at the injecting contact are not excluded, and the polarity symmetry in Extended Data Fig. 4 needs reconciling with Fig. 4f.",
+      "evidence": {
+        "quote": "Our observations indicate that rhombohedral graphene provides the first realization of DW motion dominated by linear momentum transfer.",
+        "page": 26,
+        "location": "Methods (pp. 26-29); Extended Data Fig. 4"
+      },
+      "effort": "new_work",
+      "fix": "Redo the force estimate stating which force is meant, using integrated M_z and a consistent B_co. Test discriminating predictions: threshold current versus B, k_F, ρ_DW and majority isospin; polarity when source and drain are swapped; nucleation thresholds across contacts with different contact resistance; and thermal SOT imaging of dissipation at the injecting contact.",
+      "fix_scoped": "Our observations are consistent with DW motion dominated by linear momentum transfer, although other current-induced mechanisms are not excluded.",
+      "edit_scoped": {
+        "before": "Our observations indicate that rhombohedral graphene provides the first realization of DW motion dominated by linear momentum transfer.",
+        "after": "Our observations are consistent with DW motion dominated by linear momentum transfer, although other current-induced mechanisms are not excluded."
+      },
+      "runs": ["r1", "r2", "r3"]
+    },
+    {
+      "tier": "B",
+      "rank": 8,
+      "topic": "fits",
+      "claim": "Highly resistive domain walls, ρ_DW ≈ 41 kOhm·µm",
+      "claim_id": 4,
+      "headline": "Domain-wall resistivity from one fit, no uncertainty, not tested in superconductor",
+      "issue": "ρ_DW comes from a one-parameter COMSOL fit to two numbers in one 1/4M state, assuming a wall path from a noisy difference map of images taken at different fields, a partial scan frame, a homogeneous LR reference, identical bulk conductivities, uniform wall resistivity and no contact resistance. No value is extracted in the superconducting phase, although the Discussion, the Landauer β and the momentum-transfer argument depend on it.",
+      "evidence": {
+        "quote": "This first experimental imaging and estimate of the isospin DW resistivity in RMG provides important insight into inter-domain charge transport.",
+        "page": 8,
+        "location": "Fig. 2q-t"
+      },
+      "effort": "existing_data",
+      "fix": "Give a confidence interval for ρ_DW by varying the wall path within resolution, plausible unseen domains and contact resistance; comment on or remove the different-field subtraction. Fit at least one more configuration, ideally a superconducting-phase HR state, to test whether the same ρ_DW reproduces the measured R_xx values.",
+      "fix_scoped": "This first experimental imaging and order-of-magnitude estimate of the isospin DW resistivity in RMG, from a single configuration in the 1/4M phase, provides insight into inter-domain charge transport.",
+      "edit_scoped": {
+        "before": "This first experimental imaging and estimate of the isospin DW resistivity in RMG provides important insight into inter-domain charge transport.",
+        "after": "This first experimental imaging and order-of-magnitude estimate of the isospin DW resistivity in RMG, from a single configuration in the 1/4M phase, provides insight into inter-domain charge transport."
+      },
+      "runs": ["r1", "r2", "r3"]
+    },
+    {
+      "tier": "B",
+      "rank": 9,
+      "topic": "calibration",
+      "claim": "Domain configurations behind LR and HR states",
+      "claim_id": 4,
+      "headline": "Domain polarity read from B_z^ac sign without validated sign convention",
+      "issue": "B_z^ac measures dM_z/dn, whose sign and size change with n within the 1/4M phase, yet the K↑/K'↓ labels were calibrated at a single density with top-gate modulation; Fig. 4a's majority label appears inconsistent with its initialization. The multi-domain maps are low-contrast and streaky, and gate modulation may itself move walls, making the signal near walls ±2M_z switching rather than dM_z/dn.",
+      "evidence": {
+        "quote": "reveals coexisting majority (red) and extended minority (blue) domains that span multiple contacts at the bottom of the sample, along with a few smaller domains in the bulk.",
+        "page": 8,
+        "location": "Figs. 2o-q, 3c,d,g,h, 4a"
+      },
+      "effort": "new_work",
+      "fix": "Show m_z(n) at the D values of Figs. 2-5, explain the Fig. 4a initialization, confirm the sign convention at each imaging point with a field- or initialization-reversed map, and provide reconstructed m_z maps, repeated scan pairs and line cuts with noise level. Check by varying the gate-modulation amplitude that it does not drive wall motion.",
+      "fix_scoped": "These observations are consistent with the transition between LR and HR states being governed by a geometric reconfiguration of domains from confined bubbles to system-spanning structures, with domain polarities assigned from the sign of the gate-modulated signal.",
+      "edit_scoped": {
+        "before": "These observations establish that the transition between LR and HR states is governed by a geometric reconfiguration of domains from confined bubbles to system-spanning structures.",
+        "after": "These observations are consistent with the transition between LR and HR states being governed by a geometric reconfiguration of domains from confined bubbles to system-spanning structures, with domain polarities assigned from the sign of the gate-modulated signal."
+      },
+      "runs": ["r1", "r2"]
+    },
+    {
+      "tier": "B",
+      "rank": 10,
+      "topic": "theory",
+      "claim": "Negative R_xx explained by domain configurations",
+      "claim_id": 4,
+      "headline": "Negative-R_xx explanation rests on incorrect premise and unstated mechanism",
+      "issue": "A negative four-terminal resistance at zero bias does not violate equilibrium; in an inhomogeneous conductor with resistive walls and opposite-σ_xy domains in this one-sided geometry it can arise in linear response. The 'effective bias' from the field ramp has no mechanism or magnitude, and the induced EMF at 50 mT/min is negligible.",
+      "evidence": {
+        "quote": "Notably, while negative differential resistance at finite bias is common in electronic amplifiers, its occurrence at zero bias would appear to violate local thermodynamic equilibrium.",
+        "page": 31,
+        "location": "Methods (Negative R_xx state); Extended Data Fig. 9"
+      },
+      "effort": "new_work",
+      "fix": "Use the COMSOL model with oppositely signed σ_xy domains and resistive walls to test whether configurations like Extended Data Fig. 9g give R_xx < 0 in linear response. Keep the effective-bias explanation only if they do not, with a physical mechanism and an order-of-magnitude estimate.",
+      "fix_scoped": "Notably, negative differential resistance at finite bias is common in electronic amplifiers, and a negative four-terminal resistance at zero bias may also arise in an inhomogeneous conductor; its origin here remains to be established.",
+      "edit_scoped": {
+        "before": "Notably, while negative differential resistance at finite bias is common in electronic amplifiers, its occurrence at zero bias would appear to violate local thermodynamic equilibrium.",
+        "after": "Notably, negative differential resistance at finite bias is common in electronic amplifiers, and a negative four-terminal resistance at zero bias may also arise in an inhomogeneous conductor; its origin here remains to be established."
+      },
+      "runs": ["r1", "r2", "r3"]
+    },
+    {
+      "tier": "B",
+      "rank": 11,
+      "topic": "direct_evidence",
+      "claim": "Absent Josephson current indicates differing order parameters",
+      "claim_id": 1,
+      "headline": "No Josephson data shown; absence does not distinguish pairing states",
+      "issue": "The absence of a Josephson critical current across walls is stated without I-V or dV/dI data, and with β ≈ 10^-2, a spin flip, a junction resistance above R_Q and a Josephson energy comparable to k_BT, little measurable supercurrent is expected even for identical order parameters. The sample's critical current is not given, so it is unclear whether the 5-11 nA imaging currents leave it superconducting.",
+      "evidence": {
+        "quote": "This interpretation is supported by the observation that, in the HR state, DWs remain highly resistive even at very low bias currents, with no detectable Josephson critical current, indicating the absence of coherent tunneling between adjacent domains.",
+        "page": 14,
+        "location": "Discussion"
+      },
+      "effort": "new_work",
+      "fix": "Show dV/dI versus I_dc in the zero-resistance, LR and HR states at the imaging points and base temperature, and estimate the critical current expected for an ordinary junction; otherwise remove the inference about the order parameter.",
+      "fix_scoped": "Such behavior does not by itself distinguish between pairing states, since little supercurrent is expected across such a resistive, spin-flipping wall for any order parameter.",
+      "edit_scoped": {
+        "before": "Such behavior is consistent with superconducting order parameters that differ across the wall in phase or chirality, suggesting a nontrivial internal structure of the superconducting state.",
+        "after": "Such behavior does not by itself distinguish between pairing states, since little supercurrent is expected across such a resistive, spin-flipping wall for any order parameter."
+      },
+      "runs": ["r1", "r2", "r3"]
+    },
+    {
+      "tier": "B",
+      "rank": 12,
+      "topic": "direct_evidence",
+      "claim": "Spin and valley both contribute to the DW barrier",
+      "claim_id": 6,
+      "headline": "In-plane-field evidence for spin contribution to ρ_DW is not unique",
+      "issue": "The evidence is from one (n, D) point with four stochastic peaks per B∥ and large scatter, and peak resistance depends on unimaged wall length and position; B∥ may also change coercive fields or suppress superconductivity, and small misalignment gives out-of-plane fields comparable to switching fields. A ~10 µeV Zeeman energy may not tilt spin-valley-locked spins, and the spin of minority domains is never measured.",
+      "evidence": {
+        "quote": "Measurements in the presence of an in-plane field (Extended Data Fig. 10) further show that the DW resistance is reduced when the spin mismatch between neighboring domains is partially suppressed, indicating that both spin and valley contribute to the interfacial barrier.",
+        "page": 14,
+        "location": "Extended Data Fig. 10c"
+      },
+      "effort": "new_work",
+      "fix": "State and correct the misalignment, show hysteresis field positions are not shifted, repeat in the 1/4M normal state above Tc, estimate spin canting at 0.1 T, ideally image an HR state at finite B∥ and convert spike heights to ρ_DW(B∥) with COMSOL; otherwise soften the spin-and-valley statement.",
+      "fix_scoped": "Measurements in the presence of an in-plane field (Extended Data Fig. 10) show that the resistance spikes are reduced, which may indicate that spin as well as valley contributes to the interfacial barrier.",
+      "edit_scoped": {
+        "before": "Measurements in the presence of an in-plane field (Extended Data Fig. 10) further show that the DW resistance is reduced when the spin mismatch between neighboring domains is partially suppressed, indicating that both spin and valley contribute to the interfacial barrier.",
+        "after": "Measurements in the presence of an in-plane field (Extended Data Fig. 10) show that the resistance spikes are reduced, which may indicate that spin as well as valley contributes to the interfacial barrier."
+      },
+      "runs": ["r1", "r2", "r3"]
+    },
+    {
+      "tier": "B",
+      "rank": 13,
+      "topic": "consistency",
+      "claim": "Imaged configurations explain Fig. 5 switching",
+      "claim_id": 5,
+      "headline": "Fig. 5 imaging uses different currents than the transport it explains",
+      "issue": "Transport in Fig. 5b,c uses I_ac = 1 nA, but imaging uses a 2 nA_rms square wave with I_dc = ±1.7 nA, so the instantaneous current changes sign each cycle rather than being merely reduced. Since walls respond at sub-nA currents, the imaged configuration may differ from the one present during transport.",
+      "evidence": {
+        "quote": "the magnitude of the negative current is reduced, leading to a smaller bubble (red in Fig. 5e).",
+        "page": 12,
+        "location": "Fig. 5d-h; Extended Data Table 1"
+      },
+      "effort": "new_work",
+      "fix": "Image with |I_ac| < |I_dc|, or show that the LR/HR configuration is the same at both probe amplitudes.",
+      "fix_scoped": "Contacts 2 and 5 remain in the majority domain, while contacts 3 and 4 form a minority domain, separated by a high-resistivity DW between contacts 2 and 3, resulting in HR configuration; these configurations are inferred from images taken at a larger ac probe current than used in transport.",
+      "edit_scoped": {
+        "before": "Contacts 2 and 5 remain in the majority domain, while contacts 3 and 4 form a minority domain, separated by a high-resistivity DW between contacts 2 and 3, resulting in HR configuration.",
+        "after": "Contacts 2 and 5 remain in the majority domain, while contacts 3 and 4 form a minority domain, separated by a high-resistivity DW between contacts 2 and 3, resulting in HR configuration; these configurations are inferred from images taken at a larger ac probe current than used in transport."
+      },
+      "runs": ["r1"]
+    },
+    {
+      "tier": "B",
+      "rank": 14,
+      "topic": "dependences",
+      "claim": "Transport phase diagram and n_DW(D)",
+      "claim_id": 3,
+      "headline": "Transport probe current is itself large enough to move walls",
+      "issue": "Standard transport uses 1 nA_rms while wall motion occurs at nominal 0.4-0.8 nA and Fig. 5 switches at 1.7 nA. The phase diagrams, Tc, the finite LR resistance and n_DW(D) were all measured in this invasive regime.",
+      "evidence": {
+        "quote": "Moreover, the extremely low currents required to drive DW dynamics—comparable to those typically used in transport measurements—imply that transport measurements in the CSC phase cannot be regarded as purely passive, linear-response probes of a static system.",
+        "page": 12,
+        "location": "Figs. 1d,e, 1g; Methods (Transport measurements)"
+      },
+      "effort": "new_work",
+      "fix": "Show that the zero resistance, n_DW and the LR/HR values do not change at lower excitation (e.g. 0.1-0.2 nA) or in dc I-V at small bias.",
+      "fix_scoped": "Moreover, the extremely low currents required to drive DW dynamics—comparable to those typically used in transport measurements—imply that transport measurements in the CSC phase, including the phase diagrams and n_DW(D) obtained at 1 nA, cannot be regarded as purely passive, linear-response probes of a static system.",
+      "edit_scoped": {
+        "before": "Moreover, the extremely low currents required to drive DW dynamics—comparable to those typically used in transport measurements—imply that transport measurements in the CSC phase cannot be regarded as purely passive, linear-response probes of a static system.",
+        "after": "Moreover, the extremely low currents required to drive DW dynamics—comparable to those typically used in transport measurements—imply that transport measurements in the CSC phase, including the phase diagrams and n_DW(D) obtained at 1 nA, cannot be regarded as purely passive, linear-response probes of a static system."
+      },
+      "runs": ["r3"]
+    },
+    {
+      "tier": "B",
+      "rank": 15,
+      "topic": "apparatus",
+      "claim": "Anomalous Hall response and HR/LR assignments",
+      "claim_id": 4,
+      "headline": "One-sided contacts make R_xx and R_xy nonstandard quantities",
+      "issue": "All five contacts lie on one edge and R_xy uses contact 5 outside the current path, so it mixes σ_xx and σ_xy, yet the anomalous Hall loop, HR/LR assignments and ρ_DW fit rely on these quantities. Whether data are symmetrized or antisymmetrized in B is not stated.",
+      "evidence": {
+        "quote": "Owing to the non-standard contact geometry, we define the measured resistances as",
+        "page": 3,
+        "location": "Fig. 1a,b,l; Fig. 2a; Methods"
+      },
+      "effort": "existing_data",
+      "fix": "State the symmetrization procedure, rename R_xy or state that it is a nonlocal combination, and use the COMSOL model to show how σ_xx and σ_xy map onto the measured quantities.",
+      "fix_scoped": "The spin–valley-polarized 1/4M phase spontaneously breaks orbital TRS, manifested by an anomalous Hall-like response [3,14,16] that, in our one-sided contact geometry, mixes longitudinal and Hall conductivities.",
+      "edit_scoped": {
+        "before": "The spin–valley-polarized 1/4M phase spontaneously breaks orbital TRS, manifested by anomalous Hall effect (AHE) [3,14,16].",
+        "after": "The spin–valley-polarized 1/4M phase spontaneously breaks orbital TRS, manifested by an anomalous Hall-like response [3,14,16] that, in our one-sided contact geometry, mixes longitudinal and Hall conductivities."
+      },
+      "runs": ["r1", "r2", "r3"]
+    },
+    {
+      "tier": "B",
+      "rank": 16,
+      "topic": "fits",
+      "claim": "Quantitative m_z values in the parent state",
+      "claim_id": 2,
+      "headline": "Neural-network m_z reconstruction method not described",
+      "issue": "The m_z maps and the quoted 9.5 and 3 µB/e values rely on a numerical inversion attributed to a neural-network model, with no description of training data, regularization, tip height, point-spread function, edge handling or uncertainty. Single-gate modulation also changes D, adding an unaccounted dM_z/dD term.",
+      "evidence": {
+        "quote": "By performing a numerical inversion [16,43], we reconstruct the local differential magnetization",
+        "page": 5,
+        "location": "Figs. 1n,p, 4g; Extended Data Fig. 2d"
+      },
+      "effort": "existing_data",
+      "fix": "Describe the inversion, give uncertainties on m_z, and correct for or bound the dM/dD contribution.",
+      "fix_scoped": "Thus, in the 1/4M phase at elevated doping, each branch of the box-like hysteresis loop corresponds to a nearly uniform isospin-polarized state, with no oppositely polarized domains resolved, and the reconstructed magnetization values carry an unquantified uncertainty from the inversion.",
+      "edit_scoped": {
+        "before": "Thus, in the 1/4M phase at elevated doping, each branch of the box-like hysteresis loop corresponds to a spatially uniform isospin-polarized state, with no coexistence of oppositely polarized domains.",
+        "after": "Thus, in the 1/4M phase at elevated doping, each branch of the box-like hysteresis loop corresponds to a nearly uniform isospin-polarized state, with no oppositely polarized domains resolved, and the reconstructed magnetization values carry an unquantified uncertainty from the inversion."
+      },
+      "runs": ["r2", "r3"]
+    },
+    {
+      "tier": "B",
+      "rank": 17,
+      "topic": "samples",
+      "claim": "Central imaging results",
+      "claim_id": 0,
+      "headline": "Reproducibility across cycles, cooldowns and devices not reported",
+      "issue": "Superconducting imaging is shown for D1 only and 1/4M dc-current imaging for D2 only. Given the stochastic behaviour, the number of training cycles, how often the sign followed B_int, cooldowns and reproduction after thermal cycling are not reported.",
+      "evidence": {
+        "quote": "Notably, the metastable small domains responsible for the LR state can be annealed by heating the sample above 10 K followed by zero-field cooling, thereby reestablishing the ZR state",
+        "page": 9,
+        "location": "Figs. 1h-k, 3, 4i-p, 5; Extended Data Figs. 3v,w, 5"
+      },
+      "effort": "existing_data",
+      "fix": "State how many training cycles were imaged and how often the sign followed B_int, the number of cooldowns, how often the ZR, LR and HR configurations were reproduced after thermal cycling above 10 K, and which key results were reproduced in D2.",
+      "fix_scoped": "Two R5G devices, intentionally misaligned from hBN, were fabricated with dual graphite gates (Figs. 1a,b and Methods); imaging in the superconducting phase was performed in device D1 and dc-current imaging in the 1/4M phase in device D2.",
+      "edit_scoped": {
+        "before": "Two R5G devices, intentionally misaligned from hBN, were fabricated with dual graphite gates (Figs. 1a,b and Methods).",
+        "after": "Two R5G devices, intentionally misaligned from hBN, were fabricated with dual graphite gates (Figs. 1a,b and Methods); imaging in the superconducting phase was performed in device D1 and dc-current imaging in the 1/4M phase in device D2."
+      },
+      "runs": ["r1", "r2", "r3"]
+    },
+    {
+      "tier": "C",
+      "rank": 18,
+      "topic": "consistency",
+      "claim": "Fig. 5 switching values",
+      "claim_id": 5,
+      "headline": "R_xy sign in Fig. 5 text disagrees with the figure",
+      "issue": "The text and caption give R_xy ≈ +500 Ω in the LR state, but the LR plateau in Fig. 5c sits at about -0.5 kΩ.",
+      "evidence": {
+        "quote": "the device resides in the LR state with",
+        "page": 12,
+        "location": "Fig. 5c"
+      },
+      "effort": "text",
+      "fix": "Correct the sign of the LR-state R_xy in the text and caption, or the figure.",
+      "fix_scoped": null,
+      "edit_scoped": null,
+      "runs": ["r1", "r3"]
+    },
+    {
+      "tier": "C",
+      "rank": 19,
+      "topic": "consistency",
+      "claim": "Parent-state coercive field",
+      "claim_id": 2,
+      "headline": "Quoted coercive field ±150 mT differs from Fig. 1l",
+      "issue": "The text gives B_co ≈ ±150 mT, but the switching fields in Fig. 1l appear to be about -120 and +130 mT.",
+      "evidence": {
+        "quote": "At high carrier densities, the magnetic hysteresis exhibits a conventional box-like loop characteristic of a ferromagnet, with a characteristic coercive field",
+        "page": 5,
+        "location": "Fig. 1l"
+      },
+      "effort": "text",
+      "fix": "Make the quoted coercive field consistent with Fig. 1l.",
+      "fix_scoped": null,
+      "edit_scoped": null,
+      "runs": ["r1"]
+    },
+    {
+      "tier": "C",
+      "rank": 20,
+      "topic": "other",
+      "claim": "Switching current density comparison",
+      "claim_id": 5,
+      "headline": "3D current density from assumed thickness is not meaningful",
+      "issue": "J ≈ 50 A/cm² is obtained by dividing a 2D sheet current by an assumed 1.7 nm thickness to compare with bulk devices. For a 2D conductor the sheet current density (~0.8 A/m) is the meaningful quantity, and comparisons should be at similar device widths.",
+      "evidence": {
+        "quote": "is likewise orders of magnitude lower than in spintronic devices based on vdW magnetic materials and bulk ferromagnets [34,45,47], underscoring the exceptional efficiency of current-driven isospin domain manipulation in this system.",
+        "page": 12,
+        "location": "Current-driven resistance switching"
+      },
+      "effort": "text",
+      "fix": "Quote the sheet current density and compare with moiré systems and other devices at similar widths.",
+      "fix_scoped": null,
+      "edit_scoped": null,
+      "runs": ["r1", "r2", "r3"]
+    },
+    {
+      "tier": "C",
+      "rank": 21,
+      "topic": "theory",
+      "claim": "Superconducting pinning contribution",
+      "claim_id": 6,
+      "headline": "Superconducting pinning estimate mixes line tension with force",
+      "issue": "Condensation energy density times wall width gives a line tension (energy per length); converting it into a force per length needs a stated length scale.",
+      "evidence": {
+        "quote": "Since the DW line tension is set by the condensation energy density integrated over the wall width,",
+        "page": 29,
+        "location": "Methods"
+      },
+      "effort": "text",
+      "fix": "Redo the comparison of f_pin ≲ 3×10^-16 N/µm with 1.3×10^-15 N/µm with explicit dimensions and a stated length scale.",
+      "fix_scoped": null,
+      "edit_scoped": null,
+      "runs": ["r1"]
+    },
+    {
+      "tier": "C",
+      "rank": 22,
+      "topic": "theory",
+      "claim": "Narrow walls, non-adiabatic regime",
+      "claim_id": 6,
+      "headline": "Domain-wall width of a few lattice constants is not justified",
+      "issue": "Walls between valley-polarized states can be wider and partly intervalley-coherent (cf. ref. 59), which would change the adiabaticity argument.",
+      "evidence": {
+        "quote": "since the two domains correspond to opposite valleys of the Brillouin zone, the isospin order parameter is expected to change on a length scale comparable to the lattice constant to mix the",
+        "page": 27,
+        "location": "Methods"
+      },
+      "effort": "text",
+      "fix": "Justify the narrow-wall assumption or discuss wider, partly intervalley-coherent walls and their effect on the adiabaticity argument.",
+      "fix_scoped": null,
+      "edit_scoped": null,
+      "runs": ["r1"]
+    },
+    {
+      "tier": "C",
+      "rank": 23,
+      "topic": "calibration",
+      "claim": "Device characterization",
+      "claim_id": 0,
+      "headline": "hBN misalignment not verified",
+      "issue": "The devices are described as intentionally misaligned from hBN, but how the angle was checked is not stated.",
+      "evidence": {
+        "quote": "Two R5G devices, intentionally misaligned from hBN, were fabricated with dual graphite gates (Figs. 1a,b and Methods).",
+        "page": 3,
+        "location": "Main text; Methods"
+      },
+      "effort": "text",
+      "fix": "State how the misalignment was checked, e.g. by the absence of moiré features at high density.",
+      "fix_scoped": null,
+      "edit_scoped": null,
+      "runs": ["r1"]
+    },
+    {
+      "tier": "C",
+      "rank": 24,
+      "topic": "consistency",
+      "claim": "Presentation",
+      "claim_id": 0,
+      "headline": "Inconsistencies between captions, table and text, and typos",
+      "issue": "The Extended Data Fig. 5g-i caption gives 11.5 nA while Extended Data Table 1 lists 7 nA_rms; p. 6 cites Extended Data Fig. 1l,m for 1 K though they are at 550 mK; the ρ_DW discussion uses n ≈ 0.5×10^12 cm^-2 versus the fitted 0.44×10^12 cm^-2; Extended Data Fig. 8 is missing from Table 1; the Fig. 1g colour bar says 'T (K)' for 20-550; line colours in Fig. 2a and 2i captions are inconsistent. Typos include 'to the divides', 'dependance' and 'Extended Data Figs. 9l shows'.",
+      "evidence": {
+        "quote": "at low temperatures in the CSC phase. The inset shows the magnetic-field dependance of",
+        "page": 5,
+        "location": "Fig. 1g caption; Fig. 2a,i captions; Extended Data Fig. 5; Extended Data Table 1"
+      },
+      "effort": "text",
+      "fix": "Correct the listed inconsistencies, colour-bar units, line-colour references and typos.",
+      "fix_scoped": null,
+      "edit_scoped": null,
+      "runs": ["r1", "r2", "r3"]
+    },
+    {
+      "tier": "C",
+      "rank": 25,
+      "topic": "other",
+      "claim": "Quantitative interpretation of ac maps",
+      "claim_id": 5,
+      "headline": "Effect of stochastic averaging on map amplitudes not discussed",
+      "issue": "Each pixel averages about 300 ac cycles, so stochastic wall dynamics bias map amplitudes, which affects the inferred wall excursion ranges.",
+      "evidence": {
+        "quote": "stochastic variability reduces the magnitude of the time-averaged signal.",
+        "page": 25,
+        "location": "Extended Data Figs. 5, 7; Figs. 4-5"
+      },
+      "effort": "text",
+      "fix": "Add a brief statement of how stochastic averaging affects the inferred wall excursion ranges.",
+      "fix_scoped": null,
+      "edit_scoped": null,
+      "runs": ["r2"]
+    },
+    {
+      "tier": "C",
+      "rank": 26,
+      "topic": "other",
+      "claim": "Data and code availability",
+      "claim_id": 0,
+      "headline": "Data and code available only on request",
+      "issue": "Data and code are available only on request, although much of the interpretation rests on noisy images and model extractions.",
+      "evidence": {
+        "quote": "The data that supports the findings of this study are available from the corresponding authors on reasonable request.",
+        "page": 15,
+        "location": "Data availability"
+      },
+      "effort": "text",
+      "fix": "Deposit the SOT maps, transport data and the COMSOL model in a public repository.",
+      "fix_scoped": null,
+      "edit_scoped": null,
+      "runs": ["r1", "r2", "r3"]
+    }
+  ]
+}
