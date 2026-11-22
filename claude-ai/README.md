@@ -10,9 +10,9 @@ the ordinary Claude app or website. Everything it produces is AI-generated.
    [referee-preview-skill.zip](https://github.com/dsendor/cmp-agent/raw/main/claude-ai/referee-preview-skill.zip).
    Don't unzip it.
 2. **Turn on file creation.** In Claude, open **Settings > Capabilities** and switch on
-   **Code execution and file creation** (in newer layouts it is called **Create and edit
-   files**). On a Team or Enterprise plan, an admin turns this on, along with **Skills**, in
-   Organization settings.
+   **Create and edit files**. The skill needs it to run its scripts and make the dashboard. On a
+   Team or Enterprise plan, an admin turns this on, along with **Skills**, in Organization
+   settings.
 3. **Upload the skill.** Open **Customize > Skills**, click **+**, then **Create skill**, then
    **Upload a skill**, and choose the zip. It is private to your account.
 
