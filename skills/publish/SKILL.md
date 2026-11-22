@@ -38,7 +38,7 @@ client refuses a path it may not read, ask the user to add the review folder to 
 
 On the first publish, then declare the page's capabilities with `declare_capabilities`
 (its `base_version` is the version the publish returned), so co-authors can share decisions
-and discuss items. The declaration is in `${CLAUDE_PLUGIN_ROOT}/docs/shared-review.md`. If the
+and discuss items. The declaration is in `${CLAUDE_PLUGIN_ROOT}/docs/shared-review.md`. It includes `sample`, which turns on the page's Ask Claude chat. To let the chat read the supplement, run `paper_text.py` on `si.pdf` before building. A written `analysis.md` in the review folder is included too. If the
 client has no `declare_capabilities` tool, skip it: the page then keeps decisions in each
 browser.
 

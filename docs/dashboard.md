@@ -60,3 +60,21 @@ of `{issue, raised}` naming review issue ids) and `inferred` (boolean).
 
 **Start here** and **Referee feedback** hide the claim grid, lane and filter controls; the
 item views show them.
+
+## Ask Claude (published artifacts only)
+
+In a page published with `/referee-preview:publish`, an **Ask Claude** button opens a chat
+about the review. It uses the artifact's `sample` capability, so it runs as the viewer, on
+their own Claude account, after a consent prompt. It works with base Claude; Claude Code is
+not needed. The button shows only where the capability is granted. Declare
+`"sample": {}` alongside the shared-review capabilities (`docs/shared-review.md`).
+
+Claude answers through tools that read the page's own data:
+- the review items;
+- the paper's and the supplement's text by page (`paper.pages.json` and `si.pages.json`,
+  embedded by `build_dashboard.py --artifact`);
+- the inferred referee feedback and the version comparison, when present;
+- `analysis.md`, a written analysis in the review folder, when present.
+
+A menu in the panel picks the model: Claude Opus 5.5 (the default), *Best available* (the host's strongest), Fable 5.2, Sonnet 5.5 or Haiku 5.5. The choice is kept in the browser. The host may refuse a named model and fall back, so each answer says which model gave it. It is told to check claims against the paper text, and to say which figure panel an item
+rests on, since it cannot see figures. Conversations are not saved.
