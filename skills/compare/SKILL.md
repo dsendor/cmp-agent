@@ -12,7 +12,7 @@ reports, every referee concern is *inferred*; say so whenever you report one.
 ## 0. Inputs
 
 - **Old version**: a review folder from `/referee-preview:review` (it has `review.json` and
-  `paper.pdf`), a PDF, or an arXiv id with version (`2507.20647v1`). Without a review, run
+  `paper.pdf`), a PDF, or an arXiv id with version (`2406.13799v2`). Without a review, run
   the review skill on it first.
 - **New version**: a PDF and its supplement, or an arXiv id. A revision that is not public
   is private: it never enters this repository, and its record stays in

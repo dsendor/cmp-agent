@@ -19,6 +19,15 @@ out, add what you learned that the next session needs. History belongs in git, n
   papers in `research/eval/referee/` whose reports are public, then collect public records
   in `research/eval/revisions/`.
 
+- **Novelty lane** (`engine/novelty.md`, `agents/novelty-checker.md`): tried once, on a
+  public arXiv paper, where it found a cited reference contradicting a priority statement that
+  the science review missed. Not yet measured against referees. The project advisor's
+  `search.py` and `scripts/arxiv_search.py` are the same script; keep them in step.
+- **claude.ai skill bundle** (`skill-bundle/`, `scripts/package_skill.sh`, install guide in
+  `claude-ai/README.md`): built, not yet run in claude.ai. The zip in `claude-ai/` is
+  committed so users can download it: rebuild it after changing `engine/`, the scripts it
+  copies or the dashboard template (`--check` tells you if it is stale).
+
 ## Next
 
 - **Data and evaluation plan** (`research/data-plan.md`): stage 1 first: a corpus of papers

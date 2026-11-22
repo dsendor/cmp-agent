@@ -38,6 +38,19 @@ An **item** is `{title, text, points?, refs?, issues?}`: `points` is a list of b
 of `{src, page, note?}` where `src` is `"old"` or `"new"`. Check every page in `refs` against
 the PDF text before building.
 
+## Strengths and novelty (`review.json`)
+
+- `strengths`: two to four things the paper does well, taken by `engine/structure.md` from the
+  review runs' "Potential reasons for acceptance". **Start here** opens with them, and for a
+  revision also with the inferred referee concerns it settled.
+- `novelty`: `{positioning, closest, searched, sources}` from the novelty lane
+  (`engine/novelty.md`, written to `novelty.json`), with `overall` and `assessment` (each novelty
+  claim graded `precedent`, `incremental` or `no_precedent_found`) and `coverage` (how many
+  searches, whether the references were checked). **Start here** shows it as "Where the paper
+  sits in the literature", with the grades. The lane's items join the presentation lane with topic `novelty`, and
+  each carries `prior`: the papers it rests on, `{arxiv, title, year, cited_as, facets, overlap}`,
+  shown with arXiv links on the card.
+
 ## Referee overlay (`review.json` → `demo`)
 
 An optional `demo` object in `review.json` tags review cards with referee concerns and adds a
@@ -60,3 +73,21 @@ of `{issue, raised}` naming review issue ids) and `inferred` (boolean).
 
 **Start here** and **Referee feedback** hide the claim grid, lane and filter controls; the
 item views show them.
+
+## Ask Claude (published artifacts only)
+
+In a page published with `/referee-preview:publish`, an **Ask Claude** button opens a chat
+about the review. It uses the artifact's `sample` capability, so it runs as the viewer, on
+their own Claude account, after a consent prompt. It works with base Claude; Claude Code is
+not needed. The button shows only where the capability is granted. Declare
+`"sample": {}` alongside the shared-review capabilities (`docs/shared-review.md`).
+
+Claude answers through tools that read the page's own data:
+- the review items;
+- the paper's and the supplement's text by page (`paper.pages.json` and `si.pages.json`,
+  embedded by `build_dashboard.py --artifact`);
+- the inferred referee feedback and the version comparison, when present;
+- `analysis.md`, a written analysis in the review folder, when present.
+
+A menu in the panel picks the model: Claude Opus 5.5 (the default), *Best available* (the host's strongest), Fable 5.2, Sonnet 5.5 or Haiku 5.5. The choice is kept in the browser. The host may refuse a named model and fall back, so each answer says which model gave it. It is told to check claims against the paper text, and to say which figure panel an item
+rests on, since it cannot see figures. Conversations are not saved.

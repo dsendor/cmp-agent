@@ -48,16 +48,17 @@ When the runs are back:
 
 A run that failed: rerun it once. If it fails again, merge the runs you have and record the number in step 5.
 
-Then dispatch `issue-structurer` with `science-review.md`, the paper path, the LaTeX source folder or "none", the prompt `${CLAUDE_PLUGIN_ROOT}/engine/structure.md` and the output `<folder>/science.json`.
+Then dispatch `issue-structurer` with `science-review.md`, the run files `runs/r<k>.md` (where the strengths are: a merged review drops praise), the paper path, the LaTeX source folder or "none", the prompt `${CLAUDE_PLUGIN_ROOT}/engine/structure.md` and the output `<folder>/science.json`.
 
-## 3. Presentation and copy lanes
+## 3. Presentation, novelty and copy lanes
 
 - `copy-checker`: the paper path, the LaTeX source folder or "none", the prompt `${CLAUDE_PLUGIN_ROOT}/engine/copy.md`, the house style from `my-style.md` (or "none") and the output `<folder>/copy.json`.
 - `presentation-reviewer`, after `science.json` exists: the paper path, the source folder or "none", the prompt `${CLAUDE_PLUGIN_ROOT}/engine/presentation.md`, the path of `science.json`, the target journal or "none" and the output `<folder>/presentation.json`.
+- `novelty-checker`, after `science.json` exists and in the same message as the presentation reviewer: the paper path, the prompt `${CLAUDE_PLUGIN_ROOT}/engine/novelty.md`, the search script `${CLAUDE_PLUGIN_ROOT}/scripts/arxiv_search.py`, the path of `science.json` and the output `<folder>/novelty.json`. It searches arXiv, so it needs network access; if it fails, go on without it and say so in the report.
 
 ## 4. Apply the user's standing rules
 
-If `my-style.md` lists rules that mute a topic or a kind of item (for example "don't flag British spelling"), remove matching items from `copy.json` and `presentation.json` now and count them. Science items are muted only by a rule that names a science topic explicitly; never infer one. Tell the user how many items their rules removed, so nothing disappears silently.
+If `my-style.md` lists rules that mute a topic or a kind of item (for example "don't flag British spelling"), remove matching items from `copy.json`, `presentation.json` and `novelty.json` now and count them. Science items are muted only by a rule that names a science topic explicitly; never infer one. Tell the user how many items their rules removed, so nothing disappears silently.
 
 ## 5. Assemble, check, build
 
@@ -77,8 +78,9 @@ Copy `review.json` to `~/.referee-preview/history/<review id>.json`.
 Tell the user, briefly:
 
 - where the dashboard is (`<folder>/dashboard.html`), and that it opened in their browser;
-- the counts: science items by tier, presentation items, copy edits, and how many quotes were found in the paper;
-- how to work: Triage view for deciding, Walk through view for editing page by page, the claim buttons to see the objections to one claim, `?` for keys, and that decisions are saved in the browser;
+- the counts: science items by tier, presentation items (of which novelty items), copy edits, and how many quotes were found in the paper;
+- the novelty check's overall grade (precedent exists, extends close prior work, or no precedent found in the searches), the closest prior paper, and whether any priority claim conflicts with prior work;
+- how to work: Start here for the major points and what the paper does well, By importance for deciding, In page order for editing page by page, the claim buttons to see the objections to one claim, `?` for keys, and that decisions are saved in the browser;
 - the next step: "Click Send to Claude, then paste the command it copies here." That runs the `apply` skill.
 - that they can get a shareable link with `/referee-preview:publish`, which uploads the review and the paper to their claude.ai account as a private artifact; only on their request.
 
