@@ -43,10 +43,11 @@ In Claude Code:
 To try it for one session from a clone, without installing: `claude --plugin-dir <path to this repository>`.
 
 **Without Claude Code (claude.ai).** A basic version runs as a claude.ai skill: one Claude
-does every lane in turn, and you download the dashboard. Install steps, written for someone
-who has never installed a skill: [claude-ai/README.md](claude-ai/README.md). It is untested
-in claude.ai so far; Claude Code is the tested route. After changing `engine/`, the scripts or
-the dashboard template, rebuild the committed zip with `bash scripts/package_skill.sh`.
+does every lane in turn, and you download the dashboard. With no subagents it can't run
+independent reviews, so it writes one, plus an optional pass for what that one missed. Install
+steps, written for someone who has never installed a skill: [claude-ai/README.md](claude-ai/README.md).
+It installs as a plugin; a full review in claude.ai is not yet tested. After changing `engine/`,
+the scripts or the dashboard template, rebuild the committed zip with `bash scripts/package_skill.sh`.
 
 Needs Python 3. `pdftotext` (poppler) is optional; without it, quotes are not checked against
 the paper. The review is written for Claude Opus; other models work but are not measured.
