@@ -26,7 +26,16 @@ out, add what you learned that the next session needs. History belongs in git, n
   file for three control papers, on Springer and in PMC), so the pending papers most likely
   never opted in. The reserve gets no new papers from them; new ones come from new publications. `eval/jclub/selections.json` lists the Journal Club's last 12
   months (links and DOIs only: the commentaries carry no licence); 12 papers are in scope.
-  Next: Langfuse in the harness, then the stage 1 baseline on dev2.
+  Next: extract referee concerns for dev2, then match the reviewer's tier A items to them.
+- **Stage 1 pilot** (`research/eval/stage1/README.md`, 2026-11-22): the six dev2 papers with
+  an accepted version on arXiv, reviewed in both versions. *Must address* items: 4.5 per paper
+  on the first version, 4.3 on the accepted one. That is the baseline the absolute-tier
+  prototype has to bring down.
+- **Langfuse** (Cloud, US): `research/eval/langfuse_sync.py` creates the datasets (dev30,
+  test22, dev2, test2, jclub, stage1-pilot) and logs runs as experiments: the API arms' recall
+  on dev30, the Journal Club run and the stage 1 pilot. Langfuse Cloud removed its v3 API on
+  2026-11-19, so the script needs SDK v5 (`langfuse>=5.2`), which needs Python 3.10 or later.
+  The Hobby plan allows 100 calls a minute: the script retries on 429 and runs two at a time.
 - **Journal Club run** (`research/eval/jclub/results.md`, 2026-11-22): 12 expert-recommended
   papers each got 3 to 6 *must address* items (4.2 on average), so the tiers are relative, not
   absolute. The novelty lane's recurring finding: a priority claim contradicted by the paper's own
