@@ -1,0 +1,531 @@
+{
+  "title": "Selective braiding of different anyons in the even-denominator fractional quantum Hall effect",
+  "claims": [
+    "A gate-tunable Fabry-Pérot interferometer in bilayer graphene with an embedded antidot gives local control over the number and type of localized anyons inside the interference loop.",
+    "At filling -1/2 with the antidot filling near -1/2, phase jumps of about π are seen and attributed to interfering e/2 quasiparticles encircling one more localized e/2.",
+    "At filling -1/2 with the antidot nearly depleted, phase jumps of about π/2 are seen and attributed to interfering e/2 quasiparticles encircling a localized e/4, expected to be non-Abelian.",
+    "Switching between anyon occupancies over time is observed, resolving individual anyon tunnelling events into the interference loop.",
+    "At filling -1/3 a three-step staircase and telegraph jumps of about 2π/3 confirm the expected statistics of e/3 anyons.",
+    "The interfering charge is e/2 and is not changed by the antidot."
+  ],
+  "summary": "The authors embed a graphite-gated antidot inside a bilayer-graphene Fabry-Pérot interferometer and, by tuning the antidot filling at ν = -1/2, observe rigid shifts of the interference pattern by about π or about π/2, which they attribute to e/2 interfering quasiparticles braiding around localized e/2 or e/4 quasiparticles. They also report repeated-sweep and time-trace switching between anyon occupancies at ν = -1/2 and ν = -1/3, with the -1/3 data giving phases close to 2π/3.",
+  "strengths": [
+    "The device concept is new: an independently tunable graphite antidot inside a graphene Fabry-Pérot interferometer with seven separately biased gate sections, giving a tuning knob that GaAs interferometers lack.",
+    "At ν = -1/2 with ν_AD ≈ -1/2 the phase jumps are discrete, visible in individual sweeps, and tightly clustered near π (|θ|/2π = 0.46-0.49 across many V_ADG values), stable while P_ex changes from 0 to 0.5.",
+    "The raw repeated-sweep data for every V_ADG setting are shown in full in the SI (Figs. S5-S8), including ranges without jumps that serve as a stability baseline, so readers can judge the analysis.",
+    "The integer, ν = -1/3 and ν = -1/2 cases are compared in the same device (Fig. 2), giving an internal reference: a sawtooth at the integer filling and a staircase near 2π/3 at ν = -1/3."
+  ],
+  "issues": [
+    {
+      "tier": "A",
+      "rank": 1,
+      "topic": "direct_evidence",
+      "claim": "π/2 jumps from e/2 encircling e/4",
+      "claim_id": 3,
+      "headline": "Electrostatic bulk-edge contribution to jump size is not quantified",
+      "issue": "Adding charge to the antidot changes the interfering area (sawtooth at ν = -1, tilted constant-phase lines at fractional fillings), so a localized e/2 or e/4 entering should also produce a non-universal electrostatic phase on top of θ_braid. The paper reads the jumps directly as θ_braid, although the π/2 values scatter above 0.25 (0.23-0.33) and the ν = -1/3 values include 0.19 and 0.26, consistent with such corrections. A partly screened e/2, a charge moving within the antidot, or an outside fluctuator could each give a jump near π/2.",
+      "evidence": {
+        "quote": "This finding indicates that one additional e/4 anyon has entered the interference loop and braided with the interfering e/2 anyons.",
+        "page": 8,
+        "location": "Fig. 4d; Fig. 2a,b,d; Fig. S4a,b; Fig. S11"
+      },
+      "effort": "existing_data",
+      "fix": "Estimate the bulk-edge coupling from the integer sawtooth amplitude, the tilt and period of the V_ADG-V_PG pattern and the ν = -1/3 staircase, scaled by quasiparticle charge, and show what jump a localized e/2 and e/4 would produce at ν_AD ≈ 0; state the correction and its uncertainty for each assigned θ_braid and show the residual is consistent with π and π/2. Show that the jump size does not change with V_PG window or with B along α_c at fixed ν_AD.",
+      "fix_scoped": "This finding is consistent with one additional e/4 anyon having entered the interference loop, although an electrostatic contribution to the jump size has not been excluded.",
+      "edit_scoped": {
+        "before": "This finding indicates that one additional e/4 anyon has entered the interference loop and braided with the interfering e/2 anyons.",
+        "after": "This finding is consistent with one additional e/4 anyon having entered the interference loop and braided with the interfering e/2 anyons, although an electrostatic (bulk-edge coupling) contribution to the jump size has not been excluded."
+      },
+      "runs": ["r1", "r2", "r3"]
+    },
+    {
+      "tier": "A",
+      "rank": 2,
+      "topic": "direct_evidence",
+      "claim": "Interfering charge is e/2",
+      "claim_id": 6,
+      "headline": "Interfering charge not measured where π/2 jumps appear",
+      "issue": "The e/2 interfering charge was measured only with V_TG = V_ADG (antidot inactive), while π/2 jumps appear only at V_ADG ≈ 0.48-0.50 V, and the plunger period changes by about 1.4 between antidot settings. An interfering e/4 encircling a localized e/2 would also give π/2, and the Conclusions themselves suggest e/4 tunnelling could be promoted at ν_AD ≈ 0.",
+      "evidence": {
+        "quote": "we did not observe any influence of the antidot on the charge of the interfering quasiparticles, a second requirement for observing non-Abelian braiding.",
+        "page": 11,
+        "location": "Conclusions; Fig. 1c,d; Fig. S3; Figs. 4a,b, S12a"
+      },
+      "effort": "new_work",
+      "fix": "Measure the B-periodicity along α_c with the Fig. S3 2D-FFT analysis at one ν_AD ≈ -1/2 setting (e.g. 0.235 V) and one ν_AD ≈ 0.06 setting (e.g. 0.487 V), report Φ0/ΔB for each including the expected area change from the depleted island, and show ΔΦ ≈ 2Φ0 holds there.",
+      "fix_scoped": "The interfering charge of e/2 was measured with the antidot inactive; we have not determined it at the antidot settings where π/2 jumps occur, so an interfering e/4 encircling a localized e/2 cannot be excluded.",
+      "edit_scoped": {
+        "before": "Unlike the case of GaAs,19, we did not observe any influence of the antidot on the charge of the interfering quasiparticles, a second requirement for observing non-Abelian braiding.",
+        "after": "We measured an interfering charge of e/2 with the antidot inactive (VTG = VADG) but have not measured it at the antidot settings where π/2 jumps occur, so an interfering e/4 encircling a localized e/2 cannot yet be excluded."
+      },
+      "runs": ["r1", "r2", "r3"]
+    },
+    {
+      "tier": "A",
+      "rank": 3,
+      "topic": "fits",
+      "claim": "π/2 jumps from e/2 encircling e/4",
+      "claim_id": 3,
+      "headline": "π/2 values come from unvalidated two-ridge histogram fits, not individual events",
+      "issue": "θ_braid comes from a two-ridge histogram fit with common amplitude and phase, percentile clipping and residual-variance error bars; it can bias small offsets, struggles when ridges overlap or P_ex is 0.04-0.05, and can capture only two phase states. The values scatter (0.23-0.33, one equal to 1/3) beyond their error bars, only one event is shown in Fig. 4d, and the Introduction's claim that π and π/2 jumps coexist at ν_AD ≈ 0 is not supported by Fig. 4e or Fig. S11.",
+      "evidence": {
+        "quote": "A second ridge was identified from additional peaks in the slices that were well separated from the primary ridge.",
+        "page": 29,
+        "location": "SI7; Fig. 4e; Fig. S11a-g; Fig. 3f"
+      },
+      "effort": "existing_data",
+      "fix": "Extract the phase of each sweep or of segments before and after each jump for all sweeps in Figs. S6-S8, and show histograms of individual jump sizes with event counts per V_ADG; validate the two-ridge fit on synthetic data with known π/2 and π shifts and the measured noise, testing the common-amplitude constraint and clipping; reconcile or remove the statement about coexisting π and π/2 jumps.",
+      "fix_scoped": "We estimate the uncertainties from the residual variance of this fit; these exclude systematic errors of the two-ridge procedure, which has not been validated for small phase offsets.",
+      "edit_scoped": {
+        "before": "We estimate the uncertainties from the residual variance of this fit.",
+        "after": "We estimate the uncertainties from the residual variance of this fit; these do not include systematic errors of the two-ridge procedure, which has not been validated on data with known small phase offsets."
+      },
+      "runs": ["r1", "r2", "r3"]
+    },
+    {
+      "tier": "B",
+      "rank": 4,
+      "topic": "theory",
+      "claim": "Localized e/4 is non-Abelian",
+      "claim_id": 3,
+      "headline": "π/2 phase identifies e/4 charge, not non-Abelian statistics",
+      "issue": "Eq. S4 gives ±π/2 for e/2 around e/4 from the charge sector alone, and the same value follows in Abelian paired orders such as 331 and K = 8, so the measurement constrains the charge of the localized quasiparticle, not whether it is non-Abelian, nor Pfaffian versus anti-Pfaffian. The 'expected to be non-Abelian' framing and the anti-Pfaffian assignment rest on other work.",
+      "evidence": {
+        "quote": "braiding between one Abelian e/2 and a localized e/4 anyon, expected to be non-Abelian.",
+        "page": 2,
+        "location": "Introduction; Abstract; SI10 Eq. S4; page 8"
+      },
+      "effort": "text",
+      "fix": "State which candidate orders (Pfaffian, anti-Pfaffian, 331, 113, K = 8) predict π/2 and which predict a ±π/2 sign structure or cancellation; temper 'expected to be non-Abelian' in the abstract and Introduction; state the anti-Pfaffian assignment as an assumption and whether the data favour it; say which further measurement would discriminate.",
+      "fix_scoped": null,
+      "edit_scoped": null,
+      "runs": ["r1", "r2", "r3"]
+    },
+    {
+      "tier": "B",
+      "rank": 5,
+      "topic": "direct_evidence",
+      "claim": "Local control over number of anyons",
+      "claim_id": 1,
+      "headline": "Not shown that fluctuating anyons sit in the antidot",
+      "issue": "At ν_AD ≈ ν the device is nearly a uniform interferometer, so π jumps could come from localized e/2 anywhere in the loop or from extrinsic traps; the time stability with V_TG = V_ADG is not reported. 'Selectivity' and 'local control over the number of anyons' amount to jumps of different size at different V_ADG.",
+      "evidence": {
+        "quote": "Here, we realize a gate-tunable Fabry-Pérot interferometer with an embedded antidot that provides local control over the number of anyons within the interference loop.",
+        "page": 1,
+        "location": "Abstract; Fig. 4a; Fig. S7c-l; Fig. 1c"
+      },
+      "effort": "new_work",
+      "fix": "State where the localized anyons are believed to reside; show time-resolved sweeps with V_TG = V_ADG exactly, compared with ν_AD = -0.51, without π jumps; compare lever arms of P_ex peaks and jump rate for V_ADG versus V_PG and V_TG; show how degeneracy positions move with B; temper 'local control over the number of anyons'.",
+      "fix_scoped": "Here, we realize a gate-tunable Fabry-Pérot interferometer with an embedded antidot whose gate voltage selects which type of localized anyon fluctuates within the interference loop and how often.",
+      "edit_scoped": {
+        "before": "Here, we realize a gate-tunable Fabry-Pérot interferometer with an embedded antidot that provides local control over the number of anyons within the interference loop.",
+        "after": "Here, we realize a gate-tunable Fabry-Pérot interferometer with an embedded antidot whose gate voltage selects which type of localized anyon fluctuates within the interference loop and how often."
+      },
+      "runs": ["r1", "r2", "r3"]
+    },
+    {
+      "tier": "B",
+      "rank": 6,
+      "topic": "dependences",
+      "claim": "Antidot gate controls anyon occupancy",
+      "claim_id": 1,
+      "headline": "P_ex peak spacing does not match quasiparticle addition period; undersampled",
+      "issue": "At ν = -1/3 the P_ex maxima are about 5 mV apart, matching neither the 2.2-2.7 mV electron period nor the 0.7-0.9 mV e/3 period, and most addition points show no fluctuations. At ν_AD ≈ -1/2 P_ex rises smoothly over about 25 charging periods, and near ν_AD ≈ 0 the 2 mV V_ADG step is coarser than the expected 0.65 mV e/4 period, so peaks may be aliased.",
+      "evidence": {
+        "quote": "This behavior points to a near-degeneracy of the states containing N and N + 1 anyons",
+        "page": 8,
+        "location": "Fig. 3f; Fig. 4e; Figs. S8, S11"
+      },
+      "effort": "new_work",
+      "fix": "Take a dense V_ADG scan (≤ 0.1-0.3 mV steps) over at least one electron period at ν = -1/3 and at ν = -1/2, ν_AD ≈ 0, mapping P_ex and the sign of θ; estimate the fluctuators' lever arm from the peak spacing; show whether degeneracies recur with the expected quasiparticle period with a sign flip of the jump across each.",
+      "fix_scoped": "We tentatively attribute this behavior to near-degeneracies of localized anyon configurations, although the peak spacing does not match the expected quasiparticle addition period.",
+      "edit_scoped": {
+        "before": "This behavior points to a near-degeneracy of the states containing N and N + 1 anyons at those VADG values.",
+        "after": "We tentatively attribute this behavior to near-degeneracies of states containing N and N + 1 anyons at those VADG values, although the peak spacing does not match the expected quasiparticle addition period."
+      },
+      "runs": ["r1", "r2", "r3"]
+    },
+    {
+      "tier": "B",
+      "rank": 7,
+      "topic": "direct_evidence",
+      "claim": "Individual tunnelling events resolved",
+      "claim_id": 4,
+      "headline": "No fixed-gate time traces or dwell-time statistics at ν = -1/2",
+      "issue": "The two-level telegraph trace and t_ex ≈ 11 s are shown only at ν = -1/3; at ν = -1/2 events are inferred from 90 s sweeps, where mid-sweep jumps blur the histograms. Whether more than two levels occur at ν_AD ≈ 0, as expected with both e/2 and e/4 fluctuations, is not examined.",
+      "evidence": {
+        "quote": "We further observe switching between different anyon occupancies of the antidot over time, directly resolving individual anyon tunnelling events into the interference loop.",
+        "page": 1,
+        "location": "Abstract; Fig. 3a; Fig. 4c,d"
+      },
+      "effort": "new_work",
+      "fix": "Show R_D(t) at fixed V_PG for ν_AD ≈ -0.5 and ≈ 0.07; give dwell-time distributions for both states and test single-exponential behaviour; compare e/2 and e/4 kinetics; check that the telegraph amplitude at several V_PG follows cos θ − cos(θ + Δθ); examine whether more than two levels occur at ν_AD ≈ 0.",
+      "fix_scoped": "We further observe switching between different anyon occupancies over time, seen as phase jumps within repeated plunger-gate sweeps at ν = -1/2 and as telegraph switching in fixed-gate time traces at ν = -1/3.",
+      "edit_scoped": {
+        "before": "We further observe switching between different anyon occupancies of the antidot over time, directly resolving individual anyon tunnelling events into the interference loop.",
+        "after": "We further observe switching between different anyon occupancies over time, seen as phase jumps within repeated plunger-gate sweeps at half filling and as telegraph switching in fixed-gate time traces at filling one third."
+      },
+      "runs": ["r1", "r2", "r3"]
+    },
+    {
+      "tier": "B",
+      "rank": 8,
+      "topic": "samples",
+      "claim": "Reproducible localized anyon regimes",
+      "claim_id": 0,
+      "headline": "Single device, field and cooldown; no temperature or bias dependence",
+      "issue": "Only one interferometer is shown and the ν = -1/2 dynamics are only at 8 T. Since the fluctuating anyons are probably pinned by disorder, reproducibility is the key test, and temperature or excitation dependence would show whether switching is thermally activated rather than driven by the excitation current or extrinsic fluctuators.",
+      "evidence": {
+        "quote": "Our experiments are performed on an FPI device constructed on a high-mobility van der Waals heterostructure, following prior work in the field.",
+        "page": 4,
+        "location": "Main text; Methods"
+      },
+      "effort": "new_work",
+      "fix": "State how many devices and cooldowns were measured; show whether the π and π/2 regimes reappear after thermal cycling, at a second field inside the ν = -1/2 plateau (e.g. 7 T), and ideally in a second device; report P_ex and t_ex at two or three temperatures and excitation levels.",
+      "fix_scoped": "Our experiments are performed on a single FPI device, measured in one cooldown and at a single magnetic field for each filling, constructed on a high-mobility van der Waals heterostructure.",
+      "edit_scoped": {
+        "before": "Our experiments are performed on an FPI device constructed on a high-mobility van der Waals heterostructure, following prior work in the field.",
+        "after": "Our experiments are performed on a single FPI device, measured in one cooldown and at a single magnetic field for each filling, constructed on a high-mobility van der Waals heterostructure, following prior work in the field."
+      },
+      "runs": ["r1", "r2", "r3"]
+    },
+    {
+      "tier": "B",
+      "rank": 9,
+      "topic": "calibration",
+      "claim": "Antidot filling controls anyon type",
+      "claim_id": 1,
+      "headline": "V_ADG to ν_AD conversion undescribed, uncertain, and inconsistently labelled",
+      "issue": "ν_AD is quoted to three decimals but its offset, capacitance, fringing treatment and back-gate dependence are not given, and the same conversion gave ΔQ ≈ 0.89e rather than e. The 'ν_AD ≈ 0' regime is actually +0.06 to +0.10 (opposite carrier sign to the bulk), and several labels disagree between figures (Fig. 1e vs S7o, 1g/4b vs S8c/S11b, 3a vs S6, S10a caption vs panel).",
+      "evidence": {
+        "quote": "Figure 1g was recorded for νAD ≈ 0 and shows two contributions of nearly equal strength, shifted by π/2.",
+        "page": 5,
+        "location": "Fig. 1e,g; Fig. 4b; Figs. S5-S11; SI2"
+      },
+      "effort": "existing_data",
+      "fix": "Give the calibration (offset, capacitance, effective area including fringing) with its uncertainty, propagate the area uncertainty into ΔQ, use consistent labels, and discuss whether the π/2 regime is a depleted or weakly electron-doped island.",
+      "fix_scoped": "Figure 1g was recorded for a nominally weakly electron-doped antidot (νAD ≈ 0.07, within the calibration uncertainty) and shows two contributions of nearly equal strength, shifted by π/2.",
+      "edit_scoped": {
+        "before": "Figure 1g was recorded for νAD ≈ 0 and shows two contributions of nearly equal strength, shifted by π/2.",
+        "after": "Figure 1g was recorded for a nominally weakly electron-doped antidot (νAD ≈ 0.07, within the calibration uncertainty) and shows two contributions of nearly equal strength, shifted by π/2."
+      },
+      "runs": ["r1", "r2", "r3"]
+    },
+    {
+      "tier": "B",
+      "rank": 10,
+      "topic": "null_control",
+      "claim": "Gate selects localized anyon type",
+      "claim_id": 1,
+      "headline": "No null control for extrinsic telegraph noise",
+      "issue": "A charge trap in the hBN or near the QPCs can produce random telegraph phase shifts of fixed, gate-dependent size. The consistency of the π jumps argues against this, but only weakly in the π/2 regime, where values scatter.",
+      "evidence": {
+        "quote": "The combined observations of Figs. 1e-g show that applying a gate voltage to the antidot provides experimental selectivity of the localized anyon type around which braiding occurs.",
+        "page": 5,
+        "location": "Figs. 1e-g; Fig. 4e"
+      },
+      "effort": "new_work",
+      "fix": "Show repeated sweeps at ν = -1 (and if possible ν = -2/3) at the same V_ADG and V_TG settings that give π/2 jumps at ν = -1/2, which should be free of jumps or show only 2π-equivalent jumps, and show that the π/2 jumps follow the FQH state when B and density move together along α_c.",
+      "fix_scoped": "The combined observations of Figs. 1e-g are consistent with the antidot gate selecting the localized anyon type around which braiding occurs, although extrinsic charge traps have not been excluded by a control measurement.",
+      "edit_scoped": {
+        "before": "The combined observations of Figs. 1e-g show that applying a gate voltage to the antidot provides experimental selectivity of the localized anyon type around which braiding occurs.",
+        "after": "The combined observations of Figs. 1e-g are consistent with a gate voltage on the antidot selecting the localized anyon type around which braiding occurs, although extrinsic charge traps have not been excluded by a control measurement."
+      },
+      "runs": ["r1"]
+    },
+    {
+      "tier": "B",
+      "rank": 11,
+      "topic": "fits",
+      "claim": "ν = -1/3 confirms 2π/3 statistics",
+      "claim_id": 5,
+      "headline": "ν = -1/3 staircase value 0.33 follows from the extraction method",
+      "issue": "If θ advances by 2π per ΔV_ADG period and the three steps per period, located as minima of dθ/dV_ADG, are evenly spaced, consecutive minima differ by 2π/3 regardless of the discontinuity at each step. Yet 0.33 is presented as confirming θ_braid = 2π/3 and ν = -1/3 is used as a reference; the low |θ|/2π = 0.19 at V_ADG = 0.467 V is not discussed.",
+      "evidence": {
+        "quote": "The phase difference ∆θ between consecutive minima was then calculated from the phase values at these positions.",
+        "page": 22,
+        "location": "SI4; Fig. S4b-d; Fig. 2e,i; Fig. 3b,c; Fig. S9g"
+      },
+      "effort": "existing_data",
+      "fix": "Separate the continuous slope from the discontinuity (fit a linear baseline within plateaus and measure the jump at each step), state the total phase per ΔV_ADG period and say so if the discontinuity alone is not 2π/3; quote the ±0.93 and ±1.02 × 2π/3 values with uncertainties and discuss the 0.19 value.",
+      "fix_scoped": "The spacing between consecutive steps gives Δθ/2π = 0.33 ± 0.02 (see SI4); because it includes the continuous slope, this spacing is consistent with, but does not by itself measure, the braiding phase.",
+      "edit_scoped": {
+        "before": "Consistent with this picture, the phase differences between consecutive steps are ∆θ/2π = 0.33 ± 0.02; (see SI4).",
+        "after": "The phase differences between consecutive steps are ∆θ/2π = 0.33 ± 0.02 (see SI4); because this spacing includes the continuous slope of the baseline, it is consistent with, but does not by itself measure, the braiding phase."
+      },
+      "runs": ["r1", "r3"]
+    },
+    {
+      "tier": "B",
+      "rank": 12,
+      "topic": "fits",
+      "claim": "π/2 jumps from e/2 encircling e/4",
+      "claim_id": 3,
+      "headline": "P_ex extraction method is not defined for π/2 shifts",
+      "issue": "SI9 separates populations with a horizontal threshold R_D0 and averages over plateau regions, which works for anti-phased branches (π) but not for π/2 offsets, where the two cosines overlap on both sides of any threshold and plateaus are short. The P_ex values at ν_AD ≈ 0, including the peak near 0.42, are therefore not defined by this method.",
+      "evidence": {
+        "quote": "To extract a representative value of the excitation probability Pex, we identified plateau regions where the ratios vary weakly as a function of VPG.",
+        "page": 32,
+        "location": "SI9; Fig. S12; Fig. 1g; Fig. 4e"
+      },
+      "effort": "existing_data",
+      "fix": "Show the Fig. S12 analysis for a π/2 case (e.g. V_ADG = 0.487 V), or compute P_ex from per-sweep state assignments or from time traces.",
+      "fix_scoped": "To extract Pex, we identified plateau regions where the ratios vary weakly as a function of VPG; this procedure is designed for π-shifted branches, and Pex values for smaller phase shifts are less reliable.",
+      "edit_scoped": {
+        "before": "To extract a representative value of the excitation probability Pex, we identified plateau regions where the ratios vary weakly as a function of VPG.",
+        "after": "To extract a representative value of the excitation probability Pex, we identified plateau regions where the ratios vary weakly as a function of VPG; this procedure is designed for branches shifted by π, and Pex values for smaller phase shifts are less reliable."
+      },
+      "runs": ["r1", "r2"]
+    },
+    {
+      "tier": "B",
+      "rank": 13,
+      "topic": "theory",
+      "claim": "π/2 jumps from e/2 encircling e/4",
+      "claim_id": 3,
+      "headline": "Even-parity dominance argument is untested by the data",
+      "issue": "The page-5 argument that even-parity e/2 anyons dominate the interference would show up as different visibilities in the two branches, but SI7 imposes a common amplitude. The sign of the π/2 jumps varies between V_ADG values with no correlation with P_ex, which is consistent with either parity or with parity switches.",
+      "evidence": {
+        "quote": "We expect that the e/2 anyon with even-parity of fermions is the dominant one, since the tunneling of an odd-parity anyon involves exciting a neutral edge mode",
+        "page": 5,
+        "location": "Page 5; SI7; Fig. S11; Fig. 1g"
+      },
+      "effort": "existing_data",
+      "fix": "Fit the branch amplitudes separately and report the visibility ratio (an odd e/4 number should suppress visibility with equal parity weights), and either tie the jump sign to the direction of tunnelling, for example through a fine V_ADG scan across a degeneracy, or remove the parity claim.",
+      "fix_scoped": "We hypothesize, without a direct test in the present data, that the e/2 anyon with even fermion parity dominates, since tunneling of an odd-parity anyon involves exciting a neutral edge mode.",
+      "edit_scoped": {
+        "before": "We expect that the e/2 anyon with even-parity of fermions is the dominant one, since the tunneling of an odd-parity anyon involves exciting a neutral edge mode, giving it a larger scaling dimension29 and making it more susceptible to dephasing.30",
+        "after": "We hypothesize, without a direct test in the present data, that the e/2 anyon with even-parity of fermions is the dominant one, since the tunneling of an odd-parity anyon involves exciting a neutral edge mode, giving it a larger scaling dimension29 and making it more susceptible to dephasing.30"
+      },
+      "runs": ["r2", "r3"]
+    },
+    {
+      "tier": "B",
+      "rank": 14,
+      "topic": "apparatus",
+      "claim": "Interference phase reads braiding",
+      "claim_id": 0,
+      "headline": "QPCs never reach full transmission at ν = -1/2; weak backscattering unjustified",
+      "issue": "Fig. S1c shows G_D saturating near 0.38 e²/h rather than 0.5 e²/h with QPCs open, which may indicate partial reflection or non-equilibration of part of the edge, important for an edge with a neutral sector. Working transmissions of 0.7-0.9 are not in the weak-backscattering limit assumed for ΔR_D ∝ cos θ, and the QPC characterization is at 7 T while interference is at 8 T.",
+      "evidence": {
+        "quote": "This reduction may arise because the QPCs are too narrow relative to the width of the fractional edge, an effect that may be particularly important for edges with a more complex structure.",
+        "page": 17,
+        "location": "SI1; Fig. S1c; Eq. 1"
+      },
+      "effort": "text",
+      "fix": "Discuss whether Eq. 1 still applies, what this implies for edge structure and equilibration at 8 T and which modes interfere, whether the partial transmission determines which e/2 parity sector interferes, and how t_L and t_R were chosen at the antidot settings used.",
+      "fix_scoped": null,
+      "edit_scoped": null,
+      "runs": ["r1", "r2", "r3"]
+    },
+    {
+      "tier": "C",
+      "rank": 15,
+      "topic": "consistency",
+      "claim": "Values for the same data",
+      "claim_id": 0,
+      "headline": "θ and P_ex values differ between main text and SI",
+      "issue": "Fig. 1g gives θ/2π = -0.27 and P_e = 0.42 while Fig. S11b (same V_ADG) gives +0.27 and 0.41 and the text gives θ ≈ 0.54π; Fig. 3d gives 0.16 versus 0.15 in Fig. S9b; Fig. 1f gives 0.12 versus 0.11 in Fig. S10c.",
+      "evidence": {
+        "quote": "The histogram in Fig. 1g was constructed from this measurement and yielded",
+        "page": 8,
+        "location": "Fig. 1f,g; Fig. 3d; Figs. S9b, S10c, S11b"
+      },
+      "effort": "text",
+      "fix": "Make the values consistent and state the sign convention.",
+      "fix_scoped": null,
+      "edit_scoped": null,
+      "runs": ["r1", "r2"]
+    },
+    {
+      "tier": "C",
+      "rank": 16,
+      "topic": "heating",
+      "claim": "Measurement conditions",
+      "claim_id": 0,
+      "headline": "Excitation current inconsistent between Methods and SI",
+      "issue": "The Methods give an alternating current from 50 nA to 0.5 nA with a 100 MΩ load, while SI1, SI5 and SI6 give 50 pA.",
+      "evidence": {
+        "quote": "resulting in an alternating current ranging from 50 nA to 0.5 nA.",
+        "page": 16,
+        "location": "Methods; SI1; SI5; SI6"
+      },
+      "effort": "text",
+      "fix": "State the current for each dataset and estimate electron heating at that current.",
+      "fix_scoped": null,
+      "edit_scoped": null,
+      "runs": ["r2", "r3"]
+    },
+    {
+      "tier": "C",
+      "rank": 17,
+      "topic": "fits",
+      "claim": "Individual tunnelling events resolved",
+      "claim_id": 4,
+      "headline": "Autocorrelation time is not the excited-state lifetime",
+      "issue": "A telegraph autocorrelation gives (1/τ_g + 1/τ_e)^−1, not the excited-state lifetime alone, and events shorter than the 300 ms time constant and 0.4 s sampling are not discussed.",
+      "evidence": {
+        "quote": "was extracted from the autocorrelations of a 4000 seconds scan.",
+        "page": 9,
+        "location": "Fig. 3a"
+      },
+      "effort": "existing_data",
+      "fix": "Give dwell-time histograms for both states and comment on events shorter than the time constant and sampling interval.",
+      "fix_scoped": null,
+      "edit_scoped": null,
+      "runs": ["r3"]
+    },
+    {
+      "tier": "C",
+      "rank": 18,
+      "topic": "consistency",
+      "claim": "ν = -1/3 staircase",
+      "claim_id": 5,
+      "headline": "ν = -1/3 staircase at 8 T but dynamics at 11 T",
+      "issue": "Fig. 2c (ν = -1/3) is at 8 T whereas the ν = -1/3 dynamics in Fig. 3 are at 11 T.",
+      "evidence": {
+        "quote": "A magnified view of this pattern reveals three steps within each",
+        "page": 6,
+        "location": "Fig. 2c,e; Fig. 3"
+      },
+      "effort": "text",
+      "fix": "State the reason for the change of field and whether the staircase persists at 11 T.",
+      "fix_scoped": null,
+      "edit_scoped": null,
+      "runs": ["r2"]
+    },
+    {
+      "tier": "C",
+      "rank": 19,
+      "topic": "direct_evidence",
+      "claim": "Aperiodic jumps at ν = -1/2 are new",
+      "claim_id": 4,
+      "headline": "Novel aperiodic jumps in Fig. 2b are not quantified",
+      "issue": "The ν = -1/2 aperiodic jumps in Fig. 2b are said to have not been reported before, but their sizes are not quantified.",
+      "evidence": {
+        "quote": "In contrast, the aperiodic jumps are sharply defined and, in the case of",
+        "page": 6,
+        "location": "Fig. 2b"
+      },
+      "effort": "existing_data",
+      "fix": "Add a jump-size analysis of the V_ADG-V_PG maps, as done for the time-domain data.",
+      "fix_scoped": null,
+      "edit_scoped": null,
+      "runs": ["r1"]
+    },
+    {
+      "tier": "C",
+      "rank": 20,
+      "topic": "other",
+      "claim": "Wording",
+      "claim_id": 0,
+      "headline": "Unclear comparison with ν = -1/3 on page 8",
+      "issue": "The sentence contrasting ν = -1/2 jumps with the ν = -1/3 case is unclear, since ν = -1/3 also shows jumps (Fig. S6).",
+      "evidence": {
+        "quote": "for which we observe distinct phase jumps, unlike the",
+        "page": 8,
+        "location": "Page 8; Fig. S6"
+      },
+      "effort": "text",
+      "fix": "Rephrase the sentence.",
+      "fix_scoped": null,
+      "edit_scoped": null,
+      "runs": ["r1"]
+    },
+    {
+      "tier": "C",
+      "rank": 21,
+      "topic": "theory",
+      "claim": "Anti-Pfaffian edge",
+      "claim_id": 3,
+      "headline": "Anti-Pfaffian edge statement is unclear",
+      "issue": "The statement that the edge theory with ν = 0 is described by the anti-Pfaffian does not say which interface is meant or why it matters for the antidot boundary.",
+      "evidence": {
+        "quote": "Its edge theory with ν = 0 is described by the anti-Pfaffian.",
+        "page": 8,
+        "location": "Page 8"
+      },
+      "effort": "text",
+      "fix": "Explain which interface is meant (-1/2 to vacuum versus the hole-conjugate description) and why it matters for the antidot boundary.",
+      "fix_scoped": null,
+      "edit_scoped": null,
+      "runs": ["r3"]
+    },
+    {
+      "tier": "C",
+      "rank": 22,
+      "topic": "other",
+      "claim": "Notation and wording",
+      "claim_id": 0,
+      "headline": "Notation, grammar and sweep timing inconsistencies",
+      "issue": "The Conclusions use ν_ADG instead of ν_AD; 'these sweeps leads' should read 'lead'; page 8 describes 80 s sweeps with a 10 s return while captions and axes say 90 s each.",
+      "evidence": {
+        "quote": "Together, these sweeps leads to the histogram in Fig. 1f, from which we extracted",
+        "page": 8,
+        "location": "Page 8; Conclusions; Figs. 3, 4"
+      },
+      "effort": "text",
+      "fix": "Fix the notation and grammar and state the sweep timing once and consistently.",
+      "fix_scoped": null,
+      "edit_scoped": null,
+      "runs": ["r1", "r2", "r3"]
+    },
+    {
+      "tier": "C",
+      "rank": 23,
+      "topic": "consistency",
+      "claim": "Gate configuration",
+      "claim_id": 0,
+      "headline": "Back-gate in SI2 contradicts single graphite gate in main text",
+      "issue": "SI2 refers to a back-gate voltage V_BG = -0.3 V while the main text says a single continuous graphite gate controls the filling; Fig. S2c also has a fourth point near 1/ν = -1 not discussed.",
+      "evidence": {
+        "quote": "A single continuous graphite gate controls the filling factors in the reservoirs and the bulk of the FPI.",
+        "page": 4,
+        "location": "SI2; Fig. S2c"
+      },
+      "effort": "text",
+      "fix": "Clarify the gate configuration and discuss the fourth point in Fig. S2c.",
+      "fix_scoped": null,
+      "edit_scoped": null,
+      "runs": ["r1"]
+    },
+    {
+      "tier": "C",
+      "rank": 24,
+      "topic": "other",
+      "claim": "Stability of P_ex trends",
+      "claim_id": 0,
+      "headline": "Acquisition time and order of V_ADG series not stated",
+      "issue": "SI5 states the measurements are stable for more than 2 hours, but the total acquisition time and order of each V_ADG series are not given, so drift or V_ADG history cannot be excluded as a source of the P_ex trends.",
+      "evidence": {
+        "quote": "Straight lines of constant phase indicate that our measurement conditions remain stable for more than 2 hours.",
+        "page": 24,
+        "location": "SI5"
+      },
+      "effort": "text",
+      "fix": "State the total acquisition time and order for each V_ADG series.",
+      "fix_scoped": null,
+      "edit_scoped": null,
+      "runs": ["r1"]
+    },
+    {
+      "tier": "C",
+      "rank": 25,
+      "topic": "other",
+      "claim": "Data availability",
+      "claim_id": 0,
+      "headline": "Data available only upon request",
+      "issue": "Given the weight of the claim and the event-level analysis requested, data available only on request is insufficient.",
+      "evidence": {
+        "quote": "The data supporting the plots in this paper and other findings of this study are available from the corresponding author upon request.",
+        "page": 16,
+        "location": "Data and materials availability"
+      },
+      "effort": "existing_data",
+      "fix": "Deposit the raw time-resolved repeated-sweep data and the analysis code.",
+      "fix_scoped": null,
+      "edit_scoped": null,
+      "runs": ["r1", "r2", "r3"]
+    }
+  ]
+}

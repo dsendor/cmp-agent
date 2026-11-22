@@ -1,0 +1,572 @@
+{
+  "title": "Three-Dimensional Non-Foliated Fractional Quantum Hall Phases with Irrational Anyons in Twisted van der Waals Multilayers",
+  "claims": [
+    "Large-angle twisting strongly suppresses coherent interlayer tunneling while the interlayer Coulomb interaction stays strong.",
+    "Untwisted, Bernal-graphite-like multilayers are dominated by metallic spontaneous interlayer-coherent (SILC) phases at experimentally accessible fields.",
+    "In twisted multilayers, generalized Halperin states coherent across several consecutive layers replace the SILC phases at accessible fields, notably at per-layer fillings 1/7 and 1/9 and at 1/2 down to a few tesla.",
+    "These generalized Halperin states have rational quasiparticle charges, irrational braiding statistics and non-foliated, fracton-related topological order with a large ground-state degeneracy.",
+    "Qualitatively the same picture holds for twisted transition metal dichalcogenide multilayers.",
+    "Twisted van der Waals multilayers are a realistic materials platform for three-dimensional fractional quantum Hall matter."
+  ],
+  "summary": "Using Monte Carlo energies of 862 trial wavefunctions in a zeroth-Landau-level model of infinite layer stacks, the paper finds that reducing interlayer tunneling from about 10 meV (Bernal graphite) to about 1-2 meV (large-angle alternating or helical twisted graphene) replaces metallic SILC phases by generalized Halperin liquids at fields below about 20 T. K-matrix analysis of these liquids gives rational quasiparticle charges with irrational braiding statistics that converge within about 20 layers, and similar phase diagrams are reported for twisted TMD multilayers.",
+  "strengths": [
+    "The question is timely: it links the recent growth of helical and alternating twisted graphite to the long-standing theory of infinite-layer quantum Hall systems.",
+    "The variational space is large and systematically generated, covering generalized Halperin liquids, composite-fermion crystals with Thomson-problem geometries, staged states, SILC metals, and their products and particle-hole conjugates.",
+    "Quasiparticle charges and braiding phases of (3100), (3110) and (3111) are given in explicit closed form, and their convergence with the number of layers is shown.",
+    "Untwisted Bernal graphite is computed as a reference within the same framework, and generality is probed with other phenomenological parameters and five TMDs."
+  ],
+  "issues": [
+    {
+      "tier": "A",
+      "rank": 1,
+      "topic": "theory",
+      "claim": "Twist moves SILC out of the accessible field range",
+      "claim_id": 3,
+      "headline": "Dimensionless tunneling in Supp. Tables 5, 7, 8 seems 4π too small",
+      "issue": "The tabulated dimensionless tunneling t⊥ × l_B/d equals t⊥ divided by e²/(4πε₀d) with no dielectric constant, so it is about 12.5-12.6 times smaller than the physical ratio t⊥ε_r d/e² for every graphene and TMD entry. If the code used these numbers, the modeled tunneling is about 0.8 meV for 'Bernal' and 0.14 meV for ATG, which would overturn the twisted-versus-untwisted contrast and make the B axes and quoted field windows not correspond to the stated materials.",
+      "evidence": {
+        "quote": "Supplementary Table 5 provides the model parameters for the phase diagram in the main text (Fig. 3).",
+        "page": 18,
+        "location": "Supp. Table 5; Supp. Tables 7-8; Fig. 3a,e"
+      },
+      "effort": "new_work",
+      "fix": "State exactly how t⊥ enters the energy in units of e²/εl_B, including the meaning of the '× l_B/d' label and the Coulomb unit used in the code, and give the dimensionless value used at each d/l_B. If the factor is an error, recompute Fig. 3, Supp. Figs. 1 and 4 and every quoted field window, and check the V₁-V₃ entries the same way; if not, show how the tabulated numbers follow from the meV values.",
+      "fix_scoped": "The impact of the twist on the phase diagram becomes most pronounced at small d/l_B, where the corresponding field range depends on how the interlayer tunneling is normalized to the Coulomb energy (Supplementary Table 5).",
+      "edit_scoped": {
+        "before": "The impact of the twist on the phase diagram becomes most pronounced in the experimentally accessible regime of magnetic fields, i.e., B ≲ 20 T.",
+        "after": "The impact of the twist on the phase diagram becomes most pronounced at small d/lB, where the corresponding field range depends on how the interlayer tunneling is normalized to the Coulomb energy (Supplementary Table 5)."
+      },
+      "runs": ["r1", "r2", "r3"]
+    },
+    {
+      "tier": "A",
+      "rank": 2,
+      "topic": "theory",
+      "claim": "Twist acts as a reduced constant t⊥",
+      "claim_id": 1,
+      "headline": "Twist modeled as a smaller local t⊥, never derived for twisted stacks",
+      "issue": "The twist enters only as a smaller, momentum-local, field-independent, nearest-neighbour intravalley t⊥, although momentum mismatch projected onto the zeroth Landau level gives a vanishing direct matrix element, leaving umklapp processes with their own B and θ dependence. The t⊥ values equal W/4 with an unsourced HTG bandwidth, next-nearest-layer tunneling in ATG and intervalley tunneling near 30° in HTG are dropped, and ε_r is fixed at 12.5 without discussion of screening.",
+      "evidence": {
+        "quote": "as a strong suppression of the interlayer tunneling, e.g., t⊥ ≈ 1.78 meV in alternating twisted multilayer graphene",
+        "page": 3,
+        "location": "Eq. (1); Supp. Table 5; Supp. Note 3"
+      },
+      "effort": "new_work",
+      "fix": "Derive the effective n = 0 interlayer coupling for each stacking, including its B dependence and the l, l+2 terms for ATG, or at least justify the W/4 identification and source the HTG value. Present the phase boundary at each ν_L as a continuous function of t⊥/(e²/εd) (normalized by ε_r) and d/l_B with Bernal, ATG, HTG and the TMDs marked, give the t⊥ range over which the Halperin windows survive below 20 T, and show the sensitivity to ε_r and d.",
+      "fix_scoped": "Within a model in which twisting only reduces a uniform nearest-neighbour intravalley tunneling, large-angle twisting suppresses these metallic states and instead stabilizes generalized Halperin liquids.",
+      "edit_scoped": {
+        "before": "Large-angle twisting suppresses these metallic states and instead stabilizes generalized Halperin liquids.",
+        "after": "Within a model in which twisting only reduces a uniform nearest-neighbour intravalley tunneling, large-angle twisting suppresses these metallic states and instead stabilizes generalized Halperin liquids."
+      },
+      "runs": ["r1", "r2", "r3"]
+    },
+    {
+      "tier": "A",
+      "rank": 3,
+      "topic": "theory",
+      "claim": "Twist suppresses metallic SILC states",
+      "claim_id": 3,
+      "headline": "Uncorrelated SILC metal compared against Jastrow-correlated liquids biases the boundary",
+      "issue": "The SILC energy is that of an uncorrelated Slater determinant with exchange but no correlation energy, while the liquids and crystals carry Jastrow correlations, which biases every SILC-liquid boundary toward the liquids exactly where the twist acts. No correlated metallic or k_z density-wave competitor is included, gapped liquids get no second-order tunneling energy, and SILC and liquid energies carry different finite-size treatments.",
+      "evidence": {
+        "quote": "A primary competing phase against the generalized Halperin states is the metallic SILC states favored by",
+        "page": 4,
+        "location": "Supp. Note 2.3, Eqs. S14-S32; Fig. 3"
+      },
+      "effort": "new_work",
+      "fix": "Include at least one correlated metallic or density-wave competitor (a Jastrow-correlated SILC, a Hartree-Fock k_z density wave, or an RPA-level estimate of the SILC correlation energy), or argue quantitatively why its correlation gain cannot close the gap. Treat the SILC energy at finite N_L in the same way as the liquids to check consistent extrapolation.",
+      "fix_scoped": "Compared with an uncorrelated SILC Slater determinant, large-angle twisting favours generalized Halperin liquids over these metallic states.",
+      "edit_scoped": {
+        "before": "Large-angle twisting suppresses these metallic states and instead stabilizes generalized Halperin liquids.",
+        "after": "Compared with an uncorrelated SILC Slater determinant, large-angle twisting favours generalized Halperin liquids over these metallic states."
+      },
+      "runs": ["r1", "r2", "r3"]
+    },
+    {
+      "tier": "A",
+      "rank": 4,
+      "topic": "fits",
+      "claim": "Phase boundaries in Fig. 3",
+      "claim_id": 3,
+      "headline": "No energies, margins, Monte Carlo errors or extrapolation uncertainties reported",
+      "issue": "The phase diagrams show only the winning state, with no energies, energy differences, statistical errors or extrapolation uncertainties, and the N_L values, fit quality and any extrapolation in particles per layer are missing. The crystal flux convention, a cutoff calibrated only on decoupled Laughlin stacks, and cutoff parameters given only for d/l_B ≥ 0.05 (about 15 T) leave the low-field windows, where candidates are nearly degenerate, unassessable.",
+      "evidence": {
+        "quote": "Monte Carlo calculations are performed to evaluate the Coulomb energies of the candidate liquid and crystalline Ansatz wavefunctions",
+        "page": 6,
+        "location": "Fig. 3e-g; Methods; Supp. Note 6; Supp. Table 9"
+      },
+      "effort": "existing_data",
+      "fix": "Plot E/N against d/l_B with error bars including extrapolation for the top three to five candidates at ν_L = 1/2, 1/7 and 1/9 for each stacking, give winning margins at e.g. 5, 10 and 20 T, and tabulate energies with uncertainties along the boundaries in Fig. 3e-g. Show the 1/N_L extrapolations, repeat key comparisons at other N̄ or extrapolate in 1/N̄, and list the d/l_B grid computed, the lowest field computed and where boundaries are interpolated.",
+      "fix_scoped": "In our variational comparison, the generalized Halperin states are lowest in energy at νL = 1/7 and νL = 1/9, although the energy margins and their uncertainties remain to be quantified.",
+      "edit_scoped": {
+        "before": "The generalized Halperin states are particularly robust at νL = 1/7 and νL = 1/9.",
+        "after": "In our variational comparison, the generalized Halperin states are lowest in energy at νL = 1/7 and νL = 1/9, although the energy margins and their uncertainties remain to be quantified."
+      },
+      "runs": ["r1", "r2", "r3"]
+    },
+    {
+      "tier": "A",
+      "rank": 5,
+      "topic": "theory",
+      "claim": "Winning product and PH states",
+      "claim_id": 3,
+      "headline": "Winning states' energies come from unvalidated approximate product and PH formulas",
+      "issue": "Every interlayer-coherent winner in Fig. 3 is a product and/or particle-hole conjugate whose energy is assembled from seed energies through approximate relations (Eqs. S36, S39) with no error estimate, and staged-state energies use capacitor-like formulas assuming d ≪ R. The decisive energies therefore rest on stacked approximations of unknown accuracy where the competition is tight.",
+      "evidence": {
+        "quote": "particle-hole-conjugate states can be obtained directly from those of the corresponding seed states",
+        "page": 7,
+        "location": "Methods; Supp. Notes 2.4-2.6, Eqs. S36, S39, S41-S47"
+      },
+      "effort": "new_work",
+      "fix": "Evaluate at least the winning product and PH states and their closest competitors by direct Monte Carlo on the full wavefunction, compare with Eqs. (S36), (S39) and the staging formulas, and report the discrepancy against the energy margins of concern 4.",
+      "fix_scoped": "The generalized Halperin states, whose energies are estimated from approximate product and particle-hole relations, appear particularly robust at νL = 1/7 and νL = 1/9.",
+      "edit_scoped": {
+        "before": "The generalized Halperin states are particularly robust at νL = 1/7 and νL = 1/9.",
+        "after": "The generalized Halperin states, whose energies are estimated from approximate product and particle-hole relations, appear particularly robust at νL = 1/7 and νL = 1/9."
+      },
+      "runs": ["r1", "r2", "r3"]
+    },
+    {
+      "tier": "A",
+      "rank": 6,
+      "topic": "theory",
+      "claim": "Variational ranking of phases",
+      "claim_id": 3,
+      "headline": "Variational ranking never benchmarked against exact numerics or known results",
+      "issue": "Every comparison is variational in a restricted candidate space, and the method is never shown to reproduce a limit where exact numerics or experiment exist. The V₁-V₃ parameters are said to reproduce observed bilayer and trilayer phase diagrams, but that reproduction is never displayed.",
+      "evidence": {
+        "quote": "The parameters Eq. (1) are adopted from models known to reproduce the experimentally",
+        "page": 5,
+        "location": "Results, Phase Diagrams; Methods"
+      },
+      "effort": "new_work",
+      "fix": "Benchmark the variational energies against exact diagonalization or DMRG on small systems (bilayers, trilayers and periodic stacks of N_L = 3-4 with a few particles per layer) at representative d/l_B and t⊥, report overlaps or energy differences, and show that the ranking of SILC, staged and (3110)/(3111) states survives and that the chosen V_i recover the observed bilayer and trilayer phases.",
+      "fix_scoped": "Within a variational comparison not yet benchmarked against unbiased numerics, large-angle twisting suppresses these metallic states and instead favours generalized Halperin liquids.",
+      "edit_scoped": {
+        "before": "Large-angle twisting suppresses these metallic states and instead stabilizes generalized Halperin liquids.",
+        "after": "Within a variational comparison not yet benchmarked against unbiased numerics, large-angle twisting suppresses these metallic states and instead favours generalized Halperin liquids."
+      },
+      "runs": ["r1", "r2", "r3"]
+    },
+    {
+      "tier": "B",
+      "rank": 7,
+      "topic": "theory",
+      "claim": "Halperin state stable at ν_L = 1/2",
+      "claim_id": 3,
+      "headline": "ν_L = 1/2 winner conflicts with expected SU(2N_L) ferromagnet ground state",
+      "issue": "ν_L = 1/2 is integer total filling per layer, so as d/l_B and t⊥ go to zero fully polarized Slater determinants such as (1000) and the SILC state are expected to be exact Coulomb ground states. Yet Fig. 3b,c place (3111)⊕PH(3111) below both at the lowest d/l_B, and the text cites this as a highlight.",
+      "evidence": {
+        "quote": "requiring magnetic fields of only B ≈ 3 T for alternating twisted multilayers",
+        "page": 5,
+        "location": "Fig. 3b,c"
+      },
+      "effort": "existing_data",
+      "fix": "Break the energy of this state and its competitors into Coulomb, tunneling, mean-field V_i and staging contributions, show which term stabilizes it, and reconcile the result with the ferromagnet expectation. If the margin comes from the approximate product and PH formulas, the density correction or the Supp. Note 6c heuristic, the result is likely an artifact.",
+      "fix_scoped": "Within our variational comparison they also appear at the comparatively large filling fraction νL = 1/2, at B ≈ 3 T for alternating twisted multilayers and B ≈ 1 T for the helical twisted case, a result that remains to be checked against the SU(2NL) ferromagnet limit.",
+      "edit_scoped": {
+        "before": "Remarkably, they remain stable even at the comparatively large filling fraction νL = 1/2, requiring magnetic fields of only B ≈ 3 T for alternating twisted multilayers (t⊥ ≈ 1.78 meV) and as low as B ≈ 1 T for the helical twisted case (t⊥ ≈ 1.09 meV), consistent with our physical intuition.",
+        "after": "Within our variational comparison, they also appear at the comparatively large filling fraction νL = 1/2, at fields of about B ≈ 3 T for alternating twisted multilayers (t⊥ ≈ 1.78 meV) and B ≈ 1 T for the helical twisted case (t⊥ ≈ 1.09 meV), a result that remains to be checked against the SU(2NL) ferromagnet limit."
+      },
+      "runs": ["r3"]
+    },
+    {
+      "tier": "B",
+      "rank": 8,
+      "topic": "theory",
+      "claim": "Twisted versus untwisted comparison",
+      "claim_id": 3,
+      "headline": "Short-range V terms differ between systems, mean-field, sometimes overridden by hand",
+      "issue": "V₂ and V₃ differ between Bernal, ATG and HTG and are comparable to the liquid-liquid energy differences, so the twisted-versus-untwisted comparison changes several parameters, not only t⊥; the Bernal and HTG values are unsourced. The V terms enter through a Hartree mean field that cannot distinguish interlayer-correlated liquids, an ad hoc rule picks the valley texture when the ground state is 'unphysical', and the robustness test only scales all V's down.",
+      "evidence": {
+        "quote": "However, there are some exceptions where the liquid ground state turns out to be unphysical due to its infinite degeneracy.",
+        "page": 30,
+        "location": "Supp. Note 6c; Supp. Tables 5-6; Supp. Fig. 1"
+      },
+      "effort": "new_work",
+      "fix": "Present the three phase diagrams with identical V₁-V₃ so only t⊥ differs, show diagrams with V's set to zero and scaled up as well as down, mark which points were settled by the Note 6c rule, give the V_i mean-field energies of winners and runners-up, and source the Bernal and HTG parameters.",
+      "fix_scoped": "First, the overall topology and phase structure of the phase diagrams persist when the phenomenological parameters are reduced (Supplementary Note 3); note that the three systems differ in V1-V3 as well as in t⊥.",
+      "edit_scoped": {
+        "before": "First, the overall topology, phase structure, and qualitative shape of the phase diagrams remain robust against modest variations of the model parameters (Supplementary Note 3).",
+        "after": "First, the overall topology and phase structure of the phase diagrams persist when the phenomenological parameters are reduced (Supplementary Note 3); note that the three systems differ in V1–V3 as well as in t⊥."
+      },
+      "runs": ["r1", "r2", "r3"]
+    },
+    {
+      "tier": "B",
+      "rank": 9,
+      "topic": "theory",
+      "claim": "Generalized Halperin states win",
+      "claim_id": 3,
+      "headline": "Candidate space stops at third-neighbour correlations and lacks CFL states",
+      "issue": "Interlayer correlations stop at third neighbours with a monotonic hierarchy, although at d/l_B ≈ 0.013-0.06 the interlayer Coulomb interaction is nearly as strong as the intralayer one over 20-75 layers. Longer-range or non-monotonic Halperin states, genuinely 3D liquids or crystals, CFL-type states at even denominators and further staging patterns are absent.",
+      "evidence": {
+        "quote": "We restrict m ≥ n ≥ o ≥ p, since interlayer coherence are expected to decrease with increasing layer separation.",
+        "page": 10,
+        "location": "Eq. (2); Supp. Note 2.1"
+      },
+      "effort": "new_work",
+      "fix": "Include longer-range seeds, at least (mnopq), or argue why they must lose; add CFL-type candidates at even denominators and discuss how the other omissions could affect the phase diagram.",
+      "fix_scoped": "Among candidate states with interlayer correlations up to third neighbours, these phases emerge prominently at fractional fillings such as νL = 1/7 and 1/9, and can remain stable at comparatively large filling fractions under magnetic fields as low as a few tesla.",
+      "edit_scoped": {
+        "before": "These phases emerge prominently at fractional fillings such as νL = 1/7 and 1/9, and can remain stable at comparatively large filling fractions under magnetic fields as low as a few tesla.",
+        "after": "Among candidate states with interlayer correlations up to third neighbours, these phases emerge prominently at fractional fillings such as νL = 1/7 and 1/9, and can remain stable at comparatively large filling fractions under magnetic fields as low as a few tesla."
+      },
+      "runs": ["r1", "r2", "r3"]
+    },
+    {
+      "tier": "B",
+      "rank": 10,
+      "topic": "theory",
+      "claim": "Stability at fields of 1-3 T",
+      "claim_id": 3,
+      "headline": "Spin polarization and no Landau-level mixing assumed at 1-3 T",
+      "issue": "The model assumes spin is fully polarized, yet stability is quoted at 1-3 T and windows reach toward B = 0, where the Zeeman energy (0.1-0.35 meV) is far below e²/εl_B and t⊥ and comparable to competing energy differences. Spin-unpolarized, spin-valley-entangled and canted competitors are absent, and Landau-level mixing and disorder broadening grow relative to the gaps.",
+      "evidence": {
+        "quote": "We assume a sufficiently strong magnetic field such that the spin degeneracy is",
+        "page": 3,
+        "location": "Results, The Model; Fig. 3f,g"
+      },
+      "effort": "new_work",
+      "fix": "Include spin in the candidate set at least for ν_L = 1/7 and 1/9 at the lowest fields, or bound its effect; estimate the Landau-level-mixing parameter and explain why the phases persist as B → 0 at fixed ν_L; qualify or restrict the 'as low as 1 T' statements to fields where spin polarization is established.",
+      "fix_scoped": "In a spin-polarized model, these phases emerge prominently at fractional fillings such as νL = 1/7 and 1/9, and can remain stable at comparatively large filling fractions at fields of a few tesla if spin polarization holds there.",
+      "edit_scoped": {
+        "before": "These phases emerge prominently at fractional fillings such as νL = 1/7 and 1/9, and can remain stable at comparatively large filling fractions under magnetic fields as low as a few tesla.",
+        "after": "In a spin-polarized model, these phases emerge prominently at fractional fillings such as νL = 1/7 and 1/9, and can remain stable at comparatively large filling fractions at fields of a few tesla if spin polarization holds there."
+      },
+      "runs": ["r1", "r2", "r3"]
+    },
+    {
+      "tier": "B",
+      "rank": 11,
+      "topic": "direct_evidence",
+      "claim": "Winners are incompressible FQH phases",
+      "claim_id": 3,
+      "headline": "No transport or neutral gap computed for the claimed FQH states",
+      "issue": "The winning states are called fractional quantum Hall phases and proposed for experiment, but no gap is computed; for infinite-layer K matrices the gap can be small, and for (3111) the minimum of K(q) is about 0.37. Experimental relevance depends on the gap exceeding disorder, temperature and twist-angle-variation broadening.",
+      "evidence": {
+        "quote": "Large-angle twisting suppresses these metallic states and instead stabilizes generalized Halperin liquids.",
+        "page": 3,
+        "location": "Introduction; Supp. Note 5"
+      },
+      "effort": "new_work",
+      "fix": "Estimate quasiparticle-quasihole gaps, for example from Monte Carlo energies of quasihole and quasiparticle trial states, and compare them with the disorder and temperature scales typical of graphene multilayers.",
+      "fix_scoped": "Large-angle twisting suppresses these metallic states and instead lowers the energy of generalized Halperin trial states, whose excitation gaps remain to be estimated.",
+      "edit_scoped": {
+        "before": "Large-angle twisting suppresses these metallic states and instead stabilizes generalized Halperin liquids.",
+        "after": "Large-angle twisting suppresses these metallic states and instead lowers the energy of generalized Halperin trial states, whose excitation gaps remain to be estimated."
+      },
+      "runs": ["r1", "r2", "r3"]
+    },
+    {
+      "tier": "B",
+      "rank": 12,
+      "topic": "theory",
+      "claim": "Untwisted graphite is SILC-dominated",
+      "claim_id": 2,
+      "headline": "Bernal graphite control modeled as monolayer-like zLL stack with t⊥ = 10 meV",
+      "issue": "The zero-energy Landau band of Bernal graphite is the bilayer-like n = 0, 1 manifold with orbital and valley degeneracy, γ₂/γ₅-controlled k_z dispersion and layer-sublattice structure, but here it is a stack of monolayer-like two-valley zLLs with t⊥ = W/4 = 10 meV. The abstract's claim that conventional graphite is dominated by metallic SILC phases depends on this baseline.",
+      "evidence": {
+        "quote": "we find that untwisted systems are dominated by metallic interlayer-coherent phases under experimentally",
+        "page": 3,
+        "location": "Fig. 3a; Supp. Table 5"
+      },
+      "effort": "text",
+      "fix": "Justify the reduction and discuss how the orbital degree of freedom would change the SILC energies, or else describe the baseline as a model with stronger coupling rather than as graphite.",
+      "fix_scoped": null,
+      "edit_scoped": null,
+      "runs": ["r1", "r2", "r3"]
+    },
+    {
+      "tier": "B",
+      "rank": 13,
+      "topic": "theory",
+      "claim": "Non-foliated order, irrational statistics, large degeneracy",
+      "claim_id": 4,
+      "headline": "Non-foliation, degeneracy and irrational braiding asserted, not shown for winners",
+      "issue": "With periodic N_L the braiding phases are rational, so irrational statistics is asymptotic, while real samples have open boundaries. Non-foliated fracton-related order, exponentially large degeneracy and the claim that decaying θ_ij ensures non-foliation rest on ref. 7; Supp. Fig. 6c shows a slowly decaying oscillating θ_ij, and the winning product and PH forms are treated only for braiding.",
+      "evidence": {
+        "quote": "The resulting states exhibit quantum coherence across multiple consecutive layers, realize non-foliated three-dimensional topological order",
+        "page": 3,
+        "location": "Supp. Note 5; Supp. Fig. 6c"
+      },
+      "effort": "existing_data",
+      "fix": "State the non-foliation criterion of ref. 7 and show the winners satisfy it, quantify the decay length of θ_ij, give |det K| as a function of N_L for the winning states, confirm the product and PH forms keep irrational braiding and a gapped infinite-layer limit, and state the behaviour with open boundaries along z.",
+      "fix_scoped": "The resulting states exhibit quantum coherence across multiple consecutive layers and, in the infinite-layer limit of the K-matrix description, host quasiparticles with rational electric charges but irrational braiding statistics [7, 10, 11].",
+      "edit_scoped": {
+        "before": "The resulting states exhibit quantum coherence across multiple consecutive layers, realize non-foliated three-dimensional topological order and host quasiparticles with rational electric charges but irrational braiding statistics [7, 10, 11].",
+        "after": "The resulting states exhibit quantum coherence across multiple consecutive layers and, in the infinite-layer limit of the K-matrix description, host quasiparticles with rational electric charges but irrational braiding statistics [7, 10, 11]."
+      },
+      "runs": ["r1", "r2", "r3"]
+    },
+    {
+      "tier": "B",
+      "rank": 14,
+      "topic": "direct_evidence",
+      "claim": "Experimental observability of the phases",
+      "claim_id": 6,
+      "headline": "No experimental observable distinguishes generalized Halperin from staged or decoupled states",
+      "issue": "The per-layer Hall conductance 2e²/7h of (3110)⊕(3110) equals that of decoupled valley-polarized Laughlin 1/7 layers and of staged states at the same filling, so σ_xy cannot identify the proposed phase. No discriminating observable is given.",
+      "evidence": {
+        "quote": "our results suggest a practical pathway toward observing irrational statistics and non-foliated fracton orders in real materials.",
+        "page": 5,
+        "location": "Results, Anyons with Irrational Statistics"
+      },
+      "effort": "text",
+      "fix": "Name observables that separate generalized Halperin order from staged, foliated or decoupled states (thickness dependence of degeneracy, shift or thermal Hall, c-axis transport, drag or counterflow, surface-sheath transport, layer-resolved capacitance, shot-noise charge e/7 or e/9) and discuss how open boundaries in finite stacks affect them.",
+      "fix_scoped": null,
+      "edit_scoped": null,
+      "runs": ["r1", "r2", "r3"]
+    },
+    {
+      "tier": "B",
+      "rank": 15,
+      "topic": "calibration",
+      "claim": "Realistic experimental platform",
+      "claim_id": 6,
+      "headline": "Uniform fractional filling across many layers not shown to be achievable",
+      "issue": "The proposal needs every layer of a stack of 20 or more layers held at the same ν_L ≈ 1/7-1/9, but external gates are screened within a few layers and gate-induced gradients act like a staging field favouring the competing staged phases. Twist-angle variation and dislocations in grown spirals give inhomogeneous t⊥.",
+      "evidence": {
+        "quote": "since experimentally realized twisted vdW multilayers necessarily contain a finite number of layers, albeit",
+        "page": 5,
+        "location": "Results; Supp. Note 2.6"
+      },
+      "effort": "existing_data",
+      "fix": "Map ν_L to carrier density relative to charge neutrality, discuss how density could be set in interior layers (intrinsic doping, intercalation), and estimate the tolerance of the Halperin windows to a layer-dependent potential using the staging energies of Supp. Note 2.6, and to t⊥ disorder.",
+      "fix_scoped": "Since such layer numbers are already experimentally accessible [27, 28, 30], our results suggest a possible pathway toward irrational statistics and non-foliated fracton orders, provided a uniform fractional filling can be set in every layer of the stack.",
+      "edit_scoped": {
+        "before": "Since such layer numbers are already experimentally accessible [27, 28, 30], our results suggest a practical pathway toward observing irrational statistics and non-foliated fracton orders in real materials.",
+        "after": "Since such layer numbers are already experimentally accessible [27, 28, 30], our results suggest a possible pathway toward irrational statistics and non-foliated fracton orders, provided a uniform fractional filling can be set in every layer of the stack."
+      },
+      "runs": ["r1", "r2", "r3"]
+    },
+    {
+      "tier": "B",
+      "rank": 16,
+      "topic": "theory",
+      "claim": "Extension to TMDs",
+      "claim_id": 5,
+      "headline": "TMD model uses K-point hopping, ignoring Γ and Q valley band edges",
+      "issue": "The TMD model drops the valley index and uses K-point interlayer hoppings, but in multilayer and bulk 2H TMDs the band edges are usually at Γ or Q/Λ, where interlayer hopping is hundreds of meV and is not suppressed by twisting. The 180° layer alternation of 2H stacking also couples spin and valley between layers.",
+      "evidence": {
+        "quote": "multilayer graphene, although the main results extend straightforwardly to twisted transition metal",
+        "page": 3,
+        "location": "Supp. Note 4; Supp. Tables 7-8"
+      },
+      "effort": "text",
+      "fix": "Justify which valley is active for the proposed carrier type and stack, or soften the statement that the main results extend straightforwardly to TMDs.",
+      "fix_scoped": null,
+      "edit_scoped": null,
+      "runs": ["r2"]
+    },
+    {
+      "tier": "B",
+      "rank": 17,
+      "topic": "theory",
+      "claim": "Candidate set",
+      "claim_id": 0,
+      "headline": "Several candidate seeds have gapless or ill-defined infinite-layer limits",
+      "issue": "Several seeds in Supp. Table 1, such as (1100), (1110), (3200), (3210) and (3300), have a K-matrix symbol that vanishes for some q, so by the criterion of ref. 7 their infinite-layer limits are gapless or ill-defined and their energies and filling assignments are questionable. The winners (3100), (3110) and (3111) do have K(q) > 0.",
+      "evidence": {
+        "quote": "List of locally valley-polarized generalized Halperin liquids (mnop), with filling fraction per layer",
+        "page": 10,
+        "location": "Supp. Table 1"
+      },
+      "effort": "text",
+      "fix": "State the gap criterion and apply it to the candidate list.",
+      "fix_scoped": null,
+      "edit_scoped": null,
+      "runs": ["r3"]
+    },
+    {
+      "tier": "C",
+      "rank": 18,
+      "topic": "consistency",
+      "claim": "Field-to-d/l_B conversion",
+      "claim_id": 0,
+      "headline": "B ≳ 100 T does not correspond to d/l_B ≳ 0.2",
+      "issue": "With d = 3.35 Å, d/l_B = 0.2 corresponds to about 230-235 T, and 100 T to about 0.13, so the stated correspondence is wrong. The right-hand B-axis ticks at 10 T and 100 T in Fig. 3a-c and Supp. Figs. 1 and 4 look low.",
+      "evidence": {
+        "quote": "First, the large magnetic-field regime B ≳ 100 T",
+        "page": 5,
+        "location": "Results, Phase Diagrams; Fig. 3a-c"
+      },
+      "effort": "text",
+      "fix": "Correct the sentence and check the right-hand B-axis ticks in Fig. 3a-c and Supp. Figs. 1 and 4.",
+      "fix_scoped": null,
+      "edit_scoped": null,
+      "runs": ["r1", "r3"]
+    },
+    {
+      "tier": "C",
+      "rank": 19,
+      "topic": "consistency",
+      "claim": "Quoted field windows",
+      "claim_id": 3,
+      "headline": "Field windows given with only one bound",
+      "issue": "The text says ATG at ν_L = 1/2 requires B ≈ 3 T, but Fig. 3f shows a bounded window of roughly 3-14 T, and several bars in Fig. 3e-g and Supp. Fig. 1e-g run to the top of the 50 T axis.",
+      "evidence": {
+        "quote": "requiring magnetic fields of only B ≈ 3 T for alternating twisted multilayers",
+        "page": 5,
+        "location": "Fig. 3e-g; Supp. Fig. 1e-g"
+      },
+      "effort": "existing_data",
+      "fix": "State both bounds of each window and give the energy margin at the edge of each shaded region.",
+      "fix_scoped": null,
+      "edit_scoped": null,
+      "runs": ["r1", "r3"]
+    },
+    {
+      "tier": "C",
+      "rank": 20,
+      "topic": "consistency",
+      "claim": "Seed counts",
+      "claim_id": 0,
+      "headline": "43 liquid seeds stated, but supplementary tables list 52",
+      "issue": "Methods reports 43 liquid seeds, but Supp. Tables 1 and 2 list 18 + 34 = 52; the 123 crystal seeds do match Supp. Tables 3-4.",
+      "evidence": {
+        "quote": "The Ansatz wavefunctions is built from the 43 liquid and 123 crystalline seed wavefunctions of distinct flux-attachment patterns and filling fractions.",
+        "page": 6,
+        "location": "Methods; Supp. Tables 1-2"
+      },
+      "effort": "text",
+      "fix": "Reconcile the counts or say which listed states were excluded.",
+      "fix_scoped": null,
+      "edit_scoped": null,
+      "runs": ["r1", "r3"]
+    },
+    {
+      "tier": "C",
+      "rank": 21,
+      "topic": "consistency",
+      "claim": "Supplementary labels",
+      "claim_id": 0,
+      "headline": "Duplicate V₁ row, duplicate panel f, MoSe₂ t⊥ mismatch, legend error",
+      "issue": "Supp. Table 6 lists V₁ twice (the second row should presumably be V₂). The Supp. Fig. 4 caption uses 'f' for two panels and gives MoSe₂ t⊥ ≈ 17.75 meV versus 17.15 meV in Supp. Table 7, and the Supp. Fig. 4i legend places (3111)⊕PH(3111) under 'Staged' although it appears as unstaged elsewhere.",
+      "evidence": {
+        "quote": "Comparison of phase transitions from metallic state to generalized Halperin state",
+        "page": 23,
+        "location": "Supp. Table 6; Supp. Fig. 4 caption and panel i"
+      },
+      "effort": "text",
+      "fix": "Correct the row label, panel labels, MoSe₂ value and legend.",
+      "fix_scoped": null,
+      "edit_scoped": null,
+      "runs": ["r1", "r2", "r3"]
+    },
+    {
+      "tier": "C",
+      "rank": 22,
+      "topic": "consistency",
+      "claim": "Twist-angle assumptions",
+      "claim_id": 1,
+      "headline": "Twist-angle range stated inconsistently across main text, Methods and supplement",
+      "issue": "The twist angle is given as θ ≳ 10°, 0 ≤ θ < 30°, 'slightly less than 30°' and 10° ≪ θ < 30° in different places. In the helical stack, layer l+2 is rotated by 2θ, which approaches 60° near θ = 30°, where K and K′ interchange.",
+      "evidence": {
+        "quote": "the valley textures of helical twisted multilayer are dependent on the twist angle",
+        "page": 18,
+        "location": "Supp. Note 3c; Supp. Fig. 3; Methods"
+      },
+      "effort": "text",
+      "fix": "State which θ the HTG results assume and how valley labels are assigned between non-adjacent layers.",
+      "fix_scoped": null,
+      "edit_scoped": null,
+      "runs": ["r1", "r2", "r3"]
+    },
+    {
+      "tier": "C",
+      "rank": 23,
+      "topic": "other",
+      "claim": "Filling notation",
+      "claim_id": 0,
+      "headline": "Filling notation ν̄ and ν_L mixed, integer filling at 1/2 unstated",
+      "issue": "ν̄ (per layer) and ν_L (per layer per valley) are used side by side, the definition makes ν_L = 1/2 an integer total filling per layer without saying so, and σ_xy = 2e²/7h is not stated as per layer. ν_L is not related to the experimentally used zLL filling measured from charge neutrality.",
+      "evidence": {
+        "quote": "Moreover, from the above characterization, we obtain the average filling fraction per layer per valley",
+        "page": 11,
+        "location": "Supp. Note 2.1b; Supp. Table 1"
+      },
+      "effort": "text",
+      "fix": "State that ν_L = 1/2 is integer total filling per layer, state σ_xy as per layer, and relate ν_L to the filling measured from charge neutrality.",
+      "fix_scoped": null,
+      "edit_scoped": null,
+      "runs": ["r2", "r3"]
+    },
+    {
+      "tier": "C",
+      "rank": 24,
+      "topic": "other",
+      "claim": "Eq. (S22)",
+      "claim_id": 0,
+      "headline": "Symbol t̃⊥ in Eq. (S22) is never defined",
+      "issue": "Eq. (S22) uses t̃⊥, which is never defined.",
+      "evidence": {
+        "quote": "That is, if the same valley is occupied for each layer, the tunneling energy per particle is",
+        "page": 14,
+        "location": "Eq. (S22)"
+      },
+      "effort": "text",
+      "fix": "Define t̃⊥ or replace it with t⊥.",
+      "fix_scoped": null,
+      "edit_scoped": null,
+      "runs": ["r2"]
+    },
+    {
+      "tier": "C",
+      "rank": 25,
+      "topic": "other",
+      "claim": "Terminology",
+      "claim_id": 0,
+      "headline": "Inconsistent legend terms, material names and garbled supplementary sentences",
+      "issue": "The Fig. 3 legend reads 'Not staged' while Supp. Figs. 1-3 use 'Unstaged', the Supp. Fig. 1 caption says 'twisted graphite' while the main text says 'graphene multilayer', and several Supp. Note 4 sentences are garbled. The Methods sentence that each generalized Halperin state exhibits a valley polarization needs clarifying.",
+      "evidence": {
+        "quote": "generalized Halperin state exhibits a valley polarization, which means that one liquid occupies valley K",
+        "page": 7,
+        "location": "Methods; Fig. 3d legend; Supp. Fig. 1 caption; Supp. Note 4"
+      },
+      "effort": "text",
+      "fix": "Unify terminology, fix the garbled Supp. Note 4 sentences and typos, and clarify the Methods sentence on valley polarization.",
+      "fix_scoped": null,
+      "edit_scoped": null,
+      "runs": ["r1", "r2", "r3"]
+    },
+    {
+      "tier": "C",
+      "rank": 26,
+      "topic": "other",
+      "claim": "Readability of Fig. 3",
+      "claim_id": 3,
+      "headline": "Relevant low-field region is a thin strip in Fig. 3a-c",
+      "issue": "In Fig. 3a-c the experimentally relevant region (d/l_B ≲ 0.06) is a thin strip at the bottom of each panel.",
+      "evidence": {
+        "quote": "Experimentally accessible range of magnetic fields is highlighted in gray.",
+        "page": 4,
+        "location": "Fig. 3a-c"
+      },
+      "effort": "existing_data",
+      "fix": "Use a logarithmic d/l_B axis or an inset so the twist-induced changes are readable without relying on panels e-g.",
+      "fix_scoped": null,
+      "edit_scoped": null,
+      "runs": ["r1"]
+    },
+    {
+      "tier": "C",
+      "rank": 27,
+      "topic": "other",
+      "claim": "Realistic platform, first of its kind",
+      "claim_id": 6,
+      "headline": "'Establish' and 'first realistic platform' overstate a variational phase diagram",
+      "issue": "'Establish' and 'the first realistic condensed-matter platform' go beyond what a variational phase diagram supports. Multilayer quantum wells and superlattices were proposed earlier for similar infinite-layer states, including irrational charge or statistics.",
+      "evidence": {
+        "quote": "Our results establish twisted van der Waals multilayers as a realistic materials platform for three-dimensional fractional Hall matter",
+        "page": 1,
+        "location": "Abstract; Discussion"
+      },
+      "effort": "text",
+      "fix": "Temper the claim and acknowledge earlier proposals (refs. 10-11, 32, 36; Qiu-Joynt-MacDonald) until concerns 1-6 are resolved.",
+      "fix_scoped": null,
+      "edit_scoped": null,
+      "runs": ["r1", "r2", "r3"]
+    }
+  ]
+}

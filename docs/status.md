@@ -27,6 +27,11 @@ out, add what you learned that the next session needs. History belongs in git, n
   never opted in. The reserve gets no new papers from them; new ones come from new publications. `eval/jclub/selections.json` lists the Journal Club's last 12
   months (links and DOIs only: the commentaries carry no licence); 12 papers are in scope.
   Next: Langfuse in the harness, then the stage 1 baseline on dev2.
+- **Journal Club run** (`research/eval/jclub/results.md`, 2026-11-22): 12 expert-recommended
+  papers each got 3 to 6 *must address* items (4.2 on average), so the tiers are relative, not
+  absolute. The novelty lane's recurring finding: a priority claim contradicted by the paper's own
+  references. Four novelty checks were rate-limited by arXiv (run them in sequence) and the lane
+  treats companion papers inconsistently.
 - **How evals run from now on** (maintainer's decision, 2026-11-22): Claude reviews and Claude
   judging run as Claude Code subagents on the maintainer's plan, not through the API, to save
   money; Gemini (`gemini-4-argon`, through the API) is the second, non-Claude judge. Keys are in

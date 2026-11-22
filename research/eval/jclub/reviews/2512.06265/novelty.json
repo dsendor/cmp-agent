@@ -1,0 +1,103 @@
+{
+  "searched": "2026-11-22",
+  "sources": ["arXiv API", "paper reference list"],
+  "queries": [
+    "(abs:WSe2 OR abs:\"WSe$_2$\") AND abs:twisted AND abs:superconductivity AND (abs:\"twist angle\" OR abs:\"twist angles\" OR abs:\"twist-angle\")",
+    "(abs:WSe2) AND abs:superconductivity AND (abs:Mott OR abs:\"high-temperature\" OR abs:cuprate) AND (abs:moire OR abs:\"moiré\" OR abs:twisted)",
+    "(abs:WSe2) AND (abs:twisted OR abs:moire OR abs:\"moiré\") AND (abs:\"bandwidth-tuned\" OR abs:\"bandwidth tuned\" OR abs:\"twist-angle dependence\" OR abs:\"twist angle dependence\" OR abs:\"evolution with twist\")",
+    "(abs:WSe2) AND (abs:twisted OR abs:\"moiré\") AND abs:superconductivity AND (abs:antiferromagnetic OR abs:\"spin fluctuation\" OR abs:\"spin fluctuations\" OR abs:\"intervalley coherent\")",
+    "(abs:tWSe2 OR abs:\"twisted WSe2\" OR abs:\"twisted bilayer WSe2\" OR abs:\"twisted WSe$_2$\" OR abs:\"twisted bilayer WSe$_2$\") AND (abs:superconductivity OR abs:superconducting OR abs:superconductor)"
+  ],
+  "coverage": {
+    "queries": 5,
+    "references_checked": true,
+    "sources": ["arXiv API (cond-mat), 5 successful queries in two rounds; 3 further queries on the FRG/Hartree-Fock and superfluid-stiffness facets failed with HTTP 429 and are not counted", "the paper's 52 references"]
+  },
+  "overall": {
+    "grade": "incremental",
+    "sentence": "The closest earlier paper, the cited Xia et al. 2025 (arXiv:2508.02662, ref. [28]), already tuned twisted WSe2 through the twist angle and mapped its superconducting phase diagram by transport; what this paper adds is tracking the displacement-field-induced, AFM-adjacent superconducting pocket continuously from 5° to 3.8° across several devices, with twist-angle-resolved FRG and Hartree-Fock theory."
+  },
+  "assessment": [
+    {
+      "claim": "Introduction: the impact of the twist angle on superconductivity in tWSe2 remains unknown",
+      "grade": "precedent",
+      "closest": "2508.02662",
+      "note": "The cited ref. [28] (posted August 2025) tunes moiré WSe2 bilayers through the twist angle and maps the superconducting phase diagram around ν = 1 by transport; the impact is studied, though in a different region of the phase diagram."
+    },
+    {
+      "claim": "Headline (claims 1 and 2): the superconducting pocket and AFM region evolve smoothly from 5° to 3.8°, connecting the 3.65° and 5° phase diagrams",
+      "grade": "incremental",
+      "closest": "2508.02662",
+      "note": "Same system and method as ref. [28], which also varies twist angle; new here is following the high-displacement-field, AFM-adjacent pocket of the 5° device continuously to small angles and showing that it connects to the 3.65° phenomenology (judged from abstracts)."
+    },
+    {
+      "claim": "3. Below about 4.3° a half-filling insulator appears only in a narrow displacement-field window, indicating moderate rather than Mott-like interactions",
+      "grade": "incremental",
+      "closest": "2508.02662",
+      "note": "Ref. [28] and ref. [1] (2405.14784) already report a ν = 1 insulator in tWSe2 interpreted near a bandwidth-tuned Mott transition in the moderate-correlation regime; new here is its twist-angle onset and narrow-D window across devices, with an interpretation that leans away from Mott physics."
+    },
+    {
+      "claim": "4. Superconductivity always borders the AFM phase, suggesting spin-fluctuation pairing",
+      "grade": "incremental",
+      "closest": "2406.03418",
+      "note": "The authors' own 5° paper (ref. [2]) and cited theory (2409.16114, ref. [34]) already tie the superconductor to AFM order and intervalley antiferromagnetic fluctuations; new here is that the adjacency holds at every angle from 5° to 3.8°."
+    },
+    {
+      "claim": "5. FRG and Hartree-Fock on a three-orbital model reproduce the twist-angle evolution",
+      "grade": "incremental",
+      "closest": null,
+      "note": "The model and FRG method are the authors' own (ref. [32]); the arXiv query targeting twist-angle-resolved FRG/HF theory failed (HTTP 429), so the search on this claim is too weak to support no_precedent_found."
+    }
+  ],
+  "positioning": "The paper sits between the two original tWSe2 superconductivity reports (3.65°, ref. [1]; 5°, ref. [2]) and the cited Xia et al. 2025 (ref. [28]), which already used the twist angle to tune tWSe2 into a moderate-correlation regime near a Mott insulator at ν = 1 and reported Tc up to about 6% of the effective Fermi temperature. What the searches show this paper adds is a multi-device map following the AFM-adjacent superconducting pocket from 5° down to 3.8°, with matched FRG and Hartree-Fock calculations; the framing that the twist-angle dependence is unknown, and the contrast between its Tc/TF below 1% and ref. [28]'s cuprate-like picture, are not addressed. Sources: arXiv API (5 successful queries; 3 failed with rate limits) and the paper's reference list.",
+  "closest": [
+    {"arxiv": "2508.02662", "title": "Simulating high-temperature superconductivity in moiré WSe2", "year": 2025, "cited_as": "[28]", "facets": {"question": true, "system": true, "method": true}, "overlap": "Tunes tWSe2 through the twist angle and maps the superconducting phase diagram near ν = 1 by transport, reporting Tc up to about 6% of the effective Fermi temperature."},
+    {"arxiv": "2406.03418", "title": "Superconductivity in twisted bilayer WSe$_2$", "year": 2024, "cited_as": "[2]", "facets": {"question": true, "system": true, "method": true}, "overlap": "The authors' own 5° device: superconductivity at high displacement field adjacent to an AFM Fermi-surface reconstruction near the VHs."},
+    {"arxiv": "2405.14784", "title": "Unconventional superconductivity in twisted bilayer WSe2", "year": 2024, "cited_as": "[1]", "facets": {"question": true, "system": true, "method": true}, "overlap": "The 3.65° device: superconductivity at half filling next to a correlated insulator, the other end of the angle range."},
+    {"arxiv": "2406.19348", "title": "Superconductivity in twisted transition metal dichalcogenide homobilayers", "year": 2024, "cited_as": "[39]", "facets": {"question": true, "system": true, "method": false}, "overlap": "Theory arguing the 3.65° and 5° superconductors share a universal, twist-angle-independent pairing mechanism, the question this paper poses experimentally."},
+    {"arxiv": "2610.22307", "title": "Extended strange metal and superconductivity in partially filled moiré Hubbard bands", "year": 2026, "cited_as": null, "facets": {"question": true, "system": true, "method": true}, "overlap": "Posted after this paper: twist-angle-dependent transport in tWSe2 with a new superconducting dome away from the Mott insulator and the VHs."}
+  ],
+  "issues": [
+    {
+      "tier": "A",
+      "topic": "novelty",
+      "claim": "The impact of the twist angle on superconductivity in tWSe2 has not been studied.",
+      "claim_id": 0,
+      "headline": "Cited Xia et al. 2025 already tuned superconductivity with twist angle",
+      "issue": "The introduction says the impact of the twist angle on superconductivity in tWSe2 remains unknown, and the abstract frames the field as two angles, 3.65° and 5°. The paper's own ref. [28] (Xia et al., arXiv:2508.02662, posted August 2025) tuned tWSe2 through the twist angle and mapped the superconducting phase diagram, and Fig. 2b already plots one of its devices. A referee from that community will read the sentence as overlooking that work.",
+      "evidence": {
+        "quote": "The impact of the twist angle on superconductivity in tWSe2 remains unknown and it is not clear if the two experimentally observed superconductors share the same origin",
+        "page": 2,
+        "location": "Introduction, last paragraph of the left column"
+      },
+      "effort": "text",
+      "fix": "Acknowledge that ref. [28] varied the twist angle near ν = 1 and state the open question more narrowly: how the high-displacement-field, AFM-adjacent superconductor of the 5° device evolves and whether it connects to the small-angle phenomenology.",
+      "edit": {
+        "before": "The impact of the twist angle on superconductivity in tWSe2 remains unknown and it is not clear if the two experimentally observed superconductors share the same origin",
+        "after": "Although twist angle has been used to tune tWSe2 toward a Mott insulator near half filling [28], how the displacement-field-induced superconductor adjacent to AFM order evolves with twist angle remains unknown, and it is not clear if the two experimentally observed superconductors share the same origin"
+      },
+      "prior": [
+        {"arxiv": "2508.02662", "title": "Simulating high-temperature superconductivity in moiré WSe2", "year": 2025, "cited_as": "[28]", "facets": {"question": true, "system": true, "method": true}, "overlap": "Tunes tWSe2 through the twist angle and maps the superconducting phase diagram by transport."}
+      ]
+    },
+    {
+      "tier": "B",
+      "topic": "novelty",
+      "claim": "Based on band-theory superfluid stiffness and Tc/TF, the superconductivity is in the weak-coupling BCS limit at all twist angles.",
+      "claim_id": 6,
+      "headline": "Weak-coupling conclusion not set against ref. [28]'s cuprate-like picture",
+      "issue": "Ref. [28] (Xia et al., arXiv:2508.02662) describes tWSe2 in this angle range as a moderately correlated, cuprate-like system with Tc reaching about 6% of the effective Fermi temperature. This paper finds Tc/TF below 1% and concludes weak-to-moderate, BCS-like pairing, but does not say why the two estimates differ by several times, which a referee will ask.",
+      "evidence": {
+        "quote": "reflecting values that suggest the superconductor remains in the weak to moderate correlation regime",
+        "page": 4,
+        "location": "Superconductivity versus twist angle, discussion of Fig. 2d"
+      },
+      "effort": "text",
+      "fix": "Add a sentence comparing the Tc/TF estimate with that of ref. [28], stating how the Fermi temperatures were defined in each (band-structure TF here versus an effective TF there) and whether the two are consistent.",
+      "edit": null,
+      "prior": [
+        {"arxiv": "2508.02662", "title": "Simulating high-temperature superconductivity in moiré WSe2", "year": 2025, "cited_as": "[28]", "facets": {"question": true, "system": true, "method": true}, "overlap": "Reports Tc up to about 6% of the effective Fermi temperature in twist-angle-tuned tWSe2 and frames it as high-Tc phenomenology."}
+      ]
+    }
+  ]
+}

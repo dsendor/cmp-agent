@@ -1,0 +1,591 @@
+{
+  "title": "Visualizing orbital magnetism in electron doped rhombohedral multilayer graphene",
+  "claims": [
+    "The magnetization of the electron-doped quarter metal peaks at finite density in devices with 3 to 15 layers, which the authors attribute to Berry curvature concentrated in a finite-momentum 'ring of fire'.",
+    "In a superconducting tetralayer device the zero-resistance state carries a finite out-of-plane (orbital) ferromagnetic moment, giving direct evidence of valley polarization in the superconducting ground state.",
+    "Stochastic resistance switching in both metallic and superconducting regimes arises from a density-tuned sign change of the valley-resolved total magnetic moment, which creates metastable magnetic domains.",
+    "This sign change can be used to reverse the magnetization of the entire device purely by gate voltage (capacitive reversal).",
+    "Any 'condensation magnetization' at the superconducting transition is bounded at no more than 0.1 μB per carrier.",
+    "Under an expanded definition (a superconductor coexisting with finite orbital magnetization), the observation is dispositive evidence of chiral superconductivity."
+  ],
+  "summary": "The authors use tilted-tip nanoSQUID-on-tip magnetometry to map the density- and displacement-field-dependent magnetization of electron-doped rhombohedral graphene with 3 to 15 layers, finding a magnetization peak at finite density and gate-driven reversal of macroscopic valley domains that explains stochastic resistance switching. In a superconducting tetralayer they report an out-of-plane moment inside the zero-resistance region and bound any condensation magnetization at 0.1 μB per carrier.",
+  "strengths": [
+    "It is the first local magnetometry inside the zero-resistance region of a proposed chiral superconductor in rhombohedral graphene, a regime transport cannot probe because zero resistance masks the anomalous Hall effect.",
+    "A survey of seven devices and six layer numbers gives consistent phase diagrams and shows the finite-density magnetization peak as a generic feature of the electron-doped quarter metal.",
+    "Real-space images show nearly uniform gate-driven reversal of the magnetization, tied to transport switching by simultaneous resistance and δB measurements and reproduced in 5L, 6L and a second 13L device.",
+    "The technical controls are careful and useful to others: nSOT heating checks, ramp-time statistics of domain formation, electric-field background subtraction and forward-model fringe-field fits."
+  ],
+  "issues": [
+    {
+      "tier": "A",
+      "rank": 1,
+      "topic": "inhomogeneity",
+      "claim": "Moment in the superconducting state",
+      "claim_id": 2,
+      "headline": "Magnetized region and zero-resistance region are not shown to coincide",
+      "issue": "Four-terminal R_xx = 0 needs only one percolating path, the contact pair defining the superconducting contours is not stated, and the ~300 nm probe resolution cannot exclude magnetized normal puddles inside a non-magnetic superconducting network. Fig. 4d shows a non-magnetized upper half within the superconducting window, no local superconducting signature is detected, and the transport dome boundaries come from a different refrigerator and cooldown.",
+      "evidence": {
+        "quote": "Correlating transport and local magnetometry data in a superconducting tetralayer sample reveals a finite orbital ferromagnetic moment, providing direct evidence of valley polarization in the superconducting ground state.",
+        "page": 1,
+        "location": "Abstract; Fig. 2e–g, Fig. 4d, Fig. E3c"
+      },
+      "effort": "new_work",
+      "fix": "Report R_xx for each adjacent voltage-probe pair and show the imaged magnetized segments are at zero resistance; measure the dome boundaries in the nSOT microscope in the same cooldown; measure ΔB versus temperature through T_c at fixed positions, test the domain-averaging reading of Fig. 4d by stabilizing the upper region, compare fitted m with a partial-filling two-component fit, estimate the expected Meissner signal or repeat at larger B⊥, and state the length scale on which coexistence is shown.",
+      "fix_scoped": "Correlating transport and local magnetometry data in a superconducting tetralayer sample reveals a finite out-of-plane magnetic moment at gate settings where the device shows zero resistance, consistent with valley polarization of the superconducting ground state, although coexistence below the ~0.5 μm resolution of our probe is not established.",
+      "edit_scoped": {
+        "before": "Correlating transport and local magnetometry data in a superconducting tetralayer sample reveals a finite orbital ferromagnetic moment, providing direct evidence of valley polarization in the superconducting ground state.",
+        "after": "Correlating transport and local magnetometry data in a superconducting tetralayer sample reveals a finite out-of-plane magnetic moment at gate settings where the device shows zero resistance, consistent with valley polarization of the superconducting ground state, although coexistence below the ~0.5 μm resolution of our probe is not established."
+      },
+      "runs": ["r1", "r2", "r3"]
+    },
+    {
+      "tier": "A",
+      "rank": 2,
+      "topic": "direct_evidence",
+      "claim": "Valley polarization and orbital moment in the superconductor",
+      "claim_id": 2,
+      "headline": "Valley polarization evidence is indirect; paper contradicts itself on orbital moment",
+      "issue": "The abstract, title and Fig. 2 text call the superconductor's moment orbital, but Fig. 4f finds m ≈ 1 μB/carrier with a vanishing orbital part, and a spin-polarized half metal would give the same moment. Valley polarization then rests only on the Methods argument that Ising spin-orbit coupling pins spins out of plane against B∥ = 40 mT, which is not quantified for this WSe₂-free 4L device.",
+      "evidence": {
+        "quote": "Collectively, these data may be understood as dispositive evidence of orbital magnetization in both the normal state and the superconducting ground state.",
+        "page": 3,
+        "location": "Fig. 2 text; Fig. 4f; Methods (Orbital and spin magnetic moments)"
+      },
+      "effort": "new_work",
+      "fix": "Show a local ΔB hysteresis loop versus B⊥ inside the zero-resistance region with sign reversal and remanence; measure ΔB versus B∥ magnitude and direction; estimate the spin-orbit pinning field for 4L; fit the superconducting images with an in-plane-moment model including the 12.5° tilt; and make the title, abstract, Fig. 2 and Fig. 4 text and Discussion consistent: valley polarization with an orbital contribution consistent with zero.",
+      "fix_scoped": "Collectively, these data indicate an easy-axis out-of-plane moment, and hence valley polarization, in both the normal state and the superconducting state, with an orbital contribution in the superconductor consistent with zero.",
+      "edit_scoped": {
+        "before": "Collectively, these data may be understood as dispositive evidence of orbital magnetization in both the normal state and the superconducting ground state.",
+        "after": "Collectively, these data indicate an easy-axis out-of-plane moment, and hence valley polarization, in both the normal state and the superconducting state, with an orbital contribution in the superconductor consistent with zero."
+      },
+      "runs": ["r1", "r2", "r3"]
+    },
+    {
+      "tier": "A",
+      "rank": 3,
+      "topic": "dependences",
+      "claim": "0.1 μB/carrier condensation-magnetization bound",
+      "claim_id": 5,
+      "headline": "0.1 μB bound not derived, compares different densities, may constrain nothing",
+      "issue": "The bound comes from the absence of a step in m at the dome edges in a single density sweep, which compares superconducting and normal points at different densities, has no error bars and scatter comparable to the bound. The measurement temperature is ambiguous (50 mK versus 350 mK), the matched comparison in Fig. 2g covers only 50 and 600 mK and shows 'additional structure', and no predicted size is given.",
+      "evidence": {
+        "quote": "For a superconductor in which the Cooper pair condensate carries net angular momentum relative to the normal state, a magnetic signature of the superconducting transition is in principle expected.",
+        "page": 6,
+        "location": "Fig. 4f; Fig. 2g"
+      },
+      "effort": "new_work",
+      "fix": "Settle the Fig. 4 temperature; extract the bound from ΔB or m at fixed (n_e, D) inside the dome versus temperature from ≥800 mK to 50 mK (or versus B⊥ through H_c2) with simultaneous resistance; state how 0.1 μB/carrier follows with statistical and calibration uncertainties separately; explain the additional structure in Fig. 2g; and give the size predicted by Ref. [5] or a simple estimate.",
+      "fix_scoped": "Within the ±0.2 μB/carrier point-to-point scatter of a single density sweep at D = 1.02 V/nm, we see no step in m at the edges of the superconducting window.",
+      "edit_scoped": {
+        "before": "Our measurement bounds this effect at no more than 0.1μB/carrier, providing a quantitative experimental constraint on theoretical models of valley polarized superconductors[5].",
+        "after": "Within the ±0.2 μB/carrier point-to-point scatter of a single density sweep at D = 1.02 V/nm, we see no step in m at the edges of the superconducting window."
+      },
+      "runs": ["r1", "r2", "r3"]
+    },
+    {
+      "tier": "B",
+      "rank": 4,
+      "topic": "calibration",
+      "claim": "Quantitative moments per carrier and the 0.1 μB bound",
+      "claim_id": 5,
+      "headline": "ΔB-to-m conversion has no uncertainty; superconductor values disagree between figures",
+      "issue": "All quantitative statements depend on a regularized fringe-field inversion whose tip height is given only as a range, with a 12.5° tilt, and whose regularization, free parameters, reference treatment and residuals are not given. Fig. E2c peaks at ~1 μB/carrier but Fig. E2d (same data as Fig. 4c) at ~2 μB/carrier, and the bistable values in Fig. 4e are not symmetric about zero.",
+      "evidence": {
+        "quote": "We then iteratively minimize the residual between the simulated magnetic field and the measured data, with an additional constraint that penalizes gradients of the magnetization to favor smooth solutions.",
+        "page": 11,
+        "location": "Methods (Magnetization fit); Fig. E2c–d, Fig. 4e–f"
+      },
+      "effort": "existing_data",
+      "fix": "State the inversion parameters, propagate tip-height and regularization uncertainties into M and m, add error bars to Figs. 1c–d and 4f and every quoted m, explain the E2c/E2d difference, and discuss the asymmetry in Fig. 4e.",
+      "fix_scoped": "Within the uncertainty of the fringe-field inversion, which is set mainly by the tip height and regularization, the magnetization is of order 1 μB/carrier across the superconducting regime.",
+      "edit_scoped": {
+        "before": "This measurement reveals that the magnetization is indistinguishable from 1 μB/carrier across the entire superconducting regime.",
+        "after": "Within the uncertainty of the fringe-field inversion, which is set mainly by the tip height and regularization, the magnetization is of order 1 μB/carrier across the superconducting regime."
+      },
+      "runs": ["r1", "r2", "r3"]
+    },
+    {
+      "tier": "B",
+      "rank": 5,
+      "topic": "apparatus",
+      "claim": "Moment in the superconducting state",
+      "claim_id": 2,
+      "headline": "In-plane spin moment of reference state, seen by tilted tip, ignored",
+      "issue": "The reference half metal under B∥ has an in-plane spin moment, and the 12.5°-tilted tip is partly sensitive to the in-plane fringe fields it produces at edges; going to a valley-polarized state also rotates the spin out of plane. ΔB thus contains an in-plane term the out-of-plane-only fits omit, which matters most for the small superconducting signal and m ≈ 1 μB/carrier.",
+      "evidence": {
+        "quote": "The reference for both images is entirely contained in the valley-balanced half metal with zero magnetic fringe field due to the in-plane applied magnetic field.",
+        "page": 10,
+        "location": "Methods (Fig. 4a–b entry); Fig. 2c–d, Fig. E2, Fig. E10b"
+      },
+      "effort": "existing_data",
+      "fix": "Estimate the reference-state contribution along the tip's sensing axis, or include an in-plane component in the inversion, and show it does not distort the in-dome signal.",
+      "fix_scoped": "The reference for both images is entirely contained in the valley-balanced half metal, whose in-plane spin moment may contribute a fringe field along the tilted tip axis that is not included in our out-of-plane fits.",
+      "edit_scoped": {
+        "before": "The reference for both images is entirely contained in the valley-balanced half metal with zero magnetic fringe field due to the in-plane applied magnetic field.",
+        "after": "The reference for both images is entirely contained in the valley-balanced half metal, whose in-plane spin moment may contribute a fringe field along the tilted tip axis that is not included in our out-of-plane fits."
+      },
+      "runs": ["r1", "r2", "r3"]
+    },
+    {
+      "tier": "B",
+      "rank": 6,
+      "topic": "apparatus",
+      "claim": "Moment in the superconducting state",
+      "claim_id": 2,
+      "headline": "Electric-field background as large as signal, from mismatched gate configuration",
+      "issue": "The superconducting-state ΔB is ~0.1 μT while the parasitic electric-field contrast reaches ~±0.25 μT and is removed using a nonmagnetic image at a different D and reference point. Since the background is most sensitive to the top gate and concentrates over contacts, a mis-scaled subtraction could imprint contact-shaped features into the signal.",
+      "evidence": {
+        "quote": "This represents the same gate step size away from any magnetic features in the phase diagram. As such, it can be interpreted as purely electric field contrast.",
+        "page": 23,
+        "location": "Supplementary Fig. S3"
+      },
+      "effort": "existing_data",
+      "fix": "State the top-gate and back-gate voltage steps for both images and show they match, show residual maps for two nonmagnetic configurations with matched steps or the result with two independent background references, and state which subtraction was used in Figs. 2e and 4a–b.",
+      "fix_scoped": "As such, it is taken as an estimate of the electric field contrast; because it was acquired at a different displacement field, a residual background comparable to the magnetic signal cannot be excluded.",
+      "edit_scoped": {
+        "before": "As such, it can be interpreted as purely electric field contrast.",
+        "after": "As such, it is taken as an estimate of the electric field contrast; because it was acquired at a different displacement field, a residual background comparable to the magnetic signal cannot be excluded."
+      },
+      "runs": ["r1", "r2"]
+    },
+    {
+      "tier": "B",
+      "rank": 7,
+      "topic": "direct_evidence",
+      "claim": "Chiral superconductivity under expanded definition",
+      "claim_id": 6,
+      "headline": "Chirality follows from a definition; 'dispositive' is too strong",
+      "issue": "The chiral-superconductivity conclusion follows from adopting Ref. [33]'s definition and says nothing about order-parameter winding, while coexistence and orbital character are not yet established (concerns 1 and 2). The word 'dispositive' is used both here and for orbital magnetization in the superconducting state.",
+      "evidence": {
+        "quote": "Our observation of finite orbital magnetization in both the superconducting and normal states is dispositive evidence of chiral superconductivity under this definition.",
+        "page": 7,
+        "location": "Discussion"
+      },
+      "effort": "text",
+      "fix": "Drop 'dispositive'; state in the abstract and Discussion that the data show a superconductor coexisting with valley (and spin) polarization, with chirality in the conventional sense untested, and put the caveat about the expanded definition in the abstract.",
+      "fix_scoped": null,
+      "edit_scoped": null,
+      "runs": ["r1", "r2", "r3"]
+    },
+    {
+      "tier": "B",
+      "rank": 8,
+      "topic": "theory",
+      "claim": "Magnetization peak from the ring of fire",
+      "claim_id": 1,
+      "headline": "Theory matches data only qualitatively, at mismatched parameters",
+      "issue": "The 13L calculation gives ~2 μB/carrier versus ~9–10 μB/carrier measured, a factor of 3–5 not discussed, and uses D, gate distances and ε_r that differ from the experiment. It gives a monotonic positive M_total with no peak or low-density suppression, imposes single-flavor occupancy by hand, and no calculation is shown for 6L.",
+      "evidence": {
+        "quote": "Comparing the model calculations (Fig. 1h) with experimental data (Figs. 1c–d), we attribute the enhanced magnetization at finite density to",
+        "page": 2,
+        "location": "Fig. 1c–d, Fig. 1h"
+      },
+      "effort": "new_work",
+      "fix": "Compute M(n_e) along the actual experimental (n_e, D) trajectories with each device's gate geometry for 6L and 13L, plot it in μB/carrier against Fig. 1c–d, report sensitivity to D, ε_r and remote hoppings, and discuss what is missing; otherwise word the ring-of-fire attribution as consistent with the model rather than confirmed.",
+      "fix_scoped": "The enhanced magnetization at finite density is qualitatively consistent with the model calculations (Fig. 1h), in which carriers populating the finite-momentum single-valley states host elevated Berry curvature and orbital magnetization, although the measured peak exceeds the calculated magnetization several-fold.",
+      "edit_scoped": {
+        "before": "Comparing the model calculations (Fig. 1h) with experimental data (Figs. 1c–d), we attribute the enhanced magnetization at finite density to carriers populating the finite-momentum single-valley states that host elevated Berry curvature and orbital magnetization.",
+        "after": "The enhanced magnetization at finite density is qualitatively consistent with the model calculations (Fig. 1h), in which carriers populating the finite-momentum single-valley states host elevated Berry curvature and orbital magnetization, although the measured peak exceeds the calculated magnetization several-fold."
+      },
+      "runs": ["r1", "r2", "r3"]
+    },
+    {
+      "tier": "B",
+      "rank": 9,
+      "topic": "theory",
+      "claim": "Density-tuned sign change drives switching",
+      "claim_id": 3,
+      "headline": "Model not shown to produce the sign change used for reversal",
+      "issue": "The switching mechanism rests on a gate-controlled sign change of the single-valley magnetization M_K, drawn only schematically, while the calculated 13L magnetizations in Fig. 1h are positive at all densities shown. The observed reversals near 0.9 and 2.75 × 10¹² cm⁻² are not tied to calculated energetics.",
+      "evidence": {
+        "quote": "We attribute the stabilization of reversed magnetic domains to the gate-controlled change in sign of the single valley total magnetization [18, 28].",
+        "page": 4,
+        "location": "Fig. 3d insets, Fig. E4c,f, Fig. 1h"
+      },
+      "effort": "new_work",
+      "fix": "Plot the calculated single-valley M_K(n_e) along the Fig. 3d trajectory and identify where it crosses zero against the observed reversals, ideally also for 5L and 6L.",
+      "fix_scoped": "We tentatively attribute the stabilization of reversed magnetic domains to a gate-controlled change in sign of the single valley total magnetization [18, 28], which our calculations have not yet confirmed for these devices.",
+      "edit_scoped": {
+        "before": "We attribute the stabilization of reversed magnetic domains to the gate-controlled change in sign of the single valley total magnetization [18, 28].",
+        "after": "We tentatively attribute the stabilization of reversed magnetic domains to a gate-controlled change in sign of the single valley total magnetization [18, 28], which our calculations have not yet confirmed for these devices."
+      },
+      "runs": ["r1", "r2", "r3"]
+    },
+    {
+      "tier": "B",
+      "rank": 10,
+      "topic": "direct_evidence",
+      "claim": "Switching origin in the superconducting regime",
+      "claim_id": 3,
+      "headline": "Domain reversal link to switching in superconductor asserted, not shown",
+      "issue": "The direct correlation of resistance classes with local δB is shown only for the metallic 13L device; for the 4L superconductor there are only line-by-line jumps and bistable ΔB without simultaneous transport. The heating explanation for the Fig. 4e bistability conflicts with Fig. S4b.",
+      "evidence": {
+        "quote": "We further show that widely observed stochastic switching of the resistivity in both metallic and superconducting regimes arises from a density-tuned sign change in the valley-resolved total magnetic moment.",
+        "page": 1,
+        "location": "Abstract; Fig. 3a–b, Fig. 4e"
+      },
+      "effort": "new_work",
+      "fix": "Repeat the Fig. 3a–b simultaneous R and δB protocol in 4L inside the superconducting dome, test the heating hypothesis by varying modulation amplitude, frequency or B⊥, or narrow the abstract claim to the metallic regime.",
+      "fix_scoped": "We further show that widely observed stochastic switching of the resistivity in the metallic regime arises from a density-tuned sign change in the valley-resolved total magnetic moment.",
+      "edit_scoped": {
+        "before": "We further show that widely observed stochastic switching of the resistivity in both metallic and superconducting regimes arises from a density-tuned sign change in the valley-resolved total magnetic moment.",
+        "after": "We further show that widely observed stochastic switching of the resistivity in the metallic regime arises from a density-tuned sign change in the valley-resolved total magnetic moment."
+      },
+      "runs": ["r2", "r3"]
+    },
+    {
+      "tier": "B",
+      "rank": 11,
+      "topic": "samples",
+      "claim": "Moment in the superconducting state",
+      "claim_id": 2,
+      "headline": "All superconducting-state magnetometry comes from one device",
+      "issue": "Magnetism in a superconductor is shown only in device 4L, apparently in one cooldown and one D range; the other devices address only switching, and the 6L device shows no electron-side superconductivity. Whether the images survive thermal cycling is not stated.",
+      "evidence": {
+        "quote": "We now return to the magnetic superconducting state in Device 4L.",
+        "page": 5,
+        "location": "Fig. 2, Fig. 4"
+      },
+      "effort": "text",
+      "fix": "State the single-device limitation clearly, give the cooldown history of 4L, and if a second superconducting device or thermal cycle is available, show the moment and its anisotropy reproduce.",
+      "fix_scoped": null,
+      "edit_scoped": null,
+      "runs": ["r1", "r2", "r3"]
+    },
+    {
+      "tier": "B",
+      "rank": 12,
+      "topic": "heating",
+      "claim": "Moment in the superconducting state",
+      "claim_id": 2,
+      "headline": "Heating and sample-temperature statements are inconsistent or unsupported",
+      "issue": "Fig. S4b is used to show gate modulation does not heat the superconductor, yet the Fig. 4e bistability is attributed to transient heating from that modulation. The ~800 mK label of Fig. 2a is inferred from transport comparisons not shown, although the quarter-metal boundary depends strongly on temperature.",
+      "evidence": {
+        "quote": "Rather, the bistability may arise if transient heating from the gate modulation is sufficient to cause thermal domain reversal rates in the 1 Hz range",
+        "page": 6,
+        "location": "Fig. 4e; Fig. 2a; Supplementary Fig. S4b"
+      },
+      "effort": "new_work",
+      "fix": "Reconcile the two heating statements, ideally by measuring R_xx with the same large δV_BG square wave used in Figs. 4a–e; show the transport data behind the 800 mK estimate with uncertainty; ideally show the Fig. 2a phase diagram at a controlled temperature above T_c without exchange-gas heating.",
+      "fix_scoped": "The origin of the bistability is not established; transient heating from the gate modulation is one possibility, although Fig. S4b shows no heating large enough to affect the superconductivity.",
+      "edit_scoped": {
+        "before": "Rather, the bistability may arise if transient heating from the gate modulation is sufficient to cause thermal domain reversal rates in the 1 Hz range, leading to the observed O(10) reversals on the few minute timescale of our measurements.",
+        "after": "The origin of the bistability is not established; transient heating from the gate modulation is one possibility, although Fig. S4b shows no heating large enough to affect the superconductivity."
+      },
+      "runs": ["r1", "r2", "r3"]
+    },
+    {
+      "tier": "B",
+      "rank": 13,
+      "topic": "fits",
+      "claim": "Low-density suppression supporting the ring of fire",
+      "claim_id": 1,
+      "headline": "Low-density near-zero or negative magnetization may be an analysis artifact",
+      "issue": "The background plane is fitted to the very low-density portion of each map, exactly where the near-zero or negative M sits. The ΔB→M factor is taken at the peak and assumed constant though domain structure changes at low density, and averaging over field-cooled configurations could suppress M there.",
+      "evidence": {
+        "quote": "Along both trajectories shown in Figs 1c-d the total magnetization drops at low densities within the quarter metal, even appearing to go slightly negative.",
+        "page": 2,
+        "location": "Fig. 1c–d; Supplementary Fig. S2d–f"
+      },
+      "effort": "existing_data",
+      "fix": "Show that the low-density M is robust to the choice of background-fit window, and show a spatial image with a fit at a low-density point in the quarter metal demonstrating a uniform domain with small M.",
+      "fix_scoped": "Along both trajectories shown in Figs 1c-d the total magnetization drops at low densities within the quarter metal; whether it becomes slightly negative depends on the background subtraction and is not established.",
+      "edit_scoped": {
+        "before": "Along both trajectories shown in Figs 1c-d the total magnetization drops at low densities within the quarter metal, even appearing to go slightly negative.",
+        "after": "Along both trajectories shown in Figs 1c-d the total magnetization drops at low densities within the quarter metal; whether it becomes slightly negative depends on the background subtraction and is not established."
+      },
+      "runs": ["r1", "r3"]
+    },
+    {
+      "tier": "B",
+      "rank": 14,
+      "topic": "direct_evidence",
+      "claim": "Normal-state orbital magnetization in 4L",
+      "claim_id": 2,
+      "headline": "Anomalous Hall support for normal-state orbital magnetization is weak",
+      "issue": "In Fig. E3g–h the forward and reverse B⊥ sweeps above T_c nearly overlap apart from features at zero field, with no clear hysteresis loop, yet the text cites them as implying finite normal-state orbital magnetization.",
+      "evidence": {
+        "quote": "the fringe field in the normal state is well above our noise floor, consistent with anomalous Hall measurements that imply a finite orbital magnetization of the normal state (Fig. E3).",
+        "page": 3,
+        "location": "Fig. E3g–h"
+      },
+      "effort": "existing_data",
+      "fix": "Quantify the anomalous Hall hysteresis, for example as the antisymmetrized R_xy difference at B = 0, or moderate the statement.",
+      "fix_scoped": "For at least a portion of the superconducting region, the fringe field in the normal state is well above our noise floor.",
+      "edit_scoped": {
+        "before": "For at least a portion of the superconducting region, the fringe field in the normal state is well above our noise floor, consistent with anomalous Hall measurements that imply a finite orbital magnetization of the normal state (Fig. E3).",
+        "after": "For at least a portion of the superconducting region, the fringe field in the normal state is well above our noise floor."
+      },
+      "runs": ["r2"]
+    },
+    {
+      "tier": "B",
+      "rank": 15,
+      "topic": "other",
+      "claim": "Capacitive reversal imaging",
+      "claim_id": 4,
+      "headline": "First real-space imaging priority claim needs qualifying",
+      "issue": "The claim of the first real-space imaging of gate-controlled orbital magnet reversal sits alongside earlier nSOT imaging of moiré Chern magnets (Refs. [14–20]) and the authors' own Note added (Ref. [34]).",
+      "evidence": {
+        "quote": "Our results here represent the first real-space imaging of this unique orbital magnetic phenomenon",
+        "page": 5,
+        "location": "Capacitively driven domain reversal"
+      },
+      "effort": "text",
+      "fix": "State precisely what is new, for example metallic rhombohedral multilayers and capacitive reversal of the whole device.",
+      "fix_scoped": null,
+      "edit_scoped": null,
+      "runs": ["r1", "r2"]
+    },
+    {
+      "tier": "B",
+      "rank": 16,
+      "topic": "other",
+      "claim": "Switching from magnetic domains",
+      "claim_id": 3,
+      "headline": "Resistance-class and magnetic-state correlation lacks statistics",
+      "issue": "Fig. 3a–b sorts resistance and δB traces into classes but gives no counts, agreement rate or test of the 100 Ω threshold. The trend that slower ramps favour the negative domain (Fig. E7) is not explained.",
+      "evidence": {
+        "quote": "The stochastic switching manifests via the clustering of resistance traces into two classes which we color code yellow and blue, respectively.",
+        "page": 4,
+        "location": "Fig. 3a–b; Fig. E7"
+      },
+      "effort": "existing_data",
+      "fix": "State how many sweeps were taken, how often the R class and δB class agree, and whether the 100 Ω threshold is robust; briefly explain the ramp-time trend in Fig. E7.",
+      "fix_scoped": "In the sweeps shown, the resistance traces cluster into two classes which we color code yellow and blue, respectively.",
+      "edit_scoped": {
+        "before": "The stochastic switching manifests via the clustering of resistance traces into two classes which we color code yellow and blue, respectively.",
+        "after": "In the sweeps shown, the resistance traces cluster into two classes which we color code yellow and blue, respectively."
+      },
+      "runs": ["r1"]
+    },
+    {
+      "tier": "C",
+      "rank": 17,
+      "topic": "consistency",
+      "claim": "Field labels throughout",
+      "claim_id": 0,
+      "headline": "Field ordering, signs and values inconsistent across captions and text",
+      "issue": "The order (B⊥, B∥) versus (B∥, B⊥) changes between captions, text and Methods, and values and signs disagree, e.g. Fig. 2a (3 mT, 50 mT) versus (3 mT, −50 mT), and Fig. E8 caption versus its label and the main text.",
+      "evidence": {
+        "quote": "Images are taken under identical gate conditions to Fig. 2e and Fig. 2g inset, except at elevated temperature",
+        "page": 18,
+        "location": "Fig. 2a caption, Fig. E8, Methods"
+      },
+      "effort": "text",
+      "fix": "Use one convention throughout and check the signs and values.",
+      "fix_scoped": null,
+      "edit_scoped": null,
+      "runs": ["r1", "r2", "r3"]
+    },
+    {
+      "tier": "C",
+      "rank": 18,
+      "topic": "consistency",
+      "claim": "T_c of device 4L",
+      "claim_id": 0,
+      "headline": "T_c quoted as 400 mK and 500 mK",
+      "issue": "T_c is ≈400 mK in the main text and Fig. E3e but the Methods say superconductivity onsets around 500 mK.",
+      "evidence": {
+        "quote": "From transport comparisons, the effective electron temperature is likely around",
+        "page": 10,
+        "location": "Methods (Fig. 2a entry); Fig. E3e"
+      },
+      "effort": "text",
+      "fix": "Define T_c (for example 50% of normal-state R_xx) and use it consistently.",
+      "fix_scoped": null,
+      "edit_scoped": null,
+      "runs": ["r1", "r2", "r3"]
+    },
+    {
+      "tier": "C",
+      "rank": 19,
+      "topic": "consistency",
+      "claim": "Fig. 3 snapshot density",
+      "claim_id": 0,
+      "headline": "Fig. 3 snapshot density given three different ways",
+      "issue": "The density appears as 2.25 × 10¹² cm⁻² (Fig. 3a caption), 2.3 × 10¹² cm⁻² (main text) and 2.2 × 10¹² cm⁻² (Fig. 3b caption).",
+      "evidence": {
+        "quote": "The two insets to Fig. 3b show δB for representative examples in the two classes of resistance curves.",
+        "page": 4,
+        "location": "Fig. 3a–b"
+      },
+      "effort": "text",
+      "fix": "Harmonize the density values.",
+      "fix_scoped": null,
+      "edit_scoped": null,
+      "runs": ["r1", "r2", "r3"]
+    },
+    {
+      "tier": "C",
+      "rank": 20,
+      "topic": "consistency",
+      "claim": "Fig. E2 caption",
+      "claim_id": 0,
+      "headline": "Fig. E2 caption cites wrong figure; 6L reference density negative",
+      "issue": "The caption says panel b is the same as Fig. 2f, which is a resistance trace, presumably meaning Fig. 3f; the 6L reference point is at negative density (−0.058 × 10¹² cm⁻²).",
+      "evidence": {
+        "quote": "Data in panel b is the same as in Fig. 2f. Data in panel c is the same as in Fig. 2e.",
+        "page": 13,
+        "location": "Fig. E2 caption"
+      },
+      "effort": "text",
+      "fix": "Correct the figure reference and confirm the 6L reference density.",
+      "fix_scoped": null,
+      "edit_scoped": null,
+      "runs": ["r1", "r2"]
+    },
+    {
+      "tier": "C",
+      "rank": 21,
+      "topic": "consistency",
+      "claim": "Ramp time units",
+      "claim_id": 0,
+      "headline": "Ramp time given in μs in Methods, ms in Fig. E7",
+      "issue": "The Fig. 3e ramp time is τ = 1472 μs in the Methods, whereas Fig. E7 uses τ in ms (1470 ms).",
+      "evidence": {
+        "quote": "To stabilize, we slowly ramp the gate voltage from the reference to the point over some time constant",
+        "page": 11,
+        "location": "Methods; Fig. E7"
+      },
+      "effort": "text",
+      "fix": "Check the units.",
+      "fix_scoped": null,
+      "edit_scoped": null,
+      "runs": ["r2"]
+    },
+    {
+      "tier": "C",
+      "rank": 22,
+      "topic": "consistency",
+      "claim": "Fig. 3 reference points",
+      "claim_id": 4,
+      "headline": "Fig. 3d and 3e,f use different reference points",
+      "issue": "Panel d and panels e,f use different reference points, so the zero of ΔB differs between panels.",
+      "evidence": {
+        "quote": "This protocol ensures that both (e) and (f) have the same reference point but are initialized in different ways.",
+        "page": 10,
+        "location": "Fig. 3d–f; Methods"
+      },
+      "effort": "text",
+      "fix": "Note the different reference points wherever magnitudes are compared.",
+      "fix_scoped": null,
+      "edit_scoped": null,
+      "runs": ["r1"]
+    },
+    {
+      "tier": "C",
+      "rank": 23,
+      "topic": "consistency",
+      "claim": "Fig. 4 caption and Methods",
+      "claim_id": 0,
+      "headline": "Fig. 4b location unnamed; δV_BG description inconsistent",
+      "issue": "The panel b caption does not name the location, and the Methods note on panels a–b (δV_BG = +2 V) conflicts with the text's statement that panels a–d use a large δV_BG.",
+      "evidence": {
+        "quote": "The same as panel a at a different location over the device.",
+        "page": 6,
+        "location": "Fig. 4b; Methods"
+      },
+      "effort": "text",
+      "fix": "Name the location of panel b and reconcile the δV_BG statements.",
+      "fix_scoped": null,
+      "edit_scoped": null,
+      "runs": ["r3"]
+    },
+    {
+      "tier": "C",
+      "rank": 24,
+      "topic": "other",
+      "claim": "Units of magnetization",
+      "claim_id": 1,
+      "headline": "Figures use μB·10¹² cm⁻² while text uses per carrier",
+      "issue": "Figs. 1c–d and 1h give M in μB·10¹² cm⁻² while the text discusses μB per carrier, making the theory comparison hard to check.",
+      "evidence": {
+        "quote": "with maximal bulk magnetization of order 10 Bohr magnetons per electron (Fig. E2).",
+        "page": 2,
+        "location": "Fig. 1c–d, Fig. 1h"
+      },
+      "effort": "existing_data",
+      "fix": "Add a per-carrier axis or state the conversion.",
+      "fix_scoped": null,
+      "edit_scoped": null,
+      "runs": ["r2"]
+    },
+    {
+      "tier": "C",
+      "rank": 25,
+      "topic": "theory",
+      "claim": "Theory calculations",
+      "claim_id": 1,
+      "headline": "Theory parameters, convergence and sign convention missing",
+      "issue": "The D and layer-resolved potential for Fig. E1h–l, the k-space cutoff for thinner layers, convergence in N_k and k_BT, and the sign convention of m_sr relative to the applied field are not stated.",
+      "evidence": {
+        "quote": "Calculated self-rotation magnetization as a function of kx and ky under the same displacement field, similar to main text Fig.1g, for most of the considered layer numbers",
+        "page": 12,
+        "location": "Fig. E1h–l; Supplementary section 5"
+      },
+      "effort": "text",
+      "fix": "State the D and potential used, the k-space cutoff, convergence with N_k and k_BT, and the sign convention of m_sr.",
+      "fix_scoped": null,
+      "edit_scoped": null,
+      "runs": ["r1"]
+    },
+    {
+      "tier": "C",
+      "rank": 26,
+      "topic": "inhomogeneity",
+      "claim": "6L inhomogeneity explanation",
+      "claim_id": 0,
+      "headline": "Strain explanation and parent-state inference for 6L lack data",
+      "issue": "The strain explanation for the inhomogeneous 6L ground state and the statement that magnetized contact domains represent the superconducting parent state are not supported by data from that device.",
+      "evidence": {
+        "quote": "suggests the magnetized domains in the contacts in Fig. E10 represent the superconducting parent state.",
+        "page": 25,
+        "location": "Supplementary section 4; Fig. E10"
+      },
+      "effort": "text",
+      "fix": "Label these clearly as speculation or back them with a strain measurement such as Raman 2D mapping or local dHvA.",
+      "fix_scoped": null,
+      "edit_scoped": null,
+      "runs": ["r1", "r3"]
+    },
+    {
+      "tier": "C",
+      "rank": 27,
+      "topic": "other",
+      "claim": "Supplement",
+      "claim_id": 0,
+      "headline": "Supplement has empty section, missing recipe, inconsistent figure names",
+      "issue": "SI section 1 has a heading and Fig. S1 but no text; section 2 refers to Fig. S3 before it is introduced and gives no recipe for choosing the n_e–D background window; the SI says 'Extended Data Fig. E10' where the main text says 'Fig. E10'.",
+      "evidence": {
+        "quote": "Below we outline the two primary protocols we take to eliminate electric field backgrounds",
+        "page": 22,
+        "location": "Supplementary sections 1–2"
+      },
+      "effort": "text",
+      "fix": "Add the missing text, give the background-window recipe and harmonize figure naming.",
+      "fix_scoped": null,
+      "edit_scoped": null,
+      "runs": ["r1", "r2", "r3"]
+    },
+    {
+      "tier": "C",
+      "rank": 28,
+      "topic": "other",
+      "claim": "Data and code availability",
+      "claim_id": 0,
+      "headline": "Data and code available only upon request",
+      "issue": "Data and code are available only upon request, so readers cannot check the calibration-dependent numbers.",
+      "evidence": {
+        "quote": "All supporting data for this paper and other findings of this study are available from the corresponding authors upon request.",
+        "page": 8,
+        "location": "Data availability"
+      },
+      "effort": "text",
+      "fix": "Deposit the processed ΔB and n_e–D maps, the fringe-field fitting code and the mean-field code.",
+      "fix_scoped": null,
+      "edit_scoped": null,
+      "runs": ["r1", "r2", "r3"]
+    }
+  ]
+}

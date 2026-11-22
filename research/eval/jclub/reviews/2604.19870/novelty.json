@@ -1,0 +1,66 @@
+{
+  "searched": "2026-11-22",
+  "sources": ["paper reference list", "web search (arXiv API returned HTTP 429 on every call)"],
+  "queries": [
+    "arXiv API: (abs:\"generalized Wigner crystal\" OR abs:\"generalized Wigner crystals\") AND (abs:melting OR abs:\"transition temperature\" OR abs:\"finite temperature\") [failed, HTTP 429]",
+    "arXiv API: (abs:\"Wigner crystal\" OR abs:\"Wigner crystals\") AND abs:\"quantum fluctuations\" AND (abs:melting OR abs:\"transition temperature\") [failed, HTTP 429]",
+    "web: quantum fluctuations increase melting temperature generalized Wigner crystal moiré arXiv",
+    "web: Matty Kim melting of generalized Wigner crystals transition metal dichalcogenide heterobilayer quantum fluctuations transition temperature",
+    "web: extended Hubbard triangular lattice charge order transition temperature increases with hopping quantum fluctuations stripe n=1/2 finite temperature",
+    "web: arXiv 2112.08624 Matty Kim melting generalized Wigner crystals abstract",
+    "web: generalized Wigner crystal thermal melting quantum Monte Carlo moiré WSe2/WS2 critical temperature hopping dependence 2025",
+    "web: quantum fluctuations raise charge-order melting temperature entropic stabilization lattice electrons finite-temperature Lanczos triangular"
+  ],
+  "coverage": {"queries": 6, "references_checked": true, "sources": ["paper reference list", "web search"]},
+  "overall": {
+    "grade": "incremental",
+    "sentence": "The closest earlier paper, the authors' own arXiv:2409.13814 (cited as [28]), already computed quantum shifts of the GWC melting temperature with the same model and Lanczos methods at n = 1/3 and 2/3; what is new here is the extension to n = 1/2 and 1/4 and the finding that the shift there is upward. The arXiv API failed, so this grade rests on the reference list and web search only and cannot be upgraded to no precedent found."
+  },
+  "assessment": [
+    {
+      "claim": "Headline (claims 2, 5): at n = 1/2 and 1/4 quantum fluctuations raise the GWC melting temperature, so quantum and thermal fluctuations can compete",
+      "grade": "incremental",
+      "closest": "2409.13814",
+      "note": "Same question (quantum shift of GWC melting Tc), system and method as the cited [28], which found a reduction at n = 1/3 and 2/3; new in the fillings and the sign. An increase of melting temperature from quantum effects is already reported for the continuum Wigner crystal ([46], 2504.04538) and pyrochlores ([47, 48]), all cited. Web search only (arXiv API failed)."
+    },
+    {
+      "claim": "Claim 3: 'To the best of our knowledge, no previous study has addressed' the classical-theory versus experiment Tc gap at other fillings; quantum effects move Tc toward experiment",
+      "grade": "incremental",
+      "closest": "2409.13814",
+      "note": "[28] addressed the gap with quantum effects at n = 1/3 and 2/3, which the paper states; no earlier work found for 1/4, 2/5, 1/2, but the arXiv searches failed, so no_precedent_found cannot be given."
+    }
+  ],
+  "positioning": "The paper extends the authors' earlier finite-temperature Lanczos study of GWC melting at n = 1/3 and 2/3 (arXiv:2409.13814, cited as [28]) to n = 1/4, 1/2 and 2/5, and reports that quantum fluctuations raise Tc at 1/2 and 1/4, with a perturbative t-squared account. Other GWC work it cites treats quantum melting of the ground state (Matty and Kim; Zhou, Sheng and Kim; Morales-Durán et al.) rather than the shift of the thermal melting temperature, and the paper cites the continuum Wigner crystal and pyrochlore results where quantum effects also raise ordering temperatures. No named prior paper contradicts a priority statement; the one item is a framing note. The arXiv API returned HTTP 429 throughout, so searches used web search and the reference list only.",
+  "closest": [
+    {"arxiv": "2409.13814", "title": "Origin and stability of generalized Wigner crystallinity in triangular moiré systems", "year": 2024, "cited_as": "[28]", "facets": {"question": true, "system": true, "method": true}, "overlap": "Same group, model and Lanczos methods; quantum shift of GWC melting Tc, but at n = 1/3 and 2/3 and found to be a reduction."},
+    {"arxiv": "2504.04538", "title": "Elementary Excitations, Melting Temperature and Correlation Energy in Wigner Crystal", "year": 2025, "cited_as": "[46]", "facets": {"question": true, "system": false, "method": false}, "overlap": "Quantum effects raising the melting temperature of a Wigner crystal, in the continuum rather than on a moiré lattice."},
+    {"arxiv": "2312.03828", "title": "Quantum Melting of Generalized Wigner Crystals in Transition Metal Dichalcogenide Moiré Systems", "year": 2023, "cited_as": "[30], [38]", "facets": {"question": false, "system": true, "method": false}, "overlap": "Same GWC system and fillings; zero-temperature quantum melting with hopping, not thermal melting temperature."},
+    {"arxiv": "2112.08624", "title": "Melting of generalized Wigner crystals in transition metal dichalcogenide heterobilayer Moiré systems", "year": 2021, "cited_as": "[24]", "facets": {"question": false, "system": true, "method": false}, "overlap": "Melting of GWCs in TMD heterobilayers via a strong-coupling approach."},
+    {"arxiv": "2210.15168", "title": "Magnetism and Quantum Melting in Moiré-Material Wigner Crystals", "year": 2022, "cited_as": "[15]", "facets": {"question": false, "system": true, "method": true}, "overlap": "Exact diagonalization of moiré Wigner crystals and their quantum melting, at zero temperature."}
+  ],
+  "issues": [
+    {
+      "tier": "C",
+      "topic": "novelty",
+      "claim": "Quantum and thermal fluctuations can be competitive, raising the melting temperature",
+      "claim_id": 2,
+      "headline": "Abstract framing implies the competition is shown here first",
+      "issue": "The abstract sets the result against a general belief, but the paper itself cites earlier cases where quantum effects raise an ordering or melting temperature: the continuum Wigner crystal (Jain and Huang, arXiv:2504.04538, [46]) and quantum pyrochlores ([47, 48]). These appear only in the conclusion, so a referee may read the abstract as overclaiming generality.",
+      "evidence": {
+        "quote": "We show that this is not always the case and that the interplay between quantum and thermal fluctuations can be competitive.",
+        "page": 1,
+        "location": "Abstract, second sentence"
+      },
+      "effort": "text",
+      "fix": "Say the competition is shown for GWCs and cite the earlier examples ([46-48]) in the introduction where the general belief is stated.",
+      "edit": {
+        "before": "We show that this is not always the case and that the interplay between quantum and thermal fluctuations can be competitive.",
+        "after": "We show that for generalized Wigner crystals this is not always the case and that, as in some other systems, the interplay between quantum and thermal fluctuations can be competitive."
+      },
+      "prior": [
+        {"arxiv": "2504.04538", "title": "Elementary Excitations, Melting Temperature and Correlation Energy in Wigner Crystal", "year": 2025, "cited_as": "[46]", "facets": {"question": true, "system": false, "method": false}, "overlap": "Quantum effects increase a Wigner crystal's melting temperature relative to the classical value."},
+        {"arxiv": "1710.02234", "title": "Quantum versus classical effects at zero and finite temperature in the quantum pyrochlore Yb2Ti2O7", "year": 2017, "cited_as": "[47]", "facets": {"question": true, "system": false, "method": false}, "overlap": "Quantum fluctuations shifting an ordering temperature upward relative to classical simulations."}
+      ]
+    }
+  ]
+}
