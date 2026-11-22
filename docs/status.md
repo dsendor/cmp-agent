@@ -22,7 +22,9 @@ out, add what you learned that the next session needs. History belongs in git, n
 - **Stage 1 corpus** (`research/corpus/`): built and checked against `EVALUATION.md` (recall
   reproduces). The reserve is split into dev2 and test2 (27 each, `split.py --split-reserve`);
   test2 is held out for the new metrics. `eval/recheck_pending.py` rechecks the pending pool
-  papers for a peer review file. `eval/jclub/selections.json` lists the Journal Club's last 12
+  papers for a peer review file: on 2026-11-22, 0 of 94 had one (the checker found the known
+  file for three control papers, on Springer and in PMC), so the pending papers most likely
+  never opted in. The reserve gets no new papers from them; new ones come from new publications. `eval/jclub/selections.json` lists the Journal Club's last 12
   months (links and DOIs only: the commentaries carry no licence); 12 papers are in scope.
   Next: Langfuse in the harness, then the stage 1 baseline on dev2.
 - **How evals run from now on** (maintainer's decision, 2026-11-22): Claude reviews and Claude
