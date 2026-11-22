@@ -5,6 +5,7 @@ From the paper:
 - `title`: the paper's title.
 - `claims`: the paper's main claims, three to six, each one sentence in plain words.
 - `summary`: two sentences on what the paper reports.
+- `strengths`: two to four things the paper does well, each one plain sentence, taken from the "Potential reasons for acceptance" sections. Read them in the individual review runs when you are given them, since a merged review drops praise. Do not add strengths of your own.
 
 From the review, one item per numbered concern, in the review's order:
 
@@ -18,7 +19,7 @@ From the review, one item per numbered concern, in the review's order:
 - `evidence`: the passage of the paper the concern is about.
   - `quote`: copied exactly, character for character, from the paper's text, 8 to 40 words. Copy prose, not equations. If the concern is about something missing, quote the sentence that makes the claim the missing item would support.
   - `page`: the page of the PDF file where the quote appears, counting the first page of the file as 1.
-  - `location`: the figure, table, equation or section, for example "Fig. 3b" or "Methods".
+  - `location`: the figure, table, equation or section, for example "Fig. 3b" or "Methods". When the concern rests on reading a figure (a trend, a value or a panel), name the figure and panel, for example "Supplementary Fig. 3c", even if the quote comes from the text.
 - `effort`: what fixing it takes: "text" (reword, add a caveat or limitation, cite, fix a label), "existing_data" (reanalysis, a new plot or panel, error bars, report fit parameters, using data the authors already have), or "new_work" (a new measurement, sample, device or calculation).
 - `fix`: what the authors should do, from the review, one to three sentences.
 - `fix_scoped`: only for tier A or B with effort "existing_data" or "new_work". The other route: how the claim could be narrowed to what the data already support, as the exact new wording of the claim's sentence. Use null otherwise.
@@ -27,4 +28,4 @@ From the review, one item per numbered concern, in the review's order:
 
 Reply with JSON only, no prose before or after:
 
-{"title": "...", "claims": ["..."], "summary": "...", "issues": [{"tier": "A", "rank": 1, "topic": "...", "claim": "...", "claim_id": 1, "headline": "...", "issue": "...", "evidence": {"quote": "...", "page": 1, "location": "..."}, "effort": "text", "fix": "...", "fix_scoped": null, "edit_scoped": null, "runs": ["r1"]}]}
+{"title": "...", "claims": ["..."], "summary": "...", "strengths": ["..."], "issues": [{"tier": "A", "rank": 1, "topic": "...", "claim": "...", "claim_id": 1, "headline": "...", "issue": "...", "evidence": {"quote": "...", "page": 1, "location": "..."}, "effort": "text", "fix": "...", "fix_scoped": null, "edit_scoped": null, "runs": ["r1"]}]}

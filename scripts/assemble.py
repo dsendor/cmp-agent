@@ -4,7 +4,7 @@
     python3 assemble.py <review-folder> --paper-id ID --mode exhaustive|standard \
         [--runs 3] [--model NAME] [--journal NAME] [--source DIR] [--arxiv ID]
 
-Reads from the folder: science.json (required), presentation.json and copy.json
+Reads from the folder: science.json (required), presentation.json, novelty.json and copy.json
 (optional). Writes review.json. Prints a summary and every problem found; exits 1
 if science.json is missing or unreadable.
 """
@@ -21,7 +21,8 @@ TIERS = {"A", "B", "C"}
 EFFORTS = {"text", "existing_data", "new_work"}
 SCIENCE_TOPICS = {"samples", "null_control", "apparatus", "heating", "calibration", "dependences", "fits",
                   "inhomogeneity", "direct_evidence", "theory", "consistency", "other"}
-PRESENTATION_TOPICS = {"overclaiming", "clarity", "context", "figures", "structure"}
+PRESENTATION_TOPICS = {"overclaiming", "clarity", "context", "figures", "structure", "novelty"}
+GRADES = {"precedent", "incremental", "no_precedent_found"}  # engine/novelty.md, step 4
 COPY_TOPICS = {"consistency", "notation", "references", "language"}
 HEDGES = re.compile(r"\b(significant\w*|demonstrat\w*|evidenc\w*|suggest\w*|consistent with|prov\w*|confirm\w*|"
                     r"establish\w*|show\w*|indicat\w*|clear\w*|unambiguous\w*|first)\b", re.I)
@@ -67,6 +68,16 @@ def evidence(item, problems, iid):
     return {"quote": (ev.get("quote") or "").strip(), "page": page, "location": ev.get("location") or ""}
 
 
+def prior_of(xs):
+    """Prior papers from the novelty lane, keeping only what the dashboard shows."""
+    out = []
+    for p in xs or []:
+        if not isinstance(p, dict) or not (p.get("arxiv") or p.get("title")):
+            continue
+        out.append({k: p.get(k) for k in ("arxiv", "title", "year", "cited_as", "facets", "overlap") if p.get(k) is not None})
+    return out
+
+
 def claim_id(item, n_claims):
     """1-based index into the paper's claims, 0 for the paper in general, None when missing or out of range."""
     c = item.get("claim_id")
@@ -103,6 +114,7 @@ def main():
     sci = load(folder, "science.json", problems, required=True)
     pres = load(folder, "presentation.json", problems) or {"issues": []}
     cop = load(folder, "copy.json", problems) or {"issues": []}
+    nov = load(folder, "novelty.json", problems) or {"issues": []}
 
     n_claims = len(sci.get("claims", []))
     issues = []
@@ -122,7 +134,10 @@ def main():
             "edit_scoped": edit_of(it.get("edit_scoped")), "edit": None,
             "risk": "high", "runs": it.get("runs") or ["r1"],
         })
-    for n, it in enumerate(pres.get("issues", []), 1):
+    # Novelty items (engine/novelty.md) join the presentation lane, after its own items.
+    for it in nov.get("issues", []):
+        it["topic"] = "novelty"
+    for n, it in enumerate(pres.get("issues", []) + nov.get("issues", []), 1):
         iid = f"P{n:02d}"
         issues.append({
             "id": iid, "lane": "presentation", "tier": it.get("tier") if it.get("tier") in TIERS else "B", "rank": n,
@@ -133,6 +148,7 @@ def main():
             "effort": it.get("effort") if it.get("effort") in EFFORTS else "text",
             "fix": it.get("fix", ""), "fix_scoped": None, "edit_scoped": None,
             "edit": edit_of(it.get("edit")), "risk": "medium", "runs": [],
+            **({"prior": prior_of(it.get("prior"))} if it.get("prior") else {}),
         })
     for n, it in enumerate(cop.get("issues", []), 1):
         iid = f"K{n:02d}"
@@ -161,6 +177,12 @@ def main():
         "model": a.model, "mode": a.mode, "runs": a.runs, "date": datetime.date.today().isoformat(),
         "target_journal": a.journal or None,
         "claims": sci.get("claims", []), "summary": sci.get("summary", ""),
+        "strengths": [x for x in sci.get("strengths", []) if isinstance(x, str) and x.strip()][:4],
+        "novelty": {"positioning": nov.get("positioning", ""), "closest": prior_of(nov.get("closest")),
+                    "searched": nov.get("searched"), "sources": nov.get("sources", []),
+                    "overall": nov.get("overall") if isinstance(nov.get("overall"), dict) and nov["overall"].get("grade") in GRADES else None,
+                    "assessment": [x for x in nov.get("assessment", []) if isinstance(x, dict) and x.get("grade") in GRADES],
+                    "coverage": nov.get("coverage")} if (folder / "novelty.json").exists() else None,
         "issues": issues,
     }
     (folder / "review.json").write_text(json.dumps(review, indent=1, ensure_ascii=False))

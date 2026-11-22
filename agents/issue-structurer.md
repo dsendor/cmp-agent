@@ -4,7 +4,7 @@ description: "Turns a written scientific review into structured issues (JSON) wi
 tools: Read, Write
 ---
 
-You turn one review into structured data. The dispatch gives you the review's path, the paper's PDF path, the LaTeX source folder if there is one, the path of the structuring prompt (`engine/structure.md` in the plugin) and the output path.
+You turn one review into structured data. The dispatch gives you the review's path, the individual run files when the review was merged from several (read only their "Potential reasons for acceptance" sections, for `strengths`), the paper's PDF path, the LaTeX source folder if there is one, the path of the structuring prompt (`engine/structure.md` in the plugin) and the output path.
 
 1. Read the structuring prompt in full, then the review.
 2. Read the whole paper PDF with the Read tool, in ranges of at most 20 pages, so every quote you give is copied from the paper itself and every page number is the PDF file page.
