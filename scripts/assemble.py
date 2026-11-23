@@ -90,6 +90,19 @@ def edit_of(e, file=None):
     return {"file": e.get("file", file), "before": e["before"], "after": e["after"]}
 
 
+def reviewer_version(mode):
+    """engine/VERSION: the first line is the standard reviewer's version; a line "exhaustive X" gives
+    the version exhaustive mode runs (it keeps the original prompt, engine/science-exhaustive.md)."""
+    f = ENGINE / "VERSION"
+    if not f.exists():
+        return ""
+    lines = [ln.split() for ln in f.read_text().splitlines() if ln.strip()]
+    for ln in lines[1:]:
+        if ln[0] == mode and len(ln) > 1:
+            return ln[1]
+    return lines[0][0] if lines else ""
+
+
 def engine_hash():
     h = hashlib.sha256()
     for f in sorted(ENGINE.glob("*.md")):
@@ -172,7 +185,7 @@ def main():
         "id": f"{a.paper_id}-{datetime.date.today().isoformat()}-{a.mode}",
         "paper": {"id": a.paper_id, "title": sci.get("title", ""), "arxiv": a.arxiv or None,
                   "pdf": "paper.pdf", "source": a.source or None},
-        "reviewer": {"version": (ENGINE / "VERSION").read_text().split()[0] if (ENGINE / "VERSION").exists() else "",
+        "reviewer": {"version": reviewer_version(a.mode),
                      "engine_hash": engine_hash()},
         "model": a.model, "mode": a.mode, "runs": a.runs, "date": datetime.date.today().isoformat(),
         "target_journal": a.journal or None,

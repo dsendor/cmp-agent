@@ -39,8 +39,8 @@ What this settled:
 
 1. **Merging independent runs is the cheapest reliable gain.** Three runs merged raise 11
    points more of the referees' concerns, in a list only 1.3 times as long as one review.
-   This plugin merges three runs of reviewer v1.0 by default. That exact combination has not
-   been measured yet.
+   The plugin's `--exhaustive` mode merges three runs of reviewer v1.0; stage 1 (below)
+   measured that combination at 55% on new papers.
 2. **Importance tiers work for triage.** The *must address* tier holds about a third of a
    review's points and two thirds of the referees' major concerns the review caught.
 3. **Order within a tier did not improve** with any variant tried. The dashboard lets you
@@ -56,7 +56,7 @@ What this settled:
 ran as Claude Code subagents, not through the API, so these numbers do not mix with the table
 above. Details: [`research/eval/stage1/README.md`](research/eval/stage1/README.md).*
 
-| Metric | Reviewer v1.0 | Candidate v1.1 (not adopted) |
+| Metric | Reviewer v1.0 (`--exhaustive`) | Reviewer v1.1 (the default) |
 |---|---|---|
 | Recall, three runs merged (dev2, 22 papers) | 55% (81% with partial matches) | |
 | Recall, one run (held-out test2, 21 papers) | 50% (75%) | 45% (73%) |
@@ -70,7 +70,8 @@ above. Details: [`research/eval/stage1/README.md`](research/eval/stage1/README.m
   draft. Its tiers rank concerns within a paper; they do not say a paper is not yet ready.
 - **v1.1** makes the tier absolute ("a referee at a top-tier journal would require this") and
   adds a verdict. It brings accepted versions near zero at a cost of a few points of recall.
-  The verdict line itself is not yet reliable.
+  The verdict line itself is not yet reliable. **v1.1 is the default since plugin 0.7.0**;
+  `--exhaustive` runs v1.0 three times and merges, for the highest recall.
 - **Inferring the referees' requests** from what changed between versions, with the reports
   hidden: 77% of inferred requests are real, and 64% of real concerns are found (80% of those
   answered with new data). This is what the revision comparison (`/referee-preview:compare`)

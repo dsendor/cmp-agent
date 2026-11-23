@@ -5,6 +5,7 @@
     python3 research/eval/langfuse_sync.py datasets          # create or update the datasets
     python3 research/eval/langfuse_sync.py baselines         # recall of the API-run arms on dev30
     python3 research/eval/langfuse_sync.py reviews DIR NAME  # a folder of review folders as one run
+    python3 research/eval/langfuse_sync.py stage1            # stage 1 datasets, runs and inference test
 
 Keys come from the environment (LANGFUSE_PUBLIC_KEY, LANGFUSE_SECRET_KEY, LANGFUSE_BASE_URL),
 or from `.env` in this checkout or the main checkout (gitignored; names in `.env.example`).
@@ -174,13 +175,16 @@ def log_experiment(lf, dataset_name, run_name, description, results):
         return results[item.id]
 
     def scores(*, input, output, expected_output, metadata, **kwargs):
-        return [Evaluation(name=k, value=v) for k, v in output["scores"].items()]
+        return [Evaluation(name=k, value=v, data_type="CATEGORICAL" if isinstance(v, str) else None)
+                for k, v in output["scores"].items()]
 
     def means(*, item_results, **kwargs):
         names = sorted({k for r in results.values() for k in r["scores"]})
         out = []
         for n in names:
-            vals = [r["scores"][n] for r in results.values() if n in r["scores"]]
+            vals = [r["scores"][n] for r in results.values() if isinstance(r["scores"].get(n), (int, float))]
+            if not vals:
+                continue
             out.append(Evaluation(name=f"mean_{n}", value=sum(vals) / len(vals)))
         return out
 
@@ -222,6 +226,107 @@ def reviews(lf, folder, run_name, dataset_name, description):
     log_experiment(lf, dataset_name, run_name, description, results)
 
 
+STAGE1_RUNS = [  # (set, arm folder, review file, run name, description)
+    ("dev2", "v1.0", "science-review.md", "stage1-v1.0-exhaustive", "Reviewer v1.0, three runs merged."),
+    ("dev2", "v1.0", "runs/r1.md", "stage1-v1.0-r1", "Reviewer v1.0, one run (the first exhaustive run)."),
+    ("dev2", "v1.0", "runs/r2.md", "stage1-v1.0-r2", "Reviewer v1.0, a second single run: run-to-run noise."),
+    ("dev2", "v1.1", "runs/r1.md", "stage1-v1.1", "Reviewer v1.1 (absolute tier A, verdict), one run."),
+    ("test2", "t1.0", "runs/r1.md", "stage1-test2-v1.0", "Held out. Reviewer v1.0, one run."),
+    ("test2", "t1.1", "runs/r1.md", "stage1-test2-v1.1", "Held out, run once after v1.1 was fixed. One run."),
+]
+
+
+def stage1(lf):
+    """Stage 1 (research/eval/stage1/README.md): datasets stage1-dev2 and stage1-test2 with one item per
+    paper and version (v1, accepted), every reviewer run as an experiment with tier counts, verdict,
+    recall and tier A precision (Gemini judge), and the inference test as one experiment.
+    Langfuse's run means average papers (and mix v1 with accepted items for the tier counts);
+    the pooled figures in stage1/README.md come from stage1/score.py."""
+    sys.path.insert(0, str(HERE / "stage1"))
+    import score as s1
+    split = json.loads((REF / "split.json").read_text())
+    meta = paper_meta()
+    manifest = json.loads((HERE / "stage1" / "manifest.json").read_text())
+    runs = HERE / "stage1" / "runs"
+    for st in ("dev2", "test2"):
+        name = f"stage1-{st}"
+        retry(lf.create_dataset, name=name, description=(
+            f"Stage 1, {st}: each paper's arXiv v1 and, where available, the version the journal accepted. "
+            "Mirrored from research/eval/stage1; AI-generated evaluation."))
+        n = 0
+        for aid in split[st]:
+            m = meta.get(aid, {})
+            for ver in ("v1", "accepted"):
+                if not any((runs / arm / aid / ver).exists() for arm in ("v1.0", "v1.1", "t1.0", "t1.1")):
+                    continue
+                mf = manifest.get(aid) or {}
+                src = mf.get("accepted_source") if ver == "accepted" else "arXiv v1"
+                retry(lf.create_dataset_item, dataset_name=name, id=f"{name}--{aid}--{ver}",
+                      input={"arxiv_id": aid, "version": ver, "title": m.get("title"), "journal": m.get("journal"),
+                             "source": src, "doi": mf.get("doi")},
+                      expected_output=referee_summary(aid) if ver == "v1" else {"accepted": True},
+                      metadata={"accepted": m.get("accepted")})
+                n += 1
+        print(f"{name}: {n} items")
+    lf.flush()
+
+    for st, arm, review, run_name, desc in STAGE1_RUNS:
+        results = {}
+        for aid in split[st]:
+            if not (runs / arm / aid).exists():
+                continue
+            r = s1.paper(arm, aid, review)
+            for ver in ("v1", "accepted"):
+                if ver not in r:
+                    continue
+                c = r[ver]
+                sc = {"must_address": c["A"], "should_address": c["B"], "minor": c["C"],
+                      "items": c["A"] + c["B"] + c["C"]}
+                if c.get("verdict"):
+                    sc["verdict"] = c["verdict"]
+                if ver == "v1" and r["matches_v1"] == "yes" and r.get("eligible"):
+                    sc["recall_strict"] = r["raised"] / r["eligible"]
+                    sc["recall_lenient"] = r["raised_or_partly"] / r["eligible"]
+                    if r.get("A_judged"):
+                        sc["a_precision"] = r["A_matched"] / r["A_judged"]
+                f = runs / arm / aid / ver / review
+                results[f"stage1-{st}--{aid}--{ver}"] = {
+                    "output": {"arxiv_id": aid, "version": ver, "tiers": {t: c[t] for t in "ABC"},
+                               "verdict": c.get("verdict"), "matches_v1": r["matches_v1"],
+                               "review": f.read_text()[:20000], "source": str(f.relative_to(ROOT))},
+                    "scores": sc}
+        log_experiment(lf, f"stage1-{st}", run_name, desc + " Claude Code subagents (Claude Opus 5.5); "
+                       "Gemini judge. AI-generated.", results)
+
+    import infer_judge as ij
+    results = {}
+    for d in sorted((HERE / "stage1" / "inference").glob("*/judge.gemini.json")):
+        aid = d.parent.name
+        ref, cs = ij.concerns(aid)
+        if ref.get("reviewed_matches_v1") != "yes":
+            continue
+        j = json.loads(d.read_text())
+        reqs = j.get("requests", [])
+        hit = [q for q in reqs if q.get("matches") or q.get("partly")]
+        cm = {c["id"]: c.get("matched") for c in j.get("concerns", [])}
+        found = sum(cm.get(c["id"]) in ("yes", "partly") for c in cs)
+        walk = {}
+        wf = d.parent / "walkthrough.json"
+        if wf.exists():
+            walk = {c["id"]: c.get("verdict") for c in json.loads(wf.read_text()).get("concerns", [])}
+        judged = [walk[q["id"]] for q in hit if walk.get(q["id"])]
+        sc = {"inferred": len(reqs), "precision": len(hit) / len(reqs) if reqs else 0.0,
+              "recall": found / len(cs) if cs else 0.0}
+        if judged:
+            sc["response_agreement"] = sum(v in ("addressed", "partly") for v in judged) / len(judged)
+        results[f"stage1-dev2--{aid}--accepted"] = {
+            "output": {"arxiv_id": aid, "inferred": json.loads((d.parent / "inferred.json").read_text()),
+                       "source": str(d.parent.relative_to(ROOT))}, "scores": sc}
+    log_experiment(lf, "stage1-dev2", "stage1-inference", "Referee requests inferred from v1 vs the accepted "
+                   "version (engine/compare.md steps 1 and 3), reports hidden; Gemini matched them to the real "
+                   "concerns. AI-generated.", results)
+
+
 def baselines(lf):
     """Per-paper recall of the API-run arms on dev30, from the corpus (Gemini judge), one experiment per arm."""
     import duckdb
@@ -253,7 +358,7 @@ def baselines(lf):
 
 def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument("command", choices=["datasets", "baselines", "reviews"])
+    ap.add_argument("command", choices=["datasets", "baselines", "reviews", "stage1"])
     ap.add_argument("folder", nargs="?")
     ap.add_argument("run_name", nargs="?")
     ap.add_argument("--dataset")
@@ -264,6 +369,8 @@ def main():
         datasets(lf)
     elif a.command == "baselines":
         baselines(lf)
+    elif a.command == "stage1":
+        stage1(lf)
     else:
         if not (a.folder and a.run_name and a.dataset):
             sys.exit("reviews needs FOLDER RUN_NAME --dataset NAME")

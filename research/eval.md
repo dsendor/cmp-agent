@@ -296,6 +296,12 @@ extracted by Claude Code subagents (921 first-round concerns), accepted versions
 - **Inference test** (compare.md steps 1 and 3, reports hidden, 13 papers): precision 77%,
   recall 64% (80% of concerns answered with new data), agreement with the referees' acceptance
   81% (the rest "unclear").
+- **Adopted (2026-11-22, the maintainer's decision):** `engine/science.md` is now v1.1 and the
+  default (standard mode, one run). Exhaustive mode (`--exhaustive`) keeps the original prompt
+  as `engine/science-exhaustive.md` with `merge.md`, three runs merged (v1.0, the 55% recall
+  baseline above). `engine/VERSION` names both (`1.1`, `exhaustive 1.0`); `assemble.py` records
+  the one a review used. v1.1's merge variant (`eval/stage1/engine-v1.1/merge.md`) is not used.
+  Everything in `eval/stage1/` is mirrored in Langfuse (`langfuse_sync.py stage1`).
 - **What did not work:** headless `claude -p` runs (`eval/stage1/drive.py`) failed on an expired
   CLI sign-in, so all 300-odd runs went through in-session subagents, 20 at a time. The v1.1
   verdict line says "major revision" for 8 of 15 accepted test2 versions.

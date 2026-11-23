@@ -18,7 +18,7 @@ From the user's message, find:
 - **The paper.** A PDF path, a LaTeX source folder (or a `.zip` of one), or an arXiv id. If the user gives a PDF or source of a paper that is on arXiv, find its arXiv id (from the PDF's first page or the user) and pass it to `assemble.py` with `--arxiv`: the dashboard then loads the paper from arXiv and works when sent to someone as a single file. A source folder with no compiled PDF: ask the user for the PDF, or compile it if `latexmk` is available (`latexmk -pdf -interaction=nonstopmode main.tex`). An arXiv id: download `https://arxiv.org/pdf/<id>` with `curl -L`. Word (`.docx`) is not supported yet: say so, and offer to work from a PDF export.
 - **Supplementary information**, if there is a separate file. Ask once if the paper refers to a supplement you were not given; go on without it if the user has none.
 - **Target journal**, if named. Optional.
-- **Mode.** Exhaustive (three independent science reviews, merged) is the default. Standard (one review) when the user asks for quick, standard or one run.
+- **Mode.** Standard (one science review with `engine/science.md`, reviewer v1.1) is the default. Exhaustive when the user passes `--exhaustive` or asks for an exhaustive, thorough or maximum-recall review: three independent reviews with the original prompt `engine/science-exhaustive.md` (reviewer v1.0), merged. Exhaustive raises more of the concerns real referees raise (55% against about 45% in our measurements) but its *must address* tier is relative, not absolute: it ranks concerns within the paper and does not fall to zero on a paper that is ready, so it cannot say whether a paper is ready. Older wording: "quick" means standard.
 
 If there is no paper at all, ask for one and stop.
 
@@ -29,14 +29,14 @@ Paths below use `${CLAUDE_PLUGIN_ROOT}` for the plugin's own folder.
 1. Make the folder `referee-preview/<paper-stem>-<YYYY-MM-DD>/` next to the paper (for an arXiv id, under the current directory). Copy the PDF in as `paper.pdf` and the supplement as `si.pdf`.
 2. Run `python3 ${CLAUDE_PLUGIN_ROOT}/scripts/paper_text.py <folder>/paper.pdf`. If it exits 2 (no `pdftotext`), go on; quotes will show as unchecked, and tell the user `poppler` fixes that.
 3. Read `~/.referee-preview/my-style.md` if it exists: it holds the user's house style and standing rules. If it does not exist, create `~/.referee-preview/` with an empty `my-style.md` and a `history/` folder, and tell the user it is there.
-4. Tell the user, in two lines: the mode, that a review takes roughly 10 to 25 minutes in exhaustive mode and 5 to 10 in standard, and that it uses their Claude Code plan's usage.
+4. Tell the user, in two lines: the mode, that a review takes roughly 5 to 10 minutes in standard mode and 10 to 25 in exhaustive, and that it uses their Claude Code plan's usage. In standard mode, add that `--exhaustive` finds more concerns at about three times the usage.
 
 ## 2. Science lane
 
-Dispatch `science-reviewer` subagents, **all in one message so they run in parallel**: three in exhaustive mode (`r1`, `r2`, `r3`), one in standard. Each dispatch gives:
+Dispatch `science-reviewer` subagents, **all in one message so they run in parallel**: one in standard mode, three in exhaustive (`r1`, `r2`, `r3`). Each dispatch gives:
 
 - the paper path and the supplement path (or "none");
-- the review prompt: `${CLAUDE_PLUGIN_ROOT}/engine/science.md`;
+- the review prompt: `${CLAUDE_PLUGIN_ROOT}/engine/science.md` in standard mode, `${CLAUDE_PLUGIN_ROOT}/engine/science-exhaustive.md` in exhaustive;
 - the output path: `<folder>/runs/r<k>.md`.
 
 Never pass one run's review to another; the runs must be independent. In the same message, dispatch the `copy-checker` (section 3), since it does not depend on the science lane.
@@ -44,7 +44,7 @@ Never pass one run's review to another; the runs must be independent. In the sam
 When the runs are back:
 
 - **Exhaustive:** dispatch `review-merger` with the three run paths, the merge prompt `${CLAUDE_PLUGIN_ROOT}/engine/merge.md` and the output `<folder>/science-review.md`.
-- **Standard:** copy `runs/r1.md` to `science-review.md`.
+- **Standard:** copy `runs/r1.md` to `science-review.md`. The review ends with a verdict line (ready, minor or major revision). It is not yet reliable (it said "major revision" for about half the accepted papers we tested), so do not report it to the user; the number of *must address* items is the better signal.
 
 A run that failed: rerun it once. If it fails again, merge the runs you have and record the number in step 5.
 
