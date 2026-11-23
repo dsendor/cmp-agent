@@ -12,7 +12,7 @@ journal accepted them. That version is the accepted text, and arXiv allows using
 21 would need the journal's PDF. Each version was reviewed by reviewer v1.0 in exhaustive mode:
 three independent runs merged (`engine/science.md`, `engine/merge.md`), as Claude Code
 subagents (Claude Opus 5.5). Tier counts come from the merged review (`science-review.md`). The
-runs are in `pilot/<arXiv id>/<v1|accepted>/`; the PDFs are not committed.
+runs are in `runs/v1.0/<arXiv id>/<v1|accepted>/`; the PDFs are not committed.
 
 | Paper | Journal | v1 must / should / minor | Accepted must / should / minor |
 |---|---|---|---|

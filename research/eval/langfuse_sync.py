@@ -18,7 +18,7 @@ research/ and the corpus (research/corpus/) stay the source of truth. Dataset it
 `novelty.json`) and logs one experiment item per folder, with scores: must_address,
 should_address, minor, items, strengths and, when present, novelty_must / novelty_should /
 novelty_minor. A folder is matched to a dataset item by its arXiv id, and by version when the
-folder is named `v1` or `accepted` (research/eval/stage1/pilot/<id>/<version>/).
+folder is named `v1` or `accepted` (research/eval/stage1/runs/<engine>/<id>/<version>/).
 """
 import argparse
 import json
