@@ -91,6 +91,29 @@ between those two numbers; it has not been adopted (`engine/` is unchanged).
 direction) but also for 8 of 15 accepted versions. The tier A count separates the versions
 better than the verdict line does.
 
+### Three v1.1 runs merged (dev2)
+
+The same 44 dev2 folders, with two more v1.1 runs each (`runs/r2.md`, `runs/r3.md`) and a merge
+with `engine-v1.1/merge.md` (absolute tier A: an item is A only if a run put it there and the
+merger agrees a referee would require it). r2, r3 and the merge ran headless (`drive.py`,
+`claude -p`, Claude Opus 5.5, 2026-11-22); r1 is the subagent run above.
+
+| dev2 | v1.0 × 3 merged | **v1.1 × 3 merged** | v1.1 one run | v1.0 one run |
+|---|---|---|---|---|
+| Recall, strict | 54.9% | **50.0%** | 42.9% | 45.7% |
+| Recall, with partial matches | 80.7% | **75.0%** | 66.5% | 73.3% |
+| Tier A precision (any match) | 80.4% | 78.8% | 83.3% | 82.1% |
+| *Must address* per first version (the 17 paired) | 4.59 | 3.06 | 2.18 | 3.53 |
+| *Must address* per accepted version | 4.53 | **1.94** | 1.29 | 3.29 |
+| Accepted versions with none | 0/17 | 2/17 | 5/17 | 0/17 |
+| Verdict "major revision" on accepted versions | | 15/17 | 12/17 | |
+
+**Reading.** Merging three v1.1 runs gains 7 points of recall over one run, as merging did for
+v1.0 (9 points), and ends 5 points below v1.0 merged. Its *must address* tier still separates
+first from accepted versions (3.1 against 1.9, the largest gap of the four), but the merge keeps
+any A item one run raised, so accepted versions get more A items than a single v1.1 run and fewer
+reach zero. The verdict line gets worse. Not tried on test2, and dev2 is where v1.1 was written.
+
 ### Inference test (`inference/`, `infer_judge.py`)
 
 For the 13 dev2 papers with an accepted version and a matching v1, a subagent ran steps 1 and 3

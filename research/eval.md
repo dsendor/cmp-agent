@@ -302,6 +302,13 @@ extracted by Claude Code subagents (921 first-round concerns), accepted versions
   baseline above). `engine/VERSION` names both (`1.1`, `exhaustive 1.0`); `assemble.py` records
   the one a review used. v1.1's merge variant (`eval/stage1/engine-v1.1/merge.md`) is not used.
   Everything in `eval/stage1/` is mirrored in Langfuse (`langfuse_sync.py stage1`).
+- **v1.1 × 3 merged** (dev2, 2026-11-22; r2, r3 and merges headless through `drive.py`, the
+  first batch since the CLI sign-in was fixed: 86 runs and 44 merges, no failures): recall 50.0%
+  strict / 75.0% lenient (v1.0 × 3: 54.9 / 80.7; v1.1 × 1: 42.9 / 66.5); *must address* 3.06 per
+  first version and 1.94 per accepted (v1.0 × 3: 4.59 / 4.53; v1.1 × 1: 2.18 / 1.29); 2 of 17
+  accepted versions at zero. The merge adds back A items any single run raised. Not adopted;
+  `--exhaustive` stays v1.0. A merge that requires two runs to agree on A is the obvious next
+  variant (re-merge only, no new reviews).
 - **What did not work:** headless `claude -p` runs (`eval/stage1/drive.py`) failed on an expired
   CLI sign-in, so all 300-odd runs went through in-session subagents, 20 at a time. The v1.1
   verdict line says "major revision" for 8 of 15 accepted test2 versions.

@@ -231,12 +231,14 @@ STAGE1_RUNS = [  # (set, arm folder, review file, run name, description)
     ("dev2", "v1.0", "runs/r1.md", "stage1-v1.0-r1", "Reviewer v1.0, one run (the first exhaustive run)."),
     ("dev2", "v1.0", "runs/r2.md", "stage1-v1.0-r2", "Reviewer v1.0, a second single run: run-to-run noise."),
     ("dev2", "v1.1", "runs/r1.md", "stage1-v1.1", "Reviewer v1.1 (absolute tier A, verdict), one run."),
+    ("dev2", "v1.1", "science-review.md", "stage1-v1.1-merged",
+     "Reviewer v1.1, three runs merged with the v1.1 merge prompt (r2, r3 and the merge headless via claude -p)."),
     ("test2", "t1.0", "runs/r1.md", "stage1-test2-v1.0", "Held out. Reviewer v1.0, one run."),
     ("test2", "t1.1", "runs/r1.md", "stage1-test2-v1.1", "Held out, run once after v1.1 was fixed. One run."),
 ]
 
 
-def stage1(lf):
+def stage1(lf, only=None):
     """Stage 1 (research/eval/stage1/README.md): datasets stage1-dev2 and stage1-test2 with one item per
     paper and version (v1, accepted), every reviewer run as an experiment with tier counts, verdict,
     recall and tier A precision (Gemini judge), and the inference test as one experiment.
@@ -271,6 +273,8 @@ def stage1(lf):
     lf.flush()
 
     for st, arm, review, run_name, desc in STAGE1_RUNS:
+        if only and run_name not in only:
+            continue
         results = {}
         for aid in split[st]:
             if not (runs / arm / aid).exists():
@@ -298,6 +302,8 @@ def stage1(lf):
         log_experiment(lf, f"stage1-{st}", run_name, desc + " Claude Code subagents (Claude Opus 5.5); "
                        "Gemini judge. AI-generated.", results)
 
+    if only and "stage1-inference" not in only:
+        return
     import infer_judge as ij
     results = {}
     for d in sorted((HERE / "stage1" / "inference").glob("*/judge.gemini.json")):
@@ -363,6 +369,7 @@ def main():
     ap.add_argument("run_name", nargs="?")
     ap.add_argument("--dataset")
     ap.add_argument("--description", default="")
+    ap.add_argument("--only", nargs="*", help="stage1: log only these runs (names in STAGE1_RUNS, or stage1-inference)")
     a = ap.parse_args()
     lf = client()
     if a.command == "datasets":
@@ -370,7 +377,7 @@ def main():
     elif a.command == "baselines":
         baselines(lf)
     elif a.command == "stage1":
-        stage1(lf)
+        stage1(lf, a.only)
     else:
         if not (a.folder and a.run_name and a.dataset):
             sys.exit("reviews needs FOLDER RUN_NAME --dataset NAME")
