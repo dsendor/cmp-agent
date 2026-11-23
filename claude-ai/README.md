@@ -15,8 +15,12 @@ the ordinary Claude app or website. Everything it produces is AI-generated.
    settings.
 3. **Upload it as a plugin.** Go to the **Plugins** page (from **Settings > Plugins**, click
    **Browse plugins**). Click **Add** at the top right, then **Upload plugin**, and choose the
-   zip. A preview shows **referee-preview** and its description; click **Upload**. It appears
-   under **Your plugins** as **Referee preview**, private to your account.
+   zip, then click **Upload**. It appears under **Your plugins** as **Referee preview
+   (claude.ai)**, private to your account.
+
+If you installed an earlier version and it shows as **Referee preview**, remove that one first
+(its **...** menu on the Plugins page). If an upload says the zip "must contain a
+.claude-plugin/plugin.json", download the zip again: the current one has it.
 
 If you don't see Plugins or the upload option, your plan or organization may not allow custom
 plugins yet.
