@@ -39,8 +39,8 @@ What this settled:
 
 1. **Merging independent runs is the cheapest reliable gain.** Three runs merged raise 11
    points more of the referees' concerns, in a list only 1.3 times as long as one review.
-   This plugin merges three runs of reviewer v1.0 by default. That exact combination has not
-   been measured yet.
+   The plugin's `--exhaustive` mode merges three runs of reviewer v1.0; stage 1 (below)
+   measured that combination at 55% on new papers.
 2. **Importance tiers work for triage.** The *must address* tier holds about a third of a
    review's points and two thirds of the referees' major concerns the review caught.
 3. **Order within a tier did not improve** with any variant tried. The dashboard lets you
@@ -50,6 +50,33 @@ What this settled:
    mimics a topological signal) raised far fewer concerns than the plain prompt. Reviewer
    v1.0 keeps the general review and adds the condensed matter checklist as a last pass.
 
+## Stage 1: accepted versions, tier precision and inference (November 2026)
+
+*Measured 2026-11-22 on 54 more papers, 32 of them with the version the journal accepted. Reviews
+ran as Claude Code subagents, not through the API, so these numbers do not mix with the table
+above. Details: [`research/eval/stage1/README.md`](research/eval/stage1/README.md).*
+
+| Metric | Reviewer v1.0 (`--exhaustive`) | Reviewer v1.1 (the default) |
+|---|---|---|
+| Recall, three runs merged (dev2, 22 papers) | 55% (81% with partial matches) | |
+| Recall, one run (held-out test2, 21 papers) | 50% (75%) | 45% (73%) |
+| *Must address* items matching a real referee concern (test2) | 86% | 82% |
+| ***Must address* items on the accepted version** (test2, 15 papers) | **3.3** | **0.7** |
+| … on the first version of the same papers | 3.9 | 2.3 |
+| Accepted versions with no *must address* item | 0 of 15 | 7 of 15 |
+
+- **What "must address" means today.** v1.0's *must address* items are accurate (most match a
+  real referee concern), but it raises as many on a paper the journal accepted as on the first
+  draft. Its tiers rank concerns within a paper; they do not say a paper is not yet ready.
+- **v1.1** makes the tier absolute ("a referee at a top-tier journal would require this") and
+  adds a verdict. It brings accepted versions near zero at a cost of a few points of recall.
+  The verdict line itself is not yet reliable. **v1.1 is the default since plugin 0.7.0**;
+  `--exhaustive` runs v1.0 three times and merges, for the highest recall.
+- **Inferring the referees' requests** from what changed between versions, with the reports
+  hidden: 77% of inferred requests are real, and 64% of real concerns are found (80% of those
+  answered with new data). This is what the revision comparison (`/referee-preview:compare`)
+  rests on.
+
 ## What the numbers do not tell you
 
 - **Usefulness.** Recall only counts concerns the referees raised. About four of five review
@@ -58,8 +85,9 @@ What this settled:
   measured.
 - **The held-out papers.** The prompt was developed on the 30 development papers, so its gain
   could be smaller on new ones. The 22 test papers will be run once, with the reviewer frozen.
-- **Clean papers.** Too few papers in the set were accepted without major revision to measure
-  how often the tool raises false alarms on a sound paper.
+- **Clean papers.** Accepted versions (stage 1, above) are the closest proxy for a sound
+  paper; whether the *must address* items they still get are real gaps or false alarms needs a
+  physicist.
 - **Other models and settings.** Measured with Claude Opus 5.5 at high effort through the API.
   Running inside Claude Code with another model is not measured.
 - **Presentation and copy lanes** are newer and not yet measured.

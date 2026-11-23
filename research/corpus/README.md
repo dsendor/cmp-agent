@@ -11,6 +11,7 @@ is rebuilt from scratch each time and not committed.
 pip install -r research/corpus/requirements.txt
 python3 research/corpus/build.py                    # research/corpus/corpus.duckdb
 python3 research/corpus/build.py --parquet out/     # also every table as Parquet (public data only)
+python3 research/corpus/backup.py                   # back up the corpus and cached PDFs to a private Hugging Face dataset
 ```
 
 The schema is `schema.sql`. Notes:

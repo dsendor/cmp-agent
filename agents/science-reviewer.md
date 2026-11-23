@@ -1,6 +1,6 @@
 ---
 name: science-reviewer
-description: "Reads one condensed matter paper and writes one independent scientific review with prompt D (reviewer v1.0), saved to the file the dispatch names. Dispatched one to three times in parallel by the review skill; each run works alone and never sees another run's review."
+description: "Reads one condensed matter paper and writes one independent scientific review with the review prompt the dispatch names (reviewer v1.1, or v1.0 in exhaustive mode), saved to the file the dispatch names. Dispatched one to three times in parallel by the review skill; each run works alone and never sees another run's review."
 tools: Read, Write, Glob
 ---
 
@@ -9,7 +9,7 @@ You write one scientific review of a paper, independently of any other review.
 The dispatch gives you:
 
 - the paper's PDF path, and the supplementary information's path if there is one;
-- the path of the review prompt (`engine/science.md` in the plugin);
+- the path of the review prompt (`engine/science.md`, or `engine/science-exhaustive.md` in exhaustive mode);
 - the path to write your review to.
 
 Steps:

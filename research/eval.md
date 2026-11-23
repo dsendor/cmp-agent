@@ -279,6 +279,33 @@ outputs from runs cut off by the limit were deleted.
 reviews raised many issues no referee did, which this test cannot score. One model
 throughout, as assistant, plain reviewer, extractor and judge.
 
+### 12. Stage 1: accepted versions, tier precision, inference (2026-11-22)
+
+Full write-up: `eval/stage1/README.md`. On dev2 and test2 (27 papers each), referee concerns
+extracted by Claude Code subagents (921 first-round concerns), accepted versions for 32 papers
+(arXiv post-acceptance versions and nature.com PDFs), Gemini judge with `judge_v2.md`.
+
+- **Baseline (v1.0, exhaustive, dev2):** recall 54.9% (80.7% with partial matches), tier A
+  precision 80.4%, *must address* items 4.33 per first version and 4.53 per accepted version;
+  no accepted version got zero.
+- **Candidate v1.1** (`eval/stage1/engine-v1.1/`: absolute tier A, a verdict line), one run
+  each against v1.0's first run: accepted-version A rate 3.29 → 1.29 (dev2) and 3.27 → 0.67
+  (test2, run once); recall −2.8 / −5.8 points strict, −6.8 / −2.1 with partial matches; two
+  v1.0 runs differ by 1.7 / 4.8 points. Tier A precision unchanged (82–86%). Not adopted:
+  `engine/` and `VERSION` are unchanged pending the maintainer's call on the recall cost.
+- **Inference test** (compare.md steps 1 and 3, reports hidden, 13 papers): precision 77%,
+  recall 64% (80% of concerns answered with new data), agreement with the referees' acceptance
+  81% (the rest "unclear").
+- **Adopted (2026-11-22, the maintainer's decision):** `engine/science.md` is now v1.1 and the
+  default (standard mode, one run). Exhaustive mode (`--exhaustive`) keeps the original prompt
+  as `engine/science-exhaustive.md` with `merge.md`, three runs merged (v1.0, the 55% recall
+  baseline above). `engine/VERSION` names both (`1.1`, `exhaustive 1.0`); `assemble.py` records
+  the one a review used. v1.1's merge variant (`eval/stage1/engine-v1.1/merge.md`) is not used.
+  Everything in `eval/stage1/` is mirrored in Langfuse (`langfuse_sync.py stage1`).
+- **What did not work:** headless `claude -p` runs (`eval/stage1/drive.py`) failed on an expired
+  CLI sign-in, so all 300-odd runs went through in-session subagents, 20 at a time. The v1.1
+  verdict line says "major revision" for 8 of 15 accepted test2 versions.
+
 ## Eval plan (from 2026-10-27)
 
 The plan (Notion, "Claude instructions: data-driven eval plan for the CMP reviewer") aims

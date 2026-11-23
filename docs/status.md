@@ -26,7 +26,25 @@ out, add what you learned that the next session needs. History belongs in git, n
   file for three control papers, on Springer and in PMC), so the pending papers most likely
   never opted in. The reserve gets no new papers from them; new ones come from new publications. `eval/jclub/selections.json` lists the Journal Club's last 12
   months (links and DOIs only: the commentaries carry no licence); 12 papers are in scope.
-  Next: Langfuse in the harness, then the stage 1 baseline on dev2.
+- **Stage 1 measured** (`research/eval/stage1/README.md`, `EVALUATION.md`, 2026-11-22): every
+  stage 1 metric on dev2 and test2 (54 papers, 32 with an accepted version). v1.0's *must
+  address* items are accurate (80-86% match a referee concern) but as many on accepted
+  versions as on first drafts (test2 one run: 3.3 vs 3.9). The candidate v1.1
+  (`research/eval/stage1/engine-v1.1/`, absolute tier A plus a verdict) cuts accepted versions
+  to 0.7 (7 of 15 at zero) and loses a few points of recall (test2 strict 50% → 45%).
+  **Adopted** (plugin 0.7.0): v1.1 is `engine/science.md` and the default; `--exhaustive` runs
+  the original prompt (`engine/science-exhaustive.md`) three times and merges. The verdict line
+  is not yet reliable, so the skill does not report it. Inference with reports hidden: 77%
+  precision, 64% recall. Logged to Langfuse (`langfuse_sync.py stage1`). The CLI is signed in
+  again (2026-11-22), so headless batches (`drive.py`) can run.
+- **Backups** (`research/corpus/backup.py`): the corpus (Parquet and DuckDB, public build only)
+  and the cached paper PDFs go to the private Hugging Face dataset `HF_DATASET_REPO` (`.env`).
+  First run 2026-11-22. The script refuses a public repo.
+- **Langfuse** (Cloud, US): `research/eval/langfuse_sync.py` creates the datasets (dev30,
+  test22, dev2, test2, jclub, stage1-pilot) and logs runs as experiments: the API arms' recall
+  on dev30, the Journal Club run and the stage 1 pilot. Langfuse Cloud removed its v3 API on
+  2026-11-19, so the script needs SDK v5 (`langfuse>=5.2`), which needs Python 3.10 or later.
+  The Hobby plan allows 100 calls a minute: the script retries on 429 and runs two at a time.
 - **Journal Club run** (`research/eval/jclub/results.md`, 2026-11-22): 12 expert-recommended
   papers each got 3 to 6 *must address* items (4.2 on average), so the tiers are relative, not
   absolute. The novelty lane's recurring finding: a priority claim contradicted by the paper's own
@@ -51,9 +69,10 @@ out, add what you learned that the next session needs. History belongs in git, n
 
 ## Next
 
-- **Data and evaluation plan** (`research/data-plan.md`): stage 1 first: a corpus of papers
-  with public referee reports, the baseline including the *must address* rate on accepted
-  versions, and Langfuse for runs and labels.
+- **Data and evaluation plan** (`research/data-plan.md`): stage 1 is measured. Left from it: a
+  physicist rates the *must address* items on two or three accepted versions in their field
+  (are they real gaps?) and a 10% check of the extracted concerns. Then
+  stage 2 (the larger arXiv-to-published corpus), which the inference result supports.
 
 - **Lab notes plugin** (`lab-notes/`, v0.1.0): setup, note, procedure, learn, plot. Not yet tried on a real
   lab's data. Next: his feedback; eLabFTW export; a hand-annotated messy lab day as the

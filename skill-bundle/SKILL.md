@@ -51,8 +51,9 @@ don't write a second full review: it would mostly repeat the first.
 - Add each new concern under its heading (A, B or C), numbered after the last concern, written
   like the others, and ending with the line `Raised by: gap`. If you find none, add nothing.
 
-This pass is unmeasured. The Claude Code plugin's three independent runs, merged, are what the
-evaluation measured.
+This pass is unmeasured. The single review (reviewer v1.1) is measured; so is the Claude Code
+plugin's `--exhaustive` mode (three independent runs of the original prompt, merged), which raises
+more of the referees' concerns.
 
 Then follow `<skill>/engine/structure.md` on `science-review.md` and the paper, and write
 `review/science.json`. The strengths come from the "Potential reasons for acceptance"
