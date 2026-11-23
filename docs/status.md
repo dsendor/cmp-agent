@@ -26,11 +26,15 @@ out, add what you learned that the next session needs. History belongs in git, n
   file for three control papers, on Springer and in PMC), so the pending papers most likely
   never opted in. The reserve gets no new papers from them; new ones come from new publications. `eval/jclub/selections.json` lists the Journal Club's last 12
   months (links and DOIs only: the commentaries carry no licence); 12 papers are in scope.
-  Next: extract referee concerns for dev2, then match the reviewer's tier A items to them.
-- **Stage 1 pilot** (`research/eval/stage1/README.md`, 2026-11-22): the six dev2 papers with
-  an accepted version on arXiv, reviewed in both versions. *Must address* items: 4.5 per paper
-  on the first version, 4.3 on the accepted one. That is the baseline the absolute-tier
-  prototype has to bring down.
+- **Stage 1 measured** (`research/eval/stage1/README.md`, `EVALUATION.md`, 2026-11-22): every
+  stage 1 metric on dev2 and test2 (54 papers, 32 with an accepted version). v1.0's *must
+  address* items are accurate (80-86% match a referee concern) but as many on accepted
+  versions as on first drafts (test2 one run: 3.3 vs 3.9). The candidate v1.1
+  (`research/eval/stage1/engine-v1.1/`, absolute tier A plus a verdict) cuts accepted versions
+  to 0.7 (7 of 15 at zero) and loses a few points of recall (test2 strict 50% → 45%). **Not
+  adopted: the maintainer decides** whether to make it `engine/` v1.1. Its verdict line is not
+  yet reliable. Inference with reports hidden: 77% precision, 64% recall. Not yet logged to
+  Langfuse. Headless `claude -p` runs (`drive.py`) need the CLI signed in.
 - **Langfuse** (Cloud, US): `research/eval/langfuse_sync.py` creates the datasets (dev30,
   test22, dev2, test2, jclub, stage1-pilot) and logs runs as experiments: the API arms' recall
   on dev30, the Journal Club run and the stage 1 pilot. Langfuse Cloud removed its v3 API on
@@ -59,9 +63,10 @@ out, add what you learned that the next session needs. History belongs in git, n
 
 ## Next
 
-- **Data and evaluation plan** (`research/data-plan.md`): stage 1 first: a corpus of papers
-  with public referee reports, the baseline including the *must address* rate on accepted
-  versions, and Langfuse for runs and labels.
+- **Data and evaluation plan** (`research/data-plan.md`): stage 1 is measured. Left from it: a
+  physicist rates the *must address* items on two or three accepted versions in their field
+  (are they real gaps?), a 10% check of the extracted concerns, and the decision on v1.1. Then
+  stage 2 (the larger arXiv-to-published corpus), which the inference result supports.
 
 - **Lab notes plugin** (`lab-notes/`, v0.1.0): setup, note, procedure, learn, plot. Not yet tried on a real
   lab's data. Next: his feedback; eLabFTW export; a hand-annotated messy lab day as the
