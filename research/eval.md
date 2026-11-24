@@ -309,6 +309,15 @@ extracted by Claude Code subagents (921 first-round concerns), accepted versions
   accepted versions at zero. The merge adds back A items any single run raised. Not adopted;
   `--exhaustive` stays v1.0. A merge that requires two runs to agree on A is the obvious next
   variant (re-merge only, no new reviews).
+- **v1.0's runs re-tiered (v1.2 candidate, 2026-11-24).** Prompted by a physicist's point that
+  referee reports are a floor, not the target: get recall from finding (three v1.0 runs) and the
+  tiers from a separate step. `eval/stage1/engine-v1.2/merge.md` keeps every concern and tiers
+  each afresh against v1.1's absolute bar (`remerge.py`, 88 headless merges). On the 11 dev2 papers
+  judged in every arm: recall 56.1% strict (v1.0 × 3: 54.4%), tier A precision 72.7% (73.5%), tier
+  A items down a third; *must address* per accepted version 4.53 → 1.71 (all 17). A variant whose
+  merger may read the paper for the A check cuts more but loses precision (67.7%). The Gemini
+  project's monthly spending cap stopped the judging at 12 of 22 papers. Not yet adopted; test2
+  next.
 - **What did not work:** headless `claude -p` runs (`eval/stage1/drive.py`) failed on an expired
   CLI sign-in, so all 300-odd runs went through in-session subagents, 20 at a time. The v1.1
   verdict line says "major revision" for 8 of 15 accepted test2 versions.

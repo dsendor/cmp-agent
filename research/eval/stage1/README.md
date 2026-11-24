@@ -114,6 +114,40 @@ first from accepted versions (3.1 against 1.9, the largest gap of the four), but
 any A item one run raised, so accepted versions get more A items than a single v1.1 run and fewer
 reach zero. The verdict line gets worse. Not tried on test2, and dev2 is where v1.1 was written.
 
+### v1.0's runs, re-tiered (v1.2 candidate, dev2)
+
+Finding and tiering, separated: v1.0's three exhaustive runs (the 55% recall above), re-merged
+with `engine-v1.2/merge.md`, which keeps every concern as v1.0's merge does but ignores the runs'
+own headings and tiers each concern against v1.1's absolute bar, with v1.1's last check of the A
+items (`remerge.py`, headless, Claude Opus 5.5, 2026-11-24). Two variants: the merger works from
+the reviews alone (**v1.2**), or may also read the paper for the A check (**v1.2p**). No new reviews.
+
+Tier counts, all 44 folders:
+
+| dev2 (17 papers with both versions) | v1.0 × 3 | **v1.2** | v1.2p | v1.1 × 3 |
+|---|---|---|---|---|
+| *Must address* per first version | 4.59 | **2.59** | 2.35 | 3.06 |
+| *Must address* per accepted version | 4.53 | **1.71** | 1.24 | 1.94 |
+| Accepted versions with none | 0/17 | 3/17 | 4/17 | 2/17 |
+| Items per review (all 27 first versions) | 24.1 | 24.7 | 25.7 | 23.2 |
+
+Judged by Gemini: the project's Gemini spending cap was reached partway through, so only 12 (v1.2)
+and 11 (v1.2p) of the 22 first versions are judged. On the 11 judged in every arm:
+
+| 11 papers | v1.0 × 3 | **v1.2** | v1.2p | v1.1 × 3 |
+|---|---|---|---|---|
+| Recall, strict | 54.4% | **56.1%** | 54.9% | 47.8% |
+| Recall, with partial matches | 82.5% | **84.2%** | 83.2% | 77.9% |
+| Tier A precision (any match) | 73.5% | **72.7%** | 67.7% | 75.8% |
+| Tier A items, total | 49 | 33 | 31 | 33 |
+
+**Reading.** Re-tiering keeps the recall of v1.0 × 3 (every concern is kept; the items per review
+do not fall) and cuts *must address* by about 40% on first versions and 60% on accepted ones, with
+the same tier A precision. This is the goal: v1.0's recall with v1.1's tiers. Letting the merger
+read the paper cuts tier A further but drops its precision (it demotes A items that real referees
+did raise), so reviews alone is better. Still to do: the other 10 judgments (when the Gemini cap
+allows), and test2, which needs two more v1.0 runs per folder.
+
 ### Inference test (`inference/`, `infer_judge.py`)
 
 For the 13 dev2 papers with an accepted version and a matching v1, a subagent ran steps 1 and 3

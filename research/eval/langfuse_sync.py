@@ -233,6 +233,10 @@ STAGE1_RUNS = [  # (set, arm folder, review file, run name, description)
     ("dev2", "v1.1", "runs/r1.md", "stage1-v1.1", "Reviewer v1.1 (absolute tier A, verdict), one run."),
     ("dev2", "v1.1", "science-review.md", "stage1-v1.1-merged",
      "Reviewer v1.1, three runs merged with the v1.1 merge prompt (r2, r3 and the merge headless via claude -p)."),
+    ("dev2", "v1.2", "science-review.md", "stage1-v1.2-retiered",
+     "v1.0's three runs re-merged with engine-v1.2/merge.md: every concern kept, tiers against v1.1's absolute bar."),
+    ("dev2", "v1.2p", "science-review.md", "stage1-v1.2p-retiered-paper",
+     "As v1.2, with the merger allowed to read the paper for the last check of the A items."),
     ("test2", "t1.0", "runs/r1.md", "stage1-test2-v1.0", "Held out. Reviewer v1.0, one run."),
     ("test2", "t1.1", "runs/r1.md", "stage1-test2-v1.1", "Held out, run once after v1.1 was fixed. One run."),
 ]
