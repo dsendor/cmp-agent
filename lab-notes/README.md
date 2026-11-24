@@ -74,6 +74,39 @@ everything a person hasn't checked yet.
 - **AI-drafted, and it says so.** Each entry shows which items a person has confirmed. You
   confirm only what it flags, not every line.
 
+## Working with QCoDeS
+
+Many condensed matter labs record measurements with [QCoDeS](https://microsoft.github.io/Qcodes/),
+which saves every run in a SQLite database. `scripts/qcodes_runs.py` reads those databases
+directly, without QCoDeS installed, and opens them read-only.
+
+- **What it reads per run:** name, experiment, sample, start and finish times, the
+  parameters measured and what they were swept against, the instrument settings, the number
+  of points, the run's GUID, and any columns the lab added (Riggert et al. store notes per
+  run in `widget_notes`, such as "FIGURE RUN: ...").
+- **Settings may be configured, not measured.** QCoDeS saves a snapshot of the instruments
+  with each run. When a run has none, the plugin falls back to the station configuration
+  and labels those values "configured initial value, not the state during the run".
+- **A crashed run is closed as completed.** That is how QCoDeS works: the run is marked
+  completed and the error is stored beside it. The plugin reports it as aborted, with the
+  error, and treats it as incomplete rather than wrong: the points before the crash may be
+  good, and published figures sometimes use such a run.
+- **Run numbers.** A database numbers its runs 1, 2, 3...; data copied from another database
+  keeps its original number as `captured_run_id`, which lab notebooks often use. Both are
+  in `qcodes_runs.py` output with `--json`.
+- **Plots open a copy.** QCoDeS opens a database read-write: a newer version upgrades an
+  older database in place, and opening one can change its journal mode. So every plot script
+  copies the database to a temporary folder first (`qcodes_runs.py copy`) and loads from the
+  copy.
+- **Not yet:** Labber, LabVIEW, Nanonis and other formats are read as plain files (CSV, HDF5)
+  with no instrument settings; QCoDeS is the only measurement system with a dedicated reader.
+  It never connects to instruments.
+
+Tested on a simulated QCoDeS database with planted problems (`tests/`) and on published
+data: Riggert et al. 2025, database 2 (Zenodo
+[15391899](https://doi.org/10.5281/zenodo.15391899), CC BY 4.0), 128 runs with nine
+unfinished ones, all classified correctly.
+
 ## Your data
 
 Files stay in your project. What Claude reads to write an entry (your words, the photo, the
@@ -87,8 +120,12 @@ using it on that data.
 ## Claude Science
 
 The skills use the open Agent Skills format and can be imported into Claude Science from
-GitHub (Settings, Skills, Import from GitHub). That route is untested so far; Claude Code is
-the tested one.
+GitHub (Settings, Skills, Import from GitHub) or uploaded as zips from the test kit. Each
+skill folder carries its own copy of the scripts, so an import of one skill works on its own.
+Tested in Claude Science on the simulated project (set up, learn, plot, note from dictation,
+notebook photo, questions about the record, a procedure manual, and pushback on requests to
+use a crashed run or drop data): every step passed after fixes. The published-data test is
+next.
 
 ## Files
 

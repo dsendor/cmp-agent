@@ -25,11 +25,31 @@ of what has been tried: experiments, controls and dead ends, recorded as they ha
 shared, so that the next lab starts from what the field has already learned. Feedback that
 authors choose to share from this plugin (see below) is the first small piece of that record.
 
-## Also in this repository
+## Lab notes
 
-**[Lab notes](lab-notes/)**: an AI lab notebook. Dictate notes, drop in notebook photos and
-instrument runs, and get a record where every number cites its source; procedure manuals from
-dictation; plots the lab's way. `/plugin install lab-notes@cmp-agent`.
+The second plugin in this repository, and the start of that shared record:
+**[Lab notes](lab-notes/)**, an AI lab notebook for experimental physics. A shared record of
+what was tried can only be as good as what labs write down, so lab notes starts with making
+the writing down easy and worth doing for the lab itself.
+
+- **Talk or type what you did**, attach a notebook photo or a data file, and it writes an
+  entry where every number, setting and run cites its source. Failed runs and disagreements
+  between your notes and the instrument are kept and asked about, not smoothed over.
+- **It reads QCoDeS databases directly** (read-only, no QCoDeS needed): which runs crashed,
+  what each run measured, its settings.
+- **Plots the lab's way:** it learns how the lab loads and plots data from its own notebooks,
+  and saves each figure with the script and the numbers behind it, ready for a paper's data
+  deposit.
+- **Procedure manuals from dictation**, safety steps first, for the next student.
+- **Checked in code:** `verify.py` re-reads every cited run, cell and quote; originals are
+  never changed; AI text is marked until a person checks it.
+
+Everything stays in your project as plain files. Version 0.1, tested in Claude Code and
+Claude Science.
+
+```text
+/plugin install lab-notes@cmp-agent
+```
 
 ## Install
 
