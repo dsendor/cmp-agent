@@ -38,13 +38,13 @@ If it exits 2 (no `pdftotext`), go on: quotes will show as unchecked.
 
 ## 2. Science
 
-Read `<skill>/engine/science.md` and follow it on the paper, reading the whole PDF (and the
+Read `<skill>/engine/science-quick.md` and follow it on the paper, reading the whole PDF (and the
 supplement). Write the review to `review/science-review.md`.
 
 **Thorough review, only when the user asks for one:** one more pass, a hunt for what the review
 missed. You cannot run independent reviews here, since every pass shares this conversation. So
 don't write a second full review: it would mostly repeat the first.
-- Go through the paper again with `science.md`'s claims, required-evidence, hidden-assumption
+- Go through the paper again with `science-quick.md`'s claims, required-evidence, hidden-assumption
   and figures-against-text steps and its condensed matter checklist, item by item. For each,
   ask whether a referee would raise a concern that `science-review.md` does not already have.
 - Do not repeat, reword or re-rank concerns already there.
@@ -52,8 +52,8 @@ don't write a second full review: it would mostly repeat the first.
   like the others, and ending with the line `Raised by: gap`. If you find none, add nothing.
 
 This pass is unmeasured. The single review (reviewer v1.1) is measured; so is the Claude Code
-plugin's `--exhaustive` mode (three independent runs of the original prompt, merged), which raises
-more of the referees' concerns.
+plugin's default (three independent runs, merged and re-tiered: reviewer v1.2), which raises more
+of the referees' concerns.
 
 Then follow `<skill>/engine/structure.md` on `science-review.md` and the paper, and write
 `review/science.json`. The strengths come from the "Potential reasons for acceptance"

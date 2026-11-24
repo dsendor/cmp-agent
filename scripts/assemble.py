@@ -91,8 +91,8 @@ def edit_of(e, file=None):
 
 
 def reviewer_version(mode):
-    """engine/VERSION: the first line is the standard reviewer's version; a line "exhaustive X" gives
-    the version exhaustive mode runs (it keeps the original prompt, engine/science-exhaustive.md)."""
+    """engine/VERSION: the first line is the default (exhaustive) reviewer's version; a line
+    "standard X" gives the version standard mode runs (engine/science-quick.md)."""
     f = ENGINE / "VERSION"
     if not f.exists():
         return ""
