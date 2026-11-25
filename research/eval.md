@@ -302,6 +302,28 @@ extracted by Claude Code subagents (921 first-round concerns), accepted versions
   baseline above). `engine/VERSION` names both (`1.1`, `exhaustive 1.0`); `assemble.py` records
   the one a review used. v1.1's merge variant (`eval/stage1/engine-v1.1/merge.md`) is not used.
   Everything in `eval/stage1/` is mirrored in Langfuse (`langfuse_sync.py stage1`).
+- **v1.1 × 3 merged** (dev2, 2026-11-22; r2, r3 and merges headless through `drive.py`, the
+  first batch since the CLI sign-in was fixed: 86 runs and 44 merges, no failures): recall 50.0%
+  strict / 75.0% lenient (v1.0 × 3: 54.9 / 80.7; v1.1 × 1: 42.9 / 66.5); *must address* 3.06 per
+  first version and 1.94 per accepted (v1.0 × 3: 4.59 / 4.53; v1.1 × 1: 2.18 / 1.29); 2 of 17
+  accepted versions at zero. The merge adds back A items any single run raised. Not adopted;
+  `--exhaustive` stays v1.0. A merge that requires two runs to agree on A is the obvious next
+  variant (re-merge only, no new reviews).
+- **v1.0's runs re-tiered (v1.2 candidate, 2026-11-24).** Prompted by a physicist's point that
+  referee reports are a floor, not the target: get recall from finding (three v1.0 runs) and the
+  tiers from a separate step. `eval/stage1/engine-v1.2/merge.md` keeps every concern and tiers
+  each afresh against v1.1's absolute bar (`remerge.py`, 88 headless merges). On the 11 dev2 papers
+  judged in every arm: recall 56.1% strict (v1.0 × 3: 54.4%), tier A precision 72.7% (73.5%), tier
+  A items down a third; *must address* per accepted version 4.53 → 1.71 (all 17). A variant whose
+  merger may read the paper for the A check cuts more but loses precision (67.7%). The Gemini
+  project's monthly spending cap stopped the judging at 12 of 22 papers. Not yet adopted; test2
+  next.
+- **v1.2 adopted as the default (plugin 0.8.0, 2026-11-24, the maintainer's decision: recall
+  first, then tiering).** `engine/science.md` is v1.0 again (the finding prompt, three runs);
+  `engine/merge.md` is `eval/stage1/engine-v1.2/merge.md` without the paper-check slot;
+  v1.1 moved to `engine/science-quick.md` (`--quick`, one run). `engine/VERSION`: `1.2`,
+  `standard 1.1`. `eval/stage1/engine-v1.0/` keeps the v1.0 prompts frozen for reruns. Adopted
+  on dev2 evidence; the test2 run is in progress.
 - **What did not work:** headless `claude -p` runs (`eval/stage1/drive.py`) failed on an expired
   CLI sign-in, so all 300-odd runs went through in-session subagents, 20 at a time. The v1.1
   verdict line says "major revision" for 8 of 15 accepted test2 versions.

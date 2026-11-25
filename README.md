@@ -77,16 +77,17 @@ the paper. The review is written for Claude Opus; other models work but are not 
 ```text
 /referee-preview:review path/to/paper.pdf
 /referee-preview:review path/to/latex-folder --journal "Physical Review B"
-/referee-preview:review 2601.01843 --exhaustive
+/referee-preview:review 2601.01843 --quick
 /referee-preview:publish                             # share the dashboard as a private claude.ai link
 /referee-preview:compare <old review folder> new.pdf  # a revision: what changed, what referees likely asked
 ```
 
-The review runs one scientific review (about 5 to 10 minutes on your Claude Code plan). Its
-*must address* tier is absolute: what a referee at a top journal would require before accepting,
-so a paper that is ready has few or none. `--exhaustive` runs three independent reviews with the
-original prompt in parallel and merges them (10 to 25 minutes): it raises more of the referees'
-concerns, but ranks them within the paper rather than saying whether it is ready. It writes a folder
+The review runs three independent scientific reviews in parallel and merges them (about 10 to
+25 minutes on your Claude Code plan). The merge keeps every concern any review raised, then tiers
+each one against an absolute bar: *must address* is only what a referee at a top journal would
+require before accepting, so a paper that is ready has few or none, and everything else is still
+there under *should address* and *minor*. `--quick` runs one review (5 to 10 minutes, a third of
+the usage) with the same tiers but fewer concerns found. It writes a folder
 `referee-preview/<paper>-<date>/` next to the paper and opens `dashboard.html`.
 
 It looks at the paper in four lanes:
@@ -158,7 +159,7 @@ so changes can be tracked from version to version. See [docs/revisions.md](docs/
 |---|---|
 | `skills/review/`, `skills/apply/`, `skills/publish/`, `skills/compare/`, `skills/contribute/` | the five commands |
 | `agents/` | subagents: three science reviewers in parallel, the merger, the structurer, presentation and copy |
-| `engine/` | the prompts. `science.md` (reviewer v1.1, the default) and `science-exhaustive.md` with `merge.md` (v1.0, `--exhaustive`) are the measured reviewers (`VERSION`); the others are newer and not yet measured |
+| `engine/` | the prompts. `science.md` run three times with `merge.md` (reviewer v1.2, the default) and `science-quick.md` (v1.1, `--quick`) are the measured reviewers (`VERSION`); the others are newer and not yet measured |
 | `scripts/` | `paper_text.py`, `assemble.py`, `check_evidence.py` (is each quote really in the paper), `build_dashboard.py`, `contribute.py` (redact, scrub, send) |
 | `feedback-endpoint/` | the serverless function that files contributions in a private repository |
 | `dashboard/template.html` | the dashboard: one self-contained file that works offline |

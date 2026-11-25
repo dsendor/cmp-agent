@@ -32,9 +32,12 @@ out, add what you learned that the next session needs. History belongs in git, n
   versions as on first drafts (test2 one run: 3.3 vs 3.9). The candidate v1.1
   (`research/eval/stage1/engine-v1.1/`, absolute tier A plus a verdict) cuts accepted versions
   to 0.7 (7 of 15 at zero) and loses a few points of recall (test2 strict 50% → 45%).
-  **Adopted** (plugin 0.7.0): v1.1 is `engine/science.md` and the default; `--exhaustive` runs
-  the original prompt (`engine/science-exhaustive.md`) three times and merges. The verdict line
-  is not yet reliable, so the skill does not report it. Inference with reports hidden: 77%
+  **Now the default (plugin 0.8.0): reviewer v1.2**, which separates finding from tiering:
+  three runs of the original prompt (`engine/science.md`, the recall) merged by
+  `engine/merge.md`, which keeps every concern and tiers each against v1.1's absolute bar. dev2:
+  v1.0 × 3's recall with about 60% fewer *must address* items on accepted versions. One v1.1 run
+  is `--quick` (`engine/science-quick.md`); its verdict line is not reliable, so the skill does
+  not report it. Inference with reports hidden: 77%
   precision, 64% recall. Logged to Langfuse (`langfuse_sync.py stage1`). The CLI is signed in
   again (2026-11-22), so headless batches (`drive.py`) can run.
 - **Backups** (`research/corpus/backup.py`): the corpus (Parquet and DuckDB, public build only)

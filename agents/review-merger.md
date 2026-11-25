@@ -1,6 +1,6 @@
 ---
 name: review-merger
-description: "Merges several independent scientific reviews of one paper into one prioritized review with the merge prompt (reviewer v1.0, exhaustive mode), recording which runs raised each concern. Dispatched once by the review skill in exhaustive mode."
+description: "Merges several independent scientific reviews of one paper into one prioritized review with the merge prompt (reviewer v1.2: every concern kept, tiers against an absolute bar), recording which runs raised each concern. Dispatched once by the review skill in exhaustive mode."
 tools: Read, Write
 ---
 
