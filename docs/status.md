@@ -34,8 +34,9 @@ out, add what you learned that the next session needs. History belongs in git, n
   to 0.7 (7 of 15 at zero) and loses a few points of recall (test2 strict 50% → 45%).
   **Now the default (plugin 0.8.0): reviewer v1.2**, which separates finding from tiering:
   three runs of the original prompt (`engine/science.md`, the recall) merged by
-  `engine/merge.md`, which keeps every concern and tiers each against v1.1's absolute bar. dev2:
-  v1.0 × 3's recall with about 60% fewer *must address* items on accepted versions. One v1.1 run
+  `engine/merge.md`, which keeps every concern and tiers each against v1.1's absolute bar.
+  Held-out test2 confirms dev2: 60% recall (one run: 50%), *must address* 83% accurate, 1.8 per
+  accepted version (three runs merged without re-tiering: 4.5). One v1.1 run
   is `--quick` (`engine/science-quick.md`); its verdict line is not reliable, so the skill does
   not report it. Inference with reports hidden: 77%
   precision, 64% recall. Logged to Langfuse (`langfuse_sync.py stage1`). The CLI is signed in

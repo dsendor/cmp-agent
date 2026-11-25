@@ -131,22 +131,49 @@ Tier counts, all 44 folders:
 | Accepted versions with none | 0/17 | 3/17 | 4/17 | 2/17 |
 | Items per review (all 27 first versions) | 24.1 | 24.7 | 25.7 | 23.2 |
 
-Judged by Gemini: the project's Gemini spending cap was reached partway through, so only 12 (v1.2)
-and 11 (v1.2p) of the 22 first versions are judged. On the 11 judged in every arm:
+Judged by Gemini, all 22 first versions (v1.2p stopped at 11 when the project's Gemini spending
+cap was reached, and was not finished once it was rejected):
 
-| 11 papers | v1.0 × 3 | **v1.2** | v1.2p | v1.1 × 3 |
-|---|---|---|---|---|
-| Recall, strict | 54.4% | **56.1%** | 54.9% | 47.8% |
-| Recall, with partial matches | 82.5% | **84.2%** | 83.2% | 77.9% |
-| Tier A precision (any match) | 73.5% | **72.7%** | 67.7% | 75.8% |
-| Tier A items, total | 49 | 33 | 31 | 33 |
+| dev2, 22 papers | v1.0 × 3 | **v1.2** | v1.1 × 3 |
+|---|---|---|---|
+| Recall, strict | 54.9% | **54.9%** | 50.0% |
+| Recall, with partial matches | 80.7% | **80.3%** | 75.0% |
+| Tier A precision (any match) | 80.4% | **78.3%** | 78.8% |
+| Tier A precision (full match) | 59.8% | **65.0%** | 60.6% |
+
+On the 11 papers judged in every arm, v1.2p matched v1.2's recall (54.9% against 56.1% strict) with
+lower tier A precision (67.7% against 72.7%).
 
 **Reading.** Re-tiering keeps the recall of v1.0 × 3 (every concern is kept; the items per review
 do not fall) and cuts *must address* by about 40% on first versions and 60% on accepted ones, with
-the same tier A precision. This is the goal: v1.0's recall with v1.1's tiers. Letting the merger
+about the same tier A precision. This is the goal: v1.0's recall with v1.1's tiers. Letting the merger
 read the paper cuts tier A further but drops its precision (it demotes A items that real referees
-did raise), so reviews alone is better. Still to do: the other 10 judgments (when the Gemini cap
-allows), and test2, which needs two more v1.0 runs per folder.
+did raise), so reviews alone is better. v1.2 became the default in plugin 0.8.0.
+
+### v1.2 on the held-out set (test2)
+
+Frozen before the run: `engine-v1.0/` for two more v1.0 runs per folder (r1 was the earlier
+single run) and the v1.0 merge (`t1.0`), then `engine-v1.2/merge.md` on the same three runs
+(`t1.2`, reviews alone). Headless, Claude Opus 5.5, 2026-11-24 and 25; all 27 first versions
+judged by Gemini.
+
+| test2 | v1.0, one run | v1.1, one run (`--quick`) | v1.0 × 3 | **v1.2** |
+|---|---|---|---|---|
+| Recall, strict (21 papers) | 50.4% | 44.6% | 61.9% | **60.1%** |
+| Recall, with partial matches | 75.2% | 73.1% | 82.6% | **84.5%** |
+| Tier A precision (any match) | 86.1% | 82.4% | 80.4% | **83.3%** |
+| Tier A precision (full match) | 75.9% | 70.6% | 67.0% | **74.2%** |
+| *Must address* per first version (15 papers with both) | 3.87 | 2.33 | 5.20 | **3.13** |
+| *Must address* per accepted version | 3.27 | 0.67 | 4.47 | **1.80** |
+| Accepted versions with none | 0/15 | 7/15 | 0/15 | **2/15** |
+| Items per review (27 first versions) | 23.4 | 20.9 | 25.7 | **25.9** |
+
+**Reading.** The held-out set confirms dev2. Three merged runs find 10 to 12 points more of the
+referees' concerns than one run (more than on dev2), and re-tiering keeps that recall while
+raising tier A precision and cutting *must address* on accepted versions from 4.5 to 1.8. The
+first-to-accepted drop in tier A (3.1 → 1.8) is larger than any arm's but v1.1's one run, which
+gets there by finding 15 points less. One v1.1 run still empties tier A on more accepted versions;
+v1.2 is the better trade for the stated goal (recall first, then tiering).
 
 ### Inference test (`inference/`, `infer_judge.py`)
 

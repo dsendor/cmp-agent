@@ -323,7 +323,14 @@ extracted by Claude Code subagents (921 first-round concerns), accepted versions
   `engine/merge.md` is `eval/stage1/engine-v1.2/merge.md` without the paper-check slot;
   v1.1 moved to `engine/science-quick.md` (`--quick`, one run). `engine/VERSION`: `1.2`,
   `standard 1.1`. `eval/stage1/engine-v1.0/` keeps the v1.0 prompts frozen for reruns. Adopted
-  on dev2 evidence; the test2 run is in progress.
+  on dev2 evidence; test2 then confirmed it (below).
+- **v1.2 on test2 (held out, 2026-11-25).** Two more frozen v1.0 runs per folder (84 headless
+  runs), the v1.0 merge (`t1.0`) and the v1.2 re-tier merge (`t1.2`), 108 Gemini judgments (about
+  $13 after the cap was raised). Recall strict / lenient: v1.0 × 1 50.4 / 75.2, v1.1 × 1 44.6 /
+  73.1, v1.0 × 3 61.9 / 82.6, **v1.2 60.1 / 84.5**. Tier A precision: 86.1, 82.4, 80.4, **83.3**.
+  *Must address* first → accepted (15 papers): 3.87 → 3.27, 2.33 → 0.67, 5.20 → 4.47, **3.13 →
+  1.80** (2 of 15 accepted at zero). dev2 complete (22 papers): v1.2 54.9 / 80.3, A precision 78.3
+  (v1.0 × 3: 54.9 / 80.7, 80.4). Default kept.
 - **What did not work:** headless `claude -p` runs (`eval/stage1/drive.py`) failed on an expired
   CLI sign-in, so all 300-odd runs went through in-session subagents, 20 at a time. The v1.1
   verdict line says "major revision" for 8 of 15 accepted test2 versions.

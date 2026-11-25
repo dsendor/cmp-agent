@@ -40,7 +40,8 @@ What this settled:
 1. **Merging independent runs is the cheapest reliable gain.** Three runs merged raise 11
    points more of the referees' concerns, in a list only 1.3 times as long as one review.
    The plugin's default merges three runs; stage 1 (below) measured three merged v1.0 runs
-   at 55% on new papers, and re-tiering them in the merge (v1.2) kept that recall.
+   at 55% (dev2) and 62% (held-out test2) on new papers, and re-tiering them in the merge
+   (v1.2) kept that recall.
 2. **Importance tiers work for triage.** The *must address* tier holds about a third of a
    review's points and two thirds of the referees' major concerns the review caught.
 3. **Order within a tier did not improve** with any variant tried. The dashboard lets you
@@ -56,14 +57,13 @@ What this settled:
 ran as Claude Code subagents, not through the API, so these numbers do not mix with the table
 above. Details: [`research/eval/stage1/README.md`](research/eval/stage1/README.md).*
 
-| Metric | Reviewer v1.0 | Reviewer v1.1 (`--quick`) |
-|---|---|---|
-| Recall, three runs merged (dev2, 22 papers) | 55% (81% with partial matches) | |
-| Recall, one run (held-out test2, 21 papers) | 50% (75%) | 45% (73%) |
-| *Must address* items matching a real referee concern (test2) | 86% | 82% |
-| ***Must address* items on the accepted version** (test2, 15 papers) | **3.3** | **0.7** |
-| … on the first version of the same papers | 3.9 | 2.3 |
-| Accepted versions with no *must address* item | 0 of 15 | 7 of 15 |
+| Held-out test2 | v1.0, one run | v1.1, one run (`--quick`) | v1.0, three runs merged | **v1.2 (default)** |
+|---|---|---|---|---|
+| Recall (21 papers) | 50% (75% with partial matches) | 45% (73%) | 62% (83%) | **60% (85%)** |
+| *Must address* items matching a real referee concern | 86% | 82% | 80% | **83%** |
+| ***Must address* items on the accepted version** (15 papers) | 3.3 | 0.7 | 4.5 | **1.8** |
+| … on the first version of the same papers | 3.9 | 2.3 | 5.2 | **3.1** |
+| Accepted versions with no *must address* item | 0 of 15 | 7 of 15 | 0 of 15 | 2 of 15 |
 
 - **What "must address" means today.** v1.0's *must address* items are accurate (most match a
   real referee concern), but it raises as many on a paper the journal accepted as on the first
@@ -72,9 +72,10 @@ above. Details: [`research/eval/stage1/README.md`](research/eval/stage1/README.m
   adds a verdict. It brings accepted versions near zero at a cost of a few points of recall.
   The verdict line itself is not yet reliable. One v1.1 run is the plugin's `--quick` mode.
 - **v1.2, the default since plugin 0.8.0**, separates finding from tiering: three v1.0 runs (the
-  recall) merged by a prompt that keeps every concern and tiers each against v1.1's bar. On dev2
-  it keeps v1.0 × 3's recall (55%) with the same *must address* precision and 1.7 *must address*
-  items per accepted version instead of 4.5 ([details](research/eval/stage1/README.md)).
+  recall) merged by a prompt that keeps every concern and tiers each against v1.1's bar. On the
+  held-out test2 it keeps three merged runs' recall (60% against 62%, 85% against 83% with
+  partial matches), with *must address* items slightly more accurate and 1.8 per accepted
+  version instead of 4.5. dev2 showed the same ([details](research/eval/stage1/README.md)).
 - **Inferring the referees' requests** from what changed between versions, with the reports
   hidden: 77% of inferred requests are real, and 64% of real concerns are found (80% of those
   answered with new data). This is what the revision comparison (`/referee-preview:compare`)
