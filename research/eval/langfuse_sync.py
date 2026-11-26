@@ -239,6 +239,10 @@ STAGE1_RUNS = [  # (set, arm folder, review file, run name, description)
      "As v1.2, with the merger allowed to read the paper for the last check of the A items."),
     ("test2", "t1.0", "runs/r1.md", "stage1-test2-v1.0", "Held out. Reviewer v1.0, one run."),
     ("test2", "t1.1", "runs/r1.md", "stage1-test2-v1.1", "Held out, run once after v1.1 was fixed. One run."),
+    ("test2", "t1.0", "science-review.md", "stage1-test2-v1.0-exhaustive",
+     "Held out. Reviewer v1.0, three frozen runs merged with the v1.0 merge prompt."),
+    ("test2", "t1.2", "science-review.md", "stage1-test2-v1.2",
+     "Held out. Reviewer v1.2 (the default since 0.8.0): the same three v1.0 runs re-merged and re-tiered."),
 ]
 
 
