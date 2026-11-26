@@ -82,12 +82,22 @@ out, add what you learned that the next session needs. History belongs in git, n
   lab's data. Next: his feedback; eLabFTW export; a hand-annotated messy lab day as the
   benchmark (`lab-notes/docs/record-format.md` is the format).
 
+- **Project advisor plugin** (`project-advisor/`, v0.1.0): one skill, `/project-advisor:choose`.
+  Tested only on a made-up example. Next: a blind comparison against a plain "help me choose
+  between these" prompt with two or three early-career experimentalists on their own ideas,
+  then a 3 to 6 month follow-up on what they picked. Protocol, forms and pass or stop
+  criteria: `project-advisor/eval/README.md`. Later: Semantic Scholar and ADS as extra search sources.
+
 - Physicists rate the reviews; run the held-out test papers (`EVALUATION.md`).
 - Measure the presentation and copy lanes.
 - Word (`.docx`) input.
 - A shared record of what has been tried (see the README, "Why this exists").
 
 ## Known limits
+
+- OpenAlex has required an API key since February 2026; an unkeyed request returned HTTP 429
+  on 2026-11-21. `research/skill/SKILL.md` and `research/prior-work.md` still say it needs
+  no key. Check any OpenAlex lookup before relying on it.
 
 - An installed plugin keeps its cached version until the version number changes, so a
   dashboard rebuilt with an old install loses newer features.

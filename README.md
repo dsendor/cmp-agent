@@ -51,6 +51,11 @@ Claude Science.
 /plugin install lab-notes@cmp-agent
 ```
 
+**[Project advisor](project-advisor/)**: choose between your own research ideas. Assumptions
+with risk and readout time, the closest prior work on arXiv, your own estimates of odds,
+impact and time, and a dashboard showing the uncertainty that would most change your choice.
+`/plugin install project-advisor@cmp-agent`.
+
 ## Install
 
 In Claude Code:
